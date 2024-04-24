@@ -4,6 +4,16 @@ import type { Config } from "tailwindcss";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AreaChart } from "@tremor/react";
 
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
 const data = [
   { date: "Jan 23", Organic: 232, Sponsored: 0 },
   { date: "Feb 23", Organic: 241, Sponsored: 0 },
@@ -979,6 +989,44 @@ export default function Home() {
                     Change your password here.
                   </TabsContent>
                 </Tabs>
+              </div>
+
+              <div className="relative w-full flex flex-col">
+                <div className="p-4 relative flex justify-between w-full justify-items-stretch flex-row place-content-between	">
+                  <div className="flex flex-col max-w-[30rem]">
+                    <h2 className="text-xl font-medium">Wallets</h2>
+                  </div>
+                </div>
+
+                <Table>
+                  <TableHeader className="border-transparent overflow-hidden w-full">
+                    <TableRow className="border-transparent w-lg">
+                      <TableHead className="w-[100px] bg-gray-50 rounded-l-2xl">
+                        Wallet
+                      </TableHead>
+                      <TableHead className="bg-gray-50">Allocation %</TableHead>
+                      <TableHead className="bg-gray-50">Return</TableHead>
+                      <TableHead className="text-right bg-gray-50">
+                        Value
+                      </TableHead>
+                      <TableHead className="text-right bg-gray-50 rounded-r-xl">
+                        Balance
+                      </TableHead>
+                    </TableRow>
+                  </TableHeader>
+
+                  <TableBody>
+                    <TableRow>
+                      <TableCell className="font-medium w-96">
+                        Wallet Name
+                      </TableCell>
+                      <TableCell>0.00%</TableCell>
+                      <TableCell>0.00% ($0.00)</TableCell>
+                      <TableCell className="text-right">$0.00</TableCell>
+                      <TableCell className="text-right"></TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </div>
             </div>
           </div>
