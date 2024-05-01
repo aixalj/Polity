@@ -8,6 +8,8 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 
+import Link from "next/link";
+
 const SideBar = () => {
   return (
     <div className="px-2 pt-8 pb-2 hidden sm:flex sm:flex-col">
@@ -63,12 +65,11 @@ const SideBar = () => {
                 <CollapsibleTrigger className="w-full ease-in-out duration-200">
                   <ul className="flex flex-col gap-1">
                     <li>
-                      <a
+                      <div
                         className="group focus:ring-0 justify-between outline-none focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                        href="#"
                         id="overview"
                       >
-                        <div className="flex gap-3 items-center">
+                        <Link href="/" className="flex gap-3 items-center">
                           <svg
                             className="group-target:text-black"
                             width="24"
@@ -86,12 +87,12 @@ const SideBar = () => {
                             />
                           </svg>
                           Wealth
-                        </div>
+                        </Link>
 
                         <p className="ml-auto text-sm text-gray-800  font-medium">
                           $0.00
                         </p>
-                      </a>
+                      </div>
                     </li>
                   </ul>
                 </CollapsibleTrigger>
@@ -104,12 +105,14 @@ const SideBar = () => {
                     <li>
                       <Collapsible className="w-full flex flex-col gap-1">
                         <CollapsibleTrigger className="w-full ease-in-out duration-200">
-                          <a
+                          <div
                             className="group focus:ring-0 outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
-                            href="#"
                             id="overview"
                           >
-                            <div className="flex gap-3 items-center">
+                            <Link
+                              href="/wallets/wallet1"
+                              className="flex gap-3 items-center"
+                            >
                               <svg
                                 width="24"
                                 height="24"
@@ -427,11 +430,11 @@ const SideBar = () => {
                                 </defs>
                               </svg>
                               Wallet Name
-                            </div>
+                            </Link>
                             <p className="ml-auto text-sm  font-medium">
                               $0.00
                             </p>
-                          </a>
+                          </div>
                         </CollapsibleTrigger>
                         <CollapsibleContent className="items-start">
                           <ul className="flex flex-col gap-1">
