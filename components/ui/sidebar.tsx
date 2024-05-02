@@ -100,7 +100,9 @@ const SideBar = () => {
                           Wealth
                         </Link>
 
-                        <p className="ml-auto text-sm   font-medium">$0.00</p>
+                        <p className="ml-auto text-sm   font-medium">
+                          $186,872.15
+                        </p>
                       </div>
                     </li>
                   </ul>
@@ -445,7 +447,7 @@ const SideBar = () => {
                               Wallet Name
                             </Link>
                             <p className="ml-auto text-sm  font-medium">
-                              $0.00
+                              $186,872.15
                             </p>
                           </div>
                         </CollapsibleTrigger>
@@ -530,10 +532,7 @@ const SideBar = () => {
                                     </defs>
                                   </svg>
 
-                                  <Link
-                                    href="/wealth/wallet1/btcnetwork"
-                                    className=""
-                                  >
+                                  <Link href="" className="">
                                     <p className="text-sm">
                                       Bitcoin Network Account
                                     </p>
@@ -549,7 +548,11 @@ const SideBar = () => {
                             </li>
                             <li>
                               <a
-                                className="group focus:ring-0 outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                className={`group focus:ring-0 ${
+                                  pathname === "/wealth/wallet1/ethnetwork"
+                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                }`}
                                 href="#"
                                 id="overview"
                               >
@@ -637,14 +640,17 @@ const SideBar = () => {
                                     </defs>
                                   </svg>
 
-                                  <div className="">
+                                  <Link
+                                    href="/wealth/wallet1/ethnetwork"
+                                    className=""
+                                  >
                                     <p className="text-sm">
                                       Ethereum Network Account
                                     </p>
                                     <p className="text-xs">
                                       Ethereum (0x8f...47d2)
                                     </p>
-                                  </div>
+                                  </Link>
                                 </div>
                                 <p className="ml-auto text-sm font-medium">
                                   $0.00
