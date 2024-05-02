@@ -58,7 +58,7 @@ const summary = [
   },
 ];
 
-export default function WalletOne() {
+export default function NetworkOne() {
   return (
     <main className="w-full h-full">
       <div className="mx-auto w-full bg-white rounded-xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
@@ -66,6 +66,31 @@ export default function WalletOne() {
           <div className=" max-w-screen-xl mx-auto p-6">
             <nav aria-label="Breadcrumb">
               <ol className="flex items-center gap-1 text-xs text-gray-600">
+                <li>
+                  <a href="#" className="block transition hover:text-gray-700">
+                    {" "}
+                    Avatar Name{" "}
+                  </a>
+                </li>
+
+                <li className="rtl:rotate-180">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5.83337 18.3334L14.1667 1.66675"
+                      stroke="#D0D5DD"
+                      stroke-width="1.66667"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </li>
+
                 <li>
                   <a href="#" className="block transition hover:text-gray-700">
                     {" "}
@@ -94,14 +119,14 @@ export default function WalletOne() {
                 <li>
                   <a href="#" className="block transition text-gray-800">
                     {" "}
-                    Overview{" "}
+                    Wallet Name{" "}
                   </a>
                 </li>
               </ol>
             </nav>
             <div className="w-full  mt-4 flex items-center justify-between">
               {" "}
-              <h1 className="text-4xl font-medium">Wallet Name</h1>{" "}
+              <h1 className="text-4xl font-medium">BTC Network Account</h1>{" "}
               <div className="flex gap-3">
                 <Button variant="default">
                   <svg

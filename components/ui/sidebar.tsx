@@ -1,7 +1,12 @@
+"use client";
+
 import * as React from "react";
 import type { Config } from "tailwindcss";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+
+import { usePathname } from "next/navigation";
+
 import {
   Collapsible,
   CollapsibleContent,
@@ -11,6 +16,8 @@ import {
 import Link from "next/link";
 
 const SideBar = () => {
+  const pathname = usePathname();
+
   return (
     <div className="px-2 pt-8 pb-2 hidden sm:flex sm:flex-col">
       <a href="index.html" className="px-4 py-1">
@@ -66,7 +73,11 @@ const SideBar = () => {
                   <ul className="flex flex-col gap-1">
                     <li>
                       <div
-                        className="group focus:ring-0 justify-between outline-none focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                        className={`group focus:ring-0 ${
+                          pathname === "/"
+                            ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                            : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                        }`}
                         id="overview"
                       >
                         <Link href="/" className="flex gap-3 items-center">
@@ -89,9 +100,7 @@ const SideBar = () => {
                           Wealth
                         </Link>
 
-                        <p className="ml-auto text-sm text-gray-800  font-medium">
-                          $0.00
-                        </p>
+                        <p className="ml-auto text-sm   font-medium">$0.00</p>
                       </div>
                     </li>
                   </ul>
@@ -106,11 +115,15 @@ const SideBar = () => {
                       <Collapsible className="w-full flex flex-col gap-1">
                         <CollapsibleTrigger className="w-full ease-in-out duration-200">
                           <div
-                            className="group focus:ring-0 outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                            className={`group focus:ring-0 ${
+                              pathname === "/wealth/wallet1"
+                                ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                            }`}
                             id="overview"
                           >
                             <Link
-                              href="/wallets/wallet1"
+                              href="/wealth/wallet1"
                               className="flex gap-3 items-center"
                             >
                               <svg
@@ -446,7 +459,11 @@ const SideBar = () => {
                             </li>
                             <li>
                               <a
-                                className="group focus:ring-0 outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                className={`group focus:ring-0 ${
+                                  pathname === "/wealth/wallet1/btcnetwork"
+                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                }`}
                                 href="#"
                                 id="overview"
                               >
@@ -513,14 +530,17 @@ const SideBar = () => {
                                     </defs>
                                   </svg>
 
-                                  <div className="">
+                                  <Link
+                                    href="/wealth/wallet1/btcnetwork"
+                                    className=""
+                                  >
                                     <p className="text-sm">
                                       Bitcoin Network Account
                                     </p>
                                     <p className="text-xs">
                                       Bitcoin (428f...47d2)
                                     </p>
-                                  </div>
+                                  </Link>
                                 </div>
                                 <p className="ml-auto text-sm font-medium">
                                   $0.00
