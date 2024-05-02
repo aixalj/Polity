@@ -309,7 +309,18 @@ export default function BitcoinOne() {
 
             <div className="w-full  mt-5 flex items-center justify-between pb-1">
               {" "}
-              <h2 className="text-2xl font-medium">Overview</h2>{" "}
+              <div>
+                <h2 className="text-2xl font-medium">Overview</h2>{" "}
+                <Tabs defaultValue="assets">
+                  <TabsList className="mt-4">
+                    <TabsTrigger value="overview">Overview</TabsTrigger>
+                    <TabsTrigger value="assets">Assets</TabsTrigger>
+                    <TabsTrigger value="dApps">dApps</TabsTrigger>
+                    <TabsTrigger value="positions">Positions</TabsTrigger>
+                    <TabsTrigger value="nfts">NFTs</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              </div>
               <div className="flex gap-3">
                 <Button variant="outline">
                   <svg
@@ -330,7 +341,7 @@ export default function BitcoinOne() {
                   Update Data
                 </Button>
 
-                <Select>
+                <Select defaultValue="light">
                   <SelectTrigger className="w-48 gap-2 ">
                     <svg
                       width="20"
