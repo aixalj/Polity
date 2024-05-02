@@ -310,7 +310,6 @@ export default function BitcoinOne() {
             <div className="w-full  mt-5 flex items-center justify-between pb-1">
               {" "}
               <div>
-                <h2 className="text-2xl font-medium">Overview</h2>{" "}
                 <Tabs defaultValue="assets">
                   <TabsList className="mt-4">
                     <TabsTrigger value="overview">Overview</TabsTrigger>
@@ -320,6 +319,7 @@ export default function BitcoinOne() {
                     <TabsTrigger value="nfts">NFTs</TabsTrigger>
                   </TabsList>
                 </Tabs>
+                <h2 className="text-2xl font-medium">Overview</h2>{" "}
               </div>
               <div className="flex gap-3">
                 <Button variant="outline">
