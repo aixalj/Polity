@@ -369,7 +369,7 @@ export default function BitcoinOne() {
           <div className="w-full  h-auto border rounded-2xl border-gray-300 p-4 flex flex-col gap-6">
             <div>
               <p className="text-base text-gray-600 flex gap-2 items-center">
-                Wallet Value
+                Network Account Value
                 <a>
                   <svg
                     width="12"
