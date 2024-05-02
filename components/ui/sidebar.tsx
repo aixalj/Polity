@@ -1274,16 +1274,15 @@ const SideBar = () => {
                   id="overview"
                 >
                   <svg
-                    className="group-target:text-black"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <g clip-path="url(#clip0_85_15228)">
+                    <g clip-path="url(#clip0_88_23594)">
                       <path
-                        d="M12.0001 7.00008V12.0001L15.3334 13.6667M20.3334 12.0001C20.3334 16.6025 16.6025 20.3334 12.0001 20.3334C7.39771 20.3334 3.66675 16.6025 3.66675 12.0001C3.66675 7.39771 7.39771 3.66675 12.0001 3.66675C16.6025 3.66675 20.3334 7.39771 20.3334 12.0001Z"
+                        d="M12.0001 6.99996V12L15.3334 13.6666M20.3334 12C20.3334 16.6023 16.6025 20.3333 12.0001 20.3333C7.39771 20.3333 3.66675 16.6023 3.66675 12C3.66675 7.39759 7.39771 3.66663 12.0001 3.66663C16.6025 3.66663 20.3334 7.39759 20.3334 12Z"
                         stroke="currentColor"
                         stroke-width="1.5"
                         stroke-linecap="round"
@@ -1291,12 +1290,12 @@ const SideBar = () => {
                       />
                     </g>
                     <defs>
-                      <clipPath id="clip0_85_15228">
+                      <clipPath id="clip0_88_23594">
                         <rect
                           width="20"
                           height="20"
                           fill="white"
-                          transform="trangray(2 2)"
+                          transform="translate(2 2)"
                         />
                       </clipPath>
                     </defs>

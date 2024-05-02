@@ -118,11 +118,11 @@ export default function Home() {
 
   return (
     <main className="w-full h-full">
-      <div className="mx-auto w-full bg-white rounded-xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
+      <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
         <PageHeader />
 
         <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
-          <div className="w-full  h-auto border rounded-xl border-gray-300 p-4 flex flex-col gap-6">
+          <div className="w-full  h-auto border rounded-2xl border-gray-300 p-4 flex flex-col gap-6">
             <div>
               <p className="text-base text-gray-600 flex gap-2 items-center">
                 Net Worth
@@ -194,7 +194,7 @@ export default function Home() {
           </div>
 
           <div className="w-full flex flex-col xl:flex-row gap-3 h-auto">
-            <div className="relative w-full p-4 bg-white rounded-xl border border-gray-300 flex-1 justify-between flex flex-col duration-300 ease-in-out ">
+            <div className="relative w-full p-4 bg-white rounded-2xl border border-gray-300 flex-1 justify-between flex flex-col duration-300 ease-in-out ">
               <p className="text-base text-gray-600 flex gap-2 items-center">
                 Total Assets
                 <a>
@@ -267,7 +267,7 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <div className="relative w-full p-4 bg-white rounded-xl border border-gray-300 flex-1 justify-between flex flex-col duration-300 ease-in-out ">
+            <div className="relative w-full p-4 bg-white rounded-2xl border border-gray-300 flex-1 justify-between flex flex-col duration-300 ease-in-out ">
               <p className="text-base text-gray-600 flex gap-2 items-center">
                 Total Debts
                 <a>
@@ -340,7 +340,7 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <div className="relative w-full p-4 bg-white rounded-xl border border-gray-300 flex-1 justify-between flex flex-col duration-300 ease-in-out ">
+            <div className="relative w-full p-4 bg-white rounded-2xl border border-gray-300 flex-1 justify-between flex flex-col duration-300 ease-in-out ">
               <p className="text-base text-gray-600 flex gap-2 items-center">
                 Total Claimable
                 <a>
@@ -415,7 +415,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative w-full  bg-white border rounded-xl border-gray-300 p-5 flex flex-col gap-6">
+          <div className="relative w-full  bg-white border rounded-2xl border-gray-300 p-5 flex flex-col gap-6">
             <div className="relative flex justify-between w-full justify-items-stretch flex-row place-content-between	">
               <div className="flex flex-col max-w-[30rem]">
                 <h2 className="text-xl font-medium">Allocation</h2>
@@ -692,7 +692,7 @@ export default function Home() {
                 </div>
               </TabsContent>
               <TabsContent className="w-full " value="protocols">
-                <div className="w-full flex gap-2  text-sm items-center bg-gray-50 py-1 px-2 border border-gray-100 rounded-xl overflow-hidden">
+                <div className="w-full flex gap-2  text-sm items-center bg-gray-50 py-1 px-2 border border-gray-100 rounded-2xl overflow-hidden">
                   <div className="h-20 w-20 items-center relative justify-center flex ">
                     <svg
                       className="absolute w-full h-full"
@@ -3425,7 +3425,7 @@ export default function Home() {
                 </div>
               </TabsContent>
               <TabsContent className="w-full " value="networks">
-                <div className="w-full flex gap-2  text-sm items-center bg-gray-50 py-1 px-2 border border-gray-100 rounded-xl overflow-hidden">
+                <div className="w-full flex gap-2  text-sm items-center bg-gray-50 py-1 px-2 border border-gray-100 rounded-2xl overflow-hidden">
                   <div className="h-20 w-20 items-center relative justify-center flex ">
                     <svg
                       className="absolute w-full h-full"
