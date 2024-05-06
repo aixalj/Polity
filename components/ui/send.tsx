@@ -15,6 +15,8 @@ import {
 
 import { ReceiveForm } from "@/components/receive";
 
+import { RecipientForm } from "@/components/recipientform";
+
 import {
   FSDialog,
   FSDialogClose,
@@ -1388,9 +1390,24 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 To
               </div>
               <div className="flex gap-3 mt-3 items-center mb-6 px-6">
-                <ReceiveForm />
+                <RecipientForm />
               </div>
               <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
+                From
+              </div>
+              <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
+                <div className="w-full justify-between flex  py-1.5">
+                  {" "}
+                  <p>Wallet</p>
+                  <p>Wallet Name</p>
+                </div>
+                <div className="w-full justify-between  flex py-1.5">
+                  {" "}
+                  <p>Network Account</p>
+                  <p>Network Account Name (0x8f...47d2)</p>
+                </div>
+              </div>
+              <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium mt-3 text-gray-600 py-2">
                 Balance
               </div>
               <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
