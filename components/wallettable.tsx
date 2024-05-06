@@ -1,3 +1,5 @@
+// "use client";
+
 import * as React from "react";
 import type { Config } from "tailwindcss";
 import { cn } from "@/lib/utils";
@@ -8,11 +10,57 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 
+import Image from "next/image";
+
+import { useState, useEffect } from "react";
+
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = "https://ilzanfrmzylbvkoyhefz.supabase.co";
+const supabaseKey =
+  process.env.SUPABASE_KEY ||
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlsemFuZnJtenlsYnZrb3loZWZ6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxNTAxNTg2MCwiZXhwIjoyMDMwNTkxODYwfQ.NUkkfYlSq3iHkr1hjIK3uMev7VzKt6F_2fqTne4JKNU";
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 import { Progress } from "@/components/ui/progress";
 
 import Link from "next/link";
 
-const WalletTable = () => {
+interface Wallet {
+  id: string;
+  wallet_id: string;
+  wallet_name: string;
+  allocation: number;
+  return: number;
+  value: number;
+}
+
+interface WalletTableProps {
+  wallets: Wallet[];
+}
+
+const WalletTable: React.FC<WalletTableProps> = ({ wallets }) => {
+  // const [wallets, setWallets] = useState<Array<{ id: string; name: string }>>(
+  //   []
+  // );
+
+  // useEffect(() => {
+  //   const fetchWallets = async () => {
+  //     const { data, error } = await supabase
+  //       .from("wallets")
+  //       .select("id, wallet_name");
+
+  //     if (error) {
+  //       console.error("Error fetching wallets:", error);
+  //     } else {
+  //       console.log("Received data:", data); // Added console log for received data
+  //       setWallets(data || []);
+  //     }
+  //   };
+
+  //   fetchWallets();
+  // }, []);
+
   return (
     <div className="relative w-full flex flex-col">
       <div className="p-4 relative flex justify-between w-full justify-items-stretch flex-row place-content-between	">
@@ -29,654 +77,363 @@ const WalletTable = () => {
           <div className="w-36 flex-auto px-6 py-3">Value</div>
           <div className="w-36 flex-auto px-6 py-3">Balance</div>
         </div>
-        <div>
-          <Collapsible className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm ">
-            <CollapsibleTrigger className="w-full ease-in-out duration-200">
-              <div className="w-full flex text-left  text-gray-900">
-                <div className="w-9 flex-none h-16 flex items-center justify-center align-middle">
-                  <svg
-                    className="mx-auto"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect
-                      x="0.5"
-                      y="0.5"
-                      width="19"
-                      height="19"
-                      rx="5.5"
-                      fill="white"
-                    />
-                    <rect
-                      x="0.5"
-                      y="0.5"
-                      width="19"
-                      height="19"
-                      rx="5.5"
-                      stroke="#D0D5DD"
-                    />
-                    <path
-                      d="M13 12.0001C13.412 12.0001 13.6472 11.5297 13.4 11.2001L10.4 7.20008C10.2 6.93341 9.8 6.93341 9.6 7.20008L6.6 11.2001C6.35279 11.5297 6.58798 12.0001 7 12.0001H13Z"
-                      fill="#1D2939"
-                    />
-                  </svg>
-                </div>
-                <div className="w-80 font-medium break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-2 h-16 ">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clip-path="url(#clip0_80_24521)">
-                      <rect
-                        x="0.5"
-                        y="0.5"
-                        width="23"
-                        height="23"
-                        rx="6.5"
-                        fill="white"
-                      />
-                      <rect
-                        x="0.5"
-                        y="0.5"
-                        width="23"
-                        height="23"
-                        rx="6.5"
-                        stroke="#D0D5DD"
-                      />
-                      <path
-                        d="M8 9.50008C7.58798 9.50008 7.35279 9.97046 7.6 10.3001L11.6 15.6334C11.8 15.9001 12.2 15.9001 12.4 15.6334L16.4 10.3001C16.6472 9.97046 16.412 9.50008 16 9.50008H8Z"
-                        fill="#1D2939"
-                      />
-                      <rect
-                        x="0.375"
-                        y="0.375"
-                        width="23.25"
-                        height="23.25"
-                        rx="6.625"
-                        fill="url(#paint0_linear_80_24521)"
-                      />
-                      <rect
-                        x="0.375"
-                        y="0.375"
-                        width="23.25"
-                        height="23.25"
-                        rx="6.625"
-                        stroke="#D0D5DD"
-                        stroke-width="0.75"
-                      />
-                      <rect
-                        x="2"
-                        y="2"
+        {Array.isArray(wallets) ? (
+          <div>
+            {wallets.map((wallet) => (
+              <Collapsible
+                key={wallet.id}
+                className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm "
+              >
+                <CollapsibleTrigger className="w-full ease-in-out duration-200">
+                  <div className="w-full flex text-left  text-gray-900">
+                    <div className="w-9 flex-none h-16 flex items-center justify-center align-middle">
+                      <svg
+                        className="mx-auto"
                         width="20"
                         height="20"
-                        rx="5"
-                        fill="#3CCB7F"
-                      />
-                      <g clip-path="url(#clip1_80_24521)">
-                        <rect
-                          x="3"
-                          y="3"
-                          width="18"
-                          height="18"
-                          rx="4"
-                          fill="white"
-                        />
-                        <g opacity="0.8">
-                          <g opacity="0.1">
-                            <path
-                              d="M9.48975 12.3076H10.9067C11.0505 12.3076 11.1672 12.4242 11.1672 12.5681V13.985C10.2407 13.985 9.48975 13.2339 9.48975 12.3076ZM9.48975 10.4014H10.9067C11.0505 10.4014 11.1673 10.518 11.1673 10.6619V11.8183C11.1672 11.8874 11.1398 11.9536 11.0909 12.0025C11.042 12.0513 10.9758 12.0788 10.9067 12.0788H9.48975V10.4014Z"
-                              fill="#685879"
-                            />
-                          </g>
-                          <g opacity="0.1">
-                            <path
-                              d="M16.8582 19.9099H15.1807V21.5874H16.8582V19.9099ZM15.1807 25.4001C16.1072 25.4001 16.8582 24.6491 16.8582 23.7227H15.1807V25.4001Z"
-                              fill="#685879"
-                            />
-                          </g>
-                          <path
-                            opacity="0.05"
-                            d="M30.1855 17.7974H28.7686C28.6995 17.7974 28.6333 17.77 28.5844 17.7211C28.5356 17.6723 28.5081 17.606 28.5081 17.5369V16.1199C29.4346 16.1199 30.1855 16.8709 30.1855 17.7974ZM32.0894 18.0262H30.412V19.7037H32.0894V18.0262ZM-7.66943 17.7974H-6.25253C-6.18344 17.7974 -6.11718 17.77 -6.06832 17.7211C-6.01947 17.6723 -5.99202 17.606 -5.99202 17.5369V16.1199C-6.91839 16.1199 -7.66943 16.8709 -7.66943 17.7974Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.2"
-                            d="M-0.278645 17.7965H-1.69555C-1.76464 17.7965 -1.8309 17.7691 -1.87975 17.7202C-1.92861 17.6714 -1.95605 17.6051 -1.95605 17.536V16.119C-1.02956 16.119 -0.278645 16.87 -0.278645 17.7965ZM41.5243 17.7965H40.1072C40.0382 17.7965 39.9719 17.7691 39.923 17.7202C39.8742 17.6714 39.8467 17.6051 39.8467 17.536V16.119C40.7732 16.119 41.5243 16.87 41.5243 17.7965ZM1.85163 17.7965V16.119H3.52916C3.52916 17.0455 2.77812 17.7965 1.85163 17.7965ZM7.33697 16.119H5.65956V17.7965H7.33697V16.119ZM11.1673 6.62988H9.48987V8.30742H11.1673V6.62988Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M7.33659 18.0262H5.65918V19.7037H7.33659V18.0262ZM8.97993 17.7974H7.56302C7.56302 16.8709 8.31406 16.1199 9.24043 16.1199V17.5369C9.24043 17.606 9.21298 17.6723 9.16413 17.7211C9.11528 17.77 9.04902 17.7974 8.97993 17.7974Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.2"
-                            d="M9.24088 19.7023C8.31439 19.7023 7.56348 18.9512 7.56348 18.0247H8.98038C9.12425 18.0247 9.24088 18.1414 9.24088 18.2852V19.7023ZM138.045 19.7023C137.117 19.7023 136.367 18.9512 136.367 18.0247H137.784C137.928 18.0247 138.045 18.1414 138.045 18.2852V19.7023ZM9.46732 18.0247C10.3938 18.0247 11.1449 18.7758 11.1449 19.7023H9.72782C9.65873 19.7023 9.59247 19.6748 9.54362 19.626C9.49476 19.5771 9.46732 19.5109 9.46732 19.4418V18.0247ZM14.9544 16.1184H13.2769V17.7959H14.9544V16.1184ZM22.5699 16.1184H20.8925V17.7959H22.5699V16.1184ZM18.7621 18.0247H17.0847V19.7023H18.7621V18.0247Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M16.8582 18.0256H15.1807V19.7032H16.8582V18.0256Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.2"
-                            d="M13.2769 19.7032C14.2033 19.7032 14.9544 18.9521 14.9544 18.0256H13.5375C13.4684 18.0256 13.4021 18.0531 13.3532 18.1019C13.3044 18.1508 13.2769 18.217 13.2769 18.2861V19.7032Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M13.0398 17.7974H11.3726V16.1199H13.0501V17.7872C13.0501 17.7899 13.049 17.7925 13.047 17.7944C13.0451 17.7963 13.0425 17.7974 13.0398 17.7974ZM13.05 18.0262C12.1235 18.0262 11.3726 18.7772 11.3726 19.7037H12.7895C12.8586 19.7037 12.9248 19.6763 12.9737 19.6274C13.0225 19.5786 13.05 19.5123 13.05 19.4432V18.0262Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M-5.75543 14.2143H-4.08822V15.8258C-4.08822 15.8433 -4.09515 15.8601 -4.10751 15.8725C-4.11987 15.8848 -4.13663 15.8918 -4.15412 15.8918H-5.76562V14.2245C-5.76562 14.2189 -5.76102 14.2143 -5.75543 14.2143ZM13.0505 14.2143H11.373V15.8917H13.0505V14.2143ZM9.17799 10.3596H7.50045V12.037H9.17799V10.3596Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M3.5291 14.2149H1.85156V15.8923H3.5291V14.2149ZM3.5291 12.3086H1.85156V13.986H3.5291V12.3086Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.2"
-                            d="M20.6657 14.2158H18.9883V15.8932C19.9148 15.8932 20.6657 15.1422 20.6657 14.2158Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M18.7617 14.216H17.0843V15.8934H18.7617V14.216ZM16.887 10.3613H15.2095V12.0387H16.887V10.3613Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.1"
-                            d="M11.1448 14.216H9.46729V15.8934H11.1448V14.216ZM15.022 10.3613H13.3446V12.0387H15.022V10.3613Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.2"
-                            d="M-3.85986 12.3092H-2.19265C-2.18693 12.3092 -2.18233 12.3138 -2.18233 12.3194V13.9764C-2.18233 13.9791 -2.18342 13.9817 -2.18535 13.9837C-2.18729 13.9856 -2.18991 13.9867 -2.19265 13.9867H-3.85986V12.3092ZM5.43328 12.0802H3.75575V10.4028C4.68224 10.4028 5.43328 11.1539 5.43328 12.0802ZM47.2361 12.0802H45.5585V10.4028C46.485 10.4028 47.2361 11.1539 47.2361 12.0802Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M5.43339 12.3086H3.75586V13.986H5.43339V12.3086Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.2"
-                            d="M5.43339 14.2158H3.75586V15.8932H5.43339V14.2158Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.1"
-                            d="M7.33659 10.4028H5.65918V12.0802H7.33659V10.4028Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.2"
-                            d="M5.65771 4.68555H7.33525V6.35288C7.33521 6.3556 7.33411 6.35819 7.33218 6.3601C7.33025 6.36201 7.32764 6.36308 7.32493 6.36308H5.65771V4.68555Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M9.23857 6.59187H7.82166C7.75257 6.59187 7.68631 6.61932 7.63746 6.66817C7.5886 6.71703 7.56116 6.78329 7.56116 6.85238V8.00878C7.56116 8.15265 7.67779 8.26941 7.82166 8.26941H9.23857V6.59187ZM7.56104 4.68555V6.10245C7.56104 6.24632 7.67767 6.36308 7.82154 6.36308H9.23844C9.23844 5.43659 8.4874 4.68555 7.56104 4.68555Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M3.52763 4.68555H1.8501V6.36308H3.52763V4.68555ZM3.52763 8.49832H1.8501V10.1759H3.52763V8.49832ZM9.46558 4.68555V6.36308H11.143C11.143 5.43659 10.392 4.68555 9.46558 4.68555ZM16.8548 6.59187H15.1774V8.26941H16.8548V6.59187ZM16.8548 4.68555C15.9283 4.68555 15.1774 5.43659 15.1774 6.36308H16.8548V4.68555ZM18.7586 4.68555H17.0812V6.36308H18.4981C18.5672 6.36305 18.6335 6.33557 18.6823 6.2867C18.7312 6.23783 18.7586 6.17156 18.7586 6.10245V4.68555Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.1"
-                            d="M13.2729 6.36296H14.9505V4.68555H13.2729V6.36296Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M11.369 6.36296H13.0466V4.68555H11.369V6.36296ZM11.369 8.26941H13.0466V6.592H11.369V8.26941ZM11.355 10.1726H13.0325V8.49522H11.355V10.1726Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.2"
-                            d="M5.43083 10.1765C4.50508 10.1765 3.75342 9.42485 3.75342 8.4991H5.43083V10.1765ZM3.75342 8.27018H5.43083V6.59277H3.75342V8.27018Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.1"
-                            d="M-0.281087 8.49835H-1.9585V10.1759H-0.281087V8.49835ZM34.2165 -8.93502H35.894V-10.6125H34.2165V-8.93502Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M11.3711 -8.93514C12.2976 -8.93514 13.0485 -9.68618 13.0485 -10.6125H11.6316C11.5625 -10.6125 11.4962 -10.5851 11.4474 -10.5362C11.3985 -10.4874 11.3711 -10.4211 11.3711 -10.352V-8.93514ZM26.3777 4.45677H24.7104C24.7077 4.45677 24.7051 4.4557 24.7032 4.45379C24.7013 4.45187 24.7002 4.44928 24.7002 4.44658V2.77924H26.3776V4.45677H26.3777Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M-0.278645 4.45732H-1.69555C-1.76464 4.45732 -1.8309 4.42987 -1.87975 4.38102C-1.92861 4.33217 -1.95605 4.26591 -1.95605 4.19682V2.77979C-1.02956 2.77979 -0.278645 3.53095 -0.278645 4.45732ZM1.85163 4.45732V2.77979H3.52916C3.52916 3.70628 2.77812 4.45732 1.85163 4.45732Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.1"
-                            d="M7.33659 2.77979H5.65918V4.45732H7.33659V2.77979Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.2"
-                            d="M8.97995 4.45744H7.56304C7.56304 3.53095 8.31408 2.77991 9.24045 2.77991V4.19694C9.24045 4.26603 9.21301 4.33229 9.16415 4.38114C9.1153 4.43 9.04904 4.45744 8.97995 4.45744ZM9.46688 2.77979H11.1443V4.45732H9.47708C9.47434 4.45732 9.47172 4.45623 9.46978 4.4543C9.46785 4.45236 9.46676 4.44974 9.46676 4.447L9.46688 2.77979ZM7.50013 8.49578H9.17753V10.1732H7.51032C7.50758 10.1732 7.50496 10.1721 7.50302 10.1702C7.50109 10.1682 7.5 10.1656 7.5 10.1629V8.49566L7.50013 8.49578Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M14.9544 2.77979H13.2769V4.45732H14.9544V2.77979ZM20.8925 4.45744H22.5699V3.04054C22.5699 3.00632 22.5632 2.97243 22.5501 2.94081C22.537 2.90919 22.5178 2.88046 22.4936 2.85625C22.4694 2.83205 22.4407 2.81285 22.4091 2.79975C22.3775 2.78665 22.3436 2.77991 22.3094 2.77991H20.8925V4.45744Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.2"
-                            d="M20.6658 4.457V2.77947H18.9884C18.9884 3.70596 19.7395 4.457 20.6658 4.457ZM20.6658 -1.31209V-2.9895H18.9884C18.9884 -2.06301 19.7395 -1.31209 20.6658 -1.31209ZM17.0845 4.457H18.7619V2.77947C17.8354 2.77947 17.0845 3.53063 17.0845 4.457ZM24.2131 0.823153H22.7961C22.7961 1.74964 23.5473 2.50069 24.4736 2.50069V1.08365C24.4736 1.04944 24.4669 1.01557 24.4538 0.983965C24.4407 0.952359 24.4215 0.923642 24.3973 0.899452C24.3732 0.875262 24.3444 0.856074 24.3128 0.842982C24.2812 0.829891 24.2474 0.823153 24.2131 0.823153Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.2"
-                            d="M18.9844 6.59131H20.4013C20.5451 6.59131 20.6618 6.70807 20.6618 6.85181V8.00822C20.6618 8.07732 20.6343 8.14359 20.5855 8.19246C20.5366 8.24134 20.4704 8.26881 20.4013 8.26884H18.9844V6.59131Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M22.5662 6.3632H21.1492C21.0801 6.36317 21.0138 6.3357 20.965 6.28683C20.9161 6.23795 20.8887 6.17168 20.8887 6.10258V4.68567C21.8152 4.68567 22.5662 5.43671 22.5662 6.3632ZM24.4702 6.59187H22.7926V8.26941H24.4702V6.59187ZM24.4702 4.68555H22.7926V6.36308H24.4702V4.68555ZM26.374 6.59187H24.6966V8.26941H26.374V6.59187Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.2"
-                            d="M22.7923 10.1757V8.4982H24.4698C24.4698 9.42469 23.7187 10.1757 22.7923 10.1757ZM15.2095 10.1725V8.49509H16.887C16.887 9.42158 16.1358 10.1725 15.2095 10.1725ZM28.2776 6.36308H26.6001V4.68555C27.5266 4.68555 28.2776 5.43659 28.2776 6.36308Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.2"
-                            d="M20.6657 17.7959V16.1184H18.9883C18.9883 17.045 19.7393 17.7959 20.6657 17.7959Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.05"
-                            d="M3.52763 6.59131H1.8501V8.26884H3.52763V6.59131Z"
-                            fill="#685879"
-                          />
-                          <path
-                            opacity="0.1"
-                            d="M9.24088 19.9113V21.3282C9.24088 21.3624 9.23415 21.3963 9.22106 21.4279C9.20796 21.4595 9.18878 21.4882 9.16459 21.5124C9.1404 21.5366 9.11168 21.5558 9.08007 21.5689C9.04847 21.582 9.01459 21.5887 8.98038 21.5887H7.56348C7.56348 20.6622 8.31452 19.9113 9.24088 19.9113ZM11.1674 8.49561V9.91251C11.1674 9.9816 11.1399 10.0479 11.0911 10.0967C11.0422 10.1456 10.9759 10.173 10.9069 10.173H9.48995C9.48995 9.24652 10.241 8.49561 11.1674 8.49561Z"
-                            fill="#685879"
-                          />
-                        </g>
-                      </g>
-                      <path
-                        d="M6.78654 8.25375L6.82309 9.7696L8.15082 9.80657C9.01567 9.83122 9.52727 9.79425 9.6369 9.69565C9.75871 9.58474 9.80744 9.20269 9.80744 8.15515V6.75022H8.28481H6.75L6.78654 8.25375Z"
-                        fill="#101828"
-                      />
-                      <path
-                        d="M10.5381 8.14267C10.5381 9.06697 10.5868 9.58457 10.6843 9.68317C10.8792 9.88035 13.1205 9.88035 13.3154 9.68317C13.4128 9.58457 13.4615 9.06697 13.4615 8.14267V6.75005H11.9998H10.5381V8.14267Z"
-                        fill="#101828"
-                      />
-                      <path
-                        d="M14.1924 8.15515C14.1924 9.20269 14.2411 9.58474 14.3629 9.69565C14.4725 9.79425 14.9841 9.83122 15.849 9.80657L17.1767 9.7696L17.2133 8.25375L17.2498 6.75022H15.715H14.1924V8.15515Z"
-                        fill="#101828"
-                      />
-                      <path
-                        d="M6.78654 11.9507L6.82309 13.4665L8.07773 13.5035C9.84398 13.5528 9.80744 13.5898 9.80744 11.8644V10.4471H8.28481H6.75L6.78654 11.9507Z"
-                        fill="#101828"
-                      />
-                      <path
-                        d="M10.6843 10.5947C10.4894 10.7919 10.4894 13.1828 10.6843 13.3799C10.8792 13.5771 13.1205 13.5771 13.3154 13.3799C13.5103 13.1828 13.5103 10.7919 13.3154 10.5947C13.1205 10.3975 10.8792 10.3975 10.6843 10.5947Z"
-                        fill="#101828"
-                      />
-                      <path
-                        d="M14.1924 11.8517C14.1924 12.8992 14.2411 13.2813 14.3629 13.3922C14.4725 13.4908 14.9841 13.5278 15.849 13.5031L17.1767 13.4661L17.2133 11.9503L17.2498 10.4468H15.715H14.1924V11.8517Z"
-                        fill="#101828"
-                      />
-                      <path
-                        d="M6.88379 14.5141C6.88379 15.6725 8.04099 16.9173 9.35654 17.1637L9.80724 17.25V15.8451C9.80724 14.9208 9.75851 14.3908 9.66106 14.2922C9.56361 14.1936 9.06419 14.1444 8.19934 14.1444H6.88379V14.5141Z"
-                        fill="#101828"
-                      />
-                      <path
-                        d="M10.6843 14.293C10.5868 14.3916 10.5381 14.9092 10.5381 15.8335V17.2261H11.9998H13.4615V15.8335C13.4615 14.9092 13.4128 14.3916 13.3154 14.293C13.1205 14.0958 10.8792 14.0958 10.6843 14.293Z"
-                        fill="#101828"
-                      />
-                      <path
-                        d="M14.3386 14.2922C14.2411 14.3908 14.1924 14.8961 14.1924 15.8451V17.25L14.6431 17.1637C15.9586 16.9173 16.9818 15.8327 17.1402 14.5141L17.1767 14.206L15.8368 14.169C14.8989 14.1444 14.4482 14.1813 14.3386 14.2922Z"
-                        fill="#101828"
-                      />
-                    </g>
-                    <defs>
-                      <linearGradient
-                        id="paint0_linear_80_24521"
-                        x1="12"
-                        y1="0"
-                        x2="12"
-                        y2="24"
-                        gradientUnits="userSpaceOnUse"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <stop stop-color="white" />
-                        <stop offset="1" stop-color="#F3FEE7" />
-                      </linearGradient>
-                      <clipPath id="clip0_80_24521">
-                        <rect width="24" height="24" fill="white" />
-                      </clipPath>
-                      <clipPath id="clip1_80_24521">
                         <rect
-                          x="3"
-                          y="3"
-                          width="18"
-                          height="18"
-                          rx="4"
+                          x="0.5"
+                          y="0.5"
+                          width="19"
+                          height="19"
+                          rx="5.5"
                           fill="white"
                         />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  Wallet Name
-                </div>
-                <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
-                  0.00%
-                  <Progress value={33} />
-                </div>
-                <div className="w-36 flex-auto  px-6 py-3 h-16 flex items-center">
-                  0.00% ($0.00)
-                </div>
-                <div className="w-36 flex-auto px-6 py-3 h-16 flex items-center">
-                  $0.00
-                </div>
-                <div className="w-36 flex-auto px-6 py-3 h-16 flex items-center"></div>
-              </div>
-            </CollapsibleTrigger>
-            <CollapsibleContent className="items-start">
-              <div className="flex gap-2 items-center break-keep text-xs">
-                <div className="w-9 flex-none flex items-center justify-center align-middle"></div>
-                <p className="break-keep w-auto whitespace-nowrap pl-3 text-gray-600">
-                  Network Accounts
-                </p>
-                <div className="w-full bg-gray-300 h-[1px]"></div>
-              </div>
-              <div className="w-full  flex text-gray-900 text-md">
-                <div className="w-9 flex-none"></div>
-                <div className="w-80 flex-none px-6 py-3 flex items-center gap-3 max-h-16">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clip-path="url(#clip0_82_25188)">
-                      <rect width="24" height="24" rx="7" fill="#F7931A" />
-                      <g clip-path="url(#clip1_82_25188)">
-                        <rect width="24" height="24" rx="6" fill="#F7931A" />
-                        <path
-                          d="M23.6412 14.9029C22.0385 21.3315 15.5274 25.2438 9.09796 23.6407C2.67126 22.0381 -1.24108 15.5265 0.362312 9.09837C1.96429 2.66903 8.47546 -1.24361 14.9029 0.359081C21.3318 1.96177 25.2439 8.47405 23.641 14.903L23.6412 14.9029H23.6412Z"
-                          fill="#F7931A"
+                        <rect
+                          x="0.5"
+                          y="0.5"
+                          width="19"
+                          height="19"
+                          rx="5.5"
+                          stroke="#D0D5DD"
                         />
                         <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M17.293 10.2903C17.5318 8.6934 16.316 7.83498 14.6535 7.26233L15.1929 5.09914L13.8761 4.77103L13.351 6.87726C13.0049 6.79093 12.6493 6.70957 12.296 6.62892L12.8248 4.50878L11.5089 4.18066L10.9692 6.34315C10.6828 6.27793 10.4014 6.21347 10.1284 6.14555L10.1299 6.13874L8.31404 5.68528L7.96376 7.09171C7.96376 7.09171 8.94071 7.31565 8.92012 7.32944C9.45336 7.46252 9.54978 7.81551 9.53377 8.09529L8.91942 10.5597C8.95614 10.569 9.00377 10.5825 9.05632 10.6036L9.01805 10.5941L9.01802 10.5941C8.98554 10.5859 8.95179 10.5775 8.91713 10.5692L8.05602 14.0214C7.99085 14.1834 7.82545 14.4266 7.45264 14.3342C7.46583 14.3534 6.49556 14.0954 6.49556 14.0954L5.8418 15.6027L7.5554 16.0299C7.74304 16.077 7.92847 16.1253 8.11201 16.1731L8.11204 16.1731C8.24032 16.2066 8.36768 16.2398 8.49423 16.2721L7.94933 18.4601L9.2646 18.7883L9.80423 16.6235C10.1635 16.721 10.5123 16.811 10.8536 16.8958L10.3158 19.0504L11.6327 19.3785L12.1775 17.1946C14.423 17.6196 16.1113 17.4482 16.822 15.4172C17.3946 13.7821 16.7935 12.8389 15.6122 12.2238C16.4726 12.0254 17.1207 11.4595 17.2935 10.2905L17.2931 10.2902L17.293 10.2903ZM14.2844 14.5091C13.911 16.0094 11.5628 15.3891 10.4884 15.1054C10.3917 15.0798 10.3054 15.057 10.2317 15.0387L10.9548 12.14C11.0446 12.1624 11.1543 12.187 11.2785 12.2149L11.2786 12.2149C12.3899 12.4644 14.6669 12.9754 14.2845 14.5091H14.2844ZM11.5015 10.8696C12.3973 11.1087 14.3513 11.6302 14.6916 10.2666H14.6918C15.0393 8.8721 13.1402 8.45166 12.2128 8.24631C12.1084 8.22321 12.0164 8.20283 11.9412 8.1841L11.2856 10.8131C11.3475 10.8285 11.4201 10.8479 11.5015 10.8696Z"
-                          fill="white"
+                          d="M13 12.0001C13.412 12.0001 13.6472 11.5297 13.4 11.2001L10.4 7.20008C10.2 6.93341 9.8 6.93341 9.6 7.20008L6.6 11.2001C6.35279 11.5297 6.58798 12.0001 7 12.0001H13Z"
+                          fill="#1D2939"
                         />
-                      </g>
-                    </g>
-                    <rect
-                      x="0.375"
-                      y="0.375"
-                      width="23.25"
-                      height="23.25"
-                      rx="6.625"
-                      stroke="#D0D5DD"
-                      stroke-width="0.75"
-                    />
-                    <defs>
-                      <clipPath id="clip0_82_25188">
-                        <rect width="24" height="24" rx="7" fill="white" />
-                      </clipPath>
-                      <clipPath id="clip1_82_25188">
-                        <rect width="24" height="24" rx="6" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-
-                  <div className="w-full font-medium">
-                    <p className="text-sm">Network Account Name</p>
-                    <p className="text-xs text-gray-700">
-                      Bitcoin (428f...47d2)
-                    </p>
+                      </svg>
+                    </div>
+                    <div className="w-80 font-medium break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-2 h-16 ">
+                      <Image
+                        src={`/wallets/${wallet.wallet_id}.svg`}
+                        alt={wallet.wallet_name}
+                        width={24}
+                        height={24}
+                      />
+                      {wallet.wallet_name}
+                    </div>
+                    <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
+                      {wallet.allocation.toFixed(2)}%
+                      <Progress value={wallet.allocation} />
+                    </div>
+                    <div className="w-36 flex-auto  px-6 py-3 h-16 flex items-center">
+                      {wallet.return.toFixed(2)}% ($0.00)
+                    </div>
+                    <div className="w-36 flex-auto px-6 py-3 h-16 flex items-center">
+                      ${wallet.value.toFixed(2)}
+                    </div>
+                    <div className="w-36 flex-auto px-6 py-3 h-16 flex items-center"></div>
                   </div>
-                </div>
-                <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
-                  0.00%
-                  <Progress value={33} />
-                </div>
-                <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
-                  0.00% ($0.00)
-                </div>
-                <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
-                  $0.00
-                </div>
-                <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
-                  0.00 BTC
-                </div>
-              </div>
-              <div className="w-full  flex text-gray-900 text-md">
-                <div className="w-9 flex-none"></div>
-                <div className="w-80 flex-none px-6 py-3 flex items-center gap-3 max-h-16">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clip-path="url(#clip0_82_25206)">
-                      <rect width="24" height="24" rx="7" fill="#ECEFF0" />
-                      <g clip-path="url(#clip1_82_25206)">
-                        <rect width="24" height="24" rx="6" fill="#ECEFF0" />
-                        <circle cx="12" cy="12" r="12" fill="#ECEFF0" />
-                        <path
-                          opacity="0.6"
-                          d="M11.8674 10.2615L7.5 12.2469L11.8674 14.8287L16.2355 12.2469L11.8674 10.2615Z"
-                          fill="black"
-                        />
-                        <path
-                          opacity="0.45"
-                          d="M7.50146 12.2469L11.8688 14.8286V10.2614V5L7.50146 12.2469Z"
-                          fill="black"
-                        />
-                        <path
-                          opacity="0.8"
-                          d="M11.8691 5V10.2614V14.8286L16.2365 12.2469L11.8691 5Z"
-                          fill="black"
-                        />
-                        <path
-                          opacity="0.45"
-                          d="M7.5 13.0754L11.8674 19.23V15.6556L7.5 13.0754Z"
-                          fill="black"
-                        />
-                        <path
-                          opacity="0.8"
-                          d="M11.8672 15.6556V19.23L16.2378 13.0754L11.8672 15.6556Z"
-                          fill="black"
-                        />
-                      </g>
-                    </g>
-                    <rect
-                      x="0.375"
-                      y="0.375"
-                      width="23.25"
-                      height="23.25"
-                      rx="6.625"
-                      stroke="#D0D5DD"
-                      stroke-width="0.75"
-                    />
-                    <defs>
-                      <clipPath id="clip0_82_25206">
-                        <rect width="24" height="24" rx="7" fill="white" />
-                      </clipPath>
-                      <clipPath id="clip1_82_25206">
-                        <rect width="24" height="24" rx="6" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-
-                  <div className="w-full font-medium">
-                    <p className="text-sm">Network Account Name</p>
-                    <p className="text-xs text-gray-700">
-                      Ethereum (0X8f...47d2)
+                </CollapsibleTrigger>
+                <CollapsibleContent className="items-start">
+                  <div className="flex gap-2 items-center break-keep text-xs">
+                    <div className="w-9 flex-none flex items-center justify-center align-middle"></div>
+                    <p className="break-keep w-auto whitespace-nowrap pl-3 text-gray-600">
+                      Network Accounts
                     </p>
+                    <div className="w-full bg-gray-300 h-[1px]"></div>
                   </div>
-                </div>
-                <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
-                  0.00%
-                  <Progress value={33} />
-                </div>
-                <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
-                  0.00% ($0.00)
-                </div>
-                <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
-                  $0.00
-                </div>
-                <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
-                  0.00 BTC
-                </div>
-              </div>
-              <div className="w-full  flex text-gray-900 text-md">
-                <div className="w-9 flex-none"></div>
-                <div className="w-80 flex-none px-6 py-3 flex items-center gap-3 max-h-16">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clip-path="url(#clip0_82_25224)">
-                      <rect
+                  <div className="w-full  flex text-gray-900 text-md">
+                    <div className="w-9 flex-none"></div>
+                    <div className="w-80 flex-none px-6 py-3 flex items-center gap-3 max-h-16">
+                      <svg
                         width="24"
                         height="24"
-                        rx="7"
-                        fill="url(#paint0_linear_82_25224)"
-                      />
-                      <g clip-path="url(#clip1_82_25224)">
-                        <rect
-                          width="24"
-                          height="24"
-                          rx="6"
-                          fill="url(#paint1_linear_82_25224)"
-                        />
-                        <mask
-                          id="mask0_82_25224"
-                          maskUnits="userSpaceOnUse"
-                          x="0"
-                          y="0"
-                          width="24"
-                          height="24"
-                        >
-                          <path
-                            d="M11.9998 23.7556C18.4923 23.7556 23.7555 18.4924 23.7555 11.9999C23.7555 5.50746 18.4923 0.244263 11.9998 0.244263C5.50734 0.244263 0.244141 5.50746 0.244141 11.9999C0.244141 18.4924 5.50734 23.7556 11.9998 23.7556Z"
-                            fill="white"
-                          />
-                        </mask>
-                        <g mask="url(#mask0_82_25224)">
-                          <path
-                            d="M24.8685 -0.868896H-0.869141V24.8687H24.8685V-0.868896Z"
-                            fill="url(#paint2_linear_82_25224)"
-                          />
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g clip-path="url(#clip0_82_25188)">
+                          <rect width="24" height="24" rx="7" fill="#F7931A" />
+                          <g clip-path="url(#clip1_82_25188)">
+                            <rect
+                              width="24"
+                              height="24"
+                              rx="6"
+                              fill="#F7931A"
+                            />
+                            <path
+                              d="M23.6412 14.9029C22.0385 21.3315 15.5274 25.2438 9.09796 23.6407C2.67126 22.0381 -1.24108 15.5265 0.362312 9.09837C1.96429 2.66903 8.47546 -1.24361 14.9029 0.359081C21.3318 1.96177 25.2439 8.47405 23.641 14.903L23.6412 14.9029H23.6412Z"
+                              fill="#F7931A"
+                            />
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M17.293 10.2903C17.5318 8.6934 16.316 7.83498 14.6535 7.26233L15.1929 5.09914L13.8761 4.77103L13.351 6.87726C13.0049 6.79093 12.6493 6.70957 12.296 6.62892L12.8248 4.50878L11.5089 4.18066L10.9692 6.34315C10.6828 6.27793 10.4014 6.21347 10.1284 6.14555L10.1299 6.13874L8.31404 5.68528L7.96376 7.09171C7.96376 7.09171 8.94071 7.31565 8.92012 7.32944C9.45336 7.46252 9.54978 7.81551 9.53377 8.09529L8.91942 10.5597C8.95614 10.569 9.00377 10.5825 9.05632 10.6036L9.01805 10.5941L9.01802 10.5941C8.98554 10.5859 8.95179 10.5775 8.91713 10.5692L8.05602 14.0214C7.99085 14.1834 7.82545 14.4266 7.45264 14.3342C7.46583 14.3534 6.49556 14.0954 6.49556 14.0954L5.8418 15.6027L7.5554 16.0299C7.74304 16.077 7.92847 16.1253 8.11201 16.1731L8.11204 16.1731C8.24032 16.2066 8.36768 16.2398 8.49423 16.2721L7.94933 18.4601L9.2646 18.7883L9.80423 16.6235C10.1635 16.721 10.5123 16.811 10.8536 16.8958L10.3158 19.0504L11.6327 19.3785L12.1775 17.1946C14.423 17.6196 16.1113 17.4482 16.822 15.4172C17.3946 13.7821 16.7935 12.8389 15.6122 12.2238C16.4726 12.0254 17.1207 11.4595 17.2935 10.2905L17.2931 10.2902L17.293 10.2903ZM14.2844 14.5091C13.911 16.0094 11.5628 15.3891 10.4884 15.1054C10.3917 15.0798 10.3054 15.057 10.2317 15.0387L10.9548 12.14C11.0446 12.1624 11.1543 12.187 11.2785 12.2149L11.2786 12.2149C12.3899 12.4644 14.6669 12.9754 14.2845 14.5091H14.2844ZM11.5015 10.8696C12.3973 11.1087 14.3513 11.6302 14.6916 10.2666H14.6918C15.0393 8.8721 13.1402 8.45166 12.2128 8.24631C12.1084 8.22321 12.0164 8.20283 11.9412 8.1841L11.2856 10.8131C11.3475 10.8285 11.4201 10.8479 11.5015 10.8696Z"
+                              fill="white"
+                            />
+                          </g>
                         </g>
-                        <path
-                          d="M15.4 14.5368L18.7259 12.6163C18.9021 12.5145 19.011 12.3254 19.011 12.1219V8.28142C19.011 8.07839 18.9016 7.88878 18.7259 7.78702L15.4 5.86655C15.2238 5.76479 15.0054 5.76527 14.8293 5.86655L11.5033 7.78702C11.3272 7.88878 11.2182 8.07839 11.2182 8.28142V15.1449L8.8859 16.4913L6.55358 15.1449V12.4517L8.8859 11.1053L10.4243 11.9933V10.1865L9.17102 9.46318C9.08462 9.41326 8.98574 9.38686 8.88542 9.38686C8.7851 9.38686 8.68622 9.41326 8.6003 9.46318L5.27438 11.3837C5.09822 11.4854 4.98926 11.6745 4.98926 11.8781V15.7185C4.98926 15.9216 5.0987 16.1112 5.27438 16.2129L8.6003 18.1334C8.77598 18.2347 8.99486 18.2347 9.17102 18.1334L12.4969 16.2134C12.6731 16.1117 12.7821 15.9221 12.7821 15.719V8.85551L12.8243 8.83151L15.1144 7.50911L17.4467 8.85551V11.5488L15.1144 12.8952L13.5784 12.0081V13.8149L14.8293 14.5373C15.0054 14.6385 15.2238 14.6385 15.4 14.5373V14.5368Z"
-                          fill="white"
+                        <rect
+                          x="0.375"
+                          y="0.375"
+                          width="23.25"
+                          height="23.25"
+                          rx="6.625"
+                          stroke="#D0D5DD"
+                          stroke-width="0.75"
                         />
-                      </g>
-                    </g>
-                    <rect
-                      x="0.375"
-                      y="0.375"
-                      width="23.25"
-                      height="23.25"
-                      rx="6.625"
-                      stroke="#D0D5DD"
-                      stroke-width="0.75"
-                    />
-                    <defs>
-                      <linearGradient
-                        id="paint0_linear_82_25224"
-                        x1="-4.38598"
-                        y1="1.97255"
-                        x2="20.3902"
-                        y2="17.1344"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop stop-color="#A229C5" />
-                        <stop offset="1" stop-color="#7B3FE4" />
-                      </linearGradient>
-                      <linearGradient
-                        id="paint1_linear_82_25224"
-                        x1="-4.38598"
-                        y1="1.97255"
-                        x2="20.3902"
-                        y2="17.1344"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop stop-color="#A229C5" />
-                        <stop offset="1" stop-color="#7B3FE4" />
-                      </linearGradient>
-                      <linearGradient
-                        id="paint2_linear_82_25224"
-                        x1="-5.57266"
-                        y1="1.24646"
-                        x2="20.9973"
-                        y2="17.506"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop stop-color="#A229C5" />
-                        <stop offset="1" stop-color="#7B3FE4" />
-                      </linearGradient>
-                      <clipPath id="clip0_82_25224">
-                        <rect width="24" height="24" rx="7" fill="white" />
-                      </clipPath>
-                      <clipPath id="clip1_82_25224">
-                        <rect width="24" height="24" rx="6" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
+                        <defs>
+                          <clipPath id="clip0_82_25188">
+                            <rect width="24" height="24" rx="7" fill="white" />
+                          </clipPath>
+                          <clipPath id="clip1_82_25188">
+                            <rect width="24" height="24" rx="6" fill="white" />
+                          </clipPath>
+                        </defs>
+                      </svg>
 
-                  <div className="w-full font-medium">
-                    <p className="text-sm">Network Account Name</p>
-                    <p className="text-xs text-gray-700">
-                      Polygon (0X92...4qu1)
-                    </p>
+                      <div className="w-full font-medium">
+                        <p className="text-sm">Network Account Name</p>
+                        <p className="text-xs text-gray-700">
+                          Bitcoin (428f...47d2)
+                        </p>
+                      </div>
+                    </div>
+                    <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
+                      0.00%
+                      <Progress value={33} />
+                    </div>
+                    <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
+                      0.00% ($0.00)
+                    </div>
+                    <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
+                      $0.00
+                    </div>
+                    <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
+                      0.00 BTC
+                    </div>
                   </div>
-                </div>
-                <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
-                  0.00%
-                  <Progress value={33} />
-                </div>
-                <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
-                  0.00% ($0.00)
-                </div>
-                <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
-                  $0.00
-                </div>
-                <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
-                  0.00 BTC
-                </div>
-              </div>
-            </CollapsibleContent>
-          </Collapsible>
-        </div>
+                  <div className="w-full  flex text-gray-900 text-md">
+                    <div className="w-9 flex-none"></div>
+                    <div className="w-80 flex-none px-6 py-3 flex items-center gap-3 max-h-16">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g clip-path="url(#clip0_82_25206)">
+                          <rect width="24" height="24" rx="7" fill="#ECEFF0" />
+                          <g clip-path="url(#clip1_82_25206)">
+                            <rect
+                              width="24"
+                              height="24"
+                              rx="6"
+                              fill="#ECEFF0"
+                            />
+                            <circle cx="12" cy="12" r="12" fill="#ECEFF0" />
+                            <path
+                              opacity="0.6"
+                              d="M11.8674 10.2615L7.5 12.2469L11.8674 14.8287L16.2355 12.2469L11.8674 10.2615Z"
+                              fill="black"
+                            />
+                            <path
+                              opacity="0.45"
+                              d="M7.50146 12.2469L11.8688 14.8286V10.2614V5L7.50146 12.2469Z"
+                              fill="black"
+                            />
+                            <path
+                              opacity="0.8"
+                              d="M11.8691 5V10.2614V14.8286L16.2365 12.2469L11.8691 5Z"
+                              fill="black"
+                            />
+                            <path
+                              opacity="0.45"
+                              d="M7.5 13.0754L11.8674 19.23V15.6556L7.5 13.0754Z"
+                              fill="black"
+                            />
+                            <path
+                              opacity="0.8"
+                              d="M11.8672 15.6556V19.23L16.2378 13.0754L11.8672 15.6556Z"
+                              fill="black"
+                            />
+                          </g>
+                        </g>
+                        <rect
+                          x="0.375"
+                          y="0.375"
+                          width="23.25"
+                          height="23.25"
+                          rx="6.625"
+                          stroke="#D0D5DD"
+                          stroke-width="0.75"
+                        />
+                        <defs>
+                          <clipPath id="clip0_82_25206">
+                            <rect width="24" height="24" rx="7" fill="white" />
+                          </clipPath>
+                          <clipPath id="clip1_82_25206">
+                            <rect width="24" height="24" rx="6" fill="white" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+
+                      <div className="w-full font-medium">
+                        <p className="text-sm">Network Account Name</p>
+                        <p className="text-xs text-gray-700">
+                          Ethereum (0X8f...47d2)
+                        </p>
+                      </div>
+                    </div>
+                    <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
+                      0.00%
+                      <Progress value={33} />
+                    </div>
+                    <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
+                      0.00% ($0.00)
+                    </div>
+                    <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
+                      $0.00
+                    </div>
+                    <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
+                      0.00 BTC
+                    </div>
+                  </div>
+                  <div className="w-full  flex text-gray-900 text-md">
+                    <div className="w-9 flex-none"></div>
+                    <div className="w-80 flex-none px-6 py-3 flex items-center gap-3 max-h-16">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g clip-path="url(#clip0_82_25224)">
+                          <rect
+                            width="24"
+                            height="24"
+                            rx="7"
+                            fill="url(#paint0_linear_82_25224)"
+                          />
+                          <g clip-path="url(#clip1_82_25224)">
+                            <rect
+                              width="24"
+                              height="24"
+                              rx="6"
+                              fill="url(#paint1_linear_82_25224)"
+                            />
+                            <mask
+                              id="mask0_82_25224"
+                              maskUnits="userSpaceOnUse"
+                              x="0"
+                              y="0"
+                              width="24"
+                              height="24"
+                            >
+                              <path
+                                d="M11.9998 23.7556C18.4923 23.7556 23.7555 18.4924 23.7555 11.9999C23.7555 5.50746 18.4923 0.244263 11.9998 0.244263C5.50734 0.244263 0.244141 5.50746 0.244141 11.9999C0.244141 18.4924 5.50734 23.7556 11.9998 23.7556Z"
+                                fill="white"
+                              />
+                            </mask>
+                            <g mask="url(#mask0_82_25224)">
+                              <path
+                                d="M24.8685 -0.868896H-0.869141V24.8687H24.8685V-0.868896Z"
+                                fill="url(#paint2_linear_82_25224)"
+                              />
+                            </g>
+                            <path
+                              d="M15.4 14.5368L18.7259 12.6163C18.9021 12.5145 19.011 12.3254 19.011 12.1219V8.28142C19.011 8.07839 18.9016 7.88878 18.7259 7.78702L15.4 5.86655C15.2238 5.76479 15.0054 5.76527 14.8293 5.86655L11.5033 7.78702C11.3272 7.88878 11.2182 8.07839 11.2182 8.28142V15.1449L8.8859 16.4913L6.55358 15.1449V12.4517L8.8859 11.1053L10.4243 11.9933V10.1865L9.17102 9.46318C9.08462 9.41326 8.98574 9.38686 8.88542 9.38686C8.7851 9.38686 8.68622 9.41326 8.6003 9.46318L5.27438 11.3837C5.09822 11.4854 4.98926 11.6745 4.98926 11.8781V15.7185C4.98926 15.9216 5.0987 16.1112 5.27438 16.2129L8.6003 18.1334C8.77598 18.2347 8.99486 18.2347 9.17102 18.1334L12.4969 16.2134C12.6731 16.1117 12.7821 15.9221 12.7821 15.719V8.85551L12.8243 8.83151L15.1144 7.50911L17.4467 8.85551V11.5488L15.1144 12.8952L13.5784 12.0081V13.8149L14.8293 14.5373C15.0054 14.6385 15.2238 14.6385 15.4 14.5373V14.5368Z"
+                              fill="white"
+                            />
+                          </g>
+                        </g>
+                        <rect
+                          x="0.375"
+                          y="0.375"
+                          width="23.25"
+                          height="23.25"
+                          rx="6.625"
+                          stroke="#D0D5DD"
+                          stroke-width="0.75"
+                        />
+                        <defs>
+                          <linearGradient
+                            id="paint0_linear_82_25224"
+                            x1="-4.38598"
+                            y1="1.97255"
+                            x2="20.3902"
+                            y2="17.1344"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stop-color="#A229C5" />
+                            <stop offset="1" stop-color="#7B3FE4" />
+                          </linearGradient>
+                          <linearGradient
+                            id="paint1_linear_82_25224"
+                            x1="-4.38598"
+                            y1="1.97255"
+                            x2="20.3902"
+                            y2="17.1344"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stop-color="#A229C5" />
+                            <stop offset="1" stop-color="#7B3FE4" />
+                          </linearGradient>
+                          <linearGradient
+                            id="paint2_linear_82_25224"
+                            x1="-5.57266"
+                            y1="1.24646"
+                            x2="20.9973"
+                            y2="17.506"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stop-color="#A229C5" />
+                            <stop offset="1" stop-color="#7B3FE4" />
+                          </linearGradient>
+                          <clipPath id="clip0_82_25224">
+                            <rect width="24" height="24" rx="7" fill="white" />
+                          </clipPath>
+                          <clipPath id="clip1_82_25224">
+                            <rect width="24" height="24" rx="6" fill="white" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+
+                      <div className="w-full font-medium">
+                        <p className="text-sm">Network Account Name</p>
+                        <p className="text-xs text-gray-700">
+                          Polygon (0X92...4qu1)
+                        </p>
+                      </div>
+                    </div>
+                    <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
+                      0.00%
+                      <Progress value={33} />
+                    </div>
+                    <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
+                      0.00% ($0.00)
+                    </div>
+                    <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
+                      $0.00
+                    </div>
+                    <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
+                      0.00 BTC
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            ))}
+          </div>
+        ) : (
+          <p>No wallets to display.</p>
+        )}
       </div>
     </div>
   );

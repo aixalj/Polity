@@ -27,8 +27,26 @@ import {
 
 import { Button, buttonVariants } from "@/components/ui/button";
 
+import React, { useContext } from "react";
+import { FormContext } from "@/components/ui/formcontext";
+
+const step1FormSchema = z.object({
+  recipient: z.string(),
+  // Add more form fields as needed
+});
+
 export function RecipientForm() {
   // 1. Define your form.
+
+  const { updateFormData } = useContext(FormContext);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<z.infer<typeof step1FormSchema>>({
+    resolver: zodResolver(step1FormSchema),
+  });
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -471,6 +489,9 @@ export function RecipientForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
+
+    // updateFormData(data);
+
     console.log(values);
   }
 }
