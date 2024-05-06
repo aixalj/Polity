@@ -1,4 +1,9 @@
+"use client";
+
 import * as React from "react";
+
+import { useState } from "react";
+
 import type { Config } from "tailwindcss";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -23,6 +28,15 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const SendModal = () => {
+  const tabValues = ["payment", "recipient", "amount", "confirm"];
+  const [activeTab, setActiveTab] = useState(tabValues[0]);
+
+  const handleContinue = () => {
+    const currentIndex = tabValues.indexOf(activeTab);
+    const nextIndex = (currentIndex + 1) % tabValues.length; // cycle through tabs
+    setActiveTab(tabValues[nextIndex]);
+  };
+
   return (
     <div className="flex w-screen h-screen bg-gray-50">
       <div className="absolute top-[-10%] w-full">
@@ -1104,6 +1118,8 @@ const SendModal = () => {
         </svg>
       </div>
       <Tabs
+        value={activeTab}
+        onValueChange={setActiveTab}
         defaultValue="payment"
         className="flex w-screen h-screen bg-gray-50"
       >
@@ -1112,7 +1128,7 @@ const SendModal = () => {
             <FSDialogClose>
               <Button variant="outline">Cancel</Button>
             </FSDialogClose>
-            <Button>
+            <Button onClick={handleContinue}>
               Continue
               <svg
                 width="20"
@@ -1351,7 +1367,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M21.3333 10.6667V6.00089C21.3333 4.8919 21.3333 4.33741 21.0997 3.99665C20.8956 3.69892 20.5795 3.49668 20.2237 3.43612C19.8164 3.36681 19.3129 3.59918 18.306 4.06391L6.47869 9.52267C5.58067 9.93714 5.13167 10.1444 4.80281 10.4658C4.51208 10.7499 4.29016 11.0967 4.15401 11.4798C4 11.9131 4 12.4076 4 13.3966V20M22 19.3333H22.0133M4 14.9333L4 23.7333C4 25.2268 4 25.9736 4.29065 26.544C4.54631 27.0458 4.95426 27.4537 5.45603 27.7094C6.02646 28 6.77319 28 8.26667 28H23.7333C25.2268 28 25.9735 28 26.544 27.7094C27.0457 27.4537 27.4537 27.0458 27.7094 26.544C28 25.9736 28 25.2268 28 23.7333V14.9333C28 13.4399 28 12.6931 27.7094 12.1227C27.4537 11.6209 27.0457 11.213 26.544 10.9573C25.9735 10.6667 25.2268 10.6667 23.7333 10.6667L8.26667 10.6667C6.77319 10.6667 6.02646 10.6667 5.45603 10.9573C4.95426 11.213 4.54631 11.6209 4.29065 12.1227C4 12.6931 4 13.4399 4 14.9333ZM22.6667 19.3333C22.6667 19.7015 22.3682 20 22 20C21.6318 20 21.3333 19.7015 21.3333 19.3333C21.3333 18.9652 21.6318 18.6667 22 18.6667C22.3682 18.6667 22.6667 18.9652 22.6667 19.3333Z"
+                    d="M26.6667 28C26.6667 26.1392 26.6667 25.2089 26.4371 24.4518C25.92 22.7473 24.5861 21.4134 22.8816 20.8963C22.1245 20.6667 21.1941 20.6667 19.3334 20.6667H12.6667C10.806 20.6667 9.87558 20.6667 9.11852 20.8963C7.41398 21.4134 6.08009 22.7473 5.56303 24.4518C5.33337 25.2089 5.33337 26.1392 5.33337 28M22 10C22 13.3137 19.3137 16 16 16C12.6863 16 10 13.3137 10 10C10 6.68629 12.6863 4 16 4C19.3137 4 22 6.68629 22 10Z"
                     stroke="#344054"
                     stroke-width="2"
                     stroke-linecap="round"
@@ -1363,13 +1379,13 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 Recipient Selection
               </FSDialogTitle>
               <FSDialogDescription className="text-gray-800">
-                Follow the steps to transfer funds from your Wallet and Network
-                Account to a designated recipient.
+                Selecting a recipient from the dropdown menu, featuring your
+                list of your contacts.
               </FSDialogDescription>
             </FSDialogHeader>
             <div>
               <div className="w-full bg-gray-50 uppercase px-6 text-xs font-medium text-gray-600 py-2">
-                From
+                To
               </div>
               <div className="flex gap-3 mt-3 items-center mb-6 px-6">
                 <ReceiveForm />
@@ -1439,7 +1455,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M21.3333 10.6667V6.00089C21.3333 4.8919 21.3333 4.33741 21.0997 3.99665C20.8956 3.69892 20.5795 3.49668 20.2237 3.43612C19.8164 3.36681 19.3129 3.59918 18.306 4.06391L6.47869 9.52267C5.58067 9.93714 5.13167 10.1444 4.80281 10.4658C4.51208 10.7499 4.29016 11.0967 4.15401 11.4798C4 11.9131 4 12.4076 4 13.3966V20M22 19.3333H22.0133M4 14.9333L4 23.7333C4 25.2268 4 25.9736 4.29065 26.544C4.54631 27.0458 4.95426 27.4537 5.45603 27.7094C6.02646 28 6.77319 28 8.26667 28H23.7333C25.2268 28 25.9735 28 26.544 27.7094C27.0457 27.4537 27.4537 27.0458 27.7094 26.544C28 25.9736 28 25.2268 28 23.7333V14.9333C28 13.4399 28 12.6931 27.7094 12.1227C27.4537 11.6209 27.0457 11.213 26.544 10.9573C25.9735 10.6667 25.2268 10.6667 23.7333 10.6667L8.26667 10.6667C6.77319 10.6667 6.02646 10.6667 5.45603 10.9573C4.95426 11.213 4.54631 11.6209 4.29065 12.1227C4 12.6931 4 13.4399 4 14.9333ZM22.6667 19.3333C22.6667 19.7015 22.3682 20 22 20C21.6318 20 21.3333 19.7015 21.3333 19.3333C21.3333 18.9652 21.6318 18.6667 22 18.6667C22.3682 18.6667 22.6667 18.9652 22.6667 19.3333Z"
+                    d="M21.2503 21.2504C25.8137 20.6394 29.3333 16.7308 29.3333 12.0001C29.3333 6.84542 25.1546 2.66675 20 2.66675C15.2693 2.66675 11.3606 6.18631 10.7496 10.7498M9.99996 17.3334L12 16.0001V23.3334M9.99996 23.3334H14M21.3333 20.0001C21.3333 25.1547 17.1546 29.3334 12 29.3334C6.8453 29.3334 2.66663 25.1547 2.66663 20.0001C2.66663 14.8454 6.8453 10.6667 12 10.6667C17.1546 10.6667 21.3333 14.8454 21.3333 20.0001Z"
                     stroke="#344054"
                     stroke-width="2"
                     stroke-linecap="round"
@@ -1447,10 +1463,10 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   />
                 </svg>
               </div>
-              <FSDialogTitle className="text-xl">Amount</FSDialogTitle>
+              <FSDialogTitle className="text-xl">Payment Amount</FSDialogTitle>
               <FSDialogDescription className="text-gray-800">
-                Follow the steps to transfer funds from your Wallet and Network
-                Account to a designated recipient.
+                Selecting a recipient from the dropdown menu, featuring your
+                list of your contacts.
               </FSDialogDescription>
             </FSDialogHeader>
             <div>
@@ -1525,7 +1541,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M21.3333 10.6667V6.00089C21.3333 4.8919 21.3333 4.33741 21.0997 3.99665C20.8956 3.69892 20.5795 3.49668 20.2237 3.43612C19.8164 3.36681 19.3129 3.59918 18.306 4.06391L6.47869 9.52267C5.58067 9.93714 5.13167 10.1444 4.80281 10.4658C4.51208 10.7499 4.29016 11.0967 4.15401 11.4798C4 11.9131 4 12.4076 4 13.3966V20M22 19.3333H22.0133M4 14.9333L4 23.7333C4 25.2268 4 25.9736 4.29065 26.544C4.54631 27.0458 4.95426 27.4537 5.45603 27.7094C6.02646 28 6.77319 28 8.26667 28H23.7333C25.2268 28 25.9735 28 26.544 27.7094C27.0457 27.4537 27.4537 27.0458 27.7094 26.544C28 25.9736 28 25.2268 28 23.7333V14.9333C28 13.4399 28 12.6931 27.7094 12.1227C27.4537 11.6209 27.0457 11.213 26.544 10.9573C25.9735 10.6667 25.2268 10.6667 23.7333 10.6667L8.26667 10.6667C6.77319 10.6667 6.02646 10.6667 5.45603 10.9573C4.95426 11.213 4.54631 11.6209 4.29065 12.1227C4 12.6931 4 13.4399 4 14.9333ZM22.6667 19.3333C22.6667 19.7015 22.3682 20 22 20C21.6318 20 21.3333 19.7015 21.3333 19.3333C21.3333 18.9652 21.6318 18.6667 22 18.6667C22.3682 18.6667 22.6667 18.9652 22.6667 19.3333Z"
+                    d="M12 14L14.6667 16.6667L20.6667 10.6667M26.6667 28V10.4C26.6667 8.15979 26.6667 7.03969 26.2307 6.18404C25.8472 5.43139 25.2353 4.81947 24.4827 4.43597C23.627 4 22.5069 4 20.2667 4H11.7334C9.49316 4 8.37306 4 7.51741 4.43597C6.76476 4.81947 6.15284 5.43139 5.76935 6.18404C5.33337 7.03969 5.33337 8.15979 5.33337 10.4V28L9.00004 25.3333L12.3334 28L16 25.3333L19.6667 28L23 25.3333L26.6667 28Z"
                     stroke="#344054"
                     stroke-width="2"
                     stroke-linecap="round"
@@ -1533,10 +1549,14 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   />
                 </svg>
               </div>
-              <FSDialogTitle className="text-xl">Confirm</FSDialogTitle>
+              <FSDialogTitle className="text-xl">
+                Payment Confirmation
+              </FSDialogTitle>
               <FSDialogDescription className="text-gray-800">
-                Follow the steps to transfer funds from your Wallet and Network
-                Account to a designated recipient.
+                Before finalizing your transaction, carefully review your
+                payment, including the selected wallet, Network Account, and the
+                total amount with fees. Ensure all details are correct and
+                confirm to proceed.
               </FSDialogDescription>
             </FSDialogHeader>
             <div>
