@@ -1,36 +1,40 @@
-// FormContext.tsx
-import React, { createContext, useState, ReactNode } from "react";
+// src/contexts/WalletContext.tsx
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
-interface FormData {
-  // Define the shape of your form data
-  username: string;
-  // Add more form fields as needed
+interface WalletContextType {
+  availableBalance: string;
+  setAvailableBalance: (balance: string) => void;
+  usdEquivalent: string;
+  setUsdEquivalent: (equivalent: string) => void;
 }
 
-interface FormContextValue {
-  formData: FormData;
-  updateFormData: (data: Partial<FormData>) => void;
-}
+const WalletContext = createContext<WalletContextType | undefined>(undefined);
 
-export const FormContext = createContext<FormContextValue>({
-  formData: { username: "" },
-  updateFormData: () => {},
-});
-
-interface FormProviderProps {
-  children: ReactNode;
-}
-
-export const FormProvider = ({ children }: FormProviderProps) => {
-  const [formData, setFormData] = useState<FormData>({ username: "" });
-
-  const updateFormData = (data: Partial<FormData>) => {
-    setFormData((prevData) => ({ ...prevData, ...data }));
-  };
+export const WalletProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [availableBalance, setAvailableBalance] = useState("");
+  const [usdEquivalent, setUsdEquivalent] = useState("");
 
   return (
-    <FormContext.Provider value={{ formData, updateFormData }}>
+    <WalletContext.Provider
+      value={{
+        availableBalance,
+        setAvailableBalance,
+        usdEquivalent,
+        setUsdEquivalent,
+      }}
+    >
       {children}
-    </FormContext.Provider>
+    </WalletContext.Provider>
   );
+};
+
+export const useWallet = () => {
+  const context = useContext(WalletContext);
+  if (context === undefined) {
+    throw new Error("useWallet must be used within a WalletProvider");
+  }
+  console.log("Wallet context is now available for use with data:", context);
+  return context;
 };

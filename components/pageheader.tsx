@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import type { Config } from "tailwindcss";
 import { cn } from "@/lib/utils";
@@ -20,6 +22,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
+import { WalletProvider } from "@/components/ui/formcontext";
 
 import {
   FSDialog,
@@ -2039,7 +2043,7 @@ const PageHeader = () => {
                   <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
                     <div className="w-full justify-between flex  py-1.5">
                       {" "}
-                      <p>Available Balance</p>
+                      <p>Available Balance </p>
                       <p>-</p>
                     </div>
                     <div className="w-full justify-between  flex py-1.5">
@@ -2106,7 +2110,9 @@ const PageHeader = () => {
                 Send
               </FSDialogTrigger>
               <FSDialogContent className="flex w-screen h-screen bg-gray-50">
-                <SendModal />
+                <WalletProvider>
+                  <SendModal />
+                </WalletProvider>
               </FSDialogContent>
             </FSDialog>
           </div>

@@ -29,9 +29,23 @@ import {
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import { useContext } from "react";
+import { useWallet } from "./formcontext";
+
+// export const ConfirmationStep = () => {
+//   const { formData } = useContext(FormContext);
+
+//   const handleConfirm = () => {
+//     // Submit the form data to the server or perform any necessary actions
+//     console.log(formData);
+//   };
+// };
+
 const SendModal = () => {
   const tabValues = ["payment", "recipient", "amount", "confirm"];
   const [activeTab, setActiveTab] = useState(tabValues[0]);
+
+  const { availableBalance, usdEquivalent } = useWallet();
 
   const handleContinue = () => {
     const currentIndex = tabValues.indexOf(activeTab);
@@ -1311,12 +1325,12 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Available Balance</p>
-                  <p>-</p>
+                  <p>{availableBalance}</p>
                 </div>
                 <div className="w-full justify-between  flex py-1.5">
                   {" "}
                   <p>USD Equivalent</p>
-                  <p>-</p>
+                  <p>{usdEquivalent}</p>
                 </div>
               </div>
               <div className="px-6 pt-6 pb-5">
