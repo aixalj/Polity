@@ -28,6 +28,8 @@ import {
 
 import { Button, buttonVariants } from "@/components/ui/button";
 
+import { useWallet } from "@/components/ui/formcontext"; // Adjust the import path as necessary
+
 export function RecipientForm() {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -37,11 +39,14 @@ export function RecipientForm() {
     },
   });
 
+  const { setSelectedRecipient } = useWallet();
+
   // Watch for changes in the recipient field
   const selectedRecipient = form.watch("recipient");
 
   // Effect to log changes
   React.useEffect(() => {
+    setSelectedRecipient(selectedRecipient);
     console.log("Selected recipient:", selectedRecipient);
   }, [selectedRecipient]);
 
@@ -59,25 +64,21 @@ export function RecipientForm() {
                   value={field.value}
                   onValueChange={field.onChange} // Use onValueChange for Radix UI Select
                 >
-                  <SelectTrigger className="w-full text-gray-500 font-regular gap-2 ">
+                  <SelectTrigger className="w-full h-11 border-gray-300 text-gray-500 font-regular gap-2 ">
                     <SelectValue
                       className="text-gray-500 font-regular"
                       placeholder="Select a Recipient..."
                     />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="name1">
+                    <SelectItem value="John Smith">
                       <div className="flex items-center gap-2">
-                        <p className="text-gray-900 font-medium">
-                          Recipient Name
-                        </p>
+                        <p className="text-gray-900 font-medium">John Smith</p>
                       </div>
                     </SelectItem>
-                    <SelectItem value="name2">
+                    <SelectItem value="Maria Lopez">
                       <div className="flex items-center gap-2">
-                        <p className="text-gray-900 font-medium">
-                          Recipient Name 2
-                        </p>
+                        <p className="text-gray-900 font-medium">Maria Lopez</p>
                       </div>
                     </SelectItem>
                   </SelectContent>

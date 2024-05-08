@@ -89,6 +89,23 @@ export function ReceiveForm() {
   // Determine if the subsequent fields should be disabled
   const isDisableda = !network; // Disabled if recipient is empty
 
+  const { setSelectedWallet, setSelectedNetwork, setSelectedAsset } =
+    useWallet();
+
+  // Update context when wallet or network changes
+  React.useEffect(() => {
+    setSelectedWallet(wallet);
+    setSelectedNetwork(network);
+    setSelectedAsset(asset);
+  }, [
+    wallet,
+    asset,
+    network,
+    setSelectedWallet,
+    setSelectedNetwork,
+    setSelectedAsset,
+  ]);
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 w-full">
@@ -105,14 +122,14 @@ export function ReceiveForm() {
                     field.onChange(value); // Update form state when value changes
                   }}
                 >
-                  <SelectTrigger className="w-full text-gray-500 font-regular gap-2 ">
+                  <SelectTrigger className="w-full h-11 border-gray-300 text-gray-500 font-regular gap-2 ">
                     <SelectValue
                       className="text-gray-500 font-regular"
                       placeholder="Select a Wallet..."
                     />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Wallet1">
+                    <SelectItem value="Main Wallet">
                       <div className="flex items-center gap-2">
                         <svg
                           width="24"
@@ -406,10 +423,10 @@ export function ReceiveForm() {
                           </defs>
                         </svg>
 
-                        <p className="text-gray-900 font-medium">Wallet Name</p>
+                        <p className="text-gray-900 font-medium">Main Wallet</p>
                       </div>
                     </SelectItem>
-                    <SelectItem value="Wallet2">
+                    <SelectItem value="Second Wallet">
                       <div className="flex items-center gap-2">
                         <svg
                           width="24"
@@ -500,7 +517,9 @@ export function ReceiveForm() {
                           </defs>
                         </svg>
 
-                        <p className="text-gray-900 font-medium">Wallet Name</p>
+                        <p className="text-gray-900 font-medium">
+                          Second Wallet
+                        </p>
                       </div>
                     </SelectItem>
                   </SelectContent>
@@ -526,7 +545,7 @@ export function ReceiveForm() {
                   onValueChange={field.onChange}
                   disabled={isDisabled}
                 >
-                  <SelectTrigger className="w-full gap-2 text-gray-500 font-regular ">
+                  <SelectTrigger className="w-full gap-2 h-11 border-gray-300 text-gray-500 font-regular ">
                     <SelectValue
                       className=""
                       placeholder="Select a Network Account..."
@@ -825,7 +844,7 @@ export function ReceiveForm() {
                   onValueChange={field.onChange}
                   disabled={isDisableda}
                 >
-                  <SelectTrigger className="w-full text-gray-500 font-regular gap-2 ">
+                  <SelectTrigger className="w-full h-11 border-gray-300 text-gray-500 font-regular gap-2 ">
                     <SelectValue
                       className="text-gray-500 font-regular"
                       placeholder="Select an Asset..."

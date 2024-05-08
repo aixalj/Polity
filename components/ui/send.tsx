@@ -17,6 +17,19 @@ import { ReceiveForm } from "@/components/receive";
 
 import { RecipientForm } from "@/components/recipientform";
 
+import { PaymentForm } from "@/components/paymentform";
+
+import {
+  useFormField,
+  Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
+} from "@/components/ui/form";
+
 import {
   FSDialog,
   FSDialogClose,
@@ -45,7 +58,26 @@ const SendModal = () => {
   const tabValues = ["payment", "recipient", "amount", "confirm"];
   const [activeTab, setActiveTab] = useState(tabValues[0]);
 
-  const { availableBalance, usdEquivalent } = useWallet();
+  const cryptoValues = {
+    ethValue: 3004.9, // Example ETH value in USD
+    usdcValue: 1, // Example USDC value in USD
+    usdtValue: 1, // Example USDT value in USD
+  };
+
+  const {
+    availableBalance,
+    usdEquivalent,
+    selectedWallet,
+    setSelectedWallet,
+    selectedNetwork,
+    setSelectedNetwork,
+    selectedAsset,
+    setSelectedAsset,
+    selectedRecipient,
+    setSelectedRecipient,
+    selectedPayment,
+    setSelectedPayment,
+  } = useWallet();
 
   const handleContinue = () => {
     const currentIndex = tabValues.indexOf(activeTab);
@@ -53,9 +85,30 @@ const SendModal = () => {
     setActiveTab(tabValues[nextIndex]);
   };
 
+  const handleBack = () => {
+    const currentIndex = tabValues.indexOf(activeTab);
+    const nextIndex = (currentIndex - 1 + tabValues.length) % tabValues.length; // cycle through tabs in reverse
+    setActiveTab(tabValues[nextIndex]);
+  };
+
+  console.log("Active Tab:", activeTab, "Selected Asset:", selectedAsset);
+
+  const canContinue = () => {
+    if (
+      (activeTab === "payment" &&
+        selectedWallet.length >= 3 &&
+        selectedNetwork.length >= 3 &&
+        selectedAsset.length >= 3) ||
+      (activeTab === "recipient" && selectedRecipient.length > 3) ||
+      (activeTab === "amount" && selectedPayment > 0.1) ||
+      activeTab === "confirm"
+    ) {
+      return true;
+    }
+  };
   return (
     <div className="flex w-screen h-screen bg-gray-50">
-      <div className="absolute top-[-10%] w-full">
+      <div className="absolute top-[-40%]">
         <svg
           //   width="1600"
           //   height="1120"
@@ -1141,10 +1194,20 @@ const SendModal = () => {
       >
         <div className="fixed  bottom-0 left-0 right-0 w-full p-6 mx-auto  z-50">
           <div className="w-full flex justify-between p-6 border border-gray-200 bg-white shadow-lg rounded-2xl">
-            <FSDialogClose>
-              <Button variant="outline">Cancel</Button>
-            </FSDialogClose>
-            <Button onClick={handleContinue}>
+            <div>
+              {activeTab === "payment" && (
+                <FSDialogClose>
+                  <Button variant="outline">Cancel</Button>
+                </FSDialogClose>
+              )}
+              {activeTab !== "payment" && (
+                <Button onClick={handleBack} variant="outline">
+                  Back
+                </Button>
+              )}
+            </div>
+
+            <Button onClick={handleContinue} disabled={!canContinue()}>
               Continue
               <svg
                 width="20"
@@ -1190,7 +1253,12 @@ const SendModal = () => {
           <TabsList className="flex relative flex-col gap-1 py-6 w-full items-start`z-50">
             <TabsTrigger
               value="payment"
-              className=" w-full items-center justify-start group focus:ring-0 outline-none  focus:tap-highlight-transparent focus:outline-none relative flex  gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border"
+              style={{ pointerEvents: "none" }}
+              className={`w-full items-center justify-start group focus:ring-0 outline-none focus:tap-highlight-transparent focus:outline-none relative flex gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out ${
+                tabValues.indexOf("payment") > tabValues.indexOf(activeTab)
+                  ? "text-gray-400"
+                  : "text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border"
+              }`}
             >
               <svg
                 width="20"
@@ -1208,10 +1276,34 @@ const SendModal = () => {
                 />
               </svg>
               Payment Method
+              {tabValues.indexOf("payment") < tabValues.indexOf(activeTab) && (
+                <div className="ml-auto">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="20" height="20" rx="10" fill="#CCFBEF" />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M14.247 6.15838L8.2803 11.9167L6.69696 10.2251C6.4053 9.95005 5.94696 9.93338 5.61363 10.1667C5.28863 10.4084 5.19696 10.8334 5.39696 11.1751L7.27196 14.2251C7.4553 14.5084 7.77196 14.6834 8.1303 14.6834C8.47196 14.6834 8.79696 14.5084 8.9803 14.2251C9.2803 13.8334 15.0053 7.00838 15.0053 7.00838C15.7553 6.24172 14.847 5.56672 14.247 6.15005V6.15838Z"
+                      fill="#1F756B"
+                    />
+                  </svg>
+                </div>
+              )}
             </TabsTrigger>
             <TabsTrigger
+              style={{ pointerEvents: "none" }}
               value="recipient"
-              className=" w-full items-center justify-start group focus:ring-0 outline-none  focus:tap-highlight-transparent focus:outline-none relative flex  gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border"
+              className={`w-full items-center justify-start group focus:ring-0 outline-none focus:tap-highlight-transparent focus:outline-none relative flex gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out ${
+                tabValues.indexOf("recipient") > tabValues.indexOf(activeTab)
+                  ? "text-gray-400"
+                  : "text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border"
+              }`}
             >
               <svg
                 width="20"
@@ -1229,10 +1321,36 @@ const SendModal = () => {
                 />
               </svg>
               Recipient Selection
+              {tabValues.indexOf("recipient") <
+                tabValues.indexOf(activeTab) && (
+                <div className="ml-auto">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="20" height="20" rx="10" fill="#CCFBEF" />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M14.247 6.15838L8.2803 11.9167L6.69696 10.2251C6.4053 9.95005 5.94696 9.93338 5.61363 10.1667C5.28863 10.4084 5.19696 10.8334 5.39696 11.1751L7.27196 14.2251C7.4553 14.5084 7.77196 14.6834 8.1303 14.6834C8.47196 14.6834 8.79696 14.5084 8.9803 14.2251C9.2803 13.8334 15.0053 7.00838 15.0053 7.00838C15.7553 6.24172 14.847 5.56672 14.247 6.15005V6.15838Z"
+                      fill="#1F756B"
+                    />
+                  </svg>
+                </div>
+              )}
             </TabsTrigger>
             <TabsTrigger
               value="amount"
-              className=" w-full items-center justify-start group focus:ring-0 outline-none  focus:tap-highlight-transparent focus:outline-none relative flex  gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border"
+              style={{ pointerEvents: "none" }}
+              //   className=" w-full items-center justify-start group focus:ring-0 outline-none  focus:tap-highlight-transparent focus:outline-none relative flex  gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border"
+              className={`w-full items-center justify-start group focus:ring-0 outline-none focus:tap-highlight-transparent focus:outline-none relative flex gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out ${
+                tabValues.indexOf("amount") > tabValues.indexOf(activeTab)
+                  ? "text-gray-400"
+                  : "text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border"
+              }`}
             >
               <svg
                 width="20"
@@ -1257,10 +1375,34 @@ const SendModal = () => {
                 </defs>
               </svg>
               Payment Amount
+              {tabValues.indexOf("amount") < tabValues.indexOf(activeTab) && (
+                <div className="ml-auto">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="20" height="20" rx="10" fill="#CCFBEF" />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M14.247 6.15838L8.2803 11.9167L6.69696 10.2251C6.4053 9.95005 5.94696 9.93338 5.61363 10.1667C5.28863 10.4084 5.19696 10.8334 5.39696 11.1751L7.27196 14.2251C7.4553 14.5084 7.77196 14.6834 8.1303 14.6834C8.47196 14.6834 8.79696 14.5084 8.9803 14.2251C9.2803 13.8334 15.0053 7.00838 15.0053 7.00838C15.7553 6.24172 14.847 5.56672 14.247 6.15005V6.15838Z"
+                      fill="#1F756B"
+                    />
+                  </svg>
+                </div>
+              )}
             </TabsTrigger>
             <TabsTrigger
               value="confirm"
-              className=" w-full items-center justify-start group focus:ring-0 outline-none  focus:tap-highlight-transparent focus:outline-none relative flex  gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border"
+              style={{ pointerEvents: "none" }}
+              className={`w-full items-center justify-start group focus:ring-0 outline-none focus:tap-highlight-transparent focus:outline-none relative flex gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out ${
+                tabValues.indexOf("confirm") > tabValues.indexOf(activeTab)
+                  ? "text-gray-400"
+                  : "text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border"
+              }`}
             >
               <svg
                 width="20"
@@ -1278,6 +1420,25 @@ const SendModal = () => {
                 />
               </svg>
               Payment Confirmation
+              {tabValues.indexOf("confirm") < tabValues.indexOf(activeTab) && (
+                <div className="ml-auto">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="20" height="20" rx="10" fill="#CCFBEF" />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M14.247 6.15838L8.2803 11.9167L6.69696 10.2251C6.4053 9.95005 5.94696 9.93338 5.61363 10.1667C5.28863 10.4084 5.19696 10.8334 5.39696 11.1751L7.27196 14.2251C7.4553 14.5084 7.77196 14.6834 8.1303 14.6834C8.47196 14.6834 8.79696 14.5084 8.9803 14.2251C9.2803 13.8334 15.0053 7.00838 15.0053 7.00838C15.7553 6.24172 14.847 5.56672 14.247 6.15005V6.15838Z"
+                      fill="#1F756B"
+                    />
+                  </svg>
+                </div>
+              )}
             </TabsTrigger>
           </TabsList>
         </div>
@@ -1325,7 +1486,12 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Available Balance</p>
-                  <p>{availableBalance}</p>
+                  <p className="flex gap-2 items-center">
+                    {selectedAsset && (
+                      <img src={`/icons/tokens/${selectedAsset}.svg`} />
+                    )}
+                    {availableBalance}
+                  </p>
                 </div>
                 <div className="w-full justify-between  flex py-1.5">
                   {" "}
@@ -1413,12 +1579,34 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Wallet</p>
-                  <p>Wallet Name</p>
+                  <p>{selectedWallet}</p>
                 </div>
                 <div className="w-full justify-between  flex py-1.5">
                   {" "}
                   <p>Network Account</p>
-                  <p>Network Account Name (0x8f...47d2)</p>
+                  <p>
+                    {selectedNetwork === "MATIC" ? (
+                      <div className="flex gap-2 items-center">
+                        <img src="/icons/networks/MATIC.svg" />
+                        <p>Network Account Name</p>
+                        <p>(0x8f...47d2)</p>
+                      </div>
+                    ) : selectedNetwork === "BTC" ? (
+                      <div className="flex gap-2 items-center">
+                        <img src="/icons/networks/BTC.svg" />
+                        <p>Network Account Name</p>
+                        <p>(0x8f...47d2)</p>
+                      </div>
+                    ) : selectedNetwork === "ETH" ? (
+                      <div className="flex gap-2 items-center">
+                        <img src="/icons/networks/ETH.svg" />
+                        <p>Network Account Name</p>
+                        <p>(0x8f...47d2)</p>
+                      </div>
+                    ) : (
+                      <div>-</div>
+                    )}
+                  </p>
                 </div>
               </div>
               <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium mt-3 text-gray-600 py-2">
@@ -1428,7 +1616,12 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Available Balance</p>
-                  <p>{availableBalance}</p>
+                  <p className="flex gap-2 items-center">
+                    {selectedAsset && (
+                      <img src={`/icons/tokens/${selectedAsset}.svg`} />
+                    )}
+                    {availableBalance}
+                  </p>
                 </div>
                 <div className="w-full justify-between  flex py-1.5">
                   {" "}
@@ -1502,10 +1695,67 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
             </FSDialogHeader>
             <div>
               <div className="w-full bg-gray-50 uppercase px-6 text-xs font-medium text-gray-600 py-2">
-                From
+                Pay
               </div>
               <div className="flex gap-3 mt-3 items-center mb-6 px-6">
-                <ReceiveForm />
+                <div className="flex flex-col gap-2 w-full">
+                  <PaymentForm />
+                  <p className="text-gray-700 font-medium text-sm">
+                    {selectedAsset} ≈{" "}
+                    {(
+                      (selectedPayment || 0) /
+                      (selectedAsset === "ETH" ? cryptoValues.ethValue : 1)
+                    ).toFixed(10)}{" "}
+                    {selectedAsset}
+                  </p>
+                </div>
+              </div>
+              <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
+                To
+              </div>
+              <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
+                <div className="w-full justify-between flex  py-1.5 mb-3">
+                  {" "}
+                  <p>Recipient</p>
+                  <p>{selectedRecipient}</p>
+                </div>
+              </div>
+              <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
+                From
+              </div>
+              <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
+                <div className="w-full justify-between flex  py-1.5">
+                  {" "}
+                  <p>Wallet</p>
+                  <p>{selectedWallet}</p>
+                </div>
+                <div className="w-full justify-between  flex py-1.5 mb-3">
+                  {" "}
+                  <p>Network Account</p>
+                  <p>
+                    {selectedNetwork === "MATIC" ? (
+                      <div className="flex gap-2 items-center">
+                        <img src="/icons/networks/MATIC.svg" />
+                        <p>Network Account Name</p>
+                        <p>(0x8f...47d2)</p>
+                      </div>
+                    ) : selectedNetwork === "BTC" ? (
+                      <div className="flex gap-2 items-center">
+                        <img src="/icons/networks/BTC.svg" />
+                        <p>Network Account Name</p>
+                        <p>(0x8f...47d2)</p>
+                      </div>
+                    ) : selectedNetwork === "ETH" ? (
+                      <div className="flex gap-2 items-center">
+                        <img src="/icons/networks/ETH.svg" />
+                        <p>Network Account Name</p>
+                        <p>(0x8f...47d2)</p>
+                      </div>
+                    ) : (
+                      <div>-</div>
+                    )}
+                  </p>
+                </div>
               </div>
               <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
                 Balance
@@ -1514,7 +1764,12 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Available Balance</p>
-                  <p>{availableBalance}</p>
+                  <p className="flex gap-2 items-center">
+                    {selectedAsset && (
+                      <img src={`/icons/tokens/${selectedAsset}.svg`} />
+                    )}
+                    {availableBalance}
+                  </p>
                 </div>
                 <div className="w-full justify-between  flex py-1.5">
                   {" "}
@@ -1592,10 +1847,116 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
             </FSDialogHeader>
             <div>
               <div className="w-full bg-gray-50 uppercase px-6 text-xs font-medium text-gray-600 py-2">
+                Paying
+              </div>
+              <div className="flex gap-3 mt-3 items-center mb-4 px-6">
+                <div className="flex flex-col gap-2 items-start justify-start">
+                  <p className="text-sm text-gray-700 font-medium">Amount</p>
+                  <div className="flex gap-2 items-center">
+                    <img
+                      className="w-6 h-6"
+                      src={`/icons/tokens/${selectedAsset}.svg`}
+                    />
+                    <p className="text-xl">
+                      {selectedAsset === "ETH"
+                        ? (
+                            Number(selectedPayment) / cryptoValues.ethValue
+                          ).toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })
+                        : (Number(selectedPayment) * 1).toLocaleString(
+                            undefined,
+                            {
+                              minimumFractionDigits: 2,
+                              maximumFractionDigits: 2,
+                            }
+                          )}
+                    </p>
+                  </div>
+                  <p className="text-sm text-gray-700 font-medium">
+                    USD Equivalent ≈ $
+                    {Number(selectedPayment).toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                  </p>
+                </div>
+              </div>
+              <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
+                Transaction Details
+              </div>
+              <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
+                <div className="w-full justify-between flex  py-1.5">
+                  {" "}
+                  <p>Transaction Fee</p>
+                  <p className="flex gap-2 items-center">
+                    <img src={`/icons/networks/${selectedNetwork}.svg`} />
+                    0.016789 {selectedNetwork} ($
+                    {(cryptoValues.ethValue * 0.016789).toFixed(2)})
+                  </p>
+                </div>
+                <div className="w-full justify-between flex  py-1.5 mb-3">
+                  {" "}
+                  <p>Total Transaction Amount</p>
+                  <p>
+                    $
+                    {(
+                      cryptoValues.ethValue * 0.016789 +
+                      Number(selectedPayment)
+                    ).toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                  </p>
+                </div>
+              </div>
+              <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
+                To
+              </div>
+              <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
+                <div className="w-full justify-between flex  py-1.5 mb-3">
+                  {" "}
+                  <p>Recipient</p>
+                  <p>{selectedRecipient}</p>
+                </div>
+              </div>
+              <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
                 From
               </div>
-              <div className="flex gap-3 mt-3 items-center mb-6 px-6">
-                <ReceiveForm />
+              <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
+                <div className="w-full justify-between flex  py-1.5">
+                  {" "}
+                  <p>Wallet</p>
+                  <p>{selectedWallet}</p>
+                </div>
+                <div className="w-full justify-between  flex py-1.5 mb-3">
+                  {" "}
+                  <p>Network Account</p>
+                  <p>
+                    {selectedNetwork === "MATIC" ? (
+                      <div className="flex gap-2 items-center">
+                        <img src="/icons/networks/MATIC.svg" />
+                        <p>Network Account Name</p>
+                        <p>(0x8f...47d2)</p>
+                      </div>
+                    ) : selectedNetwork === "BTC" ? (
+                      <div className="flex gap-2 items-center">
+                        <img src="/icons/networks/BTC.svg" />
+                        <p>Network Account Name</p>
+                        <p>(0x8f...47d2)</p>
+                      </div>
+                    ) : selectedNetwork === "ETH" ? (
+                      <div className="flex gap-2 items-center">
+                        <img src="/icons/networks/ETH.svg" />
+                        <p>Network Account Name</p>
+                        <p>(0x8f...47d2)</p>
+                      </div>
+                    ) : (
+                      <div>-</div>
+                    )}
+                  </p>
+                </div>
               </div>
               <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
                 Balance
@@ -1604,12 +1965,17 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Available Balance</p>
-                  <p>-</p>
+                  <p className="flex gap-2 items-center">
+                    {selectedAsset && (
+                      <img src={`/icons/tokens/${selectedAsset}.svg`} />
+                    )}
+                    {availableBalance}
+                  </p>
                 </div>
                 <div className="w-full justify-between  flex py-1.5">
                   {" "}
                   <p>USD Equivalent</p>
-                  <p>-</p>
+                  <p>{usdEquivalent}</p>
                 </div>
               </div>
               <div className="px-6 pt-6 pb-5">
