@@ -135,9 +135,9 @@ export function PaymentForm() {
                         className="border-none shadow-none text-xs gap-2 bg-white/0"
                         disabled={true}
                       >
-                        <SelectValue placeholder="USDC" defaultValue="USDC">
-                          <SelectItem value="USDC">
-                            <p className="text-gray-900 font-medium">USDC</p>
+                        <SelectValue placeholder="USD" defaultValue="USD">
+                          <SelectItem value="USD">
+                            <p className="text-gray-900 font-medium">USD</p>
                           </SelectItem>
                         </SelectValue>
                       </SelectTrigger>
