@@ -106,6 +106,7 @@ export function PaymentForm() {
                         appearance: "none",
                         MozAppearance: "textfield",
                         WebkitAppearance: "none",
+
                         margin: 0,
                       }}
                       className="pl-11 "
@@ -164,7 +165,7 @@ export function PaymentForm() {
 }
 
 const formSchema = z.object({
-  payment: z.number().min(0, {
+  payment: z.number({
     message: "Payment must be at least 0.",
   }),
 });
