@@ -62,7 +62,7 @@ export function RecipientForm() {
                   <SelectTrigger className="w-full text-gray-500 font-regular gap-2 ">
                     <SelectValue
                       className="text-gray-500 font-regular"
-                      placeholder="Select a Wallet..."
+                      placeholder="Select a Recipient..."
                     />
                   </SelectTrigger>
                   <SelectContent>
