@@ -74,7 +74,7 @@ export function ReceiveForm() {
       setUsdEquivalent("$1,272.25");
     } else if (asset === "ETH") {
       setAvailableBalance("18.46 ETH");
-      setUsdEquivalent("$43,856.23"); // Assuming a hypothetical conversion rate
+      setUsdEquivalent("$55,465.84"); // Assuming a hypothetical conversion rate
     } else if (asset === "USDC") {
       setAvailableBalance("59,837.45 USDC");
       setUsdEquivalent("$59,837.45");
