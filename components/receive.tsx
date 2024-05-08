@@ -552,7 +552,7 @@ export function ReceiveForm() {
                     />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="BTC">
+                    <SelectItem disabled={true} value="BTC">
                       <div className="flex items-center gap-2">
                         <svg
                           width="24"
@@ -617,7 +617,7 @@ export function ReceiveForm() {
                         </svg>
 
                         <p className="text-gray-900 font-medium">
-                          Network Account Name (0x8f...47d2)
+                          Network Account Name (1Lbc...nX71)
                         </p>
                       </div>
                     </SelectItem>
@@ -702,7 +702,7 @@ export function ReceiveForm() {
                         </svg>
 
                         <p className="text-gray-900 font-medium">
-                          Network Account Name (0x8f...47d2)
+                          Network Account Name (0xg7...w628)
                         </p>
                       </div>
                     </SelectItem>
