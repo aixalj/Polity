@@ -702,7 +702,7 @@ export function ReceiveForm() {
                         </svg>
 
                         <p className="text-gray-900 font-medium">
-                          Network Account Name (0xg7...w628)
+                          Network Account Name (0x71...w628)
                         </p>
                       </div>
                     </SelectItem>
