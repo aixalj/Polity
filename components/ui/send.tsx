@@ -85,6 +85,23 @@ const SendModal = () => {
     setActiveTab(tabValues[nextIndex]);
   };
 
+  const handleConfirm = () => {
+    console.log("loading");
+    const tabs = document.getElementById("send-tabs");
+    if (tabs) {
+      tabs.style.display = "none"; // Hides the tabs with id "send-tabs"
+      const loadingDiv = document.getElementById("loading");
+      const completeDiv = document.getElementById("complete");
+      if (loadingDiv && completeDiv) {
+        loadingDiv.style.display = "flex"; // Show loading div
+        setTimeout(() => {
+          loadingDiv.style.display = "none"; // Hide loading div after 3 seconds
+          completeDiv.style.display = "flex"; // Show complete div
+        }, 3000);
+      }
+    }
+  };
+
   const handleBack = () => {
     const currentIndex = tabValues.indexOf(activeTab);
     const nextIndex = (currentIndex - 1 + tabValues.length) % tabValues.length; // cycle through tabs in reverse
@@ -106,6 +123,7 @@ const SendModal = () => {
       return true;
     }
   };
+
   return (
     <div className="flex w-screen h-screen bg-gray-50">
       <div className="absolute top-[-40%]">
@@ -1190,6 +1208,7 @@ const SendModal = () => {
         value={activeTab}
         onValueChange={setActiveTab}
         defaultValue="payment"
+        id="send-tabs"
         className="flex w-screen h-screen bg-gray-50"
       >
         <div className="fixed  bottom-0 left-0 right-0 w-full p-6 mx-auto  z-50">
@@ -1202,29 +1221,51 @@ const SendModal = () => {
               )}
               {activeTab !== "payment" && (
                 <Button onClick={handleBack} variant="outline">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M16.6667 10H3.33337M3.33337 10L8.33337 15M3.33337 10L8.33337 5"
+                      stroke="#344054"
+                      stroke-width="1.66667"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
                   Back
                 </Button>
               )}
             </div>
 
-            <Button onClick={handleContinue} disabled={!canContinue()}>
-              Continue
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3.33325 10H16.6666M16.6666 10L11.6666 5M16.6666 10L11.6666 15"
-                  stroke="white"
-                  stroke-width="1.66667"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </Button>
+            <div className="flex items-center gap-8">
+              {activeTab !== "confirm" && (
+                <Button onClick={handleContinue} disabled={!canContinue()}>
+                  Continue
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3.33325 10H16.6666M16.6666 10L11.6666 5M16.6666 10L11.6666 15"
+                      stroke="white"
+                      stroke-width="1.66667"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </Button>
+              )}
+              {activeTab === "confirm" && (
+                <Button onClick={handleConfirm}>Confirm Payment</Button>
+              )}
+            </div>
           </div>
         </div>
         <div className="absolute left-0 top-0  flex z-50 flex-col px-6 py-12 w-80 gap-3">
@@ -1486,7 +1527,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Available Balance</p>
-                  <p className="flex gap-2 items-center">
+                  <p className="flex gap-2 font-medium items-center">
                     {selectedAsset && (
                       <img src={`/icons/tokens/${selectedAsset}.svg`} />
                     )}
@@ -1496,7 +1537,9 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between  flex py-1.5">
                   {" "}
                   <p>USD Equivalent</p>
-                  <p>{usdEquivalent}</p>
+                  <p className="flex gap-2 font-medium items-center">
+                    {usdEquivalent}
+                  </p>
                 </div>
               </div>
               <div className="px-6 pt-6 pb-5">
@@ -1579,7 +1622,9 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Wallet</p>
-                  <p>{selectedWallet}</p>
+                  <p className="flex gap-2 font-medium items-center">
+                    {selectedWallet}
+                  </p>
                 </div>
                 <div className="w-full justify-between  flex py-1.5">
                   {" "}
@@ -1616,7 +1661,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Available Balance</p>
-                  <p className="flex gap-2 items-center">
+                  <p className="flex gap-2 font-medium items-center">
                     {selectedAsset && (
                       <img src={`/icons/tokens/${selectedAsset}.svg`} />
                     )}
@@ -1626,7 +1671,9 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between  flex py-1.5">
                   {" "}
                   <p>USD Equivalent</p>
-                  <p>{usdEquivalent}</p>
+                  <p className="flex gap-2 font-medium items-center">
+                    {usdEquivalent}
+                  </p>
                 </div>
               </div>
               <div className="px-6 pt-6 pb-5">
@@ -1717,7 +1764,9 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5 mb-3">
                   {" "}
                   <p>Recipient</p>
-                  <p>{selectedRecipient}</p>
+                  <p className="flex gap-2 font-medium items-center">
+                    {selectedRecipient}
+                  </p>
                 </div>
               </div>
               <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
@@ -1727,12 +1776,14 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Wallet</p>
-                  <p>{selectedWallet}</p>
+                  <p className="flex gap-2 font-medium items-center">
+                    {selectedWallet}
+                  </p>
                 </div>
                 <div className="w-full justify-between  flex py-1.5 mb-3">
                   {" "}
                   <p>Network Account</p>
-                  <p>
+                  <p className="flex gap-2 font-medium items-center">
                     {selectedNetwork === "MATIC" ? (
                       <div className="flex gap-2 items-center">
                         <img src="/icons/networks/MATIC.svg" />
@@ -1764,7 +1815,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Available Balance</p>
-                  <p className="flex gap-2 items-center">
+                  <p className="flex gap-2 font-medium items-center">
                     {selectedAsset && (
                       <img src={`/icons/tokens/${selectedAsset}.svg`} />
                     )}
@@ -1774,7 +1825,9 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between  flex py-1.5">
                   {" "}
                   <p>USD Equivalent</p>
-                  <p>{usdEquivalent}</p>
+                  <p className="flex gap-2 font-medium items-center">
+                    {usdEquivalent}
+                  </p>
                 </div>
               </div>
               <div className="px-6 pt-6 pb-5">
@@ -1890,7 +1943,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Transaction Fee</p>
-                  <p className="flex gap-2 items-center">
+                  <p className="flex gap-2 font-medium items-center">
                     <img src={`/icons/networks/${selectedNetwork}.svg`} />
                     0.016789 {selectedNetwork} ($
                     {(cryptoValues.ethValue * 0.016789).toFixed(2)})
@@ -1899,7 +1952,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5 mb-3">
                   {" "}
                   <p>Total Transaction Amount</p>
-                  <p>
+                  <p className="flex gap-2 font-medium items-center">
                     $
                     {(
                       cryptoValues.ethValue * 0.016789 +
@@ -1918,7 +1971,9 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5 mb-3">
                   {" "}
                   <p>Recipient</p>
-                  <p>{selectedRecipient}</p>
+                  <p className="flex gap-2 font-medium items-center">
+                    {selectedRecipient}
+                  </p>
                 </div>
               </div>
               <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
@@ -1928,12 +1983,14 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Wallet</p>
-                  <p>{selectedWallet}</p>
+                  <p className="flex gap-2 font-medium items-center">
+                    {selectedWallet}
+                  </p>
                 </div>
                 <div className="w-full justify-between  flex py-1.5 mb-3">
                   {" "}
                   <p>Network Account</p>
-                  <p>
+                  <p className="flex gap-2 font-medium items-center">
                     {selectedNetwork === "MATIC" ? (
                       <div className="flex gap-2 items-center">
                         <img src="/icons/networks/MATIC.svg" />
@@ -1965,7 +2022,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Available Balance</p>
-                  <p className="flex gap-2 items-center">
+                  <p className="flex gap-2 font-medium items-center">
                     {selectedAsset && (
                       <img src={`/icons/tokens/${selectedAsset}.svg`} />
                     )}
@@ -1975,7 +2032,9 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="w-full justify-between  flex py-1.5">
                   {" "}
                   <p>USD Equivalent</p>
-                  <p>{usdEquivalent}</p>
+                  <p className="flex gap-2 font-medium items-center">
+                    {usdEquivalent}
+                  </p>
                 </div>
               </div>
               <div className="px-6 pt-6 pb-5">
@@ -2013,6 +2072,18 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
           </div>
         </TabsContent>
       </Tabs>
+      <div
+        id="loading"
+        className="hidden w-full h-full justify-center items-center"
+      >
+        Loading...
+      </div>
+      <div
+        id="complete"
+        className="hidden w-full h-full justify-center items-center"
+      >
+        complete
+      </div>
     </div>
   );
 };
