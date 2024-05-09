@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 
 import { usePathname } from "next/navigation";
 
+import { useState } from "react";
+
 import {
   Collapsible,
   CollapsibleContent,
@@ -16,7 +18,22 @@ import {
 import Link from "next/link";
 
 const SideBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+
+  const [openStates, setOpenStates] = useState<{ [key: string]: boolean }>({});
+
+  // Handler to toggle the open state
+  const handleOpenChange = (id: string, isOpen: boolean) => {
+    setOpenStates((prev) => ({ ...prev, [id]: isOpen }));
+
+    // const MyCollapsible = () => {
+    //   const [isOpen, setIsOpen] = useState(false);
+
+    //   const handleOpenChange = (open: boolean) => {
+    //     setIsOpen(open);
+    //   };
+  };
 
   return (
     <div className="px-2 pt-8 pb-2 hidden sm:flex sm:flex-col">
@@ -68,7 +85,13 @@ const SideBar = () => {
         <nav className="mt-6 w-80 h-full">
           <div className="h-full flex flex-col justify-between">
             <ul className="flex flex-col gap-1">
-              <Collapsible className="w-full flex flex-col gap-1">
+              <Collapsible
+                open={openStates["collapsible1"] || false}
+                onOpenChange={(isOpen) =>
+                  handleOpenChange("collapsible1", isOpen)
+                }
+                className="w-full flex flex-col gap-1"
+              >
                 <CollapsibleTrigger className="w-full ease-in-out duration-200">
                   <ul className="flex flex-col gap-1">
                     <li>
@@ -100,9 +123,41 @@ const SideBar = () => {
                           Wealth
                         </Link>
 
-                        <p className="ml-auto text-sm   font-medium">
-                          $186,872.15
-                        </p>
+                        <a className="ml-auto text-sm cursor-pointer  font-medium">
+                          {openStates["collapsible1"] ? (
+                            <svg
+                              width="20"
+                              height="20"
+                              viewBox="0 0 20 20"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 12.5L10 7.5L15 12.5"
+                                stroke="#475467"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          ) : (
+                            <svg
+                              width="20"
+                              height="20"
+                              viewBox="0 0 20 20"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 7.5L10 12.5L15 7.5"
+                                stroke="#475467"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          )}
+                        </a>
                       </div>
                     </li>
                   </ul>
@@ -114,7 +169,13 @@ const SideBar = () => {
                       <div className="w-full bg-gray-300 h-[1px]"></div>
                     </li>
                     <li>
-                      <Collapsible className="w-full flex flex-col gap-1">
+                      <Collapsible
+                        open={openStates["collapsible2"] || false}
+                        onOpenChange={(isOpen) =>
+                          handleOpenChange("collapsible2", isOpen)
+                        }
+                        className="w-full flex flex-col gap-1"
+                      >
                         <CollapsibleTrigger className="w-full ease-in-out duration-200">
                           <div
                             className={`group focus:ring-0 ${
@@ -446,9 +507,41 @@ const SideBar = () => {
                               </svg>
                               Wallet Name
                             </Link>
-                            <p className="ml-auto text-sm  font-medium">
-                              $186,872.15
-                            </p>
+                            <a className="ml-auto text-sm cursor-pointer  font-medium">
+                              {openStates["collapsible2"] ? (
+                                <svg
+                                  width="20"
+                                  height="20"
+                                  viewBox="0 0 20 20"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M5 12.5L10 7.5L15 12.5"
+                                    stroke="#475467"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  />
+                                </svg>
+                              ) : (
+                                <svg
+                                  width="20"
+                                  height="20"
+                                  viewBox="0 0 20 20"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M5 7.5L10 12.5L15 7.5"
+                                    stroke="#475467"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  />
+                                </svg>
+                              )}
+                            </a>
                           </div>
                         </CollapsibleTrigger>
                         <CollapsibleContent className="items-start">
@@ -541,9 +634,7 @@ const SideBar = () => {
                                     </p>
                                   </Link>
                                 </div>
-                                <p className="ml-auto text-sm font-medium">
-                                  $0.00
-                                </p>
+                                <p className="ml-auto text-sm font-medium"></p>
                               </a>
                             </li>
                             <li>
@@ -652,9 +743,7 @@ const SideBar = () => {
                                     </p>
                                   </Link>
                                 </div>
-                                <p className="ml-auto text-sm font-medium">
-                                  $0.00
-                                </p>
+                                <p className="ml-auto text-sm font-medium"></p>
                               </a>
                             </li>
                             <li>
@@ -781,9 +870,7 @@ const SideBar = () => {
                                     </p>
                                   </div>
                                 </div>
-                                <p className="ml-auto text-sm font-medium">
-                                  $0.00
-                                </p>
+                                <p className="ml-auto text-sm font-medium"></p>
                               </a>
                             </li>
 
@@ -797,7 +884,13 @@ const SideBar = () => {
                       </Collapsible>
                     </li>
                     <li>
-                      <Collapsible className="w-full flex flex-col gap-1">
+                      <Collapsible
+                        open={openStates["collapsible3"] || false}
+                        onOpenChange={(isOpen) =>
+                          handleOpenChange("collapsible3", isOpen)
+                        }
+                        className="w-full flex flex-col gap-1"
+                      >
                         <CollapsibleTrigger className="w-full ease-in-out duration-200">
                           <a
                             className="group focus:ring-0 outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
@@ -900,9 +993,41 @@ const SideBar = () => {
                               </svg>
                               Wallet Name
                             </div>
-                            <p className="ml-auto text-sm  font-medium">
-                              $0.00
-                            </p>
+                            <a className="ml-auto text-sm cursor-pointer  font-medium">
+                              {openStates["collapsible3"] ? (
+                                <svg
+                                  width="20"
+                                  height="20"
+                                  viewBox="0 0 20 20"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M5 12.5L10 7.5L15 12.5"
+                                    stroke="#475467"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  />
+                                </svg>
+                              ) : (
+                                <svg
+                                  width="20"
+                                  height="20"
+                                  viewBox="0 0 20 20"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M5 7.5L10 12.5L15 7.5"
+                                    stroke="#475467"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  />
+                                </svg>
+                              )}
+                            </a>
                           </a>
                         </CollapsibleTrigger>
                         <CollapsibleContent className="items-start">
@@ -991,9 +1116,7 @@ const SideBar = () => {
                                     </p>
                                   </div>
                                 </div>
-                                <p className="ml-auto text-sm font-medium">
-                                  $0.00
-                                </p>
+                                <p className="ml-auto text-sm font-medium"></p>
                               </a>
                             </li>
                             <li>
@@ -1095,9 +1218,7 @@ const SideBar = () => {
                                     </p>
                                   </div>
                                 </div>
-                                <p className="ml-auto text-sm font-medium">
-                                  $0.00
-                                </p>
+                                <p className="ml-auto text-sm font-medium"></p>
                               </a>
                             </li>
                             <li>
@@ -1224,9 +1345,7 @@ const SideBar = () => {
                                     </p>
                                   </div>
                                 </div>
-                                <p className="ml-auto text-sm font-medium">
-                                  $0.00
-                                </p>
+                                <p className="ml-auto text-sm font-medium"></p>
                               </a>
                             </li>
                           </ul>
