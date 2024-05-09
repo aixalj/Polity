@@ -2074,15 +2074,15 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
       </Tabs>
       <div
         id="loading"
-        className="hidden w-full h-full justify-center items-center"
+        className="hidden w-full h-full text-sm font-medium text-gray-700 justify-center items-center"
       >
-        Loading...
+        Processing your payment... Please wait.
       </div>
       <div
         id="complete"
         className="hidden w-full h-full justify-center items-center"
       >
-        complete
+        Payment was successful!
       </div>
     </div>
   );
