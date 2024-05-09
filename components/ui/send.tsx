@@ -5939,7 +5939,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                       {(cryptoValues.ethValue * 0.016789).toFixed(2)})
                     </p>
                   </div>
-                  <div className="w-full justify-between flex  py-1.5 mb-3">
+                  <div className="w-full justify-between flex  py-1.5 ">
                     {" "}
                     <p>Total Transaction Amount</p>
                     <p className="flex gap-2 font-medium items-center">
