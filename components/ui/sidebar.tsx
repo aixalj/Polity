@@ -1631,13 +1631,13 @@ const SideBar = () => {
               </Collapsible>
 
               <li>
-                <a
+                <Link
                   className={`group focus:ring-0 ${
                     pathname === "/marketplace"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-12 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-12 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
-                  href="#"
+                  href="/marketplace"
                   id="overview"
                 >
                   <svg
@@ -1656,13 +1656,13 @@ const SideBar = () => {
                     />
                   </svg>
                   Marketplace
-                </a>
+                </Link>
               </li>
 
               <li>
                 <a
                   className={`group focus:ring-0 ${
-                    pathname === "/marketplace"
+                    pathname === "#"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-12 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-12 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
@@ -1703,7 +1703,7 @@ const SideBar = () => {
               <li>
                 <a
                   className={`group focus:ring-0 ${
-                    pathname === "/marketplace"
+                    pathname === "#"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-12 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-12 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
@@ -1732,7 +1732,7 @@ const SideBar = () => {
               <li>
                 <a
                   className={`group focus:ring-0 ${
-                    pathname === "/marketplace"
+                    pathname === "#"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-12 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-12 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
@@ -1761,7 +1761,7 @@ const SideBar = () => {
               <li>
                 <a
                   className={`group focus:ring-0 ${
-                    pathname === "/marketplace"
+                    pathname === "#"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-12 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-12 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
