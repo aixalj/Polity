@@ -123,7 +123,7 @@ const SideBar = () => {
                       </div>
                     </Link>
                     <a
-                      className="z-10 ml-auto cursor-pointer h-6 w-6 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 group-hover:border-gray-300 font-medium"
+                      className="z-10 ml-auto cursor-pointer h-6 w-6 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
                       onClick={() =>
                         handleOpenChange(
                           "collapsible1",
@@ -516,7 +516,7 @@ const SideBar = () => {
                               </div>
                             </Link>
                             <a
-                              className="z-10 ml-auto cursor-pointer h-6 w-6 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 group-hover:border-gray-300 font-medium"
+                              className="z-10 ml-auto cursor-pointer h-6 w-6 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
                               onClick={() =>
                                 handleOpenChange(
                                   "collapsible2",
@@ -1242,7 +1242,7 @@ const SideBar = () => {
                               </div>
                             </Link>
                             <a
-                              className="z-10 ml-auto cursor-pointer h-6 w-6 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 group-hover:border-gray-300 font-medium"
+                              className="z-10 ml-auto cursor-pointer h-6 w-6 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
                               onClick={() =>
                                 handleOpenChange(
                                   "collapsible3",
