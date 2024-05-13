@@ -29,6 +29,11 @@ const chartdata = [
   { date: "Dec 23", Value: 323254, Sponsored: 0 },
 ];
 
+interface TooltipProps {
+  active?: boolean;
+  payload?: any[]; // You can further detail this type based on the structure of your payload
+}
+
 export function AreaChartUsageExampleWithCustomTooltip() {
   const valueFormatter = function (number: number) {
     if (number >= 1000) {
@@ -40,7 +45,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     return "$" + number.toString();
   };
 
-  const customTooltip = (props) => {
+  const customTooltip = (props: TooltipProps) => {
     const { payload, active } = props;
     if (!active || !payload) return null;
     return (
