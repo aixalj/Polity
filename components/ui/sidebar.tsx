@@ -93,13 +93,13 @@ const SideBar = () => {
                 className="w-full flex flex-col gap-1"
               >
                 <CollapsibleTrigger className="w-full ease-in-out duration-200">
-                  <div className="group relative  w-full outline-none  focus:tap-highlight-transparent focus:outline-none  rounded-xl h-12 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
+                  <div className="group relative  w-full outline-none  focus:tap-highlight-transparent focus:outline-none  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
                     <Link
                       href="/"
                       className={`group focus:ring-0 ${
                         pathname === "/"
-                          ? "justify-between outline-none  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-12 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                          : "outline-none justify-between  focus:tap-highlight-transparent hover:text-black focus:outline-none relative flex items-center gap-3 rounded-xl h-12 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                          ? "justify-between outline-none  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                          : "outline-none justify-between  focus:tap-highlight-transparent hover:text-black focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                       }`}
                       id="overview"
                     >
@@ -123,7 +123,7 @@ const SideBar = () => {
                       </div>
                     </Link>
                     <a
-                      className="z-10 ml-auto cursor-pointer h-6 w-6 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
+                      className="z-10 ml-auto cursor-pointer h-5 w-5 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
                       onClick={() =>
                         handleOpenChange(
                           "collapsible1",
@@ -133,32 +133,32 @@ const SideBar = () => {
                     >
                       {openStates["collapsible1"] ? (
                         <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M5 12.5L10 7.5L15 12.5"
+                            d="M12 10L8 6L4 10"
                             stroke="#475467"
-                            stroke-width="2"
+                            stroke-width="1.5"
                             stroke-linecap="round"
                             stroke-linejoin="round"
                           />
                         </svg>
                       ) : (
                         <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M5 7.5L10 12.5L15 7.5"
+                            d="M4 6L8 10L12 6"
                             stroke="#475467"
-                            stroke-width="2"
+                            stroke-width="1.5"
                             stroke-linecap="round"
                             stroke-linejoin="round"
                           />
@@ -182,13 +182,13 @@ const SideBar = () => {
                         className="w-full flex flex-col gap-1"
                       >
                         <CollapsibleTrigger className="w-full ease-in-out duration-200">
-                          <div className="group relative  w-full outline-none  focus:tap-highlight-transparent focus:outline-none  rounded-xl h-12 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
+                          <div className="group relative  w-full outline-none  focus:tap-highlight-transparent focus:outline-none  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
                             <Link
                               href="/wealth/wallet1"
                               className={` focus:ring-0 ${
                                 pathname === "/wealth/wallet1"
-                                  ? "justify-between outline-none  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-12 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                  : "outline-none justify-between  hover:text-black focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-12 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                  ? "justify-between outline-none  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                  : "outline-none justify-between  hover:text-black focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                               }`}
                             >
                               <div className="flex gap-3 items-center">
@@ -516,7 +516,7 @@ const SideBar = () => {
                               </div>
                             </Link>
                             <a
-                              className="z-10 ml-auto cursor-pointer h-6 w-6 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
+                              className="z-10 ml-auto cursor-pointer h-5 w-5 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
                               onClick={() =>
                                 handleOpenChange(
                                   "collapsible2",
@@ -526,32 +526,32 @@ const SideBar = () => {
                             >
                               {openStates["collapsible2"] ? (
                                 <svg
-                                  width="20"
-                                  height="20"
-                                  viewBox="0 0 20 20"
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 16 16"
                                   fill="none"
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <path
-                                    d="M5 12.5L10 7.5L15 12.5"
+                                    d="M12 10L8 6L4 10"
                                     stroke="#475467"
-                                    stroke-width="2"
+                                    stroke-width="1.5"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                   />
                                 </svg>
                               ) : (
                                 <svg
-                                  width="20"
-                                  height="20"
-                                  viewBox="0 0 20 20"
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 16 16"
                                   fill="none"
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <path
-                                    d="M5 7.5L10 12.5L15 7.5"
+                                    d="M4 6L8 10L12 6"
                                     stroke="#475467"
-                                    stroke-width="2"
+                                    stroke-width="1.5"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                   />
@@ -908,13 +908,13 @@ const SideBar = () => {
                         className="w-full flex flex-col gap-1"
                       >
                         <CollapsibleTrigger className="w-full ease-in-out duration-200">
-                          <div className="group relative  w-full outline-none  focus:tap-highlight-transparent focus:outline-none  rounded-xl h-12 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
+                          <div className="group relative  w-full outline-none  focus:tap-highlight-transparent focus:outline-none  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
                             <Link
                               href="#"
                               className={` focus:ring-0 ${
                                 pathname === "/wealth/wallet2"
-                                  ? "justify-between outline-none  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-12 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                  : "outline-none justify-between hover:text-black  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-12 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                  ? "justify-between outline-none  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                  : "outline-none justify-between hover:text-black  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                               }`}
                             >
                               <div className="flex gap-3 items-center">
@@ -1242,7 +1242,7 @@ const SideBar = () => {
                               </div>
                             </Link>
                             <a
-                              className="z-10 ml-auto cursor-pointer h-6 w-6 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
+                              className="z-10 ml-auto cursor-pointer h-5 w-5 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
                               onClick={() =>
                                 handleOpenChange(
                                   "collapsible3",
@@ -1252,32 +1252,32 @@ const SideBar = () => {
                             >
                               {openStates["collapsible3"] ? (
                                 <svg
-                                  width="20"
-                                  height="20"
-                                  viewBox="0 0 20 20"
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 16 16"
                                   fill="none"
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <path
-                                    d="M5 12.5L10 7.5L15 12.5"
+                                    d="M12 10L8 6L4 10"
                                     stroke="#475467"
-                                    stroke-width="2"
+                                    stroke-width="1.5"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                   />
                                 </svg>
                               ) : (
                                 <svg
-                                  width="20"
-                                  height="20"
-                                  viewBox="0 0 20 20"
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 16 16"
                                   fill="none"
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <path
-                                    d="M5 7.5L10 12.5L15 7.5"
+                                    d="M4 6L8 10L12 6"
                                     stroke="#475467"
-                                    stroke-width="2"
+                                    stroke-width="1.5"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                   />
@@ -1634,8 +1634,8 @@ const SideBar = () => {
                 <Link
                   className={`group focus:ring-0 ${
                     pathname === "/marketplace"
-                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-12 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-12 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
                   href="/marketplace"
                   id="overview"
@@ -1663,8 +1663,8 @@ const SideBar = () => {
                 <a
                   className={`group focus:ring-0 ${
                     pathname === "#"
-                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-12 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-12 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
                   href="#"
                   id="overview"
@@ -1704,8 +1704,8 @@ const SideBar = () => {
                 <a
                   className={`group focus:ring-0 ${
                     pathname === "#"
-                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-12 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-12 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
                   href="#"
                   id="overview"
@@ -1733,8 +1733,8 @@ const SideBar = () => {
                 <a
                   className={`group focus:ring-0 ${
                     pathname === "#"
-                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-12 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-12 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
                   href="#"
                   id="overview"
@@ -1762,8 +1762,8 @@ const SideBar = () => {
                 <a
                   className={`group focus:ring-0 ${
                     pathname === "#"
-                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-12 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-12 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
                   href="#"
                   id="overview"
