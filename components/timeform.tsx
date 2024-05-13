@@ -36,7 +36,7 @@ export function TimeForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      time: undefined,
+      time: "pastday",
     },
   });
 
