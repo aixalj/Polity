@@ -2,31 +2,62 @@
 
 import { AreaChart, Card, Title } from "@tremor/react";
 
+import { TimeProvider } from "@/components/ui/timecontext";
+
+import { useTime } from "@/components/ui/timecontext";
+
 const chartdata = [
-  { date: "Jan 23", Value: 232281, Sponsored: 0 },
-  { date: "Feb 23", Value: 241341, Sponsored: 0 },
-  { date: "Mar 23", Value: 296421, Sponsored: 0 },
-  { date: "Apr 23", Value: 103461, Sponsored: 0 },
-  { date: "May 23", Value: 316538, Sponsored: 0 },
-  { date: "Jun 23", Value: 204565, Sponsored: 0 },
-  { date: "Jul 23", Value: 379752, Sponsored: 0 },
-  { date: "Aug 23", Value: 343641, Sponsored: 0 },
-  { date: "Sep 23", Value: 383247, Sponsored: 120 },
-  { date: "Oct 23", Value: 267820, Sponsored: 0 },
-  { date: "Nov 23", Value: 354372, Sponsored: 0 },
-  { date: "Dec 23", Value: 323254, Sponsored: 0 },
-  { date: "Jan 23", Value: 232281, Sponsored: 0 },
-  { date: "Feb 23", Value: 241341, Sponsored: 0 },
-  { date: "Mar 23", Value: 296421, Sponsored: 0 },
-  { date: "Apr 23", Value: 103461, Sponsored: 0 },
-  { date: "May 23", Value: 316538, Sponsored: 0 },
-  { date: "Jun 23", Value: 204565, Sponsored: 0 },
-  { date: "Jul 23", Value: 379752, Sponsored: 0 },
-  { date: "Aug 23", Value: 343641, Sponsored: 0 },
-  { date: "Sep 23", Value: 383247, Sponsored: 120 },
-  { date: "Oct 23", Value: 267820, Sponsored: 0 },
-  { date: "Nov 23", Value: 354372, Sponsored: 0 },
-  { date: "Dec 23", Value: 323254, Sponsored: 0 },
+  { date: "Jan 23", Value: 232281 },
+  { date: "Feb 23", Value: 241341 },
+  { date: "Mar 23", Value: 296421 },
+  { date: "Apr 23", Value: 103461 },
+  { date: "May 23", Value: 316538 },
+  { date: "Jun 23", Value: 204565 },
+  { date: "Jul 23", Value: 379752 },
+  { date: "Aug 23", Value: 343641 },
+  { date: "Sep 23", Value: 383247 },
+  { date: "Oct 23", Value: 267820 },
+  { date: "Nov 23", Value: 354372 },
+  { date: "Dec 23", Value: 323254 },
+  { date: "Jan 23", Value: 232281 },
+  { date: "Feb 23", Value: 241341 },
+  { date: "Mar 23", Value: 296421 },
+  { date: "Apr 23", Value: 103461 },
+  { date: "May 23", Value: 316538 },
+  { date: "Jun 23", Value: 204565 },
+  { date: "Jul 23", Value: 379752 },
+  { date: "Aug 23", Value: 343641 },
+  { date: "Sep 23", Value: 383247 },
+  { date: "Oct 23", Value: 267820 },
+  { date: "Nov 23", Value: 354372 },
+  { date: "Dec 23", Value: 323254 },
+];
+
+const pastday = [
+  { date: "00:00", Value: 232281 },
+  { date: "01:00", Value: 241341 },
+  { date: "02:00", Value: 296421 },
+  { date: "03:00", Value: 103461 },
+  { date: "04:00", Value: 316538 },
+  { date: "05:00", Value: 204565 },
+  { date: "06:00", Value: 379752 },
+  { date: "07:00", Value: 343641 },
+  { date: "08:00", Value: 383247 },
+  { date: "09:00", Value: 267820 },
+  { date: "10:00", Value: 354372 },
+  { date: "11:00", Value: 323254 },
+  { date: "12:00", Value: 232281 },
+  { date: "13:00", Value: 241341 },
+  { date: "14:00", Value: 296421 },
+  { date: "15:00", Value: 103461 },
+  { date: "16:00", Value: 316538 },
+  { date: "17:00", Value: 204565 },
+  { date: "18:00", Value: 379752 },
+  { date: "19:00", Value: 343641 },
+  { date: "20:00", Value: 383247 },
+  { date: "21:00", Value: 267820 },
+  { date: "22:00", Value: 354372 },
+  { date: "23:00", Value: 323254 },
 ];
 
 interface TooltipProps {
@@ -44,6 +75,9 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     }
     return "$" + number.toString();
   };
+
+  const { selectedTime, setSelectedTime } = useTime();
+  console.log("Selected time (80):", selectedTime);
 
   const customTooltip = (props: TooltipProps) => {
     const { payload, active } = props;
@@ -69,14 +103,14 @@ export function AreaChartUsageExampleWithCustomTooltip() {
   return (
     <>
       <AreaChart
-        data={chartdata}
+        data={[selectedTime]}
         index="date"
         categories={["Value"]}
         colors={["teal", "blue"]}
         showLegend={false}
         showYAxis={true}
         showGradient={true}
-        startEndOnly={false}
+        startEndOnly={true}
         className="mt-6 h-72"
         customTooltip={customTooltip}
         valueFormatter={valueFormatter}

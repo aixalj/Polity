@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useState } from "react";
 import type { Config } from "tailwindcss";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,21 @@ import {
 
 import { WalletProvider } from "@/components/ui/formcontext";
 
+import { TimeForm } from "@/components/timeform";
+
+import {
+  useFormField,
+  Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
+} from "@/components/ui/form";
+
+import { TimeProvider } from "@/components/ui/timecontext";
+
 import {
   FSDialog,
   FSDialogContent,
@@ -35,6 +51,8 @@ import {
 } from "@/components/ui/fsdialog";
 
 import { Progress } from "@/components/ui/progress";
+
+// import { useTime } from "@/components/ui/timecontext";
 
 import {
   Select,
@@ -47,6 +65,13 @@ import {
 import Link from "next/link";
 
 const PageHeader = () => {
+  const [selectedValue, setSelectedValue] = useState<string>("");
+
+  function handleSelectChange(value: string): void {
+    // Use the value directly, as it's already a string
+    setSelectedValue(value);
+  }
+
   return (
     <div className="w-full sticky top-0 backdrop-blur-md	z-10  border-b border-gray-100 bg-white/60">
       <div className=" max-w-screen-xl mx-auto p-6">
@@ -2141,36 +2166,9 @@ const PageHeader = () => {
               Update Data
             </Button>
 
-            <Select>
-              <SelectTrigger className="w-48 gap-2 font-medium ">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M17.5 8.33342H2.5M13.3333 1.66675V5.00008M6.66667 1.66675V5.00008M6.5 18.3334H13.5C14.9001 18.3334 15.6002 18.3334 16.135 18.0609C16.6054 17.8212 16.9878 17.4388 17.2275 16.9684C17.5 16.4336 17.5 15.7335 17.5 14.3334V7.33342C17.5 5.93328 17.5 5.23322 17.2275 4.69844C16.9878 4.22803 16.6054 3.84558 16.135 3.6059C15.6002 3.33341 14.9001 3.33341 13.5 3.33341H6.5C5.09987 3.33341 4.3998 3.33341 3.86502 3.6059C3.39462 3.84558 3.01217 4.22803 2.77248 4.69844C2.5 5.23322 2.5 5.93328 2.5 7.33341V14.3334C2.5 15.7335 2.5 16.4336 2.77248 16.9684C3.01217 17.4388 3.39462 17.8212 3.86502 18.0609C4.3998 18.3334 5.09987 18.3334 6.5 18.3334Z"
-                    stroke="#344054"
-                    stroke-width="1.66667"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-
-                <SelectValue placeholder="Past Day" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="light">Past Day</SelectItem>
-                <SelectItem value="dark">Past Week</SelectItem>
-                <SelectItem value="pastmonth">Past Month</SelectItem>
-                <SelectItem value="threemonths">Three Months</SelectItem>
-                <SelectItem value="yeartodate">Year to Date</SelectItem>
-                <SelectItem value="pastyear">Past Year</SelectItem>
-                <SelectItem value="alltime">All Time</SelectItem>
-              </SelectContent>
-            </Select>
+            <TimeProvider>
+              <TimeForm />
+            </TimeProvider>
           </div>
         </div>
       </div>
