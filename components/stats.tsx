@@ -137,6 +137,23 @@ export function Stats() {
 
   const { selectedTime, setSelectedTime } = useTime();
 
+  const timeLabel =
+    selectedTime === "pastday"
+      ? "Last 24 Hours"
+      : selectedTime === "pastweek"
+      ? "Last 7 Days"
+      : selectedTime === "pastmonth"
+      ? "Last 30 Days"
+      : selectedTime === "threemonths"
+      ? "Last 3 Months"
+      : selectedTime === "yeartodate"
+      ? "Year to Date"
+      : selectedTime === "pastyear"
+      ? "Last Year"
+      : selectedTime === "alltime"
+      ? "All Time"
+      : "";
+
   return (
     <main className="w-full h-full flex flex-col gap-3">
       {/* <TimeProvider> */}
@@ -198,7 +215,7 @@ export function Stats() {
               </svg>
               9.54% ($20,239.24)
             </div>
-            <p className="text-gray-600 text-sm font-medium">{selectedTime}</p>
+            <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>
         </div>
 
@@ -269,7 +286,7 @@ export function Stats() {
               </svg>
               9.54% ($20,239.24)
             </div>
-            <p className="text-gray-600 text-sm font-medium">Last 24 hours</p>
+            <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>
 
           <svg
@@ -346,7 +363,7 @@ export function Stats() {
               </svg>
               9.54% ($20,239.24)
             </div>
-            <p className="text-gray-600 text-sm font-medium">Last 24 hours</p>
+            <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>
 
           <svg
@@ -428,7 +445,7 @@ export function Stats() {
               </svg>
               9.54% ($20,239.24)
             </div>
-            <p className="text-gray-600 text-sm font-medium">Last 24 hours</p>
+            <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>
 
           <svg
