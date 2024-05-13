@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { Config } from "tailwindcss";
+import React, { createContext, useState, ReactNode } from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AreaChart } from "@tremor/react";
@@ -16,7 +17,9 @@ import {
 
 import { TimeProvider } from "@/components/ui/timecontext";
 
-// import { useTime } from "@/components/ui/timecontext";
+import { useTime } from "@/components/ui/timecontext";
+
+import { TimeTest } from "@/components/testing";
 
 import {
   Tooltip,
@@ -132,10 +135,11 @@ export function Stats() {
   const formattedTotalDebts = currencyFormatter.format(totalDebts);
   const formattedTotalClaimable = currencyFormatter.format(totalClaimable);
 
-  // const { selectedTime, setSelectedTime } = useTime();
+  const { selectedTime, setSelectedTime } = useTime();
 
   return (
     <main className="w-full h-full flex flex-col gap-3">
+      {/* <TimeProvider> */}
       <div className="w-full  h-auto border rounded-2xl border-gray-300 p-4 flex flex-col gap-6">
         <div>
           <p className="text-base text-gray-600 flex gap-2 items-center">
@@ -194,26 +198,13 @@ export function Stats() {
               </svg>
               9.54% ($20,239.24)
             </div>
-            <p className="text-gray-600 text-sm font-medium">2024</p>
+            <p className="text-gray-600 text-sm font-medium">{selectedTime}</p>
           </div>
         </div>
 
         <div>
-          <TimeProvider>
-            <AreaChartUsageExampleWithCustomTooltip />
-          </TimeProvider>
-          {/* <AreaChart
-              data={chartdata}
-              index="date"
-              categories={["Value"]}
-              colors={["teal", "blue"]}
-              showLegend={false}
-              showYAxis={true}
-              showGradient={true}
-              startEndOnly={true}
-              className="mt-6 h-72"
-              customTooltip={customTooltip}
-            /> */}
+          {/* <TimeTest /> */}
+          <AreaChartUsageExampleWithCustomTooltip />
         </div>
       </div>
 
@@ -458,6 +449,7 @@ export function Stats() {
           </svg>
         </div>
       </div>
+      {/* </TimeProvider> */}
     </main>
   );
 }

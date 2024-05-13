@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import type { Config } from "tailwindcss";
 
@@ -35,6 +37,8 @@ import Stats from "@/components/stats";
 
 import Allocation from "@/components/allocation";
 
+import { TimeProvider } from "@/components/ui/timecontext";
+
 import {
   Select,
   SelectContent,
@@ -55,60 +59,25 @@ import {
 
 import { Button } from "@/components/ui/button";
 
-import { createClient } from "@supabase/supabase-js";
+// import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = "https://ilzanfrmzylbvkoyhefz.supabase.co";
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlsemFuZnJtenlsYnZrb3loZWZ6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxNTAxNTg2MCwiZXhwIjoyMDMwNTkxODYwfQ.NUkkfYlSq3iHkr1hjIK3uMev7VzKt6F_2fqTne4JKNU";
-const supabase = createClient(supabaseUrl, supabaseKey);
+// const supabaseUrl = "https://ilzanfrmzylbvkoyhefz.supabase.co";
+// const supabaseKey =
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlsemFuZnJtenlsYnZrb3loZWZ6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxNTAxNTg2MCwiZXhwIjoyMDMwNTkxODYwfQ.NUkkfYlSq3iHkr1hjIK3uMev7VzKt6F_2fqTne4JKNU";
+// const supabase = createClient(supabaseUrl, supabaseKey);
 
-async function getData() {
-  const { data, error } = await supabase
-    .from("wallets")
-    .select("id, wallet_id, wallet_name, allocation, return, value");
+// async function getData() {
+//   const { data, error } = await supabase
+//     .from("wallets")
+//     .select("id, wallet_id, wallet_name, allocation, return, value");
 
-  if (error) {
-    console.error("Error fetching data:", error.message);
-    throw new Error("Failed to fetch wallets");
-  }
+//   if (error) {
+//     console.error("Error fetching data:", error.message);
+//     throw new Error("Failed to fetch wallets");
+//   }
 
-  return data;
-}
-
-const summary = [
-  {
-    name: "Value",
-    value: 3273,
-  },
-  {
-    name: "Sponsored",
-    value: 120,
-  },
-];
-
-type FinancialData = {
-  assets: number[];
-  debts: number[];
-  claimable: number[];
-};
-
-function calculateNetWorth(data: FinancialData): {
-  totalAssets: number;
-  totalDebts: number;
-  totalClaimable: number;
-  netWorth: number;
-} {
-  const totalAssets = data.assets.reduce((acc, curr) => acc + curr, 0);
-  const totalDebts = data.debts.reduce((acc, curr) => acc + curr, 0);
-  const totalClaimable = data.claimable.reduce((acc, curr) => acc + curr, 0);
-  const netWorth = totalAssets - totalDebts + totalClaimable;
-  return {
-    totalAssets,
-    totalDebts,
-    totalClaimable,
-    netWorth,
-  };
-}
+//   return data;
+// }
 
 const chartdata = [
   { date: "Jan 23", Value: 232, Sponsored: 0 },
@@ -127,36 +96,14 @@ const chartdata = [
 
 // Define the props structure if not already defined
 
-async function Home() {
-  try {
-    const wallets = await getData();
-    console.log("Wallets fetched:", wallets); // Check what data is received right before rendering
+function Home() {
+  // try {
+  //   const wallets = await getData();
+  //   console.log("Wallets fetched:", wallets); // Check what data is received right before rendering
 
-    const financialData = {
-      assets: [173346, 29338, 1923.12],
-      debts: [8947, 9843.33],
-      claimable: [982.12, 73.24],
-    };
-
-    const { totalAssets, totalDebts, totalClaimable, netWorth } =
-      calculateNetWorth(financialData);
-
-    // Currency formatter
-    const currencyFormatter = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-
-    // Format financial data as currency
-    const formattedNetWorth = currencyFormatter.format(netWorth);
-    const formattedTotalAssets = currencyFormatter.format(totalAssets);
-    const formattedTotalDebts = currencyFormatter.format(totalDebts);
-    const formattedTotalClaimable = currencyFormatter.format(totalClaimable);
-
-    return (
-      <main className="w-full h-full">
+  return (
+    <main className="w-full h-full">
+      <TimeProvider>
         <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
           <PageHeader />
 
@@ -165,19 +112,20 @@ async function Home() {
 
             <Allocation />
 
-            <WalletTable wallets={wallets} />
+            {/* <WalletTable wallets={wallets} /> */}
 
             <NetworkTable />
 
             <AssetTable />
           </div>
         </div>
-      </main>
-    );
-  } catch (error) {
-    const e = error as Error; // Type assertion
-    console.error(e.message); // Now you can safely access Error properties like message
-  }
+      </TimeProvider>
+    </main>
+  );
+  // } catch (error) {
+  //   const e = error as Error; // Type assertion
+  //   console.error(e.message); // Now you can safely access Error properties like message
+  // }
 }
 
 export default Home;

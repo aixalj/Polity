@@ -2,35 +2,20 @@
 
 import { AreaChart, Card, Title } from "@tremor/react";
 
+import React, { createContext, useState, ReactNode } from "react";
+
 import { TimeProvider } from "@/components/ui/timecontext";
 
 import { useTime } from "@/components/ui/timecontext";
 
-const chartdata = [
-  { date: "Jan 23", Value: 232281 },
-  { date: "Feb 23", Value: 241341 },
-  { date: "Mar 23", Value: 296421 },
-  { date: "Apr 23", Value: 103461 },
-  { date: "May 23", Value: 316538 },
-  { date: "Jun 23", Value: 204565 },
-  { date: "Jul 23", Value: 379752 },
-  { date: "Aug 23", Value: 343641 },
-  { date: "Sep 23", Value: 383247 },
-  { date: "Oct 23", Value: 267820 },
-  { date: "Nov 23", Value: 354372 },
-  { date: "Dec 23", Value: 323254 },
-  { date: "Jan 23", Value: 232281 },
-  { date: "Feb 23", Value: 241341 },
-  { date: "Mar 23", Value: 296421 },
-  { date: "Apr 23", Value: 103461 },
-  { date: "May 23", Value: 316538 },
-  { date: "Jun 23", Value: 204565 },
-  { date: "Jul 23", Value: 379752 },
-  { date: "Aug 23", Value: 343641 },
-  { date: "Sep 23", Value: 383247 },
-  { date: "Oct 23", Value: 267820 },
-  { date: "Nov 23", Value: 354372 },
-  { date: "Dec 23", Value: 323254 },
+const pastweek = [
+  { date: "Monday", Value: 232281 },
+  { date: "Tuesday", Value: 241341 },
+  { date: "Wednesday", Value: 296421 },
+  { date: "Thursday", Value: 103461 },
+  { date: "Friday", Value: 316538 },
+  { date: "Saturday", Value: 204565 },
+  { date: "Sunday", Value: 379752 },
 ];
 
 const pastday = [
@@ -77,7 +62,12 @@ export function AreaChartUsageExampleWithCustomTooltip() {
   };
 
   const { selectedTime, setSelectedTime } = useTime();
-  console.log("Selected time (80):", selectedTime);
+
+  React.useEffect(() => {
+    console.log("Selected Time in ChartTooltip:", selectedTime);
+  }, [selectedTime]);
+
+  console.log("Selected time (helloooo):", selectedTime);
 
   const customTooltip = (props: TooltipProps) => {
     const { payload, active } = props;
@@ -94,6 +84,9 @@ export function AreaChartUsageExampleWithCustomTooltip() {
                 })}
               </p>
               <p className="text-gray-300 text-xs">June 10,2023, 16:50:32</p>
+              {/* <p className="text-gray-300 text-xs">
+                Selected Time: {selectedTime}
+              </p> */}
             </div>
           </div>
         ))}
@@ -103,7 +96,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
   return (
     <>
       <AreaChart
-        data={[selectedTime]}
+        data={selectedTime === "pastday" ? pastday : pastweek}
         index="date"
         categories={["Value"]}
         colors={["teal", "blue"]}

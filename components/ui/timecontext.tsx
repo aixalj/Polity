@@ -1,4 +1,3 @@
-// src/contexts/WalletContext.tsx
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface TimeContextType {
@@ -22,7 +21,7 @@ export const TimeProvider: React.FC<{ children: ReactNode }> = ({
     <TimeContext.Provider
       value={{
         selectedTime,
-        setSelectedTime,
+        setSelectedTime: handleSetSelectedTime,
       }}
     >
       {children}
