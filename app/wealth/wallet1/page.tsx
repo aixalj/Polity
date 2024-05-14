@@ -31,7 +31,7 @@ function Wallet2() {
 
             <NetworkTable />
 
-            <AssetTable />
+            <AssetTable variant="default" />
           </div>
         </div>
       </TimeProvider>

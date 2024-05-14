@@ -257,12 +257,12 @@ function BitcoinOne() {
 
                 <Allocation />
 
-                <AssetTable />
+                <AssetTable variant="default" />
               </div>
             </TabsContent>
             <TabsContent value="assets">
               <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
-                <AssetTable />
+                <AssetTable variant="network" />
               </div>
             </TabsContent>
 

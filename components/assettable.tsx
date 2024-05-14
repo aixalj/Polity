@@ -12,14 +12,20 @@ import { Progress } from "@/components/ui/progress";
 
 import Link from "next/link";
 
-const AssetTable = () => {
+interface AssetTableProps {
+  variant: "default" | "network";
+}
+
+const AssetTable = ({ variant }: AssetTableProps) => {
   return (
     <div className="relative w-full flex flex-col pb-40">
-      <div className="p-4 relative flex justify-between w-full justify-items-stretch flex-row place-content-between	">
-        <div className="flex flex-col max-w-[30rem]">
-          <h2 className="text-xl font-medium">Assets</h2>
+      {variant === "default" ? (
+        <div className="p-4 relative flex justify-between w-full justify-items-stretch flex-row place-content-between	">
+          <div className="flex flex-col max-w-[30rem]">
+            <h2 className="text-xl font-medium">Assets</h2>
+          </div>
         </div>
-      </div>
+      ) : null}
       <div className="w-full flex flex-col gap-1 overflow-y-scroll">
         <div className="w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs">
           <div className="w-80 flex-none px-6 py-3">Asset</div>
