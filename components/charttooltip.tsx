@@ -8,6 +8,9 @@ import { TimeProvider } from "@/components/ui/timecontext";
 
 import { useTime } from "@/components/ui/timecontext";
 
+import { DotLottiePlayer, Controls } from "@dotlottie/react-player";
+import "@dotlottie/react-player/dist/index.css";
+
 interface TooltipProps {
   active?: boolean;
   payload?: any[]; // You can further detail this type based on the structure of your payload
@@ -303,6 +306,41 @@ export function AreaChartUsageExampleWithCustomTooltip() {
       </div>
     );
   };
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  React.useEffect(() => {
+    const loadData = async () => {
+      try {
+        // Simulate fetching data
+        await new Promise((resolve) => setTimeout(resolve, 10));
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Failed to load data:", error);
+        setIsLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className=" w-full h-72 flex flex-col gap-4  text-sm font-medium text-gray-700 justify-center items-center">
+        <div className="w-12 h-12  relative flex justify-center items-center">
+          <DotLottiePlayer
+            src="https://lottie.host/d300e245-fabd-4d2d-8ddd-81e1266a372f/inxUh6Y5hU.lottie"
+            autoplay
+            loop
+            className="w-full h-full"
+          >
+            {/* <Controls /> */}
+          </DotLottiePlayer>
+        </div>
+        Loading...
+      </div>
+    );
+  }
   return (
     <>
       <AreaChart
