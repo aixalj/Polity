@@ -6611,7 +6611,7 @@ export default function WalletOne() {
           </div>
 
           <NetworkTable />
-          <AssetTable />
+          {/* <AssetTable  /> */}
         </div>
       </div>
     </main>

@@ -24,7 +24,7 @@ function Wallet2() {
         <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
           <PageHeader variant="custom" />
 
-          <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
+          <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full pb-40">
             <Stats variant="wallet" />
 
             <Allocation />
