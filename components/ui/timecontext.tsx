@@ -3,6 +3,8 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 interface TimeContextType {
   selectedTime: string;
   setSelectedTime: (time: string) => void;
+  percentageReturn: number;
+  setPercentageReturn: (percentageReturn: number) => void;
 }
 
 const TimeContext = createContext<TimeContextType | undefined>(undefined);
@@ -11,6 +13,7 @@ export const TimeProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [selectedTime, setSelectedTime] = useState("");
+  const [percentageReturn, setPercentageReturn] = useState(0);
 
   const handleSetSelectedTime = (time: string) => {
     console.log("Updating time from", selectedTime, "to", time);
@@ -22,6 +25,8 @@ export const TimeProvider: React.FC<{ children: ReactNode }> = ({
       value={{
         selectedTime,
         setSelectedTime: handleSetSelectedTime,
+        percentageReturn,
+        setPercentageReturn,
       }}
     >
       {children}
