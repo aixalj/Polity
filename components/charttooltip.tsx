@@ -32,13 +32,26 @@ export function AreaChartUsageExampleWithCustomTooltip() {
 
   console.log("Selected time (helloooo):", selectedTime);
 
-  function generateHourlyData(endValue: number) {
+  function generateHourlyData(
+    endValue: number,
+    startValue: number = 183456.74
+  ) {
     const pastday = [];
 
     const now = new Date();
 
-    for (let hour = 0; hour <= now.getHours(); hour++) {
-      const value = Math.random() * 10000 + 180000; // Values between 5000 and 5500
+    // Initialize the first hour with a fixed start value
+    const firstHourDate = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+    firstHourDate.setMinutes(0, 0, 0); // Round down to the nearest hour
+    const firstFormattedHour = firstHourDate.toISOString().substring(11, 16);
+    pastday.push({
+      date: firstFormattedHour,
+      Value: startValue,
+    });
+
+    // Start the loop from the 1st hour since 0th hour is already initialized
+    for (let hour = 1; hour <= now.getHours(); hour++) {
+      const value = Math.random() * 10000 + 180000; // Values between 180,000 and 190,000
       const formattedHour = hour.toString().padStart(2, "0") + ":00";
 
       pastday.push({
