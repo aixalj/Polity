@@ -16,6 +16,7 @@ import { TimeProvider } from "@/components/ui/timecontext";
 
 import { Button } from "@/components/ui/button";
 import { AssetTable } from "@/components/assettable";
+import { Dapps } from "@/components/dapps";
 
 function BitcoinOne() {
   const [selectedTab, setSelectedTab] = useState("overview");
@@ -252,12 +253,13 @@ function BitcoinOne() {
             </div>
 
             <TabsContent value="overview">
-              <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
+              <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full pb-40">
                 <Stats variant="network" />
 
                 <Allocation />
 
                 <AssetTable variant="default" />
+                <Dapps />
               </div>
             </TabsContent>
             <TabsContent value="assets">

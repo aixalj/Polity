@@ -18,7 +18,7 @@ interface AssetTableProps {
 
 const AssetTable = ({ variant }: AssetTableProps) => {
   return (
-    <div className="relative w-full flex flex-col pb-40">
+    <div className="relative w-full flex flex-col ">
       {variant === "default" ? (
         <div className="p-4 relative flex justify-between w-full justify-items-stretch flex-row place-content-between	">
           <div className="flex flex-col max-w-[30rem]">
