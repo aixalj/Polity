@@ -298,7 +298,21 @@ export function Stats() {
                   stroke-linejoin="round"
                 />
               </svg>
-              9.54% ($20,239.24)
+              {selectedTime === "pastday"
+                ? "1.86% ($3,415.41)"
+                : selectedTime === "pastweek"
+                ? "9.54% ($20,239.24)"
+                : selectedTime === "pastmonth"
+                ? "3.54% ($20,239.24)"
+                : selectedTime === "threemonths"
+                ? "2.54% ($20,239.24)"
+                : selectedTime === "yeartodate"
+                ? "6.54% ($20,239.24)"
+                : selectedTime === "pastyear"
+                ? "7.54% ($20,239.24)"
+                : selectedTime === "alltime"
+                ? "3.54% ($20,239.24)"
+                : "6.54% ($20,239.24)"}
             </div>
             <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>
@@ -375,7 +389,22 @@ export function Stats() {
                   stroke-linejoin="round"
                 />
               </svg>
-              9.54% ($20,239.24)
+
+              {selectedTime === "pastday"
+                ? "1.86% ($3,415.41)"
+                : selectedTime === "pastweek"
+                ? "9.54% ($20,239.24)"
+                : selectedTime === "pastmonth"
+                ? "3.54% ($20,239.24)"
+                : selectedTime === "threemonths"
+                ? "2.54% ($20,239.24)"
+                : selectedTime === "yeartodate"
+                ? "6.54% ($20,239.24)"
+                : selectedTime === "pastyear"
+                ? "7.54% ($20,239.24)"
+                : selectedTime === "alltime"
+                ? "3.54% ($20,239.24)"
+                : "6.54% ($20,239.24)"}
             </div>
             <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>
@@ -457,7 +486,21 @@ export function Stats() {
                   stroke-linejoin="round"
                 />
               </svg>
-              9.54% ($20,239.24)
+              {selectedTime === "pastday"
+                ? "1.86% ($3,415.41)"
+                : selectedTime === "pastweek"
+                ? "9.54% ($20,239.24)"
+                : selectedTime === "pastmonth"
+                ? "3.54% ($20,239.24)"
+                : selectedTime === "threemonths"
+                ? "2.54% ($20,239.24)"
+                : selectedTime === "yeartodate"
+                ? "6.54% ($20,239.24)"
+                : selectedTime === "pastyear"
+                ? "7.54% ($20,239.24)"
+                : selectedTime === "alltime"
+                ? "3.54% ($20,239.24)"
+                : "6.54% ($20,239.24)"}
             </div>
             <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>
