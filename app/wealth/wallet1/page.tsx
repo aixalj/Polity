@@ -29,8 +29,6 @@ function Wallet2() {
 
             <Allocation />
 
-            <WalletTable />
-
             <NetworkTable />
 
             <AssetTable />

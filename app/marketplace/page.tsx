@@ -14,83 +14,8 @@ import {
 } from "@/components/ui/tooltip";
 
 import { Button } from "@/components/ui/button";
-import { AssetTable } from "@/components/assettable";
-import { NetworkTable } from "@/components/networktable";
 
-const data = [
-  { date: "Jan 23", Value: 232, Sponsored: 0 },
-  { date: "Feb 23", Value: 241, Sponsored: 0 },
-  { date: "Mar 23", Value: 291, Sponsored: 0 },
-  { date: "Apr 23", Value: 101, Sponsored: 0 },
-  { date: "May 23", Value: 318, Sponsored: 0 },
-  { date: "Jun 23", Value: 205, Sponsored: 0 },
-  { date: "Jul 23", Value: 372, Sponsored: 0 },
-  { date: "Aug 23", Value: 341, Sponsored: 0 },
-  { date: "Sep 23", Value: 387, Sponsored: 120 },
-  { date: "Oct 23", Value: 220, Sponsored: 0 },
-  { date: "Nov 23", Value: 372, Sponsored: 0 },
-  { date: "Dec 23", Value: 321, Sponsored: 0 },
-];
-
-const summary = [
-  {
-    name: "Value",
-    value: 3273,
-  },
-  {
-    name: "Sponsored",
-    value: 120,
-  },
-];
-
-type FinancialData = {
-  assets: number[];
-  debts: number[];
-  claimable: number[];
-};
-
-function calculateNetWorth(data: FinancialData): {
-  totalAssets: number;
-  totalDebts: number;
-  totalClaimable: number;
-  netWorth: number;
-} {
-  const totalAssets = data.assets.reduce((acc, curr) => acc + curr, 0);
-  const totalDebts = data.debts.reduce((acc, curr) => acc + curr, 0);
-  const totalClaimable = data.claimable.reduce((acc, curr) => acc + curr, 0);
-  const netWorth = totalAssets - totalDebts + totalClaimable;
-  return {
-    totalAssets,
-    totalDebts,
-    totalClaimable,
-    netWorth,
-  };
-}
-
-export default function BitcoinOne() {
-  const financialData = {
-    assets: [173346, 29338, 1923.12],
-    debts: [8947, 9843.33],
-    claimable: [982.12, 73.24],
-  };
-
-  const { totalAssets, totalDebts, totalClaimable, netWorth } =
-    calculateNetWorth(financialData);
-
-  // Currency formatter
-  const currencyFormatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-
-  // Format financial data as currency
-  const formattedNetWorth = currencyFormatter.format(netWorth);
-  const formattedTotalAssets = currencyFormatter.format(totalAssets);
-  const formattedTotalDebts = currencyFormatter.format(totalDebts);
-  const formattedTotalClaimable = currencyFormatter.format(totalClaimable);
-
+export default function Marketplace() {
   return (
     <main className="w-full h-full">
       <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
