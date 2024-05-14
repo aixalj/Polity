@@ -35,31 +35,32 @@ interface Wallet {
   value: number;
 }
 
-interface WalletTableProps {
-  wallets: Wallet[];
+interface Wallet {
+  id: string;
+  wallet_id: string;
+  wallet_name: string;
+  allocation: number;
+  return: number;
+  value: number;
 }
 
-const WalletTable: React.FC<WalletTableProps> = ({ wallets }) => {
-  // const [wallets, setWallets] = useState<Array<{ id: string; name: string }>>(
-  //   []
-  // );
+const WalletTable: React.FC = () => {
+  const [wallets, setWallets] = useState<Wallet[]>([]);
+  useEffect(() => {
+    const fetchWallets = async () => {
+      const { data, error } = await supabase
+        .from("wallets")
+        .select("id, wallet_id, wallet_name, allocation, return, value");
 
-  // useEffect(() => {
-  //   const fetchWallets = async () => {
-  //     const { data, error } = await supabase
-  //       .from("wallets")
-  //       .select("id, wallet_name");
+      if (error) {
+        console.error("Error fetching wallets:", error);
+      } else {
+        setWallets(data || []);
+      }
+    };
 
-  //     if (error) {
-  //       console.error("Error fetching wallets:", error);
-  //     } else {
-  //       console.log("Received data:", data); // Added console log for received data
-  //       setWallets(data || []);
-  //     }
-  //   };
-
-  //   fetchWallets();
-  // }, []);
+    fetchWallets();
+  }, []);
 
   return (
     <div className="relative w-full flex flex-col">
@@ -134,7 +135,10 @@ const WalletTable: React.FC<WalletTableProps> = ({ wallets }) => {
                       {wallet.return.toFixed(2)}% ($0.00)
                     </div>
                     <div className="w-36 flex-auto px-6 py-3 h-16 flex items-center">
-                      ${wallet.value.toFixed(2)}
+                      {wallet.value.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
                     </div>
                     <div className="w-36 flex-auto px-6 py-3 h-16 flex items-center"></div>
                   </div>

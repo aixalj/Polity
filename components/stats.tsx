@@ -15,11 +15,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 
-import { TimeProvider } from "@/components/ui/timecontext";
-
 import { useTime } from "@/components/ui/timecontext";
-
-import { TimeTest } from "@/components/testing";
 
 import {
   Tooltip,
@@ -28,47 +24,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-import { GetServerSideProps } from "next";
-
 import { AreaChartUsageExampleWithCustomTooltip } from "@/components/charttooltip";
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-
-import { Button } from "@/components/ui/button";
-
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = "https://ilzanfrmzylbvkoyhefz.supabase.co";
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlsemFuZnJtenlsYnZrb3loZWZ6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxNTAxNTg2MCwiZXhwIjoyMDMwNTkxODYwfQ.NUkkfYlSq3iHkr1hjIK3uMev7VzKt6F_2fqTne4JKNU";
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-const summary = [
-  {
-    name: "Value",
-    value: 3273,
-  },
-  {
-    name: "Sponsored",
-    value: 120,
-  },
-];
 
 type FinancialData = {
   assets: number[];
@@ -94,24 +50,13 @@ function calculateNetWorth(data: FinancialData): {
   };
 }
 
-const chartdata = [
-  { date: "Jan 23", Value: 232, Sponsored: 0 },
-  { date: "Feb 23", Value: 241, Sponsored: 0 },
-  { date: "Mar 23", Value: 291, Sponsored: 0 },
-  { date: "Apr 23", Value: 101, Sponsored: 0 },
-  { date: "May 23", Value: 318, Sponsored: 0 },
-  { date: "Jun 23", Value: 205, Sponsored: 0 },
-  { date: "Jul 23", Value: 372, Sponsored: 0 },
-  { date: "Aug 23", Value: 341, Sponsored: 0 },
-  { date: "Sep 23", Value: 387, Sponsored: 120 },
-  { date: "Oct 23", Value: 220, Sponsored: 0 },
-  { date: "Nov 23", Value: 372, Sponsored: 0 },
-  { date: "Dec 23", Value: 324, Sponsored: 0 },
-];
+interface StatsProps {
+  variant?: "wealth" | "wallet" | "network";
+}
 
 // Define the props structure if not already defined
 
-export function Stats() {
+export function Stats({ variant = "wealth" }: StatsProps) {
   const financialData = {
     assets: [173346, 29338, 1923.12],
     debts: [8947, 9843.33],
@@ -156,11 +101,14 @@ export function Stats() {
 
   return (
     <main className="w-full h-full flex flex-col gap-3">
-      {/* <TimeProvider> */}
       <div className="w-full  h-auto border rounded-2xl border-gray-300 p-4 flex flex-col gap-6">
         <div>
           <p className="text-base text-gray-600 flex gap-2 items-center">
-            Net Worth
+            {variant === "wealth"
+              ? "Net Worth"
+              : variant === "wallet"
+              ? "Wallet Value"
+              : "Network Account Value"}
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger className="-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm">
@@ -189,7 +137,11 @@ export function Stats() {
                   </svg>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Total Value of Assets minus Debts in USD (all Wallets)</p>
+                  {variant === "wealth"
+                    ? "Total Value of Assets minus Debts in USD (all Wallets)"
+                    : variant === "wallet"
+                    ? "Total Value of Assets minus Debts in USD (this Wallet)"
+                    : "Total Value of Assets minus Debts in USD (this Network)"}
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -523,7 +475,6 @@ export function Stats() {
           </svg>
         </div>
       </div>
-      {/* </TimeProvider> */}
     </main>
   );
 }

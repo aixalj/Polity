@@ -13,30 +13,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-
 import { Button } from "@/components/ui/button";
 import { AssetTable } from "@/components/assettable";
 import { NetworkTable } from "@/components/networktable";

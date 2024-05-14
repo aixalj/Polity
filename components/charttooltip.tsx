@@ -326,7 +326,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
 
   if (isLoading) {
     return (
-      <div className=" w-full h-72 flex flex-col gap-4  text-sm font-medium text-gray-700 justify-center items-center">
+      <div className=" w-full h-72 flex flex-col gap-4  text-lg font-medium text-gray-700 justify-center items-center">
         <div className="w-12 h-12  relative flex justify-center items-center">
           <DotLottiePlayer
             src="https://lottie.host/d300e245-fabd-4d2d-8ddd-81e1266a372f/inxUh6Y5hU.lottie"
@@ -337,7 +337,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
             {/* <Controls /> */}
           </DotLottiePlayer>
         </div>
-        Loading...
+        Loading data...
       </div>
     );
   }

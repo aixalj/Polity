@@ -93,7 +93,9 @@ const AssetTable = () => {
               <div className="w-36 flex-auto px-6 py-3 h-16 flex items-center">
                 $0.00
               </div>
-              <div className="w-36 flex-auto px-6 py-3 h-16 flex items-center"></div>
+              <div className="w-36 flex-auto px-6 py-3 h-16 flex items-center whitespace-nowrap">
+                0.0000000000 BTC
+              </div>
             </div>
           </div>
         </div>
