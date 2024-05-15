@@ -68,7 +68,7 @@ const SideBar = () => {
           </div>
 
           <div>
-            <p className="text-sm text-gray-900">Avatar Name</p>
+            <p className="text-sm text-gray-900">Mohamed Albalawi</p>
             <p className="text-xs text-gray-500">Avatar</p>
           </div>
         </div>
