@@ -11,6 +11,13 @@ import { useTime } from "@/components/ui/timecontext";
 import { DotLottiePlayer, Controls } from "@dotlottie/react-player";
 import "@dotlottie/react-player/dist/index.css";
 
+import {
+  networkAccounts,
+  wallets,
+  wealth,
+  getAllAssets,
+} from "@/components/data";
+
 interface TooltipProps {
   active?: boolean;
   payload?: any[]; // You can further detail this type based on the structure of your payload
@@ -37,7 +44,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
 
   function generateHourlyData(
     endValue: number,
-    startValue: number = 183456.74
+    startValue: number = 783456.74
   ) {
     const pastday = [];
 
@@ -54,7 +61,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
 
     // Start the loop from the 1st hour since 0th hour is already initialized
     for (let hour = 1; hour <= now.getHours(); hour++) {
-      const value = Math.random() * 10000 + 180000; // Values between 180,000 and 190,000
+      const value = Math.random() * 10000 + wealth.netWorth; // Values between 180,000 and 190,000
       const formattedHour = hour.toString().padStart(2, "0") + ":00";
 
       pastday.push({
@@ -80,7 +87,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     pastDate.setDate(now.getDate() - 6);
 
     for (let i = 0; i < 7; i++) {
-      const value = Math.random() * 40000 + 180000; // Values between 180,000 and 190,000
+      const value = Math.random() * 40000 + wealth.netWorth; // Values between 180,000 and 190,000
       const formattedDate = pastDate.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "long",
@@ -109,7 +116,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     pastDate.setDate(now.getDate() - 29);
 
     for (let i = 0; i < 30; i++) {
-      const value = Math.random() * 70000 + 180000; // Values between 180,000 and 190,000
+      const value = Math.random() * 70000 + wealth.netWorth; // Values between 180,000 and 190,000
       const formattedDate = pastDate.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "long",
@@ -137,7 +144,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     pastDate.setDate(now.getDate() - 89);
 
     for (let i = 0; i < 90; i++) {
-      const value = Math.random() * 70000 + 180000; // Values between 180,000 and 190,000
+      const value = Math.random() * 70000 + wealth.netWorth; // Values between 180,000 and 190,000
       const formattedDate = pastDate.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "long",
@@ -164,7 +171,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     const startOfYear = new Date(now.getFullYear(), 0, 1);
 
     while (startOfYear <= now) {
-      const value = Math.random() * 10000 + 180000; // Values between 180,000 and 190,000
+      const value = Math.random() * 100000 + wealth.netWorth; // Values between 180,000 and 190,000
       const formattedDate = startOfYear.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "long",
@@ -192,7 +199,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     pastDate.setFullYear(now.getFullYear() - 1);
 
     while (pastDate <= now) {
-      const value = Math.random() * 10000 + 180000; // Values between 180,000 and 190,000
+      const value = Math.random() * 100000 + wealth.netWorth; // Values between 180,000 and 190,000
       const formattedDate = pastDate.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "long",
@@ -221,11 +228,11 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     const totalDays = Math.floor(
       (now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
     );
-    const increment = (endValue - 140000) / totalDays;
+    const increment = (endValue - 610000) / totalDays;
 
     for (let i = 0; startDate <= now; i++) {
-      const baseValue = 100000 + increment * i;
-      const randomFluctuation = Math.random() * 30000; // Fluctuate around the base value
+      const baseValue = 610000 + increment * i;
+      const randomFluctuation = Math.random() * 100000; // Fluctuate around the base value
       const value = baseValue + randomFluctuation;
 
       const formattedDate = startDate.toLocaleDateString("en-GB", {
@@ -249,13 +256,13 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     return alltime;
   }
 
-  const pastday = generateHourlyData(186872.15);
-  const pastweek = generateWeeklyData(186872.15);
-  const pastmonth = generateMonthlyData(186872.15);
-  const threemonths = generate90DaysData(186872.15);
-  const yeartodate = generateYearToDateData(186872.15);
-  const pastyear = generatePastYearData(186872.15);
-  const alltime = generateAllTimeDataWithTrend(186872.15);
+  const pastday = generateHourlyData(wealth.netWorth);
+  const pastweek = generateWeeklyData(wealth.netWorth);
+  const pastmonth = generateMonthlyData(wealth.netWorth);
+  const threemonths = generate90DaysData(wealth.netWorth);
+  const yeartodate = generateYearToDateData(wealth.netWorth);
+  const pastyear = generatePastYearData(wealth.netWorth);
+  const alltime = generateAllTimeDataWithTrend(wealth.netWorth);
 
   function calculateReturns(data: any[]) {
     if (data.length < 2) {

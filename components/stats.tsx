@@ -26,6 +26,13 @@ import {
 
 import { AreaChartUsageExampleWithCustomTooltip } from "@/components/charttooltip";
 
+import {
+  networkAccounts,
+  wallets,
+  wealth,
+  getAllAssets,
+} from "@/components/data";
+
 type FinancialData = {
   assets: number[];
   debts: number[];
@@ -146,7 +153,12 @@ export function Stats({ variant = "wealth" }: StatsProps) {
               </Tooltip>
             </TooltipProvider>
           </p>
-          <h2 className="text-3xl mt-1 font-medium">{formattedNetWorth}</h2>
+          <h2 className="text-3xl mt-1 font-medium">
+            {wealth.netWorth.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </h2>
 
           <div className="flex mt-2 items-center gap-2">
             <div className="bg-teal-100 border border-teal-200 py-0.5 pl-2 pr-3 flex gap-1 items-center rounded-md text-sm text-teal-800 font-medium">
@@ -231,7 +243,12 @@ export function Stats({ variant = "wealth" }: StatsProps) {
               </Tooltip>
             </TooltipProvider>
           </p>
-          <h2 className="text-xl mt-1 font-medium">{formattedTotalAssets}</h2>
+          <h2 className="text-xl mt-1 font-medium">
+            {wealth.totalAssets.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </h2>
 
           <div className="flex mt-6 items-center gap-2">
             <div className="bg-teal-100 border border-teal-200 py-0.5 pl-2 pr-3 flex gap-1 items-center rounded-md text-sm text-teal-800 font-medium">
@@ -322,7 +339,12 @@ export function Stats({ variant = "wealth" }: StatsProps) {
               </Tooltip>
             </TooltipProvider>
           </p>
-          <h2 className="text-xl mt-1 font-medium">{formattedTotalDebts}</h2>
+          <h2 className="text-xl mt-1 font-medium">
+            {wealth.totalDebts.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </h2>
 
           <div className="flex mt-6 items-center gap-2">
             <div className="bg-teal-100 border border-teal-200 py-0.5 pl-2 pr-3 flex gap-1 items-center rounded-md text-sm text-teal-800 font-medium">
@@ -418,7 +440,10 @@ export function Stats({ variant = "wealth" }: StatsProps) {
             </TooltipProvider>
           </p>
           <h2 className="text-xl mt-1 font-medium">
-            {formattedTotalClaimable}
+            {wealth.totalClaimable.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
           </h2>
 
           <div className="flex mt-6 items-center gap-2">

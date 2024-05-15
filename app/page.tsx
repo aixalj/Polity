@@ -61,23 +61,32 @@ import {
 
 import { Button } from "@/components/ui/button";
 
+import {
+  networkAccounts,
+  wallets,
+  wealth,
+  getAllAssets,
+} from "@/components/data";
+
 function Home() {
   return (
     <main className="w-full h-full">
       <TimeProvider>
-        <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
+        <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll pb-40">
           <PageHeader variant="default" />
 
-          <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full pb-40">
+          <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full pb-40 mb-40">
             <Stats />
 
             <Allocation />
 
-            <WalletTable />
+            <WalletTable wallets={wallets} networkAccounts={networkAccounts} />
 
-            <NetworkTable />
+            <NetworkTable networkAccounts={networkAccounts} />
 
-            <AssetTable variant="default" />
+            <AssetTable getAllAssets={getAllAssets()} />
+
+            <div className="min-h-[400px] w-full flex"></div>
           </div>
         </div>
       </TimeProvider>

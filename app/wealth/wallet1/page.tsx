@@ -17,6 +17,13 @@ import Allocation from "@/components/allocation";
 
 import { TimeProvider } from "@/components/ui/timecontext";
 
+import {
+  networkAccounts,
+  wallets,
+  wealth,
+  getAllAssets,
+} from "@/components/data";
+
 function Wallet2() {
   return (
     <main className="w-full h-full">
@@ -29,9 +36,9 @@ function Wallet2() {
 
             <Allocation />
 
-            <NetworkTable />
+            <NetworkTable networkAccounts={networkAccounts} />
 
-            <AssetTable variant="default" />
+            <AssetTable getAllAssets={getAllAssets()} />
           </div>
         </div>
       </TimeProvider>
