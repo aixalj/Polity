@@ -47,7 +47,7 @@ const NetworkTable: React.FC<{
         <div>
           {Array.isArray(networkAccounts) ? (
             <div>
-              {networkAccounts.map((network) => (
+              {networkAccounts.slice(0, 3).map((network) => (
                 <Collapsible
                   key={network.id}
                   className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm "
@@ -170,22 +170,20 @@ const NetworkTable: React.FC<{
                           <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
                             {(
                               (account.value /
-                                networkAccounts
-                                  .filter(
-                                    (acc) => acc.network === account.network
-                                  )
-                                  .reduce((sum, acc) => sum + acc.value, 0)) *
+                                networkAccounts.reduce(
+                                  (sum, account) => sum + account.value,
+                                  0
+                                )) *
                               100
                             ).toFixed(2)}
                             %
                             <Progress
                               value={
                                 (account.value /
-                                  networkAccounts
-                                    .filter(
-                                      (acc) => acc.network === account.network
-                                    )
-                                    .reduce((sum, acc) => sum + acc.value, 0)) *
+                                  networkAccounts.reduce(
+                                    (sum, account) => sum + account.value,
+                                    0
+                                  )) *
                                 100
                               }
                             />

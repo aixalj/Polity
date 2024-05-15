@@ -57,6 +57,90 @@ const networkAccounts: any[] = [
   {
     name: "Polygon network account",
     id: "MATIC",
+    walletName: "Main Wallet",
+    network: "Polygon",
+    address: "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+    assets: [
+      {
+        name: "Cardano",
+        symbol: "ADA",
+        price: 0.44,
+        return: 1224,
+        value: 1165.6172,
+        balance: 2649.13,
+        value24HoursAgo: 3.5,
+        allocation: 0,
+        networkAccountName: "Ethereum network account",
+        walletName: "Main Wallet",
+      },
+    ],
+    get allocation() {
+      return (this.value / wealth.totalAssets) * 100;
+    },
+    get return() {
+      return this.assets.reduce(
+        (sum: number, asset: any) => sum + asset.return,
+        0
+      );
+    },
+    get value() {
+      return this.assets.reduce(
+        (sum: number, asset: any) => sum + asset.value,
+        0
+      );
+    },
+    get balance() {
+      return this.assets.reduce(
+        (sum: number, asset: any) => sum + asset.balance,
+        0
+      );
+    },
+  },
+  {
+    name: "Bitcoin network account",
+    id: "BTC",
+    walletName: "Main Wallet",
+    network: "Bitcoin",
+    address: "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+    assets: [
+      {
+        name: "Bitcoin",
+        symbol: "BTC",
+        price: 63953.7,
+        return: 24523,
+        value: 801339.861,
+        balance: 12.53,
+        value24HoursAgo: 3.5,
+        allocation: 0,
+        networkAccountName: "Bitcoin network account",
+        walletName: "Main Wallet",
+      },
+    ],
+    get allocation() {
+      return (this.value / wealth.totalAssets) * 100;
+    },
+    get return() {
+      return this.assets.reduce(
+        (sum: number, asset: any) => sum + asset.return,
+        0
+      );
+    },
+    get value() {
+      return this.assets.reduce(
+        (sum: number, asset: any) => sum + asset.value,
+        0
+      );
+    },
+    get balance() {
+      return this.assets.reduce(
+        (sum: number, asset: any) => sum + asset.balance,
+        0
+      );
+    },
+  },
+  {
+    name: "Polygon network account",
+    id: "MATIC",
     walletName: "Second Wallet",
     network: "Polygon",
     address: "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
@@ -70,7 +154,7 @@ const networkAccounts: any[] = [
         balance: 41226.23,
         value24HoursAgo: 7900,
         allocation: 0,
-        networkAccountName: "Eth network account",
+        networkAccountName: "Polygon network account",
         walletName: "Second Wallet",
       },
       {
@@ -82,7 +166,7 @@ const networkAccounts: any[] = [
         balance: 127461.64,
         value24HoursAgo: 3.5,
         allocation: 0,
-        networkAccountName: "Eth network account",
+        networkAccountName: "Polygon network account",
         walletName: "Second Wallet",
       },
     ],

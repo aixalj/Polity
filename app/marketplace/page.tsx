@@ -6,6 +6,8 @@ import { AreaChart } from "@tremor/react";
 
 import { Progress } from "@/components/ui/progress";
 
+import { Subscribe } from "@/components/subscribe";
+
 import {
   Tooltip,
   TooltipContent,
@@ -563,9 +565,9 @@ export default function Marketplace() {
 
                         <h3 className="text-2xl font-medium">Safeheron</h3>
                       </div>
-                      <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                      {/* <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
                         Active wallet
-                      </div>
+                      </div> */}
                     </div>
                     <p className="text-sm text-gray-600 mt-2">
                       An institutional-grade MPC self-custody platform for
@@ -939,7 +941,8 @@ export default function Marketplace() {
                         </div>
                       </div>
                     </div>
-                    <Button className="w-full">Subscribe Now</Button>
+
+                    <Subscribe variant="wealth" />
                   </div>
                   <div className="w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4">
                     <div className="w-full justify-between flex items-center pb-3">

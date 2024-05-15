@@ -44,7 +44,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
 
   function generateHourlyData(
     endValue: number,
-    startValue: number = 783456.74
+    startValue: number = 1700234.874
   ) {
     const pastday = [];
 

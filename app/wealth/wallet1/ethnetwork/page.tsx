@@ -265,13 +265,15 @@ function BitcoinOne() {
 
                 <Allocation
                   getAllAssets={getAllAssets().filter(
-                    (asset) => asset.walletName === "Main Wallet"
+                    (asset) =>
+                      asset.networkAccountName === "Ethereum network account"
                   )}
                 />
 
                 <AssetTable
                   getAllAssets={getAllAssets().filter(
-                    (asset) => asset.walletName === "Main Wallet"
+                    (asset) =>
+                      asset.networkAccountName === "Ethereum network account"
                   )}
                 />
 
@@ -282,7 +284,8 @@ function BitcoinOne() {
               <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
                 <AssetTable
                   getAllAssets={getAllAssets().filter(
-                    (asset) => asset.walletName === "Main Wallet"
+                    (asset) =>
+                      asset.networkAccountName === "Ethereum network account"
                   )}
                 />
               </div>
@@ -5967,7 +5970,6 @@ function BitcoinOne() {
             </TabsContent>
           </Tabs>
         </div>
-        <div className="min-h-[400px] w-full flex"></div>
       </TimeProvider>
     </main>
   );

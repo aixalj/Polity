@@ -26,6 +26,8 @@ const getColorForAsset = (symbol: string): string => {
     ETH: "bg-blue-300",
     USDT: "bg-green-300",
     USDC: "bg-red-300",
+    BTC: "bg-orange-300",
+    ADA: "bg-purple-300",
     // Add more mappings as needed
   };
 
