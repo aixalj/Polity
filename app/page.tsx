@@ -78,7 +78,7 @@ function Home() {
           <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full pb-40 mb-40">
             <Stats />
 
-            <Allocation />
+            <Allocation getAllAssets={getAllAssets()} />
 
             <WalletTable wallets={wallets} networkAccounts={networkAccounts} />
 

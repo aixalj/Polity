@@ -347,43 +347,13 @@ export function Stats({ variant = "wealth" }: StatsProps) {
           </h2>
 
           <div className="flex mt-6 items-center gap-2">
-            <div className="bg-teal-100 border border-teal-200 py-0.5 pl-2 pr-3 flex gap-1 items-center rounded-md text-sm text-teal-800 font-medium">
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M11 3.5L7.06568 7.43432C6.86768 7.63232 6.76867 7.73133 6.65451 7.76842C6.55409 7.80105 6.44591 7.80105 6.34549 7.76842C6.23133 7.73133 6.13232 7.63232 5.93431 7.43431L4.56568 6.06568C4.36768 5.86768 4.26867 5.76867 4.15451 5.73158C4.05409 5.69895 3.94591 5.69895 3.84549 5.73158C3.73133 5.76867 3.63232 5.86768 3.43431 6.06569L1 8.5M11 3.5H7.5M11 3.5V7"
-                  stroke="#107569"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-
-              {selectedTime === "pastday"
-                ? "1.86% ($3,415.41)"
-                : selectedTime === "pastweek"
-                ? "9.54% ($20,239.24)"
-                : selectedTime === "pastmonth"
-                ? "3.54% ($20,239.24)"
-                : selectedTime === "threemonths"
-                ? "2.54% ($20,239.24)"
-                : selectedTime === "yeartodate"
-                ? "6.54% ($20,239.24)"
-                : selectedTime === "pastyear"
-                ? "7.54% ($20,239.24)"
-                : selectedTime === "alltime"
-                ? "3.54% ($20,239.24)"
-                : "6.54% ($20,239.24)"}
+            <div className="bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-sm text-gray-800 font-medium">
+              0.00%
             </div>
             <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>
 
-          <svg
+          {/* <svg
             className="absolute right-0 top-0 mt-4 mr-4"
             width="83"
             height="42"
@@ -398,7 +368,7 @@ export function Stats({ variant = "wealth" }: StatsProps) {
               stroke-linecap="round"
               stroke-linejoin="round"
             />
-          </svg>
+          </svg> */}
         </div>
         <div className="relative w-full p-4 bg-white rounded-2xl border border-gray-300 flex-1 justify-between flex flex-col duration-300 ease-in-out ">
           <p className="text-base text-gray-600 flex gap-2 items-center">
@@ -447,41 +417,12 @@ export function Stats({ variant = "wealth" }: StatsProps) {
           </h2>
 
           <div className="flex mt-6 items-center gap-2">
-            <div className="bg-teal-100 border border-teal-200 py-0.5 pl-2 pr-3 flex gap-1 items-center rounded-md text-sm text-teal-800 font-medium">
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M11 3.5L7.06568 7.43432C6.86768 7.63232 6.76867 7.73133 6.65451 7.76842C6.55409 7.80105 6.44591 7.80105 6.34549 7.76842C6.23133 7.73133 6.13232 7.63232 5.93431 7.43431L4.56568 6.06568C4.36768 5.86768 4.26867 5.76867 4.15451 5.73158C4.05409 5.69895 3.94591 5.69895 3.84549 5.73158C3.73133 5.76867 3.63232 5.86768 3.43431 6.06569L1 8.5M11 3.5H7.5M11 3.5V7"
-                  stroke="#107569"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              {selectedTime === "pastday"
-                ? "1.86% ($3,415.41)"
-                : selectedTime === "pastweek"
-                ? "9.54% ($20,239.24)"
-                : selectedTime === "pastmonth"
-                ? "3.54% ($20,239.24)"
-                : selectedTime === "threemonths"
-                ? "2.54% ($20,239.24)"
-                : selectedTime === "yeartodate"
-                ? "6.54% ($20,239.24)"
-                : selectedTime === "pastyear"
-                ? "7.54% ($20,239.24)"
-                : selectedTime === "alltime"
-                ? "3.54% ($20,239.24)"
-                : "6.54% ($20,239.24)"}
+            <div className="bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-sm text-gray-800 font-medium">
+              0.00%
             </div>
             <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>
-
+          {/* 
           <svg
             className="absolute right-0 top-0 mt-4 mr-4"
             width="83"
@@ -497,7 +438,7 @@ export function Stats({ variant = "wealth" }: StatsProps) {
               stroke-linecap="round"
               stroke-linejoin="round"
             />
-          </svg>
+          </svg> */}
         </div>
       </div>
     </main>

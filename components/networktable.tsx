@@ -48,7 +48,10 @@ const NetworkTable: React.FC<{
           {Array.isArray(networkAccounts) ? (
             <div>
               {networkAccounts.map((network) => (
-                <Collapsible className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm ">
+                <Collapsible
+                  key={network.id}
+                  className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm "
+                >
                   <CollapsibleTrigger className="w-full ease-in-out duration-200">
                     <div className="w-full flex text-left  text-gray-900">
                       <div className="w-9 flex-none h-16 flex items-center justify-center align-middle">
@@ -125,7 +128,10 @@ const NetworkTable: React.FC<{
                     {networkAccounts
                       .filter((account) => account.network === network.network)
                       .map((account) => (
-                        <div className="w-full  flex text-gray-900 text-md">
+                        <div
+                          key={account.id}
+                          className="w-full  flex text-gray-900 text-md"
+                        >
                           <div className="w-9 flex-none"></div>
                           <div className="w-80 flex-none px-6 py-3 flex items-center gap-3 max-h-16">
                             <Image

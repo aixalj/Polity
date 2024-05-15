@@ -34,7 +34,7 @@ function Wallet2() {
           <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full pb-40">
             <Stats variant="wallet" />
 
-            <Allocation />
+            <Allocation getAllAssets={getAllAssets()} />
 
             <NetworkTable networkAccounts={networkAccounts} />
 

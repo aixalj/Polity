@@ -168,7 +168,10 @@ const WalletTable: React.FC<{
                       (account) => account.walletName === wallet.wallet_name
                     )
                     .map((account) => (
-                      <div className="w-full  flex text-gray-900 text-md">
+                      <div
+                        key={account.id}
+                        className="w-full  flex text-gray-900 text-md"
+                      >
                         <div className="w-9 flex-none"></div>
                         <div className="w-80 flex-none px-6 py-3 flex items-center gap-3 max-h-16">
                           <Image

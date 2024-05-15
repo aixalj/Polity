@@ -18,6 +18,13 @@ import { Button } from "@/components/ui/button";
 import { AssetTable } from "@/components/assettable";
 import { Dapps } from "@/components/dapps";
 
+import {
+  networkAccounts,
+  wallets,
+  wealth,
+  getAllAssets,
+} from "@/components/data";
+
 function BitcoinOne() {
   const [selectedTab, setSelectedTab] = useState("overview");
 
@@ -256,15 +263,15 @@ function BitcoinOne() {
               <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full pb-40">
                 <Stats variant="network" />
 
-                <Allocation />
+                <Allocation getAllAssets={getAllAssets()} />
 
-                <AssetTable variant="default" />
+                <AssetTable getAllAssets={getAllAssets()} />
                 <Dapps />
               </div>
             </TabsContent>
             <TabsContent value="assets">
               <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
-                <AssetTable variant="network" />
+                <AssetTable getAllAssets={getAllAssets()} />
               </div>
             </TabsContent>
 
