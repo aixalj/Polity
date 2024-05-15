@@ -39,6 +39,7 @@ function Wallet2() {
             <NetworkTable networkAccounts={networkAccounts} />
 
             <AssetTable getAllAssets={getAllAssets()} />
+            <div className="min-h-[400px] w-full flex"></div>
           </div>
         </div>
       </TimeProvider>

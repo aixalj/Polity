@@ -118,7 +118,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ variant = "default" }) => {
               <li>
                 <a href="#" className="block transition text-gray-800">
                   {" "}
-                  Wallet Name{" "}
+                  Main Wallet{" "}
                 </a>
               </li>
             </ol>
@@ -423,7 +423,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ variant = "default" }) => {
               </svg>
               <div>
                 <h1 className="text-2xl font-medium leading-tight">
-                  Wallet Name
+                  Main Wallet
                 </h1>{" "}
                 <p className="text-sm text-gray-700">DFNS</p>
               </div>

@@ -7,6 +7,14 @@ import { Button } from "@/components/ui/button";
 
 import { usePathname } from "next/navigation";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { useState } from "react";
 import Image from "next/image";
 import {
@@ -52,41 +60,103 @@ const SideBar = () => {
         />
       </a>
 
-      <a
-        className="group focus:ring-0 justify-between mt-6 outline-none focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300  p-2 text-base font-medium duration-200 ease-in-out text-black hover:bg-gray-50 shadow-sm"
-        href="#"
-        id="overview"
-      >
-        <div className="flex gap-3 items-center">
-          <div className="size-11 rounded-md border-gray-300 border overflow-hidden">
-            <img
-              src={
-                "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"
-              }
-              className="w-full h-full"
+      <Select value="AristoInvest" defaultValue="AristoInvest">
+        <SelectTrigger className="active:bg-gray-100 hover:bg-gray-100 group h-auto focus:ring-0 justify-between mt-6 outline-none focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300  p-2 text-base font-medium duration-200 ease-in-out text-black hover:bg-gray-50 shadow-sm w-full">
+          <div className="flex gap-3 items-center">
+            <div className="size-11 rounded-md border-gray-300 border overflow-hidden">
+              <img
+                src={
+                  "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"
+                }
+                className="w-full h-full"
+              />
+            </div>
+
+            <div className="flex flex-col items-start text-left">
+              <p className="text-sm text-gray-900">AristoInvest</p>
+              <p className="text-xs text-gray-500">Avatar</p>
+            </div>
+          </div>
+
+          {/* <svg
+            className="mr-1"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.7929 6C11.2383 6 11.4614 5.46143 11.1464 5.14645L8.35355 2.35355C8.15829 2.15829 7.84171 2.15829 7.64645 2.35355L4.85355 5.14645C4.53857 5.46143 4.76165 6 5.20711 6H10.7929ZM10.7929 10C11.2383 10 11.4614 10.5386 11.1464 10.8536L8.35355 13.6464C8.15829 13.8417 7.84171 13.8417 7.64645 13.6464L4.85355 10.8536C4.53857 10.5386 4.76165 10 5.20711 10H10.7929Z"
+              fill="#475467"
             />
-          </div>
+          </svg> */}
+        </SelectTrigger>
+        <SelectContent className="  bg-white ">
+          <SelectItem value="AristoInvest" className="w-full">
+            <div className="flex gap-3 items-center w-full justify-between">
+              <div className="flex gap-2 items-center w-full">
+                <div className="size-8 rounded-md border-gray-300 border overflow-hidden">
+                  <img
+                    src={
+                      "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"
+                    }
+                    className="w-full h-full"
+                  />
+                </div>
 
-          <div>
-            <p className="text-sm text-gray-900">AristoInvest</p>
-            <p className="text-xs text-gray-500">Avatar</p>
-          </div>
-        </div>
+                <div className="flex flex-col items-start text-left">
+                  <p className="text-sm text-gray-900">AristoInvest</p>
+                  <p className="text-xs text-gray-500">Avatar</p>
+                </div>
+              </div>
 
-        <svg
-          className="mr-1"
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M10.7929 6C11.2383 6 11.4614 5.46143 11.1464 5.14645L8.35355 2.35355C8.15829 2.15829 7.84171 2.15829 7.64645 2.35355L4.85355 5.14645C4.53857 5.46143 4.76165 6 5.20711 6H10.7929ZM10.7929 10C11.2383 10 11.4614 10.5386 11.1464 10.8536L8.35355 13.6464C8.15829 13.8417 7.84171 13.8417 7.64645 13.6464L4.85355 10.8536C4.53857 10.5386 4.76165 10 5.20711 10H10.7929Z"
-            fill="#475467"
-          />
-        </svg>
-      </a>
+              <div className="bg-teal-100 absolute right-0 border inset-y-0 h-6 mr-2.5 my-auto  border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                Active
+              </div>
+            </div>
+          </SelectItem>
+          <SelectItem value="SocratesProperties" disabled={true}>
+            {" "}
+            <div className="flex gap-2 items-center">
+              <div className="size-8 rounded-md border-gray-300 border overflow-hidden">
+                <img
+                  src={
+                    "https://ethics.org.au/wp-content/uploads/2017/10/Big-Thinker-Socrates-uai-600x600.jpg"
+                  }
+                  className="w-full h-full"
+                />
+              </div>
+
+              <div className="flex flex-col items-start text-left">
+                <p className="text-sm text-gray-900">SocratesProperties</p>
+                <p className="text-xs text-gray-500">Avatar</p>
+              </div>
+            </div>
+          </SelectItem>
+          <div className="w-full h-[1px] bg-gray-200"></div>
+          <SelectItem value="#" disabled={true}>
+            <div className="flex gap-2 items-center">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.0002 5.33333L14.6668 8M14.6668 8L12.0002 10.6667M14.6668 8H6.00016M10.0002 2.80269C9.15033 2.29218 8.16366 2 7.11127 2C3.9203 2 1.3335 4.68629 1.3335 8C1.3335 11.3137 3.9203 14 7.11127 14C8.16366 14 9.15033 13.7078 10.0002 13.1973"
+                  stroke="#344054"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Log out
+            </div>
+          </SelectItem>
+        </SelectContent>
+      </Select>
 
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear h-full">
         <nav className="mt-6 w-80 h-full">

@@ -74,7 +74,7 @@ function BitcoinOne() {
                         className="block transition hover:text-gray-700"
                       >
                         {" "}
-                        Wallet Name{" "}
+                        Main Wallet{" "}
                       </a>
                     </li>
 
@@ -5954,6 +5954,7 @@ function BitcoinOne() {
             </TabsContent>
           </Tabs>
         </div>
+        <div className="min-h-[400px] w-full flex"></div>
       </TimeProvider>
     </main>
   );
