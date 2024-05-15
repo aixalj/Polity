@@ -95,8 +95,25 @@ const NetworkTable: React.FC<{
                         {network.network} Network
                       </div>
                       <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
-                        {network.allocation.toFixed(2)}%
-                        <Progress value={network.allocation} />
+                        {(
+                          (network.value /
+                            networkAccounts.reduce(
+                              (sum, account) => sum + account.value,
+                              0
+                            )) *
+                          100
+                        ).toFixed(2)}
+                        %
+                        <Progress
+                          value={
+                            (network.value /
+                              networkAccounts.reduce(
+                                (sum, account) => sum + account.value,
+                                0
+                              )) *
+                            100
+                          }
+                        />
                       </div>
                       <div className="w-36 flex-auto  px-6 py-3 h-16 flex items-center">
                         {((network.return / network.value) * 100).toFixed(2)}% (
@@ -151,8 +168,27 @@ const NetworkTable: React.FC<{
                             </div>
                           </div>
                           <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
-                            {account.allocation.toFixed(2)}%
-                            <Progress value={account.allocation} />
+                            {(
+                              (account.value /
+                                networkAccounts
+                                  .filter(
+                                    (acc) => acc.network === account.network
+                                  )
+                                  .reduce((sum, acc) => sum + acc.value, 0)) *
+                              100
+                            ).toFixed(2)}
+                            %
+                            <Progress
+                              value={
+                                (account.value /
+                                  networkAccounts
+                                    .filter(
+                                      (acc) => acc.network === account.network
+                                    )
+                                    .reduce((sum, acc) => sum + acc.value, 0)) *
+                                100
+                              }
+                            />
                           </div>
                           <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
                             {((account.return / account.value) * 100).toFixed(

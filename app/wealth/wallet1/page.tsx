@@ -34,11 +34,23 @@ function Wallet2() {
           <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full pb-40">
             <Stats variant="wallet" />
 
-            <Allocation getAllAssets={getAllAssets()} />
+            <Allocation
+              getAllAssets={getAllAssets().filter(
+                (asset) => asset.walletName === "Main Wallet"
+              )}
+            />
 
-            <NetworkTable networkAccounts={networkAccounts} />
+            <NetworkTable
+              networkAccounts={networkAccounts.filter(
+                (account) => account.walletName === "Main Wallet"
+              )}
+            />
 
-            <AssetTable getAllAssets={getAllAssets()} />
+            <AssetTable
+              getAllAssets={getAllAssets().filter(
+                (asset) => asset.walletName === "Main Wallet"
+              )}
+            />
             <div className="min-h-[400px] w-full flex"></div>
           </div>
         </div>

@@ -263,15 +263,28 @@ function BitcoinOne() {
               <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full pb-40">
                 <Stats variant="network" />
 
-                <Allocation getAllAssets={getAllAssets()} />
+                <Allocation
+                  getAllAssets={getAllAssets().filter(
+                    (asset) => asset.walletName === "Main Wallet"
+                  )}
+                />
 
-                <AssetTable getAllAssets={getAllAssets()} />
+                <AssetTable
+                  getAllAssets={getAllAssets().filter(
+                    (asset) => asset.walletName === "Main Wallet"
+                  )}
+                />
+
                 <Dapps />
               </div>
             </TabsContent>
             <TabsContent value="assets">
               <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
-                <AssetTable getAllAssets={getAllAssets()} />
+                <AssetTable
+                  getAllAssets={getAllAssets().filter(
+                    (asset) => asset.walletName === "Main Wallet"
+                  )}
+                />
               </div>
             </TabsContent>
 

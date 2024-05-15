@@ -60,7 +60,14 @@ const Allocation: React.FC<{
                         key={asset.name}
                         className={`h-full ${getColorForAsset(asset.symbol)}`}
                         style={{
-                          width: `${(asset.value / wealth.totalAssets) * 100}%`,
+                          width: `${
+                            (asset.value /
+                              getAllAssets.reduce(
+                                (sum, asset) => sum + asset.value,
+                                0
+                              )) *
+                            100
+                          }%`,
                         }}
                       ></div>
                     ))}
@@ -92,7 +99,15 @@ const Allocation: React.FC<{
                           height={24}
                         />
                         {asset.symbol} •{" "}
-                        {((asset.value / wealth.totalAssets) * 100).toFixed(2)}%
+                        {(
+                          (asset.value /
+                            getAllAssets.reduce(
+                              (sum, asset) => sum + asset.value,
+                              0
+                            )) *
+                          100
+                        ).toFixed(2)}
+                        %
                       </div>
                     ))}
                 </div>

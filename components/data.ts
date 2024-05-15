@@ -71,7 +71,7 @@ const networkAccounts: any[] = [
         value24HoursAgo: 7900,
         allocation: 0,
         networkAccountName: "Eth network account",
-        walletName: "Main Wallet",
+        walletName: "Second Wallet",
       },
       {
         name: "Tether",
@@ -83,7 +83,7 @@ const networkAccounts: any[] = [
         value24HoursAgo: 3.5,
         allocation: 0,
         networkAccountName: "Eth network account",
-        walletName: "Main Wallet",
+        walletName: "Second Wallet",
       },
     ],
     get allocation() {

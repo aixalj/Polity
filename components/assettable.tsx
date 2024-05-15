@@ -81,9 +81,24 @@ const AssetTable: React.FC<{
                         </p>
                       </div>
                       <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
-                        {((asset.value / wealth.totalAssets) * 100).toFixed(2)}%
+                        {(
+                          (asset.value /
+                            getAllAssets.reduce(
+                              (sum, asset) => sum + asset.value,
+                              0
+                            )) *
+                          100
+                        ).toFixed(2)}
+                        %
                         <Progress
-                          value={(asset.value / wealth.totalAssets) * 100}
+                          value={
+                            (asset.value /
+                              getAllAssets.reduce(
+                                (sum, asset) => sum + asset.value,
+                                0
+                              )) *
+                            100
+                          }
                         />
                       </div>
                       <div className="w-36 flex-auto  px-6 py-3 h-16 flex items-center">
