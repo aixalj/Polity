@@ -178,20 +178,47 @@ export function Stats({ variant = "wealth" }: StatsProps) {
                 />
               </svg>
               {selectedTime === "pastday"
-                ? "1.86% ($3,415.41)"
+                ? `1.27% (${(wealth.netWorth * 0.0127).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })})`
                 : selectedTime === "pastweek"
-                ? "9.54% ($20,239.24)"
+                ? `2.45% (${(wealth.netWorth * 0.0245).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })})`
                 : selectedTime === "pastmonth"
-                ? "3.54% ($20,239.24)"
+                ? `6.54% (${(wealth.netWorth * 0.0654).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })})`
                 : selectedTime === "threemonths"
-                ? "2.54% ($20,239.24)"
+                ? `2.54% (${(wealth.netWorth * 0.0254).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })})`
                 : selectedTime === "yeartodate"
-                ? "6.54% ($20,239.24)"
+                ? `6.54% (${(wealth.netWorth * 0.0654).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })})`
                 : selectedTime === "pastyear"
-                ? "7.54% ($20,239.24)"
+                ? `7.54% (${(wealth.netWorth * 0.0754).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })})`
                 : selectedTime === "alltime"
-                ? "3.54% ($20,239.24)"
-                : "6.54% ($20,239.24)"}
+                ? `32.87% (${(wealth.netWorth * 0.3287330566).toLocaleString(
+                    "en-US",
+                    {
+                      style: "currency",
+                      currency: "USD",
+                    }
+                  )})`
+                : `6.54% (${(wealth.netWorth * 0.0654).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })})`}
             </div>
             <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>
