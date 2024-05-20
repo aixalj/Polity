@@ -61,7 +61,9 @@ export function AreaChartUsageExampleWithCustomTooltip() {
 
     // Start the loop from the 1st hour since 0th hour is already initialized
     for (let hour = 1; hour <= now.getHours(); hour++) {
-      const value = Math.random() * 10000 + wealth.netWorth; // Values between 180,000 and 190,000
+      // Introduce more variety in the values
+      const randomFactor = Math.random() > 0.5 ? 1 : -1;
+      const value = (Math.random() * 20000 - 10000) * randomFactor + startValue; // Use startValue instead of wealth.netWorth
       const formattedHour = hour.toString().padStart(2, "0") + ":00";
 
       pastday.push({
@@ -78,7 +80,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     return pastday;
   }
 
-  function generateWeeklyData(endValue: number) {
+  function generateWeeklyData(startValue: number, endValue: number) {
     const pastweek = [];
 
     const now = new Date();
@@ -86,8 +88,13 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     const pastDate = new Date();
     pastDate.setDate(now.getDate() - 6);
 
+    let previousValue = startValue;
+
     for (let i = 0; i < 7; i++) {
-      const value = Math.random() * 40000 + wealth.netWorth; // Values between 180,000 and 190,000
+      // Introduce more variety in the values
+      const randomFactor = Math.random() > 0.5 ? 1 : -1;
+      const valueChange = (Math.random() * 80000 - 40000) * randomFactor;
+      const value = previousValue + valueChange; // Adjust value based on previous value
       const formattedDate = pastDate.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "long",
@@ -98,6 +105,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
         Value: Math.round((value + Number.EPSILON) * 100) / 100,
       });
 
+      previousValue = value; // Update previous value for the next iteration
       pastDate.setDate(pastDate.getDate() + 1); // Move to the next day
     }
 
@@ -109,14 +117,21 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     return pastweek;
   }
 
-  function generateMonthlyData(endValue: number) {
+  function generateMonthlyData(startValue: number, endValue: number) {
     const pastmonth = [];
     const now = new Date();
     const pastDate = new Date();
     pastDate.setDate(now.getDate() - 29);
 
+    let previousValue = startValue;
+
     for (let i = 0; i < 30; i++) {
-      const value = Math.random() * 70000 + wealth.netWorth; // Values between 180,000 and 190,000
+      // Introduce more variety in the values to simulate a realistic stock chart
+      const randomFactor = Math.random() > 0.5 ? 1 : -1;
+      const volatility = Math.random() * 0.05; // 5% volatility
+      const valueChange = previousValue * volatility * randomFactor;
+      const value = previousValue + valueChange;
+
       const formattedDate = pastDate.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "long",
@@ -127,6 +142,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
         Value: Math.round((value + Number.EPSILON) * 100) / 100,
       });
 
+      previousValue = value; // Update previous value for the next iteration
       pastDate.setDate(pastDate.getDate() + 1); // Move to the next day
     }
 
@@ -137,14 +153,21 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     return pastmonth;
   }
 
-  function generate90DaysData(endValue: number) {
+  function generate90DaysData(startValue: number, endValue: number) {
     const threemonths = [];
     const now = new Date();
     const pastDate = new Date();
     pastDate.setDate(now.getDate() - 89);
 
+    let previousValue = startValue;
+
     for (let i = 0; i < 90; i++) {
-      const value = Math.random() * 70000 + wealth.netWorth; // Values between 180,000 and 190,000
+      // Introduce more variety in the values to simulate realistic peaks and troughs
+      const randomFactor = Math.random() > 0.5 ? 1 : -1;
+      const volatility = Math.random() * 0.03; // 10% volatility for more pronounced peaks and troughs
+      const valueChange = previousValue * volatility * randomFactor;
+      const value = previousValue + valueChange;
+
       const formattedDate = pastDate.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "long",
@@ -155,6 +178,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
         Value: Math.round((value + Number.EPSILON) * 100) / 100,
       });
 
+      previousValue = value; // Update previous value for the next iteration
       pastDate.setDate(pastDate.getDate() + 1); // Move to the next day
     }
 
@@ -165,13 +189,20 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     return threemonths;
   }
 
-  function generateYearToDateData(endValue: number) {
+  function generateYearToDateData(startValue: number, endValue: number) {
     const yeartodate = [];
     const now = new Date();
     const startOfYear = new Date(now.getFullYear(), 0, 1);
 
+    let previousValue = startValue;
+
     while (startOfYear <= now) {
-      const value = Math.random() * 100000 + wealth.netWorth; // Values between 180,000 and 190,000
+      // Introduce more variety in the values to simulate realistic peaks and troughs
+      const randomFactor = Math.random() > 0.5 ? 1 : -1;
+      const volatility = Math.random() * 0.03; // 10% volatility for more pronounced peaks and troughs
+      const valueChange = previousValue * volatility * randomFactor;
+      const value = previousValue + valueChange;
+
       const formattedDate = startOfYear.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "long",
@@ -182,6 +213,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
         Value: Math.round((value + Number.EPSILON) * 100) / 100,
       });
 
+      previousValue = value; // Update previous value for the next iteration
       startOfYear.setDate(startOfYear.getDate() + 1); // Move to the next day
     }
 
@@ -192,14 +224,21 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     return yeartodate;
   }
 
-  function generatePastYearData(endValue: number) {
+  function generatePastYearData(startValue: number, endValue: number) {
     const pastyear = [];
     const now = new Date();
     const pastDate = new Date();
     pastDate.setFullYear(now.getFullYear() - 1);
 
+    let previousValue = startValue;
+
     while (pastDate <= now) {
-      const value = Math.random() * 100000 + wealth.netWorth; // Values between 180,000 and 190,000
+      // Introduce more variety in the values to simulate realistic peaks and troughs
+      const randomFactor = Math.random() > 0.5 ? 1 : -1;
+      const volatility = Math.random() * 0.03; // 10% volatility for more pronounced peaks and troughs
+      const valueChange = previousValue * volatility * randomFactor;
+      const value = previousValue + valueChange;
+
       const formattedDate = pastDate.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "long",
@@ -210,6 +249,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
         Value: Math.round((value + Number.EPSILON) * 100) / 100,
       });
 
+      previousValue = value; // Update previous value for the next iteration
       pastDate.setDate(pastDate.getDate() + 1); // Move to the next day
     }
 
@@ -220,20 +260,24 @@ export function AreaChartUsageExampleWithCustomTooltip() {
     return pastyear;
   }
 
-  function generateAllTimeDataWithTrend(endValue: number) {
+  function generateAllTimeData(startValue: number, endValue: number) {
     const alltime = [];
     const now = new Date();
     const startDate = new Date("2022-11-01");
 
-    const totalDays = Math.floor(
-      (now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
-    );
-    const increment = (endValue - 610000) / totalDays;
+    let previousValue = startValue;
 
-    for (let i = 0; startDate <= now; i++) {
-      const baseValue = 610000 + increment * i;
-      const randomFluctuation = Math.random() * 100000; // Fluctuate around the base value
-      const value = baseValue + randomFluctuation;
+    while (startDate <= now) {
+      // Introduce more variety in the values to simulate realistic peaks and troughs
+      const randomFactor = Math.random() > 0.5 ? 1 : -1;
+      const volatility = Math.random() * 0.03; // 10% volatility for more pronounced peaks and troughs
+      const valueChange = previousValue * volatility * randomFactor;
+      let value = previousValue + valueChange;
+
+      // Ensure value does not go below zero
+      if (value < 0) {
+        value = 0;
+      }
 
       const formattedDate = startDate.toLocaleDateString("en-GB", {
         day: "numeric",
@@ -243,9 +287,10 @@ export function AreaChartUsageExampleWithCustomTooltip() {
 
       alltime.push({
         date: formattedDate,
-        Value: Math.round(value * 100) / 100,
+        Value: Math.round((value + Number.EPSILON) * 100) / 100,
       });
 
+      previousValue = value; // Update previous value for the next iteration
       startDate.setDate(startDate.getDate() + 1); // Move to the next day
     }
 
@@ -255,14 +300,13 @@ export function AreaChartUsageExampleWithCustomTooltip() {
 
     return alltime;
   }
-
   const pastday = generateHourlyData(wealth.netWorth);
-  const pastweek = generateWeeklyData(wealth.netWorth);
-  const pastmonth = generateMonthlyData(wealth.netWorth);
-  const threemonths = generate90DaysData(wealth.netWorth);
-  const yeartodate = generateYearToDateData(wealth.netWorth);
-  const pastyear = generatePastYearData(wealth.netWorth);
-  const alltime = generateAllTimeDataWithTrend(wealth.netWorth);
+  const pastweek = generateWeeklyData(1700000 * 0.95, wealth.netWorth); // Assuming a 5% increase over the week
+  const pastmonth = generateMonthlyData(1700000 * 0.9, wealth.netWorth); // Assuming a 10% increase over the month
+  const threemonths = generate90DaysData(1700000 * 0.85, wealth.netWorth); // Assuming a 15% increase over three months
+  const yeartodate = generateYearToDateData(1700000 * 0.8, wealth.netWorth); // Assuming a 20% increase year-to-date
+  const pastyear = generatePastYearData(1700000 * 0.75, wealth.netWorth); // Assuming a 25% increase over the past year
+  const alltime = generateAllTimeData(1700000 * 0.7, wealth.netWorth); // Assuming a 30% increase all time
 
   function calculateReturns(data: any[]) {
     if (data.length < 2) {

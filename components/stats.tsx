@@ -178,47 +178,64 @@ export function Stats({ variant = "wealth" }: StatsProps) {
                 />
               </svg>
               {selectedTime === "pastday"
-                ? `1.27% (${(wealth.netWorth * 0.0127).toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })})`
+                ? `${(((1711234.87 - 1700000) / 1700000) * 100).toFixed(
+                    2
+                  )}% ($${(1711234.87 - 1700000).toLocaleString("en-US")})`
                 : selectedTime === "pastweek"
-                ? `2.45% (${(wealth.netWorth * 0.0245).toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })})`
+                ? `${(
+                    ((1711234.87 - 1700000 * 0.95) / (1700000 * 0.95)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.95
+                  ).toLocaleString("en-US")})`
                 : selectedTime === "pastmonth"
-                ? `6.54% (${(wealth.netWorth * 0.0654).toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })})`
+                ? `${(
+                    ((1711234.87 - 1700000 * 0.9) / (1700000 * 0.9)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.9
+                  ).toLocaleString("en-US")})`
                 : selectedTime === "threemonths"
-                ? `2.54% (${(wealth.netWorth * 0.0254).toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })})`
+                ? `${(
+                    ((1711234.87 - 1700000 * 0.85) / (1700000 * 0.85)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.85
+                  ).toLocaleString("en-US")})`
                 : selectedTime === "yeartodate"
-                ? `6.54% (${(wealth.netWorth * 0.0654).toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })})`
+                ? `${(
+                    ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.8
+                  ).toLocaleString("en-US")})`
                 : selectedTime === "pastyear"
-                ? `7.54% (${(wealth.netWorth * 0.0754).toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })})`
+                ? `${(
+                    ((1711234.87 - 1700000 * 0.75) / (1700000 * 0.75)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.75
+                  ).toLocaleString("en-US")})`
                 : selectedTime === "alltime"
-                ? `32.87% (${(wealth.netWorth * 0.3287330566).toLocaleString(
-                    "en-US",
-                    {
-                      style: "currency",
-                      currency: "USD",
-                    }
-                  )})`
-                : `6.54% (${(wealth.netWorth * 0.0654).toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })})`}
+                ? `${(
+                    ((1711234.87 - 1700000 * 0.7) / (1700000 * 0.7)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.7
+                  ).toLocaleString("en-US")})`
+                : `${(
+                    ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.8
+                  ).toLocaleString("en-US")})`}
             </div>
             <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>
@@ -295,20 +312,64 @@ export function Stats({ variant = "wealth" }: StatsProps) {
                 />
               </svg>
               {selectedTime === "pastday"
-                ? "1.86% ($3,415.41)"
+                ? `${(((1711234.87 - 1700000) / 1700000) * 100).toFixed(
+                    2
+                  )}% ($${(1711234.87 - 1700000).toLocaleString("en-US")})`
                 : selectedTime === "pastweek"
-                ? "9.54% ($20,239.24)"
+                ? `${(
+                    ((1711234.87 - 1700000 * 0.95) / (1700000 * 0.95)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.95
+                  ).toLocaleString("en-US")})`
                 : selectedTime === "pastmonth"
-                ? "3.54% ($20,239.24)"
+                ? `${(
+                    ((1711234.87 - 1700000 * 0.9) / (1700000 * 0.9)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.9
+                  ).toLocaleString("en-US")})`
                 : selectedTime === "threemonths"
-                ? "2.54% ($20,239.24)"
+                ? `${(
+                    ((1711234.87 - 1700000 * 0.85) / (1700000 * 0.85)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.85
+                  ).toLocaleString("en-US")})`
                 : selectedTime === "yeartodate"
-                ? "6.54% ($20,239.24)"
+                ? `${(
+                    ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.8
+                  ).toLocaleString("en-US")})`
                 : selectedTime === "pastyear"
-                ? "7.54% ($20,239.24)"
+                ? `${(
+                    ((1711234.87 - 1700000 * 0.75) / (1700000 * 0.75)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.75
+                  ).toLocaleString("en-US")})`
                 : selectedTime === "alltime"
-                ? "3.54% ($20,239.24)"
-                : "6.54% ($20,239.24)"}
+                ? `${(
+                    ((1711234.87 - 1700000 * 0.7) / (1700000 * 0.7)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.7
+                  ).toLocaleString("en-US")})`
+                : `${(
+                    ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
+                    100
+                  ).toFixed(2)}% ($${(
+                    1711234.87 -
+                    1700000 * 0.8
+                  ).toLocaleString("en-US")})`}
             </div>
             <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>

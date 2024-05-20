@@ -116,7 +116,7 @@ const SideBar = () => {
               </div>
             </div>
           </SelectItem>
-          <SelectItem value="SocratesProperties" disabled={true}>
+          {/* <SelectItem value="SocratesProperties" disabled={true}>
             {" "}
             <div className="flex gap-2 items-center">
               <div className="size-8 rounded-md border-gray-300 border overflow-hidden">
@@ -133,7 +133,7 @@ const SideBar = () => {
                 <p className="text-xs text-gray-500">Avatar</p>
               </div>
             </div>
-          </SelectItem>
+          </SelectItem> */}
           <div className="w-full h-[1px] bg-gray-200"></div>
           <SelectItem value="#" disabled={true}>
             <div className="flex gap-2 items-center">
