@@ -32,6 +32,37 @@ const networkAccounts: any[] = [
         walletName: "Main Wallet",
       },
     ],
+    positions: [
+      {
+        DApp: "Aave",
+        TotalValue: 98765.43,
+        Positions: [
+          {
+            Position: "Staking",
+            Value: 98765.43,
+            Asset: "ETH",
+            Amount: 9.99,
+            Yield: 9.99,
+            RewardsEarned: 9.99,
+            LockupPeriod: "30 days",
+          },
+        ],
+      },
+      {
+        DApp: "Curve",
+        TotalValue: 98765.43,
+        Positions: [
+          {
+            Position: "Borrowing",
+            Value: 98765.43,
+            Asset: "USDC",
+            CollateralAsset: "ETH",
+            Amount: 9.99,
+            Yield: 9.99,
+          },
+        ],
+      },
+    ],
     get allocation() {
       return (this.value / wealth.totalAssets) * 100;
     },

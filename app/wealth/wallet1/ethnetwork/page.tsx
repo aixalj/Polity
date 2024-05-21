@@ -16,6 +16,7 @@ import { TimeProvider } from "@/components/ui/timecontext";
 
 import { Button } from "@/components/ui/button";
 import { AssetTable } from "@/components/assettable";
+import { PositionsTable } from "@/components/positionstable";
 import { Dapps } from "@/components/dapps";
 
 import {
@@ -3130,7 +3131,13 @@ function BitcoinOne() {
             </TabsContent>
             <TabsContent value="positions">
               <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
-                <div className="flex flex-col items-center justify-center rounded-lg overflow-hidden bg-gray-50 pt-3 pb-12">
+                <div>
+                  <PositionsTable
+                    wallets={wallets}
+                    networkAccounts={networkAccounts}
+                  />
+                </div>
+                {/* <div className="flex flex-col items-center justify-center rounded-lg overflow-hidden bg-gray-50 pt-3 pb-12">
                   <div className="-mb-8">
                     <svg
                       width="216"
@@ -5962,7 +5969,7 @@ function BitcoinOne() {
                     You currently don’t have any positions on any protocols. As
                     you allocate funds, the details will be shown here.
                   </p>
-                </div>
+                </div> */}
               </div>
             </TabsContent>
             <TabsContent value="nfts">
