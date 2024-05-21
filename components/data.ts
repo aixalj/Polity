@@ -35,21 +35,21 @@ const networkAccounts: any[] = [
     positions: [
       {
         DApp: "Aave",
-        TotalValue: 98765.43,
+        TotalValue: 9237.34,
         Positions: [
           {
             Position: "Staking",
-            Value: 98765.43,
+            Value: 9237.34,
             Asset: "ETH",
-            Amount: 9.99,
+            Amount: 0.35,
             Yield: 9.99,
-            RewardsEarned: 9.99,
+            RewardsEarned: 0.034,
             LockupPeriod: "30 days",
           },
         ],
       },
       {
-        DApp: "Curve",
+        DApp: "Compound",
         TotalValue: 98765.43,
         Positions: [
           {
@@ -295,8 +295,8 @@ const wealth = {
   get totalAssets() {
     return wallets.reduce((sum, wallet) => sum + wallet.value, 0);
   },
-  totalDebts: 0,
-  totalClaimable: 0,
+  totalDebts: 98765.43,
+  totalClaimable: 102.34,
 };
 
 // Function to get all assets as an array

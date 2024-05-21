@@ -78,7 +78,7 @@ const PositionsTable: React.FC<{
               <div className="w-full flex flex-row items-center justify-between">
                 <div className="flex flex-row items-center gap-2">
                   <Image
-                    src={`/wallets/${position.DApp}.svg`}
+                    src={`/icons/DApps/${position.DApp}.svg`}
                     alt={position.DApp}
                     className="rounded-full border border-gray-200 bg-gray-50"
                     width={40}
@@ -298,6 +298,7 @@ const PositionsTable: React.FC<{
                                 height="12"
                                 viewBox="0 0 12 12"
                                 fill="none"
+                                className="mr-1"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
                                 <g clip-path="url(#clip0_106_46635)">
@@ -315,7 +316,7 @@ const PositionsTable: React.FC<{
                                   </clipPath>
                                 </defs>
                               </svg>
-                              {positi.RewardsEarned} {positi.Asset} ($9.99)
+                              {positi.RewardsEarned} {positi.Asset} ($102.34)
                             </div>
                           )}
                           {positi.Position !== "Borrowing" && (

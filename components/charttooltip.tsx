@@ -300,6 +300,7 @@ export function AreaChartUsageExampleWithCustomTooltip() {
 
     return alltime;
   }
+
   const pastday = generateHourlyData(wealth.netWorth);
   const pastweek = generateWeeklyData(1700000 * 0.95, wealth.netWorth); // Assuming a 5% increase over the week
   const pastmonth = generateMonthlyData(1700000 * 0.9, wealth.netWorth); // Assuming a 10% increase over the month

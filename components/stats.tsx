@@ -25,6 +25,8 @@ import {
 } from "@/components/ui/tooltip";
 
 import { AreaChartUsageExampleWithCustomTooltip } from "@/components/charttooltip";
+import { AreaChartNetwork } from "@/components/networkchart";
+import { AreaChartWallet } from "@/components/walletchart";
 
 import {
   networkAccounts,
@@ -154,10 +156,20 @@ export function Stats({ variant = "wealth" }: StatsProps) {
             </TooltipProvider>
           </p>
           <h2 className="text-3xl mt-1 font-medium">
-            {wealth.netWorth.toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
-            })}
+            {variant === "wealth"
+              ? wealth.netWorth.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })
+              : variant === "wallet"
+              ? (1452234.87).toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })
+              : (657318.88).toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })}
           </h2>
 
           <div className="flex mt-2 items-center gap-2">
@@ -243,7 +255,9 @@ export function Stats({ variant = "wealth" }: StatsProps) {
 
         <div>
           {/* <TimeTest /> */}
-          <AreaChartUsageExampleWithCustomTooltip />
+          {variant === "wealth" && <AreaChartUsageExampleWithCustomTooltip />}
+          {variant === "wallet" && <AreaChartWallet />}
+          {variant === "network" && <AreaChartNetwork />}
         </div>
       </div>
 
@@ -288,10 +302,20 @@ export function Stats({ variant = "wealth" }: StatsProps) {
             </TooltipProvider>
           </p>
           <h2 className="text-xl mt-1 font-medium">
-            {wealth.totalAssets.toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
-            })}
+            {variant === "wealth"
+              ? wealth.totalAssets.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })
+              : variant === "wallet"
+              ? (1550234.874).toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })
+              : (755318.88).toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })}
           </h2>
 
           <div className="flex mt-6 items-center gap-2">

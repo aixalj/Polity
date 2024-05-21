@@ -60,7 +60,9 @@ const Allocation: React.FC<{
                     .map((asset, index) => (
                       <div
                         key={asset.name}
-                        className={`h-full ${getColorForAsset(asset.symbol)}`}
+                        className={`h-full min-w-3 ${getColorForAsset(
+                          asset.symbol
+                        )}`}
                         style={{
                           width: `${
                             (asset.value /
