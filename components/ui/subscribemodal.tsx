@@ -20,6 +20,8 @@ import { RecipientForm } from "@/components/recipientform";
 
 import { PaymentForm } from "@/components/paymentform";
 
+import { NetworkSelectForm } from "@/components/networkselectform";
+
 import { DotLottiePlayer, Controls } from "@dotlottie/react-player";
 import "@dotlottie/react-player/dist/index.css";
 
@@ -48,6 +50,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { useContext } from "react";
 import { useWallet } from "./formcontext";
+import { useSubscribe } from "./subscribecontext";
 
 // export const ConfirmationStep = () => {
 //   const { formData } = useContext(FormContext);
@@ -61,10 +64,17 @@ import { useWallet } from "./formcontext";
 const SubscribeModal = () => {
   const tabValues = ["payment", "recipient", "amount", "confirm"];
   const [activeTab, setActiveTab] = useState(tabValues[0]);
-  const [bitcoinCount, setBitcoinCount] = useState(0);
-  const [ethereumCount, setEthereumCount] = useState(0);
-  const [polygonCount, setPolygonCount] = useState(0);
-  const [count, setCount] = useState(0);
+  // const [bitcoinCount, setBitcoinCount] = useState(0);
+  const {
+    bitcoinCount,
+    setBitcoinCount,
+    ethCount,
+    setEthCount,
+    polygonCount,
+    setPolygonCount,
+  } = useSubscribe();
+
+  // const [count, setCount] = useState(0);
 
   const cryptoValues = {
     ethValue: 3004.9, // Example ETH value in USD
@@ -125,8 +135,8 @@ const SubscribeModal = () => {
         selectedWallet.length >= 3 &&
         selectedNetwork.length >= 3 &&
         selectedAsset.length >= 3) ||
-      (activeTab === "recipient" && selectedRecipient.length > 3) ||
-      (activeTab === "amount" && selectedPayment > 0.1) ||
+      activeTab === "recipient" ||
+      (activeTab === "amount" && selectedAsset.length > 1) ||
       activeTab === "confirm"
     ) {
       return true;
@@ -2404,25 +2414,23 @@ const SubscribeModal = () => {
               <div className="flex gap-8 items-center ">
                 <div className="flex flex-col gap-0 items-start justify-start">
                   <p className="text-xs text-gray-700 font-medium">
-                    Total Transaction
+                    Total Price
                   </p>
                   <div className="flex gap-1 items-center">
-                    <img
-                      className="w-4 h-4"
-                      src={`/icons/tokens/${selectedAsset}.svg`}
-                    />
-                    <p className="text-md font-medium">12</p>
+                    <img className="w-4 h-4" src={`/icons/tokens/USDT.svg`} />
+                    <div className="flex gap-1 items-end">
+                      <p className="text-md font-medium">
+                        {(
+                          9.99 +
+                          1.99 * (bitcoinCount + ethCount + polygonCount)
+                        ).toFixed(2)}
+                      </p>{" "}
+                      <p className="text-md font-medium">USDT</p>{" "}
+                      <p className="text-xs text-gray-700 mb-0.5 font-medium">
+                        /mo
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-xs text-gray-700 font-medium">
-                    Total including fees = $
-                    {(
-                      cryptoValues.ethValue * 0.016789 +
-                      Number(selectedPayment)
-                    ).toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </p>
                 </div>
                 {activeTab !== "confirm" && (
                   <Button onClick={handleContinue} disabled={!canContinue()}>
@@ -2445,6 +2453,9 @@ const SubscribeModal = () => {
                   </Button>
                 )}
               </div>
+              {activeTab == "confirm" && (
+                <Button onClick={handleConfirm}>Confirm Payment</Button>
+              )}
             </div>
           </div>
         </div>
@@ -2825,7 +2836,7 @@ flex-col  p-0  grid   shadow-sm  max-w-screen-sm mx-auto w-full
                       </defs>
                     </svg>
 
-                    <h3 className="text-md text-gray-800 ">9.99 USDT</h3>
+                    <h3 className="text-md text-gray-800 ">1.99 USDT</h3>
                   </div>
                   <p className="text-sm text-gray-600 ">per month</p>
                 </div>
@@ -3341,412 +3352,13 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                         </svg>
 
                         <h3 className="text-md text-gray-800 whitespace-nowrap">
-                          9.99 USDT
+                          1.99 USDT
                         </h3>
                       </div>
                       <p className="text-sm text-gray-600 ">per month</p>
                     </div>
                   </div>
-                  <div className="flex w-full justify-between py-1 items-center">
-                    <div className="w-full gap-2 flex items-center">
-                      <svg
-                        width="32"
-                        height="32"
-                        viewBox="0 0 32 32"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g clip-path="url(#clip0_150_11068)">
-                          <rect width="32" height="32" rx="9" fill="#F7931A" />
-                          <g clip-path="url(#clip1_150_11068)">
-                            <rect
-                              width="32"
-                              height="32"
-                              rx="6"
-                              fill="#F7931A"
-                            />
-                            <path
-                              d="M31.5214 19.8705C29.3845 28.442 20.7029 33.6584 12.1304 31.521C3.56144 29.3841 -1.65502 20.702 0.482839 12.1312C2.61882 3.5587 11.3004 -1.65814 19.8702 0.478775C28.4421 2.61569 33.6583 11.2987 31.5211 19.8706L31.5213 19.8705H31.5214Z"
-                              fill="#F7931A"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M23.0572 13.7204C23.3757 11.5911 21.7546 10.4466 19.5379 9.68305L20.257 6.79879L18.5013 6.36131L17.8013 9.16963C17.3397 9.05451 16.8657 8.94603 16.3946 8.8385L17.0997 6.01165L15.345 5.57416L14.6255 8.45748C14.2436 8.37051 13.8684 8.28456 13.5044 8.194L13.5065 8.18493L11.0853 7.58031L10.6182 9.45555C10.6182 9.45555 11.9208 9.75414 11.8934 9.77252C12.6044 9.94997 12.7329 10.4206 12.7116 10.7937L11.8924 14.0795C11.9414 14.0919 12.0049 14.1099 12.075 14.1381L12.024 14.1254C11.9807 14.1145 11.9356 14.1033 11.8894 14.0922L10.7412 18.6952C10.6544 18.9112 10.4338 19.2354 9.93673 19.1123C9.95432 19.1378 8.66063 18.7938 8.66063 18.7938L7.78894 20.8036L10.0737 21.3731C10.3239 21.4359 10.5712 21.5003 10.8159 21.5641C10.987 21.6087 11.1568 21.653 11.3255 21.6961L10.599 24.6135L12.3527 25.051L13.0722 22.1646C13.5513 22.2946 14.0162 22.4146 14.4714 22.5277L13.7543 25.4005L15.5101 25.8379L16.2366 22.9261C19.2305 23.4927 21.4817 23.2642 22.4292 20.5563C23.1927 18.376 22.3912 17.1185 20.8161 16.2984C21.9633 16.0338 22.8274 15.2793 23.0578 13.7206L23.0573 13.7202L23.0572 13.7204ZM19.0458 19.3455C18.5479 21.3458 15.4169 20.5188 13.9844 20.1404C13.8555 20.1064 13.7404 20.076 13.6422 20.0516L14.6063 16.1866C14.726 16.2165 14.8723 16.2493 15.038 16.2865L15.038 16.2865C16.5198 16.6191 19.5558 17.3004 19.0458 19.3455H19.0458ZM15.3352 14.4927C16.5296 14.8115 19.135 15.5068 19.5887 13.6888H19.5889C20.0522 11.8294 17.5202 11.2688 16.2836 10.995C16.1444 10.9642 16.0217 10.937 15.9215 10.9121L15.0474 14.4174C15.1299 14.4379 15.2267 14.4638 15.3352 14.4927Z"
-                              fill="white"
-                            />
-                          </g>
-                        </g>
-                        <rect
-                          x="0.5"
-                          y="0.5"
-                          width="31"
-                          height="31"
-                          rx="8.5"
-                          stroke="#D0D5DD"
-                        />
-                        <defs>
-                          <clipPath id="clip0_150_11068">
-                            <rect width="32" height="32" rx="9" fill="white" />
-                          </clipPath>
-                          <clipPath id="clip1_150_11068">
-                            <rect width="32" height="32" rx="6" fill="white" />
-                          </clipPath>
-                        </defs>
-                      </svg>
-
-                      <p className="font-medium text-md text-gray-700">
-                        Bitcoin
-                      </p>
-                    </div>
-                    <div className="flex items-end gap-2 ml-auto">
-                      <Button
-                        variant="outline"
-                        className="h-8 w-8 p-0 items-center flex justify-center"
-                        onClick={() =>
-                          setBitcoinCount(
-                            bitcoinCount > 0 ? bitcoinCount - 1 : 0
-                          )
-                        }
-                        disabled={bitcoinCount === 0}
-                      >
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M4.16675 10H15.8334"
-                            stroke="currentColor"
-                            stroke-width="1.66667"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </Button>
-                      <Input
-                        type="number"
-                        className="w-12 h-8 text-center"
-                        value={bitcoinCount}
-                        onChange={(e) =>
-                          setBitcoinCount(Math.max(0, Number(e.target.value)))
-                        }
-                        placeholder="0"
-                      />
-                      <Button
-                        variant="outline"
-                        className="h-8 w-8 p-0 items-center flex justify-center"
-                        onClick={() => setBitcoinCount(bitcoinCount + 1)}
-                      >
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M10.0001 4.16667V15.8333M4.16675 10H15.8334"
-                            stroke="currentColor"
-                            stroke-width="1.66667"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="flex w-full justify-between py-1 items-center">
-                    <div className="w-full gap-2 flex items-center">
-                      <svg
-                        width="32"
-                        height="32"
-                        viewBox="0 0 32 32"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g clip-path="url(#clip0_150_11092)">
-                          <rect width="32" height="32" rx="9" fill="#ECEFF0" />
-                          <g clip-path="url(#clip1_150_11092)">
-                            <rect
-                              width="32"
-                              height="32"
-                              rx="6"
-                              fill="#ECEFF0"
-                            />
-                            <circle cx="16" cy="16" r="16" fill="#ECEFF0" />
-                            <path
-                              opacity="0.6"
-                              d="M15.8232 13.6819L10 16.3292L15.8232 19.7715L21.6474 16.3292L15.8232 13.6819Z"
-                              fill="black"
-                            />
-                            <path
-                              opacity="0.45"
-                              d="M10.0021 16.3291L15.8252 19.7715V13.6819V6.66667L10.0021 16.3291Z"
-                              fill="black"
-                            />
-                            <path
-                              opacity="0.8"
-                              d="M15.8253 6.66667V13.6819V19.7715L21.6485 16.3291L15.8253 6.66667Z"
-                              fill="black"
-                            />
-                            <path
-                              opacity="0.45"
-                              d="M10 17.4339L15.8232 25.64V20.874L10 17.4339Z"
-                              fill="black"
-                            />
-                            <path
-                              opacity="0.8"
-                              d="M15.8232 20.874V25.64L21.6507 17.4339L15.8232 20.874Z"
-                              fill="black"
-                            />
-                          </g>
-                        </g>
-                        <rect
-                          x="0.5"
-                          y="0.5"
-                          width="31"
-                          height="31"
-                          rx="8.5"
-                          stroke="#D0D5DD"
-                        />
-                        <defs>
-                          <clipPath id="clip0_150_11092">
-                            <rect width="32" height="32" rx="9" fill="white" />
-                          </clipPath>
-                          <clipPath id="clip1_150_11092">
-                            <rect width="32" height="32" rx="6" fill="white" />
-                          </clipPath>
-                        </defs>
-                      </svg>
-
-                      <p className="font-medium text-md text-gray-700">
-                        Ethereum
-                      </p>
-                    </div>
-                    <div className="flex items-end gap-2 ml-auto">
-                      <Button
-                        variant="outline"
-                        className="h-8 w-8 p-0 items-center flex justify-center"
-                        onClick={() =>
-                          setEthereumCount(
-                            ethereumCount > 0 ? ethereumCount - 1 : 0
-                          )
-                        }
-                        disabled={ethereumCount === 0}
-                      >
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M4.16675 10H15.8334"
-                            stroke="currentColor"
-                            stroke-width="1.66667"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </Button>
-                      <Input
-                        type="number"
-                        className="w-12 h-8 text-center"
-                        value={ethereumCount}
-                        onChange={(e) =>
-                          setEthereumCount(Math.max(0, Number(e.target.value)))
-                        }
-                        placeholder="0"
-                      />
-                      <Button
-                        variant="outline"
-                        className="h-8 w-8 p-0 items-center flex justify-center"
-                        onClick={() => setEthereumCount(ethereumCount + 1)}
-                      >
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M10.0001 4.16667V15.8333M4.16675 10H15.8334"
-                            stroke="currentColor"
-                            stroke-width="1.66667"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="flex w-full justify-between py-1 items-center">
-                    <div className="w-full gap-2 flex items-center">
-                      <svg
-                        width="32"
-                        height="32"
-                        viewBox="0 0 32 32"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g clip-path="url(#clip0_150_11118)">
-                          <rect
-                            width="32"
-                            height="32"
-                            rx="9"
-                            fill="url(#paint0_linear_150_11118)"
-                          />
-                          <g clip-path="url(#clip1_150_11118)">
-                            <rect
-                              width="32"
-                              height="32"
-                              rx="6"
-                              fill="url(#paint1_linear_150_11118)"
-                            />
-                            <mask
-                              id="mask0_150_11118"
-                              maskUnits="userSpaceOnUse"
-                              x="0"
-                              y="0"
-                              width="32"
-                              height="32"
-                            >
-                              <path
-                                d="M16 31.6742C24.6567 31.6742 31.6743 24.6566 31.6743 15.9999C31.6743 7.34328 24.6567 0.325684 16 0.325684C7.3434 0.325684 0.325806 7.34328 0.325806 15.9999C0.325806 24.6566 7.3434 31.6742 16 31.6742Z"
-                                fill="white"
-                              />
-                            </mask>
-                            <g mask="url(#mask0_150_11118)">
-                              <path
-                                d="M33.1585 -1.15848H-1.15833V33.1583H33.1585V-1.15848Z"
-                                fill="url(#paint2_linear_150_11118)"
-                              />
-                            </g>
-                            <path
-                              d="M20.5329 19.3824L24.9675 16.8217C25.2024 16.6861 25.3477 16.4339 25.3477 16.1625V11.0419C25.3477 10.7712 25.2017 10.5184 24.9675 10.3827L20.5329 7.82206C20.2981 7.68638 20.0069 7.68702 19.772 7.82206L15.3374 10.3827C15.1025 10.5184 14.9573 10.7712 14.9573 11.0419V20.1933L11.8475 21.9885L8.73774 20.1933V16.6022L11.8475 14.807L13.8987 15.991V13.5821L12.2277 12.6176C12.1125 12.551 11.9806 12.5158 11.8469 12.5158C11.7131 12.5158 11.5813 12.551 11.4667 12.6176L7.03214 15.1782C6.79726 15.3139 6.65198 15.5661 6.65198 15.8374V20.9581C6.65198 21.2288 6.7979 21.4816 7.03214 21.6173L11.4667 24.1779C11.7009 24.3129 11.9928 24.3129 12.2277 24.1779L16.6622 21.6179C16.8971 21.4822 17.0424 21.2294 17.0424 20.9587V11.8073L17.0987 11.7753L20.1521 10.0121L23.2619 11.8073V15.3984L20.1521 17.1936L18.1041 16.0109V18.4198L19.772 19.383C20.0069 19.5181 20.2981 19.5181 20.5329 19.383V19.3824Z"
-                              fill="white"
-                            />
-                          </g>
-                        </g>
-                        <rect
-                          x="0.5"
-                          y="0.5"
-                          width="31"
-                          height="31"
-                          rx="8.5"
-                          stroke="#D0D5DD"
-                        />
-                        <defs>
-                          <linearGradient
-                            id="paint0_linear_150_11118"
-                            x1="-5.84797"
-                            y1="2.63006"
-                            x2="27.1869"
-                            y2="22.8458"
-                            gradientUnits="userSpaceOnUse"
-                          >
-                            <stop stop-color="#A229C5" />
-                            <stop offset="1" stop-color="#7B3FE4" />
-                          </linearGradient>
-                          <linearGradient
-                            id="paint1_linear_150_11118"
-                            x1="-5.84797"
-                            y1="2.63006"
-                            x2="27.1869"
-                            y2="22.8458"
-                            gradientUnits="userSpaceOnUse"
-                          >
-                            <stop stop-color="#A229C5" />
-                            <stop offset="1" stop-color="#7B3FE4" />
-                          </linearGradient>
-                          <linearGradient
-                            id="paint2_linear_150_11118"
-                            x1="-7.42969"
-                            y1="1.662"
-                            x2="27.9969"
-                            y2="23.3414"
-                            gradientUnits="userSpaceOnUse"
-                          >
-                            <stop stop-color="#A229C5" />
-                            <stop offset="1" stop-color="#7B3FE4" />
-                          </linearGradient>
-                          <clipPath id="clip0_150_11118">
-                            <rect width="32" height="32" rx="9" fill="white" />
-                          </clipPath>
-                          <clipPath id="clip1_150_11118">
-                            <rect width="32" height="32" rx="6" fill="white" />
-                          </clipPath>
-                        </defs>
-                      </svg>
-
-                      <p className="font-medium text-md text-gray-700">
-                        Polygon
-                      </p>
-                    </div>
-                    <div className="flex items-end gap-2 ml-auto">
-                      <Button
-                        variant="outline"
-                        className="h-8 w-8 p-0 items-center flex justify-center"
-                        onClick={() =>
-                          setPolygonCount(
-                            polygonCount > 0 ? polygonCount - 1 : 0
-                          )
-                        }
-                        disabled={polygonCount === 0}
-                      >
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M4.16675 10H15.8334"
-                            stroke="currentColor"
-                            stroke-width="1.66667"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </Button>
-                      <Input
-                        type="number"
-                        className="w-12 h-8 text-center"
-                        value={polygonCount}
-                        onChange={(e) =>
-                          setPolygonCount(Math.max(0, Number(e.target.value)))
-                        }
-                        placeholder="0"
-                      />
-                      <Button
-                        variant="outline"
-                        className="h-8 w-8 p-0 items-center flex justify-center"
-                        onClick={() => setPolygonCount(polygonCount + 1)}
-                      >
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M10.0001 4.16667V15.8333M4.16675 10H15.8334"
-                            stroke="currentColor"
-                            stroke-width="1.66667"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </Button>
-                    </div>
-                  </div>
+                  <NetworkSelectForm />
                 </div>
               </div>
               <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
@@ -3759,7 +3371,9 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                       <p className="font-medium text-md text-gray-800">
                         Maximum per Wallet
                       </p>
-                      <p className="font-medium text-sm text-gray-600">3/9</p>
+                      <p className="font-medium text-sm text-gray-600">
+                        {bitcoinCount + ethCount + polygonCount}/9
+                      </p>
                     </div>
                     <div className="flex flex-col items-end font-medium leading-5">
                       <div className="flex items-center gap-1">
@@ -3801,7 +3415,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                         </svg>
 
                         <h3 className="text-md text-gray-800 whitespace-nowrap">
-                          0.00 USDT
+                          {1.99 * (bitcoinCount + ethCount + polygonCount)} USDT
                         </h3>
                       </div>
                       <p className="text-sm text-gray-600 ">per month</p>
@@ -3831,7 +3445,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M21.2503 21.2504C25.8137 20.6394 29.3333 16.7308 29.3333 12.0001C29.3333 6.84542 25.1546 2.66675 20 2.66675C15.2693 2.66675 11.3606 6.18631 10.7496 10.7498M9.99996 17.3334L12 16.0001V23.3334M9.99996 23.3334H14M21.3333 20.0001C21.3333 25.1547 17.1546 29.3334 12 29.3334C6.8453 29.3334 2.66663 25.1547 2.66663 20.0001C2.66663 14.8454 6.8453 10.6667 12 10.6667C17.1546 10.6667 21.3333 14.8454 21.3333 20.0001Z"
+                    d="M27.3333 9.70367L16 16M16 16L4.66662 9.70367M16 16L16 28.6667M18.6667 27.8519L17.036 28.7578C16.6579 28.9678 16.4688 29.0729 16.2686 29.1141C16.0914 29.1505 15.9086 29.1505 15.7314 29.1141C15.5312 29.0729 15.3421 28.9678 14.964 28.7578L5.0973 23.2763C4.69794 23.0544 4.49824 22.9435 4.35284 22.7857C4.22421 22.6461 4.12686 22.4807 4.06731 22.3004C4 22.0967 4 21.8683 4 21.4114V10.5886C4 10.1317 4 9.90331 4.06731 9.69958C4.12686 9.51934 4.22421 9.3539 4.35284 9.21432C4.49825 9.05653 4.69793 8.9456 5.09729 8.72373L14.964 3.24224C15.3421 3.03217 15.5312 2.92713 15.7314 2.88595C15.9086 2.8495 16.0914 2.8495 16.2686 2.88595C16.4688 2.92713 16.6579 3.03217 17.036 3.24224L26.9027 8.72373C27.3021 8.94559 27.5018 9.05653 27.6472 9.21431C27.7758 9.3539 27.8731 9.51934 27.9327 9.69958C28 9.90331 28 10.1317 28 10.5886L28 16.6667M10 6L22 12.6667M25.3333 28V20M21.3333 24H29.3333"
                     stroke="#344054"
                     stroke-width="2"
                     stroke-linecap="round"
@@ -3839,84 +3453,27 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   />
                 </svg>
               </div>
-              <FSDialogTitle className="text-xl">Payment Amount</FSDialogTitle>
+              <FSDialogTitle className="text-xl">Payment Method</FSDialogTitle>
               <FSDialogDescription className="text-gray-800">
-                Selecting a recipient from the dropdown menu, featuring your
-                list of your contacts.
+                Select a wallet associated with a Network Account for Polygon
+                USDT transactions and proceed to execute the payment in the next
+                step.
               </FSDialogDescription>
             </FSDialogHeader>
             <div>
               <div className="w-full bg-gray-50 uppercase px-6 text-xs font-medium text-gray-600 py-2">
-                Pay
+                Pay with
               </div>
               <div className="flex gap-3 mt-3 items-center mb-6 px-6">
                 <div className="flex flex-col gap-2 w-full">
-                  <PaymentForm />
-                  <p className="text-gray-700 font-medium text-sm">
-                    {selectedAsset} ≈{" "}
-                    {(
-                      (selectedPayment || 0) /
-                      (selectedAsset === "ETH" ? cryptoValues.ethValue : 1)
-                    ).toFixed(10)}{" "}
-                    {selectedAsset}
-                  </p>
+                  <ReceiveForm />
                 </div>
               </div>
-              <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
-                To
-              </div>
-              <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
-                <div className="w-full justify-between flex  py-1.5 mb-3">
-                  {" "}
-                  <p>Recipient</p>
-                  <p className="flex gap-2 font-medium items-center">
-                    {selectedRecipient}
-                  </p>
-                </div>
-              </div>
-              <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
-                From
-              </div>
-              <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
-                <div className="w-full justify-between flex  py-1.5">
-                  {" "}
-                  <p>Wallet</p>
-                  <p className="flex gap-2 font-medium items-center">
-                    {selectedWallet}
-                  </p>
-                </div>
-                <div className="w-full justify-between  flex py-1.5 mb-3">
-                  {" "}
-                  <p>Network Account</p>
-                  <p className="flex gap-2 font-medium items-center">
-                    {selectedNetwork === "MATIC" ? (
-                      <div className="flex gap-2 items-center">
-                        <img src="/icons/networks/MATIC.svg" />
-                        <p>Network Account Name</p>
-                        <p>(0x8f...47d2)</p>
-                      </div>
-                    ) : selectedNetwork === "BTC" ? (
-                      <div className="flex gap-2 items-center">
-                        <img src="/icons/networks/BTC.svg" />
-                        <p>Network Account Name</p>
-                        <p>(0x8f...47d2)</p>
-                      </div>
-                    ) : selectedNetwork === "ETH" ? (
-                      <div className="flex gap-2 items-center">
-                        <img src="/icons/networks/ETH.svg" />
-                        <p>Network Account Name</p>
-                        <p>(0x8f...47d2)</p>
-                      </div>
-                    ) : (
-                      <div>-</div>
-                    )}
-                  </p>
-                </div>
-              </div>
+
               <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
                 Balance
               </div>
-              <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
+              <div className="px-6 pb-5 flex flex-col gap-2 text-gray-700 text-sm">
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Available Balance</p>
@@ -3933,37 +3490,6 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   <p className="flex gap-2 font-medium items-center">
                     {usdEquivalent}
                   </p>
-                </div>
-              </div>
-              <div className="px-6 pt-6 pb-5">
-                <div className="w-full p-4 flex gap-3 rounded-xl text-sm bg-amber-50 text-amber-700">
-                  <svg
-                    className="min-w-5"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.99975 7.49995V10.8333M9.99975 14.1666H10.0081M8.84585 3.24305L1.99178 15.0819C1.61161 15.7386 1.42153 16.0669 1.44962 16.3364C1.47412 16.5714 1.59727 16.785 1.7884 16.924C2.00753 17.0833 2.38691 17.0833 3.14568 17.0833H16.8538C17.6126 17.0833 17.992 17.0833 18.2111 16.924C18.4022 16.785 18.5254 16.5714 18.5499 16.3364C18.578 16.0669 18.3879 15.7386 18.0077 15.0819L11.1537 3.24305C10.7748 2.58875 10.5854 2.26159 10.3383 2.15172C10.1228 2.05587 9.87672 2.05587 9.66117 2.15172C9.41406 2.26159 9.22466 2.58875 8.84585 3.24305Z"
-                      stroke="#DC6803"
-                      stroke-width="1.66667"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-
-                  <div>
-                    <h3 className="font-semibold mb-1">
-                      Asset Transfer Disclaimer
-                    </h3>
-                    <p className="">
-                      You are initiating a blockchain network transaction, which
-                      is irreversible after confirmation. Ensure the transaction
-                      details are correct to avoid asset loss.
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -3993,19 +3519,17 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   />
                 </svg>
               </div>
-              <FSDialogTitle className="text-xl">
-                Payment Confirmation
-              </FSDialogTitle>
+              <FSDialogTitle className="text-xl">Review Order</FSDialogTitle>
               <FSDialogDescription className="text-gray-800">
-                Before finalizing your transaction, carefully review your
-                payment, including the selected wallet, Network Account, and the
-                total amount with fees. Ensure all details are correct and
-                confirm to proceed.
+                Before finalizing your transaction, carefully review your order
+                summary, including the selected wallet, Network Account for USDT
+                on Polygon, and the total amount with fees. Ensure all details
+                are correct and confirm to proceed.
               </FSDialogDescription>
             </FSDialogHeader>
             <div>
               <div className="w-full bg-gray-50 uppercase px-6 text-xs font-medium text-gray-600 py-2">
-                Paying
+                Product
               </div>
               <div className="flex gap-3 mt-3 items-center mb-4 px-6">
                 <div className="flex flex-col gap-2 items-start justify-start">
@@ -4042,7 +3566,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 </div>
               </div>
               <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
-                Transaction Details
+                Payment Summary
               </div>
               <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
                 <div className="w-full justify-between flex  py-1.5">
@@ -4069,20 +3593,9 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   </p>
                 </div>
               </div>
+
               <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
-                To
-              </div>
-              <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
-                <div className="w-full justify-between flex  py-1.5 mb-3">
-                  {" "}
-                  <p>Recipient</p>
-                  <p className="flex gap-2 font-medium items-center">
-                    {selectedRecipient}
-                  </p>
-                </div>
-              </div>
-              <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
-                From
+                Payment Method
               </div>
               <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
                 <div className="w-full justify-between flex  py-1.5">
@@ -4123,7 +3636,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
               <div className="w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2">
                 Balance
               </div>
-              <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
+              <div className="px-6 flex pb-5 flex-col gap-2 text-gray-700 text-sm">
                 <div className="w-full justify-between flex  py-1.5">
                   {" "}
                   <p>Available Balance</p>
@@ -4140,37 +3653,6 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   <p className="flex gap-2 font-medium items-center">
                     {usdEquivalent}
                   </p>
-                </div>
-              </div>
-              <div className="px-6 pt-6 pb-5">
-                <div className="w-full p-4 flex gap-3 rounded-xl text-sm bg-amber-50 text-amber-700">
-                  <svg
-                    className="min-w-5"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.99975 7.49995V10.8333M9.99975 14.1666H10.0081M8.84585 3.24305L1.99178 15.0819C1.61161 15.7386 1.42153 16.0669 1.44962 16.3364C1.47412 16.5714 1.59727 16.785 1.7884 16.924C2.00753 17.0833 2.38691 17.0833 3.14568 17.0833H16.8538C17.6126 17.0833 17.992 17.0833 18.2111 16.924C18.4022 16.785 18.5254 16.5714 18.5499 16.3364C18.578 16.0669 18.3879 15.7386 18.0077 15.0819L11.1537 3.24305C10.7748 2.58875 10.5854 2.26159 10.3383 2.15172C10.1228 2.05587 9.87672 2.05587 9.66117 2.15172C9.41406 2.26159 9.22466 2.58875 8.84585 3.24305Z"
-                      stroke="#DC6803"
-                      stroke-width="1.66667"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-
-                  <div>
-                    <h3 className="font-semibold mb-1">
-                      Asset Transfer Disclaimer
-                    </h3>
-                    <p className="">
-                      You are initiating a blockchain network transaction, which
-                      is irreversible after confirmation. Ensure the transaction
-                      details are correct to avoid asset loss.
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -6768,37 +6250,12 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   </svg>
                 </div>
                 <h3 className="text-2xl font-medium mb-1">
-                  Payment was successful!
+                  Successfully subscribed!
                 </h3>
                 <p className="text-sm font-normal text-gray-600">
-                  You successfully sent{" "}
-                  <span className="font-medium text-gray-800">
-                    {selectedAsset === "ETH"
-                      ? (
-                          Number(selectedPayment) / cryptoValues.ethValue
-                        ).toLocaleString(undefined, {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                        })
-                      : (Number(selectedPayment) * 1).toLocaleString(
-                          undefined,
-                          {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
-                          }
-                        )}{" "}
-                    {selectedAsset} (≈$
-                    {Number(selectedPayment).toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                    )
-                  </span>{" "}
-                  to{" "}
-                  <span className="font-medium text-gray-800">
-                    {selectedRecipient}
-                  </span>
-                  .
+                  You’ve successfully purchased and subscribed to Safeheron
+                  Premium. You will be redirected to proceed to wallet
+                  installation.
                 </p>
               </div>
               <div>

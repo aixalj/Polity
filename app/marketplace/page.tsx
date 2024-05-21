@@ -7,6 +7,7 @@ import { AreaChart } from "@tremor/react";
 import { Progress } from "@/components/ui/progress";
 
 import { Subscribe } from "@/components/subscribe";
+import { SubscribeProvider } from "@/components/ui/subscribecontext";
 
 import {
   Tooltip,

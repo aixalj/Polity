@@ -2395,7 +2395,7 @@ const SendModal = () => {
             </div>
 
             <div className="flex items-center gap-8">
-              {activeTab !== "confirm" && (
+              {activeTab == "confirm" && (
                 <Button onClick={handleContinue} disabled={!canContinue()}>
                   Continue
                   <svg
