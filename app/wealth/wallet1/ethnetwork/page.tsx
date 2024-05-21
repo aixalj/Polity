@@ -9,6 +9,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TimeForm } from "@/components/timeform";
 import { ReceiveBtn } from "@/components/receivebtn";
 
+import { WalletProvider } from "@/components/ui/formcontext";
+
 import Stats from "@/components/stats";
 
 import Allocation from "@/components/allocation";
@@ -193,7 +195,9 @@ function BitcoinOne() {
                       </svg>
                       Connect
                     </Button>
-                    <ReceiveBtn variant="network" />
+                    <WalletProvider>
+                      <ReceiveBtn variant="network" />
+                    </WalletProvider>
                   </div>
                 </div>
 
