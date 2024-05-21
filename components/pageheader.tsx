@@ -429,9 +429,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ variant = "default" }) => {
               </div>
             </div>
           )}
-          <WalletProvider>
-            <ReceiveBtn variant="wealth" />
-          </WalletProvider>
+          <ReceiveBtn variant="wealth" />
         </div>
 
         <div className="w-full  mt-5 flex items-center justify-between pb-1">
