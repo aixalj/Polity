@@ -2460,23 +2460,6 @@ const SubscribeModal = () => {
           </div>
         </div>
         <div className="absolute left-0 top-0  bg-gray-50/50 backdrop-blur-lg h-full flex z-40 flex-col px-6 py-12 w-80 gap-3">
-          {/* <div className="mb-2">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.0006 25.3333V15.9999M16.3893 25.4461L25.6939 28.5611C26.4231 28.8052 26.7877 28.9272 27.0126 28.8397C27.2078 28.7636 27.3559 28.6002 27.4125 28.3984C27.4776 28.1661 27.3204 27.8152 27.006 27.1134L17.0213 4.82976C16.7139 4.1435 16.5601 3.80037 16.3459 3.69404C16.1599 3.60167 15.9414 3.60132 15.755 3.69309C15.5405 3.79873 15.3856 4.14137 15.0759 4.82664L5.00325 27.1147C4.68632 27.816 4.52786 28.1666 4.5923 28.3992C4.64826 28.6012 4.79596 28.7651 4.99105 28.8417C5.2157 28.93 5.58089 28.8088 6.31128 28.5663L15.7146 25.4453C15.8399 25.4037 15.9025 25.3829 15.9665 25.3747C16.0233 25.3675 16.0808 25.3675 16.1376 25.375C16.2016 25.3833 16.2642 25.4043 16.3893 25.4461Z"
-                stroke="#344054"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </div> */}
           <h3 className="text-lg font-medium leading-none">
             <svg
               width="161"
@@ -4197,12 +4180,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <div className="px-6 flex flex-col gap-2 text-gray-700 text-sm">
                   <div className="w-full justify-between flex  py-1.5">
                     {" "}
-                    <p>Today you'll pay</p>
-                    {/* <p className="flex gap-2 font-medium items-center">
-                    <img src={`/icons/networks/${selectedNetwork}.svg`} />
-                    0.016789 {selectedNetwork} ($
-                    {(cryptoValues.ethValue * 0.016789).toFixed(2)})
-                  </p> */}
+                    <p>Today you&apos;ll pay</p>
                     <div className="flex gap-2 font-medium items-center">
                       {selectedAsset && (
                         <img src={`/icons/tokens/${selectedAsset}.svg`} />

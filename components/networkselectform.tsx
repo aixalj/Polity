@@ -53,9 +53,6 @@ export function NetworkSelectForm() {
     setBitcoinCount(bitcoinCount);
     setEthCount(ethereumCount);
     setPolygonCount(polygonCount);
-    console.log("BTC amount:", bitcoinCount);
-    console.log("ETH amount:", ethereumCount);
-    console.log("POLYGON amount:", polygonCount);
   }, [bitcoinCount, ethereumCount, polygonCount]);
 
   return (
