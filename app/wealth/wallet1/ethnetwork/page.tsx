@@ -39,7 +39,14 @@ function BitcoinOne() {
             defaultValue="overview"
             onValueChange={(value) => setSelectedTab(value)}
           >
-            <div className="w-full sticky top-0 backdrop-blur-md	z-10  border-b border-gray-100 bg-white/60">
+            <div
+              className="w-full sticky top-0 backdrop-blur-md	z-10  border-b border-gray-100 bg-white/60"
+              style={{
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+                backgroundColor: "rgba(255, 255, 255, 0.6)",
+              }}
+            >
               <div className=" max-w-screen-xl mx-auto p-6">
                 <nav aria-label="Breadcrumb">
                   <ol className="flex items-center gap-1 text-xs text-gray-600">

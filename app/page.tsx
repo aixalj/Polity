@@ -75,7 +75,7 @@ function Home() {
         <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll pb-40">
           <PageHeader variant="default" />
 
-          <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full pb-40 mb-40">
+          <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 pb-40">
             <Stats />
 
             <Allocation getAllAssets={getAllAssets()} />
