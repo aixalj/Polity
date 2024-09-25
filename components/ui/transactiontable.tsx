@@ -204,6 +204,9 @@ const TransactionTable: React.FC<{
                         <CollapsibleTrigger className="w-9 flex-none h-16 flex items-center justify-center align-middle">
                           <svg
                             className="mx-auto"
+                            // className={`mx-auto transition-transform duration-200 ${
+                            //   open ? "transform rotate-180" : ""
+                            // }`}
                             width="20"
                             height="20"
                             viewBox="0 0 20 20"
@@ -459,13 +462,13 @@ const TransactionTable: React.FC<{
                       </div>
                       <div className="grid grid-cols-2 w-full py-4 divide-x">
                         <div className="flex flex-col">
-                          <div className="px-6 h-11 items-center flex justify-between">
-                            <p className="text-gray-600">Type</p>
-                            <p>{transaction.method}</p>
+                          <div className="px-6 h-11 items-center text-gray-700 flex justify-between">
+                            <p className="text-xs">Type</p>
+                            <p className="text-sm">{transaction.method}</p>
                           </div>
-                          <div className="px-6 h-11 items-center flex justify-between border-t">
-                            <p className="text-gray-600">Time</p>
-                            <p>
+                          <div className="px-6 h-11 items-center flex text-gray-700 justify-between border-t">
+                            <p className="text-xs">Time</p>
+                            <p className="texr-sm">
                               {new Date(transaction.timestamp).toLocaleString(
                                 "en-US",
                                 {
@@ -479,17 +482,19 @@ const TransactionTable: React.FC<{
                               )}
                             </p>
                           </div>
-                          <div className="px-6 h-11 items-center flex justify-between border-t">
-                            <p className="text-gray-600">Quantity</p>
-                            <p>{transaction.value}</p>
+                          <div className="px-6 h-11 text-gray-700 items-center flex justify-between border-t">
+                            <p className="text-xs">Quantity</p>
+                            <p className="text-sm">{transaction.value}</p>
                           </div>
-                          <div className="px-6 h-11 items-center flex justify-between border-t">
-                            <p className="text-gray-600">Transaction Fee</p>
-                            <p>{transaction.transactionFee}</p>
+                          <div className="px-6 h-11 items-center flex text-gray-700 justify-between border-t">
+                            <p className="text-xs">Transaction Fee</p>
+                            <p className="text-sm">
+                              {transaction.transactionFee}
+                            </p>
                           </div>
-                          <div className="px-6 h-11 items-center flex justify-between border-t">
-                            <p className="text-gray-600">Transaction Hash</p>
-                            <p>
+                          <div className="px-6 h-11 items-center text-gray-700 flex justify-between border-t">
+                            <p className="text-xs">Transaction Hash</p>
+                            <p className="text-sm">
                               <span
                                 className="underline underline-offset-4 cursor-pointer flex items-center gap-2"
                                 onClick={() =>
@@ -529,21 +534,21 @@ const TransactionTable: React.FC<{
                             </p>
                           </div>
                         </div>
-                        <div className="flex flex-col">
+                        <div className="flex text-gray-700 text-sm flex-col">
                           <div className="px-6 h-11 items-center flex justify-between">
-                            <p className="text-gray-600">Status</p>
+                            <p className="text-xs">Status</p>
                             <p>{transaction.status}</p>
                           </div>
                           <div className="px-6 h-11 items-center flex justify-between border-t">
-                            <p className="text-gray-600">Network</p>
+                            <p className="text-xs">Network</p>
                             <p>{transaction.network}</p>
                           </div>
                           <div className="px-6 h-11 items-center flex justify-between border-t">
-                            <p className="text-gray-600">Wallet</p>
+                            <p className="text-xs">Wallet</p>
                             <p>{transaction.wallet}</p>
                           </div>
                           <div className="px-6 h-11 items-center flex justify-between border-t">
-                            <p className="text-gray-600">From</p>
+                            <p className="text-xs">From</p>
                             <p>
                               {/^\d/.test(transaction.fromAddress) ? (
                                 <span
@@ -589,7 +594,7 @@ const TransactionTable: React.FC<{
                             </p>
                           </div>
                           <div className="px-6 h-11 items-center flex justify-between border-t">
-                            <p className="text-gray-600">To</p>
+                            <p className="text-xs">To</p>
                             <p>
                               {/^\d/.test(transaction.toAddress) ? (
                                 <span
