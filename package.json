@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o storybook-static",
+    "build-storybook": "storybook build -o public/storybook",
     "chromatic": "npx chromatic --project-token=chpt_29a4cad1a467789"
   },
   "dependencies": {
