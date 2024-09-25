@@ -1122,7 +1122,7 @@ const SideBar = () => {
                   onClick={(e) => {
                     if (e.detail === 3) {
                       e.preventDefault();
-                      window.open("/transactions", "_blank");
+                      window.open("/transactions", "_self");
                     }
                   }}
                   id="overview"
@@ -1170,7 +1170,7 @@ const SideBar = () => {
                   onClick={(e) => {
                     if (e.detail === 3) {
                       e.preventDefault();
-                      window.open("/addressbook", "_blank");
+                      window.open("/addressbook", "_self");
                     }
                   }}
                 >
@@ -1204,7 +1204,7 @@ const SideBar = () => {
                   onClick={(e) => {
                     if (e.detail === 3) {
                       e.preventDefault();
-                      window.open("/agreements", "_blank");
+                      window.open("/agreements", "_self");
                     }
                   }}
                   id="overview"
