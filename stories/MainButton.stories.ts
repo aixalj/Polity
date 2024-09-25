@@ -40,23 +40,69 @@ export const Secondary: Story = {
   },
 };
 
-// export const Large: Story = {
-//   args: {
-//     size: "lg",
-//     children: "Button",
-//   },
-// };
-
-// export const Small: Story = {
-//   args: {
-//     size: "sm",
-//     children: "Button",
-//   },
-// };
-
-export const Warning: Story = {
+export const Destructive: Story = {
   args: {
     variant: "destructive",
-    children: "Delete now",
+    children: "Delete",
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    variant: "outline",
+    children: "Outline",
+  },
+};
+
+export const Ghost: Story = {
+  args: {
+    variant: "ghost",
+    children: "Ghost",
+  },
+};
+
+export const Link: Story = {
+  args: {
+    variant: "link",
+    children: "Link",
+  },
+};
+
+// Size variants
+export const Small: Story = {
+  args: {
+    size: "sm",
+    children: "Small",
+  },
+};
+
+export const Default: Story = {
+  args: {
+    size: "default",
+    children: "Default",
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: "lg",
+    children: "Large",
+  },
+};
+
+// You can add more stories to showcase different combinations of props
+export const OutlineSmall: Story = {
+  args: {
+    variant: "outline",
+    size: "sm",
+    children: "Outline Small",
+  },
+};
+
+export const GhostLarge: Story = {
+  args: {
+    variant: "ghost",
+    size: "lg",
+    children: "Ghost Large",
   },
 };

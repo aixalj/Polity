@@ -31,12 +31,16 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { useTime } from "@/components/ui/timecontext"; // Adjust the import path as necessary
 import { TimeProvider } from "@/components/ui/timecontext"; // Adjust the import path as necessary
 
-export function TimeForm() {
+interface TimeFormProps {
+  defaultValue?: string;
+}
+
+export function TimeForm({ defaultValue = "pastday" }: TimeFormProps) {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      time: "pastday",
+      time: defaultValue,
     },
   });
 
@@ -67,7 +71,7 @@ export function TimeForm() {
                     <Select
                       value={field.value}
                       onValueChange={field.onChange}
-                      defaultValue="Past Day"
+                      defaultValue={defaultValue}
                     >
                       <SelectTrigger className="w-48 gap-2 font-medium ">
                         <svg
