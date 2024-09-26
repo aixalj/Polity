@@ -20,6 +20,7 @@ import {
   LayersThree01,
   LayerSingle,
   AlignRight01,
+  ChevronDown,
 } from "@untitled-ui/icons-react";
 
 import {
@@ -201,6 +202,17 @@ const TransactionTable: React.FC<{
     setOpenTooltipId((prevId) => (prevId === id ? null : id));
   };
 
+  const [openTransactions, setOpenTransactions] = useState<{
+    [key: string]: boolean;
+  }>({});
+
+  const toggleOpen = (transactionHash: string) => {
+    setOpenTransactions((prevOpen) => ({
+      ...prevOpen,
+      [transactionHash]: !prevOpen[transactionHash],
+    }));
+  };
+
   const groupedTransactions = groupTransactionsByDate(filteredTransactions);
 
   return (
@@ -230,12 +242,18 @@ const TransactionTable: React.FC<{
                   >
                     <div className="w-full ease-in-out duration-200">
                       <div className="w-full flex text-left  text-gray-900">
-                        <CollapsibleTrigger className="w-9 flex-none h-16 flex items-center justify-center align-middle">
+                        <CollapsibleTrigger
+                          onClick={() =>
+                            toggleOpen(transaction.transactionHash)
+                          }
+                          className="w-9 flex-none h-16 flex items-center justify-center align-middle"
+                        >
                           <svg
-                            className="mx-auto"
-                            // className={`mx-auto transition-transform duration-200 ${
-                            //   open ? "transform rotate-180" : ""
-                            // }`}
+                            className={`mx-auto  ${
+                              openTransactions[transaction.transactionHash]
+                                ? "rotate-180"
+                                : ""
+                            }`}
                             width="20"
                             height="20"
                             viewBox="0 0 20 20"
@@ -265,7 +283,7 @@ const TransactionTable: React.FC<{
                           </svg>
                         </CollapsibleTrigger>
                         <div className="w-40 font-medium break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-2 h-16 ">
-                          <div className="w-8 h-8 rounded-lg border flex items-center justify-center border-gray-200">
+                          <div className="w-8 h-8 rounded-lg bg-white  border flex items-center justify-center border-gray-200">
                             {transaction.method === "Receive" ? (
                               <ArrowDown className="w-4 h-4 text-gray-500" />
                             ) : transaction.method === "Swap" ? (
