@@ -216,7 +216,7 @@ const TransactionTable: React.FC<{
   const groupedTransactions = groupTransactionsByDate(filteredTransactions);
 
   return (
-    <div className="relative w-full flex flex-col ">
+    <div className="relative w-full flex flex-col pb-40 ">
       <div className="w-full flex flex-col gap-1 overflow-y-scroll">
         <div className="w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs">
           <div className="w-9 flex-none"></div>
