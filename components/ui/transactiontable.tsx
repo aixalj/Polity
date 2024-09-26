@@ -14,11 +14,40 @@ import {
 import { useTime } from "@/components/ui/timecontext";
 
 import {
+  ArrowDown,
+  ArrowUp,
+  SwitchHorizontal02,
+  LayersThree01,
+  LayerSingle,
+  AlignRight01,
+} from "@untitled-ui/icons-react";
+
+import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+
+import { blo } from "blo";
+
+import BTC from "cryptocurrency-icons/svg/color/btc.svg";
+import ETH from "cryptocurrency-icons/svg/color/eth.svg";
+import LINK from "cryptocurrency-icons/svg/color/link.svg";
+import MATIC from "cryptocurrency-icons/svg/color/matic.svg";
+import USDC from "cryptocurrency-icons/svg/color/usdc.svg";
+import USDT from "cryptocurrency-icons/svg/color/usdt.svg";
+import WBTC from "cryptocurrency-icons/svg/color/wbtc.svg";
+// import WETH from "cryptocurrency-icons/svg/color/weth.svg";
+
+// const tokenIcons = {
+//   BTC: btc,
+//   ETH: eth,
+//   LINK: link,
+//   MATIC: matic,
+//   USDC: usdc,
+//   USDT: usdt,
+// };
 
 import {
   format,
@@ -179,8 +208,8 @@ const TransactionTable: React.FC<{
       <div className="w-full flex flex-col gap-1 overflow-y-scroll">
         <div className="w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs">
           <div className="w-9 flex-none"></div>
-          <div className="w-80 flex-none px-6 py-3">Type</div>
-          <div className="w-60 flex-none px-6 py-3">Transaction</div>
+          <div className="w-40 flex-none px-6 py-3">Type</div>
+          <div className="w-96 flex-none px-6 py-3">Transaction</div>
           <div className="w-36 flex-auto px-6 py-3">From</div>
           <div className="w-36 flex-auto px-6 py-3">To</div>
         </div>
@@ -235,8 +264,22 @@ const TransactionTable: React.FC<{
                             />
                           </svg>
                         </CollapsibleTrigger>
-                        <div className="w-80 font-medium break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-2 h-16 ">
-                          <div className="w-8 h-8 rounded-lg border border-gray-200"></div>
+                        <div className="w-40 font-medium break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-2 h-16 ">
+                          <div className="w-8 h-8 rounded-lg border flex items-center justify-center border-gray-200">
+                            {transaction.method === "Receive" ? (
+                              <ArrowDown className="w-4 h-4 text-gray-500" />
+                            ) : transaction.method === "Swap" ? (
+                              <SwitchHorizontal02 className="w-4 h-4 text-gray-500" />
+                            ) : transaction.method === "Stake" ? (
+                              <LayersThree01 className="w-4 h-4 text-gray-500" />
+                            ) : transaction.method === "Unstake" ? (
+                              <LayerSingle className="w-4 h-4 text-gray-500" />
+                            ) : transaction.method === "Lend" ? (
+                              <AlignRight01 className="w-4 h-4 text-gray-500" />
+                            ) : (
+                              <ArrowUp className="w-4 h-4 text-gray-500" />
+                            )}
+                          </div>
                           <div className="flex flex-col">
                             <p className="text-gray-900 text-sm font-medium">
                               {transaction.method}
@@ -252,22 +295,91 @@ const TransactionTable: React.FC<{
                             </p>
                           </div>
                         </div>
-                        <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-2">
-                          <div className="w-6 h-6 rounded-full bg-gray-100"></div>
-                          <div>
-                            <p
-                              className={`${transaction.method === "Receive" ? "text-teal-600" : "text-rose-600"} text-sm font-medium`}
-                            >
-                              {transaction.method === "Receive" ? "+" : "-"}
-                              {transaction.value} {transaction.token}
-                            </p>
-                            <p className="text-gray-600 text-xs">
-                              {getUSDValue(
-                                transaction.value,
-                                transaction.token
-                              )}
-                            </p>
+                        <div className="w-96 flex-none px-6 py-3 h-16 flex items-center gap-2">
+                          <div className="flex items-center gap-2">
+                            <div className="w-6 h-6 flex items-center justify-center rounded-full bg-gray-100">
+                              <Image
+                                alt={transaction.token}
+                                src={
+                                  transaction.token === "ETH"
+                                    ? ETH
+                                    : transaction.token === "USDC"
+                                      ? USDC
+                                      : transaction.token === "USDT"
+                                        ? USDT
+                                        : transaction.token === "BTC"
+                                          ? BTC
+                                          : transaction.token === "MATIC"
+                                            ? MATIC
+                                            : transaction.token === "LINK"
+                                              ? LINK
+                                              : transaction.token === "WBTC"
+                                                ? WBTC
+                                                : null
+                                }
+                                width={24}
+                                height={24}
+                              />
+                            </div>
+                            <div>
+                              <p
+                                className={`${transaction.method === "Receive" ? "text-teal-600" : transaction.method === "Swap" ? "text-rose-600" : "text-rose-600"} text-sm font-medium`}
+                              >
+                                {transaction.method === "Receive" ? "+" : "-"}
+                                {transaction.value} {transaction.token}
+                              </p>
+                              <p className="text-gray-600 text-xs">
+                                {getUSDValue(
+                                  transaction.value,
+                                  transaction.token
+                                )}
+                              </p>
+                            </div>
                           </div>
+                          {transaction.method === "Swap" && (
+                            <div className="flex items-center gap-2">
+                              <div className="w-5 h-5 flex items-center justify-center rounded-full bg-gray-100 border border-gray-200">
+                                <SwitchHorizontal02 className="w-3 h-3 text-gray-500" />
+                              </div>
+                              <div className="w-6 h-6 flex items-center justify-center rounded-full bg-gray-100">
+                                <Image
+                                  alt={transaction.toToken || ""}
+                                  src={
+                                    transaction.toToken === "ETH"
+                                      ? ETH
+                                      : transaction.toToken === "USDC"
+                                        ? USDC
+                                        : transaction.toToken === "USDT"
+                                          ? USDT
+                                          : transaction.toToken === "BTC"
+                                            ? BTC
+                                            : transaction.toToken === "MATIC"
+                                              ? MATIC
+                                              : transaction.toToken === "LINK"
+                                                ? LINK
+                                                : transaction.toToken === "WBTC"
+                                                  ? WBTC
+                                                  : null
+                                  }
+                                  width={24}
+                                  height={24}
+                                />
+                              </div>
+                              <div>
+                                <p
+                                  className={`text-teal-600 font-medium text-sm`}
+                                >
+                                  +{transaction.valueTo} {transaction.toToken}
+                                </p>
+                                <p className="text-gray-600 text-xs">
+                                  {getUSDValue(
+                                    transaction.valueTo || 0,
+                                    transaction.toToken || ""
+                                  )}
+                                </p>
+                              </div>
+                            </div>
+                          )}
                         </div>
                         <div className="w-36 flex-auto text-gray-700 text-sm font-medium  px-6 py-3 h-16 flex items-center">
                           <div ref={tooltipRef}>
@@ -314,7 +426,16 @@ const TransactionTable: React.FC<{
                                         }
                                       }}
                                     >
-                                      <div className="w-6 h-6 rounded-md border border-gray-200"></div>
+                                      <div className="w-6 h-6 overflow-hidden rounded-md border border-gray-200">
+                                        <Image
+                                          alt={transaction.fromAddress}
+                                          src={blo(
+                                            `0x${transaction.fromAddress.slice(2)}`
+                                          )}
+                                          width={24}
+                                          height={24}
+                                        />
+                                      </div>
                                       {`${transaction.fromAddress.slice(0, 4)}...${transaction.fromAddress.slice(-4)}`}
                                       <svg
                                         width="12"
@@ -407,7 +528,16 @@ const TransactionTable: React.FC<{
                                         }
                                       }}
                                     >
-                                      <div className="w-6 h-6 rounded-md border border-gray-200"></div>
+                                      <div className="w-6 h-6 overflow-hidden rounded-md border border-gray-200">
+                                        <Image
+                                          alt={transaction.toAddress}
+                                          src={blo(
+                                            `0x${transaction.toAddress.slice(2)}`
+                                          )}
+                                          width={24}
+                                          height={24}
+                                        />
+                                      </div>
                                       {`${transaction.toAddress.slice(0, 4)}...${transaction.toAddress.slice(-4)}`}
                                       <svg
                                         width="12"
@@ -550,93 +680,214 @@ const TransactionTable: React.FC<{
                           <div className="px-6 h-11 items-center flex justify-between border-t">
                             <p className="text-xs">From</p>
                             <p>
-                              {/^\d/.test(transaction.fromAddress) ? (
-                                <span
-                                  className="underline underline-offset-4 cursor-pointer flex items-center gap-2"
-                                  onClick={() =>
-                                    navigator.clipboard.writeText(
-                                      transaction.fromAddress
-                                    )
-                                  }
-                                >
-                                  <div className="w-6 h-6 rounded-md border border-gray-200"></div>
-                                  {`${transaction.fromAddress.slice(0, 4)}...${transaction.fromAddress.slice(-4)}`}
-                                  <svg
-                                    width="12"
-                                    height="12"
-                                    viewBox="0 0 12 12"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <g clip-path="url(#clip0_1278_40151)">
-                                      <path
-                                        d="M2.5 7.5C2.03406 7.5 1.80109 7.5 1.61732 7.42388C1.37229 7.32239 1.17761 7.12771 1.07612 6.88268C1 6.69891 1 6.46594 1 6V2.6C1 2.03995 1 1.75992 1.10899 1.54601C1.20487 1.35785 1.35785 1.20487 1.54601 1.10899C1.75992 1 2.03995 1 2.6 1H6C6.46594 1 6.69891 1 6.88268 1.07612C7.12771 1.17761 7.32239 1.37229 7.42388 1.61732C7.5 1.80109 7.5 2.03406 7.5 2.5M6.1 11H9.4C9.96005 11 10.2401 11 10.454 10.891C10.6422 10.7951 10.7951 10.6422 10.891 10.454C11 10.2401 11 9.96005 11 9.4V6.1C11 5.53995 11 5.25992 10.891 5.04601C10.7951 4.85785 10.6422 4.70487 10.454 4.60899C10.2401 4.5 9.96005 4.5 9.4 4.5H6.1C5.53995 4.5 5.25992 4.5 5.04601 4.60899C4.85785 4.70487 4.70487 4.85785 4.60899 5.04601C4.5 5.25992 4.5 5.53995 4.5 6.1V9.4C4.5 9.96005 4.5 10.2401 4.60899 10.454C4.70487 10.6422 4.85785 10.7951 5.04601 10.891C5.25992 11 5.53995 11 6.1 11Z"
-                                        stroke="#344054"
-                                        strokeWidth="1.25"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                      />
-                                    </g>
-                                    <defs>
-                                      <clipPath id="clip0_1278_40151">
-                                        <rect
-                                          width="12"
-                                          height="12"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                    </defs>
-                                  </svg>
-                                </span>
-                              ) : (
-                                transaction.fromAddress
-                              )}
+                              <div ref={tooltipRef}>
+                                {/^\d/.test(transaction.fromAddress) ? (
+                                  <TooltipProvider>
+                                    <Tooltip
+                                      open={
+                                        openTooltipId ===
+                                        transaction.transactionHash +
+                                          transaction.fromAddress
+                                      }
+                                      onOpenChange={() =>
+                                        toggleTooltip(
+                                          transaction.transactionHash +
+                                            transaction.fromAddress
+                                        )
+                                      }
+                                    >
+                                      <TooltipTrigger
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          toggleTooltip(
+                                            transaction.transactionHash +
+                                              transaction.fromAddress
+                                          );
+                                          navigator.clipboard.writeText(
+                                            transaction.fromAddress
+                                          );
+                                        }}
+                                        asChild
+                                      >
+                                        <span
+                                          className="underline underline-offset-4 cursor-pointer flex items-center gap-2"
+                                          onClick={() => {
+                                            navigator.clipboard.writeText(
+                                              transaction.fromAddress
+                                            );
+                                            const tooltip =
+                                              document.querySelector(
+                                                `[id="${transaction.fromAddress}"]`
+                                              );
+                                            if (tooltip) {
+                                              tooltip.textContent = "Copied!";
+                                              setTimeout(() => {
+                                                if (tooltip) {
+                                                  tooltip.textContent =
+                                                    "Click to copy";
+                                                }
+                                              }, 2000);
+                                            }
+                                          }}
+                                        >
+                                          <div className="w-6 h-6 overflow-hidden rounded-md border border-gray-200">
+                                            <Image
+                                              alt={transaction.fromAddress}
+                                              src={blo(
+                                                `0x${transaction.fromAddress.slice(2)}`
+                                              )}
+                                              width={24}
+                                              height={24}
+                                            />
+                                          </div>
+                                          {`${transaction.fromAddress.slice(0, 4)}...${transaction.fromAddress.slice(-4)}`}
+                                          <svg
+                                            width="12"
+                                            height="12"
+                                            viewBox="0 0 12 12"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <g clip-path="url(#clip0_1278_40151)">
+                                              <path
+                                                d="M2.5 7.5C2.03406 7.5 1.80109 7.5 1.61732 7.42388C1.37229 7.32239 1.17761 7.12771 1.07612 6.88268C1 6.69891 1 6.46594 1 6V2.6C1 2.03995 1 1.75992 1.10899 1.54601C1.20487 1.35785 1.35785 1.20487 1.54601 1.10899C1.75992 1 2.03995 1 2.6 1H6C6.46594 1 6.69891 1 6.88268 1.07612C7.12771 1.17761 7.32239 1.37229 7.42388 1.61732C7.5 1.80109 7.5 2.03406 7.5 2.5M6.1 11H9.4C9.96005 11 10.2401 11 10.454 10.891C10.6422 10.7951 10.7951 10.6422 10.891 10.454C11 10.2401 11 9.96005 11 9.4V6.1C11 5.53995 11 5.25992 10.891 5.04601C10.7951 4.85785 10.6422 4.70487 10.454 4.60899C10.2401 4.5 9.96005 4.5 9.4 4.5H6.1C5.53995 4.5 5.25992 4.5 5.04601 4.60899C4.85785 4.70487 4.70487 4.85785 4.60899 5.04601C4.5 5.25992 4.5 5.53995 4.5 6.1V9.4C4.5 9.96005 4.5 10.2401 4.60899 10.454C4.70487 10.6422 4.85785 10.7951 5.04601 10.891C5.25992 11 5.53995 11 6.1 11Z"
+                                                stroke="#344054"
+                                                strokeWidth="1.25"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                              />
+                                            </g>
+                                            <defs>
+                                              <clipPath id="clip0_1278_40151">
+                                                <rect
+                                                  width="12"
+                                                  height="12"
+                                                  fill="white"
+                                                />
+                                              </clipPath>
+                                            </defs>
+                                          </svg>
+                                        </span>
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <p id={transaction.fromAddress}>
+                                          Click to copy
+                                        </p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  </TooltipProvider>
+                                ) : (
+                                  transaction.fromAddress
+                                )}
+                              </div>
                             </p>
                           </div>
                           <div className="px-6 h-11 items-center flex justify-between border-t">
                             <p className="text-xs">To</p>
                             <p>
-                              {/^\d/.test(transaction.toAddress) ? (
-                                <span
-                                  className="underline underline-offset-4 cursor-pointer flex items-center gap-2"
-                                  onClick={() =>
-                                    navigator.clipboard.writeText(
-                                      transaction.fromAddress
-                                    )
-                                  }
-                                >
-                                  <div className="w-6 h-6 rounded-md border border-gray-200"></div>
-                                  {`${transaction.toAddress.slice(0, 4)}...${transaction.toAddress.slice(-4)}`}
-                                  <svg
-                                    width="12"
-                                    height="12"
-                                    viewBox="0 0 12 12"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <g clip-path="url(#clip0_1278_40151)">
-                                      <path
-                                        d="M2.5 7.5C2.03406 7.5 1.80109 7.5 1.61732 7.42388C1.37229 7.32239 1.17761 7.12771 1.07612 6.88268C1 6.69891 1 6.46594 1 6V2.6C1 2.03995 1 1.75992 1.10899 1.54601C1.20487 1.35785 1.35785 1.20487 1.54601 1.10899C1.75992 1 2.03995 1 2.6 1H6C6.46594 1 6.69891 1 6.88268 1.07612C7.12771 1.17761 7.32239 1.37229 7.42388 1.61732C7.5 1.80109 7.5 2.03406 7.5 2.5M6.1 11H9.4C9.96005 11 10.2401 11 10.454 10.891C10.6422 10.7951 10.7951 10.6422 10.891 10.454C11 10.2401 11 9.96005 11 9.4V6.1C11 5.53995 11 5.25992 10.891 5.04601C10.7951 4.85785 10.6422 4.70487 10.454 4.60899C10.2401 4.5 9.96005 4.5 9.4 4.5H6.1C5.53995 4.5 5.25992 4.5 5.04601 4.60899C4.85785 4.70487 4.70487 4.85785 4.60899 5.04601C4.5 5.25992 4.5 5.53995 4.5 6.1V9.4C4.5 9.96005 4.5 10.2401 4.60899 10.454C4.70487 10.6422 4.85785 10.7951 5.04601 10.891C5.25992 11 5.53995 11 6.1 11Z"
-                                        stroke="#344054"
-                                        strokeWidth="1.25"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                      />
-                                    </g>
-                                    <defs>
-                                      <clipPath id="clip0_1278_40151">
-                                        <rect
-                                          width="12"
-                                          height="12"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                    </defs>
-                                  </svg>
-                                </span>
-                              ) : (
-                                transaction.toAddress
-                              )}
+                              <div ref={tooltipRef}>
+                                {/^\d/.test(transaction.toAddress) ? (
+                                  <TooltipProvider>
+                                    <Tooltip
+                                      open={
+                                        openTooltipId ===
+                                        transaction.transactionHash +
+                                          transaction.toAddress +
+                                          transaction.toAddress
+                                      }
+                                      onOpenChange={() =>
+                                        toggleTooltip(
+                                          transaction.transactionHash +
+                                            transaction.toAddress +
+                                            transaction.toAddress
+                                        )
+                                      }
+                                    >
+                                      <TooltipTrigger
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          toggleTooltip(
+                                            transaction.transactionHash +
+                                              transaction.toAddress +
+                                              transaction.toAddress
+                                          );
+                                          navigator.clipboard.writeText(
+                                            transaction.toAddress
+                                          );
+                                        }}
+                                        asChild
+                                      >
+                                        <span
+                                          className="underline underline-offset-4 cursor-pointer flex items-center gap-2"
+                                          onClick={() => {
+                                            navigator.clipboard.writeText(
+                                              transaction.toAddress
+                                            );
+                                            const tooltip =
+                                              document.querySelector(
+                                                `[id="${transaction.toAddress}"]`
+                                              );
+                                            if (tooltip) {
+                                              tooltip.textContent = "Copied!";
+                                              setTimeout(() => {
+                                                if (tooltip) {
+                                                  tooltip.textContent =
+                                                    "Click to copy";
+                                                }
+                                              }, 2000);
+                                            }
+                                          }}
+                                        >
+                                          <div className="w-6 h-6 overflow-hidden rounded-md border border-gray-200">
+                                            <Image
+                                              alt={transaction.toAddress}
+                                              src={blo(
+                                                `0x${transaction.toAddress.slice(2)}`
+                                              )}
+                                              width={24}
+                                              height={24}
+                                            />
+                                          </div>
+                                          {`${transaction.toAddress.slice(0, 4)}...${transaction.toAddress.slice(-4)}`}
+                                          <svg
+                                            width="12"
+                                            height="12"
+                                            viewBox="0 0 12 12"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <g clip-path="url(#clip0_1278_40151)">
+                                              <path
+                                                d="M2.5 7.5C2.03406 7.5 1.80109 7.5 1.61732 7.42388C1.37229 7.32239 1.17761 7.12771 1.07612 6.88268C1 6.69891 1 6.46594 1 6V2.6C1 2.03995 1 1.75992 1.10899 1.54601C1.20487 1.35785 1.35785 1.20487 1.54601 1.10899C1.75992 1 2.03995 1 2.6 1H6C6.46594 1 6.69891 1 6.88268 1.07612C7.12771 1.17761 7.32239 1.37229 7.42388 1.61732C7.5 1.80109 7.5 2.03406 7.5 2.5M6.1 11H9.4C9.96005 11 10.2401 11 10.454 10.891C10.6422 10.7951 10.7951 10.6422 10.891 10.454C11 10.2401 11 9.96005 11 9.4V6.1C11 5.53995 11 5.25992 10.891 5.04601C10.7951 4.85785 10.6422 4.70487 10.454 4.60899C10.2401 4.5 9.96005 4.5 9.4 4.5H6.1C5.53995 4.5 5.25992 4.5 5.04601 4.60899C4.85785 4.70487 4.70487 4.85785 4.60899 5.04601C4.5 5.25992 4.5 5.53995 4.5 6.1V9.4C4.5 9.96005 4.5 10.2401 4.60899 10.454C4.70487 10.6422 4.85785 10.7951 5.04601 10.891C5.25992 11 5.53995 11 6.1 11Z"
+                                                stroke="#344054"
+                                                strokeWidth="1.25"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                              />
+                                            </g>
+                                            <defs>
+                                              <clipPath id="clip0_1278_40151">
+                                                <rect
+                                                  width="12"
+                                                  height="12"
+                                                  fill="white"
+                                                />
+                                              </clipPath>
+                                            </defs>
+                                          </svg>
+                                        </span>
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <p id={transaction.toAddress}>
+                                          Click to copy
+                                        </p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  </TooltipProvider>
+                                ) : (
+                                  transaction.toAddress
+                                )}
+                              </div>
                             </p>
                           </div>
                         </div>
