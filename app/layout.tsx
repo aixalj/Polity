@@ -20,11 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex h-screen overflow-hidden bg-gray-50 w-full text-gray-900">
-          <SideBar />
+          {/* <SideBar /> */}
 
-          <div className="relative flex overflow-y-auto overflow-x-hidden py-2 px-2 h-screen w-full">
-            {children}
-          </div>
+          {/* <div className="relative flex overflow-y-auto overflow-x-hidden py-2 px-2 h-screen w-full"> */}
+          {children}
+          {/* </div> */}
         </div>
       </body>
     </html>

@@ -135,26 +135,28 @@ const SideBar = () => {
             </div>
           </SelectItem> */}
           <div className="w-full h-[1px] bg-gray-200"></div>
-          <SelectItem value="#" disabled={true}>
-            <div className="flex gap-2 items-center">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.0002 5.33333L14.6668 8M14.6668 8L12.0002 10.6667M14.6668 8H6.00016M10.0002 2.80269C9.15033 2.29218 8.16366 2 7.11127 2C3.9203 2 1.3335 4.68629 1.3335 8C1.3335 11.3137 3.9203 14 7.11127 14C8.16366 14 9.15033 13.7078 10.0002 13.1973"
-                  stroke="#344054"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              Log out
-            </div>
-          </SelectItem>
+          <a href="/onboarding" className="flex gap-2 items-center">
+            <SelectItem className="flex gap-2 items-center w-full" value="#">
+              <div className="flex gap-2 items-center">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.0002 5.33333L14.6668 8M14.6668 8L12.0002 10.6667M14.6668 8H6.00016M10.0002 2.80269C9.15033 2.29218 8.16366 2 7.11127 2C3.9203 2 1.3335 4.68629 1.3335 8C1.3335 11.3137 3.9203 14 7.11127 14C8.16366 14 9.15033 13.7078 10.0002 13.1973"
+                    stroke="#344054"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <p>Log out</p>
+              </div>
+            </SelectItem>
+          </a>
         </SelectContent>
       </Select>
 

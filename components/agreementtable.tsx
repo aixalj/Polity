@@ -137,7 +137,7 @@ const AgreementTable: React.FC<{
                               <a
                                 className="flex items-center"
                                 href={agreement.url}
-                                download
+                                download={agreement.url}
                               >
                                 <Download01 className="w-4 h-4 text-gray-700 mr-2" />
                                 Download Agreement
