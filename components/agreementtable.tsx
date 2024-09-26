@@ -41,6 +41,8 @@ import {
   getAllAssets,
 } from "@/components/data";
 
+import { Badge } from "@/components/ui/badge";
+
 import { agreements, Agreement } from "./agreementData";
 
 const AgreementTable: React.FC<{
@@ -51,11 +53,11 @@ const AgreementTable: React.FC<{
       <div className="w-full flex flex-col gap-1 overflow-y-scroll">
         <div className="w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs">
           <div className="w-[480px] flex-none px-6 py-3">Agreement</div>
-          <div className="w-60 flex-none px-6 py-3">
+          <div className="w-56 flex-none px-6 py-3">
             Network Service Provider
           </div>
           <div className="min-w-36 flex-auto px-6 py-3">Date Signed</div>
-          <div className="min-w-36 flex-auto px-6 py-3">Status</div>
+          <div className="min-w-30 flex-auto px-6 py-3">Status</div>
           <div className="w-full flex-auto px-6 py-3"></div>
           {/* <div className="w-36 flex-auto px-6 py-3">Value</div>
           <div className="w-36 flex-auto px-6 py-3">Balance</div> */}
@@ -79,8 +81,15 @@ const AgreementTable: React.FC<{
                           {agreement.name}
                         </p>
                       </div>
-                      <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-2.5">
-                        <div className="rounded-full bg-gray-200 w-6 h-6"></div>
+                      <div className="w-56 flex-none px-6 py-3 h-16 flex items-center gap-2.5">
+                        <div className="rounded-full overflow-hidden bg-gray-200 w-6 h-6">
+                          <Image
+                            src={"/bastion.png"}
+                            alt={"Bastion"}
+                            width={24}
+                            height={24}
+                          />
+                        </div>
                         <div>
                           <p className="text-sm text-gray-900 font-medium">
                             {agreement.nspName}
@@ -96,8 +105,18 @@ const AgreementTable: React.FC<{
                           { month: "short", day: "numeric", year: "numeric" }
                         )}
                       </div>
-                      <div className="min-w-36 flex-auto  px-6 py-3 h-16 flex items-center whitespace-nowrap">
-                        {agreement.status}
+                      <div className="min-w-30 flex-auto  px-6 py-3 h-16 flex items-center whitespace-nowrap">
+                        <Badge
+                          variant={
+                            agreement.status === "Signed"
+                              ? "success"
+                              : agreement.status === "Pending"
+                                ? "warning"
+                                : "success"
+                          }
+                        >
+                          {agreement.status}
+                        </Badge>
                       </div>
                       <div className="w-full flex-auto justify-end  px-6 py-3 h-16 flex items-center whitespace-nowrap">
                         <DropdownMenu>
@@ -106,12 +125,23 @@ const AgreementTable: React.FC<{
                           </DropdownMenuTrigger>
                           <DropdownMenuContent>
                             <DropdownMenuItem>
-                              <Eye className="w-4 h-4 text-gray-700 mr-2" />{" "}
-                              View Agreement
+                              <Link
+                                className="flex items-center"
+                                href={agreement.url}
+                              >
+                                <Eye className="w-4 h-4 text-gray-700 mr-2" />{" "}
+                                View Agreement
+                              </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem>
-                              <Download01 className="w-4 h-4 text-gray-700 mr-2" />
-                              Download Agreement
+                              <a
+                                className="flex items-center"
+                                href={agreement.url}
+                                download
+                              >
+                                <Download01 className="w-4 h-4 text-gray-700 mr-2" />
+                                Download Agreement
+                              </a>
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>

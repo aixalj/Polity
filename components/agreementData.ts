@@ -5,6 +5,7 @@ interface Agreement {
   nspUsername: string;
   dateSigned: string;
   status: string;
+  url: string;
 }
 
 // Create an array of simulated agreements
@@ -12,58 +13,66 @@ const agreements: Agreement[] = [
   {
     name: "Network Service Agreement",
     nspName: "Bastion Cooperative",
-    nspUsername: "bastion_admin",
+    nspUsername: "bastion",
     dateSigned: "2024-03-15T09:30:00Z",
-    status: "Active",
+    status: "Signed",
+    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
   },
   {
     name: "Virtual Currency Wallet Agreement - DFNS",
     nspName: "Bastion Cooperative",
-    nspUsername: "bastion_wallet",
+    nspUsername: "bastion",
     dateSigned: "2024-02-28T14:45:00Z",
-    status: "Pending Approval",
+    status: "Pending",
+    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
   },
   {
     name: "Data Storage and Management Agreement",
     nspName: "Bastion Cooperative",
-    nspUsername: "bastion_storage",
+    nspUsername: "bastion",
     dateSigned: "2024-01-10T11:15:00Z",
-    status: "Active",
+    status: "Signed",
+    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
   },
   {
     name: "Decentralized Identity Service Agreement",
     nspName: "Bastion Cooperative",
-    nspUsername: "bastion_identity",
+    nspUsername: "bastion",
     dateSigned: "2024-03-05T16:20:00Z",
-    status: "Under Review",
+    status: "Pending",
+    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
   },
   {
     name: "Smart Contract Deployment Agreement",
     nspName: "Bastion Cooperative",
-    nspUsername: "bastion_contracts",
+    nspUsername: "bastion",
     dateSigned: "2024-02-12T10:00:00Z",
-    status: "Active",
+    status: "Signed",
+    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
   },
   {
     name: "Blockchain Node Hosting Agreement",
     nspName: "Bastion Cooperative",
-    nspUsername: "bastion_nodes",
+    nspUsername: "bastion",
     dateSigned: "2024-03-20T13:30:00Z",
-    status: "Pending Signature",
+    status: "Pending",
+    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
   },
   {
     name: "Decentralized Finance (DeFi) Integration Agreement",
     nspName: "Bastion Cooperative",
-    nspUsername: "bastion_defi",
+    nspUsername: "bastion",
     dateSigned: "2024-01-25T15:45:00Z",
-    status: "Active",
+    status: "Signed",
+    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
   },
   {
     name: "Cryptographic Key Management Service Agreement",
     nspName: "Bastion Cooperative",
-    nspUsername: "bastion_keymanagement",
+    nspUsername: "bastion",
     dateSigned: "2024-03-01T09:00:00Z",
-    status: "Active",
+    status: "Signed",
+    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
   },
 ];
 
