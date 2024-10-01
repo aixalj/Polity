@@ -120,7 +120,7 @@ Would you like to proceed and complete installation of your first free Avatar?"
         regarding its subject matter.
       </div>
       <div className="flex px-6 pt-6 pb-5 bg-white border-t border-gray-200 absolute bottom-0 w-full">
-        <Link href="/onboarding/avatar" className="w-full">
+        <Link href="/onboarding/wallet" className="w-full">
           <Button className="min-w-full">Agree & Continue</Button>
         </Link>
       </div>

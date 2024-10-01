@@ -61,7 +61,7 @@ const SideBar = () => {
       </a>
 
       <Select value="AristoInvest" defaultValue="AristoInvest">
-        <SelectTrigger className="active:bg-gray-100 hover:bg-gray-100 group h-auto focus:ring-0 justify-between mt-6 outline-none focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300  p-2 text-base font-medium duration-200 ease-in-out text-black hover:bg-gray-50 shadow-sm w-full">
+        <SelectTrigger className="active:bg-gray-100 hover:bg-gray-100 group h-auto focus:ring-0 justify-between mt-6 outline-none focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300  p-2 text-base font-medium duration-200 ease-in-out text-black  shadow-sm w-full">
           <div className="flex gap-3 items-center">
             <div className="size-11 rounded-md border-gray-300 border overflow-hidden">
               <img
@@ -98,6 +98,7 @@ const SideBar = () => {
               <div className="flex gap-2 items-center w-full">
                 <div className="size-8 rounded-md border-gray-300 border overflow-hidden">
                   <img
+                    alt="profile"
                     src={
                       "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"
                     }
@@ -172,12 +173,12 @@ const SideBar = () => {
                 className="w-full flex flex-col gap-1"
               >
                 <CollapsibleTrigger className="w-full ease-in-out duration-200">
-                  <div className="group relative  w-full outline-none  focus:tap-highlight-transparent focus:outline-none  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
+                  <div className="group relative  w-full outline-none  focus:tap-highlight-transparent  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
                     <Link
                       href="/"
                       className={`group focus:ring-0 ${
                         pathname === "/"
-                          ? "justify-between outline-none  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                          ? "justify-between outline-none  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                           : "outline-none justify-between  focus:tap-highlight-transparent hover:text-black focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                       }`}
                       id="overview"
@@ -261,13 +262,13 @@ const SideBar = () => {
                         className="w-full flex flex-col gap-1"
                       >
                         <CollapsibleTrigger className="w-full ease-in-out duration-200">
-                          <div className="group relative  w-full outline-none  focus:tap-highlight-transparent focus:outline-none  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
+                          <div className="group relative  w-full outline-none  focus:tap-highlight-transparent  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
                             <Link
                               href="/wealth/wallet1"
                               className={` focus:ring-0 ${
                                 pathname === "/wealth/wallet1"
-                                  ? "justify-between outline-none  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                  : "outline-none justify-between  hover:text-black focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                  ? "justify-between outline-none  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                  : "outline-none justify-between  hover:text-black focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                               }`}
                             >
                               <div className="flex gap-3 items-center">
@@ -338,8 +339,8 @@ const SideBar = () => {
                               <a
                                 className={`group focus:ring-0 ${
                                   pathname === "/wealth/wallet1/btcnetwork"
-                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
                                 }`}
                                 href="#"
                                 id="overview"
@@ -424,8 +425,8 @@ const SideBar = () => {
                               <a
                                 className={`group focus:ring-0 ${
                                   pathname === "/wealth/wallet1/ethnetwork"
-                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
                                 }`}
                                 href="#"
                                 id="overview"
@@ -532,7 +533,7 @@ const SideBar = () => {
 
                             <li>
                               <a
-                                className="group focus:ring-0 outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                className="group focus:ring-0 outline-none justify-between focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
                                 href="#"
                                 id="overview"
                               >
@@ -676,13 +677,13 @@ const SideBar = () => {
                         className="w-full flex flex-col gap-1"
                       >
                         <CollapsibleTrigger className="w-full ease-in-out duration-200">
-                          <div className="group relative  w-full outline-none  focus:tap-highlight-transparent focus:outline-none  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
+                          <div className="group relative  w-full outline-none  focus:tap-highlight-transparent  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
                             <Link
                               href="#"
                               className={` focus:ring-0 ${
                                 pathname === "/wealth/wallet2"
-                                  ? "justify-between outline-none  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                  : "outline-none justify-between hover:text-black  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                  ? "justify-between outline-none  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                  : "outline-none justify-between hover:text-black  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                               }`}
                             >
                               <div className="flex gap-3 items-center">
@@ -752,8 +753,8 @@ const SideBar = () => {
                               <a
                                 className={`group focus:ring-0 ${
                                   pathname === "/wealth/wallet2/btcnetwork"
-                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
                                 }`}
                                 href="#"
                                 id="overview"
@@ -837,8 +838,8 @@ const SideBar = () => {
                               <a
                                 className={`group focus:ring-0 ${
                                   pathname === "/wealth/wallet2/ethnetwork"
-                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
                                 }`}
                                 href="#"
                                 id="overview"
@@ -941,7 +942,7 @@ const SideBar = () => {
                             </li>
                             <li>
                               <a
-                                className="group focus:ring-0 outline-none justify-between focus:outline-none focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                className="group focus:ring-0 outline-none justify-between focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
                                 href="#"
                                 id="overview"
                               >
@@ -1088,8 +1089,8 @@ const SideBar = () => {
                 <Link
                   className={`group focus:ring-0 ${
                     pathname === "/marketplace"
-                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
                   href="/marketplace"
                   id="overview"
@@ -1117,8 +1118,8 @@ const SideBar = () => {
                 <a
                   className={`group focus:ring-0 ${
                     pathname === "/transactions"
-                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
                   href="/transactions"
                   // onClick={(e) => {
@@ -1164,8 +1165,8 @@ const SideBar = () => {
                 <a
                   className={`group focus:ring-0 ${
                     pathname === "/addressbook"
-                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
                   // href="/addressbook"
                   id="overview"
@@ -1199,8 +1200,8 @@ const SideBar = () => {
                 <a
                   className={`group focus:ring-0 ${
                     pathname === "/agreements"
-                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
                   href="/agreements"
                   // onClick={(e) => {
@@ -1234,8 +1235,8 @@ const SideBar = () => {
                 <a
                   className={`group focus:ring-0 ${
                     pathname === "#"
-                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
                   href="#"
                   id="overview"

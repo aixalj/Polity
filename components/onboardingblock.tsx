@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
-import "@dotlottie/react-player/dist/index.css";
+import { ArrowLeft, ArrowRight } from "@untitled-ui/icons-react";
 
 interface OnboardingBlockProps {
   icon: React.ReactNode;
@@ -36,12 +36,16 @@ const OnboardingActions = ({
     <div className="flex gap-3 max-w-screen-sm mx-auto w-full justify-end">
       {button1link && (
         <Link href={button1link}>
-          <Button variant="outline">{button1text}</Button>
+          <Button variant="outline">
+            <ArrowLeft className="w-5 h-5" /> {button1text}
+          </Button>
         </Link>
       )}
       {button2link && (
         <Link href={button2link}>
-          <Button>{button2text}</Button>
+          <Button>
+            {button2text} <ArrowRight className="w-5 h-5" />
+          </Button>
         </Link>
       )}
     </div>
