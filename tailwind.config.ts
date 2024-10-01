@@ -68,6 +68,19 @@ const config: Config = {
             inverted: colors.white,
           },
         },
+        primary: {
+          25: "#E8F5F4",
+          50: "#DCF0EE",
+          100: "#90BBB6",
+          200: "#74A9A3",
+          300: "#589891",
+          400: "#3B867E",
+          500: "#1F756B",
+          600: "#1B665E",
+          700: "#175750",
+          800: "#134942",
+          900: "#0F3A35",
+        },
       },
       boxShadow: {
         // light
