@@ -88,10 +88,15 @@ const OnboardSideBar = () => {
   const isAvatarSection =
     pathname.startsWith("/onboarding") && !isWalletSection;
   const isInstallationPage = pathname === "/onboarding/installation";
+  const isWalletSetupPage = pathname === "/onboarding/wallet/setup";
 
   const isLinkComplete = (currentPath: string, linkHref: string) => {
     if (isInstallationPage) {
       return true; // All avatar links are complete on the installation page
+    }
+
+    if (isWalletSetupPage) {
+      return true; // All wallet links are complete on the wallet setup page
     }
 
     const currentIndex = currentPath.startsWith("/onboarding/wallet")
@@ -167,7 +172,9 @@ const OnboardSideBar = () => {
                 WALLET SETUP
                 <div className="w-full bg-gray-300 h-[1px]"></div>
                 <div className="min-w-5 h-5 rounded-full border border-gray-300 bg-white">
-                  {/* We're not showing a check icon for the wallet section */}
+                  {isWalletSetupPage && (
+                    <Image src={CheckIcon} alt="Check" width={20} height={20} />
+                  )}
                 </div>
               </li>
               {isWalletSection &&
@@ -177,7 +184,9 @@ const OnboardSideBar = () => {
                       className={`group focus:ring-0 ${
                         pathname === link.href
                           ? "w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                          : "w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                          : isLinkComplete(pathname, link.href)
+                            ? "w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-900 "
+                            : "w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-600 target:bg-white target:text-black border border-transparent "
                       }`}
                       href={link.href}
                     >
