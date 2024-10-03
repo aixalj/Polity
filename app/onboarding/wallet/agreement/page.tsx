@@ -1,66 +1,77 @@
-import OnboardingBlock from "@/components/onboardingblock";
+"use client";
 
+import OnboardingBlock from "@/components/onboardingblock";
 import { File02 } from "@untitled-ui/icons-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useWalletSelection } from "@/app/contexts/WalletSelectionContext";
+
 export default function Agreement() {
+  const { selectedProvider } = useWalletSelection();
+
+  const title = selectedProvider
+    ? `Virtual Currency Wallet Agreement - ${selectedProvider.name}`
+    : "Virtual Currency Wallet Agreement";
+
   return (
     <OnboardingBlock
       icon={<File02 className="w-8 h-8 text-gray-700" />}
-      title="Virtual Currency Wallet Agreement - DFNS"
+      title={title}
       description="Agree to the terms to complete the set up of your wallet."
     >
       <div className="max-h-[70vh] px-6 py-2 text-sm pb-32 overflow-y-scroll">
-        VIRTUAL CURRENCY WALLET AGREEMENT - DFNS THIS VIRTUAL CURRENCY WALLET
-        AGREEMENT (“WALLET AGREEMENT”) IS A LEGAL AND BINDING AGREEMENT BETWEEN
-        YOU (“USER”) AND BASTION GENOSSENSCHAFT (IN ENGLISH – BASTION
-        COOPERATIVE), INCORPORATED AND EXISTING UNDER THE LAWS OF THE
-        PRINCIPALITY OF LIECHTENSTEIN, AND HAVING ITS REGISTERED OFFICE AT
-        SCHAANERSTRASSE 27, VADUZ 9490, PRINCIPALITY OF LIECHTENSTEIN
-        (“BASTION”, “DISTRIBUTOR”). USE OF SOFTWARE AND PRODUCTS, INCLUDING
-        WITHOUT LIMITATION ALL ASSOCIATED DOCUMENTATION, IS SUBJECT TO THE TERMS
-        AND CONDITIONS. BY CLICKING “I ACCEPT,” DOWNLOADING OR INSTALLING THE
-        SOFTWARE, OR OTHERWISE SIGNIFYING ACCEPTANCE OF THIS WALLET AGREEMENT,
-        THE USER AGREES TO ALL TERMS AND CONDITIONS HEREIN.   1. General 1.1. 
-        In this Wallet Agreement Bastion and the User are collectively referred
-        to as the “Parties” and each individually as a “Party”. 1.2.  This
-        Wallet Agreement regulates the provision by the Distributor to the User
-        of the third-party software, specifically the creation, provision to the
-        User and maintenance of a virtual currency wallet (“VCW”) enabled by
-        Dfns, a société par actions simplifiée incorporated under the laws of
-        France, whose registered office is at 198, avenue de France, 75013 Paris
-        (France), registered with the Trade and Companies Register of Paris
-        under number 888 176 575 (“Merchant”) – “Service”. 1.3.  In providing
-        the Service to the User under this Wallet Agreement Bastion acts on the
-        basis of a Software as a Service Agreement of 12 October 2022 between
-        Bastion and the Merchant. 1.4.  This Wallet Agreement is subject to
-        acceptance by the User of the Terms of Use (“Terms”) and shall be read,
-        understood and interpreted in conjunction with the Terms incorporated
-        herein by reference. 1.5.  Bastion reserves the right to revise this
-        Wallet Agreement from time to time at its sole discretion, with any
-        changes made available on Bastion website and/or mobile application.
-        Bastion may will also notify the User of such changes via push
-        notifications through the App. The changes shall take effect from the
-        date of publication of the new terms or such other date stated in the
-        notice, and your continued access or use of the Services from such date
-        shall be deemed to constitute acceptance of the new terms in their
-        entirety. It shall be the User’s sole responsibility to check Bastion
-        website for such changes from time to time.   2. Definitions For the
-        purposes of this Wallet Agreement, the following terms shall have the
-        following meaning: “App” means Polity Private MVP application. “User
-        Account” means an account used to record the User’s email, username,
-        password, 2-factor verification code, unique identity information of the
-        mobile application, joined groups, the accessible networks, and the
-        User’s personal files and settings. User Account will record any
-        on-chain information about the User&apos;s transactions, and be the only
-        account to login and use the VCW.  “Virtual Currency Wallet” or “VCW”
-        means a software program to securely store, [manage, receive, and send]
-        digital assets, including web console and mobile applications, in a
-        distributed and “keyless” manner. “Indemnified Parties” has the meaning
-        given in Clause 6.1. “Initial Duration” has the meaning given in Clause
-        9.1. “Privacy Policy” means Bastion’s Privacy Policy which we may amend
-        from time to time by Bastion. “Quarter” means a period of three (3)
-        calendar months “Recipient” has the meaning given in Clause 8.1.
+        {/* Agreement text content */}
+        VIRTUAL CURRENCY WALLET AGREEMENT -{" "}
+        {selectedProvider?.name || "PROVIDER"} THIS VIRTUAL CURRENCY WALLET
+        AGREEMENT (&quot;WALLET AGREEMENT&quot;) IS A LEGAL AND BINDING
+        AGREEMENT BETWEEN YOU (&quot;USER&quot;) AND BASTION GENOSSENSCHAFT (IN
+        ENGLISH – BASTION COOPERATIVE), INCORPORATED AND EXISTING UNDER THE LAWS
+        OF THE PRINCIPALITY OF LIECHTENSTEIN, AND HAVING ITS REGISTERED OFFICE
+        AT SCHAANERSTRASSE 27, VADUZ 9490, PRINCIPALITY OF LIECHTENSTEIN
+        (&quot;BASTION&quot;, &quot;DISTRIBUTOR&quot;). USE OF SOFTWARE AND
+        PRODUCTS, INCLUDING WITHOUT LIMITATION ALL ASSOCIATED DOCUMENTATION, IS
+        SUBJECT TO THE TERMS AND CONDITIONS. BY CLICKING &quot;I ACCEPT,&quot;
+        DOWNLOADING OR INSTALLING THE SOFTWARE, OR OTHERWISE SIGNIFYING
+        ACCEPTANCE OF THIS WALLET AGREEMENT, THE USER AGREES TO ALL TERMS AND
+        CONDITIONS HEREIN.   1. General 1.1.  In this Wallet Agreement Bastion
+        and the User are collectively referred to as the “Parties” and each
+        individually as a “Party”. 1.2.  This Wallet Agreement regulates the
+        provision by the Distributor to the User of the third-party software,
+        specifically the creation, provision to the User and maintenance of a
+        virtual currency wallet (“VCW”) enabled by Dfns, a société par actions
+        simplifiée incorporated under the laws of France, whose registered
+        office is at 198, avenue de France, 75013 Paris (France), registered
+        with the Trade and Companies Register of Paris under number 888 176 575
+        (“Merchant”) – “Service”. 1.3.  In providing the Service to the User
+        under this Wallet Agreement Bastion acts on the basis of a Software as a
+        Service Agreement of 12 October 2022 between Bastion and the Merchant.
+        1.4.  This Wallet Agreement is subject to acceptance by the User of the
+        Terms of Use (“Terms”) and shall be read, understood and interpreted in
+        conjunction with the Terms incorporated herein by reference. 1.5. 
+        Bastion reserves the right to revise this Wallet Agreement from time to
+        time at its sole discretion, with any changes made available on Bastion
+        website and/or mobile application. Bastion may will also notify the User
+        of such changes via push notifications through the App. The changes
+        shall take effect from the date of publication of the new terms or such
+        other date stated in the notice, and your continued access or use of the
+        Services from such date shall be deemed to constitute acceptance of the
+        new terms in their entirety. It shall be the User’s sole responsibility
+        to check Bastion website for such changes from time to time.   2.
+        Definitions For the purposes of this Wallet Agreement, the following
+        terms shall have the following meaning: “App” means Polity Private MVP
+        application. “User Account” means an account used to record the User’s
+        email, username, password, 2-factor verification code, unique identity
+        information of the mobile application, joined groups, the accessible
+        networks, and the User’s personal files and settings. User Account will
+        record any on-chain information about the User&apos;s transactions, and
+        be the only account to login and use the VCW.  “Virtual Currency Wallet”
+        or “VCW” means a software program to securely store, [manage, receive,
+        and send] digital assets, including web console and mobile applications,
+        in a distributed and “keyless” manner. “Indemnified Parties” has the
+        meaning given in Clause 6.1. “Initial Duration” has the meaning given in
+        Clause 9.1. “Privacy Policy” means Bastion’s Privacy Policy which we may
+        amend from time to time by Bastion. “Quarter” means a period of three
+        (3) calendar months “Recipient” has the meaning given in Clause 8.1.
         “Renewal Duration” has the meaning given in Clause 9.1. “Service Credit”
         is a dollar credit, calculated in the manner set forth in Clause 6.2
         that we may credit to your Account. “Services” means the service(s)
@@ -96,7 +107,7 @@ export default function Agreement() {
         “Vulnerabilities” shall be interpreted accordingly. “Wallet” means a
         combination of private and public keys.   2. The Services 2.1. Bastion
         shall, during the Term provide the Services described in Clauses 2.2 and
-        2.3 to the User. The provision of the Services is subject to prior: ·  
+        3.3 to the User. The provision of the Services is subject to prior: ·  
         acceptance by the User of the Terms, Disclaimer and Privacy Policy; ·  
         onboarding of the User, i.e., whitelisting, creation by the User of at
         least one Avatar and creation of a virtual node for that Avatar; ·  
@@ -743,9 +754,9 @@ export default function Agreement() {
         without the prior written consent of the other Party. This Wallet
         Agreement shall be binding upon and shall inure to the benefit of the
         Parties and their successors and permitted assigns. 11.7. Severability:
-        If any provision or any portion of any provision of this  Wallet
-        Agreement or the application of any such provision or any portion
-        thereof to any person or circumstance, shall be held invalid or
+        If any provision or any portion of any provision of this Wallet
+        Agreement or the application of any such provision or any portion of
+        such provision to any person or circumstance, shall be held invalid or
         unenforceable, the remaining portion of such provision and the remaining
         provisions of this Wallet Agreement, and the application of such
         provision of portion of such provision as is held invalid or
@@ -774,7 +785,7 @@ export default function Agreement() {
         Liechtenstein International Arbitration Court in accordance with its
         rules currently in force, which rules are deemed to be incorporated by
         reference in this Clause 11.10. The seat of the arbitration shall be
-        Liechtenstein. The language of the arbitration shall be English.  
+        Liechtenstein. The language of the arbitration shall be English.
       </div>
       <div className="flex px-6 pt-6 pb-5 bg-white border-t border-gray-200 absolute bottom-0 w-full">
         <Link href="/onboarding/wallet" className="w-full">

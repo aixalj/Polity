@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useWalletSelection } from "@/app/contexts/WalletSelectionContext";
 import OnboardingBlock from "@/components/onboardingblock";
 import Wallet from "@/public/walletgraphic.svg";
 import DFNS from "@/public/providers/DFNS.svg";
@@ -16,7 +16,7 @@ import SHBanner from "@/public/providers/banners/SH.svg";
 import DFNSBanner from "@/public/providers/banners/DFNS.svg";
 
 export default function Agreement() {
-  const [selectedProvider, setSelectedProvider] = useState<string | null>(null);
+  const { selectedProvider, setSelectedProvider } = useWalletSelection();
 
   const walletProviders = [
     {
@@ -60,9 +60,9 @@ export default function Agreement() {
     },
   ];
 
-  const handleSelect = (providerName: string) => {
+  const handleSelect = (provider: (typeof walletProviders)[0]) => {
     setSelectedProvider(
-      providerName === selectedProvider ? null : providerName
+      selectedProvider?.name === provider.name ? null : provider
     );
   };
 
@@ -151,12 +151,16 @@ flex-col  p-0  grid   shadow-sm  max-w-screen-xl mx-auto w-full
             <div className="flex w-full p-4 border-t border-gray-200">
               <Button
                 variant={
-                  selectedProvider === provider.name ? "default" : "outline"
+                  selectedProvider?.name === provider.name
+                    ? "default"
+                    : "outline"
                 }
                 className="w-full"
-                onClick={() => handleSelect(provider.name)}
+                onClick={() => handleSelect(provider)}
               >
-                {selectedProvider === provider.name ? "Selected" : "Select"}
+                {selectedProvider?.name === provider.name
+                  ? "Selected"
+                  : "Select"}
               </Button>
             </div>
           </div>

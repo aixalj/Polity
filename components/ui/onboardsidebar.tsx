@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 
 import { usePathname } from "next/navigation";
 
+import CheckIcon from "@/public/icons/check.svg";
+
 import {
   Select,
   SelectContent,
@@ -86,6 +88,18 @@ const OnboardSideBar = () => {
   const isAvatarSection =
     pathname.startsWith("/onboarding") && !isWalletSection;
 
+  const isLinkComplete = (currentPath: string, linkHref: string) => {
+    const currentIndex = currentPath.startsWith("/onboarding/wallet")
+      ? walletSetupLinks.findIndex((link) => link.href === currentPath)
+      : avatarVirtualNodeLinks.findIndex((link) => link.href === currentPath);
+
+    const linkIndex = currentPath.startsWith("/onboarding/wallet")
+      ? walletSetupLinks.findIndex((link) => link.href === linkHref)
+      : avatarVirtualNodeLinks.findIndex((link) => link.href === linkHref);
+
+    return linkIndex < currentIndex;
+  };
+
   return (
     <div className="px-2 pt-8 pb-2 hidden sm:flex sm:flex-col">
       <a href="index.html" className="px-4 py-1">
@@ -106,10 +120,14 @@ const OnboardSideBar = () => {
         <nav className="mt-6 w-80 h-full">
           <div className="h-full gap-3 flex flex-col justify-between">
             <ul className="flex px-4 flex-col gap-1">
-              <li className="flex gap-2 whitespace-nowrap pb-2.5 items-center text-xs text-gray-500">
+              <li className="flex gap-2 whitespace-nowrap pb-2.5 pr-3 items-center text-xs text-gray-500">
                 AVATAR VIRTUAL NODE
                 <div className="w-full bg-gray-300 h-[1px]"></div>
-                <div className="min-w-5 h-5 rounded-full border border-gray-300 bg-white"></div>
+                <div className="min-w-5 h-5 rounded-full border border-gray-300 bg-white">
+                  {isWalletSection && (
+                    <Image src={CheckIcon} alt="Check" width={20} height={20} />
+                  )}
+                </div>
               </li>
               {isAvatarSection &&
                 avatarVirtualNodeLinks.map((link, index) => (
@@ -118,21 +136,34 @@ const OnboardSideBar = () => {
                       className={`group focus:ring-0 ${
                         pathname === link.href
                           ? "w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                          : "w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                          : isLinkComplete(pathname, link.href)
+                            ? "w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-900 "
+                            : "w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-600 target:bg-white target:text-black border border-transparent "
                       }`}
                       href={link.href}
                     >
                       <link.icon className="w-5 h-5" />
                       {link.text}
+                      {isLinkComplete(pathname, link.href) && (
+                        <Image
+                          src={CheckIcon}
+                          alt="Check"
+                          className="ml-auto"
+                          width={20}
+                          height={20}
+                        />
+                      )}
                     </Link>
                   </li>
                 ))}
             </ul>
             <ul className="flex px-4 flex-col gap-1">
-              <li className="flex gap-2 whitespace-nowrap pb-2.5 items-center text-xs text-gray-500">
+              <li className="flex gap-2 whitespace-nowrap pr-3 pb-2.5 items-center text-xs text-gray-500">
                 WALLET SETUP
                 <div className="w-full bg-gray-300 h-[1px]"></div>
-                <div className="min-w-5 h-5 rounded-full border border-gray-300 bg-white"></div>
+                <div className="min-w-5 h-5 rounded-full border border-gray-300 bg-white">
+                  {/* We're not showing a check icon for the wallet section */}
+                </div>
               </li>
               {isWalletSection &&
                 walletSetupLinks.map((link, index) => (
@@ -147,6 +178,15 @@ const OnboardSideBar = () => {
                     >
                       <link.icon className="w-5 h-5" />
                       {link.text}
+                      {isLinkComplete(pathname, link.href) && (
+                        <Image
+                          src={CheckIcon}
+                          alt="Check"
+                          className="ml-auto"
+                          width={20}
+                          height={20}
+                        />
+                      )}
                     </Link>
                   </li>
                 ))}
