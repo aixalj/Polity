@@ -23,7 +23,9 @@ flex-col  p-0     max-w-screen-sm mx-auto w-full"
           complete the setup and start managing your funds with confidence.
         </p>
         <div className="inline-flex mx-auto gap-4">
-          <Button>Get Started</Button>
+          <Link href="/onboarding/wallet/provider">
+            <Button>Get Started</Button>
+          </Link>
         </div>
       </div>
     </div>
