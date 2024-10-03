@@ -87,8 +87,13 @@ const OnboardSideBar = () => {
   const isWalletSection = pathname.startsWith("/onboarding/wallet");
   const isAvatarSection =
     pathname.startsWith("/onboarding") && !isWalletSection;
+  const isInstallationPage = pathname === "/onboarding/installation";
 
   const isLinkComplete = (currentPath: string, linkHref: string) => {
+    if (isInstallationPage) {
+      return true; // All avatar links are complete on the installation page
+    }
+
     const currentIndex = currentPath.startsWith("/onboarding/wallet")
       ? walletSetupLinks.findIndex((link) => link.href === currentPath)
       : avatarVirtualNodeLinks.findIndex((link) => link.href === currentPath);
@@ -124,7 +129,7 @@ const OnboardSideBar = () => {
                 AVATAR VIRTUAL NODE
                 <div className="w-full bg-gray-300 h-[1px]"></div>
                 <div className="min-w-5 h-5 rounded-full border border-gray-300 bg-white">
-                  {isWalletSection && (
+                  {(isWalletSection || isInstallationPage) && (
                     <Image src={CheckIcon} alt="Check" width={20} height={20} />
                   )}
                 </div>
