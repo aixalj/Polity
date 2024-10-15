@@ -7,6 +7,9 @@ const nextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  serverRuntimeConfig: {
+    PORT: 3008
+  }
 }
 
 module.exports = nextConfig

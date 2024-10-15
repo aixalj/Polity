@@ -77,7 +77,7 @@ export default function AddressBook() {
                 </h1>{" "}
               </div>
               <div className="flex gap-3">
-                <Button>Add Recipient</Button>
+                <Button>New Contact</Button>
               </div>
             </div>
           </div>
