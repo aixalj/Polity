@@ -23,8 +23,8 @@ const AllClients: React.FC<{ contacts: Contact[] }> = ({ contacts }) => {
     <div className="relative w-full flex flex-col">
       <div className="w-full flex flex-col overflow-y-scroll">
         <Table>
-          <TableHeader>
-            <TableRow className="border-b border-gray-200">
+          <TableHeader className="bg-gray-100">
+            <TableRow>
               <TableHead className="w-full">Contact</TableHead>
             </TableRow>
           </TableHeader>
