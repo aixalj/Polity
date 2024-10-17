@@ -1,12 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { SearchBar } from '@/components/ui/searchbar';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/table';
 import { Pagination } from '@/components/ui/pagination';
-
+import { AddressTable } from '@/components/ui/addressestable';
 
 // Sample contact data
 const contacts = [
@@ -22,8 +22,15 @@ const contacts = [
   { id: '10', name: 'John Doe', addressname: 'John Personal' },
 ];
 
+const initialAddresses = [
+  { id: '1', contact: 'John Doe', network: 'Ethereum', asset: 'ETH', address: '0x1234...5678', isFavorite: false },
+  { id: '2', contact: 'Jane Smith', network: 'Bitcoin', asset: 'BTC', address: 'bc1qxy...zuvw', isFavorite: true },
+  // Add more addresses as needed
+];
+
 export default function AddressBook() {
-  const [currentPage, setCurrentPage] = React.useState(1);
+  const [addresses, setAddresses] = useState(initialAddresses);
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const totalItems = 150; // Replace with actual total number of contacts
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -36,6 +43,12 @@ export default function AddressBook() {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     // Fetch contacts for the new page here
+  };
+
+  const handleToggleFavorite = (id: string, isFavorite: boolean) => {
+    setAddresses(addresses.map(address => 
+      address.id === id ? { ...address, isFavorite } : address
+    ));
   };
 
   return (
@@ -149,9 +162,11 @@ export default function AddressBook() {
             </TabsContent>
             <TabsContent value='addresses'>
               <div className="mt-6">
-                {/* Placeholder for Addresses tab content */}
-                <div>Addresses content goes here</div>
-                <div className="mt-auto">
+                <AddressTable 
+                  addresses={addresses}
+                  onToggleFavorite={handleToggleFavorite}
+                />
+                <div className="mt-4">
                   <Pagination
                     currentPage={currentPage}
                     totalPages={totalPages}
