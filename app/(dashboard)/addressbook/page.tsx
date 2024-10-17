@@ -6,30 +6,24 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/table';
 import { Pagination } from '@/components/ui/pagination';
-import { AddressTable } from '@/components/ui/addressestable';
+import { AddressTable, initialAddresses, Address } from '@/components/ui/addressestable';
 
 // Sample contact data
 const contacts = [
   { id: '1', name: 'John Doe', addressname: 'John Personal' },
-  { id: '2', name: 'John Doe', addressname: 'John Personal' },
-  { id: '3', name: 'John Doe', addressname: 'John Personal' },
-  { id: '4', name: 'John Doe', addressname: 'John Personal' },
-  { id: '5', name: 'John Doe', addressname: 'John Personal' },
-  { id: '6', name: 'John Doe', addressname: 'John Personal' },
-  { id: '7', name: 'John Doe', addressname: 'John Personal' },
-  { id: '8', name: 'John Doe', addressname: 'John Personal' },
-  { id: '9', name: 'John Doe', addressname: 'John Personal' },
-  { id: '10', name: 'John Doe', addressname: 'John Personal' },
-];
-
-const initialAddresses = [
-  { id: '1', contact: 'John Doe', network: 'Ethereum', asset: 'ETH', address: '0x1234...5678', isFavorite: false },
-  { id: '2', contact: 'Jane Smith', network: 'Bitcoin', asset: 'BTC', address: 'bc1qxy...zuvw', isFavorite: true },
-  // Add more addresses as needed
+  { id: '2', name: 'Jane Smith', addressname: 'Jane Work' },
+  { id: '3', name: 'Alice Johnson', addressname: 'Alice Home' },
+  { id: '4', name: 'Bob Brown', addressname: 'Bob Business' },
+  { id: '5', name: 'Charlie Davis', addressname: 'Charlie Personal' },
+  { id: '6', name: 'Diana Evans', addressname: 'Diana Work' },
+  { id: '7', name: 'Edward Foster', addressname: 'Edward Home' },
+  { id: '8', name: 'Fiona Gray', addressname: 'Fiona Business' },
+  { id: '9', name: 'George Harris', addressname: 'George Personal' },
+  { id: '10', name: 'Hannah Irving', addressname: 'Hannah Work' },
 ];
 
 export default function AddressBook() {
-  const [addresses, setAddresses] = useState(initialAddresses);
+  const [addresses, setAddresses] = useState<Address[]>(initialAddresses);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const totalItems = 150; // Replace with actual total number of contacts

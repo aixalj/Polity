@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/table';
 import { FavoriteStar } from '@/components/ui/favoritestar';
@@ -9,9 +9,10 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Copy } from 'lucide-react';
 import { blo } from 'blo';
 
-interface Address {
+export interface Address {
   id: string;
   contact: string;
+  contactAvatar: string;
   network: string;
   asset: string;
   address: string;
@@ -23,10 +24,35 @@ interface AddressTableProps {
   onToggleFavorite: (id: string, isFavorite: boolean) => void;
 }
 
+export const initialAddresses: Address[] = [
+  { 
+    id: '1', 
+    contact: 'John Doe', 
+    contactAvatar: '/bastion.png',
+    network: 'Ethereum', 
+    asset: 'ETH', 
+    address: '0x1234...5678', 
+    isFavorite: false 
+  },
+  { 
+    id: '2', 
+    contact: 'Jane Smith', 
+    contactAvatar: '/bastion.png', 
+    network: 'Bitcoin', 
+    asset: 'BTC', 
+    address: 'bc1qxy...zuvw', 
+    isFavorite: true 
+  },
+  // Add more addresses as needed
+];
+
 export const AddressTable: React.FC<AddressTableProps> = ({ addresses, onToggleFavorite }) => {
+  const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
+
   const handleCopyAddress = (address: string) => {
     navigator.clipboard.writeText(address);
-    // You might want to add some visual feedback here, like a temporary "Copied!" message
+    setCopiedAddress(address);
+    setTimeout(() => setCopiedAddress(null), 2000); // Reset after 2 seconds
   };
 
   return (
@@ -50,7 +76,19 @@ export const AddressTable: React.FC<AddressTableProps> = ({ addresses, onToggleF
                 onToggle={(isFavorite) => onToggleFavorite(address.id, isFavorite)}
               />
             </TableCell>
-            <TableCell>{address.contact}</TableCell>
+            <TableCell>
+              <div className="flex items-center gap-2.5">
+                <div className="rounded-full overflow-hidden bg-gray-200 w-6 h-6">
+                  <Image
+                    src={address.contactAvatar}
+                    alt={address.contact}
+                    width={24}
+                    height={24}
+                  />
+                </div>
+                <span className="font-medium">{address.contact}</span>
+              </div>
+            </TableCell>
             <TableCell>{address.network}</TableCell>
             <TableCell>{address.asset}</TableCell>
             <TableCell className="font-mono">
@@ -78,7 +116,9 @@ export const AddressTable: React.FC<AddressTableProps> = ({ addresses, onToggleF
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>Copy address</p>
+                      <div className={`px-2 py-1 rounded ${copiedAddress === address.address ? 'bg-primary text-primary-foreground' : ''}`}>
+                        {copiedAddress === address.address ? 'Copied!' : 'Copy address'}
+                      </div>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
