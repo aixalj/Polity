@@ -20,7 +20,7 @@ export function Pagination({
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
   return (
-    <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-4 flex items-center justify-between">
+    <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-2 flex items-center justify-between">
       <Button 
         variant="secondary" 
         onClick={() => onPageChange(currentPage - 1)}
