@@ -4,16 +4,20 @@ import React, { useState, useEffect } from 'react';
 import { SearchBar } from '@/components/ui/searchbar';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { getAllContacts, Contact } from '@/components/ui/addressbookData';
+import { getAllContacts, getAllAddresses, Contact, Address} from '@/components/ui/addressbookData';
 import { AllContactsTable } from '@/components/ui/allcontactsTable';
+import { AddressesTable } from '@/components/ui/addressesTable';
 
 export default function AddressBook() {
   const [contacts, setContacts] = useState<Contact[]>([]);
-  const [activeTab, setActiveTab] = useState('contacts');
+  const [addresses, setAddresses] = useState<Address[]>([]);
+  const [activeTab, setActiveTab] = useState<'contacts' | 'addresses'>('contacts');
 
   useEffect(() => {
     const fetchedContacts = getAllContacts();
+    const fetchedAddresses = getAllAddresses();
     setContacts(fetchedContacts);
+    setAddresses(fetchedAddresses);
   }, []);
 
   const handleSearch = (searchTerm: string) => {
@@ -36,19 +40,38 @@ export default function AddressBook() {
     // Implement view logic here
   };
 
+  const handleEditAddress = (addressId: string) => {
+    console.log('Edit address:', addressId);
+    // Implement edit address logic here
+  };
+
+  const handleViewAddress = (addressId: string) => {
+    console.log('View address:', addressId);
+    // Implement view address logic here
+  };
+
+  const handleToggleFavorite = (addressId: string) => {
+    console.log('Toggle favorite:', addressId);
+    // Implement favorite toggle logic here
+  };
+
+  const handleTabChange = (value: string) => {
+    console.log('Tab changed to:', value);
+    setActiveTab(value as 'contacts' | 'addresses');
+  };
+
+  console.log('Current active tab:', activeTab);
+
   return (
     <main className='w-full h-full'>
       <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
-        <Tabs defaultValue='contacts' className='w-full' onValueChange={setActiveTab}>
+        <Tabs value={activeTab} onValueChange={handleTabChange} className='w-full'>
           <div className='w-full sticky top-0 backdrop-blur-md z-10 bg-white/60'>
             <div className='max-w-screen-xl mx-auto px-6 pt-6 pb-4'>
               <nav aria-label='Breadcrumb' className='mb-4'>
                 <ol className='flex items-center gap-1 text-xs text-gray-600'>
                   <li>
-                    <a
-                      href='#'
-                      className='block transition hover:text-gray-700'
-                    >
+                    <a href='#' className='block transition hover:text-gray-700'>
                       Avatar Name
                     </a>
                   </li>
@@ -126,8 +149,12 @@ export default function AddressBook() {
             </TabsContent>
             <TabsContent value='addresses'>
               <div>
-                {/* Placeholder for Addresses tab content */}
-                <div>Addresses content goes here</div>
+                <AddressesTable
+                  addresses={addresses}
+                  onEdit={handleEditAddress}
+                  onView={handleViewAddress}
+                  onToggleFavorite={handleToggleFavorite}
+                />
               </div>
             </TabsContent>
           </div>

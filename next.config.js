@@ -6,13 +6,9 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-  },
-  images: {
     domains: ['ethics.org.au'],
   },
-  serverRuntimeConfig: {
-    PORT: 3008
-  }
+  // Remove the serverRuntimeConfig for now
 }
 
 module.exports = nextConfig

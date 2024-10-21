@@ -20,52 +20,110 @@ export interface ContactWithFormattedCount extends Contact {
 }
 
 export const addresses: Address[] = [
-  { 
-    id: '1', 
-    contactId: '1', 
-    contactName: 'John Doe', 
-    addressname: 'John ETH', 
-    network: 'Ethereum', 
-    asset: 'ETH', 
-    address: '0x1234...5678' 
+  {
+    id: '1',
+    contactId: '1',
+    contactName: 'John Doe',
+    addressname: 'John Savings',
+    network: 'Ethereum Network',
+    asset: 'Tether',
+    address: '0x1234...5678',
   },
-  { 
-    id: '2', 
-    contactId: '1', 
-    contactName: 'John Doe', 
-    addressname: 'John BTC', 
-    network: 'Bitcoin', 
-    asset: 'BTC', 
-    address: 'bc1qxy...zuvw' 
+  {
+    id: '2',
+    contactId: '1',
+    contactName: 'John Doe',
+    addressname: 'John Personal',
+    network: 'Bitcoin Network',
+    asset: 'Bitcoin',
+    address: '0x1234...5678',
   },
-  { 
-    id: '3', 
-    contactId: '2', 
-    contactName: 'Jane Smith', 
-    addressname: 'Jane MATIC', 
-    network: 'Polygon', 
-    asset: 'MATIC', 
-    address: '0xabcd...efgh' 
+  {
+    id: '3',
+    contactId: '2',
+    contactName: 'Jane Smith',
+    addressname: 'Jane Holiday',
+    network: 'Polygon Network',
+    asset: 'Tether',
+    address: '0xabcd...efgh',
   },
-  { 
-    id: '4', 
-    contactId: '3', 
-    contactName: 'Alice Johnson', 
-    addressname: 'Alice ETH', 
-    network: 'Ethereum', 
-    asset: 'ETH', 
-    address: '0x5678...9012' 
+  {
+    id: '4',
+    contactId: '3',
+    contactName: 'Alice Johnson',
+    addressname: 'Alice Shopping',
+    network: 'Ethereum Network',
+    asset: 'Tether',
+    address: '0x5678...9012',
+  },
+
+  {
+    id: '5',
+    contactId: '4',
+    contactName: 'Bob Williams',
+    addressname: 'Bob Christmas',
+    network: 'Ethereum Network',
+    asset: 'Tether',
+    address: '0x1234...5678',
+  },
+  {
+    id: '6',
+    contactId: '5',
+    contactName: 'Emma Davis',
+    addressname: 'Emma Summer',
+    network: 'Polygon Network',
+    asset: 'Tether',
+    address: '0x1234...5678',
+  },
+  {
+    id: '7',
+    contactId: '6',
+    contactName: 'Michael Brown',
+    addressname: 'Michael Personal',
+    network: 'Bitcoin Network',
+    asset: 'Bitcoin',
+    address: '0x1234...5678',
+  },
+  {
+    id: '8',
+    contactId: '7',
+    contactName: 'Sophia Lee',
+    addressname: 'Sophia AVAX',
+    network: 'Bitcoin Network',
+    asset: 'Bitcoin',
+    address: '0x1234...5678',
+  },
+  {
+    id: '9',
+    contactId: '8',
+    contactName: 'Daniel Wilson',
+    addressname: 'Daniel Personal',
+    network: 'Ethereum Network',
+    asset: 'Tether',
+    address: '0x1234...5678',
+  },
+  {
+    id: '10',
+    contactId: '9',
+    contactName: 'Olivia Taylor',
+    addressname: 'Olivia Savings',
+    network: 'Bitcoin Network',
+    asset: 'Bitcoin',
+    address: '0x1234...5678',
   },
 ];
 
 const contactIds = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
-const calculateAddressCounts = (addresses: Address[], contactIds: string[]): { [key: string]: number } => {
+const calculateAddressCounts = (
+  addresses: Address[],
+  contactIds: string[]
+): { [key: string]: number } => {
   const counts: { [key: string]: number } = {};
-  contactIds.forEach(id => {
+  contactIds.forEach((id) => {
     counts[id] = 1; // Set default count to 1 for all contacts
   });
-  addresses.forEach(address => {
+  addresses.forEach((address) => {
     counts[address.contactId] += 1;
   });
   return counts;
@@ -74,22 +132,72 @@ const calculateAddressCounts = (addresses: Address[], contactIds: string[]): { [
 const addressCounts = calculateAddressCounts(addresses, contactIds);
 
 export const contacts: Contact[] = [
-  { id: '1', name: 'John Doe', addressCount: addressCounts['1'], avatar: "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"},
-  { id: '2', name: 'Jane Smith', addressCount: addressCounts['2'], avatar: "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"},
-  { id: '3', name: 'Alice Johnson', addressCount: addressCounts['3'], avatar: "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"},
-  { id: '4', name: 'Bob Brown', addressCount: addressCounts['4'], avatar: "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"},
-  { id: '5', name: 'Charlie Davis', addressCount: addressCounts['5'], avatar: "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"},
-  { id: '6', name: 'Eva Green', addressCount: addressCounts['6'], avatar: "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"},
-  { id: '7', name: 'Frank Wilson', addressCount: addressCounts['7'], avatar: "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"},
-  { id: '8', name: 'Grace Lee', addressCount: addressCounts['8'], avatar: "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"},
-  { id: '9', name: 'Henry Taylor', addressCount: addressCounts['9'], avatar: "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"},
-  { id: '10', name: 'Isabelle Martinez', addressCount: addressCounts['10'], avatar: "https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg"},
+  {
+    id: '1',
+    name: 'John Doe',
+    addressCount: addressCounts['1'],
+    avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+  },
+  {
+    id: '2',
+    name: 'Jane Smith',
+    addressCount: addressCounts['2'],
+    avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+  },
+  {
+    id: '3',
+    name: 'Alice Johnson',
+    addressCount: addressCounts['3'],
+    avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+  },
+  {
+    id: '4',
+    name: 'Bob Brown',
+    addressCount: addressCounts['4'],
+    avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+  },
+  {
+    id: '5',
+    name: 'Charlie Davis',
+    addressCount: addressCounts['5'],
+    avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+  },
+  {
+    id: '6',
+    name: 'Eva Green',
+    addressCount: addressCounts['6'],
+    avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+  },
+  {
+    id: '7',
+    name: 'Frank Wilson',
+    addressCount: addressCounts['7'],
+    avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+  },
+  {
+    id: '8',
+    name: 'Grace Lee',
+    addressCount: addressCounts['8'],
+    avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+  },
+  {
+    id: '9',
+    name: 'Henry Taylor',
+    addressCount: addressCounts['9'],
+    avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+  },
+  {
+    id: '10',
+    name: 'Isabelle Martinez',
+    addressCount: addressCounts['10'],
+    avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+  },
 ];
 
 export const getAllContacts = (): ContactWithFormattedCount[] => {
-  return contacts.map(contact => ({
+  return contacts.map((contact) => ({
     ...contact,
-    formattedAddressCount: `${contact.addressCount} ${contact.addressCount === 1 ? 'address' : 'addresses'}`
+    formattedAddressCount: `${contact.addressCount} ${contact.addressCount === 1 ? 'address' : 'addresses'}`,
   }));
 };
 
@@ -100,28 +208,30 @@ export const getAllAddresses = (): Address[] => {
 export const addAddress = (newAddress: Address): void => {
   addresses.push(newAddress);
   const newCounts = calculateAddressCounts(addresses, contactIds);
-  contacts.forEach(contact => {
+  contacts.forEach((contact) => {
     contact.addressCount = newCounts[contact.id];
   });
 };
 
 export const removeAddress = (addressId: string): void => {
-  const index = addresses.findIndex(addr => addr.id === addressId);
+  const index = addresses.findIndex((addr) => addr.id === addressId);
   if (index !== -1) {
     addresses.splice(index, 1);
     const newCounts = calculateAddressCounts(addresses, contactIds);
-    contacts.forEach(contact => {
+    contacts.forEach((contact) => {
       contact.addressCount = newCounts[contact.id];
     });
   }
 };
 
-export const addContact = (newContact: Omit<Contact, 'id' | 'addressCount'>): void => {
+export const addContact = (
+  newContact: Omit<Contact, 'id' | 'addressCount'>
+): void => {
   const newId = (contacts.length + 1).toString();
   contacts.push({
     ...newContact,
     id: newId,
-    addressCount: 1  // New contacts start with 1 address
+    addressCount: 1, // New contacts start with 1 address
   });
   contactIds.push(newId);
 };
