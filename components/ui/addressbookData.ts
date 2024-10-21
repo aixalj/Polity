@@ -111,6 +111,24 @@ export const addresses: Address[] = [
     asset: 'Bitcoin',
     address: '0x1234...5678',
   },
+  {
+    id: '11',
+    contactId: '10',
+    contactName: 'Jenny Roberts',
+    addressname: 'Jenny Personal',
+    network: 'Bitcoin Network',
+    asset: 'Bitcoin',
+    address: '0x1234...5678',
+  },
+  {
+    id: '12',
+    contactId: '11',
+    contactName: 'Tom Williams',
+    addressname: 'Tom Savings',
+    network: 'Bitcoin Network',
+    asset: 'Bitcoin',
+    address: '0x1234...5678',
+  },
 ];
 
 const contactIds = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];

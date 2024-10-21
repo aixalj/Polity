@@ -19,11 +19,16 @@ export function Pagination({
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
+  const handlePageChange = (newPage: number) => (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent default button behavior
+    onPageChange(newPage);
+  };
+
   return (
-    <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-2 flex items-center justify-between">
+    <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 pt-4 flex items-center justify-between">
       <Button 
         variant="secondary" 
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
         Previous
@@ -33,7 +38,7 @@ export function Pagination({
       </span>
       <Button 
         variant="secondary" 
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
         Next

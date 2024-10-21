@@ -5,8 +5,7 @@ import { Button } from './button';
 import { Edit, Plus, Eye } from 'lucide-react';
 import { ContactWithFormattedCount } from '@/components/ui/addressbookData';
 import { Pagination } from '@/components/ui/pagination';
-import Image from "next/image";
-
+import Image from 'next/image';
 
 interface AllContactsTableProps {
   contacts: ContactWithFormattedCount[];
@@ -41,11 +40,11 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
   );
 
   return (
-    <div className='relative w-full flex flex-col h-full'>
+    <div className='flex flex-col h-full'> 
+      <div className='w-full min-w-fit flex bg-gray-100 rounded-xl font-medium text-gray-500 text-xs'>
+        <div className='w-full px-6 py-3'>Contact</div>
+      </div>
       <div className='flex-grow overflow-y-auto'>
-        <div className='w-full min-w-fit flex bg-gray-100 rounded-xl font-medium text-gray-500 text-xs sticky top-0'>
-          <div className='w-full px-6 py-3'>Contact</div>
-        </div>
         <div className='w-full flex flex-col gap-1'>
           {paginatedContacts.map((contact) => (
             <div
@@ -57,7 +56,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                   <div className='size-11 rounded-md border-gray-300 border overflow-hidden'>
                     <Image
                       src={contact.avatar}
-                      alt={`${contact.name}&apos;s avatar`}
+                      alt={`${contact.name}'s avatar`}
                       className='w-full h-full object-cover'
                       width={44}
                       height={44}
@@ -97,7 +96,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
           ))}
         </div>
       </div>
-      <div className='sticky bottom-0 bg-white border-gray-200 mt-4 py-4'>
+      <div className='mt-auto pt-4 pb-4 bg-white border-gray-200'>
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

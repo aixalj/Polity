@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { SearchBar } from '@/components/ui/searchbar';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
@@ -17,9 +17,16 @@ type TabType = 'contacts' | 'addresses';
 
 export default function AddressBook() {
   const [activeTab, setActiveTab] = useState<TabType>('contacts');
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const contacts: ContactWithFormattedCount[] = getAllContacts();
   const addresses: Address[] = getAllAddresses();
+
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
+    }
+  }, [activeTab]);
 
   const handleEdit = (contactId: string) => {
     console.log('Edit contact:', contactId);
@@ -57,11 +64,11 @@ export default function AddressBook() {
 
   return (
     <main className='w-full h-full'>
-      <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
+      <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-hidden'>
         <Tabs
           value={activeTab}
           onValueChange={(value: string) => handleTabChange(value as TabType)}
-          className='w-full'
+          className='w-full h-full flex flex-col'
         >
           <div className='w-full sticky top-0 backdrop-blur-md z-10 bg-white/60'>
             <div className='max-w-screen-xl mx-auto px-6 pt-6 pb-4'>
@@ -131,7 +138,10 @@ export default function AddressBook() {
               </div>
             </div>
           </div>
-          <div className='max-w-screen-xl mx-auto px-6 w-full'>
+          <div 
+            ref={contentRef}
+            className='max-w-screen-xl mx-auto px-6 w-full flex-grow overflow-y-auto'
+          >
             <TabsContent value='contacts'>
               <div>
                 <AllContactsTable
