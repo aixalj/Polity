@@ -24,14 +24,18 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 10;
 
-  const totalItems = contacts.length;
+  const sortedContacts = React.useMemo(() => {
+    return [...contacts].sort((a, b) => a.name.localeCompare(b.name));
+  }, [contacts]);
+
+  const totalItems = sortedContacts.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  const paginatedContacts = contacts.slice(
+  const paginatedContacts = sortedContacts.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -62,7 +66,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                   <div>
                     <p className='font-medium'>{contact.name}</p>
                     <p className='text-sm text-gray-500'>
-                      {contact.formattedAddressCount}
+                      {contact.formattedAddressCount} addresses
                     </p>
                   </div>
                 </div>

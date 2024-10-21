@@ -1,29 +1,25 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SearchBar } from '@/components/ui/searchbar';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { getAllContacts, getAllAddresses, Contact, Address} from '@/components/ui/addressbookData';
+import {
+  getAllContacts,
+  getAllAddresses,
+  ContactWithFormattedCount,
+  Address,
+} from '@/components/ui/addressbookData';
 import { AllContactsTable } from '@/components/ui/allcontactsTable';
 import { AddressesTable } from '@/components/ui/addressesTable';
 
+type TabType = 'contacts' | 'addresses';
+
 export default function AddressBook() {
-  const [contacts, setContacts] = useState<Contact[]>([]);
-  const [addresses, setAddresses] = useState<Address[]>([]);
-  const [activeTab, setActiveTab] = useState<'contacts' | 'addresses'>('contacts');
+  const [activeTab, setActiveTab] = useState<TabType>('contacts');
 
-  useEffect(() => {
-    const fetchedContacts = getAllContacts();
-    const fetchedAddresses = getAllAddresses();
-    setContacts(fetchedContacts);
-    setAddresses(fetchedAddresses);
-  }, []);
-
-  const handleSearch = (searchTerm: string) => {
-    console.log('Searching for:', searchTerm);
-    // Implement your search logic here
-  };
+  const contacts: ContactWithFormattedCount[] = getAllContacts();
+  const addresses: Address[] = getAllAddresses();
 
   const handleEdit = (contactId: string) => {
     console.log('Edit contact:', contactId);
@@ -55,17 +51,18 @@ export default function AddressBook() {
     // Implement favorite toggle logic here
   };
 
-  const handleTabChange = (value: string) => {
-    console.log('Tab changed to:', value);
-    setActiveTab(value as 'contacts' | 'addresses');
+  const handleTabChange = (value: TabType) => {
+    setActiveTab(value);
   };
-
-  console.log('Current active tab:', activeTab);
 
   return (
     <main className='w-full h-full'>
       <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
-        <Tabs value={activeTab} onValueChange={handleTabChange} className='w-full'>
+        <Tabs
+          value={activeTab}
+          onValueChange={(value: string) => handleTabChange(value as TabType)}
+          className='w-full'
+        >
           <div className='w-full sticky top-0 backdrop-blur-md z-10 bg-white/60'>
             <div className='max-w-screen-xl mx-auto px-6 pt-6 pb-4'>
               <nav aria-label='Breadcrumb' className='mb-4'>
@@ -110,14 +107,12 @@ export default function AddressBook() {
                 </div>
               </div>
               <div className='w-full mt-4'>
-                <SearchBar
-                  onSearch={handleSearch}
-                  placeholder='Search by contact name...'
-                />
+                <SearchBar placeholder='Search by contact name...' />
               </div>
               <div className='flex justify-between items-center w-full mt-4'>
                 <h2 className='text-xl font-semibold'>
-                  {activeTab === 'contacts' ? 'All Contacts' : 'Addresses'}
+                  {isValidTab(activeTab) &&
+                    (activeTab === 'contacts' ? 'All Contacts' : 'Addresses')}
                 </h2>
                 <TabsList className='bg-gray-100 p-2 rounded-xl'>
                   <TabsTrigger
@@ -140,7 +135,7 @@ export default function AddressBook() {
             <TabsContent value='contacts'>
               <div>
                 <AllContactsTable
-                  contacts={getAllContacts()}
+                  contacts={contacts}
                   onEdit={handleEdit}
                   onAddAddress={handleAddAddress}
                   onView={handleView}
@@ -162,4 +157,8 @@ export default function AddressBook() {
       </div>
     </main>
   );
+}
+
+function isValidTab(tab: string): tab is TabType {
+  return tab === 'contacts' || tab === 'addresses';
 }

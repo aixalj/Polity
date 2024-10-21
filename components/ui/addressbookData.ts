@@ -197,7 +197,7 @@ export const contacts: Contact[] = [
 export const getAllContacts = (): ContactWithFormattedCount[] => {
   return contacts.map((contact) => ({
     ...contact,
-    formattedAddressCount: `${contact.addressCount} ${contact.addressCount === 1 ? 'address' : 'addresses'}`,
+    formattedAddressCount: contact.addressCount.toString()
   }));
 };
 

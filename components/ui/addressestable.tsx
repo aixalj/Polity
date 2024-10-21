@@ -46,6 +46,15 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
     currentPage * itemsPerPage
   );
 
+  const networkIconMap: { [key: string]: any } = {
+    ethereum: ETH,
+    'ethereum network': ETH,
+    bitcoin: BTC,
+    'bitcoin network': BTC,
+    polygon: MATIC,
+    'polygon network': MATIC,
+  };
+
   const getAssetIcon = (asset: string) => {
     switch (asset.toLowerCase()) {
       case 'bitcoin':
@@ -88,77 +97,85 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
       <div className='flex-grow overflow-y-auto'>
         <div className='w-full min-w-fit flex bg-gray-100 rounded-xl font-medium text-gray-500 text-xs sticky top-0'>
           <div className='w-10 px-2 py-3'></div>
-          <div className='flex-grow px-6 py-3'>Contact</div>
-          <div className='w-1/6 px-6 py-3'>Network</div>
+          <div className='flex-grow px-5 py-3'>Contact</div>
+          <div className='w-1/4 px-6 py-3'>Network</div>
           <div className='w-1/6 px-6 py-3'>Asset</div>
           <div className='w-1/4 px-6 py-3'>Address</div>
           <div className='w-32 px-6 py-3'></div>
         </div>
         <div className='w-full flex flex-col gap-1'>
-          {paginatedAddresses.map((address) => (
-            <div
-              key={address.id}
-              className='w-full min-w-fit flex hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm'
-            >
-              <div className='w-10 px-2 py-3 flex items-center justify-center'></div>
-              <div className='flex-grow px-6 py-3 flex items-center'>
-                <div className='rounded-full overflow-hidden bg-gray-200 w-8 h-8 mr-2'>
-                  <Image
-                    src={'/bastion.png'}
-                    alt={address.asset}
-                    width={32}
-                    height={32}
-                  />
+          {paginatedAddresses.map((address) => {
+            const networkLower = address.network.toLowerCase().replace(' network', '');
+
+            return (
+              <div
+                key={address.id}
+                className='w-full min-w-fit flex hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm'
+              >
+                <div className='w-10 px-2 py-3 flex items-center justify-center'></div>
+                <div className='flex-grow px-6 py-3 flex items-center'>
+                  <div className='rounded-full overflow-hidden bg-gray-200 w-8 h-8 mr-2'>
+                    <Image
+                      src={'/bastion.png'}
+                      alt={address.asset}
+                      width={32}
+                      height={32}
+                    />
+                  </div>
+                  <div>
+                    <p className='font-medium'>{address.contactName}</p>
+                    <p className='text-sm text-gray-500'>
+                      {address.addressname}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className='font-medium'>{address.contactName}</p>
-                  <p className='text-sm text-gray-500'>{address.addressname}</p>
+                <div className='w-1/4 px-6 py-3 flex items-center'>
+                  <div className='w-8 h-8 flex-shrink-0 mr-2'>
+                    <Image
+                      src={networkIconMap[networkLower] || '/default-network-icon.svg'}
+                      alt={address.network}
+                      width={32}
+                      height={32}
+                      className='w-full h-full object-contain'
+                    />
+                  </div>
+                  <span>{address.network}</span>
+                </div>
+                <div className='w-1/6 px-6 py-3 flex items-center'>
+                  <div className='w-5 h-5 mr-2'>
+                    <Image
+                      src={getAssetIcon(address.asset)}
+                      alt={address.asset}
+                      width={20}
+                      height={20}
+                    />
+                  </div>
+                  {address.asset}
+                </div>
+                <div className='w-1/4 px-6 py-3 flex items-center'>
+                  {address.address}
+                </div>
+                <div className='w-32 px-6 py-3 flex items-center justify-end space-x-4'>
+                  <Button
+                    variant='secondary'
+                    size='sm'
+                    onClick={() => onEdit(address.id)}
+                  >
+                    <Edit className='h-4 w-4' />
+                    Edit
+                  </Button>
+                  <Button
+                    variant='secondary'
+                    size='sm'
+                    onClick={() => onView(address.id)}
+                  >
+                    <Eye className='h-4 w-4' />
+                    View
+                  </Button>
                 </div>
               </div>
-              <div className='w-1/6 px-6 py-3 flex items-center'>
-                <div className='flex items-center'>
-                  <Image
-                    src={`/icons/networks/${address.network.toLowerCase()}.svg`}
-                    alt={address.network}
-                   
-                    className='mr-2'
-                  />
-                </div>
-              </div>
-              <div className='w-1/6 px-6 py-3 flex items-center'>
-                <div className='w-5 h-5 mr-2'>
-                  <Image
-                    src={getAssetIcon(address.asset)}
-                    alt={address.asset}
-                    width={20}
-                    height={20}
-                  />
-                </div>
-                {address.asset}
-              </div>
-              <div className='w-1/4 px-6 py-3 flex items-center'>
-                {address.address}
-              </div>
-              <div className='w-32 px-6 py-3 flex items-center justify-end space-x-4'>
-                <Button
-                  variant='secondary'
-                  size='sm'
-                  onClick={() => onEdit(address.id)}
-                >
-                  <Edit className='h-4 w-4' />
-                  Edit
-                </Button>
-                <Button
-                  variant='secondary'
-                  size='sm'
-                  onClick={() => onView(address.id)}
-                >
-                  <Eye className='h-4 w-4' />
-                  View
-                </Button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
       <div className='sticky bottom-0 bg-white border-gray-200 mt-4 py-4'>
