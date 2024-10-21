@@ -3,11 +3,13 @@
 import React, { useState, useMemo } from 'react';
 import { Input } from '@/components/ui/input';
 import { Search, Check } from 'lucide-react';
-import { getAllContacts, getAllAddresses, Contact, Address } from '@/components/ui/addressbookData';
-import { SearchError } from '@/components/ui/searchError';
+import { getAllContacts, getAllAddresses } from '@/components/ui/addressbookData';
 
 interface SearchBarProps {
   placeholder: string;
+  onSelect: (selectedName: string) => void;
+  onSearch: (term: string) => void;
+  onErrorChange: (hasError: boolean) => void;
 }
 
 interface SearchResult {
@@ -16,7 +18,7 @@ interface SearchResult {
   type: 'contact' | 'address';
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
+export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSelect, onSearch, onErrorChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selected, setSelected] = useState<SearchResult | null>(null);
 
@@ -28,22 +30,31 @@ export const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
 
   const results = useMemo(() => {
     if (!searchTerm) return [];
-    return allItems.filter(item => 
-      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (item.addressName && item.addressName.toLowerCase().includes(searchTerm.toLowerCase()))
-    );
+    const lowerSearchTerm = searchTerm.toLowerCase();
+    return allItems.filter(item => {
+      const names = item.name.split(' ');
+      const firstName = names[0].toLowerCase();
+      return firstName.startsWith(lowerSearchTerm);
+    });
   }, [allItems, searchTerm]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    const value = event.target.value;
+    setSearchTerm(value);
     setSelected(null);
+    onSelect(''); // Clear the selection when input changes
+    onSearch(value); // Notify parent component of search term change
+    onErrorChange(value !== '' && results.length === 0);
   };
 
   const handleSelect = (item: SearchResult) => {
     setSelected(item);
     setSearchTerm(item.name);
-    // Here you would trigger the display of the selected contact or address
+    onSelect(item.name); // Notify parent component of selection
+    onSearch(item.name); // Notify parent component of search term change
+    onErrorChange(false);
   };
+
   return (
     <div className="relative w-full">
       <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
@@ -74,9 +85,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
             </li>
           ))}
         </ul>
-      )}
-      {results.length === 0 && searchTerm !== '' && (
-        <SearchError message="No results found. Please try a different search term." />
       )}
     </div>
   );

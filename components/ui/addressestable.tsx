@@ -6,6 +6,7 @@ import { Edit, Eye } from 'lucide-react';
 import { Pagination } from '@/components/ui/pagination';
 import { useState, useRef, useMemo, useCallback, useEffect } from 'react';
 import { FavoriteStar } from './favoritestar';
+import { Notification } from '@/components/ui/notification';
 import {
   Tooltip,
   TooltipContent,
@@ -45,6 +46,7 @@ interface AddressesTableProps {
   onEdit: (addressId: string) => void;
   onView: (addressId: string) => void;
   onToggleFavorite: (addressId: string) => void;
+  searchTerm: string; // New prop
 }
 
 const AddressesTable: React.FC<AddressesTableProps> = ({
@@ -52,23 +54,33 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   onEdit,
   onView,
   onToggleFavorite,
+  searchTerm, // New prop
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
   const [localAddresses, setLocalAddresses] = useState(addresses);
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     setLocalAddresses(addresses);
   }, [addresses]);
 
+  const filteredAddresses = useMemo(() => {
+    return localAddresses.filter((address) =>
+      address.contactName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      address.addressname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      address.address.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [localAddresses, searchTerm]);
+
   const sortedAddresses = useMemo(() => {
-    return [...localAddresses].sort((a, b) => {
+    return [...filteredAddresses].sort((a, b) => {
       if (a.isFavorite && !b.isFavorite) return -1;
       if (!a.isFavorite && b.isFavorite) return 1;
       return a.contactName.localeCompare(b.contactName);
     });
-  }, [localAddresses]);
+  }, [filteredAddresses]);
 
   const totalItems = sortedAddresses.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -81,6 +93,10 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  const handleCloseNotification = () => {
+    setShowNotification(false);
+  };
 
   const [openTooltipId, setOpenTooltipId] = useState<string | null>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -107,8 +123,14 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
         )
       );
       onToggleFavorite(addressId);
+
+      const address = localAddresses.find((addr) => addr.id === addressId);
+      if (address && !address.isFavorite) {
+        setShowNotification(true);
+        setTimeout(() => setShowNotification(false), 5000);
+      }
     },
-    [onToggleFavorite]
+    [onToggleFavorite, localAddresses]
   );
 
   const getNetworkIcon = (network: string) => {
@@ -177,7 +199,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   };
 
   return (
-    <div className='flex flex-col h-full'>
+    <div className='flex flex-col h-full relative'>
       <div className='w-full min-w-fit flex bg-gray-100 rounded-xl font-medium text-gray-500 text-xs'>
         <div className='w-10 px-2 py-3'></div>
         <div className='w-1/4 px-6 py-3'>Contact</div>
@@ -347,6 +369,17 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
           onPageChange={handlePageChange}
         />
       </div>
+      {showNotification && (
+        <div className="fixed bottom-4 right-4 max-w-sm z-50">
+          <Notification
+            title="You've just added this address to your favorites!"
+            description="You've successfully added this address to your favorites."
+            status="success"
+            className="shadow-lg"
+            onClose={handleCloseNotification}
+          />
+        </div>
+      )}
     </div>
   );
 };

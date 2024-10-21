@@ -12,21 +12,50 @@ import {
 } from '@/components/ui/addressbookData';
 import { AllContactsTable } from '@/components/ui/allcontactsTable';
 import { AddressesTable } from '@/components/ui/addressesTable';
+import { SearchError } from '@/components/ui/searchError';
 
 type TabType = 'contacts' | 'addresses';
 
 export default function AddressBook() {
   const [activeTab, setActiveTab] = useState<TabType>('contacts');
   const contentRef = useRef<HTMLDivElement>(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const contacts: ContactWithFormattedCount[] = getAllContacts();
-  const addresses: Address[] = getAllAddresses();
+  const [contacts, setContacts] =
+    useState<ContactWithFormattedCount[]>(getAllContacts());
+  const [addresses, setAddresses] = useState<Address[]>(getAllAddresses());
+  const [noResults, setNoResults] = useState(false);
 
   useEffect(() => {
     if (contentRef.current) {
       contentRef.current.scrollTop = 0;
     }
   }, [activeTab]);
+
+  useEffect(() => {
+    if (searchTerm) {
+      const filteredContacts = getAllContacts().filter((contact) =>
+        contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      const filteredAddresses = getAllAddresses().filter((address) =>
+        address.contactName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      setContacts(filteredContacts);
+      setAddresses(filteredAddresses);
+      setNoResults(
+        filteredContacts.length === 0 && filteredAddresses.length === 0
+      );
+    } else {
+      setContacts(getAllContacts());
+      setAddresses(getAllAddresses());
+      setNoResults(false);
+    }
+  }, [searchTerm]);
+
+  const handleSearchInput = (term: string) => {
+    setSearchTerm(term);
+  };
 
   const handleEdit = (contactId: string) => {
     console.log('Edit contact:', contactId);
@@ -53,14 +82,11 @@ export default function AddressBook() {
     // Implement view address logic here
   };
 
-  const handleToggleFavorite = (addressId: string) => {
-    console.log('Toggle favorite:', addressId);
-    // Implement favorite toggle logic here
-  };
-
   const handleTabChange = (value: TabType) => {
     setActiveTab(value);
   };
+
+  const handleToggleFavorite = (addressId: string) => {};
 
   return (
     <main className='w-full h-full'>
@@ -75,7 +101,10 @@ export default function AddressBook() {
               <nav aria-label='Breadcrumb' className='mb-4'>
                 <ol className='flex items-center gap-1 text-xs text-gray-600'>
                   <li>
-                    <a href='#' className='block transition hover:text-gray-700'>
+                    <a
+                      href='#'
+                      className='block transition hover:text-gray-700'
+                    >
                       Avatar Name
                     </a>
                   </li>
@@ -114,7 +143,16 @@ export default function AddressBook() {
                 </div>
               </div>
               <div className='w-full mt-4'>
-                <SearchBar placeholder='Search by contact name...' />
+                <SearchBar
+                  placeholder='Search by contact name...'
+                  onSearch={handleSearchInput}
+                  onErrorChange={(error) => {
+                    /* Handle error */
+                  }}
+                  onSelect={(item) => {
+                    /* Handle selection if needed */
+                  }}
+                />
               </div>
               <div className='flex justify-between items-center w-full mt-4'>
                 <h2 className='text-xl font-semibold'>
@@ -138,30 +176,38 @@ export default function AddressBook() {
               </div>
             </div>
           </div>
-          <div 
+          <div
             ref={contentRef}
             className='max-w-screen-xl mx-auto px-6 w-full flex-grow overflow-y-auto'
           >
-            <TabsContent value='contacts'>
-              <div>
-                <AllContactsTable
-                  contacts={contacts}
-                  onEdit={handleEdit}
-                  onAddAddress={handleAddAddress}
-                  onView={handleView}
-                />
-              </div>
-            </TabsContent>
-            <TabsContent value='addresses'>
-              <div>
-                <AddressesTable
-                  addresses={addresses}
-                  onEdit={handleEditAddress}
-                  onView={handleViewAddress}
-                  onToggleFavorite={handleToggleFavorite}
-                />
-              </div>
-            </TabsContent>
+            {searchTerm && noResults ? (
+              <SearchError message='No matching contacts found' />
+            ) : (
+              <>
+                <TabsContent value='contacts'>
+                  <div>
+                    <AllContactsTable
+                      contacts={contacts}
+                      onEdit={handleEdit}
+                      onAddAddress={handleAddAddress}
+                      onView={handleView}
+                      searchTerm={searchTerm}
+                    />
+                  </div>
+                </TabsContent>
+                <TabsContent value='addresses'>
+                  <div>
+                    <AddressesTable
+                      addresses={addresses}
+                      onEdit={handleEditAddress}
+                      onView={handleViewAddress}
+                      onToggleFavorite={handleToggleFavorite}
+                      searchTerm={searchTerm}
+                    />
+                  </div>
+                </TabsContent>
+              </>
+            )}
           </div>
         </Tabs>
       </div>

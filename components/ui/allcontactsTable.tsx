@@ -6,12 +6,14 @@ import { Edit, Plus, Eye } from 'lucide-react';
 import { ContactWithFormattedCount } from '@/components/ui/addressbookData';
 import { Pagination } from '@/components/ui/pagination';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface AllContactsTableProps {
   contacts: ContactWithFormattedCount[];
   onEdit: (contactId: string) => void;
   onAddAddress: (contactId: string) => void;
   onView: (contactId: string) => void;
+  searchTerm: string; // New prop
 }
 
 const AllContactsTable: React.FC<AllContactsTableProps> = ({
@@ -19,13 +21,20 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
   onEdit,
   onAddAddress,
   onView,
+  searchTerm, // New prop
 }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 10;
 
+  const filteredContacts = React.useMemo(() => {
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [contacts, searchTerm]);
+
   const sortedContacts = React.useMemo(() => {
-    return [...contacts].sort((a, b) => a.name.localeCompare(b.name));
-  }, [contacts]);
+    return [...filteredContacts].sort((a, b) => a.name.localeCompare(b.name));
+  }, [filteredContacts]);
 
   const totalItems = sortedContacts.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -40,7 +49,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
   );
 
   return (
-    <div className='flex flex-col h-full'> 
+    <div className='flex flex-col h-full'>
       <div className='w-full min-w-fit flex bg-gray-100 rounded-xl font-medium text-gray-500 text-xs'>
         <div className='w-full px-6 py-3'>Contact</div>
       </div>
@@ -84,12 +93,11 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                   >
                     <Edit className='h-4 w-4' />
                   </button>
-                  <button
-                    className='text-gray-500 hover:text-gray-700 transition-colors'
-                    onClick={() => onView(contact.id)}
-                  >
-                    <Eye className='h-4 w-4' />
-                  </button>
+                  <Link href={`/addressbook/${contact.id}`}>
+                    <button className='text-gray-500 hover:text-gray-700 transition-colors'>
+                      <Eye className='h-4 w-4' />
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
