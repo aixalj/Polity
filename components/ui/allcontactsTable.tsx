@@ -5,6 +5,8 @@ import { Button } from './button';
 import { Edit, Plus, Eye } from 'lucide-react';
 import { ContactWithFormattedCount } from '@/components/ui/addressbookData';
 import { Pagination } from '@/components/ui/pagination';
+import Image from "next/image";
+
 
 interface AllContactsTableProps {
   contacts: ContactWithFormattedCount[];
@@ -49,10 +51,12 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
               <div className='w-full flex text-left text-gray-900'>
                 <div className='flex-grow px-6 py-3 flex items-center gap-3 h-16'>
                   <div className='size-11 rounded-md border-gray-300 border overflow-hidden'>
-                    <img
+                    <Image
                       src={contact.avatar}
-                      alt={`${contact.name}'s avatar`}
+                      alt={`${contact.name}&apos;s avatar`}
                       className='w-full h-full object-cover'
+                      width={44}
+                      height={44}
                     />
                   </div>
                   <div>
