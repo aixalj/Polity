@@ -72,7 +72,7 @@ export default function AddressBook() {
   };
 
   const handleAddAddress = (contactId: string) => {
-    console.log('Add address for contact:', contacts);
+    console.log('Add address for contact:', contactId);
     // Implement add address logic here
   };
 
@@ -122,8 +122,12 @@ export default function AddressBook() {
         contactId: '', // Add missing properties
         addressname: '', // Add missing properties
         address: '' // Add missing properties
-    } as Address, // Cast to Address type    
+      } as Address, // Cast to Address type    
     ]);
+  };
+
+  const handleOpenNewContactModal = () => {
+    setIsModalOpen(true); // Function to open the modal
   };
 
   return (
@@ -174,7 +178,7 @@ export default function AddressBook() {
                   </h1>
                 </div>
                 <div className='flex gap-3'>
-                  <Button onClick={() => setIsModalOpen(true)}>New Contact</Button> {/* Open modal on click */}
+                  <Button onClick={handleOpenNewContactModal}>New Contact</Button> {/* Open modal on click */}
                 </div>
               </div>
               <div className='w-full mt-4'>
@@ -220,7 +224,7 @@ export default function AddressBook() {
               <SearchError
                 message='No matching contacts found'
                 onClearSearch={handleClearSearch} // Updated to use the clear search function
-                onNewContact={() => {}} // Placeholder function to add new contact
+                onNewContact={handleOpenNewContactModal} // Pass the function to open the modal
               />
             ) : (
               <>
