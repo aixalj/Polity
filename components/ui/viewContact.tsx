@@ -1,10 +1,12 @@
 'use client';
 
-import React from 'react';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Button } from './button';
 import { Edit, ArrowLeft, Copy } from 'lucide-react';
 import { FavoriteStar } from './favoritestar';
+import { fetchContactById } from '@/lib/api'; // You'll need to implement this function
 
 interface Address {
   id: string;
@@ -13,43 +15,51 @@ interface Address {
   address: string;
 }
 
-interface ViewContactProps {
-  contact: {
-    id: string;
-    name: string;
-    addresses: Address[];
-    isFavorite: boolean;
-  };
-  onEdit: (contactId: string) => void;
-  onBack: () => void;
-  onToggleFavorite: (contactId: string) => void;
+interface Contact {
+  id: string;
+  name: string;
+  addresses: Address[];
+  isFavorite: boolean;
 }
 
-const ViewContact: React.FC<ViewContactProps> = ({
-  contact,
-  onEdit,
-  onBack,
-  onToggleFavorite,
-}) => {
+const ContactView = () => {
+  const router = useRouter();
+  const { id } = router.query;
+  const [contact, setContact] = useState<Contact | null>(null);
+
+  useEffect(() => {
+    if (id) {
+      fetchContactById(id as string).then(setContact);
+    }
+  }, [id]);
+
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     // You might want to add a toast notification here
   };
 
+  if (!contact) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="flex flex-col h-full bg-white rounded-lg shadow-lg">
       <div className="p-6 border-b border-gray-200">
         <div className="flex items-center justify-between">
-          <Button variant="ghost" onClick={onBack} className="p-2">
+          <Button variant="ghost" onClick={() => router.push('/addressbook')} className="p-2">
             <ArrowLeft className="h-5 w-5 mr-2" />
             Back to All Contacts
           </Button>
           <div className="flex items-center space-x-4">
             <FavoriteStar
               isFavorite={contact.isFavorite}
-              onToggle={() => onToggleFavorite(contact.id)}
+              onToggle={() => {
+                // Implement toggle favorite logic
+              }}
             />
-            <Button variant="outline" onClick={() => onEdit(contact.id)}>
+            <Button variant="outline" onClick={() => {
+              // Implement edit logic or navigation
+            }}>
               <Edit className="h-4 w-4 mr-2" />
               Edit Contact
             </Button>
@@ -105,4 +115,4 @@ const ViewContact: React.FC<ViewContactProps> = ({
   );
 };
 
-export { ViewContact };
+export default ContactView;
