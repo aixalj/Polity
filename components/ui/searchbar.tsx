@@ -10,6 +10,7 @@ interface SearchBarProps {
   onSelect: (selectedName: string) => void;
   onSearch: (term: string) => void;
   onErrorChange: (hasError: boolean) => void;
+  value: string; // Added value prop
 }
 
 interface SearchResult {
@@ -18,8 +19,7 @@ interface SearchResult {
   type: 'contact' | 'address';
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSelect, onSearch, onErrorChange }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSelect, onSearch, onErrorChange, value }) => {
   const [selected, setSelected] = useState<SearchResult | null>(null);
 
   const allItems = useMemo(() => {
@@ -29,27 +29,23 @@ export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSelect, onS
   }, []);
 
   const results = useMemo(() => {
-    if (!searchTerm) return [];
-    const lowerSearchTerm = searchTerm.toLowerCase();
+    if (!value) return []; // Use value prop instead of searchTerm
+    const lowerSearchTerm = value.toLowerCase();
     return allItems.filter(item => {
-      const names = item.name.split(' ');
-      const firstName = names[0].toLowerCase();
-      return firstName.startsWith(lowerSearchTerm);
+      const firstName = item.name.toLowerCase().split(' ')[0]; // Get the first name only
+      return firstName.startsWith(lowerSearchTerm); // Check if the first name starts with the search term
     });
-  }, [allItems, searchTerm]);
+  }, [allItems, value]); // Use value prop in dependency array
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setSearchTerm(value);
-    setSelected(null);
+    const newValue = event.target.value;
     onSelect(''); // Clear the selection when input changes
-    onSearch(value); // Notify parent component of search term change
-    onErrorChange(value !== '' && results.length === 0);
+    onSearch(newValue); // Notify parent component of search term change
+    onErrorChange(newValue !== '' && results.length === 0);
   };
 
   const handleSelect = (item: SearchResult) => {
     setSelected(item);
-    setSearchTerm(item.name);
     onSelect(item.name); // Notify parent component of selection
     onSearch(item.name); // Notify parent component of search term change
     onErrorChange(false);
@@ -62,7 +58,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSelect, onS
         type="text"
         placeholder={placeholder}
         className="pl-10 pr-4 w-full"
-        value={searchTerm}
+        value={value} // Use the value prop for the input
         onChange={handleInputChange}
       />
       {results.length > 0 && (

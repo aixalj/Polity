@@ -20,9 +20,7 @@ export default function AddressBook() {
   const [activeTab, setActiveTab] = useState<TabType>('contacts');
   const contentRef = useRef<HTMLDivElement>(null);
   const [searchTerm, setSearchTerm] = useState('');
-
-  const [contacts, setContacts] =
-    useState<ContactWithFormattedCount[]>(getAllContacts());
+  const [contacts, setContacts] = useState<ContactWithFormattedCount[]>(getAllContacts());
   const [addresses, setAddresses] = useState<Address[]>(getAllAddresses());
   const [noResults, setNoResults] = useState(false);
 
@@ -43,9 +41,7 @@ export default function AddressBook() {
 
       setContacts(filteredContacts);
       setAddresses(filteredAddresses);
-      setNoResults(
-        filteredContacts.length === 0 && filteredAddresses.length === 0
-      );
+      setNoResults(filteredContacts.length === 0 && filteredAddresses.length === 0);
     } else {
       setContacts(getAllContacts());
       setAddresses(getAllAddresses());
@@ -55,6 +51,13 @@ export default function AddressBook() {
 
   const handleSearchInput = (term: string) => {
     setSearchTerm(term);
+  };
+
+  const handleClearSearch = () => {
+    setSearchTerm(''); // Clear the search term
+    setContacts(getAllContacts()); // Reset contacts to original list
+    setAddresses(getAllAddresses()); // Reset addresses to original list
+    setNoResults(false); // Reset no results state
   };
 
   const handleEdit = (contactId: string) => {
@@ -101,10 +104,7 @@ export default function AddressBook() {
               <nav aria-label='Breadcrumb' className='mb-4'>
                 <ol className='flex items-center gap-1 text-xs text-gray-600'>
                   <li>
-                    <a
-                      href='#'
-                      className='block transition hover:text-gray-700'
-                    >
+                    <a href='#' className='block transition hover:text-gray-700'>
                       Avatar Name
                     </a>
                   </li>
@@ -146,6 +146,7 @@ export default function AddressBook() {
                 <SearchBar
                   placeholder='Search by contact name...'
                   onSearch={handleSearchInput}
+                  value={searchTerm} // Pass the searchTerm to the SearchBar
                   onErrorChange={(error) => {
                     /* Handle error */
                   }}
@@ -181,7 +182,11 @@ export default function AddressBook() {
             className='max-w-screen-xl mx-auto px-6 w-full flex-grow overflow-y-auto'
           >
             {searchTerm && noResults ? (
-              <SearchError message='No matching contacts found' />
+              <SearchError
+                message='No matching contacts found'
+                onClearSearch={handleClearSearch} // Updated to use the clear search function
+                onNewContact={() => {}} // Placeholder function to add new contact
+              />
             ) : (
               <>
                 <TabsContent value='contacts'>

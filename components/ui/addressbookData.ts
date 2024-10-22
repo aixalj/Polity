@@ -19,6 +19,7 @@ export interface ContactWithFormattedCount extends Contact {
   formattedAddressCount: string;
 }
 
+// Updated addresses array with increased counts for all contacts
 export const addresses: Address[] = [
   {
     id: '1',
@@ -40,6 +41,24 @@ export const addresses: Address[] = [
   },
   {
     id: '3',
+    contactId: '1',
+    contactName: 'John Doe',
+    addressname: 'John Work',
+    network: 'Polygon Network',
+    asset: 'Tether',
+    address: '0x1234...5678',
+  },
+  {
+    id: '4',
+    contactId: '1',
+    contactName: 'John Doe',
+    addressname: 'John Vacation',
+    network: 'Ethereum Network',
+    asset: 'Tether',
+    address: '0x1234...5678',
+  },
+  {
+    id: '5',
     contactId: '2',
     contactName: 'Jane Smith',
     addressname: 'Jane Holiday',
@@ -48,7 +67,25 @@ export const addresses: Address[] = [
     address: '0xabcd...efgh',
   },
   {
-    id: '4',
+    id: '6',
+    contactId: '2',
+    contactName: 'Jane Smith',
+    addressname: 'Jane Work',
+    network: 'Ethereum Network',
+    asset: 'Tether',
+    address: '0xabcd...efgh',
+  },
+  {
+    id: '7',
+    contactId: '2',
+    contactName: 'Jane Smith',
+    addressname: 'Jane Home',
+    network: 'Ethereum Network',
+    asset: 'Tether',
+    address: '0xabcd...efgh',
+  },
+  {
+    id: '8',
     contactId: '3',
     contactName: 'Alice Johnson',
     addressname: 'Alice Shopping',
@@ -56,18 +93,35 @@ export const addresses: Address[] = [
     asset: 'Tether',
     address: '0x5678...9012',
   },
-
   {
-    id: '5',
+    id: '9',
+    contactId: '3',
+    contactName: 'Alice Johnson',
+    addressname: 'Alice Home',
+    network: 'Bitcoin Network',
+    asset: 'Bitcoin',
+    address: '0x5678...9012',
+  },
+  {
+    id: '10',
     contactId: '4',
     contactName: 'Bob Williams',
     addressname: 'Bob Christmas',
     network: 'Ethereum Network',
-    asset: '',
+    asset: 'Tether',
     address: '0x1234...5678',
   },
   {
-    id: '6',
+    id: '11',
+    contactId: '4',
+    contactName: 'Bob Williams',
+    addressname: 'Bob Work',
+    network: 'Ethereum Network',
+    asset: 'Tether',
+    address: '0x1234...5678',
+  },
+  {
+    id: '12',
     contactId: '5',
     contactName: 'Emma Davis',
     addressname: 'Emma Summer',
@@ -76,7 +130,16 @@ export const addresses: Address[] = [
     address: '0x1234...5678',
   },
   {
-    id: '7',
+    id: '13',
+    contactId: '5',
+    contactName: 'Emma Davis',
+    addressname: 'Emma Winter',
+    network: 'Polygon Network',
+    asset: '',
+    address: '0x1234...5678',
+  },
+  {
+    id: '14',
     contactId: '6',
     contactName: 'Michael Brown',
     addressname: 'Michael Personal',
@@ -85,7 +148,16 @@ export const addresses: Address[] = [
     address: '0x1234...5678',
   },
   {
-    id: '8',
+    id: '15',
+    contactId: '6',
+    contactName: 'Michael Brown',
+    addressname: 'Michael Work',
+    network: 'Bitcoin Network',
+    asset: '',
+    address: '0x1234...5678',
+  },
+  {
+    id: '16',
     contactId: '7',
     contactName: 'Sophia Lee',
     addressname: 'Sophia AVAX',
@@ -94,7 +166,7 @@ export const addresses: Address[] = [
     address: '0x1234...5678',
   },
   {
-    id: '9',
+    id: '17',
     contactId: '8',
     contactName: 'Daniel Wilson',
     addressname: 'Daniel Personal',
@@ -103,7 +175,7 @@ export const addresses: Address[] = [
     address: '0x1234...5678',
   },
   {
-    id: '10',
+    id: '18',
     contactId: '9',
     contactName: 'Olivia Taylor',
     addressname: 'Olivia Savings',
@@ -112,7 +184,7 @@ export const addresses: Address[] = [
     address: '0x1234...5678',
   },
   {
-    id: '11',
+    id: '19',
     contactId: '10',
     contactName: 'Jenny Roberts',
     addressname: 'Jenny Personal',
@@ -121,10 +193,28 @@ export const addresses: Address[] = [
     address: '0x1234...5678',
   },
   {
-    id: '12',
-    contactId: '11',
-    contactName: 'Tom Williams',
-    addressname: 'Tom Savings',
+    id: '20',
+    contactId: '10',
+    contactName: 'Jenny Roberts',
+    addressname: 'Jenny Work',
+    network: 'Bitcoin Network',
+    asset: 'Bitcoin',
+    address: '0x1234...5678',
+  },
+  {
+    id: '21',
+    contactId: '10',
+    contactName: 'Jenny Roberts',
+    addressname: 'Jenny Savings',
+    network: 'Bitcoin Network',
+    asset: 'Bitcoin',
+    address: '0x1234...5678',
+  },
+  {
+    id: '22',
+    contactId: '10',
+    contactName: 'Jenny Roberts',
+    addressname: 'Jenny Holiday',
     network: 'Bitcoin Network',
     asset: 'Bitcoin',
     address: '0x1234...5678',
@@ -139,7 +229,7 @@ const calculateAddressCounts = (
 ): { [key: string]: number } => {
   const counts: { [key: string]: number } = {};
   contactIds.forEach((id) => {
-    counts[id] = 1; // Set default count to 1 for all contacts
+    counts[id] = 0; // Initialize count to 0 for all contacts
   });
   addresses.forEach((address) => {
     counts[address.contactId] += 1;
@@ -176,37 +266,37 @@ export const contacts: Contact[] = [
   },
   {
     id: '5',
-    name: 'Charlie Davis',
+    name: 'Emma Davis',
     addressCount: addressCounts['5'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
   },
   {
     id: '6',
-    name: 'Eva Green',
+    name: 'Michael Brown',
     addressCount: addressCounts['6'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
   },
   {
     id: '7',
-    name: 'Frank Wilson',
+    name: 'Sophia Lee',
     addressCount: addressCounts['7'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
   },
   {
     id: '8',
-    name: 'Grace Lee',
+    name: 'Daniel Wilson',
     addressCount: addressCounts['8'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
   },
   {
     id: '9',
-    name: 'Henry Taylor',
+    name: 'Olivia Taylor',
     addressCount: addressCounts['9'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
   },
   {
     id: '10',
-    name: 'Isabelle Martinez',
+    name: 'Jenny Roberts',
     addressCount: addressCounts['10'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
   },
