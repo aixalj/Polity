@@ -13,6 +13,8 @@ import {
 import { AllContactsTable } from '@/components/ui/allcontactsTable';
 import { AddressesTable } from '@/components/ui/addressesTable';
 import { SearchError } from '@/components/ui/searchError';
+import { FavoriteStar } from '@/components/ui/favoritestar'; // Import FavoriteStar
+
 
 type TabType = 'contacts' | 'addresses';
 
@@ -22,6 +24,7 @@ export default function AddressBook() {
   const [searchTerm, setSearchTerm] = useState('');
   const [contacts, setContacts] = useState<ContactWithFormattedCount[]>(getAllContacts());
   const [addresses, setAddresses] = useState<Address[]>(getAllAddresses());
+  const [favorites, setFavorites] = useState<string[]>([]); // State to manage favorites
   const [noResults, setNoResults] = useState(false);
 
   useEffect(() => {
@@ -89,7 +92,15 @@ export default function AddressBook() {
     setActiveTab(value);
   };
 
-  const handleToggleFavorite = (addressId: string) => {};
+  const handleToggleFavorite = (addressId: string) => {
+    setFavorites((prevFavorites) => {
+      if (prevFavorites.includes(addressId)) {
+        return prevFavorites.filter((id) => id !== addressId); // Remove from favorites
+      } else {
+        return [...prevFavorites, addressId]; // Add to favorites
+      }
+    });
+  };
 
   return (
     <main className='w-full h-full'>
