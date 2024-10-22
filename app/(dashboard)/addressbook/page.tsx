@@ -219,6 +219,7 @@ export default function AddressBook() {
                       onView={handleViewAddress}
                       onToggleFavorite={handleToggleFavorite}
                       searchTerm={searchTerm}
+                      favorites={favorites}
                     />
                   </div>
                 </TabsContent>

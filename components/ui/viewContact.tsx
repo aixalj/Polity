@@ -46,7 +46,7 @@ const ViewContact: React.FC<ViewContactProps> = ({
           </Button>
           <div className="flex items-center space-x-4">
             <FavoriteStar
-              initialState={contact.isFavorite}
+              isFavorite={contact.isFavorite}
               onToggle={() => onToggleFavorite(contact.id)}
             />
             <Button variant="outline" onClick={() => onEdit(contact.id)}>

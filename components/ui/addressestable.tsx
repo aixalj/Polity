@@ -46,6 +46,7 @@ interface AddressesTableProps {
   onEdit: (addressId: string) => void;
   onView: (addressId: string) => void;
   onToggleFavorite: (addressId: string) => void;
+  favorites: string[];
   searchTerm: string; // New prop for filtering
 }
 
@@ -54,6 +55,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   onEdit,
   onView,
   onToggleFavorite,
+  favorites,
   searchTerm,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -75,11 +77,11 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
 
   const sortedAddresses = useMemo(() => {
     return [...filteredAddresses].sort((a, b) => {
-      if (a.isFavorite && !b.isFavorite) return -1;
-      if (!a.isFavorite && b.isFavorite) return 1;
+      if (favorites.includes(a.id) && !favorites.includes(b.id)) return -1;
+      if (!favorites.includes(a.id) && favorites.includes(b.id)) return 1;
       return a.contactName.localeCompare(b.contactName);
     });
-  }, [filteredAddresses]);
+  }, [filteredAddresses, favorites]);
 
   const totalItems = sortedAddresses.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -218,8 +220,8 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
             >
               <div className='w-10 px-2 py-3 flex items-center justify-center'>
                 <FavoriteStar
-                  initialState={address.isFavorite ?? false}
-                  onToggle={() => handleToggleFavorite(address.id)}
+                  isFavorite={favorites.includes(address.id)} // Update this line
+                  onToggle={() => onToggleFavorite(address.id)}
                 />
               </div>
               <div className='w-1/4 px-6 py-3 flex items-center'>
@@ -377,12 +379,12 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
         />
       </div>
       {showNotification && (
-        <div className="fixed bottom-4 right-4 max-w-sm z-50">
+        <div className='fixed bottom-4 right-4 max-w-sm z-50'>
           <Notification
             title="You've just added this address to your favorites!"
             description="You've successfully added this address to your favorites."
-            status="success"
-            className="shadow-lg"
+            status='success'
+            className='shadow-lg'
             onClose={handleCloseNotification}
           />
         </div>
