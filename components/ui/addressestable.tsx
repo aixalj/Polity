@@ -46,7 +46,7 @@ interface AddressesTableProps {
   onEdit: (addressId: string) => void;
   onView: (addressId: string) => void;
   onToggleFavorite: (addressId: string) => void;
-  searchTerm: string;
+  searchTerm: string; // New prop for filtering
 }
 
 const AddressesTable: React.FC<AddressesTableProps> = ({
@@ -67,11 +67,10 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   }, [addresses]);
 
   const filteredAddresses = useMemo(() => {
-    return localAddresses.filter((address) =>
-      address.contactName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      address.addressname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      address.address.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    return localAddresses.filter((address) => {
+      const firstName = address.contactName.toLowerCase().split(' ')[0];
+      return firstName.startsWith(searchTerm.toLowerCase());
+    });
   }, [localAddresses, searchTerm]);
 
   const sortedAddresses = useMemo(() => {
@@ -127,7 +126,9 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
       const address = localAddresses.find((addr) => addr.id === addressId);
       if (address && !address.isFavorite) {
         setShowNotification(true);
-        setTimeout(() => setShowNotification(false), 5000);
+        setTimeout(() => {
+          setShowNotification(false);
+        }, 5000);
       }
     },
     [onToggleFavorite, localAddresses]

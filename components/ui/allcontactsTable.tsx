@@ -13,7 +13,7 @@ interface AllContactsTableProps {
   onEdit: (contactId: string) => void;
   onAddAddress: (contactId: string) => void;
   onView: (contactId: string) => void;
-  searchTerm: string; // New prop
+  searchTerm: string; // New prop for filtering
 }
 
 const AllContactsTable: React.FC<AllContactsTableProps> = ({
@@ -21,15 +21,16 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
   onEdit,
   onAddAddress,
   onView,
-  searchTerm, // New prop
+  searchTerm, // New prop for filtering
 }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 10;
 
   const filteredContacts = React.useMemo(() => {
-    return contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    return contacts.filter((contact) => {
+      const firstName = contact.name.toLowerCase().split(' ')[0];
+      return firstName.startsWith(searchTerm.toLowerCase());
+    });
   }, [contacts, searchTerm]);
 
   const sortedContacts = React.useMemo(() => {
