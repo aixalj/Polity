@@ -2,11 +2,12 @@
 
 import * as React from 'react';
 import { Button } from './button';
-import { Edit, Plus, Eye } from 'lucide-react';
+import { Edit, Plus, Eye, View } from 'lucide-react';
 import { ContactWithFormattedCount } from '@/components/ui/addressbookData';
 import { Pagination } from '@/components/ui/pagination';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // Import useRouter
 
 interface AllContactsTableProps {
   contacts: ContactWithFormattedCount[];
@@ -25,6 +26,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
 }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 10;
+  const router = useRouter();
 
   const filteredContacts = React.useMemo(() => {
     return contacts.filter((contact) => {
@@ -94,11 +96,19 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                   >
                     <Edit className='h-4 w-4' />
                   </button>
-                  <Link href={`/addressbook/${contact.id}`}>
-                    <button className='text-gray-500 hover:text-gray-700 transition-colors'>
-                      <Eye className='h-4 w-4' />
-                    </button>
-                  </Link>
+                  <button
+                    className='text-gray-500 hover:text-gray-700 transition-colors'
+                    onClick={() => {
+                      if (contact.id) {
+                        console.log(contact.id); // Log the contact ID
+                        router.push(`/viewContact/${contact.id}`); // Navigate to view contact page
+                      } else {
+                        console.error('Contact ID is undefined'); // Log an error if ID is not available
+                      }
+                    }}
+                  >
+                    <Eye className='h-4 w-4' />
+                  </button>
                 </div>
               </div>
             </div>

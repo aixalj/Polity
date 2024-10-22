@@ -50,6 +50,7 @@ interface AddressesTableProps {
   searchTerm: string; // New prop for filtering
 }
 
+
 const AddressesTable: React.FC<AddressesTableProps> = ({
   addresses,
   onEdit,
@@ -220,7 +221,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
             >
               <div className='w-10 px-2 py-3 flex items-center justify-center'>
                 <FavoriteStar
-                  isFavorite={favorites.includes(address.id)} // Update this line
+                  isFavorite={favorites.includes(address.id)} 
                   onToggle={() => onToggleFavorite(address.id)}
                 />
               </div>
@@ -357,13 +358,13 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   Edit
                 </Button>
                 <Button
-                  variant='secondary'
-                  size='sm'
-                  onClick={() => onView(address.id)}
-                >
-                  <Eye className='h-4 w-4' />
-                  View
-                </Button>
+                variant='secondary'
+                size='sm'
+                onClick={() =>  onView(address.id)} // {{ edit_1 }} Navigate to ViewContact
+              >
+                <Eye className='h-4 w-4' />
+                View
+              </Button>
               </div>
             </div>
           ))}

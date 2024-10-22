@@ -313,8 +313,12 @@ export const getAllAddresses = (): Address[] => {
   return addresses;
 };
 
-export const addAddress = (newAddress: Address): void => {
-  addresses.push(newAddress);
+export const addAddress = (newAddress: Omit<Address, 'id'>): void => { // Omit 'id' since it will be generated
+  const completeAddress: Address = {
+    ...newAddress,
+    id: Date.now().toString(), // Generate a unique ID
+  };
+  addresses.push(completeAddress);
   const newCounts = calculateAddressCounts(addresses, contactIds);
   contacts.forEach((contact) => {
     contact.addressCount = newCounts[contact.id];

@@ -13,8 +13,8 @@ import {
 import { AllContactsTable } from '@/components/ui/allcontactsTable';
 import { AddressesTable } from '@/components/ui/addressesTable';
 import { SearchError } from '@/components/ui/searchError';
-import { FavoriteStar } from '@/components/ui/favoritestar'; // Import FavoriteStar
-
+import { useRouter } from 'next/navigation'; // Import useRouter at the top
+import NewContact from '@/components/ui/modals/newContact'; // Import the NewContact modal
 
 type TabType = 'contacts' | 'addresses';
 
@@ -26,6 +26,8 @@ export default function AddressBook() {
   const [addresses, setAddresses] = useState<Address[]>(getAllAddresses());
   const [favorites, setFavorites] = useState<string[]>([]); // State to manage favorites
   const [noResults, setNoResults] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
+  const router = useRouter();
 
   useEffect(() => {
     if (contentRef.current) {
@@ -63,13 +65,14 @@ export default function AddressBook() {
     setNoResults(false); // Reset no results state
   };
 
+  // Updated handleEdit function to accept contactId as a string
   const handleEdit = (contactId: string) => {
     console.log('Edit contact:', contactId);
     // Implement edit logic here
   };
 
   const handleAddAddress = (contactId: string) => {
-    console.log('Add address for contact:', contactId);
+    console.log('Add address for contact:', contacts);
     // Implement add address logic here
   };
 
@@ -84,8 +87,8 @@ export default function AddressBook() {
   };
 
   const handleViewAddress = (addressId: string) => {
-    console.log('View address:', addressId);
-    // Implement view address logic here
+    console.log('View address clicked for ID:', addressId); // Debug log
+    router.push(`/viewContact/${addressId}`);
   };
 
   const handleTabChange = (value: TabType) => {
@@ -100,6 +103,27 @@ export default function AddressBook() {
         return [...prevFavorites, addressId]; // Add to favorites
       }
     });
+  };
+
+  // New functions to handle adding contacts and addresses
+  const handleAddContact = (contact: { name: string; addressCount: number }) => {
+    setContacts((prevContacts) => [
+      ...prevContacts,
+      { ...contact, id: Date.now().toString(), formattedAddressCount: '0', avatar: '' }, // Changed id to string
+    ]);
+  };
+
+  const handleNewAddAddress = (address: { contactName: string; addressName: string; network: string; asset: string; networkAddress: string }) => {
+    setAddresses((prevAddresses) => [
+      ...prevAddresses,
+      { 
+        ...address, 
+        id: '', // Ensure id is a string
+        contactId: '', // Add missing properties
+        addressname: '', // Add missing properties
+        address: '' // Add missing properties
+    } as Address, // Cast to Address type    
+    ]);
   };
 
   return (
@@ -150,7 +174,7 @@ export default function AddressBook() {
                   </h1>
                 </div>
                 <div className='flex gap-3'>
-                  <Button>New Contact</Button>
+                  <Button onClick={() => setIsModalOpen(true)}>New Contact</Button> {/* Open modal on click */}
                 </div>
               </div>
               <div className='w-full mt-4'>
@@ -205,7 +229,7 @@ export default function AddressBook() {
                     <AllContactsTable
                       contacts={contacts}
                       onEdit={handleEdit}
-                      onAddAddress={handleAddAddress}
+                      onAddAddress={handleAddAddress} // This is for the button in the table
                       onView={handleView}
                       searchTerm={searchTerm}
                     />
@@ -228,6 +252,14 @@ export default function AddressBook() {
           </div>
         </Tabs>
       </div>
+
+      {/* Render the NewContact modal */}
+      <NewContact 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        onAddContact={handleAddContact} 
+        onAddAddress={handleNewAddAddress} // This is for the modal
+      />
     </main>
   );
 }
