@@ -63,7 +63,7 @@ export const addresses: Address[] = [
     contactName: 'Bob Williams',
     addressname: 'Bob Christmas',
     network: 'Ethereum Network',
-    asset: 'Tether',
+    asset: '',
     address: '0x1234...5678',
   },
   {
@@ -72,7 +72,7 @@ export const addresses: Address[] = [
     contactName: 'Emma Davis',
     addressname: 'Emma Summer',
     network: 'Polygon Network',
-    asset: 'Tether',
+    asset: '',
     address: '0x1234...5678',
   },
   {
@@ -81,7 +81,7 @@ export const addresses: Address[] = [
     contactName: 'Michael Brown',
     addressname: 'Michael Personal',
     network: 'Bitcoin Network',
-    asset: 'Bitcoin',
+    asset: '',
     address: '0x1234...5678',
   },
   {

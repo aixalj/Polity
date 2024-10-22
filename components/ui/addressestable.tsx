@@ -46,7 +46,7 @@ interface AddressesTableProps {
   onEdit: (addressId: string) => void;
   onView: (addressId: string) => void;
   onToggleFavorite: (addressId: string) => void;
-  searchTerm: string; // New prop
+  searchTerm: string;
 }
 
 const AddressesTable: React.FC<AddressesTableProps> = ({
@@ -54,7 +54,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   onEdit,
   onView,
   onToggleFavorite,
-  searchTerm, // New prop
+  searchTerm,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -199,7 +199,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   };
 
   return (
-    <div className='flex flex-col h-full relative'>
+    <div className='flex flex-col h-full'>
       <div className='w-full min-w-fit flex bg-gray-100 rounded-xl font-medium text-gray-500 text-xs'>
         <div className='w-10 px-2 py-3'></div>
         <div className='w-1/4 px-6 py-3'>Contact</div>
@@ -225,7 +225,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                 <div className='rounded-full overflow-hidden bg-gray-200 w-8 h-8 mr-2 flex-shrink-0'>
                   <Image
                     src={'/bastion.png'}
-                    alt={address.asset}
+                    alt={address.contactName}
                     width={32}
                     height={32}
                   />
@@ -252,15 +252,21 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                 </span>
               </div>
               <div className='w-1/6 px-6 py-3 flex items-center'>
-                <div className='w-5 h-5 mr-2 flex-shrink-0'>
-                  <Image
-                    src={getAssetIcon(address.asset)}
-                    alt={address.asset}
-                    width={20}
-                    height={20}
-                  />
-                </div>
-                <span className='truncate'>{address.asset}</span>
+                {address.asset ? (
+                  <>
+                    <div className='w-5 h-5 mr-2 flex-shrink-0'>
+                      <Image
+                        src={getAssetIcon(address.asset)}
+                        alt={address.asset}
+                        width={20}
+                        height={20}
+                      />
+                    </div>
+                    <span className='truncate'>{address.asset}</span>
+                  </>
+                ) : (
+                  <span className='text-gray-400'></span>
+                )}
               </div>
               <div className='w-1/4 px-6 py-3 flex items-center'>
                 <div ref={tooltipRef}>
