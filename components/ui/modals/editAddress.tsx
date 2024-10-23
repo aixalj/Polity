@@ -62,9 +62,6 @@ const EditAddress: React.FC<EditAddressProps> = ({
     setIsModified(true);
   };
 
-  const handleRemove = () => {
-    // Logic for handling removal
-};
 
   // Function to open EditAddress modal
   const openEditAddress = () => {
@@ -182,14 +179,6 @@ const EditAddress: React.FC<EditAddressProps> = ({
           </div>
         </div>
       )}
-
-      <EditAddress
-        isOpen={isEditAddressOpen}
-        onClose={closeEditAddress} // This should close the EditAddress modal
-        addressData={addressData}
-        onSave={handleSave}
-        onRemove={handleRemove}
-      />
 
       <RemoveAddress
         isOpen={isRemoveModalOpen}

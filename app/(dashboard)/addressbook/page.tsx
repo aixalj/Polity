@@ -18,6 +18,8 @@ import NewContact from '@/components/ui/modals/newContact'; // Import the NewCon
 import AddAddress from '@/components/ui/modals/addAddress'; // Import the new AddAddress modal
 import EditContactNameModal from '@/components/ui/modals/editContactName'; // Import the EditContactName modal
 import { Notification } from '@/components/ui/notification'; // Import the Notification component
+import { NoContacts } from '@/components/ui/noContacts'; // Import the NoContacts component
+
 
 type TabType = 'contacts' | 'addresses';
 
@@ -277,11 +279,13 @@ export default function AddressBook() {
             ref={contentRef}
             className='max-w-screen-xl mx-auto px-6 w-full flex-grow overflow-y-auto'
           >
-            {searchTerm && noResults ? (
+            {contacts.length === 0 ? ( // Check if there are no contacts
+              <NoContacts onNewContact={handleOpenNewContactModal} /> // Render NoContacts component
+            ) : searchTerm && noResults ? (
               <SearchError
                 message='No matching contacts found'
-                onClearSearch={handleClearSearch} // Updated to use the clear search function
-                onNewContact={handleOpenNewContactModal} // Pass the function to open the modal
+                onClearSearch={handleClearSearch}
+                onNewContact={handleOpenNewContactModal}
               />
             ) : (
               <>
