@@ -1,3 +1,5 @@
+// components/ui/addressesTable.tsx
+
 'use client';
 
 import * as React from 'react';
@@ -31,6 +33,8 @@ import ETHNetwork from 'public/icons/networks/ETH.svg';
 import BTCNetwork from 'public/icons/networks/BTC.svg';
 import POLNetwork from 'public/icons/networks/MATIC.svg';
 
+import EditAddress from '@/components/ui/modals/editAddress'; // Import the modal
+
 interface Address {
   id: string;
   contactName: string;
@@ -63,6 +67,8 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
 
   const [localAddresses, setLocalAddresses] = useState(addresses);
   const [showNotification, setShowNotification] = useState(false);
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
 
   useEffect(() => {
     setLocalAddresses(addresses);
@@ -199,6 +205,26 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
       default:
         return '/default-icon.svg';
     }
+  };
+
+  const handleEdit = (addressId: string) => {
+    const address = localAddresses.find((addr) => addr.id === addressId);
+    if (address) {
+      setSelectedAddress(address);
+      setEditModalOpen(true);
+    }
+  };
+
+  const handleSave = (updatedAddress: Address) => {
+    setLocalAddresses((prevAddresses) =>
+      prevAddresses.map((addr) => (addr.id === updatedAddress.id ? updatedAddress : addr))
+    );
+    setEditModalOpen(false);
+  };
+
+  const handleRemove = (addressId: string) => {
+    setLocalAddresses((prevAddresses) => prevAddresses.filter((addr) => addr.id !== addressId));
+    setEditModalOpen(false);
   };
 
   return (
@@ -351,7 +377,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                 <Button
                   variant='secondary'
                   size='sm'
-                  onClick={() => onEdit(address.id)}
+                  onClick={() => handleEdit(address.id)}
                 >
                   <Edit className='h-4 w-4' />
                   Edit
@@ -389,6 +415,13 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
           />
         </div>
       )}
+      <EditAddress
+        isOpen={isEditModalOpen}
+        onClose={() => setEditModalOpen(false)}
+        addressData={selectedAddress}
+        onSave={handleSave}
+        onRemove={handleRemove}
+      />
     </div>
   );
 };

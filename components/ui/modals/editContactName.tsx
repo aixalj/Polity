@@ -1,5 +1,5 @@
 // components/ui/modals/editContactName.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { contacts, addresses } from '../addressbookData'; // Adjust the import path as necessary
 
 interface EditContactNameModalProps {
@@ -9,13 +9,24 @@ interface EditContactNameModalProps {
 }
 
 const EditContactNameModal: React.FC<EditContactNameModalProps> = ({ isOpen, onClose, contactId }) => {
-  const contact = contactId ? contacts.find(c => c.id === contactId) : null; // Check for null
-  const [contactName, setContactName] = useState(contact?.name || '');
+  const [contactName, setContactName] = useState('');
+
+  // Fetch the contact when the modal opens
+  useEffect(() => {
+    if (contactId) {
+      const contact = contacts.find(c => c.id === contactId);
+      if (contact) {
+        setContactName(contact.name); // Set the current contact name
+      }
+    } else {
+      setContactName(''); // Reset if no contactId
+    }
+  }, [contactId, isOpen]); // Run effect when contactId or isOpen changes
 
   // Fetch addresses for the selected contact
   const contactAddresses = contactId ? addresses.filter(addr => addr.contactId === contactId) : [];
 
-  if (!isOpen || !contact) return null;
+  if (!isOpen) return null; // Don't render if modal is not open
 
   const handleSave = () => {
     // Logic to save the updated contact name
@@ -24,7 +35,7 @@ const EditContactNameModal: React.FC<EditContactNameModalProps> = ({ isOpen, onC
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
+    <div className="fixed inset-0 bg-gray-200 bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-white w-[448px] p-6 rounded-lg shadow-lg">
         <button onClick={onClose} className="float-right text-gray-600 hover:text-gray-800">X</button>
         <h2 className="text-lg font-semibold mb-2">Edit Contact Name</h2>
