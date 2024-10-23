@@ -17,7 +17,7 @@ import { useRouter } from 'next/navigation'; // Import useRouter at the top
 import NewContact from '@/components/ui/modals/newContact'; // Import the NewContact modal
 import AddAddress from '@/components/ui/modals/addAddress'; // Import the new AddAddress modal
 import EditContactNameModal from '@/components/ui/modals/editContactName'; // Import the EditContactName modal
-import {Notification } from '@/components/ui/notification'; // Import the Notification component
+import { Notification } from '@/components/ui/notification'; // Import the Notification component
 
 type TabType = 'contacts' | 'addresses';
 
@@ -25,17 +25,22 @@ export default function AddressBook() {
   const [activeTab, setActiveTab] = useState<TabType>('contacts');
   const contentRef = useRef<HTMLDivElement>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [contacts, setContacts] = useState<ContactWithFormattedCount[]>(getAllContacts());
+  const [contacts, setContacts] =
+    useState<ContactWithFormattedCount[]>(getAllContacts());
   const [addresses, setAddresses] = useState<Address[]>(getAllAddresses());
-  const [filteredContacts, setFilteredContacts] = useState<ContactWithFormattedCount[]>(contacts);
-  const [filteredAddresses, setFilteredAddresses] = useState<Address[]>(addresses);
+  const [filteredContacts, setFilteredContacts] =
+    useState<ContactWithFormattedCount[]>(contacts);
+  const [filteredAddresses, setFilteredAddresses] =
+    useState<Address[]>(addresses);
   const [favorites, setFavorites] = useState<string[]>([]); // State to manage favorites
   const [noResults, setNoResults] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); // State to manage NewContact modal visibility
   const [isAddAddressModalOpen, setIsAddAddressModalOpen] = useState(false); // State to manage AddAddress modal visibility
   const [selectedContactName, setSelectedContactName] = useState(''); // State to hold the selected contact name
   const [isEditModalOpen, setIsEditModalOpen] = useState(false); // State to manage EditContact modal visibility
-  const [selectedContactId, setSelectedContactId] = useState<string | null>(null); // State to hold the selected contact ID
+  const [selectedContactId, setSelectedContactId] = useState<string | null>(
+    null
+  ); // State to hold the selected contact ID
   const [showNotification, setShowNotification] = useState(false); // State to manage notification visibility
   const router = useRouter();
 
@@ -56,7 +61,9 @@ export default function AddressBook() {
 
       setFilteredContacts(filteredContacts);
       setFilteredAddresses(filteredAddresses);
-      setNoResults(filteredContacts.length === 0 && filteredAddresses.length === 0);
+      setNoResults(
+        filteredContacts.length === 0 && filteredAddresses.length === 0
+      );
     } else {
       setFilteredContacts(contacts);
       setFilteredAddresses(addresses);
@@ -78,8 +85,12 @@ export default function AddressBook() {
   const handleSelect = (selectedName: string) => {
     console.log('Selected Name:', selectedName); // Log the selected name
     setSearchTerm(selectedName);
-    const filteredContacts = contacts.filter(contact => contact.name.includes(selectedName));
-    const filteredAddresses = addresses.filter(address => address.contactName.includes(selectedName));
+    const filteredContacts = contacts.filter((contact) =>
+      contact.name.includes(selectedName)
+    );
+    const filteredAddresses = addresses.filter((address) =>
+      address.contactName.includes(selectedName)
+    );
     setFilteredContacts(filteredContacts);
     setFilteredAddresses(filteredAddresses);
     console.log('Filtered Contacts:', filteredContacts); // Log filtered contacts
@@ -134,23 +145,37 @@ export default function AddressBook() {
   };
 
   // New functions to handle adding contacts and addresses
-  const handleAddContact = (contact: { name: string; addressCount: number }) => {
+  const handleAddContact = (contact: {
+    name: string;
+    addressCount: number;
+  }) => {
     setContacts((prevContacts) => [
       ...prevContacts,
-      { ...contact, id: Date.now().toString(), formattedAddressCount: '0', avatar: '' }, // Changed id to string
+      {
+        ...contact,
+        id: Date.now().toString(),
+        formattedAddressCount: '0',
+        avatar: '',
+      }, // Changed id to string
     ]);
   };
 
-  const handleNewAddAddress = (address: { contactName: string; addressName: string; network: string; asset: string; networkAddress: string }) => {
+  const handleNewAddAddress = (address: {
+    contactName: string;
+    addressName: string;
+    network: string;
+    asset: string;
+    networkAddress: string;
+  }) => {
     setAddresses((prevAddresses) => [
       ...prevAddresses,
-      { 
-        ...address, 
+      {
+        ...address,
         id: '', // Ensure id is a string
         contactId: '', // Add missing properties
         addressname: '', // Add missing properties
-        address: '' // Add missing properties
-      } as Address, // Cast to Address type    
+        address: '', // Add missing properties
+      } as Address, // Cast to Address type
     ]);
   };
 
@@ -171,7 +196,10 @@ export default function AddressBook() {
               <nav aria-label='Breadcrumb' className='mb-4'>
                 <ol className='flex items-center gap-1 text-xs text-gray-600'>
                   <li>
-                    <a href='#' className='block transition hover:text-gray-700'>
+                    <a
+                      href='#'
+                      className='block transition hover:text-gray-700'
+                    >
                       Avatar Name
                     </a>
                   </li>
@@ -206,13 +234,16 @@ export default function AddressBook() {
                   </h1>
                 </div>
                 <div className='flex gap-3'>
-                  <Button onClick={handleOpenNewContactModal}>New Contact</Button> {/* Open modal on click */}
+                  <Button onClick={handleOpenNewContactModal}>
+                    New Contact
+                  </Button>{' '}
+                  {/* Open modal on click */}
                 </div>
               </div>
               <div className='w-full mt-4'>
                 <SearchBar
                   placeholder='Search by contact name...'
-                  onSearch={handleSearchInput}                
+                  onSearch={handleSearchInput}
                   value={searchTerm} // Pass the searchTerm to the SearchBar
                   onErrorChange={(error) => {
                     /* Handle error */
@@ -284,25 +315,25 @@ export default function AddressBook() {
       </div>
 
       {/* Render the NewContact modal */}
-      <NewContact 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        onAddContact={handleAddContact} 
+      <NewContact
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddContact={handleAddContact}
         onAddAddress={handleNewAddAddress} // This is for the modal
       />
 
       {/* Render the AddAddress modal */}
-      <AddAddress 
-        isOpen={isAddAddressModalOpen} 
-        onClose={() => setIsAddAddressModalOpen(false)} 
-        onAddAddress={handleNewAddAddress} 
+      <AddAddress
+        isOpen={isAddAddressModalOpen}
+        onClose={() => setIsAddAddressModalOpen(false)}
+        onAddAddress={handleNewAddAddress}
         contactName={selectedContactName} // Pass the selected contact name
       />
 
       {/* Render the EditContact modal */}
-      <EditContactNameModal 
-        isOpen={isEditModalOpen} 
-        onClose={() => setIsEditModalOpen(false)} 
+      <EditContactNameModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
         contactId={selectedContactId!} // Ensure selectedContactId is not null
       />
 
