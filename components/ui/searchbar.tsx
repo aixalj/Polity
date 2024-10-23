@@ -1,3 +1,4 @@
+// components/ui/searchbar.tsx
 "use client";
 
 import React, { useState, useMemo } from 'react';
@@ -29,13 +30,13 @@ export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSelect, onS
   }, []);
 
   const results = useMemo(() => {
-    if (!value) return []; // Use value prop instead of searchTerm
+    if (!value) return [];
     const lowerSearchTerm = value.toLowerCase();
     return allItems.filter(item => {
-      const firstName = item.name.toLowerCase().split(' ')[0]; // Get the first name only
-      return firstName.startsWith(lowerSearchTerm); // Check if the first name starts with the search term
+      const firstName = item.name.toLowerCase().split(' ')[0];
+      return firstName.startsWith(lowerSearchTerm);
     });
-  }, [allItems, value]); // Use value prop in dependency array
+  }, [allItems, value]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
@@ -58,7 +59,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSelect, onS
         type="text"
         placeholder={placeholder}
         className="pl-10 pr-4 w-full"
-        value={value} // Use the value prop for the input
+        value={value}
         onChange={handleInputChange}
       />
       {results.length > 0 && (

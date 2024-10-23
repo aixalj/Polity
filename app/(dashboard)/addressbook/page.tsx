@@ -17,6 +17,7 @@ import { useRouter } from 'next/navigation'; // Import useRouter at the top
 import NewContact from '@/components/ui/modals/newContact'; // Import the NewContact modal
 import AddAddress from '@/components/ui/modals/addAddress'; // Import the new AddAddress modal
 import EditContactNameModal from '@/components/ui/modals/editContactName'; // Import the EditContactName modal
+import { Notification } from '@/components/ui/notification';
 
 type TabType = 'contacts' | 'addresses';
 
@@ -26,6 +27,8 @@ export default function AddressBook() {
   const [searchTerm, setSearchTerm] = useState('');
   const [contacts, setContacts] = useState<ContactWithFormattedCount[]>(getAllContacts());
   const [addresses, setAddresses] = useState<Address[]>(getAllAddresses());
+  const [filteredContacts, setFilteredContacts] = useState<ContactWithFormattedCount[]>(contacts);
+  const [filteredAddresses, setFilteredAddresses] = useState<Address[]>(addresses);
   const [favorites, setFavorites] = useState<string[]>([]); // State to manage favorites
   const [noResults, setNoResults] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); // State to manage NewContact modal visibility
@@ -33,6 +36,7 @@ export default function AddressBook() {
   const [selectedContactName, setSelectedContactName] = useState(''); // State to hold the selected contact name
   const [isEditModalOpen, setIsEditModalOpen] = useState(false); // State to manage EditContact modal visibility
   const [selectedContactId, setSelectedContactId] = useState<string | null>(null); // State to hold the selected contact ID
+  const [showNotification, setShowNotification] = useState(false); // State to manage notification visibility
   const router = useRouter();
 
   useEffect(() => {
@@ -50,15 +54,15 @@ export default function AddressBook() {
         address.contactName.toLowerCase().includes(searchTerm.toLowerCase())
       );
 
-      setContacts(filteredContacts);
-      setAddresses(filteredAddresses);
+      setFilteredContacts(filteredContacts);
+      setFilteredAddresses(filteredAddresses);
       setNoResults(filteredContacts.length === 0 && filteredAddresses.length === 0);
     } else {
-      setContacts(getAllContacts());
-      setAddresses(getAllAddresses());
+      setFilteredContacts(contacts);
+      setFilteredAddresses(addresses);
       setNoResults(false);
     }
-  }, [searchTerm]);
+  }, [searchTerm, contacts, addresses]);
 
   const handleSearchInput = (term: string) => {
     setSearchTerm(term);
@@ -66,8 +70,8 @@ export default function AddressBook() {
 
   const handleClearSearch = () => {
     setSearchTerm(''); // Clear the search term
-    setContacts(getAllContacts()); // Reset contacts to original list
-    setAddresses(getAllAddresses()); // Reset addresses to original list
+    setFilteredContacts(getAllContacts()); // Reset contacts to original list
+    setFilteredAddresses(getAllAddresses()); // Reset addresses to original list
     setNoResults(false); // Reset no results state
   };
 
@@ -103,11 +107,18 @@ export default function AddressBook() {
 
   const handleToggleFavorite = (addressId: string) => {
     setFavorites((prevFavorites) => {
-      if (prevFavorites.includes(addressId)) {
-        return prevFavorites.filter((id) => id !== addressId); // Remove from favorites
-      } else {
-        return [...prevFavorites, addressId]; // Add to favorites
+      const isFavorite = prevFavorites.includes(addressId);
+      const updatedFavorites = isFavorite
+        ? prevFavorites.filter((id) => id !== addressId) // Remove from favorites
+        : [...prevFavorites, addressId]; // Add to favorites
+
+      // Show notification if added to favorites
+      if (!isFavorite) {
+        setShowNotification(true);
+        setTimeout(() => setShowNotification(false), 3000); // Hide notification after 3 seconds
       }
+
+      return updatedFavorites;
     });
   };
 
@@ -190,7 +201,7 @@ export default function AddressBook() {
               <div className='w-full mt-4'>
                 <SearchBar
                   placeholder='Search by contact name...'
-                  onSearch={handleSearchInput}
+                  onSearch={handleSearchInput}                
                   value={searchTerm} // Pass the searchTerm to the SearchBar
                   onErrorChange={(error) => {
                     /* Handle error */
@@ -237,7 +248,7 @@ export default function AddressBook() {
                 <TabsContent value='contacts'>
                   <div>
                     <AllContactsTable
-                      contacts={contacts}
+                      contacts={filteredContacts}
                       onEdit={handleEdit} // Pass the handleEdit function here
                       onAddAddressButton={handleAddAddress} // This is for the button in the table
                       onView={handleView}
@@ -248,7 +259,7 @@ export default function AddressBook() {
                 <TabsContent value='addresses'>
                   <div>
                     <AddressesTable
-                      addresses={addresses}
+                      addresses={filteredAddresses}
                       onEdit={handleEditAddress}
                       onView={handleViewAddress}
                       onToggleFavorite={handleToggleFavorite}
@@ -285,6 +296,19 @@ export default function AddressBook() {
         onClose={() => setIsEditModalOpen(false)} 
         contactId={selectedContactId!} // Ensure selectedContactId is not null
       />
+
+      {/* Render the Notification */}
+      {showNotification && (
+        <div className='fixed bottom-4 right-4 max-w-sm z-50'>
+          <Notification
+            title="You've just added this address to your favorites!"
+            description="You've successfully added this address to your favorites."
+            status='success'
+            className='shadow-lg'
+            onClose={() => setShowNotification(false)} // Close notification
+          />
+        </div>
+      )}
     </main>
   );
 }
