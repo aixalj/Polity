@@ -27,9 +27,14 @@ const ContactView = () => {
   const { id } = router.query;
   const [contact, setContact] = useState<Contact | null>(null);
 
-  useEffect(() => {
+   useEffect(() => {
     if (id) {
-      fetchContactById(id as string).then(setContact);
+      fetchContactById(id as string)
+        .then(setContact)
+        .catch(error => {
+          console.error('Error fetching contact:', error);
+          // Handle error (e.g., set an error state)
+        });
     }
   }, [id]);
 
