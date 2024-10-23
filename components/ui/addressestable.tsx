@@ -34,6 +34,7 @@ import BTCNetwork from 'public/icons/networks/BTC.svg';
 import POLNetwork from 'public/icons/networks/MATIC.svg';
 
 import EditAddress from '@/components/ui/modals/editAddress'; // Import the modal
+import ViewAddress from '@/components/ui/modals/viewAddress'; // Import the ViewAddress modal
 
 interface Address {
   id: string;
@@ -69,6 +70,8 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   const [showNotification, setShowNotification] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
+  const [isViewModalOpen, setViewModalOpen] = useState(false);
+  const [selectedAddressData, setSelectedAddressData] = useState<Address | null>(null);
 
   useEffect(() => {
     setLocalAddresses(addresses);
@@ -225,6 +228,14 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   const handleRemove = (addressId: string) => {
     setLocalAddresses((prevAddresses) => prevAddresses.filter((addr) => addr.id !== addressId));
     setEditModalOpen(false);
+  };
+
+  const handleView = (addressId: string) => {
+    const address = localAddresses.find((addr) => addr.id === addressId);
+    if (address) {
+      setSelectedAddressData(address);
+      setViewModalOpen(true);
+    }
   };
 
   return (
@@ -385,7 +396,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                 <Button
                   variant='secondary'
                   size='sm'
-                  onClick={() => onView(address.id)} // {{ edit_1 }} Change to View address modal pop up
+                  onClick={() => handleView(address.id)} // Open the View modal
                 >
                   <Eye className='h-4 w-4' />
                   View
@@ -421,6 +432,11 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
         addressData={selectedAddress}
         onSave={handleSave}
         onRemove={handleRemove}
+      />
+      <ViewAddress
+        isOpen={isViewModalOpen}
+        onClose={() => setViewModalOpen(false)}
+        addressData={selectedAddressData}
       />
     </div>
   );
