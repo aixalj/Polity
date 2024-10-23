@@ -3,6 +3,7 @@
 'use client';
 
 import React from 'react';
+import { Copy } from 'lucide-react'; // Import the Copy icon
 
 interface ViewAddressProps {
   isOpen: boolean;
@@ -18,6 +19,11 @@ interface ViewAddressProps {
 
 const ViewAddress: React.FC<ViewAddressProps> = ({ isOpen, onClose, addressData }) => {
   if (!isOpen || !addressData) return null;
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(addressData.address);
+    alert('Network address copied to clipboard!'); // Optional: Show a notification
+  };
 
   return (
     <div className="fixed inset-0 bg-[#F2F4F7] bg-opacity-50 flex justify-center items-center z-50">
@@ -36,7 +42,12 @@ const ViewAddress: React.FC<ViewAddressProps> = ({ isOpen, onClose, addressData 
           {addressData.asset && ( // Conditionally render the asset field
             <p><strong>Asset:</strong> {addressData.asset}</p>
           )}
-          <p><strong>Network Address:</strong> {addressData.address}</p>
+          <div className="flex items-center justify-between">
+            <p><strong>Network Address:</strong> {addressData.address}</p>
+            <button onClick={handleCopy} className="ml-2 text-gray-500 hover:text-gray-700">
+              <Copy className="h-5 w-5" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
