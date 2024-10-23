@@ -103,7 +103,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                   </Button>
                   <button
                     className='text-gray-500 hover:text-gray-700 transition-colors'
-                    onClick={() => openModal(contact.id)} // Open modal on edit icon click
+                    onClick={() => openModal(contact.id)} // Open modal on edit icon click ADD remove modal from this modal
                   >
                     <Edit className='h-4 w-4' />
                   </button>
@@ -113,12 +113,12 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                       if (contact.id) {
                         router.push(`/viewContact/${contact.id}`);
                       } else {
-                        console.error('Contact ID is undefined');
+                        console.error('Contact ID is undefined');// Change to View addresses pages/component NOT Modal
                       }
                     }}
                   >
                     <Eye className='h-4 w-4' />
-                  </button>
+                  </button> 
                 </div>
               </div>
             </div>

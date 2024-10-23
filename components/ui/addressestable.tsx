@@ -360,7 +360,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                 <Button
                 variant='secondary'
                 size='sm'
-                onClick={() =>  onView(address.id)} // {{ edit_1 }} Navigate to ViewContact
+                onClick={() =>  onView(address.id)} // {{ edit_1 }} Change to View address modal pop up
               >
                 <Eye className='h-4 w-4' />
                 View
