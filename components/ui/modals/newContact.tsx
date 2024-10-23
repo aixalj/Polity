@@ -35,7 +35,7 @@ const NewContact: React.FC<NewContactProps> = ({ isOpen, onClose, onAddContact, 
 
   return (
     <div className="fixed inset-0 bg-gray-200 bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96 relative">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-[448px] relative"> {/* Set width to 448px */}
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
@@ -127,7 +127,7 @@ const NewContact: React.FC<NewContactProps> = ({ isOpen, onClose, onAddContact, 
           <p>Contact Disclaimer: Verify address accuracy. Incorrect entries lead to irreversible losses. Proceed at your own risk.</p>
         </div>
         <div className="flex justify-end">
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">Create Contact</button>
+          <button type="submit" onClick={handleSubmit} className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">Create Contact</button>
           <button type="button" onClick={onClose} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md">Cancel</button>
         </div>
       </div>

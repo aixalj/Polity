@@ -2,17 +2,16 @@
 
 import * as React from 'react';
 import { Button } from './button';
-import { Edit, Plus, Eye, View } from 'lucide-react';
+import { Edit, Plus, Eye } from 'lucide-react';
 import { ContactWithFormattedCount } from '@/components/ui/addressbookData';
 import { Pagination } from '@/components/ui/pagination';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation'; // Import useRouter
 
 interface AllContactsTableProps {
   contacts: ContactWithFormattedCount[];
   onEdit: (contactId: string) => void;
-  onAddAddress: (contactId: string) => void;
+  onAddAddressButton: (contactId: string, contactName: string) => void; // Updated to accept two parameters
   onView: (contactId: string) => void;
   searchTerm: string; // New prop for filtering
 }
@@ -20,7 +19,7 @@ interface AllContactsTableProps {
 const AllContactsTable: React.FC<AllContactsTableProps> = ({
   contacts,
   onEdit,
-  onAddAddress,
+  onAddAddressButton,
   onView,
   searchTerm, // New prop for filtering
 }) => {
@@ -85,7 +84,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                   <Button
                     variant='outline'
                     size='sm'
-                    onClick={() => onAddAddress(contact.id)}
+                    onClick={() => onAddAddressButton(contact.id, contact.name)} // Pass contact ID and name
                   >
                     <Plus className='h-4 w-4 mr-2' />
                     Add Address

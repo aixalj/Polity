@@ -15,6 +15,7 @@ import { AddressesTable } from '@/components/ui/addressesTable';
 import { SearchError } from '@/components/ui/searchError';
 import { useRouter } from 'next/navigation'; // Import useRouter at the top
 import NewContact from '@/components/ui/modals/newContact'; // Import the NewContact modal
+import AddAddress from '@/components/ui/modals/addAddress'; // Import the new AddAddress modal
 
 type TabType = 'contacts' | 'addresses';
 
@@ -26,7 +27,9 @@ export default function AddressBook() {
   const [addresses, setAddresses] = useState<Address[]>(getAllAddresses());
   const [favorites, setFavorites] = useState<string[]>([]); // State to manage favorites
   const [noResults, setNoResults] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to manage NewContact modal visibility
+  const [isAddAddressModalOpen, setIsAddAddressModalOpen] = useState(false); // State to manage AddAddress modal visibility
+  const [selectedContactName, setSelectedContactName] = useState(''); // State to hold the selected contact name
   const router = useRouter();
 
   useEffect(() => {
@@ -71,9 +74,9 @@ export default function AddressBook() {
     // Implement edit logic here
   };
 
-  const handleAddAddress = (contactId: string) => {
-    console.log('Add address for contact:', contactId);
-    // Implement add address logic here
+  const handleAddAddress = (contactId: string, contactName: string) => {
+    setSelectedContactName(contactName); // Set the selected contact name
+    setIsAddAddressModalOpen(true); // Open the AddAddress modal
   };
 
   const handleView = (contactId: string) => {
@@ -233,7 +236,7 @@ export default function AddressBook() {
                     <AllContactsTable
                       contacts={contacts}
                       onEdit={handleEdit}
-                      onAddAddress={handleAddAddress} // This is for the button in the table
+                      onAddAddressButton={handleAddAddress} // This is for the button in the table
                       onView={handleView}
                       searchTerm={searchTerm}
                     />
@@ -264,6 +267,14 @@ export default function AddressBook() {
         onAddContact={handleAddContact} 
         onAddAddress={handleNewAddAddress} // This is for the modal
       />
+
+      {/* Render the AddAddress modal */}
+      <AddAddress 
+       isOpen={isAddAddressModalOpen} 
+       onClose={() => setIsAddAddressModalOpen(false)} 
+       onAddAddress={handleNewAddAddress} 
+       contactName={selectedContactName} // Pass the selected contact name
+   />
     </main>
   );
 }
