@@ -6,24 +6,26 @@ import { Edit, Plus, Eye } from 'lucide-react';
 import { ContactWithFormattedCount } from '@/components/ui/addressbookData';
 import { Pagination } from '@/components/ui/pagination';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation'; // Import useRouter
+import { useRouter } from 'next/navigation';
+import EditContactNameModal from '@/components/ui/modals/editContactName'; // Import the modal
 
 interface AllContactsTableProps {
   contacts: ContactWithFormattedCount[];
-  onEdit: (contactId: string) => void;
-  onAddAddressButton: (contactId: string, contactName: string) => void; // Updated to accept two parameters
+  onEdit: (contactId: string) => void; // Add this line
+  onAddAddressButton: (contactId: string, contactName: string) => void;
   onView: (contactId: string) => void;
-  searchTerm: string; // New prop for filtering
+  searchTerm: string;
 }
 
 const AllContactsTable: React.FC<AllContactsTableProps> = ({
   contacts,
-  onEdit,
   onAddAddressButton,
   onView,
-  searchTerm, // New prop for filtering
+  searchTerm,
 }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [selectedContactId, setSelectedContactId] = React.useState<string | null>(null);
   const itemsPerPage = 10;
   const router = useRouter();
 
@@ -49,6 +51,16 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  const openModal = (contactId: string) => {
+    setSelectedContactId(contactId);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedContactId(null);
+  };
 
   return (
     <div className='flex flex-col h-full'>
@@ -84,14 +96,14 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                   <Button
                     variant='outline'
                     size='sm'
-                    onClick={() => onAddAddressButton(contact.id, contact.name)} // Pass contact ID and name
+                    onClick={() => onAddAddressButton(contact.id, contact.name)}
                   >
                     <Plus className='h-4 w-4 mr-2' />
                     Add Address
                   </Button>
                   <button
                     className='text-gray-500 hover:text-gray-700 transition-colors'
-                    onClick={() => onEdit(contact.id)}
+                    onClick={() => openModal(contact.id)} // Open modal on edit icon click
                   >
                     <Edit className='h-4 w-4' />
                   </button>
@@ -99,10 +111,9 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                     className='text-gray-500 hover:text-gray-700 transition-colors'
                     onClick={() => {
                       if (contact.id) {
-                        console.log(contact.id); // Log the contact ID
-                        router.push(`/viewContact/${contact.id}`); // Navigate to view contact page
+                        router.push(`/viewContact/${contact.id}`);
                       } else {
-                        console.error('Contact ID is undefined'); // Log an error if ID is not available
+                        console.error('Contact ID is undefined');
                       }
                     }}
                   >
@@ -123,6 +134,13 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
           onPageChange={handlePageChange}
         />
       </div>
+
+      {/* Modal for editing contact name */}
+      <EditContactNameModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        contactId={selectedContactId!} // Ensure selectedContactId is not null
+      />
     </div>
   );
 };

@@ -16,6 +16,7 @@ import { SearchError } from '@/components/ui/searchError';
 import { useRouter } from 'next/navigation'; // Import useRouter at the top
 import NewContact from '@/components/ui/modals/newContact'; // Import the NewContact modal
 import AddAddress from '@/components/ui/modals/addAddress'; // Import the new AddAddress modal
+import EditContactNameModal from '@/components/ui/modals/editContactName'; // Import the EditContactName modal
 
 type TabType = 'contacts' | 'addresses';
 
@@ -30,6 +31,8 @@ export default function AddressBook() {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to manage NewContact modal visibility
   const [isAddAddressModalOpen, setIsAddAddressModalOpen] = useState(false); // State to manage AddAddress modal visibility
   const [selectedContactName, setSelectedContactName] = useState(''); // State to hold the selected contact name
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false); // State to manage EditContact modal visibility
+  const [selectedContactId, setSelectedContactId] = useState<string | null>(null); // State to hold the selected contact ID
   const router = useRouter();
 
   useEffect(() => {
@@ -70,8 +73,8 @@ export default function AddressBook() {
 
   // Updated handleEdit function to accept contactId as a string
   const handleEdit = (contactId: string) => {
-    console.log('Edit contact:', contactId);
-    // Implement edit logic here
+    setSelectedContactId(contactId); // Set the selected contact ID
+    setIsEditModalOpen(true); // Open the EditContact modal
   };
 
   const handleAddAddress = (contactId: string, contactName: string) => {
@@ -235,7 +238,7 @@ export default function AddressBook() {
                   <div>
                     <AllContactsTable
                       contacts={contacts}
-                      onEdit={handleEdit}
+                      onEdit={handleEdit} // Pass the handleEdit function here
                       onAddAddressButton={handleAddAddress} // This is for the button in the table
                       onView={handleView}
                       searchTerm={searchTerm}
@@ -270,11 +273,18 @@ export default function AddressBook() {
 
       {/* Render the AddAddress modal */}
       <AddAddress 
-       isOpen={isAddAddressModalOpen} 
-       onClose={() => setIsAddAddressModalOpen(false)} 
-       onAddAddress={handleNewAddAddress} 
-       contactName={selectedContactName} // Pass the selected contact name
-   />
+        isOpen={isAddAddressModalOpen} 
+        onClose={() => setIsAddAddressModalOpen(false)} 
+        onAddAddress={handleNewAddAddress} 
+        contactName={selectedContactName} // Pass the selected contact name
+      />
+
+      {/* Render the EditContact modal */}
+      <EditContactNameModal 
+        isOpen={isEditModalOpen} 
+        onClose={() => setIsEditModalOpen(false)} 
+        contactId={selectedContactId!} // Ensure selectedContactId is not null
+      />
     </main>
   );
 }
