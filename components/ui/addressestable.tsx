@@ -50,7 +50,6 @@ interface AddressesTableProps {
   searchTerm: string; // New prop for filtering
 }
 
-
 const AddressesTable: React.FC<AddressesTableProps> = ({
   addresses,
   onEdit,
@@ -69,10 +68,10 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
     setLocalAddresses(addresses);
   }, [addresses]);
 
+  // Updated filtering logic to use includes for better search functionality
   const filteredAddresses = useMemo(() => {
     return localAddresses.filter((address) => {
-      const firstName = address.contactName.toLowerCase().split(' ')[0];
-      return firstName.startsWith(searchTerm.toLowerCase());
+      return address.contactName.toLowerCase().includes(searchTerm.toLowerCase());
     });
   }, [localAddresses, searchTerm]);
 
@@ -358,13 +357,13 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   Edit
                 </Button>
                 <Button
-                variant='secondary'
-                size='sm'
-                onClick={() =>  onView(address.id)} // {{ edit_1 }} Change to View address modal pop up
-              >
-                <Eye className='h-4 w-4' />
-                View
-              </Button>
+                  variant='secondary'
+                  size='sm'
+                  onClick={() => onView(address.id)} // {{ edit_1 }} Change to View address modal pop up
+                >
+                  <Eye className='h-4 w-4' />
+                  View
+                </Button>
               </div>
             </div>
           ))}

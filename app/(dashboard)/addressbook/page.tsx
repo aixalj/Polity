@@ -17,7 +17,7 @@ import { useRouter } from 'next/navigation'; // Import useRouter at the top
 import NewContact from '@/components/ui/modals/newContact'; // Import the NewContact modal
 import AddAddress from '@/components/ui/modals/addAddress'; // Import the new AddAddress modal
 import EditContactNameModal from '@/components/ui/modals/editContactName'; // Import the EditContactName modal
-import { Notification } from '@/components/ui/notification';
+import {Notification } from '@/components/ui/notification'; // Import the Notification component
 
 type TabType = 'contacts' | 'addresses';
 
@@ -73,6 +73,17 @@ export default function AddressBook() {
     setFilteredContacts(getAllContacts()); // Reset contacts to original list
     setFilteredAddresses(getAllAddresses()); // Reset addresses to original list
     setNoResults(false); // Reset no results state
+  };
+
+  const handleSelect = (selectedName: string) => {
+    console.log('Selected Name:', selectedName); // Log the selected name
+    setSearchTerm(selectedName);
+    const filteredContacts = contacts.filter(contact => contact.name.includes(selectedName));
+    const filteredAddresses = addresses.filter(address => address.contactName.includes(selectedName));
+    setFilteredContacts(filteredContacts);
+    setFilteredAddresses(filteredAddresses);
+    console.log('Filtered Contacts:', filteredContacts); // Log filtered contacts
+    console.log('Filtered Addresses:', filteredAddresses); // Log filtered addresses
   };
 
   // Updated handleEdit function to accept contactId as a string
@@ -206,9 +217,7 @@ export default function AddressBook() {
                   onErrorChange={(error) => {
                     /* Handle error */
                   }}
-                  onSelect={(item) => {
-                    /* Handle selection if needed */
-                  }}
+                  onSelect={handleSelect} // Pass the handleSelect function
                 />
               </div>
               <div className='flex justify-between items-center w-full mt-4'>
@@ -248,7 +257,7 @@ export default function AddressBook() {
                 <TabsContent value='contacts'>
                   <div>
                     <AllContactsTable
-                      contacts={filteredContacts}
+                      contacts={filteredContacts} // Use filteredContacts
                       onEdit={handleEdit} // Pass the handleEdit function here
                       onAddAddressButton={handleAddAddress} // This is for the button in the table
                       onView={handleView}
@@ -259,7 +268,7 @@ export default function AddressBook() {
                 <TabsContent value='addresses'>
                   <div>
                     <AddressesTable
-                      addresses={filteredAddresses}
+                      addresses={filteredAddresses} // Use filteredAddresses
                       onEdit={handleEditAddress}
                       onView={handleViewAddress}
                       onToggleFavorite={handleToggleFavorite}

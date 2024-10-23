@@ -1,4 +1,3 @@
-// components/ui/searchbar.tsx
 "use client";
 
 import React, { useState, useMemo } from 'react';
@@ -43,10 +42,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSelect, onS
     onSelect(''); // Clear the selection when input changes
     onSearch(newValue); // Notify parent component of search term change
     onErrorChange(newValue !== '' && results.length === 0);
+    console.log('Search Input:', newValue); // Log the current search input
   };
 
   const handleSelect = (item: SearchResult) => {
     setSelected(item);
+    console.log('Selected Item:', item); // Log the selected item
     onSelect(item.name); // Notify parent component of selection
     onSearch(item.name); // Notify parent component of search term change
     onErrorChange(false);

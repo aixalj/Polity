@@ -29,10 +29,10 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
   const itemsPerPage = 10;
   const router = useRouter();
 
+  // Filter and sort contacts based on the search term
   const filteredContacts = React.useMemo(() => {
     return contacts.filter((contact) => {
-      const firstName = contact.name.toLowerCase().split(' ')[0];
-      return firstName.startsWith(searchTerm.toLowerCase());
+      return contact.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
   }, [contacts, searchTerm]);
 
@@ -69,60 +69,64 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
       </div>
       <div className='flex-grow overflow-y-auto'>
         <div className='w-full flex flex-col gap-1'>
-          {paginatedContacts.map((contact) => (
-            <div
-              key={contact.id}
-              className='w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm'
-            >
-              <div className='w-full flex text-left text-gray-900'>
-                <div className='flex-grow px-6 py-3 flex items-center gap-3 h-16'>
-                  <div className='size-11 rounded-md border-gray-300 border overflow-hidden'>
-                    <Image
-                      src={contact.avatar}
-                      alt={`${contact.name}'s avatar`}
-                      className='w-full h-full object-cover'
-                      width={44}
-                      height={44}
-                    />
+          {paginatedContacts.length === 0 ? (
+            <p className='text-center text-gray-500'>No contacts found.</p>
+          ) : (
+            paginatedContacts.map((contact) => (
+              <div
+                key={contact.id}
+                className='w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm'
+              >
+                <div className='w-full flex text-left text-gray-900'>
+                  <div className='flex-grow px-6 py-3 flex items-center gap-3 h-16'>
+                    <div className='size-11 rounded-md border-gray-300 border overflow-hidden'>
+                      <Image
+                        src={contact.avatar}
+                        alt={`${contact.name}'s avatar`}
+                        className='w-full h-full object-cover'
+                        width={44}
+                        height={44}
+                      />
+                    </div>
+                    <div>
+                      <p className='font-medium'>{contact.name}</p>
+                      <p className='text-sm text-gray-500'>
+                        {contact.formattedAddressCount} addresses
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className='font-medium'>{contact.name}</p>
-                    <p className='text-sm text-gray-500'>
-                      {contact.formattedAddressCount} addresses
-                    </p>
+                  <div className='flex-shrink-0 px-6 py-3 flex items-center justify-end space-x-4'>
+                    <Button
+                      variant='outline'
+                      size='sm'
+                      onClick={() => onAddAddressButton(contact.id, contact.name)}
+                    >
+                      <Plus className='h-4 w-4 mr-2' />
+                      Add Address
+                    </Button>
+                    <button
+                      className='text-gray-500 hover:text-gray-700 transition-colors'
+                      onClick={() => openModal(contact.id)}
+                    >
+                      <Edit className='h-4 w-4' />
+                    </button>
+                    <button
+                      className='text-gray-500 hover:text-gray-700 transition-colors'
+                      onClick={() => {
+                        if (contact.id) {
+                          router.push(`/viewContact/${contact.id}`);
+                        } else {
+                          console.error('Contact ID is undefined');
+                        }
+                      }}
+                    >
+                      <Eye className='h-4 w-4' />
+                    </button> 
                   </div>
-                </div>
-                <div className='flex-shrink-0 px-6 py-3 flex items-center justify-end space-x-4'>
-                  <Button
-                    variant='outline'
-                    size='sm'
-                    onClick={() => onAddAddressButton(contact.id, contact.name)}
-                  >
-                    <Plus className='h-4 w-4 mr-2' />
-                    Add Address
-                  </Button>
-                  <button
-                    className='text-gray-500 hover:text-gray-700 transition-colors'
-                    onClick={() => openModal(contact.id)} // Open modal on edit icon click ADD remove modal from this modal
-                  >
-                    <Edit className='h-4 w-4' />
-                  </button>
-                  <button
-                    className='text-gray-500 hover:text-gray-700 transition-colors'
-                    onClick={() => {
-                      if (contact.id) {
-                        router.push(`/viewContact/${contact.id}`);
-                      } else {
-                        console.error('Contact ID is undefined');// Change to View addresses pages/component NOT Modal
-                      }
-                    }}
-                  >
-                    <Eye className='h-4 w-4' />
-                  </button> 
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
       <div className='mt-auto pt-4 pb-4 bg-white border-gray-200'>
