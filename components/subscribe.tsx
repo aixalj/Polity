@@ -44,9 +44,9 @@ const Subscribe: React.FC<ReceiveBtnProps> = ({ variant = "wealth" }) => {
       <SubscribeProvider>
         <WalletProvider>
           <FSDialog>
-            <FSDialogTrigger className="inline-flex  w-full bg-teal-900 text-white hover:bg-teal-900/90 items-center justify-center whitespace-nowrap rounded-xl gap-2 px-4 py-2.5 shadow-sm text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300">
+            <DialogTrigger className="inline-flex w-full h-9 bg-primary-500 text-white hover:bg-primary-600 shadow-button-primary-default   items-center justify-center whitespace-nowrap rounded-xl gap-2 px-4  text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300">
               Subscribe Now
-            </FSDialogTrigger>
+            </DialogTrigger>
             <FSDialogContent className="flex w-screen h-screen bg-gray-50">
               <SubscribeModal />
             </FSDialogContent>

@@ -97,7 +97,7 @@ export default function Transactions() {
                   </h1>{" "}
                 </div>
                 <div className="flex gap-3">
-                  <Button>
+                  <Button variant="default">
                     <svg
                       width="16"
                       height="16"
