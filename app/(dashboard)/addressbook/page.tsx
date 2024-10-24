@@ -20,7 +20,6 @@ import EditContactNameModal from '@/components/ui/modals/editContactName'; // Im
 import { Notification } from '@/components/ui/notification'; // Import the Notification component
 import { NoContacts } from '@/components/ui/noContacts'; // Import the NoContacts component
 
-
 type TabType = 'contacts' | 'addresses';
 
 export default function AddressBook() {
@@ -112,6 +111,7 @@ export default function AddressBook() {
 
   const handleView = (contactId: string) => {
     console.log('View contact:', contactId);
+    router.push(`components/viewContact/${contactId}`); // Navigate to the ViewContact page
     // Implement view logic here
   };
 

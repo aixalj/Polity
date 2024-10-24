@@ -13,14 +13,14 @@ interface AllContactsTableProps {
   contacts: ContactWithFormattedCount[];
   onEdit: (contactId: string) => void; // Add this line
   onAddAddressButton: (contactId: string, contactName: string) => void;
-  onView: (contactId: string) => void;
+  onView: (contactId: string) => void; // Add onView prop
   searchTerm: string;
 }
 
 const AllContactsTable: React.FC<AllContactsTableProps> = ({
   contacts,
   onAddAddressButton,
-  onView,
+  onView, // Destructure onView prop
   searchTerm,
 }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -114,7 +114,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                       className='text-gray-500 hover:text-gray-700 transition-colors'
                       onClick={() => {
                         if (contact.id) {
-                          router.push(`/viewContact/${contact.id}`);
+                          onView(contact.id); // Use the onView prop to navigate
                         } else {
                           console.error('Contact ID is undefined');
                         }
