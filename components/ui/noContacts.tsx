@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Button } from './button';
-import SearchErrorIcon from 'public/search-error-state-icon.svg'; // Reuse the same icon
+import EmptyStateIcon from 'public/empty-state-icon.svg'; // Reuse the same icon
 
 interface NoContactsProps {
   onNewContact: () => void; // Prop for new contact functionality
@@ -12,7 +12,7 @@ export const NoContacts: React.FC<NoContactsProps> = ({ onNewContact }) => {
     <div className="flex flex-col items-center justify-center h-full pb-4 px-4 pt-0 text-center">
       <Image 
         className="h-12 w-12 text-gray-400 mb-4" 
-        src={SearchErrorIcon} 
+        src={EmptyStateIcon} 
         alt="No contacts icon" 
         width={48}
         height={48}
