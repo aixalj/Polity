@@ -1,32 +1,31 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { SearchBar } from '@/components/ui/searchbar';
-import { Button } from '@/components/ui/button';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import React, { useState, useEffect, useRef } from "react";
+import { SearchBar } from "@/components/ui/searchbar";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
   getAllContacts,
   getAllAddresses,
   ContactWithFormattedCount,
   Address,
-} from '@/components/ui/addressbookData';
-import { AllContactsTable } from '@/components/ui/allcontactsTable';
-import { AddressesTable } from '@/components/ui/addressesTable';
-import { SearchError } from '@/components/ui/searchError';
-import { useRouter } from 'next/navigation'; // Import useRouter at the top
-import NewContact from '@/components/ui/modals/newContact'; // Import the NewContact modal
-import AddAddress from '@/components/ui/modals/addAddress'; // Import the new AddAddress modal
-import EditContactNameModal from '@/components/ui/modals/editContactName'; // Import the EditContactName modal
-import { Notification } from '@/components/ui/notification'; // Import the Notification component
-import { NoContacts } from '@/components/ui/noContacts'; // Import the NoContacts component
+} from "@/components/ui/addressbookData";
+import { AllContactsTable } from "@/components/ui/allcontactsTable";
+import { AddressesTable } from "@/components/ui/addressestable";
+import { SearchError } from "@/components/ui/searchError";
+import { useRouter } from "next/navigation"; // Import useRouter at the top
+import NewContact from "@/components/ui/modals/newContact"; // Import the NewContact modal
+import AddAddress from "@/components/ui/modals/addAddress"; // Import the new AddAddress modal
+import EditContactNameModal from "@/components/ui/modals/editContactName"; // Import the EditContactName modal
+import { Notification } from "@/components/ui/notification"; // Import the Notification component
+import { NoContacts } from "@/components/ui/noContacts"; // Import the NoContacts component
 
-
-type TabType = 'contacts' | 'addresses';
+type TabType = "contacts" | "addresses";
 
 export default function AddressBook() {
-  const [activeTab, setActiveTab] = useState<TabType>('contacts');
+  const [activeTab, setActiveTab] = useState<TabType>("contacts");
   const contentRef = useRef<HTMLDivElement>(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [contacts, setContacts] =
     useState<ContactWithFormattedCount[]>(getAllContacts());
   const [addresses, setAddresses] = useState<Address[]>(getAllAddresses());
@@ -38,7 +37,7 @@ export default function AddressBook() {
   const [noResults, setNoResults] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); // State to manage NewContact modal visibility
   const [isAddAddressModalOpen, setIsAddAddressModalOpen] = useState(false); // State to manage AddAddress modal visibility
-  const [selectedContactName, setSelectedContactName] = useState(''); // State to hold the selected contact name
+  const [selectedContactName, setSelectedContactName] = useState(""); // State to hold the selected contact name
   const [isEditModalOpen, setIsEditModalOpen] = useState(false); // State to manage EditContact modal visibility
   const [selectedContactId, setSelectedContactId] = useState<string | null>(
     null
@@ -78,14 +77,14 @@ export default function AddressBook() {
   };
 
   const handleClearSearch = () => {
-    setSearchTerm(''); // Clear the search term
+    setSearchTerm(""); // Clear the search term
     setFilteredContacts(getAllContacts()); // Reset contacts to original list
     setFilteredAddresses(getAllAddresses()); // Reset addresses to original list
     setNoResults(false); // Reset no results state
   };
 
   const handleSelect = (selectedName: string) => {
-    console.log('Selected Name:', selectedName); // Log the selected name
+    console.log("Selected Name:", selectedName); // Log the selected name
     setSearchTerm(selectedName);
     const filteredContacts = contacts.filter((contact) =>
       contact.name.includes(selectedName)
@@ -95,8 +94,8 @@ export default function AddressBook() {
     );
     setFilteredContacts(filteredContacts);
     setFilteredAddresses(filteredAddresses);
-    console.log('Filtered Contacts:', filteredContacts); // Log filtered contacts
-    console.log('Filtered Addresses:', filteredAddresses); // Log filtered addresses
+    console.log("Filtered Contacts:", filteredContacts); // Log filtered contacts
+    console.log("Filtered Addresses:", filteredAddresses); // Log filtered addresses
   };
 
   // Updated handleEdit function to accept contactId as a string
@@ -111,17 +110,17 @@ export default function AddressBook() {
   };
 
   const handleView = (contactId: string) => {
-    console.log('View contact:', contactId);
+    console.log("View contact:", contactId);
     // Implement view logic here
   };
 
   const handleEditAddress = (addressId: string) => {
-    console.log('Edit address:', addressId);
+    console.log("Edit address:", addressId);
     // Implement edit address logic here
   };
 
   const handleViewAddress = (addressId: string) => {
-    console.log('View address clicked for ID:', addressId); // Debug log
+    console.log("View address clicked for ID:", addressId); // Debug log
     router.push(`/viewContact/${addressId}`);
   };
 
@@ -156,8 +155,8 @@ export default function AddressBook() {
       {
         ...contact,
         id: Date.now().toString(),
-        formattedAddressCount: '0',
-        avatar: '',
+        formattedAddressCount: "0",
+        avatar: "",
       }, // Changed id to string
     ]);
   };
@@ -173,10 +172,10 @@ export default function AddressBook() {
       ...prevAddresses,
       {
         ...address,
-        id: '', // Ensure id is a string
-        contactId: '', // Add missing properties
-        addressname: '', // Add missing properties
-        address: '', // Add missing properties
+        id: "", // Ensure id is a string
+        contactId: "", // Add missing properties
+        addressname: "", // Add missing properties
+        address: "", // Add missing properties
       } as Address, // Cast to Address type
     ]);
   };
@@ -186,65 +185,65 @@ export default function AddressBook() {
   };
 
   return (
-    <main className='w-full h-full'>
-      <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-hidden'>
+    <main className="w-full h-full">
+      <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-hidden">
         <Tabs
           value={activeTab}
           onValueChange={(value: string) => handleTabChange(value as TabType)}
-          className='w-full h-full flex flex-col'
+          className="w-full h-full flex flex-col"
         >
-          <div className='w-full sticky top-0 backdrop-blur-md z-10 bg-white/60'>
-            <div className='max-w-screen-xl mx-auto px-6 pt-6 pb-4'>
-              <nav aria-label='Breadcrumb' className='mb-4'>
-                <ol className='flex items-center gap-1 text-xs text-gray-600'>
+          <div className="w-full sticky top-0 backdrop-blur-md z-10 bg-white/60">
+            <div className="max-w-screen-xl mx-auto px-6 pt-6 pb-4">
+              <nav aria-label="Breadcrumb" className="mb-4">
+                <ol className="flex items-center gap-1 text-xs text-gray-600">
                   <li>
                     <a
-                      href='#'
-                      className='block transition hover:text-gray-700'
+                      href="#"
+                      className="block transition hover:text-gray-700"
                     >
                       Avatar Name
                     </a>
                   </li>
-                  <li className='rtl:rotate-180'>
+                  <li className="rtl:rotate-180">
                     <svg
-                      width='20'
-                      height='20'
-                      viewBox='0 0 20 20'
-                      fill='none'
-                      xmlns='http://www.w3.org/2000/svg'
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d='M5.83337 18.3334L14.1667 1.66675'
-                        stroke='#D0D5DD'
-                        strokeWidth='1.66667'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
+                        d="M5.83337 18.3334L14.1667 1.66675"
+                        stroke="#D0D5DD"
+                        strokeWidth="1.66667"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </li>
                   <li>
-                    <a href='#' className='block transition text-gray-800'>
+                    <a href="#" className="block transition text-gray-800">
                       Address Book
                     </a>
                   </li>
                 </ol>
               </nav>
-              <div className='w-full mt-4 flex items-center justify-between'>
+              <div className="w-full mt-4 flex items-center justify-between">
                 <div>
-                  <h1 className='text-3xl font-medium leading-tight'>
+                  <h1 className="text-3xl font-medium leading-tight">
                     Address Book
                   </h1>
                 </div>
-                <div className='flex gap-3'>
+                <div className="flex gap-3">
                   <Button onClick={handleOpenNewContactModal}>
                     New Contact
-                  </Button>{' '}
+                  </Button>{" "}
                   {/* Open modal on click */}
                 </div>
               </div>
-              <div className='w-full mt-4'>
+              <div className="w-full mt-4">
                 <SearchBar
-                  placeholder='Search by contact name...'
+                  placeholder="Search by contact name..."
                   onSearch={handleSearchInput}
                   value={searchTerm} // Pass the searchTerm to the SearchBar
                   onErrorChange={(error) => {
@@ -253,21 +252,21 @@ export default function AddressBook() {
                   onSelect={handleSelect} // Pass the handleSelect function
                 />
               </div>
-              <div className='flex justify-between items-center w-full mt-4'>
-                <h2 className='text-xl font-semibold'>
+              <div className="flex justify-between items-center w-full mt-4">
+                <h2 className="text-xl font-semibold">
                   {isValidTab(activeTab) &&
-                    (activeTab === 'contacts' ? 'All Contacts' : 'Addresses')}
+                    (activeTab === "contacts" ? "All Contacts" : "Addresses")}
                 </h2>
-                <TabsList className='bg-gray-100 p-2 rounded-xl'>
+                <TabsList className="bg-gray-100 p-2 rounded-xl">
                   <TabsTrigger
-                    value='contacts'
-                    className='rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm'
+                    value="contacts"
+                    className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
                   >
                     All Contacts
                   </TabsTrigger>
                   <TabsTrigger
-                    value='addresses'
-                    className='rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm'
+                    value="addresses"
+                    className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
                   >
                     Addresses
                   </TabsTrigger>
@@ -277,19 +276,19 @@ export default function AddressBook() {
           </div>
           <div
             ref={contentRef}
-            className='max-w-screen-xl mx-auto px-6 w-full flex-grow overflow-y-auto'
+            className="max-w-screen-xl mx-auto px-6 w-full flex-grow overflow-y-auto"
           >
             {contacts.length === 0 ? ( // Check if there are no contacts
               <NoContacts onNewContact={handleOpenNewContactModal} /> // Render NoContacts component
             ) : searchTerm && noResults ? (
               <SearchError
-                message='No matching contacts found'
+                message="No matching contacts found"
                 onClearSearch={handleClearSearch}
                 onNewContact={handleOpenNewContactModal}
               />
             ) : (
               <>
-                <TabsContent value='contacts'>
+                <TabsContent value="contacts">
                   <div>
                     <AllContactsTable
                       contacts={filteredContacts} // Use filteredContacts
@@ -300,7 +299,7 @@ export default function AddressBook() {
                     />
                   </div>
                 </TabsContent>
-                <TabsContent value='addresses'>
+                <TabsContent value="addresses">
                   <div>
                     <AddressesTable
                       addresses={filteredAddresses} // Use filteredAddresses
@@ -343,12 +342,12 @@ export default function AddressBook() {
 
       {/* Render the Notification */}
       {showNotification && (
-        <div className='fixed bottom-4 right-4 max-w-sm z-50'>
+        <div className="fixed bottom-4 right-4 max-w-sm z-50">
           <Notification
             title="You've just added this address to your favorites!"
             description="You've successfully added this address to your favorites."
-            status='success'
-            className='shadow-lg'
+            status="success"
+            className="shadow-lg"
             onClose={() => setShowNotification(false)} // Close notification
           />
         </div>
@@ -358,5 +357,5 @@ export default function AddressBook() {
 }
 
 function isValidTab(tab: string): tab is TabType {
-  return tab === 'contacts' || tab === 'addresses';
+  return tab === "contacts" || tab === "addresses";
 }
