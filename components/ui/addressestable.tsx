@@ -240,7 +240,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
 
   return (
     <div className='flex flex-col h-full'>
-      <div className='w-full min-w-fit flex bg-gray-100 rounded-xl font-medium text-gray-500 text-xs'>
+      <div className='w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs'>
         <div className='w-10 px-2 py-3'></div>
         <div className='w-1/4 px-6 py-3'>Contact</div>
         <div className='w-1/5 px-6 py-3'>Network</div>

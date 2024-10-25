@@ -64,7 +64,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
 
   return (
     <div className='flex flex-col h-full'>
-      <div className='w-full min-w-fit flex bg-gray-100 rounded-xl font-medium text-gray-500 text-xs'>
+      <div className='w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs'>
         <div className='w-full px-6 py-3'>Contact</div>
       </div>
       <div className='flex-grow overflow-y-auto'>
@@ -99,7 +99,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                     <Button
                       variant='outline'
                       size="sm"
-                      className='rounded-[9px]'
+                      className='rounded-[12px]'
                       onClick={() => onAddAddressButton(contact.id, contact.name)}
                     >
                       <Plus className='h-4 w-4 mr-2' />
