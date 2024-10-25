@@ -166,27 +166,33 @@ const NewContact: React.FC<NewContactProps> = ({
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <div className='flex justify-between items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3'>
-                      <span className='text-gray-500'>{network || 'Select Network...'}</span>
+                      <span className={`text-gray-500 ${network ? 'text-md font-medium text-gray-900' : ''}`}>
+                        {network || 'Select Network...'}
+                      </span>
                       {getNetworkIcon()} {/* Render the network icon */}
                       <ChevronDown className='h-4 w-4 text-gray-500' />
                     </div>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className='w-full rounded-xl'>
-                    <DropdownMenuItem onClick={() => setNetwork('Bitcoin Network')} className={`flex items-center ${network === 'Bitcoin Network' ? 'bg-gray-200' : ''}`}>
+
+                    <DropdownMenuItem onClick={() => setNetwork('Bitcoin Network')} className={`flex items-center ${network === 'Bitcoin Network' ? 'bg-gray-50 rounded-xl' : ''}`}>
                       <Image src={BTCNetwork} alt="Bitcoin Network" className='h-5 w-5 mr-2' />
-                      Bitcoin Network
+                      <span className={`text-gray-900 ${network === 'Bitcoin Network' ? 'text-md font-medium' : ''}`}>Bitcoin Network</span>
                       {network === 'Bitcoin Network' && <Check className='ml-auto h-5 w-5 text-green-500' />}
                     </DropdownMenuItem>
+
                     <DropdownMenuItem onClick={() => setNetwork('Ethereum Network')} className={`flex items-center ${network === 'Ethereum Network' ? 'bg-gray-200' : ''}`}>
                       <Image src={ETHNetwork} alt="Ethereum Network" className='h-5 w-5 mr-2' />
-                      Ethereum Network
+                      <span className={`text-gray-900 ${network === 'Ethereum Network' ? 'text-md font-medium' : ''}`}>Ethereum Network</span>
                       {network === 'Ethereum Network' && <Check className='ml-auto h-5 w-5 text-green-500' />}
                     </DropdownMenuItem>
+
                     <DropdownMenuItem onClick={() => setNetwork('Polygon Network')} className={`flex items-center ${network === 'Polygon Network' ? 'bg-gray-200' : ''}`}>
                       <Image src={POLNetwork} alt="Polygon Network" className='h-5 w-5 mr-2' />
-                      Polygon Network
+                      <span className={`text-gray-900 ${network === 'Polygon Network' ? 'text-md font-medium' : ''}`}>Polygon Network</span>
                       {network === 'Polygon Network' && <Check className='ml-auto h-5 w-5 text-green-500' />}
                     </DropdownMenuItem>
+                    
                   </DropdownMenuContent>
                 </DropdownMenu>
               </Label>
