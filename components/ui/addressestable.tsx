@@ -1,40 +1,40 @@
 // components/ui/addressesTable.tsx
 
-'use client';
+"use client";
 
-import * as React from 'react';
-import { Button } from './button';
-import { Edit, Eye } from 'lucide-react';
-import { Pagination } from '@/components/ui/pagination';
-import { useState, useRef, useMemo, useCallback, useEffect } from 'react';
-import { FavoriteStar } from './favoritestar';
-import { Notification } from '@/components/ui/notification';
+import * as React from "react";
+import { Button } from "./button";
+import { Edit, Eye } from "lucide-react";
+import { Pagination } from "@/components/ui/pagination";
+import { useState, useRef, useMemo, useCallback, useEffect } from "react";
+import { FavoriteStar } from "./favoritestar";
+import { Notification } from "@/components/ui/notification";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { blo } from 'blo';
+} from "@/components/ui/tooltip";
+import { blo } from "blo";
 
-import Image from 'next/image';
-import BTC from 'cryptocurrency-icons/svg/color/btc.svg';
-import ETH from 'cryptocurrency-icons/svg/color/eth.svg';
-import LINK from 'cryptocurrency-icons/svg/color/link.svg';
-import MATIC from 'cryptocurrency-icons/svg/color/matic.svg';
-import USDC from 'cryptocurrency-icons/svg/color/usdc.svg';
-import USDT from 'cryptocurrency-icons/svg/color/usdt.svg';
-import WBTC from 'cryptocurrency-icons/svg/color/wbtc.svg';
-import SOL from 'cryptocurrency-icons/svg/color/sol.svg';
-import ADA from 'cryptocurrency-icons/svg/color/ada.svg';
-import DOT from 'cryptocurrency-icons/svg/color/dot.svg';
+import Image from "next/image";
+import BTC from "cryptocurrency-icons/svg/color/btc.svg";
+import ETH from "cryptocurrency-icons/svg/color/eth.svg";
+import LINK from "cryptocurrency-icons/svg/color/link.svg";
+import MATIC from "cryptocurrency-icons/svg/color/matic.svg";
+import USDC from "cryptocurrency-icons/svg/color/usdc.svg";
+import USDT from "cryptocurrency-icons/svg/color/usdt.svg";
+import WBTC from "cryptocurrency-icons/svg/color/wbtc.svg";
+import SOL from "cryptocurrency-icons/svg/color/sol.svg";
+import ADA from "cryptocurrency-icons/svg/color/ada.svg";
+import DOT from "cryptocurrency-icons/svg/color/dot.svg";
 
-import ETHNetwork from 'public/icons/networks/ETH.svg';
-import BTCNetwork from 'public/icons/networks/BTC.svg';
-import POLNetwork from 'public/icons/networks/MATIC.svg';
+import ETHNetwork from "public/icons/networks/ETH.svg";
+import BTCNetwork from "public/icons/networks/BTC.svg";
+import POLNetwork from "public/icons/networks/MATIC.svg";
 
-import EditAddress from '@/components/ui/modals/editAddress'; // Import the modal
-import ViewAddress from '@/components/ui/modals/viewAddress'; // Import the ViewAddress modal
+import EditAddress from "@/components/ui/modals/editAddress"; // Import the modal
+import ViewAddress from "@/components/ui/modals/viewAddress"; // Import the ViewAddress modal
 
 interface Address {
   id: string;
@@ -71,7 +71,8 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
   const [isViewModalOpen, setViewModalOpen] = useState(false);
-  const [selectedAddressData, setSelectedAddressData] = useState<Address | null>(null);
+  const [selectedAddressData, setSelectedAddressData] =
+    useState<Address | null>(null);
 
   useEffect(() => {
     setLocalAddresses(addresses);
@@ -80,7 +81,9 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   // Updated filtering logic to use includes for better search functionality
   const filteredAddresses = useMemo(() => {
     return localAddresses.filter((address) => {
-      return address.contactName.toLowerCase().includes(searchTerm.toLowerCase());
+      return address.contactName
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
     });
   }, [localAddresses, searchTerm]);
 
@@ -146,28 +149,28 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   );
 
   const getNetworkIcon = (network: string) => {
-    const networkLower = network.toLowerCase().replace(' network', '');
+    const networkLower = network.toLowerCase().replace(" network", "");
     switch (networkLower) {
-      case 'bitcoin':
+      case "bitcoin":
         return BTCNetwork;
-      case 'ethereum':
+      case "ethereum":
         return ETHNetwork;
-      case 'polygon':
+      case "polygon":
         return POLNetwork;
       default:
-        return '/networks/default-network-icon.svg';
+        return "/networks/default-network-icon.svg";
     }
   };
 
   const getNetworkName = (network: string) => {
-    const networkLower = network.toLowerCase().replace(' network', '');
+    const networkLower = network.toLowerCase().replace(" network", "");
     switch (networkLower) {
-      case 'bitcoin':
-        return 'Bitcoin Network';
-      case 'ethereum':
-        return 'Ethereum Network';
-      case 'polygon':
-        return 'Polygon Network';
+      case "bitcoin":
+        return "Bitcoin Network";
+      case "ethereum":
+        return "Ethereum Network";
+      case "polygon":
+        return "Polygon Network";
       default:
         return `${network} Network`;
     }
@@ -175,38 +178,38 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
 
   const getAssetIcon = (asset: string) => {
     switch (asset.toLowerCase()) {
-      case 'bitcoin':
-      case 'btc':
+      case "bitcoin":
+      case "btc":
         return BTC;
-      case 'ethereum':
-      case 'eth':
+      case "ethereum":
+      case "eth":
         return ETH;
-      case 'chainlink':
-      case 'link':
+      case "chainlink":
+      case "link":
         return LINK;
-      case 'polygon':
-      case 'matic':
+      case "polygon":
+      case "matic":
         return MATIC;
-      case 'usd coin':
-      case 'usdc':
+      case "usd coin":
+      case "usdc":
         return USDC;
-      case 'tether':
-      case 'usdt':
+      case "tether":
+      case "usdt":
         return USDT;
-      case 'wrapped bitcoin':
-      case 'wbtc':
+      case "wrapped bitcoin":
+      case "wbtc":
         return WBTC;
-      case 'solana':
-      case 'sol':
+      case "solana":
+      case "sol":
         return SOL;
-      case 'cardano':
-      case 'ada':
+      case "cardano":
+      case "ada":
         return ADA;
-      case 'polkadot':
-      case 'dot':
+      case "polkadot":
+      case "dot":
         return DOT;
       default:
-        return '/default-icon.svg';
+        return "/default-icon.svg";
     }
   };
 
@@ -220,13 +223,17 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
 
   const handleSave = (updatedAddress: Address) => {
     setLocalAddresses((prevAddresses) =>
-      prevAddresses.map((addr) => (addr.id === updatedAddress.id ? updatedAddress : addr))
+      prevAddresses.map((addr) =>
+        addr.id === updatedAddress.id ? updatedAddress : addr
+      )
     );
     setEditModalOpen(false);
   };
 
   const handleRemove = (addressId: string) => {
-    setLocalAddresses((prevAddresses) => prevAddresses.filter((addr) => addr.id !== addressId));
+    setLocalAddresses((prevAddresses) =>
+      prevAddresses.filter((addr) => addr.id !== addressId)
+    );
     setEditModalOpen(false);
   };
 
@@ -239,62 +246,62 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   };
 
   return (
-    <div className='flex flex-col h-full'>
-      <div className='w-full min-w-fit flex bg-gray-100 rounded-xl font-medium text-gray-500 text-xs'>
-        <div className='w-10 px-2 py-3'></div>
-        <div className='w-1/4 px-6 py-3'>Contact</div>
-        <div className='w-1/5 px-6 py-3'>Network</div>
-        <div className='w-1/6 px-6 py-3'>Asset</div>
-        <div className='w-1/4 px-6 py-3'>Address</div>
-        <div className='w-32 px-6 py-3'></div>
+    <div className="flex flex-col h-full">
+      <div className="w-full min-w-fit flex bg-gray-100 rounded-xl font-medium text-gray-500 text-xs">
+        <div className="w-10 px-2 py-3"></div>
+        <div className="w-1/4 px-6 py-3">Contact</div>
+        <div className="w-1/5 px-6 py-3">Network</div>
+        <div className="w-1/6 px-6 py-3">Asset</div>
+        <div className="w-1/4 px-6 py-3">Address</div>
+        <div className="w-64 px-6 py-3"></div>
       </div>
-      <div className='flex-grow overflow-y-auto'>
-        <div className='w-full flex flex-col gap-1'>
+      <div className="flex-grow overflow-y-auto">
+        <div className="w-full flex flex-col gap-1">
           {paginatedAddresses.map((address) => (
             <div
               key={address.id}
-              className='w-full min-w-fit flex hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm'
+              className="w-full min-w-fit flex hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm"
             >
-              <div className='w-10 px-2 py-3 flex items-center justify-center'>
+              <div className="w-10 px-2 py-3 flex items-center justify-center">
                 <FavoriteStar
-                  isFavorite={favorites.includes(address.id)} 
+                  isFavorite={favorites.includes(address.id)}
                   onToggle={() => onToggleFavorite(address.id)}
                 />
               </div>
-              <div className='w-1/4 px-6 py-3 flex items-center'>
-                <div className='rounded-full overflow-hidden bg-gray-200 w-8 h-8 mr-2 flex-shrink-0'>
+              <div className="w-1/4 px-6 py-3 flex items-center">
+                <div className="rounded-full overflow-hidden bg-gray-200 w-8 h-8 mr-2 flex-shrink-0">
                   <Image
-                    src={'/bastion.png'}
+                    src={"/bastion.png"}
                     alt={address.contactName}
                     width={32}
                     height={32}
                   />
                 </div>
-                <div className='flex flex-col overflow-hidden'>
-                  <p className='font-medium truncate'>{address.contactName}</p>
-                  <p className='text-xs text-gray-500 truncate'>
+                <div className="flex flex-col overflow-hidden">
+                  <p className="font-medium truncate">{address.contactName}</p>
+                  <p className="text-xs text-gray-500 truncate">
                     {address.addressname}
                   </p>
                 </div>
               </div>
-              <div className='w-1/5 px-6 py-3 flex items-center'>
-                <div className='w-8 h-8 flex-shrink-0 mr-2'>
+              <div className="w-1/5 px-6 py-3 flex items-center">
+                <div className="w-8 h-8 flex-shrink-0 mr-2">
                   <Image
                     src={getNetworkIcon(address.network)}
                     alt={getNetworkName(address.network)}
                     width={32}
                     height={32}
-                    className='w-full h-full object-contain'
+                    className="w-full h-full object-contain"
                   />
                 </div>
-                <span className='truncate'>
+                <span className="truncate">
                   {getNetworkName(address.network)}
                 </span>
               </div>
-              <div className='w-1/6 px-6 py-3 flex items-center'>
+              <div className="w-1/6 px-6 py-3 flex items-center">
                 {address.asset ? (
                   <>
-                    <div className='w-5 h-5 mr-2 flex-shrink-0'>
+                    <div className="w-5 h-5 mr-2 flex-shrink-0">
                       <Image
                         src={getAssetIcon(address.asset)}
                         alt={address.asset}
@@ -302,13 +309,13 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                         height={20}
                       />
                     </div>
-                    <span className='truncate'>{address.asset}</span>
+                    <span className="truncate">{address.asset}</span>
                   </>
                 ) : (
-                  <span className='text-gray-400'></span>
+                  <span className="text-gray-400"></span>
                 )}
               </div>
-              <div className='w-1/4 px-6 py-3 flex items-center'>
+              <div className="w-1/4 px-6 py-3 flex items-center">
                 <div ref={tooltipRef}>
                   {/^\d/.test(address.address) ? (
                     <TooltipProvider>
@@ -325,23 +332,23 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                           asChild
                         >
                           <span
-                            className='underline underline-offset-4 cursor-pointer flex items-center gap-2'
+                            className="underline underline-offset-4 cursor-pointer flex items-center gap-2"
                             onClick={() => {
                               navigator.clipboard.writeText(address.address);
                               const tooltip = document.querySelector(
                                 `[id="${address.id}"]`
                               );
                               if (tooltip) {
-                                tooltip.textContent = 'Copied!';
+                                tooltip.textContent = "Copied!";
                                 setTimeout(() => {
                                   if (tooltip) {
-                                    tooltip.textContent = 'Click to copy';
+                                    tooltip.textContent = "Click to copy";
                                   }
                                 }, 2000);
                               }
                             }}
                           >
-                            <div className='w-6 h-6 overflow-hidden rounded-md border border-gray-200'>
+                            <div className="w-6 h-6 overflow-hidden rounded-md border border-gray-200">
                               <Image
                                 alt={address.address}
                                 src={blo(`0x${address.address.slice(2)}`)}
@@ -351,24 +358,24 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                             </div>
                             {`${address.address.slice(0, 4)}...${address.address.slice(-4)}`}
                             <svg
-                              width='12'
-                              height='12'
-                              viewBox='0 0 12 12'
-                              fill='none'
-                              xmlns='http://www.w3.org/2000/svg'
+                              width="12"
+                              height="12"
+                              viewBox="0 0 12 12"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
                             >
-                              <g clipPath='url(#clip0_1278_40151)'>
+                              <g clipPath="url(#clip0_1278_40151)">
                                 <path
-                                  d='M2.5 7.5C2.03406 7.5 1.80109 7.5 1.61732 7.42388C1.37229 7.32239 1.17761 7.12771 1.07612 6.88268C1 6.69891 1 6.46594 1 6V2.6C1 2.03995 1 1.75992 1.10899 1.54601C1.20487 1.35785 1.35785 1.20487 1.54601 1.10899C1.75992 1 2.03995 1 2.6 1H6C6.46594 1 6.69891 1 6.88268 1.07612C7.12771 1.17761 7.32239 1.37229 7.42388 1.61732C7.5 1.80109 7.5 2.03406 7.5 2.5M6.1 11H9.4C9.96005 11 10.2401 11 10.454 10.891C10.6422 10.7951 10.7951 10.6422 10.891 10.454C11 10.2401 11 9.96005 11 9.4V6.1C11 5.53995 11 5.25992 10.891 5.04601C10.7951 4.85785 10.6422 4.70487 10.454 4.60899C10.2401 4.5 9.96005 4.5 9.4 4.5H6.1C5.53995 4.5 5.25992 4.5 5.04601 4.60899C4.85785 4.70487 4.70487 4.85785 4.60899 5.04601C4.5 5.25992 4.5 5.53995 4.5 6.1V9.4C4.5 9.96005 4.5 10.2401 4.60899 10.454C4.70487 10.6422 4.85785 10.7951 5.04601 10.891C5.25992 11 5.53995 11 6.1 11Z'
-                                  stroke='#344054'
-                                  strokeWidth='1.25'
-                                  strokeLinecap='round'
-                                  strokeLinejoin='round'
+                                  d="M2.5 7.5C2.03406 7.5 1.80109 7.5 1.61732 7.42388C1.37229 7.32239 1.17761 7.12771 1.07612 6.88268C1 6.69891 1 6.46594 1 6V2.6C1 2.03995 1 1.75992 1.10899 1.54601C1.20487 1.35785 1.35785 1.20487 1.54601 1.10899C1.75992 1 2.03995 1 2.6 1H6C6.46594 1 6.69891 1 6.88268 1.07612C7.12771 1.17761 7.32239 1.37229 7.42388 1.61732C7.5 1.80109 7.5 2.03406 7.5 2.5M6.1 11H9.4C9.96005 11 10.2401 11 10.454 10.891C10.6422 10.7951 10.7951 10.6422 10.891 10.454C11 10.2401 11 9.96005 11 9.4V6.1C11 5.53995 11 5.25992 10.891 5.04601C10.7951 4.85785 10.6422 4.70487 10.454 4.60899C10.2401 4.5 9.96005 4.5 9.4 4.5H6.1C5.53995 4.5 5.25992 4.5 5.04601 4.60899C4.85785 4.70487 4.70487 4.85785 4.60899 5.04601C4.5 5.25992 4.5 5.53995 4.5 6.1V9.4C4.5 9.96005 4.5 10.2401 4.60899 10.454C4.70487 10.6422 4.85785 10.7951 5.04601 10.891C5.25992 11 5.53995 11 6.1 11Z"
+                                  stroke="#344054"
+                                  strokeWidth="1.25"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                 />
                               </g>
                               <defs>
-                                <clipPath id='clip0_1278_40151'>
-                                  <rect width='12' height='12' fill='white' />
+                                <clipPath id="clip0_1278_40151">
+                                  <rect width="12" height="12" fill="white" />
                                 </clipPath>
                               </defs>
                             </svg>
@@ -384,21 +391,23 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   )}
                 </div>
               </div>
-              <div className='w-32 px-6 py-3 flex items-center justify-end space-x-4'>
+              <div className="w-64 px-6  flex items-center justify-end space-x-4">
                 <Button
-                  variant='secondary'
-                  size='sm'
+                  variant="secondary"
+                  size="sm"
+                  className="h-8"
                   onClick={() => handleEdit(address.id)}
                 >
-                  <Edit className='h-4 w-4' />
+                  <Edit className="h-4 w-4" />
                   Edit
                 </Button>
                 <Button
-                  variant='secondary'
-                  size='sm'
+                  variant="secondary"
+                  size="sm"
+                  className="h-8"
                   onClick={() => handleView(address.id)} // Open the View modal
                 >
-                  <Eye className='h-4 w-4' />
+                  <Eye className="h-4 w-4" />
                   View
                 </Button>
               </div>
@@ -406,7 +415,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
           ))}
         </div>
       </div>
-      <div className='mt-auto pt-4 pb-4 bg-white border-gray-200'>
+      <div className="mt-auto pt-4 pb-4 bg-white border-gray-200">
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
@@ -416,12 +425,12 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
         />
       </div>
       {showNotification && (
-        <div className='fixed bottom-4 right-4 max-w-sm z-50'>
+        <div className="fixed bottom-4 right-4 max-w-sm z-50">
           <Notification
             title="You've just added this address to your favorites!"
             description="You've successfully added this address to your favorites."
-            status='success'
-            className='shadow-lg'
+            status="success"
+            className="shadow-lg"
             onClose={handleCloseNotification}
           />
         </div>
