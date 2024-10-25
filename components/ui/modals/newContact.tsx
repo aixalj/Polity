@@ -1,6 +1,26 @@
 import React, { useState } from 'react';
 import NewContactSaved from '../saved modals/newContactSaved';
+import { Button } from '@/components/ui/button';
+import userPlusIcon from '@/public/modal-icons/user-plus.svg';
+import Image from 'next/image';
+import { ChevronDown, X, AlertTriangle, Check } from 'lucide-react'; // Import other icons
+import ETHNetwork from 'public/icons/networks/ETH.svg'; // Import network icons
+import BTCNetwork from 'public/icons/networks/BTC.svg';
+import POLNetwork from 'public/icons/networks/MATIC.svg';
 
+// Importing the Input and Label components
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+
+// Importing Dropdown Menu components
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from '@/components/ui/dropdown-menu';
+
+// Define the props for the NewContact component
 interface NewContactProps {
   isOpen: boolean;
   onClose: () => void;
@@ -53,125 +73,183 @@ const NewContact: React.FC<NewContactProps> = ({
 
   if (!isOpen) return null; // Don't render if the modal is not open
 
+  // Function to get the appropriate network icon
+  const getNetworkIcon = () => {
+    switch (network) {
+      case 'Ethereum Network':
+        return <Image src={ETHNetwork} alt="Ethereum Network" className='h-5 w-5' />;
+      case 'Bitcoin Network':
+        return <Image src={BTCNetwork} alt="Bitcoin Network" className='h-5 w-5' />;
+      case 'Polygon Network':
+        return <Image src={POLNetwork} alt="Polygon Network" className='h-5 w-5' />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       {isSavedModalOpen ? (
         <NewContactSaved onClose={handleCloseSavedModal} />
       ) : (
-        <div className='fixed inset-0 bg-gray-200 bg-opacity-50 flex justify-center items-center z-50'>
-          <div className='bg-white p-6 rounded-lg shadow-lg w-[448px] relative'>
-            <button
-              onClick={onClose}
-              className='absolute top-2 right-2 text-gray-600 hover:text-gray-900'
-              aria-label='Close'
-            >
-              &times;
-            </button>
-            <h2 className='text-xl font-semibold mb-4'>Add New Contact</h2>
-            <p className='mb-4'>
-              Fill out the fields below to save a new contact address.
-            </p>
-            <label className='block mb-2'>
-              Contact Name
-              <input
-                type='text'
-                value={contactName}
-                onChange={(e) => setContactName(e.target.value)}
-                required
-                className='mt-1 block w-full border border-gray-300 rounded-md p-2'
-              />
-            </label>
-            {/* Tab Section for Standard and Universal */}
-            <div className='flex mb-4'>
+        <div className='fixed inset-0 bg-gray-200 backdrop-blur-sm bg-opacity-50 flex justify-center items-center z-50'>
+          <div className='bg-primary-500 p-1 rounded-2xl shadow-xl max-w-[90%] w-[410px] h-auto relative'>
+            <div className='px-8 pt-6 pb-4'>
               <button
-                type='button'
-                onClick={() => setActiveTab('standard')}
-                className={`flex-1 py-2 text-center ${activeTab === 'standard' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+                onClick={onClose}
+                className='absolute top-2 right-2 text-gray-50 hover:text-gray-100'
+                aria-label='Close'
               >
-                Standard
+                <X className='h-6 w-6' />
               </button>
-              <button
-                type='button'
-                onClick={() => setActiveTab('universal')}
-                className={`flex-1 py-2 text-center ${activeTab === 'universal' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
-              >
-                Universal
-              </button>
-            </div>
-            <label className='block mb-2'>
-              Address Name
-              <input
-                type='text'
-                value={addressName}
-                onChange={(e) => setAddressName(e.target.value)}
-                placeholder='Enter address name here...'
-                required
-                className='mt-1 block w-full border border-gray-300 rounded-md p-2'
-              />
-            </label>
-            <label className='block mb-2'>
-              Network
-              <select
-                value={network}
-                onChange={(e) => setNetwork(e.target.value)}
-                required
-                className='mt-1 block w-full border border-gray-300 rounded-md p-2'
-              >
-                <option value=''>Select Network</option>
-                <option value='Ethereum Network'>Ethereum Network</option>
-                <option value='Bitcoin Network'>Bitcoin Network</option>
-                <option value='Polygon Network'>Polygon Network</option>
-                {/* Add network options here */}
-              </select>
-            </label>
-            {activeTab === 'standard' && ( // Conditionally render asset input
-              <label className='block mb-2'>
-                Asset
-                <select
-                  value={asset}
-                  onChange={(e) => setAsset(e.target.value)}
-                  required
-                  className='mt-1 block w-full border border-gray-300 rounded-md p-2'
-                >
-                  <option value=''>Select Asset</option>
-                  <option value='Tether'>Tether</option>
-                  <option value='Bitcoin'>Bitcoin</option>
-                  <option value='Ethereum'>Ethereum</option>
-                </select>
-              </label>
-            )}
-            <label className='block mb-2'>
-              Network Address
-              <input
-                type='text'
-                value={networkAddress}
-                onChange={(e) => setNetworkAddress(e.target.value)}
-                placeholder='Enter network address here...'
-                required
-                className='mt-1 block w-full border border-gray-300 rounded-md p-2'
-              />
-            </label>
-            <div className='text-sm text-red-600 mb-4'>
-              <p>
-                Contact Disclaimer: Verify address accuracy. Incorrect entries lead
-                to irreversible losses. Proceed at your own risk.
+              <div className='flex justify-start mb-2'>
+                <Image src={userPlusIcon} alt='Add User' className='h-6 w-6' />
+              </div>
+              <h2 className='text-xl text-gray-50 font-medium mb-2'>
+                Add new contact
+              </h2>
+              <p className='mb-2 text-gray-50 text-sm font-regular'>
+                Fill out the fields below to save a new contact address.
               </p>
             </div>
-            <div className='flex justify-end'>
-              <button
-                type='submit'
-                onClick={handleSubmit}
-                className='bg-blue-500 text-white px-4 py-2 rounded-md mr-2'
-              >
-                Create Contact
-              </button>
-              <button
-                type='button'
-                onClick={onClose}
-                className='bg-gray-300 text-gray-700 px-4 py-2 rounded-md'
-              >
-                Cancel
-              </button>
+            <div className='bg-white p-4 rounded-xl shadow-md'>
+              <Label className='block'>
+                <div className='mb-1.5'>Contact Name</div>
+                <div className='relative'>
+                  <Input
+                    type='text'
+                    value={contactName}
+                    onChange={(e) => setContactName(e.target.value)}
+                    placeholder='John Doe'
+                    required
+                    className='h-10 mb-3 pr-10' // Add padding to the right for the icon
+                  />
+                  {contactName && (
+                    <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />
+                  )}
+                </div>
+              </Label>
+              <div className='flex my-4 p-1 bg-gray-100 rounded-xl mb-3'>
+                <button
+                  type='button'
+                  onClick={() => setActiveTab('standard')}
+                  className={`flex-1 py-2 text-center rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm ${activeTab === 'standard' ? 'bg-white gray-700' : ' text-gray-700'}`}
+                >
+                  Standard
+                </button>
+                <button
+                  type='button'
+                  onClick={() => setActiveTab('universal')}
+                  className={`flex-1 py-2 text-center rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm ${activeTab === 'universal' ? 'bg-white gray-700' : ' text-gray-700'}`}
+                >
+                  Universal
+                </button>
+              </div>
+              <Label className='block mb-1.5'>
+                <div className='mb-1.5'>Address Name</div>
+                <div className='relative'>
+                  <Input
+                    type='text'
+                    value={addressName}
+                    onChange={(e) => setAddressName(e.target.value)}
+                    placeholder='Enter address name here...'
+                    required
+                    className='h-10 mb-3 pr-10' // Add padding to the right for the icon
+                  />
+                  {addressName && (
+                    <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />
+                  )}
+                </div>
+              </Label>
+              <Label className='block mb-1.5'>
+                <div className='mb-1.5'>Network</div>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <div className='flex justify-between items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3'>
+                      <span className='text-gray-500'>{network || 'Select Network...'}</span>
+                      {getNetworkIcon()} {/* Render the network icon */}
+                      <ChevronDown className='h-4 w-4 text-gray-500' />
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className='w-full rounded-xl'>
+                    <DropdownMenuItem onClick={() => setNetwork('Bitcoin Network')} className={`flex items-center ${network === 'Bitcoin Network' ? 'bg-gray-200' : ''}`}>
+                      <Image src={BTCNetwork} alt="Bitcoin Network" className='h-5 w-5 mr-2' />
+                      Bitcoin Network
+                      {network === 'Bitcoin Network' && <Check className='ml-auto h-5 w-5 text-green-500' />}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setNetwork('Ethereum Network')} className={`flex items-center ${network === 'Ethereum Network' ? 'bg-gray-200' : ''}`}>
+                      <Image src={ETHNetwork} alt="Ethereum Network" className='h-5 w-5 mr-2' />
+                      Ethereum Network
+                      {network === 'Ethereum Network' && <Check className='ml-auto h-5 w-5 text-green-500' />}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setNetwork('Polygon Network')} className={`flex items-center ${network === 'Polygon Network' ? 'bg-gray-200' : ''}`}>
+                      <Image src={POLNetwork} alt="Polygon Network" className='h-5 w-5 mr-2' />
+                      Polygon Network
+                      {network === 'Polygon Network' && <Check className='ml-auto h-5 w-5 text-green-500' />}
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </Label>
+
+              {activeTab === 'standard' && ( // Conditionally render asset input
+                <Label className='block mb-1.5'>
+                  <div className='mb-1.5'>Asset</div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <div className='flex justify-between items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3'>
+                        <span className='text-gray-500'>{asset || 'Select Asset...'}</span>
+                        <ChevronDown className='h-4 w-4 text-gray-500' />
+                      </div>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem onClick={() => setAsset('Tether')}>
+                        Tether
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setAsset('Bitcoin')}>
+                        Bitcoin
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setAsset('Ethereum')}>
+                        Ethereum
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </Label>
+              )}
+              <Label className='block mb-1.5'>
+                <div className='mb-1.5'>Network Address</div>
+                <div className='relative'>
+                  <Input
+                    type='text'
+                    value={networkAddress}
+                    onChange={(e) => setNetworkAddress(e.target.value)}
+                    placeholder='Enter network address here...'
+                    required
+                    className='h-10 mb-3 pr-10' // Add padding to the right for the icon
+                  />
+                  {networkAddress && (
+                    <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />
+                  )}
+                </div>
+              </Label>
+              <div className='flex items-start text-sm text-yellow-800 mb-4 bg-yellow-50 p-4 rounded-xl'>
+                <AlertTriangle className='h-9 w-9 mr-2 text-yellow-800' />
+                <div>
+                  <p className='m-0 text-sm font-semibold'>Contact Disclaimer</p>
+                  <p className='m-0'>
+                    Verify address accuracy. Incorrect entries lead to irreversible losses. Proceed at your own risk.
+                  </p>
+                </div>
+              </div>
+              <div className='flex justify-start'>
+                <Button
+                  type='submit'
+                  variant='default'
+                  className='w-full'
+                  onClick={handleSubmit}
+                >
+                  Create Contact
+                </Button>
+              </div>
             </div>
           </div>
         </div>
