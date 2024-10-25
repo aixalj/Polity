@@ -111,6 +111,7 @@ export default function AddressBook() {
 
   const handleView = (contactId: string) => {
     console.log("View contact:", contactId);
+    router.push(`components/viewContact/${contactId}`); // Navigate to the ViewContact page
     // Implement view logic here
   };
 

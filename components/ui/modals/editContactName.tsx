@@ -1,6 +1,6 @@
-// components/ui/modals/editContactName.tsx
 import React, { useState, useEffect } from 'react';
 import { contacts, addresses } from '../addressbookData'; // Adjust the import path as necessary
+import ContactNameEditedSaved from '../saved modals/contactNameEditedSaved'; // Adjust the import path as necessary
 
 interface EditContactNameModalProps {
   isOpen: boolean;
@@ -10,6 +10,7 @@ interface EditContactNameModalProps {
 
 const EditContactNameModal: React.FC<EditContactNameModalProps> = ({ isOpen, onClose, contactId }) => {
   const [contactName, setContactName] = useState('');
+  const [isSavedModalOpen, setSavedModalOpen] = useState(false); // State for ContactNameEditedSaved modal
 
   // Fetch the contact when the modal opens
   useEffect(() => {
@@ -31,33 +32,44 @@ const EditContactNameModal: React.FC<EditContactNameModalProps> = ({ isOpen, onC
   const handleSave = () => {
     // Logic to save the updated contact name
     console.log('Updated contact name:', contactName);
-    onClose();
+    setSavedModalOpen(true); // Open the saved modal after saving
+  };
+
+  const handleCloseSavedModal = () => {
+    setSavedModalOpen(false); // Close the saved modal
+    onClose(); // Close the EditContactNameModal
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-200 bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white w-[448px] p-6 rounded-lg shadow-lg">
-        <button onClick={onClose} className="float-right text-gray-600 hover:text-gray-800">X</button>
-        <h2 className="text-lg font-semibold mb-2">Edit Contact Name</h2>
-        <p className="mb-4">Fill out the fields below to save a new contact address.</p>
-        <input
-          type="text"
-          value={contactName}
-          onChange={(e) => setContactName(e.target.value)}
-          placeholder="Contact Name"
-          className="w-full mb-4 p-2 border border-gray-300 rounded"
-        />
-        <div>
-          {contactAddresses.map((address) => (
-            <div key={address.id} className="flex justify-between items-center mb-2">
-              <span>{address.network} - {address.addressname}</span>
-              <button className="ml-2 text-blue-500 hover:underline">View</button>
+    <>
+      {isSavedModalOpen ? (
+        <ContactNameEditedSaved onClose={handleCloseSavedModal} />
+      ) : (
+        <div className="fixed inset-0 bg-gray-200 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white w-[448px] p-6 rounded-lg shadow-lg">
+            <button onClick={onClose} className="float-right text-gray-600 hover:text-gray-800">X</button>
+            <h2 className="text-lg font-semibold mb-2">Edit Contact Name</h2>
+            <p className="mb-4">Fill out the fields below to save a new contact address.</p>
+            <input
+              type="text"
+              value={contactName}
+              onChange={(e) => setContactName(e.target.value)}
+              placeholder="Contact Name"
+              className="w-full mb-4 p-2 border border-gray-300 rounded"
+            />
+            <div>
+              {contactAddresses.map((address) => (
+                <div key={address.id} className="flex justify-between items-center mb-2">
+                  <span>{address.network} - {address.addressname}</span>
+                  <button className="ml-2 text-blue-500 hover:underline">View</button>
+                </div>
+              ))}
             </div>
-          ))}
+            <button onClick={handleSave} className="mt-4 w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Save</button>
+          </div>
         </div>
-        <button onClick={handleSave} className="mt-4 w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Save</button>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
