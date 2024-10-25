@@ -8,8 +8,14 @@ import { Badge } from "@/components/ui/badge";
 
 type VariantType = "warning" | "critical" | "secure";
 
-export default function BlowFish() {
-  const [variant, setVariant] = useState<VariantType>("warning");
+interface BlowFishProps {
+  variant?: VariantType;
+}
+
+export default function BlowFish({
+  variant: initialVariant = "warning",
+}: BlowFishProps) {
+  const [variant, setVariant] = useState<VariantType>(initialVariant);
 
   const getVariantStyles = () => {
     switch (variant) {

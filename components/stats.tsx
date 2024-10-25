@@ -95,18 +95,18 @@ export function Stats({ variant = "wealth" }: StatsProps) {
     selectedTime === "pastday"
       ? "Last 24 Hours"
       : selectedTime === "pastweek"
-      ? "Last 7 Days"
-      : selectedTime === "pastmonth"
-      ? "Last 30 Days"
-      : selectedTime === "threemonths"
-      ? "Last 3 Months"
-      : selectedTime === "yeartodate"
-      ? "Year to Date"
-      : selectedTime === "pastyear"
-      ? "Last Year"
-      : selectedTime === "alltime"
-      ? "All Time"
-      : "";
+        ? "Last 7 Days"
+        : selectedTime === "pastmonth"
+          ? "Last 30 Days"
+          : selectedTime === "threemonths"
+            ? "Last 3 Months"
+            : selectedTime === "yeartodate"
+              ? "Year to Date"
+              : selectedTime === "pastyear"
+                ? "Last Year"
+                : selectedTime === "alltime"
+                  ? "All Time"
+                  : "";
 
   return (
     <main className="w-full h-full flex flex-col gap-3">
@@ -116,8 +116,8 @@ export function Stats({ variant = "wealth" }: StatsProps) {
             {variant === "wealth"
               ? "Net Worth"
               : variant === "wallet"
-              ? "Wallet Value"
-              : "Network Account Value"}
+                ? "Wallet Value"
+                : "Network Account Value"}
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger className="-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm">
@@ -149,8 +149,8 @@ export function Stats({ variant = "wealth" }: StatsProps) {
                   {variant === "wealth"
                     ? "Total Value of Assets minus Debts in USD (all Wallets)"
                     : variant === "wallet"
-                    ? "Total Value of Assets minus Debts in USD (this Wallet)"
-                    : "Total Value of Assets minus Debts in USD (this Network)"}
+                      ? "Total Value of Assets minus Debts in USD (this Wallet)"
+                      : "Total Value of Assets minus Debts in USD (this Network)"}
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -162,14 +162,14 @@ export function Stats({ variant = "wealth" }: StatsProps) {
                   currency: "USD",
                 })
               : variant === "wallet"
-              ? (1452234.87).toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                })
-              : (657318.88).toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                })}
+                ? (1452234.87).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })
+                : (657318.88).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
           </h2>
 
           <div className="flex mt-2 items-center gap-2">
@@ -194,60 +194,63 @@ export function Stats({ variant = "wealth" }: StatsProps) {
                     2
                   )}% ($${(1711234.87 - 1700000).toLocaleString("en-US")})`
                 : selectedTime === "pastweek"
-                ? `${(
-                    ((1711234.87 - 1700000 * 0.95) / (1700000 * 0.95)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.95
-                  ).toLocaleString("en-US")})`
-                : selectedTime === "pastmonth"
-                ? `${(
-                    ((1711234.87 - 1700000 * 0.9) / (1700000 * 0.9)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.9
-                  ).toLocaleString("en-US")})`
-                : selectedTime === "threemonths"
-                ? `${(
-                    ((1711234.87 - 1700000 * 0.85) / (1700000 * 0.85)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.85
-                  ).toLocaleString("en-US")})`
-                : selectedTime === "yeartodate"
-                ? `${(
-                    ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.8
-                  ).toLocaleString("en-US")})`
-                : selectedTime === "pastyear"
-                ? `${(
-                    ((1711234.87 - 1700000 * 0.75) / (1700000 * 0.75)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.75
-                  ).toLocaleString("en-US")})`
-                : selectedTime === "alltime"
-                ? `${(
-                    ((1711234.87 - 1700000 * 0.7) / (1700000 * 0.7)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.7
-                  ).toLocaleString("en-US")})`
-                : `${(
-                    ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.8
-                  ).toLocaleString("en-US")})`}
+                  ? `${(
+                      ((1711234.87 - 1700000 * 0.95) / (1700000 * 0.95)) *
+                      100
+                    ).toFixed(2)}% ($${(
+                      1711234.87 -
+                      1700000 * 0.95
+                    ).toLocaleString("en-US")})`
+                  : selectedTime === "pastmonth"
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.9) / (1700000 * 0.9)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.9
+                      ).toLocaleString("en-US")})`
+                    : selectedTime === "threemonths"
+                      ? `${(
+                          ((1711234.87 - 1700000 * 0.85) / (1700000 * 0.85)) *
+                          100
+                        ).toFixed(2)}% ($${(
+                          1711234.87 -
+                          1700000 * 0.85
+                        ).toLocaleString("en-US")})`
+                      : selectedTime === "yeartodate"
+                        ? `${(
+                            ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
+                            100
+                          ).toFixed(2)}% ($${(
+                            1711234.87 -
+                            1700000 * 0.8
+                          ).toLocaleString("en-US")})`
+                        : selectedTime === "pastyear"
+                          ? `${(
+                              ((1711234.87 - 1700000 * 0.75) /
+                                (1700000 * 0.75)) *
+                              100
+                            ).toFixed(2)}% ($${(
+                              1711234.87 -
+                              1700000 * 0.75
+                            ).toLocaleString("en-US")})`
+                          : selectedTime === "alltime"
+                            ? `${(
+                                ((1711234.87 - 1700000 * 0.7) /
+                                  (1700000 * 0.7)) *
+                                100
+                              ).toFixed(2)}% ($${(
+                                1711234.87 -
+                                1700000 * 0.7
+                              ).toLocaleString("en-US")})`
+                            : `${(
+                                ((1711234.87 - 1700000 * 0.8) /
+                                  (1700000 * 0.8)) *
+                                100
+                              ).toFixed(2)}% ($${(
+                                1711234.87 -
+                                1700000 * 0.8
+                              ).toLocaleString("en-US")})`}
             </div>
             <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>
@@ -308,14 +311,14 @@ export function Stats({ variant = "wealth" }: StatsProps) {
                   currency: "USD",
                 })
               : variant === "wallet"
-              ? (1550234.874).toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                })
-              : (755318.88).toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                })}
+                ? (1550234.874).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })
+                : (755318.88).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
           </h2>
 
           <div className="flex mt-6 items-center gap-2">
@@ -340,60 +343,63 @@ export function Stats({ variant = "wealth" }: StatsProps) {
                     2
                   )}% ($${(1711234.87 - 1700000).toLocaleString("en-US")})`
                 : selectedTime === "pastweek"
-                ? `${(
-                    ((1711234.87 - 1700000 * 0.95) / (1700000 * 0.95)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.95
-                  ).toLocaleString("en-US")})`
-                : selectedTime === "pastmonth"
-                ? `${(
-                    ((1711234.87 - 1700000 * 0.9) / (1700000 * 0.9)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.9
-                  ).toLocaleString("en-US")})`
-                : selectedTime === "threemonths"
-                ? `${(
-                    ((1711234.87 - 1700000 * 0.85) / (1700000 * 0.85)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.85
-                  ).toLocaleString("en-US")})`
-                : selectedTime === "yeartodate"
-                ? `${(
-                    ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.8
-                  ).toLocaleString("en-US")})`
-                : selectedTime === "pastyear"
-                ? `${(
-                    ((1711234.87 - 1700000 * 0.75) / (1700000 * 0.75)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.75
-                  ).toLocaleString("en-US")})`
-                : selectedTime === "alltime"
-                ? `${(
-                    ((1711234.87 - 1700000 * 0.7) / (1700000 * 0.7)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.7
-                  ).toLocaleString("en-US")})`
-                : `${(
-                    ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
-                    100
-                  ).toFixed(2)}% ($${(
-                    1711234.87 -
-                    1700000 * 0.8
-                  ).toLocaleString("en-US")})`}
+                  ? `${(
+                      ((1711234.87 - 1700000 * 0.95) / (1700000 * 0.95)) *
+                      100
+                    ).toFixed(2)}% ($${(
+                      1711234.87 -
+                      1700000 * 0.95
+                    ).toLocaleString("en-US")})`
+                  : selectedTime === "pastmonth"
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.9) / (1700000 * 0.9)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.9
+                      ).toLocaleString("en-US")})`
+                    : selectedTime === "threemonths"
+                      ? `${(
+                          ((1711234.87 - 1700000 * 0.85) / (1700000 * 0.85)) *
+                          100
+                        ).toFixed(2)}% ($${(
+                          1711234.87 -
+                          1700000 * 0.85
+                        ).toLocaleString("en-US")})`
+                      : selectedTime === "yeartodate"
+                        ? `${(
+                            ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
+                            100
+                          ).toFixed(2)}% ($${(
+                            1711234.87 -
+                            1700000 * 0.8
+                          ).toLocaleString("en-US")})`
+                        : selectedTime === "pastyear"
+                          ? `${(
+                              ((1711234.87 - 1700000 * 0.75) /
+                                (1700000 * 0.75)) *
+                              100
+                            ).toFixed(2)}% ($${(
+                              1711234.87 -
+                              1700000 * 0.75
+                            ).toLocaleString("en-US")})`
+                          : selectedTime === "alltime"
+                            ? `${(
+                                ((1711234.87 - 1700000 * 0.7) /
+                                  (1700000 * 0.7)) *
+                                100
+                              ).toFixed(2)}% ($${(
+                                1711234.87 -
+                                1700000 * 0.7
+                              ).toLocaleString("en-US")})`
+                            : `${(
+                                ((1711234.87 - 1700000 * 0.8) /
+                                  (1700000 * 0.8)) *
+                                100
+                              ).toFixed(2)}% ($${(
+                                1711234.87 -
+                                1700000 * 0.8
+                              ).toLocaleString("en-US")})`}
             </div>
             <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
           </div>

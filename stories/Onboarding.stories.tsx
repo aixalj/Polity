@@ -13,6 +13,13 @@ const meta: Meta<typeof OnboardingBlock> = {
     layout: "centered",
   },
   tags: ["autodocs"],
+  decorators: [
+    (Story) => (
+      <div className="max-w-screen-sm w-full">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -23,7 +30,11 @@ export const Default: Story = {
     icon: <File02 className="w-8 h-8 text-gray-700" />,
     title: "Welcome to Onboarding",
     description: "Complete the following steps to get started.",
-    children: <div>Onboarding content goes here</div>,
+    children: (
+      <div className="p-10 h-40 flex justify-center items-center">
+        Onboarding content goes here
+      </div>
+    ),
     button1link: "/next-step",
     button1text: "Next",
     button2link: "/skip",
@@ -36,7 +47,11 @@ export const WithoutButtons: Story = {
     icon: <File02 className="w-8 h-8 text-gray-700" />,
     title: "Onboarding Complete",
     description: "You have finished the onboarding process.",
-    children: <div>Congratulations! You&apos;re all set.</div>,
+    children: (
+      <div className="p-10 h-40 flex justify-center items-center">
+        Congratulations! You&apos;re all set.
+      </div>
+    ),
   },
 };
 
@@ -45,7 +60,11 @@ export const WithOneButton: Story = {
     icon: <Lock01 className="w-8 h-8 text-gray-700" />,
     title: "Account Verification",
     description: "Verify your account to access all features.",
-    children: <div>Verification form goes here</div>,
+    children: (
+      <div className="p-10 h-40 flex justify-center items-center">
+        Verification form goes here
+      </div>
+    ),
     button1link: "/verify",
     button1text: "Verify Now",
   },
