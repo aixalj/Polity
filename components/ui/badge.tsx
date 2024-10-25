@@ -19,6 +19,8 @@ const badgeVariants = cva(
           "border-transparent bg-green-100 border-green-200 text-green-900 text-xs py-0.5 px-2 rounded-md font-normal",
         warning:
           "border-transparent bg-amber-100 border-amber-200 text-amber-900 text-xs py-0.5 px-2 rounded-md font-normal",
+        transaction:
+          "border border-gray-200 bg-gray-100  text-gray-900 text-xs py-[3px] px-1.5 rounded-[4px] flex gap-1 font-medium",
       },
     },
     defaultVariants: {
