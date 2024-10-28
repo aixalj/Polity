@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import NewContactSaved from '../saved modals/newContactSaved';
 import { Button } from '@/components/ui/button';
 import userPlusIcon from '@/public/modal-icons/user-plus.svg';
@@ -7,6 +7,9 @@ import { ChevronDown, ChevronUp, X, AlertTriangle, Check } from 'lucide-react'; 
 import ETHNetwork from 'public/icons/networks/ETH.svg'; // Import network icons
 import BTCNetwork from 'public/icons/networks/BTC.svg';
 import POLNetwork from 'public/icons/networks/MATIC.svg';
+import BTC from 'cryptocurrency-icons/svg/color/btc.svg';
+import ETH from 'cryptocurrency-icons/svg/color/eth.svg';
+import USDT from 'cryptocurrency-icons/svg/color/usdt.svg';
 
 // Importing the Input and Label components
 import { Input } from '@/components/ui/input';
@@ -49,7 +52,10 @@ const NewContact: React.FC<NewContactProps> = ({
     'standard'
   ); // Default to 'standard'
   const [isSavedModalOpen, setSavedModalOpen] = useState(false); // State for NewContactSaved modal
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State for dropdown open/close
+  const [isNetworkDropdownOpen, setIsNetworkDropdownOpen] = useState(false); // State for network dropdown open/close
+  const [isAssetDropdownOpen, setIsAssetDropdownOpen] = useState(false); // State for asset dropdown open/close
+
+  const inputRef = useRef<HTMLInputElement | null>(null); // Ref for the input field
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,6 +77,12 @@ const NewContact: React.FC<NewContactProps> = ({
     setSavedModalOpen(false); // Close the saved modal
     onClose(); // Close the NewContact modal
   };
+
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus(); // Focus the input field when the modal opens
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null; // Don't render if the modal is not open
 
@@ -94,6 +106,23 @@ const NewContact: React.FC<NewContactProps> = ({
     }
   };
 
+  // Function to get the appropriate asset icon
+  const getAssetIcon = () => {
+    switch (asset.toLowerCase()) {
+      case 'bitcoin':
+      case 'btc':
+        return <Image src={BTC} alt='Bitcoin' className='h-5 w-5 mr-2' />;
+      case 'ethereum':
+      case 'eth':
+        return <Image src={ETH} alt='Ethereum' className='h-5 w-5 mr-2' />;
+      case 'tether':
+      case 'usdt':
+        return <Image src={USDT} alt='Tether' className='h-5 w-5 mr-2' />;
+      default:
+        return null;
+    }
+  };
+
   // Check if all required fields are filled
   const isFormValid = () => {
     return contactName && addressName && network && asset && networkAddress;
@@ -106,7 +135,7 @@ const NewContact: React.FC<NewContactProps> = ({
       ) : (
         <div className='fixed inset-0 bg-gray-200 backdrop-blur-sm bg-opacity-50 flex justify-center items-center z-50'>
           <div className='bg-primary-500 p-1 rounded-2xl shadow-xl max-w-[90%] w-[410px] h-auto flex flex-col relative'>
-            <div className='px-8 py-6 flex-shrink-0'>
+            <div className='px-8 pt-6 pb-4 flex-shrink-0'>
               <button
                 onClick={onClose}
                 className='absolute top-2 right-2 text-gray-50 hover:text-gray-100'
@@ -120,7 +149,7 @@ const NewContact: React.FC<NewContactProps> = ({
               <h2 className='text-xl text-gray-50 font-medium mb-2'>
                 Add new contact
               </h2>
-              <p className='mb-2 text-gray-50 text-sm font-regular'>
+              <p className=' text-gray-50 text-sm font-regular'>
                 Fill out the fields below to save a new contact address.
               </p>
             </div>
@@ -134,7 +163,7 @@ const NewContact: React.FC<NewContactProps> = ({
                     onChange={(e) => setContactName(e.target.value)}
                     placeholder='John Doe'
                     required
-                    className='h-10 mb-3 pr-10 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 border-0.5 border-gray-300'
+                    className='h-10 mb-3 pr-10 font-regular focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 border-0.5 border-gray-300'
                   />
                   {contactName && (
                     <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />
@@ -145,16 +174,16 @@ const NewContact: React.FC<NewContactProps> = ({
                 <button
                   type='button'
                   onClick={() => setActiveTab('standard')}
-                  className={`flex-1 py-2 text-center rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm ${activeTab === 'standard' ? 'bg-white gray-700' : ' text-gray-700'}`}
+                  className={`flex-1 py-2 text-center text-sm font-semibold rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm ${activeTab === 'standard' ? 'bg-white gray-700' : ' text-gray-700'}`}
                 >
-                  Standard
+                  Standard Address
                 </button>
                 <button
                   type='button'
                   onClick={() => setActiveTab('universal')}
-                  className={`flex-1 py-2 text-center rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm ${activeTab === 'universal' ? 'bg-white gray-700' : ' text-gray-700'}`}
+                  className={`flex-1 py-2 text-center text-sm font-semibold rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm ${activeTab === 'universal' ? 'bg-white gray-700' : ' text-gray-700'}`}
                 >
-                  Universal
+                  Universal Address
                 </button>
               </div>
               <Label className='block mb-1.5'>
@@ -166,19 +195,20 @@ const NewContact: React.FC<NewContactProps> = ({
                     onChange={(e) => setAddressName(e.target.value)}
                     placeholder='Enter address name here...'
                     required
-                    className='h-10 mb-3 pr-10 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 border-0.5 border-gray-300'
+                    className='h-10 mb-3 pr-10 font-regular focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 border-0.5 border-gray-300'
                   />
                   {addressName && (
                     <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />
                   )}
                 </div>
               </Label>
+
               <Label className='block mb-1.5'>
                 <div className='mb-1.5'>Network</div>
-                <DropdownMenu onOpenChange={setIsDropdownOpen}>
+                <DropdownMenu onOpenChange={setIsNetworkDropdownOpen}>
                   <DropdownMenuTrigger asChild>
                     <div
-                      className={`flex items-center mt-1 w-full ${isDropdownOpen ? 'focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50' : ''} border-0.5 border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3`}
+                      className={`flex items-center mt-1 w-full border-0.5 rounded-[12px] p-2 cursor-pointer h-10 mb-3 ${isNetworkDropdownOpen ? 'border-primary-500 ring-2 ring-primary-50' : 'border-gray-300'}`}
                     >
                       <span className='mr-2'>{getNetworkIcon()}</span>
                       <span
@@ -186,13 +216,14 @@ const NewContact: React.FC<NewContactProps> = ({
                       >
                         {network || 'Select Network...'}
                       </span>
-                      {isDropdownOpen ? (
+                      {isNetworkDropdownOpen ? (
                         <ChevronUp className='h-4 w-4 text-gray-500 ml-auto' />
                       ) : (
                         <ChevronDown className='h-4 w-4 text-gray-500 ml-auto' />
                       )}
                     </div>
                   </DropdownMenuTrigger>
+
                   <DropdownMenuContent className='w-full rounded-xl'>
                     <DropdownMenuItem
                       onClick={() => setNetwork('Bitcoin Network')}
@@ -251,27 +282,70 @@ const NewContact: React.FC<NewContactProps> = ({
                   </DropdownMenuContent>
                 </DropdownMenu>
               </Label>
+
               {activeTab === 'standard' && (
                 <Label className='block mb-1.5'>
                   <div className='mb-1.5'>Asset</div>
-                  <DropdownMenu>
+                  <DropdownMenu onOpenChange={setIsAssetDropdownOpen}>
                     <DropdownMenuTrigger asChild>
-                      <div className='flex justify-between items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3'>
-                        <span className='text-gray-500'>
+                      <div
+                        className={`flex items-center mt-1 w-full border-0.5 rounded-[12px] p-2 cursor-pointer h-10 mb-3 ${isAssetDropdownOpen ? 'border-primary-500 ring-2 ring-primary-50' : 'border-gray-300'}`}
+                      >
+                        <span className=''>{getAssetIcon()}</span>
+                        <span
+                          className={`text-gray-500 ${asset ? 'text-md font-medium text-gray-900' : ''}`}
+                        >
                           {asset || 'Select Asset...'}
                         </span>
-                        <ChevronDown className='h-4 w-4 text-gray-500' />
+                        {isAssetDropdownOpen ? (
+                          <ChevronUp className='h-4 w-4 text-gray-500 ml-auto' />
+                        ) : (
+                          <ChevronDown className='h-4 w-4 text-gray-500 ml-auto' />
+                        )}
                       </div>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                      <DropdownMenuItem onClick={() => setAsset('Tether')}>
+                    <DropdownMenuContent className='w-full rounded-xl'>
+                      <DropdownMenuItem
+                        onClick={() => setAsset('Tether')}
+                        className={`flex items-center rounded-lg ${asset === 'Tether' ? 'bg-gray-50' : ''} hover:bg-gray-50`}
+                      >
+                        <Image
+                          src={USDT}
+                          alt='Tether'
+                          className='h-5 w-5 mr-2'
+                        />
                         Tether
+                        {asset === 'Tether' && (
+                          <Check className='ml-auto h-5 w-5 text-green-500' />
+                        )}
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => setAsset('Bitcoin')}>
+                      <DropdownMenuItem
+                        onClick={() => setAsset('Bitcoin')}
+                        className={`flex items-center rounded-lg ${asset === 'Bitcoin' ? 'bg-gray-50' : ''} hover:bg-gray-50`}
+                      >
+                        <Image
+                          src={BTC}
+                          alt='Bitcoin'
+                          className='h-5 w-5 mr-2'
+                        />
                         Bitcoin
+                        {asset === 'Bitcoin' && (
+                          <Check className='ml-auto h-5 w-5 text-green-500' />
+                        )}
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => setAsset('Ethereum')}>
+                      <DropdownMenuItem
+                        onClick={() => setAsset('Ethereum')}
+                        className={`flex items-center rounded-lg ${asset === 'Ethereum' ? 'bg-gray-50' : ''} hover:bg-gray-50`}
+                      >
+                        <Image
+                          src={ETH}
+                          alt='Ethereum'
+                          className='h-5 w-5 mr-2'
+                        />
                         Ethereum
+                        {asset === 'Ethereum' && (
+                          <Check className='ml-auto h-5 w-5 text-green-500' />
+                        )}
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -286,15 +360,15 @@ const NewContact: React.FC<NewContactProps> = ({
                     onChange={(e) => setNetworkAddress(e.target.value)}
                     placeholder='Enter network address here...'
                     required
-                    className='h-10 mb-3 pr-10 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 border-0.5 border-gray-300'
+                    className={`h-10 mb-3 pr-10 font-regular border-0.5 border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50`}
                   />
                   {networkAddress && (
                     <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />
                   )}
                 </div>
               </Label>
-              <div className='flex items-start text-sm text-yellow-800 mb-4 bg-yellow-50 p-4 rounded-xl'>
-                <AlertTriangle className='h-9 w-9 mr-2 text-yellow-800' />
+              <div className='flex items-start text-sm text-yellow-700 mb-4 bg-yellow-50 p-4 rounded-xl'>
+                <AlertTriangle className='h-5 w-9 mr-2 text-yellow-600' />
                 <div>
                   <p className='m-0 text-sm font-semibold'>
                     Contact Disclaimer
