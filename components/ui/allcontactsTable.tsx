@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
-import { Edit, Plus, Eye } from 'lucide-react';
+import { Edit2, Plus, Eye } from 'lucide-react';
 import { ContactWithFormattedCount } from '@/components/ui/addressbookData';
 import { Pagination } from '@/components/ui/pagination';
 import Image from 'next/image';
@@ -28,6 +28,12 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
   const [selectedContactId, setSelectedContactId] = React.useState<string | null>(null);
   const itemsPerPage = 10;
   const router = useRouter();
+
+  const handleEditContact = (contactId: string, contact: { name: string }) => {
+    // Logic to update the contact in your state or data source
+    console.log(`Editing contact ID: ${contactId}, New Name: ${contact.name}`);
+    // Update your contacts state here
+  };
 
   // Filter and sort contacts based on the search term
   const filteredContacts = React.useMemo(() => {
@@ -106,13 +112,13 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                       Add Address
                     </Button>
                     <button
-                      className='text-gray-500 hover:text-gray-700 transition-colors'
+                      className='text-gray-600 hover:text-gray-700 transition-colors'
                       onClick={() => openModal(contact.id)}
                     >
-                      <Edit className='h-4 w-4' />
+                      <Edit2 className='h-5 w-5' />
                     </button>
                     <button
-                      className='text-gray-500 hover:text-gray-700 transition-colors'
+                      className='text-gray-600 hover:text-gray-700 transition-colors'
                       onClick={() => {
                         if (contact.id) {
                           onView(contact.id); // Use the onView prop to navigate
@@ -121,7 +127,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                         }
                       }}
                     >
-                      <Eye className='h-4 w-4' />
+                      <Eye className='h-5 w-5' />
                     </button> 
                   </div>
                 </div>
@@ -145,6 +151,8 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
         isOpen={isModalOpen}
         onClose={closeModal}
         contactId={selectedContactId!} // Ensure selectedContactId is not null
+        onEditContact={handleEditContact} // Pass the function here
+
       />
     </div>
   );

@@ -35,6 +35,7 @@ import POLNetwork from 'public/icons/networks/MATIC.svg';
 
 import EditAddress from '@/components/ui/modals/editAddress'; // Import the modal
 import ViewAddress from '@/components/ui/modals/viewAddress'; // Import the ViewAddress modal
+import EditContactNameModal from '@/components/ui/modals/editContactName'; // Import the modal
 
 interface Address {
   id: string;
@@ -71,7 +72,8 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
   const [isViewModalOpen, setViewModalOpen] = useState(false);
-  const [selectedAddressData, setSelectedAddressData] = useState<Address | null>(null);
+  const [selectedAddressData, setSelectedAddressData] =
+    useState<Address | null>(null);
 
   useEffect(() => {
     setLocalAddresses(addresses);
@@ -80,7 +82,9 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
   // Updated filtering logic to use includes for better search functionality
   const filteredAddresses = useMemo(() => {
     return localAddresses.filter((address) => {
-      return address.contactName.toLowerCase().includes(searchTerm.toLowerCase());
+      return address.contactName
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
     });
   }, [localAddresses, searchTerm]);
 
@@ -220,13 +224,17 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
 
   const handleSave = (updatedAddress: Address) => {
     setLocalAddresses((prevAddresses) =>
-      prevAddresses.map((addr) => (addr.id === updatedAddress.id ? updatedAddress : addr))
+      prevAddresses.map((addr) =>
+        addr.id === updatedAddress.id ? updatedAddress : addr
+      )
     );
     setEditModalOpen(false);
   };
 
   const handleRemove = (addressId: string) => {
-    setLocalAddresses((prevAddresses) => prevAddresses.filter((addr) => addr.id !== addressId));
+    setLocalAddresses((prevAddresses) =>
+      prevAddresses.filter((addr) => addr.id !== addressId)
+    );
     setEditModalOpen(false);
   };
 
@@ -257,7 +265,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
             >
               <div className='w-10 px-2 py-3 flex items-center justify-center'>
                 <FavoriteStar
-                  isFavorite={favorites.includes(address.id)} 
+                  isFavorite={favorites.includes(address.id)}
                   onToggle={() => onToggleFavorite(address.id)}
                 />
               </div>
