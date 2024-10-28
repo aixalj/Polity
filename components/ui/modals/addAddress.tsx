@@ -134,22 +134,18 @@ const AddAddress: React.FC<AddAddressProps> = ({
             </div>
             <div className='bg-white px-4 pt-6 pb-6 rounded-xl shadow-md flex-grow overflow-hidden'>
               <Label className='block mb-1.5'>
-                <div className='mb-1.5'>Address Name</div>
+                <div className='mb-1.5'>Contact Name</div>
                 <div className='relative'>
                   <Input
                     type='text'
-                    value={addressName}
-                    onChange={(e) => setAddressName(e.target.value)}
-                    placeholder='Enter address name here...'
-                    required
-                    className='h-10 mb-3 pr-10 font-regular border border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
+                    value={contactName}
+                    disabled // Disable the field
+                    className='h-10 mb-3 pr-10 font-regular border border-gray-300 bg-gray-100 cursor-not-allowed'
                   />
-                  {addressName && (
-                    <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />
-                  )}
                 </div>
               </Label>
 
+              
               <div className='flex my-4 p-1 bg-gray-100 rounded-xl mb-3'>
                 <button
                   type='button'
@@ -166,6 +162,24 @@ const AddAddress: React.FC<AddAddressProps> = ({
                   Universal Address
                 </button>
               </div>
+
+              <Label className='block mb-1.5'>
+                <div className='mb-1.5'>Address Name</div>
+                <div className='relative'>
+                  <Input
+                    type='text'
+                    value={addressName}
+                    onChange={(e) => setAddressName(e.target.value)}
+                    placeholder='Enter address name here...'
+                    required
+                    className='h-10 mb-3 pr-10 font-regular border border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
+                  />
+                  {addressName && (
+                    <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />
+                  )}
+                </div>
+              </Label>
+
 
               <Label className='block mb-1.5'>
                 <div className='mb-1.5'>Network</div>
