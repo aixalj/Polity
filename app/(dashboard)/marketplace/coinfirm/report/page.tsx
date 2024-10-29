@@ -37,6 +37,8 @@ import { Button } from "@/components/ui/button";
 import { Lightning01, PackageSearch } from "@untitled-ui/icons-react";
 import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
+import { BuyReport } from "@/components/buyreport";
 
 export default function Marketplace() {
   const [selectedOption, setSelectedOption] = useState<string>("1");
@@ -137,7 +139,7 @@ export default function Marketplace() {
                 </a>
               </div>
               <div className="flex gap-3">
-                <Button variant="outline">Buy Report</Button>
+                <BuyReport />
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button>
