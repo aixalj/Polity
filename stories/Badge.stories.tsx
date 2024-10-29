@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import "@/app/globals.css";
 
 const meta: Meta<typeof Badge> = {
-  title: "Polity Design System/Badge",
+  title: "Polity Design System/Components/Badge",
   component: Badge,
   parameters: {
     layout: "centered",

@@ -6,7 +6,7 @@ import { agreements } from "@/components/agreementData";
 import "@/app/globals.css";
 
 const meta: Meta<typeof AgreementTable> = {
-  title: "Polity Design System/AgreementTable",
+  title: "Polity Design System/Tables/AgreementTable",
   component: AgreementTable,
   parameters: {
     layout: "fullscreen",

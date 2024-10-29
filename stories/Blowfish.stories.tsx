@@ -5,7 +5,7 @@ import BlowFish from "@/components/ui/blowfish";
 import "@/app/globals.css";
 
 const meta: Meta<typeof BlowFish> = {
-  title: "Polity Design System/BlowFish",
+  title: "Polity Design System/Modals/BlowFish",
   component: BlowFish,
   parameters: {
     layout: "centered",

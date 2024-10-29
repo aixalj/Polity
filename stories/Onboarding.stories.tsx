@@ -7,7 +7,7 @@ import { File02, Lock01 } from "@untitled-ui/icons-react";
 import "@/app/globals.css";
 
 const meta: Meta<typeof OnboardingBlock> = {
-  title: "Polity Design System/OnboardingBlock",
+  title: "Polity Design System/Patterns/OnboardingBlock",
   component: OnboardingBlock,
   parameters: {
     layout: "centered",

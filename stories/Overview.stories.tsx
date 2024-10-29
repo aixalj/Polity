@@ -6,7 +6,7 @@ import { TimeProvider } from "@/components/ui/timecontext";
 import "@/app/globals.css";
 
 const meta: Meta<typeof Stats> = {
-  title: "Polity Design System/Overview",
+  title: "Polity Design System/Patterns/Overview",
   component: Stats,
   parameters: {
     layout: "fullscreen",

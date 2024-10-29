@@ -7,7 +7,7 @@ import { transactions } from "@/components/transactionData";
 import "@/app/globals.css";
 
 const meta: Meta<typeof TransactionTable> = {
-  title: "Polity Design System/TransactionTable",
+  title: "Polity Design System/Tables/TransactionTable",
   component: TransactionTable,
   decorators: [
     (Story) => (

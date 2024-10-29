@@ -4,7 +4,7 @@ import { Notification } from "@/components/ui/notification";
 import "@/app/globals.css";
 
 const meta = {
-  title: "Polity Design System/Notification",
+  title: "Polity Design System/Components/Notification",
   component: Notification,
   parameters: {
     layout: "centered",
