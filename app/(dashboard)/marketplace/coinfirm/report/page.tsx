@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import type { Config } from "tailwindcss";
 
@@ -6,8 +8,23 @@ import { AreaChart } from "@tremor/react";
 
 import { Progress } from "@/components/ui/progress";
 
+import { useState } from "react";
+
 import { Subscribe } from "@/components/subscribe";
 import { SubscribeProvider } from "@/components/ui/subscribecontext";
+
+import {
+  RadioGroup,
+  RadioGroupItem,
+  RadioOption,
+} from "@/components/ui/largeradio";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 import {
   Tooltip,
@@ -17,9 +34,13 @@ import {
 } from "@/components/ui/tooltip";
 
 import { Button } from "@/components/ui/button";
-import { Lightning01 } from "@untitled-ui/icons-react";
+import { Lightning01, PackageSearch } from "@untitled-ui/icons-react";
+import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
 
 export default function Marketplace() {
+  const [selectedOption, setSelectedOption] = useState<string>("1");
+
   return (
     <main className="w-full h-full">
       <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
@@ -117,10 +138,70 @@ export default function Marketplace() {
               </div>
               <div className="flex gap-3">
                 <Button variant="outline">Buy Report</Button>
-                <Button>
-                  <Lightning01 className="w-5 h-5" />
-                  Generate Report
-                </Button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button>
+                      <Lightning01 className="w-5 h-5" />
+                      Generate Report
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-[650px]">
+                    <div className="pb-3  flex flex-col">
+                      <div className="w-full mb-4 flex justify-between items-center">
+                        <PackageSearch className="w-8 h-8" />
+                      </div>
+                      <div className="text-xl mb-1">
+                        <div>Enter Network Address</div>
+                      </div>
+                      <div className="text-gray-600 flex text-sm flex-col items-start gap-4 ">
+                        Enter the network account address you&apos;re interested
+                        in analyzing to generate a comprehensive analysis
+                        report, or input any address to begin a random
+                        assessment.
+                      </div>
+                    </div>
+                    <div>
+                      <RadioGroup
+                        value={selectedOption}
+                        onValueChange={setSelectedOption}
+                        defaultValue="1"
+                      >
+                        <RadioOption
+                          value="1"
+                          title="Internal Network Address"
+                          description="Select a Wallet and corresponding Network Account"
+                        >
+                          <Select>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a Wallet..." />
+                            </SelectTrigger>
+                          </Select>
+                          <Select>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a network account..." />
+                            </SelectTrigger>
+                          </Select>
+                        </RadioOption>
+                        <div className="flex items-center gap-2">
+                          <div className="w-full h-[1px] bg-gray-200"></div>
+                          <p className="text-sm text-gray-600">OR</p>
+                          <div className="w-full h-[1px] bg-gray-200"></div>
+                        </div>
+                        <RadioOption
+                          value="2"
+                          title="External Network Address"
+                          description="Select to manually enter a network address"
+                        >
+                          <Input placeholder="Enter Network Address..." />
+                        </RadioOption>
+                      </RadioGroup>
+                    </div>
+                    <Button className="w-full">
+                      <Lightning01 className="w-5 h-5" />
+                      Generate Report
+                    </Button>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>
