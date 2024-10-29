@@ -83,7 +83,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                 key={contact.id}
                 className='w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm'
               >
-                <div className='w-full flex text-left text-gray-900'>
+                <div className='w-full flex text-left text-gray-700'>
                   <div className='flex-grow px-6 py-3 flex items-center gap-3 h-16'>
                     <div className='size-11 rounded-xl border-gray-300 border overflow-hidden'>
                       <Image
