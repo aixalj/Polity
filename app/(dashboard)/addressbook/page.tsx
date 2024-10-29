@@ -267,7 +267,7 @@ export default function AddressBook() {
                 />
               </div>
               <div className='flex justify-between items-center w-full mt-4'>
-                <h2 className='text-xl font-semibold'>
+                <h2 className='text-xl font-medium'>
                   {isValidTab(activeTab) &&
                     (activeTab === 'contacts' ? 'All Contacts' : 'Addresses')}
                 </h2>
