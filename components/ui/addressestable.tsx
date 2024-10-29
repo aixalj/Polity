@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import { Button } from './button';
-import { Edit, Eye } from 'lucide-react';
+import { Edit, Eye, Edit3 } from 'lucide-react';
 import { Pagination } from '@/components/ui/pagination';
 import { useState, useRef, useMemo, useCallback, useEffect } from 'react';
 import { FavoriteStar } from './favoritestar';
@@ -250,10 +250,10 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
     <div className='flex flex-col h-full'>
       <div className='w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs'>
         <div className='w-10 px-2 py-3'></div>
-        <div className='w-1/4 px-6 py-3'>Contact</div>
+        <div className='w-1/5 px-6 py-3'>Contact</div>
         <div className='w-1/5 px-6 py-3'>Network</div>
-        <div className='w-1/6 px-6 py-3'>Asset</div>
-        <div className='w-1/4 px-6 py-3'>Address</div>
+        <div className='w-1/6 pl-6 py-3'>Asset</div>
+        <div className='w-1/5 px-5 py-3'>Address</div>
         <div className='w-32 px-6 py-3'></div>
       </div>
       <div className='flex-grow overflow-y-auto'>
@@ -269,7 +269,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   onToggle={() => onToggleFavorite(address.id)}
                 />
               </div>
-              <div className='w-1/4 px-6 py-3 flex items-center'>
+              <div className='w-1/5 px-6 py-3 flex items-center'>
                 <div className='rounded-full overflow-hidden bg-gray-200 w-8 h-8 mr-2 flex-shrink-0'>
                   <Image
                     src={'/bastion.png'}
@@ -392,18 +392,20 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   )}
                 </div>
               </div>
-              <div className='w-32 px-6 py-3 flex items-center justify-end space-x-4'>
+              <div className='w-40 px-6 py-3 flex items-center justify-end space-x-4'>
                 <Button
                   variant='secondary'
                   size='sm'
+                  className='text-gray-700 bg-white border border-gray-300/50 rounded-[9px]'
                   onClick={() => handleEdit(address.id)}
                 >
-                  <Edit className='h-4 w-4' />
+                  <Edit3 className='h-4 w-4' />
                   Edit
                 </Button>
                 <Button
                   variant='secondary'
                   size='sm'
+                  className='text-gray-700 bg-white border border-gray-300/50 rounded-[9px]'
                   onClick={() => handleView(address.id)} // Open the View modal
                 >
                   <Eye className='h-4 w-4' />
