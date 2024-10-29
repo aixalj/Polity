@@ -116,7 +116,9 @@ const EditContactNameModal: React.FC<EditContactNameModalProps> = ({
               <div className='flex justify-start mb-2'>
                 <Image src={userEditIcon} alt='Add User' className='h-6 w-6' />
               </div>
-              <h2 className='text-lg font-medium mb-2 text-gray-50'>Edit Contact Name</h2>
+              <h2 className='text-lg font-medium mb-2 text-gray-50'>
+                Edit Contact Name
+              </h2>
               <p className='mb-4 text-gray-50 text-sm font-regular'>
                 Fill out the fields below to save a new contact address.
               </p>
@@ -129,7 +131,7 @@ const EditContactNameModal: React.FC<EditContactNameModalProps> = ({
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
                   placeholder='Contact Name'
-                className='w-full h-10 mb-3 pr-10 rounded-xl font-regular focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 border-0.5 border-gray-300'
+                  className='w-full h-10 mb-3 text-md font-regular pr-10 rounded-xl font-regular focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 border-0.5 border-gray-300'
                 />
               </Label>
               <div>
@@ -152,7 +154,7 @@ const EditContactNameModal: React.FC<EditContactNameModalProps> = ({
                       </div>
                       <Button
                         variant='secondary'
-                        className='ml-auto text-gray-700 hover:text-gray-900'
+                        className='ml-auto text-gray-700 hover:text-gray-900 bg-white border border-gray-300/50'
                       >
                         View
                       </Button>
