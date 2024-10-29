@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
-import { Edit2, Plus, Eye } from 'lucide-react';
+import { Edit2, Plus, Eye, PlusSquare } from 'lucide-react';
 import { ContactWithFormattedCount } from '@/components/ui/addressbookData';
 import { Pagination } from '@/components/ui/pagination';
 import Image from 'next/image';
@@ -108,17 +108,17 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                       className='rounded-[12px]'
                       onClick={() => onAddAddressButton(contact.id, contact.name)}
                     >
-                      <Plus className='h-4 w-4 mr-2' />
+                      <PlusSquare className='h-4 w-4' />
                       Add Address
                     </Button>
                     <button
-                      className='text-gray-600 hover:text-gray-700 transition-colors'
+                      className='text-gray-700 hover:text-gray-700 transition-colors'
                       onClick={() => openModal(contact.id)}
                     >
                       <Edit2 className='h-5 w-5' />
                     </button>
                     <button
-                      className='text-gray-600 hover:text-gray-700 transition-colors'
+                      className='text-gray-700 hover:text-gray-700 transition-colors'
                       onClick={() => {
                         if (contact.id) {
                           onView(contact.id); // Use the onView prop to navigate
