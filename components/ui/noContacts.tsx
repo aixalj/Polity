@@ -9,18 +9,18 @@ interface NoContactsProps {
 
 export const NoContacts: React.FC<NoContactsProps> = ({ onNewContact }) => {
   return (
-    <div className="flex flex-col items-center justify-center h-full pb-4 px-4 pt-0 text-center">
+    <div className="flex flex-col items-center justify-center bg-gray-50 rounded-lg h-auto pb-8 px-4 pt-0 text-center">
       <Image 
-        className="h-12 w-12 text-gray-400 mb-4" 
+        className="h-auto w-auto mb-0" 
         src={EmptyStateIcon} 
         alt="No contacts icon" 
-        width={48}
-        height={48}
+        width={100}
+        height={100}
       />
-      <p className="text-gray-600 text-lg font-medium">There are no Contact Names in your Address Book</p>
-      <p className="text-gray-600 text-lg font-medium">Create a new contact name to start building your Address Book.</p>
+      <p className="text-gray-900 text-md font-medium">There are no Contact Names in your Address Book</p>
+      <p className="text-gray-600 text-sm font-regular">Create a new contact name to start building your Address Book.</p>
       <div className="flex mt-4"> {/* Flex container for the button */}
-        <Button onClick={onNewContact} className="bg-blue-500 text-white">New Contact</Button> {/* New Contact button */}
+        <Button onClick={onNewContact} variant='default'>New Contact</Button> {/* New Contact button */}
       </div>
     </div>
   );
