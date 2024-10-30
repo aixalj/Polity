@@ -172,7 +172,7 @@ const AddAddress: React.FC<AddAddressProps> = ({
                     onChange={(e) => setAddressName(e.target.value)}
                     placeholder='Enter address name here...'
                     required
-                    className='h-10 mb-3 pr-10 font-regular border border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
+                    className='h-10 mb-3 text-gray-900 pr-10 font-regular border border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
                   />
                   {addressName && (
                     <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />
@@ -318,7 +318,7 @@ const AddAddress: React.FC<AddAddressProps> = ({
                     onChange={(e) => setNetworkAddress(e.target.value)}
                     placeholder='Enter network address here...'
                     required
-                    className={`h-10 mb-3 pr-10 font-regular border border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 ${network || asset ? 'text-gray-900' : 'text-gray-500'}`}
+                    className={`h-10 mb-3 text-gray-900 pr-10 font-regular border border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 ${network || asset ? 'text-gray-900' : 'text-gray-500'}`}
                   />
                   {networkAddress && (
                     <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />

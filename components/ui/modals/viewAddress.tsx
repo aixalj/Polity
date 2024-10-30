@@ -76,22 +76,24 @@ const ViewAddress: React.FC<ViewAddressProps> = ({
     }
   };
 
-  const getAssetIcon = () => {
-    if (!addressData.asset) return null; // Check if asset exists
-    switch (addressData.asset.toLowerCase()) {
+  const getAssetDetails = (asset: string) => {
+    const assetLower = asset.toLowerCase();
+    switch (assetLower) {
       case 'bitcoin':
       case 'btc':
-        return <Image src={BTC} alt='Bitcoin' className='h-5 w-5 mr-2' />;
+        return { icon: BTC, name: 'Bitcoin BTC' }; // Bitcoin details
       case 'ethereum':
       case 'eth':
-        return <Image src={ETH} alt='Ethereum' className='h-5 w-5 mr-2' />;
+        return { icon: ETH, name: 'Ethereum ETH' }; // Ethereum details
       case 'tether':
       case 'usdt':
-        return <Image src={USDT} alt='Tether' className='h-5 w-5 mr-2' />;
+        return { icon: USDT, name: 'Tether USDT' }; // Tether details
       default:
-        return null;
+        return { icon: '/default-icon.svg', name: 'Unknown Asset' }; // Default details
     }
   };
+
+  const assetDetails = addressData.asset ? getAssetDetails(addressData.asset) : null;
 
   return (
     <div className='fixed inset-0 bg-gray-200 backdrop-blur-sm bg-opacity-50 flex justify-center items-center z-50'>
@@ -140,12 +142,16 @@ const ViewAddress: React.FC<ViewAddressProps> = ({
               {addressData.network}
             </strong>
           </p>
-          {addressData.asset && (
+          {assetDetails && (
             <p className='text-sm mb-2 flex justify-between items-center'>
               <strong className='font-medium'>Asset:</strong>{' '}
               <strong className='font-semibold ml-auto flex items-center'>
-                {getAssetIcon()}
-                {addressData.asset}
+                <Image
+                  src={assetDetails.icon}
+                  alt={assetDetails.name}
+                  className='h-5 w-5 mr-2'
+                />
+                {assetDetails.name}
               </strong>
             </p>
           )}

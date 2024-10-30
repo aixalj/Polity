@@ -84,22 +84,24 @@ const RemoveAddress: React.FC<RemoveAddressProps> = ({
     }
   };
 
-  const getAssetIcon = () => {
+  const getAssetDetails = () => {
     if (!addressData.asset) return null; // Check if asset exists
     switch (addressData.asset.toLowerCase()) {
       case 'bitcoin':
       case 'btc':
-        return <Image src={BTC} alt='Bitcoin' className='h-5 w-5 mr-2' />;
+        return { icon: BTC, name: 'Bitcoin BTC' }; // Bitcoin details
       case 'ethereum':
       case 'eth':
-        return <Image src={ETH} alt='Ethereum' className='h-5 w-5 mr-2' />;
+        return { icon: ETH, name: 'Ethereum ETH' }; // Ethereum details
       case 'tether':
       case 'usdt':
-        return <Image src={USDT} alt='Tether' className='h-5 w-5 mr-2' />;
+        return { icon: USDT, name: 'Tether USDT' }; // Tether details
       default:
-        return null;
+        return { icon: '/default-icon.svg', name: 'Unknown Asset' }; // Default details
     }
   };
+
+  const assetDetails = getAssetDetails();
 
   return (
     <>
@@ -145,11 +147,15 @@ const RemoveAddress: React.FC<RemoveAddressProps> = ({
                 {addressData.network}
               </strong>
             </p>
-            {addressData.asset && (
+            {assetDetails && (
               <p className='text-sm mb-2 flex justify-between items-center'>
                 <strong className='font-medium'>Asset:</strong> <strong className='font-semibold ml-auto flex items-center'>
-                  {getAssetIcon()}
-                  {addressData.asset}
+                  <Image
+                    src={assetDetails.icon}
+                    alt={assetDetails.name}
+                    className='h-5 w-5 mr-2'
+                  />
+                  {assetDetails.name}
                 </strong>
               </p>
             )}

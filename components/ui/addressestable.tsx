@@ -1,5 +1,3 @@
-// components/ui/addressesTable.tsx
-
 'use client';
 
 import * as React from 'react';
@@ -177,40 +175,41 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
     }
   };
 
-  const getAssetIcon = (asset: string) => {
-    switch (asset.toLowerCase()) {
+  const getAssetDetails = (asset: string) => {
+    const assetLower = asset.toLowerCase();
+    switch (assetLower) {
       case 'bitcoin':
       case 'btc':
-        return BTC;
+        return { icon: BTC, name: 'Bitcoin BTC' }; // Bitcoin details
       case 'ethereum':
       case 'eth':
-        return ETH;
+        return { icon: ETH, name: 'Ethereum ETH' }; // Ethereum details
       case 'chainlink':
       case 'link':
-        return LINK;
+        return { icon: LINK, name: 'Chainlink LINK' }; // Chainlink details
       case 'polygon':
       case 'matic':
-        return MATIC;
+        return { icon: MATIC, name: 'Polygon MATIC' }; // Polygon details
       case 'usd coin':
       case 'usdc':
-        return USDC;
+        return { icon: USDC, name: 'USD Coin USDC' }; // USD Coin details
       case 'tether':
       case 'usdt':
-        return USDT;
+        return { icon: USDT, name: 'Tether USDT' }; // Tether details
       case 'wrapped bitcoin':
       case 'wbtc':
-        return WBTC;
+        return { icon: WBTC, name: 'Wrapped Bitcoin WBTC' }; // Wrapped Bitcoin details
       case 'solana':
       case 'sol':
-        return SOL;
+        return { icon: SOL, name: 'Solana SOL' }; // Solana details
       case 'cardano':
       case 'ada':
-        return ADA;
+        return { icon: ADA, name: 'Cardano ADA' }; // Cardano details
       case 'polkadot':
       case 'dot':
-        return DOT;
+        return { icon: DOT, name: 'Polkadot DOT' }; // Polkadot details
       default:
-        return '/default-icon.svg';
+        return { icon: '/default-icon.svg', name: 'Unknown Asset' }; // Default details
     }
   };
 
@@ -304,13 +303,13 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   <>
                     <div className='w-5 h-5 mr-2 flex-shrink-0'>
                       <Image
-                        src={getAssetIcon(address.asset)}
+                        src={getAssetDetails(address.asset).icon}
                         alt={address.asset}
                         width={20}
                         height={20}
                       />
                     </div>
-                    <span className='truncate'>{address.asset}</span>
+                    <span className='truncate'>{getAssetDetails(address.asset).name}</span>
                   </>
                 ) : (
                   <span className='text-gray-400'></span>

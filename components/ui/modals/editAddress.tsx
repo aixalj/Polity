@@ -167,7 +167,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                   type='text'
                   value={addressData?.contactName}
                   disabled
-                  className='w-full rounded-xl h-10 mb-3 pr-10 font-regular border border-gray-300 bg-gray-100 cursor-not-allowed'
+                  className='w-full rounded-xl h-10 mb-3 pr-10 text-sm font-medium border border-gray-300 bg-gray-100 cursor-not-allowed'
                 />
               </div>
               <div>
@@ -180,7 +180,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                       setAddressName(e.target.value);
                       setIsModified(true);
                     }}
-                    className='w-full h-10 mb-3 pr-10 font-regular border rounded-xl border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
+                    className='w-full h-10 text-gray-900 text-sm font-medium mb-3 pr-10  border rounded-xl border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
                   />
                   {isModified && ( // Show checkmark if edited
                     <Check className='absolute right-2 top-1/2 transform -translate-y-3.5 h-5 w-5 text-green-500' />
@@ -213,7 +213,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                         alt='Bitcoin Network'
                         className='h-5 w-5 mr-2'
                       />
-                      <span className='text-gray-900'>Bitcoin Network</span>
+                      <span className='text-gray-900 text-md'>Bitcoin Network</span>
                       {network === 'Bitcoin Network' && (
                         <Check className='ml-auto h-5 w-5 text-green-500' />
                       )}
@@ -227,7 +227,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                         alt='Ethereum Network'
                         className='h-5 w-5 mr-2'
                       />
-                      <span className='text-gray-900'>Ethereum Network</span>
+                      <span className='text-gray-900 text-md'>Ethereum Network</span>
                       {network === 'Ethereum Network' && (
                         <Check className='ml-auto h-5 w-5 text-green-500' />
                       )}
@@ -241,7 +241,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                         alt='Polygon Network'
                         className='h-5 w-5 mr-2'
                       />
-                      <span className='text-gray-900'>Polygon Network</span>
+                      <span className='text-gray-900 text-md'>Polygon Network</span>
                       {network === 'Polygon Network' && (
                         <Check className='ml-auto h-5 w-5 text-green-500' />
                       )}
@@ -276,7 +276,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                           alt='Tether'
                           className='h-5 w-5 mr-2'
                         />
-                        <span className='text-gray-900'>Tether</span>
+                        <span className='text-gray-900 text-md'>Tether</span>
                         {asset === 'Tether' && (
                           <Check className='ml-auto h-5 w-5 text-green-500' />
                         )}
@@ -290,7 +290,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                           alt='Bitcoin'
                           className='h-5 w-5 mr-2'
                         />
-                        <span className='text-gray-900'>Bitcoin</span>
+                        <span className='text-gray-900 text-md'>Bitcoin</span>
                         {asset === 'Bitcoin' && (
                           <Check className='ml-auto h-5 w-5 text-green-500' />
                         )}
@@ -304,7 +304,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                           alt='Ethereum'
                           className='h-5 w-5 mr-2'
                         />
-                        <span className='text-gray-900'>Ethereum</span>
+                        <span className='text-gray-900 text-md'>Ethereum</span>
                         {asset === 'Ethereum' && (
                           <Check className='ml-auto h-5 w-5 text-green-500' />
                         )}
@@ -317,15 +317,15 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 <Label className='block mb-1.5'>Network Address</Label>
                 <input
                   type='text'
-                  value={truncateAddress(networkAddress, 30)} // Truncate address if needed
+                  value={networkAddress} // Truncate address if needed
                   onChange={(e) => {
                     setNetworkAddress(e.target.value);
                     setIsModified(true);
                   }}
-                  className='w-full h-10 pr-10 font-regular border rounded-xl border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
+                  className='w-full h-10 text-gray-900 text-sm font-medium pr-10 font-regular border rounded-xl border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
                 />
                 {isModified && ( // Show checkmark if edited
-                  <Check className='absolute right-7 top-[51%] transform translate-y-28 h-5 w-5 text-green-500' />
+                  <Check className='absolute right-7 top-[50%] transform translate-y-7.5 h-5 w-5 text-green-500' />
                 )}
               </div>
               <div className='flex items-start text-sm text-yellow-700 my-6 bg-yellow-50 p-4 rounded-xl'>

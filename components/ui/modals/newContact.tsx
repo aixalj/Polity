@@ -163,7 +163,7 @@ const NewContact: React.FC<NewContactProps> = ({
                     onChange={(e) => setContactName(e.target.value)}
                     placeholder='John Doe'
                     required
-                    className='h-10 mb-3 pr-10 font-regular focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 border-0.5 border-gray-300'
+                    className='h-10 mb-3 text-gray-900 pr-10 font-regular focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 border-0.5 border-gray-300'
                   />
                   {contactName && (
                     <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />
@@ -195,7 +195,7 @@ const NewContact: React.FC<NewContactProps> = ({
                     onChange={(e) => setAddressName(e.target.value)}
                     placeholder='Enter address name here...'
                     required
-                    className='h-10 mb-3 pr-10 font-regular focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 border-0.5 border-gray-300'
+                    className='h-10 text-gray-900 mb-3 pr-10 font-regular focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 border-0.5 border-gray-300'
                   />
                   {addressName && (
                     <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />
@@ -360,7 +360,7 @@ const NewContact: React.FC<NewContactProps> = ({
                     onChange={(e) => setNetworkAddress(e.target.value)}
                     placeholder='Enter network address here...'
                     required
-                    className={`h-10 mb-3 pr-10 font-regular border-0.5 border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50`}
+                    className={`h-10 text-gray-900 mb-3 pr-10 font-regular border-0.5 border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50`}
                   />
                   {networkAddress && (
                     <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />

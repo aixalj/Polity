@@ -105,6 +105,9 @@ const config: Config = {
         base: "0.875rem", // Example: overriding base size
         lg: "1rem", // Example: overriding large size
       },
+      translate: {
+        '7.5': '7.3rem',
+      },
     },
   },
   safelist: [

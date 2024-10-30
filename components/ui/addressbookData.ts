@@ -305,7 +305,7 @@ export const contacts: Contact[] = [
 export const getAllContacts = (): ContactWithFormattedCount[] => {
   return contacts.map((contact) => ({
     ...contact,
-    formattedAddressCount: contact.addressCount.toString()
+    formattedAddressCount: contact.addressCount.toString(),
   }));
 };
 
@@ -313,7 +313,8 @@ export const getAllAddresses = (): Address[] => {
   return addresses;
 };
 
-export const addAddress = (newAddress: Omit<Address, 'id'>): void => { // Omit 'id' since it will be generated
+export const addAddress = (newAddress: Omit<Address, 'id'>): void => {
+  // Omit 'id' since it will be generated
   const completeAddress: Address = {
     ...newAddress,
     id: Date.now().toString(), // Generate a unique ID
