@@ -9,6 +9,12 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
+import ETHNetwork from 'public/icons/networks/ETH.svg'; // Import network icons
+import BTCNetwork from 'public/icons/networks/BTC.svg';
+import POLNetwork from 'public/icons/networks/MATIC.svg';
+import BTC from 'cryptocurrency-icons/svg/color/btc.svg';
+import ETH from 'cryptocurrency-icons/svg/color/eth.svg';
+import USDT from 'cryptocurrency-icons/svg/color/usdt.svg';
 
 interface RemoveAddressProps {
   isOpen: boolean;
@@ -59,10 +65,47 @@ const RemoveAddress: React.FC<RemoveAddressProps> = ({
     setTimeout(() => setCopiedAddress(null), 2000);
   };
 
+  const getNetworkIcon = () => {
+    switch (addressData.network) {
+      case 'Ethereum Network':
+        return (
+          <Image src={ETHNetwork} alt='Ethereum Network' className='h-5 w-5 mr-2' />
+        );
+      case 'Bitcoin Network':
+        return (
+          <Image src={BTCNetwork} alt='Bitcoin Network' className='h-5 w-5 mr-2' />
+        );
+      case 'Polygon Network':
+        return (
+          <Image src={POLNetwork} alt='Polygon Network' className='h-5 w-5 mr-2' />
+        );
+      default:
+        return null;
+    }
+  };
+
+  const getAssetIcon = () => {
+    if (!addressData.asset) return null; // Check if asset exists
+    switch (addressData.asset.toLowerCase()) {
+      case 'bitcoin':
+      case 'btc':
+        return <Image src={BTC} alt='Bitcoin' className='h-5 w-5 mr-2' />;
+      case 'ethereum':
+      case 'eth':
+        return <Image src={ETH} alt='Ethereum' className='h-5 w-5 mr-2' />;
+      case 'tether':
+      case 'usdt':
+        return <Image src={USDT} alt='Tether' className='h-5 w-5 mr-2' />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       <div className='fixed inset-0 bg-gray-200 backdrop-blur-sm bg-opacity-50 flex justify-center items-center z-50'>
         <div className='bg-rose-600 p-1 rounded-2xl shadow-xl max-w-[90%] w-[410px] h-auto flex flex-col relative'>
+
           <div className='px-8 pt-6 flex-shrink-0'>
             <button
               onClick={onClose}
@@ -96,12 +139,18 @@ const RemoveAddress: React.FC<RemoveAddressProps> = ({
             <p className='text-sm mb-2 flex justify-between'>
               <strong className='font-medium'>Address Name:</strong> <strong className='font-semibold ml-auto'>{addressData.addressname}</strong>
             </p>
-            <p className='text-sm mb-2 flex justify-between'>
-              <strong className='font-medium'>Network:</strong> <strong className='font-semibold ml-auto'>{addressData.network}</strong>
+            <p className='text-sm mb-2 flex justify-between items-center'>
+              <strong className='font-medium'>Network:</strong> <strong className='font-semibold ml-auto flex items-center'>
+                {getNetworkIcon()}
+                {addressData.network}
+              </strong>
             </p>
             {addressData.asset && (
-              <p className='text-sm mb-2 flex justify-between'>
-                <strong className='font-medium'>Asset:</strong> <strong className='font-semibold ml-auto'>{addressData.asset}</strong>
+              <p className='text-sm mb-2 flex justify-between items-center'>
+                <strong className='font-medium'>Asset:</strong> <strong className='font-semibold ml-auto flex items-center'>
+                  {getAssetIcon()}
+                  {addressData.asset}
+                </strong>
               </p>
             )}
             <p className='text-sm mb-2 flex justify-between'>
