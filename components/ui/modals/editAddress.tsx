@@ -187,12 +187,13 @@ const EditAddress: React.FC<EditAddressProps> = ({
                   )}
                 </div>
               </div>
+
               <Label className='block mb-3'>
                 <div className='mb-1.5'>Network</div>
                 <DropdownMenu onOpenChange={setIsNetworkDropdownOpen}>
                   <DropdownMenuTrigger asChild>
                     <div
-                      className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3 ${network ? 'border-primary-500 ring-2 ring-primary-50' : ''}`}
+                      className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3 ${isNetworkDropdownOpen ? 'border-primary-500 ring-2 ring-primary-50' : ''}`}
                     >
                       <span className='mr-2'>{getNetworkIcon()}</span>
                       <span
@@ -213,7 +214,9 @@ const EditAddress: React.FC<EditAddressProps> = ({
                         alt='Bitcoin Network'
                         className='h-5 w-5 mr-2'
                       />
-                      <span className='text-gray-900 text-md'>Bitcoin Network</span>
+                      <span className='text-gray-900 text-md'>
+                        Bitcoin Network
+                      </span>
                       {network === 'Bitcoin Network' && (
                         <Check className='ml-auto h-5 w-5 text-green-500' />
                       )}
@@ -227,7 +230,9 @@ const EditAddress: React.FC<EditAddressProps> = ({
                         alt='Ethereum Network'
                         className='h-5 w-5 mr-2'
                       />
-                      <span className='text-gray-900 text-md'>Ethereum Network</span>
+                      <span className='text-gray-900 text-md'>
+                        Ethereum Network
+                      </span>
                       {network === 'Ethereum Network' && (
                         <Check className='ml-auto h-5 w-5 text-green-500' />
                       )}
@@ -241,7 +246,9 @@ const EditAddress: React.FC<EditAddressProps> = ({
                         alt='Polygon Network'
                         className='h-5 w-5 mr-2'
                       />
-                      <span className='text-gray-900 text-md'>Polygon Network</span>
+                      <span className='text-gray-900 text-md'>
+                        Polygon Network
+                      </span>
                       {network === 'Polygon Network' && (
                         <Check className='ml-auto h-5 w-5 text-green-500' />
                       )}
@@ -249,13 +256,14 @@ const EditAddress: React.FC<EditAddressProps> = ({
                   </DropdownMenuContent>
                 </DropdownMenu>
               </Label>
+
               {addressData?.asset && (
                 <Label className='block mb-1.5'>
                   <div className='mb-1.5'>Asset</div>
                   <DropdownMenu onOpenChange={setIsAssetDropdownOpen}>
                     <DropdownMenuTrigger asChild>
                       <div
-                        className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3 ${asset ? 'border-primary-500 ring-2 ring-primary-50' : ''}`}
+                        className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3 ${isAssetDropdownOpen ? 'border-primary-500 ring-2 ring-primary-50' : ''}`}
                       >
                         {getAssetIcon()}
                         <span
@@ -313,6 +321,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                   </DropdownMenu>
                 </Label>
               )}
+
               <div>
                 <Label className='block mb-1.5'>Network Address</Label>
                 <input
