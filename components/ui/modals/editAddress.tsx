@@ -93,6 +93,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
       setEditedSavedModalOpen(false);
     });
   };
+
   const getNetworkIcon = () => {
     switch (network) {
       case 'Ethereum Network':
@@ -128,6 +129,14 @@ const EditAddress: React.FC<EditAddressProps> = ({
     }
   };
 
+  // Function to truncate the address
+  const truncateAddress = (address: string, maxLength: number) => {
+    if (address.length > maxLength) {
+      return `${address.slice(0, maxLength)}...`;
+    }
+    return address;
+  };
+
   return (
     <>
       {isOpen && (
@@ -161,17 +170,22 @@ const EditAddress: React.FC<EditAddressProps> = ({
                   className='w-full rounded-xl h-10 mb-3 pr-10 font-regular border border-gray-300 bg-gray-100 cursor-not-allowed'
                 />
               </div>
-              <div className='mb-3'>
+              <div>
                 <Label className='block mb-1.5'>Address Name</Label>
-                <input
-                  type='text'
-                  value={addressName}
-                  onChange={(e) => {
-                    setAddressName(e.target.value);
-                    setIsModified(true);
-                  }}
-                  className='w-full p-2  border border-gray-300 rounded-xl '
-                />
+                <div className='relative'>
+                  <input
+                    type='text'
+                    value={addressName}
+                    onChange={(e) => {
+                      setAddressName(e.target.value);
+                      setIsModified(true);
+                    }}
+                    className='w-full h-10 mb-3 pr-10 font-regular border rounded-xl border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
+                  />
+                  {isModified && ( // Show checkmark if edited
+                    <Check className='absolute right-2 top-1/2 transform -translate-y-3.5 h-5 w-5 text-green-500' />
+                  )}
+                </div>
               </div>
               <Label className='block mb-3'>
                 <div className='mb-1.5'>Network</div>
@@ -236,7 +250,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 </DropdownMenu>
               </Label>
               {addressData?.asset && (
-                 <Label className='block mb-1.5'>
+                <Label className='block mb-1.5'>
                   <div className='mb-1.5'>Asset</div>
                   <DropdownMenu onOpenChange={setIsAssetDropdownOpen}>
                     <DropdownMenuTrigger asChild>
@@ -299,19 +313,22 @@ const EditAddress: React.FC<EditAddressProps> = ({
                   </DropdownMenu>
                 </Label>
               )}
-              <div className='mb-3'>
+              <div>
                 <Label className='block mb-1.5'>Network Address</Label>
                 <input
                   type='text'
-                  value={networkAddress}
+                  value={truncateAddress(networkAddress, 30)} // Truncate address if needed
                   onChange={(e) => {
                     setNetworkAddress(e.target.value);
                     setIsModified(true);
                   }}
-                  className='w-full p-2 border border-gray-300 rounded-xl '
+                  className='w-full h-10 pr-10 font-regular border rounded-xl border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
                 />
+                {isModified && ( // Show checkmark if edited
+                  <Check className='absolute right-7 top-[51%] transform translate-y-28 h-5 w-5 text-green-500' />
+                )}
               </div>
-              <div className='flex items-start text-sm text-yellow-700 mb-4 bg-yellow-50 p-4 rounded-xl'>
+              <div className='flex items-start text-sm text-yellow-700 my-6 bg-yellow-50 p-4 rounded-xl'>
                 <AlertTriangle className='h-5 w-9 mr-2 text-yellow-600' />
                 <div>
                   <p className='m-0 text-sm font-semibold'>

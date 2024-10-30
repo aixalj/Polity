@@ -351,7 +351,7 @@ const NewContact: React.FC<NewContactProps> = ({
                   </DropdownMenu>
                 </Label>
               )}
-              <Label className='block mb-1.5'>
+              <Label className='block'>
                 <div className='mb-1.5'>Network Address</div>
                 <div className='relative'>
                   <Input
@@ -367,7 +367,7 @@ const NewContact: React.FC<NewContactProps> = ({
                   )}
                 </div>
               </Label>
-              <div className='flex items-start text-sm text-yellow-700 mb-4 bg-yellow-50 p-4 rounded-xl'>
+              <div className='flex items-start my-6 text-sm text-yellow-700 bg-yellow-50 p-4 rounded-xl'>
                 <AlertTriangle className='h-5 w-9 mr-2 text-yellow-600' />
                 <div>
                   <p className='m-0 text-sm font-semibold'>
