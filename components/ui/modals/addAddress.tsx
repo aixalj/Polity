@@ -181,7 +181,7 @@ const AddAddress: React.FC<AddAddressProps> = ({
               </Label>
 
 
-              <Label className='block mb-1.5'>
+              <Label className='block mb-3'>
                 <div className='mb-1.5'>Network</div>
                 <DropdownMenu onOpenChange={setIsNetworkDropdownOpen}>
                   <DropdownMenuTrigger asChild>

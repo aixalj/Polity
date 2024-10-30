@@ -4,12 +4,24 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '../button';
 import RemoveAddress from './removeAddress';
 import ContactEditedSaved from '../saved modals/contactEditedSaved';
-import { X, AlertTriangle } from 'lucide-react'; // Import other icons
+import { X, AlertTriangle, ChevronDown, Check } from 'lucide-react'; // Import other icons
 import userEditIcon from '@/public/modal-icons/user-edit.svg';
 import Image from 'next/image';
 // Importing the Input and Label components
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import ETHNetwork from 'public/icons/networks/ETH.svg'; // Import network icons
+import BTCNetwork from 'public/icons/networks/BTC.svg';
+import POLNetwork from 'public/icons/networks/MATIC.svg';
+import BTC from 'cryptocurrency-icons/svg/color/btc.svg';
+import ETH from 'cryptocurrency-icons/svg/color/eth.svg';
+import USDT from 'cryptocurrency-icons/svg/color/usdt.svg';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from '@/components/ui/dropdown-menu';
 
 interface EditAddressProps {
   isOpen: boolean;
@@ -40,6 +52,8 @@ const EditAddress: React.FC<EditAddressProps> = ({
   const [isModified, setIsModified] = useState(false);
   const [isRemoveModalOpen, setRemoveModalOpen] = useState(false);
   const [isEditedSavedModalOpen, setEditedSavedModalOpen] = useState(false);
+  const [isNetworkDropdownOpen, setIsNetworkDropdownOpen] = useState(false); // State for network dropdown open/close
+  const [isAssetDropdownOpen, setIsAssetDropdownOpen] = useState(false); // State for asset dropdown open/close
 
   useEffect(() => {
     if (addressData) {
@@ -79,6 +93,40 @@ const EditAddress: React.FC<EditAddressProps> = ({
       setEditedSavedModalOpen(false);
     });
   };
+  const getNetworkIcon = () => {
+    switch (network) {
+      case 'Ethereum Network':
+        return (
+          <Image src={ETHNetwork} alt='Ethereum Network' className='h-5 w-5' />
+        );
+      case 'Bitcoin Network':
+        return (
+          <Image src={BTCNetwork} alt='Bitcoin Network' className='h-5 w-5' />
+        );
+      case 'Polygon Network':
+        return (
+          <Image src={POLNetwork} alt='Polygon Network' className='h-5 w-5' />
+        );
+      default:
+        return null;
+    }
+  };
+
+  const getAssetIcon = () => {
+    switch (asset.toLowerCase()) {
+      case 'bitcoin':
+      case 'btc':
+        return <Image src={BTC} alt='Bitcoin' className='h-5 w-5 mr-2' />;
+      case 'ethereum':
+      case 'eth':
+        return <Image src={ETH} alt='Ethereum' className='h-5 w-5 mr-2' />;
+      case 'tether':
+      case 'usdt':
+        return <Image src={USDT} alt='Tether' className='h-5 w-5 mr-2' />;
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
@@ -99,13 +147,13 @@ const EditAddress: React.FC<EditAddressProps> = ({
               <h2 className='text-lg font-medium mb-2 text-gray-50'>
                 Edit Address
               </h2>
-              <p className='mb-4 text-gray-50 text-sm font-regular'>
+              <p className='mb-4 text-gray-50 text-sm font-regular whitespace-nowrap'>
                 Edit the fields below to update the contact’s information.
               </p>
             </div>
             <div className='bg-white px-4 pt-6 pb-6 rounded-xl shadow-md flex-grow overflow-hidden'>
-              <div className='mt-4'>
-                <Label className='block mb-2'>Contact Name</Label>
+              <div>
+                <Label className='block mb-1.5'>Contact Name</Label>
                 <input
                   type='text'
                   value={addressData?.contactName}
@@ -113,8 +161,8 @@ const EditAddress: React.FC<EditAddressProps> = ({
                   className='w-full rounded-xl h-10 mb-3 pr-10 font-regular border border-gray-300 bg-gray-100 cursor-not-allowed'
                 />
               </div>
-              <div className='mt-4'>
-                <Label className='block mb-2'>Address Name</Label>
+              <div className='mb-3'>
+                <Label className='block mb-1.5'>Address Name</Label>
                 <input
                   type='text'
                   value={addressName}
@@ -125,42 +173,134 @@ const EditAddress: React.FC<EditAddressProps> = ({
                   className='w-full p-2  border border-gray-300 rounded-xl '
                 />
               </div>
-              <div className='mt-4'>
-                <Label className='block mb-2'>Network</Label>
-                <select
-                  value={network}
-                  onChange={(e) => {
-                    setNetwork(e.target.value);
-                    setIsModified(true);
-                  }}
-                  className='w-full p-2 border border-gray-300 rounded-xl '
-                >
-                  <option value=''>Select Network</option>
-                  <option value='Ethereum Network'>Ethereum Network</option>
-                  <option value='Bitcoin Network'>Bitcoin Network</option>
-                  <option value='Polygon Network'>Polygon Network</option>
-                </select>
-              </div>
+              <Label className='block mb-3'>
+                <div className='mb-1.5'>Network</div>
+                <DropdownMenu onOpenChange={setIsNetworkDropdownOpen}>
+                  <DropdownMenuTrigger asChild>
+                    <div
+                      className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3 ${network ? 'border-primary-500 ring-2 ring-primary-50' : ''}`}
+                    >
+                      <span className='mr-2'>{getNetworkIcon()}</span>
+                      <span
+                        className={`text-gray-500 ${network ? 'text-md font-medium text-gray-900' : ''}`}
+                      >
+                        {network || 'Select Network...'}
+                      </span>
+                      <ChevronDown className='h-4 w-4 text-gray-500 ml-auto' />
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className='w-full rounded-xl'>
+                    <DropdownMenuItem
+                      onClick={() => setNetwork('Bitcoin Network')}
+                      className={`flex items-center rounded-lg ${network === 'Bitcoin Network' ? 'bg-gray-50' : ''} hover:bg-gray-50`}
+                    >
+                      <Image
+                        src={BTCNetwork}
+                        alt='Bitcoin Network'
+                        className='h-5 w-5 mr-2'
+                      />
+                      <span className='text-gray-900'>Bitcoin Network</span>
+                      {network === 'Bitcoin Network' && (
+                        <Check className='ml-auto h-5 w-5 text-green-500' />
+                      )}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => setNetwork('Ethereum Network')}
+                      className={`flex items-center rounded-lg ${network === 'Ethereum Network' ? 'bg-gray-50' : ''} hover:bg-gray-50`}
+                    >
+                      <Image
+                        src={ETHNetwork}
+                        alt='Ethereum Network'
+                        className='h-5 w-5 mr-2'
+                      />
+                      <span className='text-gray-900'>Ethereum Network</span>
+                      {network === 'Ethereum Network' && (
+                        <Check className='ml-auto h-5 w-5 text-green-500' />
+                      )}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => setNetwork('Polygon Network')}
+                      className={`flex items-center rounded-lg ${network === 'Polygon Network' ? 'bg-gray-50' : ''} hover:bg-gray-50`}
+                    >
+                      <Image
+                        src={POLNetwork}
+                        alt='Polygon Network'
+                        className='h-5 w-5 mr-2'
+                      />
+                      <span className='text-gray-900'>Polygon Network</span>
+                      {network === 'Polygon Network' && (
+                        <Check className='ml-auto h-5 w-5 text-green-500' />
+                      )}
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </Label>
               {addressData?.asset && (
-                <div className='mt-4'>
-                  <Label className='block mb-2'>Asset</Label>
-                  <select
-                    value={asset}
-                    onChange={(e) => {
-                      setAsset(e.target.value);
-                      setIsModified(true);
-                    }}
-                    className='w-full p-2 border border-gray-300 rounded-xl '
-                  >
-                    <option value=''>Select Asset</option>
-                    <option value='Tether'>Tether</option>
-                    <option value='Bitcoin'>Bitcoin</option>
-                    <option value='Ethereum'>Ethereum</option>
-                  </select>
-                </div>
+                 <Label className='block mb-1.5'>
+                  <div className='mb-1.5'>Asset</div>
+                  <DropdownMenu onOpenChange={setIsAssetDropdownOpen}>
+                    <DropdownMenuTrigger asChild>
+                      <div
+                        className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3 ${asset ? 'border-primary-500 ring-2 ring-primary-50' : ''}`}
+                      >
+                        {getAssetIcon()}
+                        <span
+                          className={`text-gray-500 ${asset ? 'text-md font-medium text-gray-900' : ''}`}
+                        >
+                          {asset || 'Select asset...'}
+                        </span>
+                        <ChevronDown className='h-4 w-4 text-gray-500 ml-auto' />
+                      </div>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className='w-full rounded-xl'>
+                      <DropdownMenuItem
+                        onClick={() => setAsset('Tether')}
+                        className={`flex items-center rounded-lg ${asset === 'Tether' ? 'bg-gray-50' : ''} hover:bg-gray-50`}
+                      >
+                        <Image
+                          src={USDT}
+                          alt='Tether'
+                          className='h-5 w-5 mr-2'
+                        />
+                        <span className='text-gray-900'>Tether</span>
+                        {asset === 'Tether' && (
+                          <Check className='ml-auto h-5 w-5 text-green-500' />
+                        )}
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => setAsset('Bitcoin')}
+                        className={`flex items-center rounded-lg ${asset === 'Bitcoin' ? 'bg-gray-50' : ''} hover:bg-gray-50`}
+                      >
+                        <Image
+                          src={BTC}
+                          alt='Bitcoin'
+                          className='h-5 w-5 mr-2'
+                        />
+                        <span className='text-gray-900'>Bitcoin</span>
+                        {asset === 'Bitcoin' && (
+                          <Check className='ml-auto h-5 w-5 text-green-500' />
+                        )}
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => setAsset('Ethereum')}
+                        className={`flex items-center rounded-lg ${asset === 'Ethereum' ? 'bg-gray-50' : ''} hover:bg-gray-50`}
+                      >
+                        <Image
+                          src={ETH}
+                          alt='Ethereum'
+                          className='h-5 w-5 mr-2'
+                        />
+                        <span className='text-gray-900'>Ethereum</span>
+                        {asset === 'Ethereum' && (
+                          <Check className='ml-auto h-5 w-5 text-green-500' />
+                        )}
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </Label>
               )}
-              <div className='mt-4'>
-                <Label className='block mb-2'>Network Address</Label>
+              <div className='mb-3'>
+                <Label className='block mb-1.5'>Network Address</Label>
                 <input
                   type='text'
                   value={networkAddress}
@@ -183,11 +323,19 @@ const EditAddress: React.FC<EditAddressProps> = ({
                   </p>
                 </div>
               </div>
-              <div className='mt-6 flex justify-between'>
-                <Button className='w-1/2 mr-1 border border-rose-300 text-rose-700 bg-white hover:text-white hover:bg-rose-100 hover:border-rose-100' variant='destructive' onClick={handleRemoveButtonClick}>
+              <div className='mt-3 flex justify-between'>
+                <Button
+                  className='w-1/2 mr-1 border border-rose-300 text-rose-700 bg-white hover:text-white hover:bg-rose-100 hover:border-rose-100'
+                  variant='destructive'
+                  onClick={handleRemoveButtonClick}
+                >
                   Remove
                 </Button>
-                <Button className='w-1/2 ml-1' onClick={handleSave} disabled={!isModified}>
+                <Button
+                  className='w-1/2 ml-1'
+                  onClick={handleSave}
+                  disabled={!isModified}
+                >
                   Save
                 </Button>
               </div>
