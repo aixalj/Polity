@@ -381,7 +381,10 @@ const EditAddress: React.FC<EditAddressProps> = ({
       )}
 
       {isEditedSavedModalOpen && (
-        <ContactEditedSaved onClose={handleCloseEditedSavedModal} />
+        <ContactEditedSaved
+          isOpen={isEditedSavedModalOpen}
+          onClose={handleCloseEditedSavedModal}
+        />
       )}
 
       <RemoveAddress

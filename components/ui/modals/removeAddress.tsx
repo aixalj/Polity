@@ -232,6 +232,7 @@ const RemoveAddress: React.FC<RemoveAddressProps> = ({
       {/* Contact Removed Saved Modal */}
       {isRemovedModalOpen && (
         <ContactRemovedSaved
+          isOpen={isRemovedModalOpen}
           onClose={() => {
             setRemovedModalOpen(false);
             onClose(); // Close the RemoveAddress modal when the saved modal is closed

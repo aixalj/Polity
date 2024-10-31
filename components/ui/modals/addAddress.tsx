@@ -106,6 +106,7 @@ const AddAddress: React.FC<AddAddressProps> = ({
     <>
       {isSavedModalOpen ? (
         <NewAddressSaved
+          isOpen={isSavedModalOpen}
           onClose={() => {
             setSavedModalOpen(false);
             onClose(); // Close the AddAddress modal when the saved modal is closed

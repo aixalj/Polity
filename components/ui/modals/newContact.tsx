@@ -132,7 +132,10 @@ const NewContact: React.FC<NewContactProps> = ({
   return (
     <>
       {isSavedModalOpen ? (
-        <NewContactSaved onClose={handleCloseSavedModal} />
+        <NewContactSaved
+          isOpen={isSavedModalOpen}
+          onClose={handleCloseSavedModal}
+        />
       ) : (
         <Dialog open={isOpen} onClose={onClose} className='relative z-50'>
           <div className='fixed inset-0 bg-gray-200 backdrop-blur-sm bg-opacity-50 flex justify-center items-center z-50'>
