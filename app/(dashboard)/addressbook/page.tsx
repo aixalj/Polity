@@ -11,7 +11,7 @@ import {
   Address,
 } from '@/components/ui/addressbookData';
 import { AllContactsTable } from '@/components/ui/allcontactsTable';
-import { AddressesTable } from '@/components/ui/addressesTable';
+import { AddressesTable } from '@/components/ui/addressestable';
 import { SearchError } from '@/components/ui/searchError';
 import { useRouter } from 'next/navigation'; // Import useRouter at the top
 import NewContact from '@/components/ui/modals/newContact'; // Import the NewContact modal
@@ -360,7 +360,7 @@ export default function AddressBook() {
           <Notification
             title="You've just added this address to your favorites!"
             description="You've successfully added this address to your favorites."
-            status='success'
+            status='info'
             className='shadow-lg'
             onClose={() => setShowNotification(false)} // Close notification
           />
