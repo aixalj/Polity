@@ -121,10 +121,10 @@ const RemoveAddress: React.FC<RemoveAddressProps> = ({
       <Dialog open={isOpen} onClose={onClose} className='relative z-50'>
         <div className='fixed inset-0 bg-gray-200 backdrop-blur-sm bg-opacity-50 flex justify-center items-center z-50'>
           <Dialog.Panel className='bg-rose-600 p-1 rounded-2xl shadow-xl max-w-[90%] w-[410px] h-auto flex flex-col relative'>
-            <div className='px-8 pt-6 flex-shrink-0'>
+            <div className='px-8 pt-5 flex-shrink-0'>
               <button
                 onClick={onClose}
-                className='absolute top-2 right-2 text-gray-50 hover:text-gray-100'
+                className='absolute top-5 right-5 text-gray-50 hover:text-gray-100'
                 aria-label='Close'
               >
                 <X className='h-6 w-6' />
@@ -142,7 +142,7 @@ const RemoveAddress: React.FC<RemoveAddressProps> = ({
               </p>
             </div>
 
-            <div className='bg-white px-4 pt-6 pb-6 rounded-xl shadow-md flex-grow overflow-hidden'>
+            <div className='bg-white px-6 pt-4 pb-6 rounded-xl shadow-md flex-grow overflow-hidden'>
               <div className='-mx-4 bg-gray-50 py-2 mb-1'>
                 <p className='text-xs font-medium text-gray-600 w-full pl-4'>
                   <strong>CONTACT DETAILS</strong>

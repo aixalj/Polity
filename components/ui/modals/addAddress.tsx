@@ -117,10 +117,10 @@ const AddAddress: React.FC<AddAddressProps> = ({
         <Dialog open={isOpen} onClose={onClose} className='relative z-50'>
           <div className='fixed inset-0 bg-gray-200 backdrop-blur-sm bg-opacity-50 flex justify-center items-center z-50'>
             <Dialog.Panel className='bg-primary-500 p-1 rounded-2xl shadow-xl max-w-[90%] w-[410px] h-auto flex flex-col relative'>
-              <div className='px-8 pt-6 pb-4 flex-shrink-0'>
+              <div className='px-8 pt-5 pb-4 flex-shrink-0'>
                 <button
                   onClick={onClose}
-                  className='absolute top-2 right-2 text-gray-50 hover:text-gray-100'
+                  className='absolute top-5 right-5 text-gray-50 hover:text-gray-100'
                   aria-label='Close'
                 >
                   <X className='h-6 w-6' />
@@ -135,20 +135,20 @@ const AddAddress: React.FC<AddAddressProps> = ({
                   Fill out the fields below to add a new address.
                 </p>
               </div>
-              <div className='bg-white px-4 pt-6 pb-6 rounded-xl shadow-md flex-grow overflow-hidden'>
-                <Label className='block mb-1.5'>
+              <div className='bg-white px-6 pt-4 pb-6 rounded-xl shadow-md flex-grow overflow-hidden'>
+                <Label className='block mb-3'>
                   <div className='mb-1.5'>Contact Name</div>
                   <div className='relative'>
                     <Input
                       type='text'
                       value={contactName}
                       disabled // Disable the field
-                      className='h-10 mb-3 pr-10 font-regular border border-gray-300 bg-gray-100 cursor-not-allowed'
+                      className='h-10 pr-10 font-regular border border-gray-300 bg-gray-100 cursor-not-allowed'
                     />
                   </div>
                 </Label>
 
-                <div className='flex my-4 p-1 bg-gray-100 rounded-xl mb-3'>
+                <div className='flex p-1 bg-gray-100 rounded-xl mb-3'>
                   <button
                     type='button'
                     onClick={() => setActiveTab('standard')}
@@ -165,7 +165,7 @@ const AddAddress: React.FC<AddAddressProps> = ({
                   </button>
                 </div>
 
-                <Label className='block mb-1.5'>
+                <Label className='block mb-3'>
                   <div className='mb-1.5'>Address Name</div>
                   <div className='relative'>
                     <Input
@@ -174,7 +174,7 @@ const AddAddress: React.FC<AddAddressProps> = ({
                       onChange={(e) => setAddressName(e.target.value)}
                       placeholder='Enter address name here...'
                       required
-                      className='h-10 mb-3 text-gray-900 pr-10 font-regular border border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
+                      className='h-10 text-gray-900 pr-10 font-regular border border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
                     />
                     {addressName && (
                       <Check className='absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500' />
@@ -187,7 +187,7 @@ const AddAddress: React.FC<AddAddressProps> = ({
                   <DropdownMenu onOpenChange={setIsNetworkDropdownOpen}>
                     <DropdownMenuTrigger asChild>
                       <div
-                        className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3 ${isNetworkDropdownOpen ? 'border-primary-500 ring-2 ring-primary-50' : ''}`}
+                        className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10  ${isNetworkDropdownOpen ? 'border-primary-500 ring-2 ring-primary-50' : ''}`}
                       >
                         <span className='mr-2'>{getNetworkIcon()}</span>
                         <span
@@ -198,7 +198,7 @@ const AddAddress: React.FC<AddAddressProps> = ({
                         <ChevronDown className='h-4 w-4 text-gray-500 ml-auto' />
                       </div>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className='w-full rounded-xl'>
+                    <DropdownMenuContent className='w-full rounded-xl' isModal={true}> {/* Pass isModal prop here */}
                       <DropdownMenuItem
                         onClick={() => setNetwork('Bitcoin Network')}
                         className={`flex items-center rounded-lg ${network === 'Bitcoin Network' ? 'bg-gray-50' : ''} hover:bg-gray-50`}
@@ -246,7 +246,7 @@ const AddAddress: React.FC<AddAddressProps> = ({
                 </Label>
 
                 {activeTab === 'standard' && (
-                  <Label className='block mb-1.5'>
+                  <Label className='block mb-3'>
                     <div className='mb-1.5'>Asset</div>
                     <DropdownMenu onOpenChange={setIsAssetDropdownOpen}>
                       <DropdownMenuTrigger asChild>
@@ -262,7 +262,7 @@ const AddAddress: React.FC<AddAddressProps> = ({
                           <ChevronDown className='h-4 w-4 text-gray-500 ml-auto' />
                         </div>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent className='w-full rounded-xl'>
+                      <DropdownMenuContent className='w-full rounded-xl' isModal={true}> {/* Pass isModal prop here */}
                         <DropdownMenuItem
                           onClick={() => setAsset('Tether')}
                           className={`flex items-center rounded-lg ${asset === 'Tether' ? 'bg-gray-50' : ''} hover:bg-gray-50`}
