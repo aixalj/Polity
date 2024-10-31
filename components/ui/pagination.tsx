@@ -23,6 +23,7 @@ export function Pagination({
     <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 pt-4 flex items-center justify-between">
       <Button 
         variant="secondary" 
+        className='text-gray-700 bg-white border border-gray-300/50'
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
@@ -32,7 +33,8 @@ export function Pagination({
         Showing {startItem}-{endItem} of {totalItems}
       </span>
       <Button 
-        variant="secondary" 
+        variant="secondary"
+        className='text-gray-700 bg-white border border-gray-300/50'
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >

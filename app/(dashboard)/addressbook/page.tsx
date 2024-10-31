@@ -185,15 +185,27 @@ export default function AddressBook() {
     setIsModalOpen(true); // Function to open the modal
   };
 
+  const handleEditContact = (
+    contactId: string,
+    updatedContact: { name: string }
+  ) => {
+    setContacts((prevContacts) =>
+      prevContacts.map((contact) =>
+        contact.id === contactId
+          ? { ...contact, name: updatedContact.name }
+          : contact
+      )
+    );
+  };
+
   return (
     <main className="w-full h-full">
-      <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-hidden">
+      <div className="x-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
         <Tabs
           value={activeTab}
           onValueChange={(value: string) => handleTabChange(value as TabType)}
-          className="w-full h-full flex flex-col"
         >
-          <div className="w-full sticky top-0 backdrop-blur-md z-10 bg-white/60">
+          <div className="w-full sticky top-0 backdrop-blur-md	z-10 bg-white/60">
             <div className="max-w-screen-xl mx-auto px-6 pt-6 pb-4">
               <nav aria-label="Breadcrumb" className="mb-4">
                 <ol className="flex items-center gap-1 text-xs text-gray-600">
@@ -254,7 +266,7 @@ export default function AddressBook() {
                 />
               </div>
               <div className="flex justify-between items-center w-full mt-4">
-                <h2 className="text-xl font-semibold">
+                <h2 className="text-xl font-medium">
                   {isValidTab(activeTab) &&
                     (activeTab === "contacts" ? "All Contacts" : "Addresses")}
                 </h2>
@@ -339,6 +351,7 @@ export default function AddressBook() {
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
         contactId={selectedContactId!} // Ensure selectedContactId is not null
+        onEditContact={handleEditContact} // Pass the function here
       />
 
       {/* Render the Notification */}

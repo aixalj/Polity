@@ -1,10 +1,8 @@
-// components/ui/addressesTable.tsx
-
 "use client";
 
 import * as React from "react";
 import { Button } from "./button";
-import { Edit, Eye } from "lucide-react";
+import { Edit, Eye, Edit3 } from "lucide-react";
 import { Pagination } from "@/components/ui/pagination";
 import { useState, useRef, useMemo, useCallback, useEffect } from "react";
 import { FavoriteStar } from "./favoritestar";
@@ -35,6 +33,7 @@ import POLNetwork from "public/icons/networks/MATIC.svg";
 
 import EditAddress from "@/components/ui/modals/editAddress"; // Import the modal
 import ViewAddress from "@/components/ui/modals/viewAddress"; // Import the ViewAddress modal
+import EditContactNameModal from "@/components/ui/modals/editContactName"; // Import the modal
 
 interface Address {
   id: string;
@@ -176,40 +175,41 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
     }
   };
 
-  const getAssetIcon = (asset: string) => {
-    switch (asset.toLowerCase()) {
+  const getAssetDetails = (asset: string) => {
+    const assetLower = asset.toLowerCase();
+    switch (assetLower) {
       case "bitcoin":
       case "btc":
-        return BTC;
+        return { icon: BTC, name: "Bitcoin BTC" }; // Bitcoin details
       case "ethereum":
       case "eth":
-        return ETH;
+        return { icon: ETH, name: "Ethereum ETH" }; // Ethereum details
       case "chainlink":
       case "link":
-        return LINK;
+        return { icon: LINK, name: "Chainlink LINK" }; // Chainlink details
       case "polygon":
       case "matic":
-        return MATIC;
+        return { icon: MATIC, name: "Polygon MATIC" }; // Polygon details
       case "usd coin":
       case "usdc":
-        return USDC;
+        return { icon: USDC, name: "USD Coin USDC" }; // USD Coin details
       case "tether":
       case "usdt":
-        return USDT;
+        return { icon: USDT, name: "Tether USDT" }; // Tether details
       case "wrapped bitcoin":
       case "wbtc":
-        return WBTC;
+        return { icon: WBTC, name: "Wrapped Bitcoin WBTC" }; // Wrapped Bitcoin details
       case "solana":
       case "sol":
-        return SOL;
+        return { icon: SOL, name: "Solana SOL" }; // Solana details
       case "cardano":
       case "ada":
-        return ADA;
+        return { icon: ADA, name: "Cardano ADA" }; // Cardano details
       case "polkadot":
       case "dot":
-        return DOT;
+        return { icon: DOT, name: "Polkadot DOT" }; // Polkadot details
       default:
-        return "/default-icon.svg";
+        return { icon: "/default-icon.svg", name: "Unknown Asset" }; // Default details
     }
   };
 
@@ -247,13 +247,13 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
 
   return (
     <div className="flex flex-col h-full">
-      <div className="w-full min-w-fit flex bg-gray-100 rounded-xl font-medium text-gray-500 text-xs">
+      <div className="w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs">
         <div className="w-10 px-2 py-3"></div>
-        <div className="w-1/4 px-6 py-3">Contact</div>
+        <div className="w-1/5 px-6 py-3">Contact</div>
         <div className="w-1/5 px-6 py-3">Network</div>
-        <div className="w-1/6 px-6 py-3">Asset</div>
-        <div className="w-1/4 px-6 py-3">Address</div>
-        <div className="w-64 px-6 py-3"></div>
+        <div className="w-1/6 pl-6 py-3">Asset</div>
+        <div className="w-1/5 px-5 py-3">Address</div>
+        <div className="w-32 px-6 py-3"></div>
       </div>
       <div className="flex-grow overflow-y-auto">
         <div className="w-full flex flex-col gap-1">
@@ -268,7 +268,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   onToggle={() => onToggleFavorite(address.id)}
                 />
               </div>
-              <div className="w-1/4 px-6 py-3 flex items-center">
+              <div className="w-1/5 px-6 py-3 flex items-center">
                 <div className="rounded-full overflow-hidden bg-gray-200 w-8 h-8 mr-2 flex-shrink-0">
                   <Image
                     src={"/bastion.png"}
@@ -303,13 +303,15 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   <>
                     <div className="w-5 h-5 mr-2 flex-shrink-0">
                       <Image
-                        src={getAssetIcon(address.asset)}
+                        src={getAssetDetails(address.asset).icon}
                         alt={address.asset}
                         width={20}
                         height={20}
                       />
                     </div>
-                    <span className="truncate">{address.asset}</span>
+                    <span className="truncate">
+                      {getAssetDetails(address.asset).name}
+                    </span>
                   </>
                 ) : (
                   <span className="text-gray-400"></span>
@@ -391,20 +393,20 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   )}
                 </div>
               </div>
-              <div className="w-64 px-6  flex items-center justify-end space-x-4">
+              <div className="w-40 px-6 py-3 flex items-center justify-end space-x-4">
                 <Button
                   variant="secondary"
                   size="sm"
-                  className="h-8"
+                  className="text-gray-700 bg-white border border-gray-300/50 rounded-[9px]"
                   onClick={() => handleEdit(address.id)}
                 >
-                  <Edit className="h-4 w-4" />
+                  <Edit3 className="h-4 w-4" />
                   Edit
                 </Button>
                 <Button
                   variant="secondary"
                   size="sm"
-                  className="h-8"
+                  className="text-gray-700 bg-white border border-gray-300/50 rounded-[9px]"
                   onClick={() => handleView(address.id)} // Open the View modal
                 >
                   <Eye className="h-4 w-4" />

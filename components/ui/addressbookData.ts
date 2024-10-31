@@ -19,7 +19,7 @@ export interface ContactWithFormattedCount extends Contact {
   formattedAddressCount: string;
 }
 
-// Updated addresses array with increased counts for all contacts
+// Updated addresses array with full-length addresses
 export const addresses: Address[] = [
   {
     id: '1',
@@ -28,7 +28,7 @@ export const addresses: Address[] = [
     addressname: 'John Savings',
     network: 'Ethereum Network',
     asset: 'Tether',
-    address: '0x1234...5678',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
     id: '2',
@@ -37,7 +37,7 @@ export const addresses: Address[] = [
     addressname: 'John Personal',
     network: 'Bitcoin Network',
     asset: 'Bitcoin',
-    address: '0x1234...5678',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
     id: '3',
@@ -46,7 +46,7 @@ export const addresses: Address[] = [
     addressname: 'John Work',
     network: 'Polygon Network',
     asset: 'Tether',
-    address: '0x1234...5678',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
     id: '4',
@@ -55,7 +55,7 @@ export const addresses: Address[] = [
     addressname: 'John Vacation',
     network: 'Ethereum Network',
     asset: 'Tether',
-    address: '0x1234...5678',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
     id: '5',
@@ -64,7 +64,7 @@ export const addresses: Address[] = [
     addressname: 'Jane Holiday',
     network: 'Polygon Network',
     asset: 'Tether',
-    address: '0xabcd...efgh',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
     id: '6',
@@ -73,7 +73,7 @@ export const addresses: Address[] = [
     addressname: 'Jane Work',
     network: 'Ethereum Network',
     asset: 'Tether',
-    address: '0xabcd...efgh',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
     id: '7',
@@ -82,7 +82,7 @@ export const addresses: Address[] = [
     addressname: 'Jane Home',
     network: 'Ethereum Network',
     asset: 'Tether',
-    address: '0xabcd...efgh',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
     id: '8',
@@ -91,7 +91,7 @@ export const addresses: Address[] = [
     addressname: 'Alice Shopping',
     network: 'Ethereum Network',
     asset: 'Tether',
-    address: '0x5678...9012',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
     id: '9',
@@ -100,7 +100,7 @@ export const addresses: Address[] = [
     addressname: 'Alice Home',
     network: 'Bitcoin Network',
     asset: 'Bitcoin',
-    address: '0x5678...9012',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
     id: '10',
@@ -109,7 +109,7 @@ export const addresses: Address[] = [
     addressname: 'Bob Christmas',
     network: 'Ethereum Network',
     asset: 'Tether',
-    address: '0x1234...5678',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
     id: '11',
@@ -118,7 +118,7 @@ export const addresses: Address[] = [
     addressname: 'Bob Work',
     network: 'Ethereum Network',
     asset: 'Tether',
-    address: '0x1234...5678',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
     id: '12',
@@ -127,7 +127,7 @@ export const addresses: Address[] = [
     addressname: 'Emma Summer',
     network: 'Polygon Network',
     asset: '',
-    address: '0x1234...5678',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
     id: '13',
@@ -136,7 +136,7 @@ export const addresses: Address[] = [
     addressname: 'Emma Winter',
     network: 'Polygon Network',
     asset: '',
-    address: '0x1234...5678',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
     id: '14',
@@ -145,7 +145,7 @@ export const addresses: Address[] = [
     addressname: 'Michael Personal',
     network: 'Bitcoin Network',
     asset: '',
-    address: '0x1234...5678',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
     id: '15',
@@ -154,7 +154,7 @@ export const addresses: Address[] = [
     addressname: 'Michael Work',
     network: 'Bitcoin Network',
     asset: '',
-    address: '0x1234...5678',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
     id: '16',
@@ -163,7 +163,7 @@ export const addresses: Address[] = [
     addressname: 'Sophia AVAX',
     network: 'Bitcoin Network',
     asset: 'Bitcoin',
-    address: '0x1234...5678',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
     id: '17',
@@ -172,7 +172,7 @@ export const addresses: Address[] = [
     addressname: 'Daniel Personal',
     network: 'Ethereum Network',
     asset: 'Tether',
-    address: '0x1234...5678',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
     id: '18',
@@ -181,7 +181,7 @@ export const addresses: Address[] = [
     addressname: 'Olivia Savings',
     network: 'Bitcoin Network',
     asset: 'Bitcoin',
-    address: '0x1234...5678',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
     id: '19',
@@ -190,7 +190,7 @@ export const addresses: Address[] = [
     addressname: 'Jenny Personal',
     network: 'Bitcoin Network',
     asset: 'Bitcoin',
-    address: '0x1234...5678',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
     id: '20',
@@ -199,7 +199,7 @@ export const addresses: Address[] = [
     addressname: 'Jenny Work',
     network: 'Bitcoin Network',
     asset: 'Bitcoin',
-    address: '0x1234...5678',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
     id: '21',
@@ -208,7 +208,7 @@ export const addresses: Address[] = [
     addressname: 'Jenny Savings',
     network: 'Bitcoin Network',
     asset: 'Bitcoin',
-    address: '0x1234...5678',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
     id: '22',
@@ -217,7 +217,7 @@ export const addresses: Address[] = [
     addressname: 'Jenny Holiday',
     network: 'Bitcoin Network',
     asset: 'Bitcoin',
-    address: '0x1234...5678',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
 ];
 
@@ -305,7 +305,7 @@ export const contacts: Contact[] = [
 export const getAllContacts = (): ContactWithFormattedCount[] => {
   return contacts.map((contact) => ({
     ...contact,
-    formattedAddressCount: contact.addressCount.toString()
+    formattedAddressCount: contact.addressCount.toString(),
   }));
 };
 
@@ -313,7 +313,8 @@ export const getAllAddresses = (): Address[] => {
   return addresses;
 };
 
-export const addAddress = (newAddress: Omit<Address, 'id'>): void => { // Omit 'id' since it will be generated
+export const addAddress = (newAddress: Omit<Address, 'id'>): void => {
+  // Omit 'id' since it will be generated
   const completeAddress: Address = {
     ...newAddress,
     id: Date.now().toString(), // Generate a unique ID
