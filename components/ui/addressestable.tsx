@@ -425,11 +425,11 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
         />
       </div>
       {showNotification && (
-        <div className='fixed bottom-4 right-4 max-w-sm z-50'>
+        <div className='fixed bottom-4 right-4 max-w-sm z-50 bg-white text-gray-700'>
           <Notification
             title="You've just added this address to your favorites!"
             description="You've successfully added this address to your favorites."
-            status='success'
+            status="info"
             className='shadow-lg'
             onClose={handleCloseNotification}
           />
