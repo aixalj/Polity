@@ -103,9 +103,9 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                   </div>
                   <div className='flex-shrink-0 px-6 py-3 flex items-center justify-end space-x-4'>
                     <Button
-                      variant='outline'
+                      variant='secondary'
                       size="sm"
-                      className='rounded-[12px]'
+                      className='h-8 rounded-[12px] bg-white border border-gray-300/50 text-gray-700 hover:text-gray-900'
                       onClick={() => onAddAddressButton(contact.id, contact.name)}
                     >
                       <PlusSquare className='h-4 w-4' />
