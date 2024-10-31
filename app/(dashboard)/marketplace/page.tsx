@@ -1128,7 +1128,7 @@ export default function Marketplace() {
                   <div className="w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4">
                     <div className="w-full justify-between flex items-center pb-3">
                       <div className="flex flex-row gap-2.5 items-center">
-                        <svg
+                        {/* <svg
                           width="40"
                           height="40"
                           viewBox="0 0 40 40"
@@ -1185,7 +1185,15 @@ export default function Marketplace() {
                               />
                             </clipPath>
                           </defs>
-                        </svg>
+                        </svg> */}
+                        <div className="w-10 h-10 border border-gray-300 rounded-xl flex items-center justify-center">
+                          <Image
+                            src="/icons/coinfirm.png"
+                            alt="Coinfirm"
+                            width={24}
+                            height={24}
+                          />
+                        </div>
 
                         <h3 className="text-2xl font-medium">
                           Coinfirm AML Risk Report
