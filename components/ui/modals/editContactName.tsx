@@ -154,7 +154,7 @@ const EditContactNameModal: React.FC<EditContactNameModalProps> = ({
                       </div>
                       <Button
                         variant='secondary'
-                        className='ml-auto text-gray-700 hover:text-gray-900 bg-white border border-gray-300/50'
+                        className='ml-auto text-gray-700 hover:text-gray-900 bg-white border border-gray-300/50 h-8'
                       >
                         View
                       </Button>
