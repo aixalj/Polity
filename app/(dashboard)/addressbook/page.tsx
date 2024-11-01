@@ -360,7 +360,7 @@ export default function AddressBook() {
           <Notification
             title="You've just added this address to your favorites!"
             description="You've successfully added this address to your favorites."
-            status="success"
+            status="info"
             className="shadow-lg"
             onClose={() => setShowNotification(false)} // Close notification
           />

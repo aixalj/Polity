@@ -38,7 +38,7 @@ const Notification = ({
             : status === "warning"
             ? "bg-amber-50 text-amber-700"
             : status === "info"
-            ? "bg-gray-50 text-gray-700"
+            ? "bg-white text-gray-700"
             : status === "error"
             ? "bg-rose-50 text-rose-700"
             : "bg-amber-50 text-amber-700" // Default to warning style if status is not recognized

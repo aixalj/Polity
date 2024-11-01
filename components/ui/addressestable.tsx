@@ -393,11 +393,11 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   )}
                 </div>
               </div>
-              <div className="w-40 px-6 py-3 flex items-center justify-end space-x-4">
+              <div className="w-40 pr-6 py-3 flex items-center justify-end space-x-4">
                 <Button
                   variant="secondary"
                   size="sm"
-                  className="text-gray-700 bg-white border border-gray-300/50 rounded-[9px]"
+                  className="text-gray-700 hover:text-gray-900 bg-white border border-gray-300/50 rounded-[12px] w-full h-8"
                   onClick={() => handleEdit(address.id)}
                 >
                   <Edit3 className="h-4 w-4" />
@@ -406,7 +406,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                 <Button
                   variant="secondary"
                   size="sm"
-                  className="text-gray-700 bg-white border border-gray-300/50 rounded-[9px]"
+                  className="text-gray-700 hover:text-gray-900 bg-white border border-gray-300/50 rounded-[12px] w-full h-8"
                   onClick={() => handleView(address.id)} // Open the View modal
                 >
                   <Eye className="h-4 w-4" />
@@ -427,7 +427,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
         />
       </div>
       {showNotification && (
-        <div className="fixed bottom-4 right-4 max-w-sm z-50">
+        <div className="fixed bottom-4 right-4 max-w-sm z-50 bg-white text-gray-700">
           <Notification
             title="You've just added this address to your favorites!"
             description="You've successfully added this address to your favorites."
