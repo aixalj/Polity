@@ -23,11 +23,11 @@ const bids: Bid[] = [
 
   {
     name: "Coinfirm AML/KYC Risk Report",
-    category: "10 Reports Package",
-    yourBid: 31,
-    highestBid: 31,
+    category: "25 Reports Package",
+    yourBid: 28,
+    highestBid: 35,
     endTime: new Date(Date.now() + 13550 * 1000),
-    status: "Top Bidder",
+    status: "Outbid",
     url: "/marketplace/coinfirm/report",
   },
 ];

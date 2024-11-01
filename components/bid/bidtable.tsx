@@ -88,7 +88,7 @@ const BidTable: React.FC<{
     <div className="relative w-full flex flex-col ">
       <div className="w-full flex flex-col gap-1 overflow-y-scroll">
         <div className="w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs">
-          <div className="w-[480px] flex-none px-6 py-3">Auction</div>
+          <div className="w-[400px] flex-none px-6 py-3">Auction</div>
           <div className="min-w-36 flex-none px-6 py-3">Your Bid</div>
           <div className="min-w-36 flex-auto px-6 py-3">Highest Bid</div>
           <div className="min-w-36 flex-auto px-6 py-3">Time Remaining</div>
@@ -108,7 +108,7 @@ const BidTable: React.FC<{
                     className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm "
                   >
                     <div className="w-full flex text-left  text-gray-900">
-                      <div className="w-[480px] break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-3 h-16 ">
+                      <div className="w-[400px] break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-3 h-16 ">
                         <div className="min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl">
                           <Image
                             src={"/icons/coinfirm.png"}
@@ -127,11 +127,25 @@ const BidTable: React.FC<{
                         </p>
                       </div>
 
-                      <div className="min-w-36 flex-auto  px-6 py-3 text-sm text-gray-800 h-16 flex items-center">
-                        {bid.yourBid}
+                      <div className="min-w-36 gap-1.5 flex-auto  px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
+                        <Image
+                          src={"/icons/tokens/USDT.svg"}
+                          alt="USDT"
+                          width={16}
+                          height={16}
+                        />
+                        {bid.yourBid.toFixed(2)}
+                        <span className="">USDT</span>
                       </div>
-                      <div className="min-w-36 flex-auto  px-6 py-3 text-sm text-gray-800 h-16 flex items-center">
-                        {bid.highestBid}
+                      <div className="min-w-36 gap-1.5 flex-auto  px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
+                        <Image
+                          src={"/icons/tokens/USDT.svg"}
+                          alt="USDT"
+                          width={16}
+                          height={16}
+                        />
+                        {bid.highestBid.toFixed(2)}
+                        <span className="">USDT</span>
                       </div>
                       <div className="min-w-36 flex-auto px-6 py-3 text-sm text-gray-800 h-16 flex items-center">
                         {formatTimeRemaining(bid.endTime)}
@@ -139,9 +153,9 @@ const BidTable: React.FC<{
                       <div className="min-w-30 flex-auto  px-6 py-3 h-16 flex items-center whitespace-nowrap">
                         <Badge
                           variant={
-                            bid.status === "Signed"
+                            bid.status === "Top Bidder"
                               ? "success"
-                              : bid.status === "Pending"
+                              : bid.status === "Outbid"
                                 ? "warning"
                                 : "success"
                           }
