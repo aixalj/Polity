@@ -105,7 +105,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                     <Button
                       variant='secondary'
                       size="sm"
-                      className='h-8 rounded-[12px] bg-white border border-gray-300/50 text-gray-700 hover:text-gray-900'
+                      className='h-8 rounded-[12px] bg-white border border-gray-300/50 shadow-sm text-gray-700 hover:text-gray-900'
                       onClick={() => onAddAddressButton(contact.id, contact.name)}
                     >
                       <PlusSquare className='h-4 w-4' />
