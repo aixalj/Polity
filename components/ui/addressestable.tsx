@@ -250,9 +250,9 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
       <div className='w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs'>
         <div className='w-10 px-2 py-3'></div>
         <div className='w-1/5 px-6 py-3'>Contact</div>
-        <div className='w-1/5 px-6 py-3'>Network</div>
-        <div className='w-1/6 pl-6 py-3'>Asset</div>
-        <div className='w-1/5 px-5 py-3'>Address</div>
+        <div className='w-1/5 px-4 py-3'>Network</div>
+        <div className='w-1/6 pl-2 py-3'>Asset</div>
+        <div className='w-1/5 pr-1 py-3'>Address</div>
         <div className='w-32 px-6 py-3'></div>
       </div>
       <div className='flex-grow overflow-y-auto'>
