@@ -121,7 +121,7 @@ const RemoveAddress: React.FC<RemoveAddressProps> = ({
       <Dialog open={isOpen} onClose={onClose} className='relative z-50'>
         <div className='fixed inset-0 bg-gray-200 backdrop-blur-sm bg-opacity-50 flex justify-center items-center z-50'>
           <Dialog.Panel className='bg-rose-600 p-1 rounded-2xl shadow-xl max-w-[90%] w-[410px] h-auto flex flex-col relative'>
-            <div className='px-8 pt-5 flex-shrink-0'>
+            <div className='px-8 py-5 flex-shrink-0'>
               <button
                 onClick={onClose}
                 className='absolute top-5 right-5 text-gray-50 hover:text-gray-100'
@@ -135,16 +135,16 @@ const RemoveAddress: React.FC<RemoveAddressProps> = ({
               <h2 className='text-lg font-medium mb-1.5 text-gray-50'>
                 Remove Contact
               </h2>
-              <p className='mb-4 text-gray-50 text-sm font-regular whitespace-nowrap'>
+              <p className=' text-gray-50 text-sm font-regular whitespace-nowrap'>
                 Are you sure you want to remove this contact?
                 <br />
                 This action cannot be undone.
               </p>
             </div>
 
-            <div className='bg-white px-6 pt-4 pb-6 rounded-xl shadow-md flex-grow overflow-hidden'>
-              <div className='-mx-4 bg-gray-50 py-2 mb-1'>
-                <p className='text-xs font-medium text-gray-600 w-full pl-4'>
+            <div className='bg-white px-6 py-4 rounded-xl shadow-md flex-grow overflow-hidden'>
+              <div className='-mx-6 bg-gray-50 py-2 mb-1'>
+                <p className='text-xs font-medium text-gray-600 w-full pl-6'>
                   <strong>CONTACT DETAILS</strong>
                 </p>
               </div>
