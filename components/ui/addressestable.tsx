@@ -393,11 +393,11 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   )}
                 </div>
               </div>
-              <div className="w-40 pr-6 py-3 flex items-center justify-end space-x-4">
+              <div className="w-50 pr-6 py-3 flex items-center justify-end space-x-4">
                 <Button
                   variant="secondary"
                   size="sm"
-                  className="text-gray-700 hover:text-gray-900 bg-white border border-gray-300/50 rounded-[12px] w-full h-8"
+                  className="text-gray-700 hover:text-gray-900 bg-white border border-gray-300/50 rounded-[12px] shadow-sm h-8"
                   onClick={() => handleEdit(address.id)}
                 >
                   <Edit3 className="h-4 w-4" />
@@ -406,7 +406,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                 <Button
                   variant="secondary"
                   size="sm"
-                  className="text-gray-700 hover:text-gray-900 bg-white border border-gray-300/50 rounded-[12px] w-full h-8"
+                  className="text-gray-700 hover:text-gray-900 bg-white border border-gray-300/50 rounded-[12px] shadow-sm h-8"
                   onClick={() => handleView(address.id)} // Open the View modal
                 >
                   <Eye className="h-4 w-4" />
