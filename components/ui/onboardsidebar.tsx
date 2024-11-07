@@ -52,10 +52,30 @@ const avatarVirtualNodeLinks = [
     icon: UserCheck01,
     text: 'Identity Verification',
   },
-  { href: '/onboarding/avatar', icon: Users03, text: 'Avatar Identity', className: 'font-medium' },
-  { href: '/onboarding/nsp', icon: Link02, text: 'Connect with NSP', className: 'font-medium' },
-  { href: '/onboarding/avn', icon: ImageUserLeft, text: 'Avatar Virtual Node', className: 'font-medium' },
-  { href: '/onboarding/agreement', icon: PencilLine, text: 'Sign Agreement', className: 'font-medium' },
+  {
+    href: '/onboarding/avatar',
+    icon: Users03,
+    text: 'Avatar Identity',
+    className: 'font-medium',
+  },
+  {
+    href: '/onboarding/nsp',
+    icon: Link02,
+    text: 'Connect with NSP',
+    className: 'font-medium',
+  },
+  {
+    href: '/onboarding/avn',
+    icon: ImageUserLeft,
+    text: 'Avatar Virtual Node',
+    className: 'font-medium',
+  },
+  {
+    href: '/onboarding/agreement',
+    icon: PencilLine,
+    text: 'Sign Agreement',
+    className: 'font-medium',
+  },
 ];
 
 const walletSetupLinks = [
@@ -69,11 +89,11 @@ const walletSetupLinks = [
     icon: CreditCardEdit,
     text: 'Customize Wallet',
   },
-  {
-    href: '/onboarding/wallet/confirm',
-    icon: CreditCardCheck,
-    text: 'Confirm Wallet',
-  },
+  //{
+  //href: '/onboarding/wallet/confirm',
+  //icon: CreditCardCheck,
+  //text: 'Confirm Wallet',
+  //},
   {
     href: '/onboarding/wallet/agreement',
     icon: PencilLine,
