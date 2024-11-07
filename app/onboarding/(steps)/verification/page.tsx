@@ -1344,13 +1344,7 @@ const Onboarding = () => {
                 </div>
               </div>
             </div>
-            <Notification
-              title='Fractal ID Disclaimer'
-              description='Please note that Fractal.id is currently deployed in a non-production environment for demonstration purposes only. No actual personal information is needed to establish a test Fractal.id account.'
-              status='warning'
-              link='/'
-              linkText='Go to Fractal ID Support'
-            />
+           
           </div>
         </div>
         <div className='flex gap-3 max-w-screen-sm mx-auto w-full justify-between'>
