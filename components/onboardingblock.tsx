@@ -9,7 +9,7 @@ import { ArrowLeft, ArrowRight } from "@untitled-ui/icons-react";
 interface OnboardingBlockProps {
   icon: React.ReactNode;
   title: string;
-  description: string;
+  description: React.ReactNode;
   children: React.ReactNode;
   button1link?: string;
   button1text?: string;
@@ -91,7 +91,7 @@ flex-col p-0 grid shadow-sm max-w-screen-sm mx-auto w-full
           <div className="w-full mb-4 flex justify-between items-center">
             {icon}
           </div>
-          <div className="text-xl">
+          <div className="text-xl pb-1">
             <div>{title}</div>
           </div>
           <div className="text-gray-600 flex text-sm flex-col items-start gap-4 ">
