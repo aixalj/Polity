@@ -11,7 +11,7 @@ export default function Agreement() {
       description={(
         <>
           By signing this Agreement you accept the terms and conditions of services by Bastion Cooperative to provide you with access to the Network and two free Avatar Virtual Nodes to enable you to create two Avatars.
-          <br /> <br />
+          <span className="-mt-6"></span>
           Would you like to proceed and complete installation of your first free Avatar?
         </>
       )}
