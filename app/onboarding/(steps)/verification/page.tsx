@@ -1263,7 +1263,7 @@ const Onboarding = () => {
         <div className='relative h-fit border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-screen-sm mx-auto w-full bg-white'>
           <div className='px-8 pt-8 pb-3 border-b border-gray-200 flex flex-col'>
             <div className='w-full mb-4 flex justify-between items-center'>
-              <UserCheck01 className='w-8 h-8 text-gray-700'  
+              <UserCheck01 className='w-8 h-8 text-gray-700 stroke-[1.5]'  
               />
             </div>
             <div className='text-xl mb-1'>
