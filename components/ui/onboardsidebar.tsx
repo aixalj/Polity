@@ -52,11 +52,10 @@ const avatarVirtualNodeLinks = [
     icon: UserCheck01,
     text: 'Identity Verification',
   },
-  { href: '/onboarding/avatar', icon: Users03, text: 'Avatar Identity' },
-  { href: '/onboarding/element', icon: MessageCircle01, text: 'Join Element' },
-  { href: '/onboarding/nsp', icon: Link02, text: 'Connect with NSP' },
-  { href: '/onboarding/avn', icon: ImageUserLeft, text: 'Avatar Virtual Node' },
-  { href: '/onboarding/agreement', icon: PencilLine, text: 'Sign Agreement' },
+  { href: '/onboarding/avatar', icon: Users03, text: 'Avatar Identity', className: 'font-medium' },
+  { href: '/onboarding/nsp', icon: Link02, text: 'Connect with NSP', className: 'font-medium' },
+  { href: '/onboarding/avn', icon: ImageUserLeft, text: 'Avatar Virtual Node', className: 'font-medium' },
+  { href: '/onboarding/agreement', icon: PencilLine, text: 'Sign Agreement', className: 'font-medium' },
 ];
 
 const walletSetupLinks = [
@@ -120,7 +119,7 @@ const OnboardSideBar = () => {
           alt='Logo'
         />
       </a>
-      <div className='flex items-center mt-4 pb-3 gap-1 px-4'>
+      <div className='flex items-center mt-4 pb-4 gap-1 px-4'>
         <Image
           className='w-16 h-16 mr-2'
           src={SelectProfileSuper}
@@ -128,14 +127,19 @@ const OnboardSideBar = () => {
         />
         <div>
           <h1 className='text-xl font-medium'>SuperApp</h1>
-          <p className='text-sm text-balance text-gray-600'>
-            Set up your account by following this easy onboarding guide below.
+          <p className='text-sm font-medium text-gray-700'>
+            Application Onboarding
           </p>
         </div>
       </div>
+      <div className='px-4'>
+        <p className='text-sm text-balance text-gray-600'>
+          Set up your account by following this easy onboarding guide below.
+        </p>
+      </div>
 
       <div className='no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear h-full'>
-        <nav className='mt-6 w-80 h-full'>
+        <nav className='mt-3 w-80 h-full'>
           <div className='h-full gap-3 flex flex-col justify-between'>
             <ul className='flex px-4 flex-col gap-1'>
               <li className='flex gap-2 whitespace-nowrap pb-2.5 pr-3 items-center text-xs text-gray-500'>
@@ -153,14 +157,14 @@ const OnboardSideBar = () => {
                     <Link
                       className={`group focus:ring-0 ${
                         pathname === link.href
-                          ? 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
+                          ? 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-800 shadow-sm'
                           : isLinkComplete(pathname, link.href)
-                            ? 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-900 '
+                            ? 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-600 '
                             : 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-600 target:bg-white target:text-black border border-transparent '
                       }`}
                       href={link.href}
                     >
-                      <link.icon className='w-5 h-5' />
+                      <link.icon className='w-6 h-6 mr-1' />
                       {link.text}
                       {isLinkComplete(pathname, link.href) && (
                         <Image
