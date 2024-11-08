@@ -1,13 +1,14 @@
+'use client';
+
 import Link from 'next/link';
-
 import Image from 'next/image';
-
 import { Button } from '@/components/ui/button';
 import PolityLogo from '@/public/polity.svg';
 import SelectProfile from '@/public/select-profile-icon.svg';
 import SelectProfileSuper from '@/public/select-profile-icon-super.svg';
 import USDTIcon from '@/public/icons/tokens/USDT.svg';
 import CheckIconNew from '@/public/CheckIconNew.svg';
+import { useState } from 'react';
 
 import {
   ArrowRight,
@@ -22,6 +23,16 @@ import {
 import * as React from 'react';
 
 const Onboarding = () => {
+  const [isSuperApp, setIsSuperApp] = useState(false); // State to toggle sidebar
+
+  const handleStartNowClick = () => {
+    setIsSuperApp(false); // Show UniApp sidebar
+  };
+
+  const handleGetFullAccessClick = () => {
+    setIsSuperApp(true); // Show SuperApp sidebar
+  };
+
   return (
     <main className='w-full h-full flex bg-gray-50 flex-col items-center pt-6 min-h-screen overflow-auto '>
       <Image src={PolityLogo} alt='Polity Logo' />
@@ -30,7 +41,7 @@ const Onboarding = () => {
         <p className='text text-md font-regular text-gray-700 mb-8'>
           Select the right application for you—upgrade to the SuperApp anytime.
         </p>
-        <div className='flex  gap-6 w-full h-auto bg-white border border-gray-200/80 shadow-sm rounded-[40px] p-8'>
+        <div className='flex gap-6 w-full h-auto bg-white border border-gray-200/80 shadow-sm rounded-[40px] p-8'>
           <div className='flex h-full w-full flex-col py-8 px-[42px] gap-3'>
             <div
               className='w-16 h-16 border border-gray-200 flex items-center justify-center rounded-[10px]'
@@ -70,28 +81,28 @@ const Onboarding = () => {
                 </p>
               </div>
             </div>
-            <Link href='/'>
-              <Button variant='outline'>
-                Start Now <ArrowRight className='w-5 h-5' />
-              </Button>
+            <Link href='/onboarding/uniapp/avatar'>
+            <Button variant='outline' onClick={handleStartNowClick}>
+              Start Now <ArrowRight className='w-5 h-5' />
+            </Button>
             </Link>
             <div className='w-full h-px bg-gray-300' />
             <ul className='list-disc list-inside text-sm space-y-2.5  text-gray-700'>
               <li className='flex items-center gap-3 py-0.5 text-gray-700 text-sm font-medium'>
                 <Wallet03 className='w-5 h-5' /> Wallet setup
               </li>
-              <li className='flex items-center gap-3 py-0.5 line-through text-gray-700 text-sm font-medium'>
+              <li className='flex items-center gap-3 py-0.5 text-gray-700 text-sm font-medium'>
                 <Users03 className='w-5 h-5' /> Avatar Identity
-              </li>{' '}
-              <li className='flex items-center gap-3 py-0.5 line-through text-gray-700 text-sm font-medium'>
+              </li>
+              <li className='flex items-center gap-3 py-0.5 text-gray-700 text-sm font-medium'>
                 <Link02 className='w-5 h-5' /> Connect with NSP
-              </li>{' '}
+              </li>
               <li className='flex items-center gap-3 py-0.5 line-through text-gray-700 text-sm font-medium'>
                 <UserCheck01 className='w-5 h-5' /> Identity Verification
-              </li>{' '}
+              </li>
               <li className='flex items-center gap-3 py-0.5 line-through text-gray-700 text-sm font-medium'>
                 <ImageUserLeft className='w-5 h-5' /> Avatar Virtual Node
-              </li>{' '}
+              </li>
             </ul>
             <ul className='list-disc list-inside text-sm space-y-2.5  text-gray-800'>
               <li className='flex items-center gap-3 py-0.5 text-gray-700 text-sm font-regular'>
@@ -109,7 +120,7 @@ const Onboarding = () => {
                   alt='Check Icon'
                 />{' '}
                 Permissionless gateway to DeFi
-              </li>{' '}
+              </li>
               <li className='flex items-center gap-3 py-0.5  text-gray-800 text-sm font-regular'>
                 <Image
                   src={CheckIconNew}
@@ -117,7 +128,7 @@ const Onboarding = () => {
                   alt='Check Icon'
                 />{' '}
                 Access to local NSP marketplace
-              </li>{' '}
+              </li>
             </ul>
           </div>
           <div
@@ -160,7 +171,7 @@ const Onboarding = () => {
                 Polity SuperApp
               </h2>
               <p className='text-sm font-regular text-gray-700'>
-                Full access access to functionalities
+                Full access to functionalities
               </p>
             </div>
             <div className='flex flex-col'>
@@ -182,11 +193,11 @@ const Onboarding = () => {
                 </p>
               </div>
             </div>
-            <Link href='/onboarding/verification/'>
-              <Button>
-                <Key02 className='w-5 h-5' />
-                Get full access
-              </Button>
+            <Link href='/onboarding/superapp/verification'>
+            <Button onClick={handleGetFullAccessClick}>
+              <Key02 className='w-5 h-5' />
+              Get full access
+            </Button>
             </Link>
             <div className='w-full h-px bg-teal-100' />
             <ul className='list-disc list-inside text-sm space-y-2.5  text-primary-700'>
@@ -195,16 +206,16 @@ const Onboarding = () => {
               </li>
               <li className='flex items-center gap-3 py-0.5 text-primary-700 text-sm font-medium'>
                 <Users03 className='w-5 h-5' /> Avatar Identity
-              </li>{' '}
+              </li>
               <li className='flex items-center gap-3  text-primary-700 text-sm font-medium'>
                 <Link02 className='w-5 h-5' /> Connect with NSP
-              </li>{' '}
+              </li>
               <li className='flex items-center gap-3 py-0.5 text-primary-700 text-sm font-medium'>
                 <UserCheck01 className='w-5 h-5' /> Identity Verification
-              </li>{' '}
+              </li>
               <li className='flex items-center gap-3 py-0.5 text-primary-700 text-sm font-medium'>
                 <ImageUserLeft className='w-5 h-5' /> Avatar Virtual Node
-              </li>{' '}
+              </li>
             </ul>
             <ul className='list-disc list-inside text-sm space-y-2.5  text-gray-800'>
               <li className='flex items-center gap-3 py-0.5 text-gray-700 text-sm font-regular'>
@@ -222,7 +233,7 @@ const Onboarding = () => {
                   alt='Check Icon'
                 />{' '}
                 Permissioned access to CeFi and TradFi
-              </li>{' '}
+              </li>
               <li className='flex items-center gap-3 py-0.5  text-gray-800 text-sm font-regular'>
                 <Image
                   src={CheckIconNew}
@@ -230,7 +241,7 @@ const Onboarding = () => {
                   alt='Check Icon'
                 />{' '}
                 Access to global Polity marketplace
-              </li>{' '}
+              </li>
             </ul>
           </div>
         </div>
