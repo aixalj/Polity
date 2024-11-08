@@ -137,9 +137,9 @@ const RemoveAddress: React.FC<RemoveAddressProps> = ({
             </p>
           </div>
 
-          <div className="bg-white px-6 pt-4 pb-6 rounded-xl shadow-md flex-grow overflow-hidden">
-            <div className="-mx-4 bg-gray-50 py-2 mb-1">
-              <p className="text-xs font-medium text-gray-600 w-full pl-4">
+          <div className="bg-white px-6 py-4 rounded-xl shadow-md flex-grow overflow-hidden">
+            <div className="-mx-6 bg-gray-50 py-2 mb-1">
+              <p className="text-xs font-medium text-gray-600 w-full pl-6">
                 <strong>CONTACT DETAILS</strong>
               </p>
             </div>

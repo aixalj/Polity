@@ -128,67 +128,68 @@ const ViewAddress: React.FC<ViewAddressProps> = ({
           </p>
         </div>
 
-        <div className="bg-white px-6 pt-4 pb-6 rounded-xl shadow-md flex-grow overflow-hidden">
-          <div className="-mx-4 bg-gray-50 py-2 mb-1">
-            <p className="text-xs font-medium text-gray-600 w-full pl-4">
-              <strong>CONTACT DETAILS</strong>
-            </p>
-          </div>
-          <p className="text-sm mb-2 w-full flex justify-between">
-            <strong className="font-medium">Contact Name:</strong>{" "}
-            <strong className="font-semibold ml-auto">
-              {addressData.contactName}
-            </strong>
-          </p>
-          <p className="text-sm mb-2 flex justify-between">
-            <strong className="font-medium">Address Name:</strong>{" "}
-            <strong className="font-semibold ml-auto">
-              {addressData.addressname}
-            </strong>
-          </p>
-          <p className="text-sm mb-2 flex justify-between items-center">
-            <strong className="font-medium">Network:</strong>{" "}
-            <strong className="font-semibold ml-auto flex items-center">
-              {getNetworkIcon()}
-              {addressData.network}
-            </strong>
-          </p>
-          {assetDetails && (
-            <p className="text-sm mb-2 flex justify-between items-center">
-              <strong className="font-medium">Asset:</strong>{" "}
-              <strong className="font-semibold ml-auto flex items-center">
-                <Image
-                  src={assetDetails.icon}
-                  alt={assetDetails.name}
-                  className="h-5 w-5 mr-2"
-                />
-                {assetDetails.name}
+          <div className='bg-white px-6 pt-4 pb-4 rounded-xl shadow-md flex-grow overflow-hidden'>
+            <div className='-mx-6 bg-gray-50 py-2 mb-2'>
+              <p className='text-xs font-medium text-gray-600 w-full pl-6'>
+                <strong>CONTACT DETAILS</strong>
+              </p>
+            </div>
+            <p className='text-sm mb-2 w-full flex justify-between'>
+              <strong className='font-medium'>Contact Name:</strong>{' '}
+              <strong className='font-semibold ml-auto'>
+                {addressData.contactName}
               </strong>
             </p>
-          )}
-          <p className="text-sm flex justify-between">
-            <strong className="font-medium">Network Address:</strong>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <span
-                    className="flex items-center cursor-pointer"
-                    onClick={() => copyToClipboard(addressData.address)}
-                  >
-                    <strong className="font-semibold ml-auto">
-                      {truncateAddress(addressData.address, 20)}
-                    </strong>
-                    <Copy className="h-4 w-4 text-gray-600 ml-2" />
-                  </span>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{copiedAddress ? "Copied!" : "Click to copy"}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </p>
-        </div>
-      </DialogContent>
+            <p className='text-sm mb-2 flex justify-between'>
+              <strong className='font-medium'>Address Name:</strong>{' '}
+              <strong className='font-semibold ml-auto'>
+                {addressData.addressname}
+              </strong>
+            </p>
+            <p className='text-sm mb-2 flex justify-between items-center'>
+              <strong className='font-medium'>Network:</strong>{' '}
+              <strong className='font-semibold ml-auto flex items-center'>
+                {getNetworkIcon()}
+                {addressData.network}
+              </strong>
+            </p>
+            {assetDetails && (
+              <p className='text-sm mb-2 flex justify-between items-center'>
+                <strong className='font-medium'>Asset:</strong>{' '}
+                <strong className='font-semibold ml-auto flex items-center'>
+                  <Image
+                    src={assetDetails.icon}
+                    alt={assetDetails.name}
+                    className='h-5 w-5 mr-2'
+                  />
+                  {assetDetails.name}
+                </strong>
+              </p>
+            )}
+            <p className='text-sm flex justify-between'>
+              <strong className='font-medium'>Network Address:</strong>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <span
+                      className='flex items-center cursor-pointer'
+                      onClick={() => copyToClipboard(addressData.address)}
+                    >
+                      <strong className='font-semibold ml-auto'>
+                        {truncateAddress(addressData.address, 20)}
+                      </strong>
+                      <Copy className='h-4 w-4 text-gray-600 ml-2' />
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{copiedAddress ? 'Copied!' : 'Click to copy'}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </p>
+          </div>
+        </Dialog.Panel>
+      </div>
     </Dialog>
   );
 };
