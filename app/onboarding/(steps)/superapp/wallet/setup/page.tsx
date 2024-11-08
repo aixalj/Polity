@@ -74,7 +74,7 @@ flex-col  p-0     max-w-screen-sm mx-auto w-full"
           </p>
           {!isLoading && (
             <div className="inline-flex mx-auto gap-4">
-              <Link href="/dashboard/superapp">
+              <Link href="/">
                 <Button>Enter Dashboard</Button>
               </Link>
             </div>

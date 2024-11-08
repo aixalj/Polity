@@ -1088,11 +1088,11 @@ const SideBar = () => {
               <li>
                 <Link
                   className={`group focus:ring-0 ${
-                    pathname === "/dashboard/superapp/marketplace"
+                    pathname === "/marketplace"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
-                  href="/dashboard/superapp/marketplace"
+                  href="/marketplace"
                   id="overview"
                 >
                   <svg
@@ -1117,11 +1117,11 @@ const SideBar = () => {
               <li>
                 <a
                   className={`group focus:ring-0 ${
-                    pathname === "/dashboard/superapp/transactions"
+                    pathname === "/transactions"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
-                  href="/dashboard/superapp/transactions"
+                  href="/transactions"
                   // onClick={(e) => {
                   //   if (e.detail === 3) {
                   //     e.preventDefault();
@@ -1168,12 +1168,12 @@ const SideBar = () => {
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
-                  href="/dashboard/superapp/addressbook"
+                  href="/addressbook"
                   id="overview"
                   onClick={(e) => {
                     if (e.detail === 3) {
                       e.preventDefault();
-                      window.open("/dashboard/superapp/addressbook", "_self");
+                      window.open("/addressbook", "_self");
                     }
                   }}
                 >
@@ -1199,11 +1199,11 @@ const SideBar = () => {
               <li>
                 <a
                   className={`group focus:ring-0 ${
-                    pathname === "/dashboard/superapp/agreements"
+                    pathname === "/agreements"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
-                  href="/dashboard/superapp/agreements"
+                  href="/agreements"
                   // onClick={(e) => {
                   //   if (e.detail === 3) {
                   //     e.preventDefault();

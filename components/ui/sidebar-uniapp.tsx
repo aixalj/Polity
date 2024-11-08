@@ -1090,11 +1090,11 @@ const SideBarUniapp = () => {
               <li>
                 <Link
                   className={`group focus:ring-0 ${
-                    pathname === '/dashboard/uniapp/marketplace'
+                    pathname === '/uniapp/marketplace'
                       ? '   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
                       : 'w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
                   }`}
-                  href='/dashboard/uniapp/marketplace'
+                  href='/uniapp/marketplace'
                   id='overview'
                 >
                   <svg
@@ -1119,11 +1119,11 @@ const SideBarUniapp = () => {
               <li>
                 <a
                   className={`group focus:ring-0 ${
-                    pathname === '/dashboard/uniapp/transactions'
+                    pathname === '/uniapp/transactions'
                       ? '   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
                       : 'w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
                   }`}
-                  href='/dashboard/uniapp/transactions'
+                  href='/uniapp/transactions'
                   // onClick={(e) => {
                   //   if (e.detail === 3) {
                   //     e.preventDefault();
@@ -1166,11 +1166,11 @@ const SideBarUniapp = () => {
               <li>
                 <a
                   className={`group focus:ring-0 ${
-                    pathname === '/dashboard/uniapp/addressbook'
+                    pathname === '/uniapp/addressbook'
                       ? '   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
                       : 'w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
                   }`}
-                  href='/dashboard/uniapp/addressbook'
+                  href='/uniapp/addressbook'
                   id='overview'
                   onClick={(e) => {
                     if (e.detail === 3) {
@@ -1201,11 +1201,11 @@ const SideBarUniapp = () => {
               <li>
                 <a
                   className={`group focus:ring-0 ${
-                    pathname === '/dashboard/uniapp/agreements'
+                    pathname === '/uniapp/agreements'
                       ? '   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
                       : 'w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
                   }`}
-                  href='/dashboard/uniapp/agreements'
+                  href='/uniapp/agreements'
                   // onClick={(e) => {
                   //   if (e.detail === 3) {
                   //     e.preventDefault();

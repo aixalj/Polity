@@ -25,7 +25,7 @@ import {
 
 import { GetServerSideProps } from 'next';
 
-import { SideBar } from '@/components/ui/sidebar-superapp';
+import { SideBar } from '@/components/ui/sidebar';
 
 import { WalletTable } from '@/components/wallettable';
 
