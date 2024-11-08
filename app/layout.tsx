@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
 
-import { SideBar } from "@/components/ui/sidebar";
+import { SideBar } from '@/components/ui/sidebar-superapp';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Polity",
-  description: "Wealth Dashboard",
+  title: 'Polity',
+  description: 'Wealth Dashboard',
 };
 
 export default function RootLayout({
@@ -17,9 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body className={inter.className}>
-        <div className="flex h-screen overflow-hidden bg-gray-50 w-full text-gray-900">
+        <div className='flex h-screen overflow-hidden bg-gray-50 w-full text-gray-900'>
           {/* <SideBar /> */}
 
           {/* <div className="relative flex overflow-y-auto overflow-x-hidden py-2 px-2 h-screen w-full"> */}
