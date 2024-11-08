@@ -175,9 +175,9 @@ const SideBarUniapp = () => {
                 <CollapsibleTrigger className="w-full ease-in-out duration-200">
                   <div className="group relative  w-full outline-none  focus:tap-highlight-transparent  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
                     <Link
-                      href="/"
+                      href="#"
                       className={`group focus:ring-0 ${
-                        pathname === "/"
+                        pathname === "#"
                           ? "justify-between outline-none  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                           : "outline-none justify-between  focus:tap-highlight-transparent hover:text-black focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                       }`}
@@ -1088,11 +1088,11 @@ const SideBarUniapp = () => {
               <li>
                 <Link
                   className={`group focus:ring-0 ${
-                    pathname === "/marketplace"
+                    pathname === "/dashboard/uniapp/marketplace"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
-                  href="/marketplace"
+                  href="/dashboard/uniapp/marketplace"
                   id="overview"
                 >
                   <svg
@@ -1117,11 +1117,11 @@ const SideBarUniapp = () => {
               <li>
                 <a
                   className={`group focus:ring-0 ${
-                    pathname === "/transactions"
+                    pathname === "/dashboard/uniapp/transactions"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
-                  href="/transactions"
+                  href="/dashboard/uniapp/transactions"
                   // onClick={(e) => {
                   //   if (e.detail === 3) {
                   //     e.preventDefault();
@@ -1164,11 +1164,11 @@ const SideBarUniapp = () => {
               <li>
                 <a
                   className={`group focus:ring-0 ${
-                    pathname === "/addressbook"
+                    pathname === "/dashboard/uniapp/addressbook"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
-                  href="/addressbook"
+                  href="/dashboard/uniapp/addressbook"
                   id="overview"
                   onClick={(e) => {
                     if (e.detail === 3) {
@@ -1199,11 +1199,11 @@ const SideBarUniapp = () => {
               <li>
                 <a
                   className={`group focus:ring-0 ${
-                    pathname === "/agreements"
+                    pathname === "/dashboard/uniapp/agreements"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
-                  href="/agreements"
+                  href="/dashboard/uniapp/agreements"
                   // onClick={(e) => {
                   //   if (e.detail === 3) {
                   //     e.preventDefault();
