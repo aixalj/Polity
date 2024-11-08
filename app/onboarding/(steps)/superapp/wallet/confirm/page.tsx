@@ -17,9 +17,9 @@ export default function AVN() {
       icon={<CreditCardCheck className="w-8 h-8 text-gray-700" />}
       title="Confirm your wallet"
       description="Assign a unique name and style to your wallet that reflects its intended use. This will help you easily identify its purpose in the future."
-      button1link="/onboarding/wallet/customize"
+      button1link="/onboarding/superapp/wallet/customize"
       button1text="Back"
-      button2link="/onboarding/wallet/agreement"
+      button2link="/onboarding/superapp/wallet/agreement"
       button2text="Continue"
     >
       <div className="px-6 py-5 flex flex-col gap-4">

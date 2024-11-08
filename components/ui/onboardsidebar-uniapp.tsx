@@ -48,13 +48,13 @@ import SelectProfile from '@/public/select-profile-icon.svg';
 
 const avatarVirtualNodeLinks = [
   {
-    href: '/onboarding/avatar',
+    href: '/onboarding/uniapp/avatar',
     icon: Users03,
     text: 'Avatar Identity',
     className: 'font-medium',
   },
   {
-    href: '/onboarding/nsp',
+    href: '/onboarding/uniapp/nsp',
     icon: Link02,
     text: 'Connect with NSP',
     className: 'font-medium',

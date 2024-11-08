@@ -48,30 +48,30 @@ import SelectProfileSuper from '@/public/select-profile-icon-super.svg';
 
 const avatarVirtualNodeLinks = [
   {
-    href: '/onboarding/verification',
+    href: '/onboarding/superapp/verification',
     icon: UserCheck01,
     text: 'Identity Verification',
   },
   {
-    href: '/onboarding/avatar',
+    href: '/onboarding/superapp/avatar',
     icon: Users03,
     text: 'Avatar Identity',
     className: 'font-medium',
   },
   {
-    href: '/onboarding/nsp',
+    href: '/onboarding/superapp/nsp',
     icon: Link02,
     text: 'Connect with NSP',
     className: 'font-medium',
   },
   {
-    href: '/onboarding/avn',
+    href: '/onboarding/superapp/avn',
     icon: ImageUserLeft,
     text: 'Avatar Virtual Node',
     className: 'font-medium',
   },
   {
-    href: '/onboarding/agreement',
+    href: '/onboarding/superapp/agreement',
     icon: PencilLine,
     text: 'Sign Agreement',
     className: 'font-medium',

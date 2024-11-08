@@ -17,7 +17,7 @@ export default function WalletOnboardingLayout({
     <WalletSelectionProvider>
       <div className="flex h-screen overflow-hidden bg-gray-50 w-full text-gray-900">
         <div className="z-20">
-          <OnboardSideBarSuperApp />
+          
         </div>
 
         <main className="relative flex overflow-y-auto overflow-x-hidden pt-12 h-screen w-full">

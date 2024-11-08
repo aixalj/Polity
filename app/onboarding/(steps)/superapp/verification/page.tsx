@@ -1349,10 +1349,10 @@ const Onboarding = () => {
           </div>
         </div>
         <div className='flex gap-3 max-w-screen-sm mx-auto w-full justify-between'>
-          <Link href='/onboarding/avatar'>
+          <Link href='/onboarding/superapp/avatar'>
             <Button variant='outline'>Skip for Now</Button>
           </Link>
-          <Link href='/onboarding/avatar'>
+          <Link href='/onboarding/superapp/avatar'>
             <Button>
               Continue to Fractal ID <LinkExternal01 className='w-5 h-5' />
             </Button>

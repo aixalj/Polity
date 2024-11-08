@@ -8,9 +8,9 @@ export default function Agreement() {
       icon={<MessageCircle01 className='w-8 h-8 text-gray-700' />}
       title='Join Element'
       description='Element offers a secure and compliant communication solution, empowering you with data sovereignty through open-source and decentralized hosting.'
-      button1link='/onboarding/avatar'
+      button1link='/onboarding/superapp/avatar'
       button1text='Back'
-      button2link='/onboarding/nsp'
+      button2link='/onboarding/superapp/nsp'
       button2text='Continue'
     >
       <div className='pt-5 pb-3'>

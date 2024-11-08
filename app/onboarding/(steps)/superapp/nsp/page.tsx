@@ -37,11 +37,11 @@ export default function Agreement() {
       icon={<Link02 className='w-8 h-8 text-gray-700' />}
       title='Connect to a Network Service Provider'
       description='Provider of virtual nodes and technical support to Clients and other network participants.'
-      button1link='/onboarding/avatar'
+      button1link='/onboarding/superapp/avatar'
       button1text='Back'
-      button2link={selectedProvider === 'uniapp' ? '/onboarding/installation' : '/onboarding/avn'} // Conditional link
+      button2link='/onboarding/superapp/avn' // Conditional link
       button2text='Continue'
-      button3link='/onboarding/skip'
+      button3link='/onboarding/superapp/avn'
       button3text='Skip for Now' 
     >
       <div className='grid grid-cols-2 gap-4 px-6 py-4'>

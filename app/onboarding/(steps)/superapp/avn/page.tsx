@@ -12,9 +12,9 @@ export default function AVN() {
       icon={<ImageUserLeft className='w-8 h-8 text-gray-700' />}
       title='Avatar Virtual Node'
       description='Your Avatar Virtual Node is your own digital company and a gateway into the Web3 space. '
-      button1link='/onboarding/nsp'
+      button1link='/onboarding/superapp/nsp'
       button1text='Back'
-      button2link='/onboarding/agreement'
+      button2link='/onboarding/superapp/agreement'
       button2text='Continue'
     >
       <div className='flex flex-col gap-10 px-6 py-5'>

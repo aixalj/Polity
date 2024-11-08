@@ -201,13 +201,13 @@ export default function Agreement() {
         ))}
       </div>
       <div className='flex gap-3 max-w-screen-xl mx-auto w-full justify-end'>
-        <Link href={'/onboarding/wallet'}>
+        <Link href={'/onboarding/superapp/wallet'}>
           <Button variant='outline'>
             <ArrowLeft className='w-5 h-5' /> Back
           </Button>
         </Link>
 
-        <Link href={'/onboarding/wallet/customize'}>
+        <Link href={'/onboarding/superapp/wallet/customize'}>
           <Button disabled={!selectedProvider}>
             Continue <ArrowRight className='w-5 h-5' />
           </Button>

@@ -11,9 +11,9 @@ export default function Agreement() {
       icon={<Users03 className="w-8 h-8 text-gray-700" />}
       title="Create your Avatar Identity"
       description="Choose a name and upload an image that represent your Avatar."
-      button1link="/onboarding/verification"
+      button1link="/onboarding/superapp/verification"
       button1text="Back"
-      button2link="/onboarding/nsp"
+      button2link="/onboarding/superapp/nsp"
       button2text="Continue"
     >
       <div className="px-6 py-5 flex flex-col gap-4">

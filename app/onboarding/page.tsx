@@ -81,7 +81,7 @@ const Onboarding = () => {
                 </p>
               </div>
             </div>
-            <Link href='/onboarding/avatar'>
+            <Link href='/onboarding/uniapp/avatar'>
             <Button variant='outline' onClick={handleStartNowClick}>
               Start Now <ArrowRight className='w-5 h-5' />
             </Button>
@@ -193,7 +193,7 @@ const Onboarding = () => {
                 </p>
               </div>
             </div>
-            <Link href='/onboarding/verification'>
+            <Link href='/onboarding/superapp/verification'>
             <Button onClick={handleGetFullAccessClick}>
               <Key02 className='w-5 h-5' />
               Get full access

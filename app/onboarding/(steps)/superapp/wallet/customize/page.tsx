@@ -38,9 +38,9 @@ export default function AVN() {
       icon={<CreditCardEdit className="w-8 h-8 text-gray-700" />}
       title="Customize your wallet"
       description="Assign a unique name and style to your wallet that reflects its intended use. This will help you easily identify its purpose in the future."
-      button1link="/onboarding/wallet/provider"
+      button1link="/onboarding/superapp/wallet/provider"
       button1text="Back"
-      button2link="/onboarding/wallet/confirm"
+      button2link="/onboarding/superapp/wallet/confirm"
       button2text="Continue"
     >
       <div className="px-6 py-5 flex flex-col gap-4">
