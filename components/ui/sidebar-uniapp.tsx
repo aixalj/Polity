@@ -1266,7 +1266,7 @@ const SideBarUniapp = () => {
             <div className='flex flex-col gap-4'>
               <ul className='flex flex-col gap-2'>
                 <li>
-                  <div className='flex flex-col px-4 py-5 gap-1 rounded-xl bg-white border border-gray-300 text-sm shadow-sm'>
+                  <div className='flex flex-col px-4 py-5 gap-1 rounded-2xl bg-white border border-gray-300 text-sm shadow-sm'>
                     <div className='flex flex-row items-center justify-between mb-2'>
                       <Image src={SelectProfile} alt='Profile Logo' />
                       <div className='bg-purple-100 border border-purple-200 rounded-[800px] py-1 px-2.5'>
@@ -1275,10 +1275,10 @@ const SideBarUniapp = () => {
                         </p>
                       </div>
                     </div>
-                    <h3 className='font-semibold text-sm text-gray-900'>
+                    <h3 className='font-semibold text-[14px] text-gray-900'>
                       Polity SuperApp
                     </h3>
-                    <p className='text-gray-600'>
+                    <p className='text-gray-600 text-sm'>
                       Full access access to functionalities
                     </p>
                     <div className='flex flex-row items-center gap-1 mt-1'>
