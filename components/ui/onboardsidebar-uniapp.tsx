@@ -44,14 +44,9 @@ import {
   UserCheck01,
   Users03,
 } from '@untitled-ui/icons-react';
-import SelectProfileSuper from '@/public/select-profile-icon-super.svg';
+import SelectProfile from '@/public/select-profile-icon.svg';
 
 const avatarVirtualNodeLinks = [
-  {
-    href: '/onboarding/verification',
-    icon: UserCheck01,
-    text: 'Identity Verification',
-  },
   {
     href: '/onboarding/avatar',
     icon: Users03,
@@ -62,18 +57,6 @@ const avatarVirtualNodeLinks = [
     href: '/onboarding/nsp',
     icon: Link02,
     text: 'Connect with NSP',
-    className: 'font-medium',
-  },
-  {
-    href: '/onboarding/avn',
-    icon: ImageUserLeft,
-    text: 'Avatar Virtual Node',
-    className: 'font-medium',
-  },
-  {
-    href: '/onboarding/agreement',
-    icon: PencilLine,
-    text: 'Sign Agreement',
     className: 'font-medium',
   },
 ];
@@ -142,11 +125,11 @@ const OnboardSideBar = () => {
       <div className='flex items-center mt-4 pb-4 gap-1 px-4'>
         <Image
           className='w-16 h-16 mr-2'
-          src={SelectProfileSuper}
+          src={SelectProfile}
           alt='Profile Logo'
         />
         <div>
-          <h1 className='text-xl font-medium'>SuperApp</h1>
+          <h1 className='text-xl font-medium'>Polity UniApp</h1>
           <p className='text-sm font-medium text-gray-700'>
             Application Onboarding
           </p>
@@ -244,4 +227,4 @@ const OnboardSideBar = () => {
   );
 };
 
-export { OnboardSideBar };
+export { OnboardSideBar as OnboardSideBarUniApp };

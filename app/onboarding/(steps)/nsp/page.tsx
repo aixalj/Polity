@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react'; // Import useState
 import OnboardingBlock from '@/components/onboardingblock';
 
 import {
@@ -23,14 +26,20 @@ import {
 } from '@/components/ui/select';
 
 export default function Agreement() {
+  const [selectedProvider, setSelectedProvider] = useState(''); // State for selected provider
+
+  const handleProviderChange = (value: string) => {
+    setSelectedProvider(value); // Update state on selection
+  };
+
   return (
     <OnboardingBlock
       icon={<Link02 className='w-8 h-8 text-gray-700' />}
       title='Connect to a Network Service Provider'
       description='Provider of virtual nodes and technical support to Clients and other network participants.'
-      button1link='/onboarding/element'
+      button1link='/onboarding/avatar'
       button1text='Back'
-      button2link='/onboarding/avn'
+      button2link={selectedProvider === 'uniapp' ? '/onboarding/installation' : '/onboarding/avn'} // Conditional link
       button2text='Continue'
       button3link='/onboarding/skip'
       button3text='Skip for Now' 
@@ -67,8 +76,6 @@ export default function Agreement() {
         </div>
         <div className='w-full gap-3 flex flex-col'>
           <div className='-mx-6'>
-            {' '}
-            {/* Add negative margin here */}
             <div className='inline-block py-2 pl-6 text-gray-600 font-medium bg-gray-50 text-xs w-full leading-2'>
               STEP 2
             </div>
@@ -98,13 +105,12 @@ export default function Agreement() {
         </div>
         <div className='flex flex-col gap-1.5'>
           <Label>Select a Network Service Provider</Label>
-          <Select
-          //   defaultValue="bastion"
-          >
+          <Select onValueChange={handleProviderChange}> {/* Update to handle selection */}
             <SelectTrigger>
               <SelectValue placeholder='Select a Network Service Provider...' />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value='uniapp'>UniApp</SelectItem> {/* Added UniApp option */}
               <SelectItem value='bastion'>Bastion</SelectItem>
               <SelectItem value='element'>Element</SelectItem>
             </SelectContent>

@@ -13,7 +13,7 @@ export default function Agreement() {
       description="Choose a name and upload an image that represent your Avatar."
       button1link="/onboarding/verification"
       button1text="Back"
-      button2link="/onboarding/element"
+      button2link="/onboarding/nsp"
       button2text="Continue"
     >
       <div className="px-6 py-5 flex flex-col gap-4">
