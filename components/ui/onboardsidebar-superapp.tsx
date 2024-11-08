@@ -119,11 +119,11 @@ const OnboardSideBar = () => {
       return true; // All wallet links are complete on the wallet setup page
     }
 
-    const currentIndex = currentPath.startsWith('/onboarding/wallet')
+    const currentIndex = currentPath.startsWith('/onboarding/superapp/wallet')
       ? walletSetupLinks.findIndex((link) => link.href === currentPath)
       : avatarVirtualNodeLinks.findIndex((link) => link.href === currentPath);
 
-    const linkIndex = currentPath.startsWith('/onboarding/wallet')
+    const linkIndex = currentPath.startsWith('/onboarding/superapp/wallet')
       ? walletSetupLinks.findIndex((link) => link.href === linkHref)
       : avatarVirtualNodeLinks.findIndex((link) => link.href === linkHref);
 

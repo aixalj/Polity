@@ -87,11 +87,11 @@ const walletSetupLinks = [
 const OnboardSideBar = () => {
   const pathname = usePathname();
 
-  const isWalletSection = pathname.startsWith('/onboarding/wallet');
+  const isWalletSection = pathname.startsWith('/onboarding/uniapp/wallet');
   const isAvatarSection =
-    pathname.startsWith('/onboarding') && !isWalletSection;
-  const isInstallationPage = pathname === '/onboarding/installation';
-  const isWalletSetupPage = pathname === '/onboarding/wallet/setup';
+    pathname.startsWith('/onboarding/uniapp') && !isWalletSection;
+  const isInstallationPage = pathname === '/onboarding/uniapp/installation';
+  const isWalletSetupPage = pathname === '/onboarding/uniapp/wallet/setup';
 
   const isLinkComplete = (currentPath: string, linkHref: string) => {
     if (isInstallationPage) {
@@ -102,11 +102,11 @@ const OnboardSideBar = () => {
       return true; // All wallet links are complete on the wallet setup page
     }
 
-    const currentIndex = currentPath.startsWith('/onboarding/wallet')
+    const currentIndex = currentPath.startsWith('/onboarding/uniapp/wallet')
       ? walletSetupLinks.findIndex((link) => link.href === currentPath)
       : avatarVirtualNodeLinks.findIndex((link) => link.href === currentPath);
 
-    const linkIndex = currentPath.startsWith('/onboarding/wallet')
+    const linkIndex = currentPath.startsWith('/onboarding/uniapp/wallet')
       ? walletSetupLinks.findIndex((link) => link.href === linkHref)
       : avatarVirtualNodeLinks.findIndex((link) => link.href === linkHref);
 
@@ -187,38 +187,10 @@ const OnboardSideBar = () => {
                 WALLET SETUP
                 <div className='w-full bg-gray-300 h-[1px]'></div>
                 <div className='min-w-5 h-5 rounded-full border border-gray-300 bg-white'>
-                  {isWalletSetupPage && (
-                    <Image src={CheckIcon} alt='Check' width={20} height={20} />
-                  )}
+                  
                 </div>
               </li>
-              {isWalletSection &&
-                walletSetupLinks.map((link, index) => (
-                  <li key={index}>
-                    <Link
-                      className={`group focus:ring-0 ${
-                        pathname === link.href
-                          ? 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-800 shadow-sm'
-                          : isLinkComplete(pathname, link.href)
-                            ? 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-600 '
-                            : 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-600 target:bg-white target:text-black border border-transparent '
-                      }`}
-                      href={link.href}
-                    >
-                      <link.icon className='w-5 h-5' />
-                      {link.text}
-                      {isLinkComplete(pathname, link.href) && (
-                        <Image
-                          src={CheckIcon}
-                          alt='Check'
-                          className='ml-auto'
-                          width={20}
-                          height={20}
-                        />
-                      )}
-                    </Link>
-                  </li>
-                ))}
+              
             </ul>
           </div>
         </nav>
