@@ -39,7 +39,7 @@ export default function Agreement() {
         <div className='w-full gap-3 flex flex-col'>
           <div className='-mx-6'>
             <div className='inline-block py-2 pl-6 text-gray-600 font-medium bg-gray-50 text-xs w-full leading-2'>
-              STEP 1
+              STEP 1 - Testing Change
             </div>
           </div>
           <div className='w-full rounded-xl flex items-center justify-center'>
