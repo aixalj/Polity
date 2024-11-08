@@ -5,6 +5,10 @@ import Wallet from '@/public/walletgraphic.svg';
 import DFNS from '@/public/providers/DFNS.svg';
 import FB from '@/public/providers/FB.svg';
 import SH from '@/public/providers/SH.svg';
+import Blowfish from '@/public/integrations/Blowfish.svg';
+import DeFi from '@/public/integrations/DeFi.svg';
+import Moralis from '@/public/integrations/Moralis.svg';
+import WalletConnect from '@/public/integrations/Wallet-Connect.svg';
 import { CreditCardSearch, File02, Wallet01 } from '@untitled-ui/icons-react';
 import { ArrowLeft, ArrowRight } from '@untitled-ui/icons-react';
 import { Button } from '@/components/ui/button';
@@ -31,6 +35,12 @@ export default function Agreement() {
         'Zero-trust security architecture defends against third-party malicious acts.',
         'Users have complete control of recovery phrases of all key shards.',
       ],
+      integrations: [
+        { name: 'DeFi', icon: DeFi },
+        { name: 'Moralis', icon: Moralis },
+        { name: 'Blowfish', icon: Blowfish },
+        { name: 'WalletConnect', icon: WalletConnect },
+      ],
     },
     {
       name: 'Safeheron',
@@ -43,6 +53,12 @@ export default function Agreement() {
         'Utilizes MPC for distributed key management, increasing security by dividing key control.',
         'Securely connect to dApps, flexibly access EVM and non-EVM chains.',
         'Maintain full control and ownership, ensuring no risk of asset misappropriation.',
+      ],
+      integrations: [
+        { name: 'DeFi', icon: DeFi },
+        { name: 'Moralis', icon: Moralis },
+        { name: 'Blowfish', icon: Blowfish },
+        { name: 'WalletConnect', icon: WalletConnect },
       ],
     },
     {
@@ -57,6 +73,12 @@ export default function Agreement() {
         'Securely connect to dApps, flexibly access EVM and non-EVM chains.',
         'Maintain full control and ownership, ensuring no risk of asset misappropriation.',
       ],
+      integrations: [
+        { name: 'DeFi', icon: DeFi },
+        { name: 'Moralis', icon: Moralis },
+        { name: 'Blowfish', icon: Blowfish },
+        { name: 'WalletConnect', icon: WalletConnect },
+      ],
     },
   ];
 
@@ -68,7 +90,7 @@ export default function Agreement() {
 
   return (
     <div className='w-full h-full flex flex-col gap-5 px-6'>
-      <div className='relative h-fit  border gap-0 flex-none border-gray-300 rounded-3xl flex-col  px-0  grid   shadow-sm  max-w-screen-xl mx-auto w-full bg-white duration-200 overflow-hidden'>
+      <div className='relative h-fit border gap-0 flex-none border-gray-300 rounded-3xl flex-col px-0 grid shadow-sm max-w-screen-xl mx-auto w-full bg-white duration-200 overflow-hidden'>
         <div className='px-6 pt-6 pb-3 border-b border-gray-200 flex flex-col'>
           <div className='w-full mb-4 flex justify-between items-center'>
             <CreditCardSearch className='w-8 h-8 text-gray-700' />
@@ -76,7 +98,7 @@ export default function Agreement() {
           <div className='text-xl'>
             <div>Select your Provider</div>
           </div>
-          <div className='text-gray-600 flex text-sm flex-col items-start gap-4 '>
+          <div className='text-gray-600 flex text-sm flex-col items-start gap-4'>
             <p>
               Our wallet partners provide enterprise-grade MPC and security, so
               you&apos;ve got all you need to explore the DeFi world with
@@ -85,24 +107,14 @@ export default function Agreement() {
           </div>
         </div>
       </div>
-      <div className='w-full grid grid-cols-3 max-w-screen-xl mx-auto gap-6 justify-start '>
+      <div className='w-full grid grid-cols-3 max-w-screen-xl mx-auto gap-6 justify-start'>
         {walletProviders.map((provider, index) => (
           <div
             key={index}
             className='w-full flex flex-col gap-3 max-w-full border border-gray-300 bg-white rounded-3xl'
           >
-            <div className='w-full flex flex-col p-2'>
-              <div className='w-full h-44 rounded-2xl overflow-hidden bg-gray-50 border border-gray-200'>
-                <Image
-                  src={provider.banner}
-                  className='w-full h-full object-cover'
-                  alt={provider.name}
-                  width={32}
-                  height={32}
-                />
-              </div>
-            </div>
-            <div className='w-full px-6 justify-between flex items-center'>
+            <div className='w-full flex flex-col p-2'></div>
+            <div className='w-full px-6 pb-4 justify-between flex items-center border-b border-gray-200'>
               <div className='flex flex-row gap-2.5 items-center'>
                 <Image
                   src={provider.logo}
@@ -113,6 +125,14 @@ export default function Agreement() {
                 />
                 <h3 className='text-xl font-medium'>{provider.name}</h3>
               </div>
+              <input
+                type='radio'
+                name='walletProvider'
+                id={`provider-${provider.name}`}
+                className='w-5 h-5 text-teal-600 border-gray-300 shadow-md rounded-full focus:ring-teal-500'
+                onChange={() => handleSelect(provider)}
+                checked={selectedProvider?.name === provider.name}
+              />
             </div>
             <p className='text-sm px-6 text-gray-600 mt-2'>
               {provider.description}
@@ -124,9 +144,9 @@ export default function Agreement() {
             >
               Learn more about {provider.name}
             </a>
-            <div className='group px-6 '>
+            <div className='group px-6'>
               <p className='text-sm text-gray-800 mb-1'>Wallet Features</p>
-              <ul className='flex flex-col gap-3 '>
+              <ul className='flex flex-col gap-3'>
                 {provider.features.map((feature, featureIndex) => (
                   <li
                     key={featureIndex}
@@ -143,6 +163,24 @@ export default function Agreement() {
                   </li>
                 ))}
               </ul>
+              <p className='text-sm font-medium text-gray-800 mt-4 mb-2'>Integrations</p>
+              <div className='flex flex-wrap gap-2'>
+                {provider.integrations.map((integration, index) => (
+                  <span
+                    key={index}
+                    className='flex items-center rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium px-2 py-1 text-sm'
+                  >
+                    <Image
+                      src={integration.icon}
+                      className='w-4 h-4 mr-1'
+                      alt={integration.name}
+                      width={16}
+                      height={16}
+                    />
+                    {integration.name}
+                  </span>
+                ))}
+              </div>
             </div>
             <div className='flex w-full p-4 border-t border-gray-200'>
               <Button
