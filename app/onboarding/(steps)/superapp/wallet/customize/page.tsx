@@ -40,7 +40,7 @@ export default function AVN() {
       description="Assign a unique name and style to your wallet that reflects its intended use. This will help you easily identify its purpose in the future."
       button1link="/onboarding/superapp/wallet/provider"
       button1text="Back"
-      button2link="/onboarding/superapp/wallet/confirm"
+      button2link="/onboarding/superapp/wallet/agreement"
       button2text="Continue"
     >
       <div className="px-6 py-5 flex flex-col gap-4">
