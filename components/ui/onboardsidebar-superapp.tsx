@@ -80,12 +80,12 @@ const avatarVirtualNodeLinks = [
 
 const walletSetupLinks = [
   {
-    href: '/onboarding/wallet/provider',
+    href: '/onboarding/superapp/wallet/provider',
     icon: CreditCardSearch,
     text: 'Select Provider',
   },
   {
-    href: '/onboarding/wallet/customize',
+    href: '/onboarding/superapp/wallet/customize',
     icon: CreditCardEdit,
     text: 'Customize Wallet',
   },
@@ -95,7 +95,7 @@ const walletSetupLinks = [
   //text: 'Confirm Wallet',
   //},
   {
-    href: '/onboarding/wallet/agreement',
+    href: '/onboarding/superapp/wallet/agreement',
     icon: PencilLine,
     text: 'Sign Agreement',
   },
@@ -104,11 +104,11 @@ const walletSetupLinks = [
 const OnboardSideBar = () => {
   const pathname = usePathname();
 
-  const isWalletSection = pathname.startsWith('/onboarding/wallet');
+  const isWalletSection = pathname.startsWith('/onboarding/superapp/wallet');
   const isAvatarSection =
-    pathname.startsWith('/onboarding') && !isWalletSection;
-  const isInstallationPage = pathname === '/onboarding/installation';
-  const isWalletSetupPage = pathname === '/onboarding/wallet/setup';
+    pathname.startsWith('/onboarding/superapp') && !isWalletSection;
+  const isInstallationPage = pathname === '/onboarding/superapp/installation';
+  const isWalletSetupPage = pathname === '/onboarding/superapp/wallet/setup';
 
   const isLinkComplete = (currentPath: string, linkHref: string) => {
     if (isInstallationPage) {
