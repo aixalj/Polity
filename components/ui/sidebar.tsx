@@ -31,6 +31,7 @@ import {
 } from "@/components/data";
 
 import Link from "next/link";
+import { File05, PackageCheck, Trophy01 } from "@untitled-ui/icons-react";
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -1086,7 +1087,140 @@ const SideBar = () => {
               </Collapsible>
 
               <li>
-                <Link
+                <Collapsible
+                  open={openStates["collapsible5"] || false}
+                  // onOpenChange={(isOpen) =>
+                  //   handleOpenChange("collapsible1", isOpen)
+                  // }
+                  className="w-full flex flex-col gap-1"
+                >
+                  <CollapsibleTrigger className="w-full ease-in-out duration-200">
+                    <div className="group relative  w-full outline-none  focus:tap-highlight-transparent  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
+                      <Link
+                        href="/marketplace"
+                        className={`group focus:ring-0 ${
+                          pathname === "/marketplace"
+                            ? "justify-between outline-none  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                            : "outline-none justify-between  focus:tap-highlight-transparent hover:text-black focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                        }`}
+                        id="overview"
+                      >
+                        <div className="flex gap-3 items-center">
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M5.68 3.75998L4.64 5.14664C4.43401 5.4213 4.33102 5.55862 4.33341 5.67357C4.33549 5.77361 4.38239 5.86741 4.46117 5.9291C4.55169 5.99998 4.72335 5.99998 5.06667 5.99998H14.9333C15.2766 5.99998 15.4483 5.99998 15.5388 5.9291C15.6176 5.86741 15.6645 5.77361 15.6666 5.67357C15.669 5.55862 15.566 5.4213 15.36 5.14665L14.32 3.75998M5.68 3.75998C5.79733 3.60354 5.856 3.52531 5.93035 3.4689C5.9962 3.41893 6.07077 3.38164 6.15026 3.35894C6.24 3.33331 6.33778 3.33331 6.53333 3.33331H13.4667C13.6622 3.33331 13.76 3.33331 13.8497 3.35894C13.9292 3.38164 14.0038 3.41893 14.0697 3.4689C14.144 3.52531 14.2027 3.60354 14.32 3.75998M5.68 3.75998L4.42667 5.43109C4.26836 5.64217 4.18921 5.7477 4.133 5.86393C4.08312 5.96706 4.04675 6.07619 4.02477 6.18862C4 6.31532 4 6.44724 4 6.71109L4 14.5333C4 15.28 4 15.6534 4.14532 15.9386C4.27316 16.1895 4.47713 16.3935 4.72801 16.5213C5.01323 16.6666 5.3866 16.6666 6.13333 16.6666L13.8667 16.6666C14.6134 16.6666 14.9868 16.6666 15.272 16.5213C15.5229 16.3935 15.7268 16.1895 15.8547 15.9386C16 15.6534 16 15.28 16 14.5333V6.71109C16 6.44725 16 6.31532 15.9752 6.18862C15.9533 6.07619 15.9169 5.96706 15.867 5.86393C15.8108 5.74771 15.7316 5.64217 15.5733 5.43109L14.32 3.75998M12.6667 8.66665C12.6667 9.37389 12.3857 10.0522 11.8856 10.5523C11.3855 11.0524 10.7072 11.3333 10 11.3333C9.29276 11.3333 8.61448 11.0524 8.11438 10.5523C7.61428 10.0522 7.33333 9.37389 7.33333 8.66665"
+                              stroke="currentColor"
+                              stroke-width="1.25"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                          Marketplace
+                        </div>
+                      </Link>
+                      <a
+                        className="z-10 ml-auto cursor-pointer h-5 w-5 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
+                        onClick={() =>
+                          handleOpenChange(
+                            "collapsible5",
+                            !openStates["collapsible5"]
+                          )
+                        }
+                      >
+                        {openStates["collapsible5"] ? (
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 10L8 6L4 10"
+                              stroke="#475467"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        ) : (
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M4 6L8 10L12 6"
+                              stroke="#475467"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        )}
+                      </a>
+                    </div>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="items-start">
+                    <ul className="flex pl-6 flex-col gap-1">
+                      <li>
+                        <Link
+                          className={`group focus:ring-0 ${
+                            pathname === "/marketplace/billing"
+                              ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                              : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                          }`}
+                          href="/marketplace/billing"
+                          id="overview"
+                        >
+                          <File05 className="w-4 h-4" />
+                          Billing
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className={`group focus:ring-0 ${
+                            pathname === "/marketplace/subscriptions"
+                              ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                              : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                          }`}
+                          href="/marketplace/subscriptions"
+                          id="overview"
+                        >
+                          <PackageCheck className="w-4 h-4" />
+                          My Subscriptions
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className={`group focus:ring-0 ${
+                            pathname === "/marketplace/bids"
+                              ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                              : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                          }`}
+                          href="/marketplace/bids"
+                          id="overview"
+                        >
+                          <Trophy01 className="w-4 h-4" />
+                          My Bids
+                        </Link>
+                      </li>
+
+                      {/* <li className="flex gap-2 items-center text-xs text-gray-500">
+                        <div className="w-full bg-gray-300 h-[1px]"> </div>
+                      </li> */}
+                    </ul>
+                  </CollapsibleContent>
+                </Collapsible>
+                {/* <Link
                   className={`group focus:ring-0 ${
                     pathname === "/marketplace"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
@@ -1111,7 +1245,7 @@ const SideBar = () => {
                     />
                   </svg>
                   Marketplace
-                </Link>
+                </Link> */}
               </li>
 
               <li>
