@@ -1294,10 +1294,12 @@ const SideBarUniapp = () => {
                         19.99
                       </p>
                     </div>
-                    <Button variant='default' className='mt-2 text-white font-semibold'>
+                    <Link href='/onboarding/get-full-access'>
+                    <Button variant='default' className='mt-2 text-white font-semibold w-full'>
                       <Key02 className='w-5 h-5' />
                       Get full access
                     </Button>
+                    </Link>
                   </div>
                 </li>
               </ul>

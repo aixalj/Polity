@@ -82,9 +82,9 @@ const Onboarding = () => {
               </div>
             </div>
             <Link href='/onboarding/uniapp/avatar'>
-            <Button variant='outline' onClick={handleStartNowClick}>
-              Start Now <ArrowRight className='w-5 h-5' />
-            </Button>
+              <Button variant='outline' onClick={handleStartNowClick}>
+                Start Now <ArrowRight className='w-5 h-5' />
+              </Button>
             </Link>
             <div className='w-full h-px bg-gray-300' />
             <ul className='list-disc list-inside text-sm space-y-2.5  text-gray-700'>
@@ -194,10 +194,10 @@ const Onboarding = () => {
               </div>
             </div>
             <Link href='/onboarding/superapp/verification'>
-            <Button onClick={handleGetFullAccessClick}>
-              <Key02 className='w-5 h-5' />
-              Get full access
-            </Button>
+              <Button onClick={handleGetFullAccessClick}>
+                <Key02 className='w-5 h-5' />
+                Get full access
+              </Button>
             </Link>
             <div className='w-full h-px bg-teal-100' />
             <ul className='list-disc list-inside text-sm space-y-2.5  text-primary-700'>
