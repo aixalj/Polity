@@ -108,10 +108,10 @@ const SubscriptionTable: React.FC<{
                     <div className="w-[320px] break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-3 h-16 ">
                       <div className="min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl">
                         <Image
-                          src={"/icons/coinfirm.png"}
+                          src={`/icons/networks/${subscription.network}.svg`}
                           alt={subscription.name}
-                          width={20}
-                          height={20}
+                          width={40}
+                          height={40}
                         />
                       </div>
                       <p className="flex flex-col  items-left text-sm ">
