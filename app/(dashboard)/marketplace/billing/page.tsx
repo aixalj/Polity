@@ -44,10 +44,10 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { BuyReport } from "@/components/buyreport";
 import { AgreementTable } from "@/components/agreementtable";
-import { BidTable } from "@/components/bid/bidtable";
-import { bids } from "@/components/bid/biddata";
+import { BillingTable } from "@/components/billing/billingtable";
+import { billings } from "@/components/billing/billingdata";
 
-export default function Bids() {
+export default function Billings() {
   const [selectedOption, setSelectedOption] = useState<string>("1");
 
   return (
@@ -107,7 +107,7 @@ export default function Bids() {
         <div>
           <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
             <div className="relative w-full flex flex-col pb-40">
-              <BidTable bids={bids} />
+              <BillingTable billings={billings} />
             </div>
           </div>
         </div>

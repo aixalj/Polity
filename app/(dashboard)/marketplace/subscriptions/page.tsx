@@ -46,6 +46,8 @@ import { BuyReport } from "@/components/buyreport";
 import { AgreementTable } from "@/components/agreementtable";
 import { BidTable } from "@/components/bid/bidtable";
 import { bids } from "@/components/bid/biddata";
+import { subscriptions } from "@/components/subscription/subscriptiondata";
+import { SubscriptionTable } from "@/components/subscription/subscriptiontable";
 
 export default function Bids() {
   const [selectedOption, setSelectedOption] = useState<string>("1");
@@ -109,7 +111,7 @@ export default function Bids() {
         <div>
           <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
             <div className="relative w-full flex flex-col pb-40">
-              <BidTable bids={bids} />
+              <SubscriptionTable subscriptions={subscriptions} />
             </div>
           </div>
         </div>
