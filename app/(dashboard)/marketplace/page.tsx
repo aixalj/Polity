@@ -1216,12 +1216,9 @@ export default function Marketplace() {
                     >
                       Learn more about Coinfirm
                     </a>
-
-                    <Button className="w-full">
-                      <Link href="/marketplace/coinfirm/report">
-                        Buy Report
-                      </Link>
-                    </Button>
+                    <Link href="/marketplace/coinfirm/report">
+                      <Button className="w-full">Buy Report</Button>
+                    </Link>
                   </div>
                 </div>
               </div>
