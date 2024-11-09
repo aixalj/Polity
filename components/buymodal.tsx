@@ -56,7 +56,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useContext } from "react";
 import { useWallet } from "@/components/ui/formcontext";
 import { useSubscribe } from "@/components/ui/subscribecontext";
-import { ShoppingBag01, Wallet01 } from "@untitled-ui/icons-react";
+import {
+  Scan,
+  ShoppingBag01,
+  Wallet01,
+  Wallet02,
+} from "@untitled-ui/icons-react";
 import { BidAmountForm } from "./bid/amountform";
 
 // export const ConfirmationStep = () => {
@@ -2532,21 +2537,7 @@ const BuyReportModal = () => {
                   : "text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border"
               }`}
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.0833 6.06478L9.99997 9.99996M9.99997 9.99996L2.91664 6.06478M9.99997 9.99996L10 17.9167M11.6667 17.4074L10.6475 17.9736C10.4112 18.1049 10.293 18.1705 10.1679 18.1963C10.0571 18.2191 9.94288 18.2191 9.83213 18.1963C9.70698 18.1705 9.58881 18.1049 9.35248 17.9736L3.18581 14.5477C2.93621 14.409 2.8114 14.3397 2.72053 14.241C2.64013 14.1538 2.57929 14.0504 2.54207 13.9378C2.5 13.8104 2.5 13.6677 2.5 13.3821V6.61786C2.5 6.33233 2.5 6.18956 2.54207 6.06223C2.57929 5.94958 2.64013 5.84618 2.72053 5.75894C2.8114 5.66032 2.93621 5.59099 3.18581 5.45232L9.35248 2.02639C9.58881 1.8951 9.70698 1.82944 9.83213 1.80371C9.94288 1.78093 10.0571 1.78093 10.1679 1.80371C10.293 1.82944 10.4112 1.89509 10.6475 2.02639L16.8142 5.45232C17.0638 5.59099 17.1886 5.66032 17.2795 5.75893C17.3599 5.84618 17.4207 5.94958 17.4579 6.06222C17.5 6.18956 17.5 6.33232 17.5 6.61786L17.5 10.4167M6.25 3.74999L13.75 7.91665M15.8333 17.5V12.5M13.3333 15H18.3333"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+              <ShoppingBag01 className="w-5 h-5" />
               Purchase Options
               {tabValues.indexOf("recipient") <
                 tabValues.indexOf(activeTab) && (
@@ -2624,21 +2615,7 @@ const BuyReportModal = () => {
                   : "text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border"
               }`}
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6.66667 2.5H6.5C5.09987 2.5 4.3998 2.5 3.86502 2.77248C3.39462 3.01217 3.01217 3.39462 2.77248 3.86502C2.5 4.3998 2.5 5.09987 2.5 6.5V6.66667M6.66667 17.5H6.5C5.09987 17.5 4.3998 17.5 3.86502 17.2275C3.39462 16.9878 3.01217 16.6054 2.77248 16.135C2.5 15.6002 2.5 14.9001 2.5 13.5V13.3333M17.5 6.66667V6.5C17.5 5.09987 17.5 4.3998 17.2275 3.86502C16.9878 3.39462 16.6054 3.01217 16.135 2.77248C15.6002 2.5 14.9001 2.5 13.5 2.5H13.3333M17.5 13.3333V13.5C17.5 14.9001 17.5 15.6002 17.2275 16.135C16.9878 16.6054 16.6054 16.9878 16.135 17.2275C15.6002 17.5 14.9001 17.5 13.5 17.5H13.3333M2.5 10H2.50833M6.25 10H6.25833M13.75 10H13.75833M10 10H10.0083M17.5 10H17.5083"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+              <Scan className="w-5 h-5" />
               Review Order
               {tabValues.indexOf("confirm") < tabValues.indexOf(activeTab) && (
                 <div className="ml-auto">
@@ -2812,7 +2789,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 <FSDialogTitle className="text-xl">
                   Purchase Options
                 </FSDialogTitle>
-                <FSDialogDescription className="text-gray-800">
+                <FSDialogDescription className="text-gray-700">
                   Choose how to acquire your Coinfirm AML Risk Report: Buy
                   instantly at a fixed price per report, or participate in our
                   auction for a chance to get multiple reports at a potentially
@@ -2826,7 +2803,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 </div>
                 <div className="px-6 flex flex-col gap-3 text-gray-600 text-sm w-full">
                   <div className="w-full flex gap-3 pb-6 flex-col items-center py-1 justify-between">
-                    <RadioGroup defaultValue="2" className="w-full gap-3 pt-3">
+                    <RadioGroup defaultValue="" className="w-full gap-3 pt-3">
                       <RadioGroupItem
                         value="1"
                         id="1"
@@ -2967,12 +2944,12 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
             >
               <FSDialogHeader className="px-6 pt-6 pb-3 flex flex-col">
                 <div className="mb-2">
-                  <Wallet01 className="w-8 h-8 text-gray-700" />
+                  <Wallet02 className="w-8 h-8 text-gray-700" />
                 </div>
                 <FSDialogTitle className="text-xl">
                   Payment Method
                 </FSDialogTitle>
-                <FSDialogDescription className="text-gray-800">
+                <FSDialogDescription className="text-gray-700">
                   Select a wallet associated with a Network Account for Polygon
                   USDT transactions and proceed to execute the payment in the
                   next step.
@@ -3070,26 +3047,12 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
               >
                 <FSDialogHeader className="px-6 pt-6 pb-3 flex flex-col">
                   <div className="mb-2">
-                    <svg
-                      width="32"
-                      height="32"
-                      viewBox="0 0 32 32"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 14L14.6667 16.6667L20.6667 10.6667M26.6667 28V10.4C26.6667 8.15979 26.6667 7.03969 26.2307 6.18404C25.8472 5.43139 25.2353 4.81947 24.4827 4.43597C23.627 4 22.5069 4 20.2667 4H11.7334C9.49316 4 8.37306 4 7.51741 4.43597C6.76476 4.81947 6.15284 5.43139 5.76935 6.18404C5.33337 7.03969 5.33337 8.15979 5.33337 10.4V28L9.00004 25.3333L12.3334 28L16 25.3333L19.6667 28L23 25.3333L26.6667 28Z"
-                        stroke="#344054"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
+                    <Scan className="w-8 h-8 text-gray-700" />
                   </div>
                   <FSDialogTitle className="text-xl">
                     Review Order
                   </FSDialogTitle>
-                  <FSDialogDescription className="text-gray-800">
+                  <FSDialogDescription className="text-gray-700">
                     Before finalizing your transaction, carefully review your
                     order summary, including the selected wallet, Network
                     Account for USDT on Polygon, and the total amount with fees.

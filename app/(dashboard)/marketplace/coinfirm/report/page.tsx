@@ -147,7 +147,7 @@ export default function Marketplace() {
                       Generate Report
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-[650px]">
+                  <DialogContent className="max-w-[512px]">
                     <div className="pb-3  flex flex-col">
                       <div className="w-full mb-4 flex justify-between items-center">
                         <PackageSearch className="w-8 h-8" />
@@ -218,8 +218,8 @@ export default function Marketplace() {
               </div>
 
               <div className="flex flex-col items-center justify-center rounded-lg overflow-hidden bg-gray-50 pt-3 pb-12">
-                <div className="-mb-8">
-                  <svg
+                <div className="relative w-32 h-32">
+                  {/* <svg
                     width="216"
                     height="216"
                     viewBox="0 0 216 216"
@@ -3040,7 +3040,14 @@ export default function Marketplace() {
                         />
                       </clipPath>
                     </defs>
-                  </svg>
+                  </svg> */}
+                  <Image
+                    src="/empty.svg"
+                    alt="empty"
+                    width={128}
+                    height={128}
+                    className="min-w-32 absolute top-1/2 scale-150 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  />
                 </div>
                 <h2 className="text-lg font-medium text-gray-900">
                   No Reports Generated Yet

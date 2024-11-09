@@ -51,6 +51,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useContext } from "react";
 import { useWallet } from "./formcontext";
 import { useSubscribe } from "./subscribecontext";
+import { Scan, Wallet02 } from "@untitled-ui/icons-react";
 
 // export const ConfirmationStep = () => {
 //   const { formData } = useContext(FormContext);
@@ -2692,7 +2693,7 @@ const SubscribeModal = () => {
         <TabsContent value="payment" className=" fixed w-full h-full">
           <div
             className="relative h-fit border gap-0 flex-none border-gray-300 rounded-3xl 
-flex-col  p-0  grid   shadow-sm  max-w-screen-sm mx-auto w-full  
+flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full  
  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]"
           >
             <div className="absolute bottom-0 inset-x-0 inline-flex w-44 h-11 items-center justify-center bg-white border border-gray-300 gap-2  z-50 rounded-lg text-sm mx-auto -mb-14 font-medium text-gray-700 p-3">
@@ -3298,7 +3299,7 @@ flex-col  p-0  grid   shadow-sm  max-w-screen-sm mx-auto w-full
         <TabsContent value="recipient" className="fixed w-full h-full">
           <div
             className="relative h-fit border flex-none border-gray-300 rounded-3xl 
-flex-col  p-0   grid   shadow-sm  max-w-screen-sm mx-auto w-full  
+flex-col  p-0   grid   shadow-sm  max-w-[512px] mx-auto w-full  
 gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]"
           >
             <div className="absolute bottom-0 inset-x-0 inline-flex w-44 h-11 items-center justify-center bg-white border border-gray-300 gap-2  z-50 rounded-lg text-sm mx-auto -mb-14 font-medium text-gray-700 p-3">
@@ -3369,7 +3370,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
               <FSDialogTitle className="text-xl">
                 Add Network Account
               </FSDialogTitle>
-              <FSDialogDescription className="text-gray-800">
+              <FSDialogDescription className="text-gray-700">
                 Upon activation, your wallet is provisioned with three Network
                 Accounts. You have the option to add more accounts, subject to a
                 fee.
@@ -3510,7 +3511,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
         <TabsContent value="amount" className="fixed w-full h-full">
           <div
             className="relative h-fit border flex-none border-gray-300 rounded-3xl 
-flex-col  p-0   grid   shadow-sm  max-w-screen-sm mx-auto w-full  
+flex-col  p-0   grid   shadow-sm  max-w-[512px] mx-auto w-full  
 gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]"
           >
             <div className="absolute bottom-0 inset-x-0 inline-flex w-44 h-11 items-center justify-center bg-white border border-gray-300 gap-2  z-50 rounded-lg text-sm mx-auto -mb-14 font-medium text-gray-700 p-3">
@@ -3562,24 +3563,10 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
             </div>
             <FSDialogHeader className="px-6 pt-6 pb-3 flex flex-col">
               <div className="mb-2">
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 32 32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M27.3333 9.70367L16 16M16 16L4.66662 9.70367M16 16L16 28.6667M18.6667 27.8519L17.036 28.7578C16.6579 28.9678 16.4688 29.0729 16.2686 29.1141C16.0914 29.1505 15.9086 29.1505 15.7314 29.1141C15.5312 29.0729 15.3421 28.9678 14.964 28.7578L5.0973 23.2763C4.69794 23.0544 4.49824 22.9435 4.35284 22.7857C4.22421 22.6461 4.12686 22.4807 4.06731 22.3004C4 22.0967 4 21.8683 4 21.4114V10.5886C4 10.1317 4 9.90331 4.06731 9.69958C4.12686 9.51934 4.22421 9.3539 4.35284 9.21432C4.49825 9.05653 4.69793 8.9456 5.09729 8.72373L14.964 3.24224C15.3421 3.03217 15.5312 2.92713 15.7314 2.88595C15.9086 2.8495 16.0914 2.8495 16.2686 2.88595C16.4688 2.92713 16.6579 3.03217 17.036 3.24224L26.9027 8.72373C27.3021 8.94559 27.5018 9.05653 27.6472 9.21431C27.7758 9.3539 27.8731 9.51934 27.9327 9.69958C28 9.90331 28 10.1317 28 10.5886L28 16.6667M10 6L22 12.6667M25.3333 28V20M21.3333 24H29.3333"
-                    stroke="#344054"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+                <Wallet02 className="w-8 h-8 text-gray-700" />
               </div>
               <FSDialogTitle className="text-xl">Payment Method</FSDialogTitle>
-              <FSDialogDescription className="text-gray-800">
+              <FSDialogDescription className="text-gray-700">
                 Select a wallet associated with a Network Account for Polygon
                 USDT transactions and proceed to execute the payment in the next
                 step.
@@ -3624,7 +3611,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
           <div className="flex flex-col gap-2">
             <div
               className="relative h-fit border flex-none border-gray-300 rounded-3xl 
-flex-col  p-0   grid   shadow-sm  max-w-screen-sm mx-auto w-full  
+flex-col  p-0   grid   shadow-sm  max-w-[512px] mx-auto w-full  
 gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]"
             >
               <div className="absolute bottom-0 inset-x-0 inline-flex w-44 h-11 items-center justify-center bg-white border border-gray-300 gap-2  z-50 rounded-lg text-sm mx-auto -mb-14 font-medium text-gray-700 p-3">
@@ -3677,24 +3664,10 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
 
               <FSDialogHeader className="px-6 pt-6 pb-3 flex flex-col">
                 <div className="mb-2">
-                  <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 14L14.6667 16.6667L20.6667 10.6667M26.6667 28V10.4C26.6667 8.15979 26.6667 7.03969 26.2307 6.18404C25.8472 5.43139 25.2353 4.81947 24.4827 4.43597C23.627 4 22.5069 4 20.2667 4H11.7334C9.49316 4 8.37306 4 7.51741 4.43597C6.76476 4.81947 6.15284 5.43139 5.76935 6.18404C5.33337 7.03969 5.33337 8.15979 5.33337 10.4V28L9.00004 25.3333L12.3334 28L16 25.3333L19.6667 28L23 25.3333L26.6667 28Z"
-                      stroke="#344054"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
+                  <Scan className="w-8 h-8 text-gray-700" />
                 </div>
                 <FSDialogTitle className="text-xl">Review Order</FSDialogTitle>
-                <FSDialogDescription className="text-gray-800">
+                <FSDialogDescription className="text-gray-700">
                   Before finalizing your transaction, carefully review your
                   order summary, including the selected wallet, Network Account
                   for USDT on Polygon, and the total amount with fees. Ensure
@@ -6660,7 +6633,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
           <div className="fixed w-full h-full">
             <div
               className="relative h-fit border flex-none border-gray-300 rounded-3xl 
-flex-col  p-0   grid   shadow-sm  max-w-screen-sm mx-auto w-full  
+flex-col  p-0   grid   shadow-sm  max-w-[512px] mx-auto w-full  
 gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]"
             >
               <div className="px-6 pt-6 pb-0 flex flex-col text-center items-center">
