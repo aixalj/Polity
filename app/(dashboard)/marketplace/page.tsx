@@ -135,10 +135,16 @@ export default function Marketplace() {
                 <TabsList className="bg-gray-50">
                   <TabsTrigger value="wallets">Wallets</TabsTrigger>
                   <TabsTrigger value="xchange">X-change</TabsTrigger>
-                  <TabsTrigger value="security">Security</TabsTrigger>
-                  <TabsTrigger value="risk">Risk</TabsTrigger>
+                  <TabsTrigger disabled value="security">
+                    Security
+                  </TabsTrigger>
+                  <TabsTrigger disabled value="risk">
+                    Risk
+                  </TabsTrigger>
                   <TabsTrigger value="analytics">Analytics</TabsTrigger>
-                  <TabsTrigger value="dApps">dApps</TabsTrigger>
+                  <TabsTrigger disabled value="dApps">
+                    dApps
+                  </TabsTrigger>
                 </TabsList>
               </div>
             </div>
