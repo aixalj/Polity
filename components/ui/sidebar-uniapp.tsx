@@ -186,22 +186,13 @@ const SideBarUniapp = () => {
                       id="overview"
                     >
                       <div className="flex gap-3 items-center">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M7.33333 13.3333H12.6667M9.34513 3.84267L4.82359 7.35942C4.52135 7.5945 4.37022 7.71204 4.26135 7.85924C4.16491 7.98963 4.09307 8.13652 4.04935 8.2927C4 8.46901 4 8.66046 4 9.04337V13.8667C4 14.6134 4 14.9868 4.14532 15.272C4.27316 15.5229 4.47713 15.7268 4.72801 15.8547C5.01323 16 5.3866 16 6.13333 16H13.8667C14.6134 16 14.9868 16 15.272 15.8547C15.5229 15.7268 15.7268 15.5229 15.8547 15.272C16 14.9868 16 14.6134 16 13.8667V9.04337C16 8.66046 16 8.46901 15.9506 8.2927C15.9069 8.13652 15.8351 7.98963 15.7386 7.85924C15.6298 7.71204 15.4787 7.5945 15.1764 7.35942L10.6549 3.84267C10.4207 3.6605 10.3035 3.56941 10.1742 3.5344C10.0601 3.50351 9.93987 3.50351 9.82577 3.5344C9.69646 3.56941 9.57935 3.6605 9.34513 3.84267Z"
-                            stroke="currentColor"
-                            stroke-width="1.25"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                        Wealth
+                        <Image
+                          src={`/wallets/wallet1.svg`}
+                          alt={"Main Wallet"}
+                          width={24}
+                          height={24}
+                        />
+                        My Wallet
                       </div>
                     </Link>
                     <a
@@ -251,840 +242,344 @@ const SideBarUniapp = () => {
                 </CollapsibleTrigger>
                 <CollapsibleContent className="items-start">
                   <ul className="flex flex-col gap-1">
-                    <li className="flex gap-2 items-center text-xs text-gray-500">
-                      Wallets
-                      <div className="w-full bg-gray-300 h-[1px]"></div>
-                    </li>
                     <li>
-                      <Collapsible
-                        open={openStates["collapsible2"] || false}
-                        // onOpenChange={(isOpen) =>
-                        //   handleOpenChange("collapsible2", isOpen)
-                        // }
-                        className="w-full flex flex-col gap-1"
-                      >
-                        <CollapsibleTrigger className="w-full ease-in-out duration-200">
-                          <div className="group relative  w-full outline-none  focus:tap-highlight-transparent  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
-                            <Link
-                              href="/uniapp/wealth/wallet1"
-                              className={` focus:ring-0 ${
-                                pathname === "/uniapp/wealth/wallet1"
-                                  ? "justify-between outline-none  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                  : "outline-none justify-between  hover:text-black focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
-                              }`}
-                            >
-                              <div className="flex gap-3 items-center">
-                                <Image
-                                  src={`/wallets/wallet1.svg`}
-                                  alt={"Main Wallet"}
-                                  width={24}
-                                  height={24}
+                      <ul className="flex mt-2 flex-col gap-1">
+                        <li className="flex gap-2 items-center break-keep text-xs pl-3 text-gray-500">
+                          <p className="break-keep w-auto whitespace-nowrap">
+                            Network Accounts
+                          </p>
+                          <div className="w-full bg-gray-300 h-[1px]"></div>
+                        </li>
+
+                        <li>
+                          <a
+                            className={`group focus:ring-0 ${
+                              pathname === "/uniapp/wealth/wallet1/btcnetwork"
+                                ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                            }`}
+                            href="#"
+                            id="overview"
+                          >
+                            <div className="flex gap-3 items-center">
+                              <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g clip-path="url(#clip0_82_25188)">
+                                  <rect
+                                    width="24"
+                                    height="24"
+                                    rx="7"
+                                    fill="#F7931A"
+                                  />
+                                  <g clip-path="url(#clip1_82_25188)">
+                                    <rect
+                                      width="24"
+                                      height="24"
+                                      rx="6"
+                                      fill="#F7931A"
+                                    />
+                                    <path
+                                      d="M23.6412 14.9029C22.0385 21.3315 15.5274 25.2438 9.09796 23.6407C2.67126 22.0381 -1.24108 15.5265 0.362312 9.09837C1.96429 2.66903 8.47546 -1.24361 14.9029 0.359081C21.3318 1.96177 25.2439 8.47405 23.641 14.903L23.6412 14.9029H23.6412Z"
+                                      fill="#F7931A"
+                                    />
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M17.293 10.2903C17.5318 8.6934 16.316 7.83498 14.6535 7.26233L15.1929 5.09914L13.8761 4.77103L13.351 6.87726C13.0049 6.79093 12.6493 6.70957 12.296 6.62892L12.8248 4.50878L11.5089 4.18066L10.9692 6.34315C10.6828 6.27793 10.4014 6.21347 10.1284 6.14555L10.1299 6.13874L8.31404 5.68528L7.96376 7.09171C7.96376 7.09171 8.94071 7.31565 8.92012 7.32944C9.45336 7.46252 9.54978 7.81551 9.53377 8.09529L8.91942 10.5597C8.95614 10.569 9.00377 10.5825 9.05632 10.6036L9.01805 10.5941L9.01802 10.5941C8.98554 10.5859 8.95179 10.5775 8.91713 10.5692L8.05602 14.0214C7.99085 14.1834 7.82545 14.4266 7.45264 14.3342C7.46583 14.3534 6.49556 14.0954 6.49556 14.0954L5.8418 15.6027L7.5554 16.0299C7.74304 16.077 7.92847 16.1253 8.11201 16.1731L8.11204 16.1731C8.24032 16.2066 8.36768 16.2398 8.49423 16.2721L7.94933 18.4601L9.2646 18.7883L9.80423 16.6235C10.1635 16.721 10.5123 16.811 10.8536 16.8958L10.3158 19.0504L11.6327 19.3785L12.1775 17.1946C14.423 17.6196 16.1113 17.4482 16.822 15.4172C17.3946 13.7821 16.7935 12.8389 15.6122 12.2238C16.4726 12.0254 17.1207 11.4595 17.2935 10.2905L17.2931 10.2902L17.293 10.2903ZM14.2844 14.5091C13.911 16.0094 11.5628 15.3891 10.4884 15.1054C10.3917 15.0798 10.3054 15.057 10.2317 15.0387L10.9548 12.14C11.0446 12.1624 11.1543 12.187 11.2785 12.2149L11.2786 12.2149C12.3899 12.4644 14.6669 12.9754 14.2845 14.5091H14.2844ZM11.5015 10.8696C12.3973 11.1087 14.3513 11.6302 14.6916 10.2666H14.6918C15.0393 8.8721 13.1402 8.45166 12.2128 8.24631C12.1084 8.22321 12.0164 8.20283 11.9412 8.1841L11.2856 10.8131C11.3475 10.8285 11.4201 10.8479 11.5015 10.8696Z"
+                                      fill="white"
+                                    />
+                                  </g>
+                                </g>
+                                <rect
+                                  x="0.375"
+                                  y="0.375"
+                                  width="23.25"
+                                  height="23.25"
+                                  rx="6.625"
+                                  stroke="#D0D5DD"
+                                  stroke-width="0.75"
                                 />
-                                Main Wallet
-                              </div>
-                            </Link>
-                            <a
-                              className="z-10 ml-auto cursor-pointer h-5 w-5 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
-                              onClick={() =>
-                                handleOpenChange(
-                                  "collapsible2",
-                                  !openStates["collapsible2"]
-                                )
-                              }
-                            >
-                              {openStates["collapsible2"] ? (
-                                <svg
-                                  width="16"
-                                  height="16"
-                                  viewBox="0 0 16 16"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M12 10L8 6L4 10"
-                                    stroke="#475467"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                <defs>
+                                  <clipPath id="clip0_82_25188">
+                                    <rect
+                                      width="24"
+                                      height="24"
+                                      rx="7"
+                                      fill="white"
+                                    />
+                                  </clipPath>
+                                  <clipPath id="clip1_82_25188">
+                                    <rect
+                                      width="24"
+                                      height="24"
+                                      rx="6"
+                                      fill="white"
+                                    />
+                                  </clipPath>
+                                </defs>
+                              </svg>
+
+                              <Link href="" className="">
+                                <p className="text-sm">
+                                  Bitcoin Network Account
+                                </p>
+                                <p className="text-xs">Bitcoin (428f...47d2)</p>
+                              </Link>
+                            </div>
+                            <p className="ml-auto text-sm font-medium"></p>
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            className={`group focus:ring-0 ${
+                              pathname === "/uniapp/wealth/wallet1/ethnetwork"
+                                ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                            }`}
+                            href="#"
+                            id="overview"
+                          >
+                            <div className="flex gap-3 items-center">
+                              <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g clip-path="url(#clip0_82_25206)">
+                                  <rect
+                                    width="24"
+                                    height="24"
+                                    rx="7"
+                                    fill="#ECEFF0"
                                   />
-                                </svg>
-                              ) : (
-                                <svg
-                                  width="16"
-                                  height="16"
-                                  viewBox="0 0 16 16"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M4 6L8 10L12 6"
-                                    stroke="#475467"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                  />
-                                </svg>
-                              )}
-                            </a>
-                          </div>
-                        </CollapsibleTrigger>
-                        <CollapsibleContent className="items-start">
-                          <ul className="flex flex-col gap-1">
-                            <li className="flex gap-2 items-center break-keep text-xs pl-3 text-gray-500">
-                              <p className="break-keep w-auto whitespace-nowrap">
-                                Network Accounts
-                              </p>
-                              <div className="w-full bg-gray-300 h-[1px]"></div>
-                            </li>
-
-                            <li>
-                              <a
-                                className={`group focus:ring-0 ${
-                                  pathname ===
-                                  "/uniapp/wealth/wallet1/btcnetwork"
-                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
-                                }`}
-                                href="#"
-                                id="overview"
-                              >
-                                <div className="flex gap-3 items-center">
-                                  <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <g clip-path="url(#clip0_82_25188)">
-                                      <rect
-                                        width="24"
-                                        height="24"
-                                        rx="7"
-                                        fill="#F7931A"
-                                      />
-                                      <g clip-path="url(#clip1_82_25188)">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="6"
-                                          fill="#F7931A"
-                                        />
-                                        <path
-                                          d="M23.6412 14.9029C22.0385 21.3315 15.5274 25.2438 9.09796 23.6407C2.67126 22.0381 -1.24108 15.5265 0.362312 9.09837C1.96429 2.66903 8.47546 -1.24361 14.9029 0.359081C21.3318 1.96177 25.2439 8.47405 23.641 14.903L23.6412 14.9029H23.6412Z"
-                                          fill="#F7931A"
-                                        />
-                                        <path
-                                          fill-rule="evenodd"
-                                          clip-rule="evenodd"
-                                          d="M17.293 10.2903C17.5318 8.6934 16.316 7.83498 14.6535 7.26233L15.1929 5.09914L13.8761 4.77103L13.351 6.87726C13.0049 6.79093 12.6493 6.70957 12.296 6.62892L12.8248 4.50878L11.5089 4.18066L10.9692 6.34315C10.6828 6.27793 10.4014 6.21347 10.1284 6.14555L10.1299 6.13874L8.31404 5.68528L7.96376 7.09171C7.96376 7.09171 8.94071 7.31565 8.92012 7.32944C9.45336 7.46252 9.54978 7.81551 9.53377 8.09529L8.91942 10.5597C8.95614 10.569 9.00377 10.5825 9.05632 10.6036L9.01805 10.5941L9.01802 10.5941C8.98554 10.5859 8.95179 10.5775 8.91713 10.5692L8.05602 14.0214C7.99085 14.1834 7.82545 14.4266 7.45264 14.3342C7.46583 14.3534 6.49556 14.0954 6.49556 14.0954L5.8418 15.6027L7.5554 16.0299C7.74304 16.077 7.92847 16.1253 8.11201 16.1731L8.11204 16.1731C8.24032 16.2066 8.36768 16.2398 8.49423 16.2721L7.94933 18.4601L9.2646 18.7883L9.80423 16.6235C10.1635 16.721 10.5123 16.811 10.8536 16.8958L10.3158 19.0504L11.6327 19.3785L12.1775 17.1946C14.423 17.6196 16.1113 17.4482 16.822 15.4172C17.3946 13.7821 16.7935 12.8389 15.6122 12.2238C16.4726 12.0254 17.1207 11.4595 17.2935 10.2905L17.2931 10.2902L17.293 10.2903ZM14.2844 14.5091C13.911 16.0094 11.5628 15.3891 10.4884 15.1054C10.3917 15.0798 10.3054 15.057 10.2317 15.0387L10.9548 12.14C11.0446 12.1624 11.1543 12.187 11.2785 12.2149L11.2786 12.2149C12.3899 12.4644 14.6669 12.9754 14.2845 14.5091H14.2844ZM11.5015 10.8696C12.3973 11.1087 14.3513 11.6302 14.6916 10.2666H14.6918C15.0393 8.8721 13.1402 8.45166 12.2128 8.24631C12.1084 8.22321 12.0164 8.20283 11.9412 8.1841L11.2856 10.8131C11.3475 10.8285 11.4201 10.8479 11.5015 10.8696Z"
-                                          fill="white"
-                                        />
-                                      </g>
-                                    </g>
+                                  <g clip-path="url(#clip1_82_25206)">
                                     <rect
-                                      x="0.375"
-                                      y="0.375"
-                                      width="23.25"
-                                      height="23.25"
-                                      rx="6.625"
-                                      stroke="#D0D5DD"
-                                      stroke-width="0.75"
+                                      width="24"
+                                      height="24"
+                                      rx="6"
+                                      fill="#ECEFF0"
                                     />
-                                    <defs>
-                                      <clipPath id="clip0_82_25188">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="7"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                      <clipPath id="clip1_82_25188">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="6"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                    </defs>
-                                  </svg>
-
-                                  <Link href="" className="">
-                                    <p className="text-sm">
-                                      Bitcoin Network Account
-                                    </p>
-                                    <p className="text-xs">
-                                      Bitcoin (428f...47d2)
-                                    </p>
-                                  </Link>
-                                </div>
-                                <p className="ml-auto text-sm font-medium"></p>
-                              </a>
-                            </li>
-
-                            <li>
-                              <a
-                                className={`group focus:ring-0 ${
-                                  pathname ===
-                                  "/uniapp/wealth/wallet1/ethnetwork"
-                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
-                                }`}
-                                href="#"
-                                id="overview"
-                              >
-                                <div className="flex gap-3 items-center">
-                                  <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <g clip-path="url(#clip0_82_25206)">
-                                      <rect
-                                        width="24"
-                                        height="24"
-                                        rx="7"
-                                        fill="#ECEFF0"
-                                      />
-                                      <g clip-path="url(#clip1_82_25206)">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="6"
-                                          fill="#ECEFF0"
-                                        />
-                                        <circle
-                                          cx="12"
-                                          cy="12"
-                                          r="12"
-                                          fill="#ECEFF0"
-                                        />
-                                        <path
-                                          opacity="0.6"
-                                          d="M11.8674 10.2615L7.5 12.2469L11.8674 14.8287L16.2355 12.2469L11.8674 10.2615Z"
-                                          fill="black"
-                                        />
-                                        <path
-                                          opacity="0.45"
-                                          d="M7.50146 12.2469L11.8688 14.8286V10.2614V5L7.50146 12.2469Z"
-                                          fill="black"
-                                        />
-                                        <path
-                                          opacity="0.8"
-                                          d="M11.8691 5V10.2614V14.8286L16.2365 12.2469L11.8691 5Z"
-                                          fill="black"
-                                        />
-                                        <path
-                                          opacity="0.45"
-                                          d="M7.5 13.0754L11.8674 19.23V15.6556L7.5 13.0754Z"
-                                          fill="black"
-                                        />
-                                        <path
-                                          opacity="0.8"
-                                          d="M11.8672 15.6556V19.23L16.2378 13.0754L11.8672 15.6556Z"
-                                          fill="black"
-                                        />
-                                      </g>
-                                    </g>
-                                    <rect
-                                      x="0.375"
-                                      y="0.375"
-                                      width="23.25"
-                                      height="23.25"
-                                      rx="6.625"
-                                      stroke="#D0D5DD"
-                                      stroke-width="0.75"
+                                    <circle
+                                      cx="12"
+                                      cy="12"
+                                      r="12"
+                                      fill="#ECEFF0"
                                     />
-                                    <defs>
-                                      <clipPath id="clip0_82_25206">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="7"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                      <clipPath id="clip1_82_25206">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="6"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                    </defs>
-                                  </svg>
-
-                                  <Link
-                                    href="/uniapp/wealth/wallet1/ethnetwork"
-                                    className=""
-                                  >
-                                    <p className="text-sm">
-                                      Ethereum Network Account
-                                    </p>
-                                    <p className="text-xs">
-                                      Ethereum (0x8f...47d2)
-                                    </p>
-                                  </Link>
-                                </div>
-                                <p className="ml-auto text-sm font-medium"></p>
-                              </a>
-                            </li>
-
-                            <li>
-                              <a
-                                className="group focus:ring-0 outline-none justify-between focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
-                                href="#"
-                                id="overview"
-                              >
-                                <div className="flex gap-3 items-center">
-                                  <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <g clip-path="url(#clip0_82_25224)">
-                                      <rect
-                                        width="24"
-                                        height="24"
-                                        rx="7"
-                                        fill="url(#paint0_linear_82_25224)"
-                                      />
-                                      <g clip-path="url(#clip1_82_25224)">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="6"
-                                          fill="url(#paint1_linear_82_25224)"
-                                        />
-                                        <mask
-                                          id="mask0_82_25224"
-                                          maskUnits="userSpaceOnUse"
-                                          x="0"
-                                          y="0"
-                                          width="24"
-                                          height="24"
-                                        >
-                                          <path
-                                            d="M11.9998 23.7556C18.4923 23.7556 23.7555 18.4924 23.7555 11.9999C23.7555 5.50746 18.4923 0.244263 11.9998 0.244263C5.50734 0.244263 0.244141 5.50746 0.244141 11.9999C0.244141 18.4924 5.50734 23.7556 11.9998 23.7556Z"
-                                            fill="white"
-                                          />
-                                        </mask>
-                                        <g mask="url(#mask0_82_25224)">
-                                          <path
-                                            d="M24.8685 -0.868896H-0.869141V24.8687H24.8685V-0.868896Z"
-                                            fill="url(#paint2_linear_82_25224)"
-                                          />
-                                        </g>
-                                        <path
-                                          d="M15.4 14.5368L18.7259 12.6163C18.9021 12.5145 19.011 12.3254 19.011 12.1219V8.28142C19.011 8.07839 18.9016 7.88878 18.7259 7.78702L15.4 5.86655C15.2238 5.76479 15.0054 5.76527 14.8293 5.86655L11.5033 7.78702C11.3272 7.88878 11.2182 8.07839 11.2182 8.28142V15.1449L8.8859 16.4913L6.55358 15.1449V12.4517L8.8859 11.1053L10.4243 11.9933V10.1865L9.17102 9.46318C9.08462 9.41326 8.98574 9.38686 8.88542 9.38686C8.7851 9.38686 8.68622 9.41326 8.6003 9.46318L5.27438 11.3837C5.09822 11.4854 4.98926 11.6745 4.98926 11.8781V15.7185C4.98926 15.9216 5.0987 16.1112 5.27438 16.2129L8.6003 18.1334C8.77598 18.2347 8.99486 18.2347 9.17102 18.1334L12.4969 16.2134C12.6731 16.1117 12.7821 15.9221 12.7821 15.719V8.85551L12.8243 8.83151L15.1144 7.50911L17.4467 8.85551V11.5488L15.1144 12.8952L13.5784 12.0081V13.8149L14.8293 14.5373C15.0054 14.6385 15.2238 14.6385 15.4 14.5373V14.5368Z"
-                                          fill="white"
-                                        />
-                                      </g>
-                                    </g>
-                                    <rect
-                                      x="0.375"
-                                      y="0.375"
-                                      width="23.25"
-                                      height="23.25"
-                                      rx="6.625"
-                                      stroke="#D0D5DD"
-                                      stroke-width="0.75"
+                                    <path
+                                      opacity="0.6"
+                                      d="M11.8674 10.2615L7.5 12.2469L11.8674 14.8287L16.2355 12.2469L11.8674 10.2615Z"
+                                      fill="black"
                                     />
-                                    <defs>
-                                      <linearGradient
-                                        id="paint0_linear_82_25224"
-                                        x1="-4.38598"
-                                        y1="1.97255"
-                                        x2="20.3902"
-                                        y2="17.1344"
-                                        gradientUnits="userSpaceOnUse"
-                                      >
-                                        <stop stop-color="#A229C5" />
-                                        <stop offset="1" stop-color="#7B3FE4" />
-                                      </linearGradient>
-                                      <linearGradient
-                                        id="paint1_linear_82_25224"
-                                        x1="-4.38598"
-                                        y1="1.97255"
-                                        x2="20.3902"
-                                        y2="17.1344"
-                                        gradientUnits="userSpaceOnUse"
-                                      >
-                                        <stop stop-color="#A229C5" />
-                                        <stop offset="1" stop-color="#7B3FE4" />
-                                      </linearGradient>
-                                      <linearGradient
-                                        id="paint2_linear_82_25224"
-                                        x1="-5.57266"
-                                        y1="1.24646"
-                                        x2="20.9973"
-                                        y2="17.506"
-                                        gradientUnits="userSpaceOnUse"
-                                      >
-                                        <stop stop-color="#A229C5" />
-                                        <stop offset="1" stop-color="#7B3FE4" />
-                                      </linearGradient>
-                                      <clipPath id="clip0_82_25224">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="7"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                      <clipPath id="clip1_82_25224">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="6"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                    </defs>
-                                  </svg>
-
-                                  <div className="">
-                                    <p className="text-sm">
-                                      Polygon Network Account
-                                    </p>
-                                    <p className="text-xs">
-                                      Polygon (0x8f...47d2)
-                                    </p>
-                                  </div>
-                                </div>
-                                <p className="ml-auto text-sm font-medium"></p>
-                              </a>
-                            </li>
-
-                            <li className="flex gap-2 pl-3 items-center text-xs text-gray-500">
-                              <div className="w-full bg-gray-300 h-[1px]">
-                                {" "}
-                              </div>
-                            </li>
-                          </ul>
-                        </CollapsibleContent>
-                      </Collapsible>
-                    </li>
-                    <li>
-                      <Collapsible
-                        open={openStates["collapsible3"] || false}
-                        // onOpenChange={(isOpen) =>
-                        //   handleOpenChange("collapsible2", isOpen)
-                        // }
-                        className="w-full flex flex-col gap-1"
-                      >
-                        <CollapsibleTrigger className="w-full ease-in-out duration-200">
-                          <div className="group relative  w-full outline-none  focus:tap-highlight-transparent  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
-                            <Link
-                              href="#"
-                              className={` focus:ring-0 ${
-                                pathname === "/wealth/wallet2"
-                                  ? "justify-between outline-none  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                  : "outline-none justify-between hover:text-black  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
-                              }`}
-                            >
-                              <div className="flex gap-3 items-center">
-                                <Image
-                                  src={`/wallets/wallet2.svg`}
-                                  alt={"Second Wallet"}
-                                  width={24}
-                                  height={24}
+                                    <path
+                                      opacity="0.45"
+                                      d="M7.50146 12.2469L11.8688 14.8286V10.2614V5L7.50146 12.2469Z"
+                                      fill="black"
+                                    />
+                                    <path
+                                      opacity="0.8"
+                                      d="M11.8691 5V10.2614V14.8286L16.2365 12.2469L11.8691 5Z"
+                                      fill="black"
+                                    />
+                                    <path
+                                      opacity="0.45"
+                                      d="M7.5 13.0754L11.8674 19.23V15.6556L7.5 13.0754Z"
+                                      fill="black"
+                                    />
+                                    <path
+                                      opacity="0.8"
+                                      d="M11.8672 15.6556V19.23L16.2378 13.0754L11.8672 15.6556Z"
+                                      fill="black"
+                                    />
+                                  </g>
+                                </g>
+                                <rect
+                                  x="0.375"
+                                  y="0.375"
+                                  width="23.25"
+                                  height="23.25"
+                                  rx="6.625"
+                                  stroke="#D0D5DD"
+                                  stroke-width="0.75"
                                 />
-                                Second Wallet
-                              </div>
-                            </Link>
-                            <a
-                              className="z-10 ml-auto cursor-pointer h-5 w-5 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
-                              onClick={() =>
-                                handleOpenChange(
-                                  "collapsible3",
-                                  !openStates["collapsible3"]
-                                )
-                              }
-                            >
-                              {openStates["collapsible3"] ? (
-                                <svg
-                                  width="16"
-                                  height="16"
-                                  viewBox="0 0 16 16"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M12 10L8 6L4 10"
-                                    stroke="#475467"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                <defs>
+                                  <clipPath id="clip0_82_25206">
+                                    <rect
+                                      width="24"
+                                      height="24"
+                                      rx="7"
+                                      fill="white"
+                                    />
+                                  </clipPath>
+                                  <clipPath id="clip1_82_25206">
+                                    <rect
+                                      width="24"
+                                      height="24"
+                                      rx="6"
+                                      fill="white"
+                                    />
+                                  </clipPath>
+                                </defs>
+                              </svg>
+
+                              <Link
+                                href="/uniapp/wealth/wallet1/ethnetwork"
+                                className=""
+                              >
+                                <p className="text-sm">
+                                  Ethereum Network Account
+                                </p>
+                                <p className="text-xs">
+                                  Ethereum (0x8f...47d2)
+                                </p>
+                              </Link>
+                            </div>
+                            <p className="ml-auto text-sm font-medium"></p>
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            className="group focus:ring-0 outline-none justify-between focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                            href="#"
+                            id="overview"
+                          >
+                            <div className="flex gap-3 items-center">
+                              <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g clip-path="url(#clip0_82_25224)">
+                                  <rect
+                                    width="24"
+                                    height="24"
+                                    rx="7"
+                                    fill="url(#paint0_linear_82_25224)"
                                   />
-                                </svg>
-                              ) : (
-                                <svg
-                                  width="16"
-                                  height="16"
-                                  viewBox="0 0 16 16"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M4 6L8 10L12 6"
-                                    stroke="#475467"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                  />
-                                </svg>
-                              )}
-                            </a>
-                          </div>
-                        </CollapsibleTrigger>
-                        <CollapsibleContent className="items-start">
-                          <ul className="flex flex-col gap-1">
-                            <li className="flex gap-2 items-center break-keep text-xs pl-3 text-gray-500">
-                              <p className="break-keep w-auto whitespace-nowrap">
-                                Network Accounts
-                              </p>
-                              <div className="w-full bg-gray-300 h-[1px]"></div>
-                            </li>
-                            <li>
-                              <a
-                                className={`group focus:ring-0 ${
-                                  pathname === "/wealth/wallet2/btcnetwork"
-                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
-                                }`}
-                                href="#"
-                                id="overview"
-                              >
-                                <div className="flex gap-3 items-center">
-                                  <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <g clip-path="url(#clip0_82_25188)">
-                                      <rect
-                                        width="24"
-                                        height="24"
-                                        rx="7"
-                                        fill="#F7931A"
-                                      />
-                                      <g clip-path="url(#clip1_82_25188)">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="6"
-                                          fill="#F7931A"
-                                        />
-                                        <path
-                                          d="M23.6412 14.9029C22.0385 21.3315 15.5274 25.2438 9.09796 23.6407C2.67126 22.0381 -1.24108 15.5265 0.362312 9.09837C1.96429 2.66903 8.47546 -1.24361 14.9029 0.359081C21.3318 1.96177 25.2439 8.47405 23.641 14.903L23.6412 14.9029H23.6412Z"
-                                          fill="#F7931A"
-                                        />
-                                        <path
-                                          fill-rule="evenodd"
-                                          clip-rule="evenodd"
-                                          d="M17.293 10.2903C17.5318 8.6934 16.316 7.83498 14.6535 7.26233L15.1929 5.09914L13.8761 4.77103L13.351 6.87726C13.0049 6.79093 12.6493 6.70957 12.296 6.62892L12.8248 4.50878L11.5089 4.18066L10.9692 6.34315C10.6828 6.27793 10.4014 6.21347 10.1284 6.14555L10.1299 6.13874L8.31404 5.68528L7.96376 7.09171C7.96376 7.09171 8.94071 7.31565 8.92012 7.32944C9.45336 7.46252 9.54978 7.81551 9.53377 8.09529L8.91942 10.5597C8.95614 10.569 9.00377 10.5825 9.05632 10.6036L9.01805 10.5941L9.01802 10.5941C8.98554 10.5859 8.95179 10.5775 8.91713 10.5692L8.05602 14.0214C7.99085 14.1834 7.82545 14.4266 7.45264 14.3342C7.46583 14.3534 6.49556 14.0954 6.49556 14.0954L5.8418 15.6027L7.5554 16.0299C7.74304 16.077 7.92847 16.1253 8.11201 16.1731L8.11204 16.1731C8.24032 16.2066 8.36768 16.2398 8.49423 16.2721L7.94933 18.4601L9.2646 18.7883L9.80423 16.6235C10.1635 16.721 10.5123 16.811 10.8536 16.8958L10.3158 19.0504L11.6327 19.3785L12.1775 17.1946C14.423 17.6196 16.1113 17.4482 16.822 15.4172C17.3946 13.7821 16.7935 12.8389 15.6122 12.2238C16.4726 12.0254 17.1207 11.4595 17.2935 10.2905L17.2931 10.2902L17.293 10.2903ZM14.2844 14.5091C13.911 16.0094 11.5628 15.3891 10.4884 15.1054C10.3917 15.0798 10.3054 15.057 10.2317 15.0387L10.9548 12.14C11.0446 12.1624 11.1543 12.187 11.2785 12.2149L11.2786 12.2149C12.3899 12.4644 14.6669 12.9754 14.2845 14.5091H14.2844ZM11.5015 10.8696C12.3973 11.1087 14.3513 11.6302 14.6916 10.2666H14.6918C15.0393 8.8721 13.1402 8.45166 12.2128 8.24631C12.1084 8.22321 12.0164 8.20283 11.9412 8.1841L11.2856 10.8131C11.3475 10.8285 11.4201 10.8479 11.5015 10.8696Z"
-                                          fill="white"
-                                        />
-                                      </g>
-                                    </g>
+                                  <g clip-path="url(#clip1_82_25224)">
                                     <rect
-                                      x="0.375"
-                                      y="0.375"
-                                      width="23.25"
-                                      height="23.25"
-                                      rx="6.625"
-                                      stroke="#D0D5DD"
-                                      stroke-width="0.75"
+                                      width="24"
+                                      height="24"
+                                      rx="6"
+                                      fill="url(#paint1_linear_82_25224)"
                                     />
-                                    <defs>
-                                      <clipPath id="clip0_82_25188">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="7"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                      <clipPath id="clip1_82_25188">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="6"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                    </defs>
-                                  </svg>
-
-                                  <Link href="" className="">
-                                    <p className="text-sm">
-                                      Bitcoin Network Account
-                                    </p>
-                                    <p className="text-xs">
-                                      Bitcoin (428f...47d2)
-                                    </p>
-                                  </Link>
-                                </div>
-                                <p className="ml-auto text-sm font-medium"></p>
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                className={`group focus:ring-0 ${
-                                  pathname === "/wealth/wallet2/ethnetwork"
-                                    ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                    : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
-                                }`}
-                                href="#"
-                                id="overview"
-                              >
-                                <div className="flex gap-3 items-center">
-                                  <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <g clip-path="url(#clip0_82_25206)">
-                                      <rect
-                                        width="24"
-                                        height="24"
-                                        rx="7"
-                                        fill="#ECEFF0"
+                                    <mask
+                                      id="mask0_82_25224"
+                                      maskUnits="userSpaceOnUse"
+                                      x="0"
+                                      y="0"
+                                      width="24"
+                                      height="24"
+                                    >
+                                      <path
+                                        d="M11.9998 23.7556C18.4923 23.7556 23.7555 18.4924 23.7555 11.9999C23.7555 5.50746 18.4923 0.244263 11.9998 0.244263C5.50734 0.244263 0.244141 5.50746 0.244141 11.9999C0.244141 18.4924 5.50734 23.7556 11.9998 23.7556Z"
+                                        fill="white"
                                       />
-                                      <g clip-path="url(#clip1_82_25206)">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="6"
-                                          fill="#ECEFF0"
-                                        />
-                                        <circle
-                                          cx="12"
-                                          cy="12"
-                                          r="12"
-                                          fill="#ECEFF0"
-                                        />
-                                        <path
-                                          opacity="0.6"
-                                          d="M11.8674 10.2615L7.5 12.2469L11.8674 14.8287L16.2355 12.2469L11.8674 10.2615Z"
-                                          fill="black"
-                                        />
-                                        <path
-                                          opacity="0.45"
-                                          d="M7.50146 12.2469L11.8688 14.8286V10.2614V5L7.50146 12.2469Z"
-                                          fill="black"
-                                        />
-                                        <path
-                                          opacity="0.8"
-                                          d="M11.8691 5V10.2614V14.8286L16.2365 12.2469L11.8691 5Z"
-                                          fill="black"
-                                        />
-                                        <path
-                                          opacity="0.45"
-                                          d="M7.5 13.0754L11.8674 19.23V15.6556L7.5 13.0754Z"
-                                          fill="black"
-                                        />
-                                        <path
-                                          opacity="0.8"
-                                          d="M11.8672 15.6556V19.23L16.2378 13.0754L11.8672 15.6556Z"
-                                          fill="black"
-                                        />
-                                      </g>
-                                    </g>
-                                    <rect
-                                      x="0.375"
-                                      y="0.375"
-                                      width="23.25"
-                                      height="23.25"
-                                      rx="6.625"
-                                      stroke="#D0D5DD"
-                                      stroke-width="0.75"
-                                    />
-                                    <defs>
-                                      <clipPath id="clip0_82_25206">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="7"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                      <clipPath id="clip1_82_25206">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="6"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                    </defs>
-                                  </svg>
-
-                                  <Link href="#" className="">
-                                    <p className="text-sm">
-                                      Ethereum Network Account
-                                    </p>
-                                    <p className="text-xs">
-                                      Ethereum (0x8f...47d2)
-                                    </p>
-                                  </Link>
-                                </div>
-                                <p className="ml-auto text-sm font-medium"></p>
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                className="group focus:ring-0 outline-none justify-between focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
-                                href="#"
-                                id="overview"
-                              >
-                                <div className="flex gap-3 items-center">
-                                  <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <g clip-path="url(#clip0_82_25224)">
-                                      <rect
-                                        width="24"
-                                        height="24"
-                                        rx="7"
-                                        fill="url(#paint0_linear_82_25224)"
+                                    </mask>
+                                    <g mask="url(#mask0_82_25224)">
+                                      <path
+                                        d="M24.8685 -0.868896H-0.869141V24.8687H24.8685V-0.868896Z"
+                                        fill="url(#paint2_linear_82_25224)"
                                       />
-                                      <g clip-path="url(#clip1_82_25224)">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="6"
-                                          fill="url(#paint1_linear_82_25224)"
-                                        />
-                                        <mask
-                                          id="mask0_82_25224"
-                                          maskUnits="userSpaceOnUse"
-                                          x="0"
-                                          y="0"
-                                          width="24"
-                                          height="24"
-                                        >
-                                          <path
-                                            d="M11.9998 23.7556C18.4923 23.7556 23.7555 18.4924 23.7555 11.9999C23.7555 5.50746 18.4923 0.244263 11.9998 0.244263C5.50734 0.244263 0.244141 5.50746 0.244141 11.9999C0.244141 18.4924 5.50734 23.7556 11.9998 23.7556Z"
-                                            fill="white"
-                                          />
-                                        </mask>
-                                        <g mask="url(#mask0_82_25224)">
-                                          <path
-                                            d="M24.8685 -0.868896H-0.869141V24.8687H24.8685V-0.868896Z"
-                                            fill="url(#paint2_linear_82_25224)"
-                                          />
-                                        </g>
-                                        <path
-                                          d="M15.4 14.5368L18.7259 12.6163C18.9021 12.5145 19.011 12.3254 19.011 12.1219V8.28142C19.011 8.07839 18.9016 7.88878 18.7259 7.78702L15.4 5.86655C15.2238 5.76479 15.0054 5.76527 14.8293 5.86655L11.5033 7.78702C11.3272 7.88878 11.2182 8.07839 11.2182 8.28142V15.1449L8.8859 16.4913L6.55358 15.1449V12.4517L8.8859 11.1053L10.4243 11.9933V10.1865L9.17102 9.46318C9.08462 9.41326 8.98574 9.38686 8.88542 9.38686C8.7851 9.38686 8.68622 9.41326 8.6003 9.46318L5.27438 11.3837C5.09822 11.4854 4.98926 11.6745 4.98926 11.8781V15.7185C4.98926 15.9216 5.0987 16.1112 5.27438 16.2129L8.6003 18.1334C8.77598 18.2347 8.99486 18.2347 9.17102 18.1334L12.4969 16.2134C12.6731 16.1117 12.7821 15.9221 12.7821 15.719V8.85551L12.8243 8.83151L15.1144 7.50911L17.4467 8.85551V11.5488L15.1144 12.8952L13.5784 12.0081V13.8149L14.8293 14.5373C15.0054 14.6385 15.2238 14.6385 15.4 14.5373V14.5368Z"
-                                          fill="white"
-                                        />
-                                      </g>
                                     </g>
-                                    <rect
-                                      x="0.375"
-                                      y="0.375"
-                                      width="23.25"
-                                      height="23.25"
-                                      rx="6.625"
-                                      stroke="#D0D5DD"
-                                      stroke-width="0.75"
+                                    <path
+                                      d="M15.4 14.5368L18.7259 12.6163C18.9021 12.5145 19.011 12.3254 19.011 12.1219V8.28142C19.011 8.07839 18.9016 7.88878 18.7259 7.78702L15.4 5.86655C15.2238 5.76479 15.0054 5.76527 14.8293 5.86655L11.5033 7.78702C11.3272 7.88878 11.2182 8.07839 11.2182 8.28142V15.1449L8.8859 16.4913L6.55358 15.1449V12.4517L8.8859 11.1053L10.4243 11.9933V10.1865L9.17102 9.46318C9.08462 9.41326 8.98574 9.38686 8.88542 9.38686C8.7851 9.38686 8.68622 9.41326 8.6003 9.46318L5.27438 11.3837C5.09822 11.4854 4.98926 11.6745 4.98926 11.8781V15.7185C4.98926 15.9216 5.0987 16.1112 5.27438 16.2129L8.6003 18.1334C8.77598 18.2347 8.99486 18.2347 9.17102 18.1334L12.4969 16.2134C12.6731 16.1117 12.7821 15.9221 12.7821 15.719V8.85551L12.8243 8.83151L15.1144 7.50911L17.4467 8.85551V11.5488L15.1144 12.8952L13.5784 12.0081V13.8149L14.8293 14.5373C15.0054 14.6385 15.2238 14.6385 15.4 14.5373V14.5368Z"
+                                      fill="white"
                                     />
-                                    <defs>
-                                      <linearGradient
-                                        id="paint0_linear_82_25224"
-                                        x1="-4.38598"
-                                        y1="1.97255"
-                                        x2="20.3902"
-                                        y2="17.1344"
-                                        gradientUnits="userSpaceOnUse"
-                                      >
-                                        <stop stop-color="#A229C5" />
-                                        <stop offset="1" stop-color="#7B3FE4" />
-                                      </linearGradient>
-                                      <linearGradient
-                                        id="paint1_linear_82_25224"
-                                        x1="-4.38598"
-                                        y1="1.97255"
-                                        x2="20.3902"
-                                        y2="17.1344"
-                                        gradientUnits="userSpaceOnUse"
-                                      >
-                                        <stop stop-color="#A229C5" />
-                                        <stop offset="1" stop-color="#7B3FE4" />
-                                      </linearGradient>
-                                      <linearGradient
-                                        id="paint2_linear_82_25224"
-                                        x1="-5.57266"
-                                        y1="1.24646"
-                                        x2="20.9973"
-                                        y2="17.506"
-                                        gradientUnits="userSpaceOnUse"
-                                      >
-                                        <stop stop-color="#A229C5" />
-                                        <stop offset="1" stop-color="#7B3FE4" />
-                                      </linearGradient>
-                                      <clipPath id="clip0_82_25224">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="7"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                      <clipPath id="clip1_82_25224">
-                                        <rect
-                                          width="24"
-                                          height="24"
-                                          rx="6"
-                                          fill="white"
-                                        />
-                                      </clipPath>
-                                    </defs>
-                                  </svg>
+                                  </g>
+                                </g>
+                                <rect
+                                  x="0.375"
+                                  y="0.375"
+                                  width="23.25"
+                                  height="23.25"
+                                  rx="6.625"
+                                  stroke="#D0D5DD"
+                                  stroke-width="0.75"
+                                />
+                                <defs>
+                                  <linearGradient
+                                    id="paint0_linear_82_25224"
+                                    x1="-4.38598"
+                                    y1="1.97255"
+                                    x2="20.3902"
+                                    y2="17.1344"
+                                    gradientUnits="userSpaceOnUse"
+                                  >
+                                    <stop stop-color="#A229C5" />
+                                    <stop offset="1" stop-color="#7B3FE4" />
+                                  </linearGradient>
+                                  <linearGradient
+                                    id="paint1_linear_82_25224"
+                                    x1="-4.38598"
+                                    y1="1.97255"
+                                    x2="20.3902"
+                                    y2="17.1344"
+                                    gradientUnits="userSpaceOnUse"
+                                  >
+                                    <stop stop-color="#A229C5" />
+                                    <stop offset="1" stop-color="#7B3FE4" />
+                                  </linearGradient>
+                                  <linearGradient
+                                    id="paint2_linear_82_25224"
+                                    x1="-5.57266"
+                                    y1="1.24646"
+                                    x2="20.9973"
+                                    y2="17.506"
+                                    gradientUnits="userSpaceOnUse"
+                                  >
+                                    <stop stop-color="#A229C5" />
+                                    <stop offset="1" stop-color="#7B3FE4" />
+                                  </linearGradient>
+                                  <clipPath id="clip0_82_25224">
+                                    <rect
+                                      width="24"
+                                      height="24"
+                                      rx="7"
+                                      fill="white"
+                                    />
+                                  </clipPath>
+                                  <clipPath id="clip1_82_25224">
+                                    <rect
+                                      width="24"
+                                      height="24"
+                                      rx="6"
+                                      fill="white"
+                                    />
+                                  </clipPath>
+                                </defs>
+                              </svg>
 
-                                  <div className="">
-                                    <p className="text-sm">
-                                      Polygon Network Account
-                                    </p>
-                                    <p className="text-xs">
-                                      Polygon (0x8f...47d2)
-                                    </p>
-                                  </div>
-                                </div>
-                                <p className="ml-auto text-sm font-medium"></p>
-                              </a>
-                            </li>
-
-                            <li className="flex gap-2 pl-3 items-center text-xs text-gray-500">
-                              <div className="w-full bg-gray-300 h-[1px]">
-                                {" "}
+                              <div className="">
+                                <p className="text-sm">
+                                  Polygon Network Account
+                                </p>
+                                <p className="text-xs">Polygon (0x8f...47d2)</p>
                               </div>
-                            </li>
-                          </ul>
-                        </CollapsibleContent>
-                      </Collapsible>
+                            </div>
+                            <p className="ml-auto text-sm font-medium"></p>
+                          </a>
+                        </li>
+
+                        <li className="flex gap-2 pl-3 items-center text-xs text-gray-500">
+                          <div className="w-full bg-gray-300 h-[1px]"> </div>
+                        </li>
+                      </ul>
                     </li>
 
-                    <li className="flex gap-2 items-center text-xs text-gray-500">
+                    {/* <li className="flex gap-2 items-center text-xs text-gray-500">
                       <div className="w-full bg-gray-300 h-[1px]"> </div>
-                    </li>
+                    </li> */}
                   </ul>
                 </CollapsibleContent>
               </Collapsible>
