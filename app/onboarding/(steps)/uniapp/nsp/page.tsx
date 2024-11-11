@@ -42,7 +42,7 @@ export default function Agreement() {
       button2link='/onboarding/uniapp/installation' // Conditional link
       button2text='Continue'
       button3link='/onboarding/uniapp/installation'
-      button3text='Skip for Now' 
+      button3text='Skip for Now'
     >
       <div className='grid grid-cols-2 gap-4 px-6 py-4'>
         <div className='w-full gap-3 flex flex-col'>
@@ -105,14 +105,25 @@ export default function Agreement() {
         </div>
         <div className='flex flex-col gap-1.5'>
           <Label>Select a Network Service Provider</Label>
-          <Select onValueChange={handleProviderChange}> {/* Update to handle selection */}
+          <Select onValueChange={handleProviderChange}>
             <SelectTrigger>
               <SelectValue placeholder='Select a Network Service Provider...' />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value='uniapp'>UniApp</SelectItem> {/* Added UniApp option */}
-              <SelectItem value='bastion'>Bastion</SelectItem>
-              <SelectItem value='element'>Element</SelectItem>
+            <SelectContent className='rounded-xl flex items-center'>
+              <SelectItem value='bastion' className='flex items-center'>
+                <div className='flex items-center'>
+                <Image
+                  src={'/bastion.png'}
+                  alt='Bastion'
+                  width={32}
+                  height={32}
+                  className='mr-2'
+                />
+                <div className='flex items-center'>
+                  <span className='text-[14px] font-medium'>Bastion Cooperative</span>
+                </div>
+                </div>
+              </SelectItem>
             </SelectContent>
           </Select>
         </div>

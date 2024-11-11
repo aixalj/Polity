@@ -109,10 +109,21 @@ export default function Agreement() {
             <SelectTrigger>
               <SelectValue placeholder='Select a Network Service Provider...' />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value='uniapp'>UniApp</SelectItem> {/* Added UniApp option */}
-              <SelectItem value='bastion'>Bastion</SelectItem>
-              <SelectItem value='element'>Element</SelectItem>
+            <SelectContent className='rounded-xl flex items-center'>
+              <SelectItem value='bastion' className='flex items-center'>
+                <div className='flex items-center'>
+                <Image
+                  src={'/bastion.png'}
+                  alt='Bastion'
+                  width={32}
+                  height={32}
+                  className='mr-2'
+                />
+                <div className='flex items-center'>
+                  <span className='text-[14px] font-medium'>Bastion Cooperative</span>
+                </div>
+                </div>
+              </SelectItem>
             </SelectContent>
           </Select>
         </div>
