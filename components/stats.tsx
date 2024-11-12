@@ -173,7 +173,7 @@ export function Stats({ variant = "wealth" }: StatsProps) {
           </h2>
 
           <div className="flex mt-2 items-center gap-2">
-            <div className="bg-teal-100 border border-teal-200 py-0.5 pl-2 pr-3 flex gap-1 items-center rounded-md text-sm text-teal-800 font-medium">
+            <div className=" py-0.5 pl-2 pr-3 flex gap-1 items-center rounded-md text-sm text-teal-700 font-medium">
               <svg
                 width="12"
                 height="12"
@@ -319,7 +319,7 @@ export function Stats({ variant = "wealth" }: StatsProps) {
           </h2>
 
           <div className="flex mt-6 items-center gap-2">
-            <div className="bg-teal-100 border border-teal-200 py-0.5 pl-2 pr-3 flex gap-1 items-center rounded-md text-sm text-teal-800 font-medium">
+            <div className=" py-0.5 pl-2 pr-3 flex gap-1 items-center rounded-md text-sm text-teal-800 font-medium">
               <svg
                 width="12"
                 height="12"
@@ -459,7 +459,7 @@ export function Stats({ variant = "wealth" }: StatsProps) {
           </h2>
 
           <div className="flex mt-6 items-center gap-2">
-            <div className="bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-sm text-gray-800 font-medium">
+            <div className="py-0.5 px-2 flex gap-1 items-center rounded-md text-sm text-gray-800 font-medium">
               0.00%
             </div>
             <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
@@ -529,7 +529,7 @@ export function Stats({ variant = "wealth" }: StatsProps) {
           </h2>
 
           <div className="flex mt-6 items-center gap-2">
-            <div className="bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-sm text-gray-800 font-medium">
+            <div className="py-0.5 px-2 flex gap-1 items-center rounded-md text-sm text-gray-800 font-medium">
               0.00%
             </div>
             <p className="text-gray-600 text-sm font-medium">{timeLabel}</p>
