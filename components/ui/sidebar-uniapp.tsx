@@ -1278,7 +1278,7 @@ const SideBarUniapp = () => {
                     <h3 className='font-semibold text-[14px] text-gray-900'>
                       Polity SuperApp
                     </h3>
-                    <p className='text-gray-600 text-sm'>
+                    <p className='text-gray-600 text-sm whitespace-nowrap'>
                       Full access access to functionalities
                     </p>
                     <div className='flex flex-row items-center gap-1 mt-1'>
