@@ -42,7 +42,7 @@ export default function Agreements() {
             <nav aria-label="Breadcrumb">
               <ol className="flex items-center gap-1 text-xs text-gray-600">
                 <li>
-                  <a href="#" className="block transition hover:text-gray-700">
+                  <a href="#" className="block transition hover:text-gray-700 font-semibold">
                     {" "}
                     Avatar Name{" "}
                   </a>
@@ -67,7 +67,7 @@ export default function Agreements() {
                 </li>
 
                 <li>
-                  <a href="#" className="block transition text-gray-800">
+                  <a href="#" className="block transition text-gray-800 font-semibold">
                     {" "}
                     Agreements{" "}
                   </a>

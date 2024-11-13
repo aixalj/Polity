@@ -212,7 +212,7 @@ export default function AddressBook() {
                   <li>
                     <a
                       href="#"
-                      className="block transition hover:text-gray-700"
+                      className="block transition hover:text-gray-700 font-semibold"
                     >
                       Avatar Name
                     </a>
@@ -235,7 +235,10 @@ export default function AddressBook() {
                     </svg>
                   </li>
                   <li>
-                    <a href="#" className="block transition text-gray-800">
+                    <a
+                      href="#"
+                      className="block transition text-gray-800 font-semibold"
+                    >
                       Address Book
                     </a>
                   </li>
