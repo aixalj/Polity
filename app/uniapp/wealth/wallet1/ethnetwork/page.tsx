@@ -53,7 +53,7 @@ function BitcoinOne() {
                     <li>
                       <a
                         href="#"
-                        className="block transition hover:text-gray-700"
+                        className="block transition hover:text-gray-700 font-semibold"
                       >
                         {" "}
                         Wealth{" "}
@@ -81,7 +81,7 @@ function BitcoinOne() {
                     <li>
                       <a
                         href="#"
-                        className="block transition hover:text-gray-700"
+                        className="block transition hover:text-gray-700 font-semibold"
                       >
                         {" "}
                         Main Wallet{" "}
@@ -107,7 +107,7 @@ function BitcoinOne() {
                     </li>
 
                     <li>
-                      <a href="#" className="block transition text-gray-800">
+                      <a href="#" className="block transition text-gray-800 font-semibold">
                         {" "}
                         Network Account Name{" "}
                       </a>
