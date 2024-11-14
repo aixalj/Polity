@@ -62,7 +62,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ variant = "default" }) => {
           <nav aria-label="Breadcrumb">
             <ol className="flex items-center gap-1 text-xs text-gray-600">
               <li>
-                <a href="#" className="block transition hover:text-gray-700">
+                <a href="#" className="block transition hover:text-gray-700 font-semibold">
                   {" "}
                   Wealth{" "}
                 </a>
@@ -87,7 +87,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ variant = "default" }) => {
               </li>
 
               <li>
-                <a href="#" className="block transition text-gray-800">
+                <a href="#" className="block transition text-gray-800 font-semibold">
                   {" "}
                   Overview{" "}
                 </a>
@@ -98,7 +98,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ variant = "default" }) => {
           <nav aria-label="Breadcrumbs">
             <ol className="flex items-center gap-1 text-xs text-gray-600">
               <li>
-                <a href="#" className="block transition hover:text-gray-700">
+                <a href="#" className="block transition hover:text-gray-700 font-semibold">
                   {" "}
                   Wealth{" "}
                 </a>
@@ -123,7 +123,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ variant = "default" }) => {
               </li>
 
               <li>
-                <a href="#" className="block transition text-gray-800">
+                <a href="#" className="block transition text-gray-800 font-semibold">
                   {" "}
                   Main Wallet{" "}
                 </a>

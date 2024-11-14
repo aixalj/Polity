@@ -31,7 +31,7 @@ export default function Marketplace() {
                   <li>
                     <a
                       href="#"
-                      className="block transition hover:text-gray-700"
+                      className="block transition hover:text-gray-700 font-semibold"
                     >
                       {" "}
                       Avatar Name{" "}
@@ -57,7 +57,7 @@ export default function Marketplace() {
                   </li>
 
                   <li>
-                    <a href="#" className="block transition text-gray-800">
+                    <a href="#" className="block transition text-gray-800 font-semibold">
                       {" "}
                       Marketplace{" "}
                     </a>

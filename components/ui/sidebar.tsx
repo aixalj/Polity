@@ -52,8 +52,8 @@ const SideBar = () => {
   };
 
   return (
-    <div className="px-2 pt-8 pb-2 hidden sm:flex sm:flex-col">
-      <a href="index.html" className="px-4 py-1">
+<div className="px-2 pt-8 w-80 pb-2 hidden sm:flex sm:flex-col">
+<a href="index.html" className="px-4 py-1">
         <img
           className="h-6"
           src="https://polity.li/images/PolityLogo-Full-Main.svg"
@@ -163,7 +163,7 @@ const SideBar = () => {
       </Select>
 
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear h-full">
-        <nav className="mt-6 w-80 h-full">
+        <nav className="mt-6 h-full">
           <div className="h-full flex flex-col justify-between">
             <ul className="flex flex-col gap-1">
               <Collapsible
