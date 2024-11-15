@@ -154,7 +154,7 @@ export default function Marketplace() {
                   <DialogContent className="max-w-[512px]">
                     <div className="pb-3  flex flex-col">
                       <div className="w-full mb-4 flex justify-between items-center">
-                        <PackageSearch className="w-8 h-8" />
+                        <PackageSearch className="w-8 h-8 text-gray-700" />
                       </div>
                       <div className="text-xl mb-1">
                         <div>Enter Network Address</div>
