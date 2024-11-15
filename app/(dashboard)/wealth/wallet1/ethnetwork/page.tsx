@@ -21,6 +21,7 @@ import { AssetTable } from '@/components/assettable';
 import { PositionsTable } from '@/components/positionstable';
 import { Dapps } from '@/components/dapps';
 import WalletConnect from '@/components/ui/modals/walletConnect';
+import ConnectTodApp from '@/components/ui/modals/connectTodApp';
 
 import {
   networkAccounts,
@@ -31,10 +32,16 @@ import {
 
 function BitcoinOne() {
   const [selectedTab, setSelectedTab] = useState('overview');
-  const [isWalletConnectOpen, setIsWalletConnectOpen] = useState(false); 
+  const [isWalletConnectOpen, setIsWalletConnectOpen] = useState(false);
+  const [isConnectTodAppOpen, setIsConnectTodAppOpen] = useState(false);
 
-  const handleOpenModal = () => setIsWalletConnectOpen(true); 
-  const handleCloseModal = () => setIsWalletConnectOpen(false); 
+  const handleOpenModal = () => setIsWalletConnectOpen(true);
+  const handleCloseModal = () => setIsWalletConnectOpen(false);
+  const handleOpenConnectTodApp = () => {
+    setIsWalletConnectOpen(false); // Close WalletConnect modal
+    setIsConnectTodAppOpen(true); // Open ConnectTodApp modal
+  };
+  const handleCloseConnectTodApp = () => setIsConnectTodAppOpen(false); // Close ConnectTodApp modal
 
   return (
     <main className='w-full h-full'>
@@ -195,7 +202,8 @@ function BitcoinOne() {
                     <Button
                       variant='default'
                       className=' border border-[#2a7fe7] bg-[#3396FF] hover:bg-[#3396FF]/90 shadow-[0_4px_10px_rgba(231,243,255,0.5)] transition duration-300'
-                      onClick={handleOpenModal}>
+                      onClick={handleOpenModal}
+                    >
                       <svg
                         width='28'
                         height='16'
@@ -3163,8 +3171,16 @@ function BitcoinOne() {
             </TabsContent>
           </Tabs>
         </div>
+        <WalletConnect
+          isOpen={isWalletConnectOpen}
+          onClose={handleCloseModal}
+          onConnect={handleOpenConnectTodApp} // Update to use the new function
+        />
+        <ConnectTodApp
+          isOpen={isConnectTodAppOpen}
+          onClose={handleCloseConnectTodApp} // Pass the close function
+        />
       </TimeProvider>
-      <WalletConnect isOpen={isWalletConnectOpen} onClose={handleCloseModal} />
     </main>
   );
 }

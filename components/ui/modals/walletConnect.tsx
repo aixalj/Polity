@@ -14,17 +14,21 @@ import { Button } from '@/components/ui/button';
 interface WalletConnectProps {
   isOpen: boolean;
   onClose: () => void;
+  onConnect: () => void; // New prop to open connectTodApp modal
 }
 
-const WalletConnect: React.FC<WalletConnectProps> = ({ isOpen, onClose }) => {
-  const [loading, setLoading] = useState(false); // Add loading state
+const WalletConnect: React.FC<WalletConnectProps> = ({ isOpen, onClose, onConnect }) => {
+  const [loading, setLoading] = useState(false); 
 
   const handleClick = () => {
-    setLoading(true); // Set loading to true when clicked
-    // Simulate an async operation (e.g., API call)
+    setLoading(true); 
+
+    // Call the onConnect function to open the connectTodApp modal
+    onConnect();
+    
     setTimeout(() => {
-      setLoading(false); // Reset loading after operation
-    }, 2000); // Adjust time as needed
+      setLoading(false); 
+    }, 2000); 
   };
 
   return (
@@ -85,10 +89,10 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ isOpen, onClose }) => {
               type='submit'
               variant='default'
               className='w-full border border-[#2a7fe7] bg-[#3396FF] hover:bg-[#3396FF]/90 shadow-[0_4px_10px_rgba(231,243,255,0.5)] transition duration-300'
-              onClick={handleClick} // Add onClick handler
-              disabled={loading} // Disable button when loading
+              onClick={handleClick} 
+              disabled={loading} 
             >
-              {loading ? ( // Conditional rendering for loading state
+              {loading ? ( 
                 <span>Loading...</span>
               ) : (
                 <>
