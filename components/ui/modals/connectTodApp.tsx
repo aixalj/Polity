@@ -7,21 +7,35 @@ import Check3 from '@/public/Check-3.svg';
 import Check4 from '@/public/Check-4.svg';
 
 import Image from 'next/image';
+import WCCryptoIcon from '@/public/WCcryptoicons.svg';
+import NetworkAccountWallet from '@/public/NetworkAccountWallet.svg';
+import { Lock03 } from '@untitled-ui/icons-react';
 
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import WalletConnect from '@/components/ui/modals/walletConnect'; // Import the WalletConnect component
 
 interface connectTodAppProps {
   isOpen: boolean;
   onClose: () => void;
+  networkAccountName: string; // New prop for network account name
+  balance: string; // New prop for balance
 }
 
-const ConnectTodApp: React.FC<connectTodAppProps> = ({ isOpen, onClose }) => {
+const ConnectTodApp: React.FC<connectTodAppProps> = ({ isOpen, onClose, networkAccountName, balance }) => {
+  const [showWalletConnect, setShowWalletConnect] = useState(false); // State for WalletConnect modal
+
+  const handleCancel = () => {
+    onClose(); // Hide the ConnectTodApp modal
+    setShowWalletConnect(true); // Show the WalletConnect modal
+
+  };
   return (
+    <>
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
         lightCloseIcon
-        className='bg-[#3396FF] p-1 rounded-[36px] shadow-xl w-[410px] h-auto flex flex-col '
+        className='bg-[#3396FF] p-1 rounded-[36px] shadow-xl w-[448px] h-auto flex flex-col '
       >
         <div className='px-8 pt-5 flex-shrink-0'>
           <div className='flex justify-start mb-4'>
@@ -46,31 +60,29 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({ isOpen, onClose }) => {
           </p>
         </div>
 
-        <div className='bg-white px-6 pt-4 pb-5 rounded-[32px] shadow-md flex-grow overflow-hidden'>
-          <div className='-mx-6 bg-gray-50 py-2 mb-3'>
-            <p className='text-xs font-medium text-gray-600 w-full pl-6'>
-              <strong>HOW TO CONNECT</strong>
+        <div className='bg-white px-6 pt-4 pb-5 rounded-[32px] shadow-md flex-grow overflow-hidden flex flex-col items-center justify-center'>
+          <Image src={WCCryptoIcon} alt='WC-icon' width={16} height={16} />
+
+          <div className='flex items-center gap-1 font-normal text-sm mb-2'>
+            <Lock03 width={16} height={16} />
+            app.dhedge.org
+          </div>
+          <div className='flex items-center gap-1 font-normal text-sm mb-2'>
+            <div> Ethereum </div>
+            <div> ETH </div>
+          </div>
+          <div className='text-center'>
+            <p>Connect to this site?</p>
+            <p>
+              By clicking connect, you allow this app to connect to your Network
+              Account.
             </p>
           </div>
-          <ul>
-            <li className='flex items-center gap-2 font-normal text-sm mb-2'>
-              <Image src={Check1} alt='Check 1' width={16} height={16} />
-              Open a WalletConnect supported dApp
-            </li>
-            <li className='flex items-center gap-2 font-normal text-sm mb-2'>
-            <Image src={Check2} alt='Check 1' width={16} height={16} />
-               Select WalletConnect as the wallet
-            </li>
-            <li className='flex items-center gap-2 font-normal text-sm mb-2'>
-            <Image src={Check3} alt='Check 1' width={16} height={16} />
-              Copy the pairing code
-            </li>
-            <li className='flex items-center gap-2 font-normal text-sm'>
-              <Image src={Check4} alt='Check 1' width={16} height={16} />
-              Click ‘Connect Now’
-            </li>
-          </ul>
-          <div className='flex justify-start w-full pt-5'>
+          <div className='flex items-center gap-2 border border-gray-300 rounded-lg p-2'>
+          <Image src={NetworkAccountWallet} alt='WC-icon' width={16} height={16} />
+          <p>{networkAccountName} - Balance: {balance}</p> {/* Updated to show network account name and balance */}
+          </div>
+          <div className='flex flex-col gap-4 justify-start w-full pt-5'>
             <Button
               type='submit'
               variant='default'
@@ -88,12 +100,16 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({ isOpen, onClose }) => {
                   fill='white'
                 />
               </svg>
-              Connect to dApp
+              Connect Now
+            </Button>
+            <Button type='submit' variant='secondary' onClick={handleCancel}>
+              Cancel
             </Button>
           </div>
         </div>
       </DialogContent>
     </Dialog>
+    {showWalletConnect && <WalletConnect isOpen={showWalletConnect} onConnect={() => {/* handle connection logic */}} onClose={() => setShowWalletConnect(false)} />} {/* Render WalletConnect modal */}    </>
   );
 };
 

@@ -35,6 +35,10 @@ function BitcoinOne() {
   const [isWalletConnectOpen, setIsWalletConnectOpen] = useState(false);
   const [isConnectTodAppOpen, setIsConnectTodAppOpen] = useState(false);
 
+    // Example data, replace with actual data from your state or props
+    const networkAccountName = "Ethereum (0xD2...05F6)"; // Replace with actual network account name
+    const balance = "$657,318.88 (211.9 ETH)"; // Replace with actual balance
+
   const handleOpenModal = () => setIsWalletConnectOpen(true);
   const handleCloseModal = () => setIsWalletConnectOpen(false);
   const handleOpenConnectTodApp = () => {
@@ -3179,6 +3183,8 @@ function BitcoinOne() {
         <ConnectTodApp
           isOpen={isConnectTodAppOpen}
           onClose={handleCloseConnectTodApp} // Pass the close function
+          networkAccountName={networkAccountName} // Pass the network account name
+          balance={balance} // Pass the balance
         />
       </TimeProvider>
     </main>

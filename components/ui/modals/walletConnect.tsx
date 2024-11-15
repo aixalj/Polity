@@ -35,7 +35,7 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ isOpen, onClose, onConnec
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
         lightCloseIcon
-        className='bg-[#3396FF] p-1 rounded-[36px] shadow-xl w-[410px] h-auto flex flex-col '
+        className='bg-[#3396FF] p-1 rounded-[36px] shadow-xl w-[448px] h-auto flex flex-col '
       >
         <div className='px-8 pt-5 flex-shrink-0'>
           <div className='flex justify-start mb-4'>
@@ -93,7 +93,7 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ isOpen, onClose, onConnec
               disabled={loading} 
             >
               {loading ? ( 
-                <span>Loading...</span>
+                <span>Connecting...</span>
               ) : (
                 <>
                   <svg
