@@ -11,26 +11,42 @@ import Image from 'next/image';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 
-import { Loading02 } from '@untitled-ui/icons-react';
+import { Loading02, AlertCircle } from '@untitled-ui/icons-react';
 
 interface WalletConnectProps {
   isOpen: boolean;
   onClose: () => void;
-  onConnect: () => void; 
+  onConnect: () => void;
 }
 
-const WalletConnect: React.FC<WalletConnectProps> = ({ isOpen, onClose, onConnect }) => {
-  const [loading, setLoading] = useState(false); 
+const WalletConnect: React.FC<WalletConnectProps> = ({
+  isOpen,
+  onClose,
+  onConnect,
+}) => {
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(
+    null
+  ); // New state for error message
 
-  const handleClick = () => {
-    setLoading(true); 
+  const handleClick = async () => {
+    setLoading(true);
+    setErrorMessage(null); // Reset error message on new attempt
 
-    
+    try {
+      await onConnect(); // Assuming onConnect returns a promise
+      // If successful, you can handle success logic here
+    } catch (error) {
+      setErrorMessage('Error setting up connection, please try again. '); // Set error message on failure
+    } finally {
+      setLoading(false);
+    }
+
     onConnect();
-    
+
     setTimeout(() => {
-      setLoading(false); 
-    }, 5000); 
+      setLoading(false);
+    }, 5000);
   };
 
   return (
@@ -91,8 +107,8 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ isOpen, onClose, onConnec
               type='submit'
               variant='default'
               className='w-full border border-[#2a7fe7] bg-[#3396FF] hover:bg-[#3396FF]/90 shadow-[0_4px_10px_rgba(231,243,255,0.5)] transition duration-300'
-              onClick={handleClick} 
-              disabled={loading} 
+              onClick={handleClick}
+              disabled={loading}
             >
               {loading ? (
                 <>
@@ -118,6 +134,14 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ isOpen, onClose, onConnec
               )}
             </Button>
           </div>
+          {errorMessage && ( // Conditionally render the error message
+            <div className='flex items-center text-rose-700 bg-rose-50 rounded-xl mt-3 p-4'>
+              <AlertCircle width={20} height={20} className='mr-3' />
+              <p className=' text-sm font-semibold rounded-xl'>
+                {errorMessage}
+              </p>
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>
