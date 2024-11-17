@@ -11,10 +11,12 @@ import Image from 'next/image';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 
+import { Loading02 } from '@untitled-ui/icons-react';
+
 interface WalletConnectProps {
   isOpen: boolean;
   onClose: () => void;
-  onConnect: () => void; // New prop to open connectTodApp modal
+  onConnect: () => void; 
 }
 
 const WalletConnect: React.FC<WalletConnectProps> = ({ isOpen, onClose, onConnect }) => {
@@ -23,12 +25,12 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ isOpen, onClose, onConnec
   const handleClick = () => {
     setLoading(true); 
 
-    // Call the onConnect function to open the connectTodApp modal
+    
     onConnect();
     
     setTimeout(() => {
       setLoading(false); 
-    }, 2000); 
+    }, 5000); 
   };
 
   return (
@@ -92,8 +94,11 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ isOpen, onClose, onConnec
               onClick={handleClick} 
               disabled={loading} 
             >
-              {loading ? ( 
-                <span>Connecting...</span>
+              {loading ? (
+                <>
+                  <Loading02 width={20} height={20} />
+                  Connecting...
+                </>
               ) : (
                 <>
                   <svg

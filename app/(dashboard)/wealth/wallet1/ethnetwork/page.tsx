@@ -15,6 +15,8 @@ import Stats from '@/components/stats';
 
 import Allocation from '@/components/allocation';
 import { TimeProvider } from '@/components/ui/timecontext';
+import React from 'react';
+import { Notification } from '@/components/ui/notification';
 
 import { Button } from '@/components/ui/button';
 import { AssetTable } from '@/components/assettable';
@@ -34,23 +36,45 @@ function BitcoinOne() {
   const [selectedTab, setSelectedTab] = useState('overview');
   const [isWalletConnectOpen, setIsWalletConnectOpen] = useState(false);
   const [isConnectTodAppOpen, setIsConnectTodAppOpen] = useState(false);
+  const [notifications, setNotifications] = useState<any[]>([]); 
 
-    // Example data, replace with actual data from your state or props
-    const networkAccountName = "Ethereum (0xD2...05F6)"; // Replace with actual network account name
-    const balance = "$657,318.88 (211.9 ETH)"; // Replace with actual balance
+  const networkAccountName = 'Ethereum (0xD2...05F6)';
+  const balance = '$657,318.88 (211.9 ETH)';
 
   const handleOpenModal = () => setIsWalletConnectOpen(true);
   const handleCloseModal = () => setIsWalletConnectOpen(false);
   const handleOpenConnectTodApp = () => {
-    setIsWalletConnectOpen(false); // Close WalletConnect modal
-    setIsConnectTodAppOpen(true); // Open ConnectTodApp modal
+    setIsWalletConnectOpen(false);
+    setIsConnectTodAppOpen(true);
   };
-  const handleCloseConnectTodApp = () => setIsConnectTodAppOpen(false); // Close ConnectTodApp modal
+  const handleCloseConnectTodApp = () => setIsConnectTodAppOpen(false);
+
+  const addNotification = (
+    title: string,
+    description: string,
+    status: 'success' | 'error' | 'warning' | 'info'
+  ) => {
+    setNotifications((prev) => [...prev, { title, description, status }]);
+  };
 
   return (
     <main className='w-full h-full'>
       <TimeProvider>
         <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
+          <div className='fixed bottom-4 left-4 z-50 w-[416px]'>
+            {notifications.map((notification, index) => (
+              <Notification
+                key={index}
+                title={notification.title}
+                description='Access and transactions through the dApp are enabled. Monitor and manage your activities as needed.'
+                status='success'
+                className='shadow-lg'
+                onClose={() => {
+                  setNotifications((prev) => prev.filter((_, i) => i !== index));
+                }}
+              />
+            ))}
+          </div>
           <Tabs
             defaultValue='overview'
             onValueChange={(value) => setSelectedTab(value)}
@@ -3178,13 +3202,14 @@ function BitcoinOne() {
         <WalletConnect
           isOpen={isWalletConnectOpen}
           onClose={handleCloseModal}
-          onConnect={handleOpenConnectTodApp} // Update to use the new function
+          onConnect={handleOpenConnectTodApp} 
         />
         <ConnectTodApp
           isOpen={isConnectTodAppOpen}
-          onClose={handleCloseConnectTodApp} // Pass the close function
-          networkAccountName={networkAccountName} // Pass the network account name
-          balance={balance} // Pass the balance
+          onClose={() => setIsConnectTodAppOpen(false)}
+          networkAccountName={networkAccountName} 
+          balance={balance} 
+          addNotification={addNotification}
         />
       </TimeProvider>
     </main>
