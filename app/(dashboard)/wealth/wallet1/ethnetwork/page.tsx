@@ -61,14 +61,14 @@ function BitcoinOne() {
     <main className='w-full h-full'>
       <TimeProvider>
         <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
-          <div className='fixed bottom-4 left-4 z-50 w-[416px]'>
+          <div className='fixed bottom-4 left-4 z-50 w-[416px] rounded-[20px]'>
             {notifications.map((notification, index) => (
               <Notification
                 key={index}
                 title={notification.title}
                 description='Access and transactions through the dApp are enabled. Monitor and manage your activities as needed.'
                 status='success'
-                className='shadow-lg'
+                className='shadow-2xl'
                 onClose={() => {
                   setNotifications((prev) => prev.filter((_, i) => i !== index));
                 }}

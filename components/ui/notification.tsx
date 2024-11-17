@@ -6,6 +6,7 @@ import {
   InfoCircle,
   AlertCircle,
   X,
+  CheckVerified01
 } from "@untitled-ui/icons-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -49,7 +50,7 @@ const Notification = ({
        {status === "error" ? (
         <AlertCircle className="min-w-5 min-h-5 max-w-5 max-h-5" />
       ) : status === "success" ? (
-        <CheckCircle className="min-w-5 min-h-5 max-w-5 max-h-5 text-green-600" /> 
+       <CheckVerified01 className="min-w-11 min-h-11 max-w-11 max-h-11 bg-green-100 rounded-full text-green-600 p-2.5" />
       ) : status === "info" ? (
         <InfoCircle className="min-w-5 min-h-5 max-w-5 max-h-5" />
       ) : (
