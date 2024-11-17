@@ -43,7 +43,7 @@ function BitcoinOne() {
 
   const handleOpenModal = () => setIsWalletConnectOpen(true);
   const handleCloseModal = () => setIsWalletConnectOpen(false);
-  const handleOpenConnectTodApp = () => {
+  const handleOpenConnectTodApp = () => { 
     setIsWalletConnectOpen(false);
     setIsConnectTodAppOpen(true);
   };
@@ -229,7 +229,7 @@ function BitcoinOne() {
                   <div className='flex gap-3'>
                     <Button
                       variant='default'
-                      className=' border border-[#2a7fe7] bg-[#3396FF] hover:bg-[#3396FF]/90 shadow-[0_4px_10px_rgba(231,243,255,0.5)] transition duration-300'
+                      className='bg-[#3396FF] hover:bg-[#3396FF]/90'
                       onClick={handleOpenModal}
                     >
                       <svg
