@@ -2488,7 +2488,7 @@ const BuyReportModal = () => {
               style={{ pointerEvents: 'none' }}
               className={`w-full items-center justify-start group focus:ring-0 outline-none focus:tap-highlight-transparent focus:outline-none relative flex gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out ${
                 tabValues.indexOf('payment') > tabValues.indexOf(activeTab)
-                  ? 'text-gray-400'
+                  ? 'text-gray-600'
                   : 'text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border'
               }`}
             >
@@ -2533,7 +2533,7 @@ const BuyReportModal = () => {
               value='recipient'
               className={`w-full items-center justify-start group focus:ring-0 outline-none focus:tap-highlight-transparent focus:outline-none relative flex gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out ${
                 tabValues.indexOf('recipient') > tabValues.indexOf(activeTab)
-                  ? 'text-gray-400'
+                  ? 'text-gray-600'
                   : 'text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border'
               }`}
             >
@@ -2566,7 +2566,7 @@ const BuyReportModal = () => {
               //   className=" w-full items-center justify-start group focus:ring-0 outline-none  focus:tap-highlight-transparent focus:outline-none relative flex  gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border"
               className={`w-full items-center justify-start group focus:ring-0 outline-none focus:tap-highlight-transparent focus:outline-none relative flex gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out ${
                 tabValues.indexOf('amount') > tabValues.indexOf(activeTab)
-                  ? 'text-gray-400'
+                  ? 'text-gray-600'
                   : 'text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border'
               }`}
             >
@@ -2611,7 +2611,7 @@ const BuyReportModal = () => {
               style={{ pointerEvents: 'none' }}
               className={`w-full items-center justify-start group focus:ring-0 outline-none focus:tap-highlight-transparent focus:outline-none relative flex gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out ${
                 tabValues.indexOf('confirm') > tabValues.indexOf(activeTab)
-                  ? 'text-gray-400'
+                  ? 'text-gray-600'
                   : 'text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border'
               }`}
             >
