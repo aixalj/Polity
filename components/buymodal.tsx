@@ -2535,8 +2535,7 @@ const BuyReportModal = () => {
                 tabValues.indexOf('recipient') > tabValues.indexOf(activeTab)
                   ? 'text-gray-600'
                   : 'text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border'
-              }`}
-            >
+              }`}>
               <ShoppingBag01 className='w-5 h-5' />
               Purchase Options
               {tabValues.indexOf('recipient') <
@@ -2777,14 +2776,10 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
             </div>
           </TabsContent>
           <TabsContent value='recipient' className=' '>
-            <div
-              className='relative h-fit border flex-none border-gray-300 rounded-3xl 
-flex-col  p-0   grid   shadow-sm  max-w-[512px] mx-auto w-full  
-gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'
-            >
+            <div className='relative h-fit border flex-none border-gray-300 rounded-3xl flex-col p-0 grid shadow-sm max-w-[512px] mx-auto w-full gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
               <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
                 <div className='mb-2'>
-                  <ShoppingBag01 className='w-6 h-6' />
+                  <ShoppingBag01 className='w-6 h-6 text-gray-700' />
                 </div>
                 <FSDialogTitle className='text-xl'>
                   Purchase Options
@@ -2867,8 +2862,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                       <RadioGroupItem
                         value='2'
                         id='2'
-                        className='w-full items-center'
-                      >
+                        className='w-full items-center'>
                         <div className='w-8 h-8 rounded-lg border bg-white flex items-center justify-center pb-0.5 border-gray-300 mr-2'>
                           <Image
                             src='/icons/coinfirm.png'
@@ -2937,7 +2931,9 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
             </div>
           </TabsContent>
           <TabsContent value='amount' className=''>
-          <div className='relative h-full max-h-[80vh] border flex-none border-gray-300 rounded-3xl flex-col p-0 grid shadow-sm max-w-[512px] mx-auto w-full gap-4 bg-white duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] overflow-y-auto'>              <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
+            <div className='relative h-full max-h-[80vh] border flex-none border-gray-300 rounded-3xl flex-col p-0 grid shadow-sm max-w-[512px] mx-auto w-full gap-4 bg-white duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] overflow-y-auto'>
+              {' '}
+              <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
                 <div className='mb-2'>
                   <Wallet02 className='w-8 h-8 text-gray-700' />
                 </div>
