@@ -147,6 +147,12 @@ const BuyReportModal = () => {
 
   console.log('Active Tab:', activeTab, 'Selected Asset:', selectedAsset);
 
+  const [selectedPurchaseOption, setSelectedPurchaseOption] = useState<string | null>(null);
+
+  const handlePurchaseOptionChange = (option: string) => {
+    setSelectedPurchaseOption(option); // Update the selected purchase option
+  };
+
   const canContinue = () => {
     if (
       activeTab === 'payment' ||
@@ -154,13 +160,14 @@ const BuyReportModal = () => {
         selectedWallet.length >= 3 &&
         selectedNetwork.length >= 3 &&
         selectedAsset.length >= 3) ||
-      activeTab === 'recipient' ||
+      (activeTab === 'recipient' && selectedPurchaseOption !== null) || // Ensure this condition is checked
       activeTab === 'amount' ||
       activeTab === 'confirm'
     ) {
-      return true;
+      return true; // Continue button enabled
     }
-  };
+    return false; // Continue button disabled
+};
 
   // Add inside BuyReportModal component, near the top with other state declarations
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
