@@ -79,7 +79,9 @@ const ReportTable: React.FC<{
                           {report.name}
                         </span>
                         <span className="text-sm text-gray-500">
-                          {report.address}
+                          {report.address.length > 15 
+                            ? `${report.address.slice(0,4)}...${report.address.slice(-4)}`
+                            : report.address}
                         </span>
                       </p>
                     </div>
