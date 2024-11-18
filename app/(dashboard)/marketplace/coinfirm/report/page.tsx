@@ -35,7 +35,13 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Lightning01, PackageSearch } from "@untitled-ui/icons-react";
-import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { BuyReport } from "@/components/buyreport";
@@ -46,6 +52,8 @@ import { ReportTable } from "@/components/report/reporttable";
 
 export default function Marketplace() {
   const [selectedOption, setSelectedOption] = useState<string>("1");
+  const [selectedWallet, setSelectedWallet] = useState<string>("");
+  const [selectedAccount, setSelectedAccount] = useState<string>("");
 
   return (
     <main className="w-full h-full">
@@ -151,7 +159,7 @@ export default function Marketplace() {
                       Generate Report
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-[512px]">
+                  <DialogContent className="max-w-[512px] rounded-3xl">
                     <div className="pb-3  flex flex-col">
                       <div className="w-full mb-4 flex justify-between items-center">
                         <PackageSearch className="w-8 h-8 text-gray-700" />
@@ -177,15 +185,110 @@ export default function Marketplace() {
                           title="Internal Network Address"
                           description="Select a Wallet and corresponding Network Account"
                         >
-                          <Select>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select a Wallet..." />
+                          <Select
+                            onValueChange={(value) => {
+                              setSelectedWallet(value);
+                              setSelectedAccount("");
+                            }}
+                            value={selectedWallet}
+                          >
+                            <SelectTrigger className="w-full h-11 border-gray-300 text-gray-500 font-regular gap-2">
+                              <SelectValue
+                                className="text-gray-500 font-regular"
+                                placeholder="Select a Wallet..."
+                              />
                             </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="Main Wallet">
+                                <div className="flex items-center gap-2">
+                                  <img
+                                    src="/wallets/wallet1.svg"
+                                    alt="Wallet 1"
+                                    width={24}
+                                    height={24}
+                                  />
+
+                                  <p className="text-gray-900 font-medium">
+                                    Main Wallet
+                                  </p>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="MATIC">
+                                <div className="flex items-center gap-2">
+                                  <img
+                                    src="/wallets/wallet2.svg"
+                                    alt="Wallet 2"
+                                    width={24}
+                                    height={24}
+                                  />
+
+                                  <p className="text-gray-900 font-medium">
+                                    Second Wallet
+                                  </p>
+                                </div>
+                              </SelectItem>
+                            </SelectContent>
                           </Select>
-                          <Select>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select a network account..." />
+                          <Select
+                            onValueChange={setSelectedAccount}
+                            value={selectedAccount}
+                            disabled={!selectedWallet}
+                          >
+                            <SelectTrigger
+                              className={`w-full h-11 border-gray-300 text-gray-500 font-regular gap-2 ${
+                                !selectedWallet
+                                  ? "opacity-50 cursor-not-allowed"
+                                  : ""
+                              }`}
+                            >
+                              <SelectValue
+                                className="text-gray-500 font-regular"
+                                placeholder="Select a network account..."
+                              />
                             </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="btc">
+                                <div className="flex items-center gap-2">
+                                  <img
+                                    src="/icons/networks/BTC.svg"
+                                    alt="Ethereum"
+                                    width={24}
+                                    height={24}
+                                  />
+                                  <p className="text-gray-900 font-medium">
+                                    Network Account Name (0x8f...47d2)
+                                  </p>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="eth">
+                                <div className="flex items-center gap-2">
+                                  <img
+                                    src="/icons/networks/ETH.svg"
+                                    alt="Ethereum"
+                                    width={24}
+                                    height={24}
+                                  />
+                                  <p className="text-gray-900 font-medium">
+                                    Network Account Name (0x8f...47d2)
+                                  </p>
+                                </div>
+                              </SelectItem>
+
+                              <SelectItem value="polygon">
+                                <div className="flex items-center gap-2">
+                                  <img
+                                    src="/icons/networks/MATIC.svg"
+                                    alt="Polygon"
+                                    width={24}
+                                    height={24}
+                                  />
+
+                                  <p className="text-gray-900 font-medium">
+                                    Network Account Name (0x8f...47d2)
+                                  </p>
+                                </div>
+                              </SelectItem>
+                            </SelectContent>
                           </Select>
                         </RadioOption>
                         <div className="flex items-center gap-2">
