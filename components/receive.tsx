@@ -843,7 +843,7 @@ export function ReceiveForm() {
                   onValueChange={field.onChange}
                   disabled={true}
                 >
-                  <SelectTrigger className='w-full h-11 border-gray-300 text-gray-500 font-regular gap-2 '>
+                  <SelectTrigger className='w-full h-11 border-gray-300 text-gray-500 bg-gray-50 font-regular gap-2 '>
                     <SelectValue
                       className='text-gray-500 font-regular'
                       placeholder='Select an Asset...'
