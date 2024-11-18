@@ -67,10 +67,20 @@ export default function Marketplace() {
       polygon: "MATIC",
     };
 
+    // Get the address based on the selected account
+    const accountAddresses: { [key: string]: string } = {
+      btc: "0x8f...47d2",
+      eth: "0x8f...47d2",
+      polygon: "0x8f...47d2",
+    };
+
     const newReport: Report = {
-      name: selectedWallet,
+      name: `${selectedWallet}`, // The wallet name is already correct from the select
       network: networkIcons[selectedAccount] || "Unknown",
-      address: "0x8f...47d2",
+      address:
+        selectedOption === "1"
+          ? accountAddresses[selectedAccount] // Use the mapped address for internal accounts
+          : "0x8f...47d2", // Use input value for external addresses (option 2)
       generationDate: new Date(),
       status: "Processing",
     };
@@ -236,7 +246,7 @@ export default function Marketplace() {
                                   </p>
                                 </div>
                               </SelectItem>
-                              <SelectItem value="MATIC">
+                              <SelectItem value="Second Wallet">
                                 <div className="flex items-center gap-2">
                                   <img
                                     src="/wallets/wallet2.svg"
