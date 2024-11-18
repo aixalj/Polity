@@ -6,6 +6,7 @@ import {
   InfoCircle,
   AlertCircle,
   X,
+  CheckVerified01
 } from "@untitled-ui/icons-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -34,22 +35,22 @@ const Notification = ({
       className={cn(
         `w-full p-4 flex gap-3 rounded-xl text-sm relative ${
           status === "success"
-            ? "bg-green-50 text-green-700"
+            ? "bg-white text-gray-700"
             : status === "warning"
             ? "bg-amber-50 text-amber-700"
             : status === "info"
             ? "bg-white text-gray-700"
             : status === "error"
             ? "bg-rose-50 text-rose-700"
-            : "bg-amber-50 text-amber-700" // Default to warning style if status is not recognized
+            : "bg-amber-50 text-amber-700" 
         }`,
         className
       )}
     >
-      {status === "error" ? (
+       {status === "error" ? (
         <AlertCircle className="min-w-5 min-h-5 max-w-5 max-h-5" />
       ) : status === "success" ? (
-        <CheckCircle className="min-w-5 min-h-5 max-w-5 max-h-5" />
+       <CheckVerified01 className="min-w-11 min-h-11 max-w-11 max-h-11 bg-green-100 rounded-full text-green-600 p-2.5" />
       ) : status === "info" ? (
         <InfoCircle className="min-w-5 min-h-5 max-w-5 max-h-5" />
       ) : (
@@ -65,12 +66,20 @@ const Notification = ({
             <ArrowRight className="w-4 h-4" />
           </Link>
         )}
+        {onClose && (
+          <button
+            onClick={onClose} 
+            className="mt-2 text-gray-600 text-sm font-semibold mr-auto"
+          >
+            Dismiss
+          </button>
+        )}
       </div>
 
       {onClose && (
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 p-1 rounded-full hover:bg-opacity-10 hover:bg-current"
+          className="absolute top-2 right-2 p-1 rounded-full"
         >
           <X className="w-4 h-4" />
         </button>

@@ -71,7 +71,7 @@ export default function Marketplace() {
                     Marketplace
                   </h1>{" "}
                 </div>
-                <div className="flex gap-3">
+                {/* <div className="flex gap-3">
                   <Button variant="outline">
                     <svg
                       width="20"
@@ -126,7 +126,7 @@ export default function Marketplace() {
                     </svg>
                     My Products
                   </Button>
-                </div>
+                </div> */}
               </div>
 
               <div className="w-full  mt-4 flex items-center pb-1">

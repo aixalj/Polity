@@ -14,6 +14,11 @@ interface RadioOptionProps {
   children?: React.ReactNode;
 }
 
+const RadioGroupContext = React.createContext<{
+  value?: string;
+  onValueChange?: (value: string) => void;
+} | null>(null);
+
 const RadioOption = ({
   value,
   title,
@@ -23,16 +28,22 @@ const RadioOption = ({
   const radioGroup = React.useContext(RadioGroupContext);
   const isSelected = radioGroup?.value === value;
 
+  const handleChange = () => {
+    if (radioGroup?.onValueChange) {
+      radioGroup.onValueChange(value); // Call onValueChange when selected
+    }
+  };
+
   return (
     <>
-      <RadioGroupItem value={value}>
+      <RadioGroupItem value={value} onClick={handleChange}> {/* Add onClick to handle selection */}
         <div className="flex flex-col text-left">
           <p className="font-medium text-sm text-gray-700">{title}</p>
           <p className="text-sm text-gray-600">{description}</p>
         </div>
       </RadioGroupItem>
       {children && (
-        <div className=" space-y-2">
+        <div className="space-y-2">
           {React.Children.map(children, (child) => {
             if (React.isValidElement(child)) {
               return React.cloneElement(child, {
@@ -47,11 +58,6 @@ const RadioOption = ({
     </>
   );
 };
-
-const RadioGroupContext = React.createContext<{
-  value?: string;
-  onValueChange?: (value: string) => void;
-} | null>(null);
 
 const RadioGroup = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,
@@ -77,7 +83,7 @@ const RadioGroupItem = React.forwardRef<
     <RadioGroupPrimitive.Item
       ref={ref}
       className={cn(
-        "group relative flex w-full cursor-pointer  rounded-xl border border-gray-200 p-4 transition-all hover:bg-gray-50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-primary-500 data-[state=checked]:bg-teal-50",
+        "group relative flex w-full cursor-pointer rounded-xl border border-gray-200 p-4 transition-all hover:bg-gray-50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-primary-500 data-[state=checked]:bg-teal-50",
         className
       )}
       {...props}
