@@ -21,6 +21,7 @@ import {
 
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTrigger,
@@ -47,13 +48,35 @@ import Link from "next/link";
 import { BuyReport } from "@/components/buyreport";
 import { SubscriptionTable } from "@/components/subscription/subscriptiontable";
 import { subscriptions } from "@/components/subscription/subscriptiondata";
-import { reports } from "@/components/report/reportdata";
+import {
+  reports as initialReports,
+  type Report,
+} from "@/components/report/reportdata";
 import { ReportTable } from "@/components/report/reporttable";
 
 export default function Marketplace() {
   const [selectedOption, setSelectedOption] = useState<string>("1");
   const [selectedWallet, setSelectedWallet] = useState<string>("");
   const [selectedAccount, setSelectedAccount] = useState<string>("");
+  const [reports, setReports] = useState(initialReports);
+
+  const handleGenerateReport = () => {
+    const networkIcons: { [key: string]: string } = {
+      btc: "BTC",
+      eth: "ETH",
+      polygon: "MATIC",
+    };
+
+    const newReport: Report = {
+      name: selectedWallet,
+      network: networkIcons[selectedAccount] || "Unknown",
+      address: "0x8f...47d2",
+      generationDate: new Date(),
+      status: "Processing",
+    };
+
+    setReports([newReport, ...reports]);
+  };
 
   return (
     <main className="w-full h-full">
@@ -305,10 +328,20 @@ export default function Marketplace() {
                         </RadioOption>
                       </RadioGroup>
                     </div>
-                    <Button className="w-full">
-                      <Lightning01 className="w-5 h-5" />
-                      Generate Report
-                    </Button>
+                    <DialogClose asChild>
+                      <Button
+                        className="w-full"
+                        onClick={handleGenerateReport}
+                        disabled={
+                          selectedOption === "1"
+                            ? !selectedWallet || !selectedAccount
+                            : false
+                        }
+                      >
+                        <Lightning01 className="w-5 h-5" />
+                        Generate Report
+                      </Button>
+                    </DialogClose>
                   </DialogContent>
                 </Dialog>
               </div>
@@ -321,7 +354,7 @@ export default function Marketplace() {
             <div className="relative w-full flex flex-col pb-40">
               <div className="py-4 relative flex w-full flex-row justify-between">
                 <h2 className="text-2xl font-medium">Report History</h2>
-                <p>Available Reports: 0</p>
+                <p>Available Reports: {reports.length}</p>
               </div>
               <ReportTable reports={reports} />
             </div>

@@ -74,23 +74,30 @@ const ReportTable: React.FC<{
                       <div className="min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl">
                         <File06 className="w-5 h-5" />
                       </div>
-                      <p className="flex flex-col  items-left text-sm ">
-                        <span className="text-sm font-medium text-gray-900 ">
+                      <p className="flex flex-col items-left text-sm ">
+                        <span className="text-sm font-medium text-gray-900">
                           {report.name}
+                        </span>
+                        <span className="text-sm text-gray-500">
+                          {report.address}
                         </span>
                       </p>
                     </div>
 
-                    <div className="min-w-36 gap-1.5 flex-auto  px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
+                    <div className="min-w-36 gap-1.5 flex-auto px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
                       <Image
                         src={`/icons/networks/${report.network}.svg`}
-                        alt={report.name}
+                        alt={report.network}
                         width={16}
                         height={16}
                       />
-                      {report.network === "ETH" ? "Ethereum" : report.network}
+                      {report.network === "ETH"
+                        ? "Ethereum"
+                        : report.network === "BTC"
+                          ? "Bitcoin"
+                          : report.network}
                     </div>
-                    <div className="min-w-36 gap-1.5 flex-auto  px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
+                    <div className="min-w-36 gap-1.5 flex-auto px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
                       {report.generationDate.toLocaleDateString("en-GB", {
                         day: "2-digit",
                         month: "short",
@@ -98,21 +105,24 @@ const ReportTable: React.FC<{
                       })}
                     </div>
 
-                    <div className="min-w-36 flex-auto  px-6 py-3 h-16 flex items-center whitespace-nowrap">
+                    <div className="min-w-36 flex-auto px-6 py-3 h-16 flex items-center whitespace-nowrap">
                       <Badge
                         variant={
                           report.status === "Active"
                             ? "success"
-                            : report.status === "Expired"
-                              ? "destructive"
-                              : "default"
+                            : report.status === "Processing"
+                              ? "warning"
+                              : "success"
                         }
                       >
                         {report.status}
                       </Badge>
                     </div>
                     <div className="w-full flex-auto justify-end  px-6 py-3 h-16 flex items-center whitespace-nowrap">
-                      <Button variant="outline">
+                      <Button
+                        disabled={report.status === "Processing"}
+                        variant="outline"
+                      >
                         <Download01 className="w-4 h-4" /> Download PDF
                       </Button>
                     </div>
