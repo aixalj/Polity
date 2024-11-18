@@ -161,7 +161,7 @@ const BuyReportModal = () => {
         selectedNetwork.length >= 3 &&
         selectedAsset.length >= 3) ||
       (activeTab === 'recipient' && selectedPurchaseOption !== null) || // Ensure this condition is checked
-      activeTab === 'amount' ||
+      (activeTab === 'amount' && selectedNetwork.length >= 3) ||
       activeTab === 'confirm'
     ) {
       return true; // Continue button enabled
@@ -2805,7 +2805,7 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                 </div>
                 <div className='px-6 flex flex-col gap-3 text-gray-600 text-sm w-full'>
                   <div className='w-full flex gap-3 pb-6 flex-col items-center py-1 justify-between'>
-                    <RadioGroup defaultValue='' className='w-full gap-3 pt-3' onValueChange={handlePurchaseOptionChange}>
+                    <RadioGroup value={selectedPurchaseOption || ''} className='w-full gap-3 pt-3' onValueChange={handlePurchaseOptionChange}>
                       <RadioGroupItem
                         value='1'
                         id='1'

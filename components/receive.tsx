@@ -62,9 +62,6 @@ export function ReceiveForm() {
   const [availableBalance] = useState('');
   const [usdEquivalent] = useState('');
 
-  const [isNetworkSelected, setIsNetworkSelected] = useState(false); // Add this line to define the state
-
-
   // Effect to handle asset-specific logic and log changes
   React.useEffect(() => {
     console.log('Selected wallet:', wallet);
@@ -545,10 +542,7 @@ export function ReceiveForm() {
                 {/* <Select /> */}
                 <Select
                   value={field.value}
-                  onValueChange={(value) => {
-                    field.onChange(value); // Update form state when value changes
-                    setIsNetworkSelected(!!value); // Update state based on selection
-                  }}
+                  onValueChange={field.onChange}
                   disabled={isDisabled}
                 >
                   <SelectTrigger className='w-full gap-2 h-11 border-gray-300 text-gray-500 font-regular '>
