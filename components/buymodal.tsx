@@ -155,7 +155,7 @@ const BuyReportModal = () => {
         selectedNetwork.length >= 3 &&
         selectedAsset.length >= 3) ||
       activeTab === 'recipient' ||
-      (activeTab === 'amount' && selectedAsset.length > 1) ||
+      activeTab === 'amount' ||
       activeTab === 'confirm'
     ) {
       return true;

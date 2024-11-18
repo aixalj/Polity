@@ -62,6 +62,9 @@ export function ReceiveForm() {
   const [availableBalance] = useState('');
   const [usdEquivalent] = useState('');
 
+  const [isNetworkSelected, setIsNetworkSelected] = useState(false); // Add this line to define the state
+
+
   // Effect to handle asset-specific logic and log changes
   React.useEffect(() => {
     console.log('Selected wallet:', wallet);
@@ -542,7 +545,10 @@ export function ReceiveForm() {
                 {/* <Select /> */}
                 <Select
                   value={field.value}
-                  onValueChange={field.onChange}
+                  onValueChange={(value) => {
+                    field.onChange(value); // Update form state when value changes
+                    setIsNetworkSelected(!!value); // Update state based on selection
+                  }}
                   disabled={isDisabled}
                 >
                   <SelectTrigger className='w-full gap-2 h-11 border-gray-300 text-gray-500 font-regular '>
@@ -839,9 +845,9 @@ export function ReceiveForm() {
               <FormLabel className=''>Asset</FormLabel>
               <FormControl>
                 <Select
-                  value={field.value || 'USDT'} // Set default to "USDT"
+                  value='USDT' // Set default to "USDT"
                   onValueChange={field.onChange}
-                  disabled={isDisableda}
+                  disabled={true}
                 >
                   <SelectTrigger className='w-full h-11 border-gray-300 text-gray-500 font-regular gap-2 '>
                     <SelectValue
