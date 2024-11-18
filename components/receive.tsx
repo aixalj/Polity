@@ -37,7 +37,7 @@ export function ReceiveForm() {
     defaultValues: {
       wallet: '',
       network: '',
-      asset: '',
+      asset: 'USDT',
     },
   });
 
