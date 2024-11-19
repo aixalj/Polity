@@ -96,7 +96,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
                         alt={`${contact.name}'s avatar`}
                         className='w-full h-full object-cover'
                         width={40}
-                        height={40}
+                        height={40} 
                       /> 
                     </div> */}
                     <div>
