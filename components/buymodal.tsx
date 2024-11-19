@@ -3062,7 +3062,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                     Bid Summary
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex  py-1'>
                       {' '}
                       <p>Auction Package</p>
                       <div className='flex gap-2 font-medium items-center'>
@@ -3070,14 +3070,14 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                       </div>
                     </div>
 
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex  py-1'>
                       {' '}
                       <p>Time Left</p>
                       <div className='flex gap-2 font-medium items-center'>
                         <p className=''>{formatTimeLeft()}</p>
                       </div>
                     </div>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex  py-1'>
                       {' '}
                       <p>Your Bid Amount</p>
                       <div className='flex gap-2 font-medium items-center'>
@@ -3092,7 +3092,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                       </div>
                     </div>
 
-                    <div className='w-full justify-between flex  py-1.5 mb-3'>
+                    <div className='w-full justify-between flex  py-1 mb-3'>
                       {' '}
                       <p>Gas Fee</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -3108,14 +3108,14 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                     Payment Method
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex  py-1'>
                       {' '}
                       <p>Wallet</p>
                       <p className='flex gap-2 font-medium items-center'>
                         {selectedWallet}
                       </p>
                     </div>
-                    <div className='w-full justify-between  flex py-1.5 mb-3'>
+                    <div className='w-full justify-between  flex py-1 mb-3'>
                       {' '}
                       <p>Network Account</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -3147,7 +3147,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                     Balance
                   </div>
                   <div className='px-6 flex pb-5 flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex  py-1'>
                       {' '}
                       <p>Available Balance</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -3157,7 +3157,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                         {availableBalance}
                       </p>
                     </div>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex  py-1'>
                       {' '}
                       <p>Required Hold</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -3167,7 +3167,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                         {bitcoinCount.toFixed(2)} USDT
                       </p>
                     </div>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex  py-1'>
                       {' '}
                       <p>Remaining Balance if Won</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -5902,14 +5902,14 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 </div>
 
                 <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                  <div className='w-full justify-between flex  py-1.5'>
+                  <div className='w-full justify-between flex  py-1'>
                     {' '}
                     <p>Wallet</p>
                     <p className='flex gap-2 font-semibold items-center'>
                       {selectedWallet}
                     </p>
                   </div>
-                  <div className='w-full justify-between  flex py-1.5 mb-3'>
+                  <div className='w-full justify-between  flex py-1 mb-3'>
                     {' '}
                     <p>Network Account</p>
                     <p className='flex gap-2 font-semibold items-center'>
@@ -5942,7 +5942,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   Payment Method
                 </div>
                 <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                  <div className='w-full justify-between flex  py-1.5'>
+                  <div className='w-full justify-between flex  py-1'>
                     {' '}
                     <p>Total Paid</p>
                     <div className='flex gap-2 font-semibold items-center'>
@@ -5957,7 +5957,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                     </div>
                   </div>
 
-                  <div className='w-full justify-between flex  py-1.5'>
+                  <div className='w-full justify-between flex  py-1'>
                     {' '}
                     <p>Gas Fee</p>
                     <p className='flex gap-2 font-semibold items-center'>
