@@ -35,7 +35,6 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <div className="flex h-screen overflow-hidden bg-gray-50 w-full text-gray-900">
-          <VercelToolbar />
           {/* <SideBar /> */}
 
           {/* <div className="relative flex overflow-y-auto overflow-x-hidden py-2 px-2 h-screen w-full"> */}
