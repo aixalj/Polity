@@ -66,6 +66,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Transaction } from "../transactionData";
+import { useFilters } from "@/components/ui/filtercontext";
 
 interface ExchangeRates {
   [key: string]: string;
@@ -101,52 +102,111 @@ const TransactionTable: React.FC<{
   transactions: Transaction[];
 }> = ({ transactions }) => {
   const { selectedTime } = useTime();
+  const { selectedFilters } = useFilters();
   const [filteredTransactions, setFilteredTransactions] =
     useState<Transaction[]>(transactions);
   const [exchangeRates, setExchangeRates] = useState<ExchangeRates>({});
 
   useEffect(() => {
-    const now = new Date();
-    let filteredData: Transaction[];
+    let filtered = transactions;
 
+    // Apply time filter
+    const now = new Date();
     switch (selectedTime) {
       case "pastday":
-        filteredData = transactions.filter(
+        filtered = filtered.filter(
           (t) => new Date(t.timestamp) >= subDays(now, 0)
         );
         break;
       case "pastweek":
-        filteredData = transactions.filter(
+        filtered = filtered.filter(
           (t) => new Date(t.timestamp) >= subWeeks(now, 1)
         );
         break;
       case "pastmonth":
-        filteredData = transactions.filter(
+        filtered = filtered.filter(
           (t) => new Date(t.timestamp) >= subMonths(now, 1)
         );
         break;
       case "threemonths":
-        filteredData = transactions.filter(
+        filtered = filtered.filter(
           (t) => new Date(t.timestamp) >= subMonths(now, 3)
         );
         break;
       case "yeartodate":
-        filteredData = transactions.filter(
+        filtered = filtered.filter(
           (t) => new Date(t.timestamp) >= startOfYear(now)
         );
         break;
       case "pastyear":
-        filteredData = transactions.filter(
+        filtered = filtered.filter(
           (t) => new Date(t.timestamp) >= subMonths(now, 12)
         );
         break;
       case "alltime":
       default:
-        filteredData = transactions;
+        filtered = transactions;
     }
 
-    setFilteredTransactions(filteredData);
-  }, [selectedTime, transactions]);
+    // Apply selected filters
+    if (selectedFilters.length > 0) {
+      filtered = filtered.filter((transaction) => {
+        const methodMatch = selectedFilters.some((filter) => {
+          if (filter === "all_methods") return true;
+          return filter.toLowerCase() === transaction.method.toLowerCase();
+        });
+
+        const networkMatch = selectedFilters.some((filter) => {
+          if (filter === "all_networks") return true;
+          if (filter === "bitcoin") return transaction.network === "Bitcoin";
+          if (filter === "ethereum") return transaction.network === "Ethereum";
+          if (filter === "polygon") return transaction.network === "Polygon";
+          return false;
+        });
+
+        const walletMatch = selectedFilters.some((filter) => {
+          if (filter === "all_wallets") return true;
+          if (filter === "main_wallet")
+            return transaction.wallet === "Main Wallet";
+          if (filter === "second_wallet")
+            return transaction.wallet === "Second Wallet";
+          return false;
+        });
+
+        const assetMatch = selectedFilters.some((filter) => {
+          if (filter === "all_assets") return true;
+          return filter.toUpperCase() === transaction.token;
+        });
+
+        // If no filters of a type are selected, consider it a match
+        const hasMethodFilter = selectedFilters.some(
+          (f) =>
+            f.includes("method") ||
+            ["send", "receive", "swap", "stake", "unstake", "lend"].includes(f)
+        );
+        const hasNetworkFilter = selectedFilters.some((f) =>
+          f.includes("network")
+        );
+        const hasWalletFilter = selectedFilters.some((f) =>
+          f.includes("wallet")
+        );
+        const hasAssetFilter = selectedFilters.some(
+          (f) =>
+            f.includes("asset") ||
+            ["btc", "eth", "usdc", "usdt", "matic", "link", "wbtc"].includes(f)
+        );
+
+        return (
+          (!hasMethodFilter || methodMatch) &&
+          (!hasNetworkFilter || networkMatch) &&
+          (!hasWalletFilter || walletMatch) &&
+          (!hasAssetFilter || assetMatch)
+        );
+      });
+    }
+
+    setFilteredTransactions(filtered);
+  }, [selectedTime, selectedFilters, transactions]);
 
   useEffect(() => {
     const fetchExchangeRates = async () => {
@@ -322,18 +382,18 @@ const TransactionTable: React.FC<{
                                   transaction.token === "ETH"
                                     ? ETH
                                     : transaction.token === "USDC"
-                                      ? USDC
-                                      : transaction.token === "USDT"
-                                        ? USDT
-                                        : transaction.token === "BTC"
-                                          ? BTC
-                                          : transaction.token === "MATIC"
-                                            ? MATIC
-                                            : transaction.token === "LINK"
-                                              ? LINK
-                                              : transaction.token === "WBTC"
-                                                ? WBTC
-                                                : null
+                                    ? USDC
+                                    : transaction.token === "USDT"
+                                    ? USDT
+                                    : transaction.token === "BTC"
+                                    ? BTC
+                                    : transaction.token === "MATIC"
+                                    ? MATIC
+                                    : transaction.token === "LINK"
+                                    ? LINK
+                                    : transaction.token === "WBTC"
+                                    ? WBTC
+                                    : null
                                 }
                                 width={24}
                                 height={24}
@@ -341,7 +401,13 @@ const TransactionTable: React.FC<{
                             </div>
                             <div>
                               <p
-                                className={`${transaction.method === "Receive" ? "text-teal-600" : transaction.method === "Swap" ? "text-rose-600" : "text-rose-600"} text-sm font-medium`}
+                                className={`${
+                                  transaction.method === "Receive"
+                                    ? "text-teal-600"
+                                    : transaction.method === "Swap"
+                                    ? "text-rose-600"
+                                    : "text-rose-600"
+                                } text-sm font-medium`}
                               >
                                 {transaction.method === "Receive" ? "+" : "-"}
                                 {transaction.value} {transaction.token}
@@ -366,18 +432,18 @@ const TransactionTable: React.FC<{
                                     transaction.toToken === "ETH"
                                       ? ETH
                                       : transaction.toToken === "USDC"
-                                        ? USDC
-                                        : transaction.toToken === "USDT"
-                                          ? USDT
-                                          : transaction.toToken === "BTC"
-                                            ? BTC
-                                            : transaction.toToken === "MATIC"
-                                              ? MATIC
-                                              : transaction.toToken === "LINK"
-                                                ? LINK
-                                                : transaction.toToken === "WBTC"
-                                                  ? WBTC
-                                                  : null
+                                      ? USDC
+                                      : transaction.toToken === "USDT"
+                                      ? USDT
+                                      : transaction.toToken === "BTC"
+                                      ? BTC
+                                      : transaction.toToken === "MATIC"
+                                      ? MATIC
+                                      : transaction.toToken === "LINK"
+                                      ? LINK
+                                      : transaction.toToken === "WBTC"
+                                      ? WBTC
+                                      : null
                                   }
                                   width={24}
                                   height={24}
@@ -448,13 +514,20 @@ const TransactionTable: React.FC<{
                                         <Image
                                           alt={transaction.fromAddress}
                                           src={blo(
-                                            `0x${transaction.fromAddress.slice(2)}`
+                                            `0x${transaction.fromAddress.slice(
+                                              2
+                                            )}`
                                           )}
                                           width={24}
                                           height={24}
                                         />
                                       </div>
-                                      {`${transaction.fromAddress.slice(0, 4)}...${transaction.fromAddress.slice(-4)}`}
+                                      {`${transaction.fromAddress.slice(
+                                        0,
+                                        4
+                                      )}...${transaction.fromAddress.slice(
+                                        -4
+                                      )}`}
                                       <svg
                                         width="12"
                                         height="12"
@@ -550,13 +623,18 @@ const TransactionTable: React.FC<{
                                         <Image
                                           alt={transaction.toAddress}
                                           src={blo(
-                                            `0x${transaction.toAddress.slice(2)}`
+                                            `0x${transaction.toAddress.slice(
+                                              2
+                                            )}`
                                           )}
                                           width={24}
                                           height={24}
                                         />
                                       </div>
-                                      {`${transaction.toAddress.slice(0, 4)}...${transaction.toAddress.slice(-4)}`}
+                                      {`${transaction.toAddress.slice(
+                                        0,
+                                        4
+                                      )}...${transaction.toAddress.slice(-4)}`}
                                       <svg
                                         width="12"
                                         height="12"
@@ -651,7 +729,10 @@ const TransactionTable: React.FC<{
                                   )
                                 }
                               >
-                                {`${transaction.transactionHash.slice(0, 4)}...${transaction.transactionHash.slice(-4)}`}
+                                {`${transaction.transactionHash.slice(
+                                  0,
+                                  4
+                                )}...${transaction.transactionHash.slice(-4)}`}
                                 <svg
                                   width="12"
                                   height="12"
@@ -752,13 +833,20 @@ const TransactionTable: React.FC<{
                                             <Image
                                               alt={transaction.fromAddress}
                                               src={blo(
-                                                `0x${transaction.fromAddress.slice(2)}`
+                                                `0x${transaction.fromAddress.slice(
+                                                  2
+                                                )}`
                                               )}
                                               width={24}
                                               height={24}
                                             />
                                           </div>
-                                          {`${transaction.fromAddress.slice(0, 4)}...${transaction.fromAddress.slice(-4)}`}
+                                          {`${transaction.fromAddress.slice(
+                                            0,
+                                            4
+                                          )}...${transaction.fromAddress.slice(
+                                            -4
+                                          )}`}
                                           <svg
                                             width="12"
                                             height="12"
@@ -860,13 +948,20 @@ const TransactionTable: React.FC<{
                                             <Image
                                               alt={transaction.toAddress}
                                               src={blo(
-                                                `0x${transaction.toAddress.slice(2)}`
+                                                `0x${transaction.toAddress.slice(
+                                                  2
+                                                )}`
                                               )}
                                               width={24}
                                               height={24}
                                             />
                                           </div>
-                                          {`${transaction.toAddress.slice(0, 4)}...${transaction.toAddress.slice(-4)}`}
+                                          {`${transaction.toAddress.slice(
+                                            0,
+                                            4
+                                          )}...${transaction.toAddress.slice(
+                                            -4
+                                          )}`}
                                           <svg
                                             width="12"
                                             height="12"
