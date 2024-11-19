@@ -5905,14 +5905,14 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   <div className='w-full justify-between flex  py-1.5'>
                     {' '}
                     <p>Wallet</p>
-                    <p className='flex gap-2 font-medium items-center'>
+                    <p className='flex gap-2 font-semibold items-center'>
                       {selectedWallet}
                     </p>
                   </div>
                   <div className='w-full justify-between  flex py-1.5 mb-3'>
                     {' '}
                     <p>Network Account</p>
-                    <p className='flex gap-2 font-medium items-center'>
+                    <p className='flex gap-2 font-semibold items-center'>
                       {selectedNetwork === 'MATIC' ? (
                         <div className='flex gap-2 items-center'>
                           <img src='/icons/networks/MATIC.svg' />
@@ -5945,7 +5945,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   <div className='w-full justify-between flex  py-1.5'>
                     {' '}
                     <p>Total Paid</p>
-                    <div className='flex gap-2 font-medium items-center'>
+                    <div className='flex gap-2 font-semibold items-center'>
                       {selectedAsset && (
                         <img src={`/icons/tokens/${selectedAsset}.svg`} />
                       )}
@@ -5960,7 +5960,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   <div className='w-full justify-between flex  py-1.5'>
                     {' '}
                     <p>Gas Fee</p>
-                    <p className='flex gap-2 font-medium items-center'>
+                    <p className='flex gap-2 font-semibold items-center'>
                       {selectedAsset && (
                         <img src={`/icons/tokens/${selectedAsset}.svg`} />
                       )}
