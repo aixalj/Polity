@@ -109,12 +109,6 @@ export default function AddressBook() {
     setIsAddAddressModalOpen(true); // Open the AddAddress modal
   };
 
-  const handleView = (contactId: string) => {
-    console.log("View contact:", contactId);
-    router.push(`components/viewContact/${contactId}`); // Navigate to the ViewContact page
-    // Implement view logic here
-  };
-
   const handleEditAddress = (addressId: string) => {
     console.log("Edit address:", addressId);
     // Implement edit address logic here
@@ -127,6 +121,12 @@ export default function AddressBook() {
 
   const handleTabChange = (value: TabType) => {
     setActiveTab(value);
+  };
+
+  const handleView = (contactId: string) => {
+    console.log("View contact:", contactId);
+    router.push(`components/viewContact/${contactId}`); // Navigate to the ViewContact page
+    // Implement view logic here
   };
 
   const handleToggleFavorite = (addressId: string) => {
@@ -309,9 +309,10 @@ export default function AddressBook() {
                     <AllContactsTable
                       contacts={filteredContacts} // Use filteredContacts
                       onEdit={handleEdit} // Pass the handleEdit function here
+                      onView={handleView} // Add the onView function here
                       onAddAddressButton={handleAddAddress} // This is for the button in the table
-                      onView={handleView}
                       searchTerm={searchTerm}
+                      // address={addresses} 
                     />
                   </div>
                 </TabsContent>

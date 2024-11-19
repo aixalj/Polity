@@ -3,6 +3,7 @@ export interface Contact {
   name: string;
   addressCount: number;
   avatar: string;
+  addresses?: Address[]; // Changed to an array of Address
 }
 
 export interface Address {
@@ -239,66 +240,285 @@ const calculateAddressCounts = (
 
 const addressCounts = calculateAddressCounts(addresses, contactIds);
 
+// Updated contacts array to include multiple addresses
 export const contacts: Contact[] = [
   {
     id: '1',
     name: 'John Doe',
     addressCount: addressCounts['1'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+    addresses: [
+      {
+        id: '1',
+        contactId: '1',
+        contactName: 'John Doe',
+        addressname: 'John Savings',
+        network: 'Ethereum Network',
+        asset: 'Tether',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+      {
+        id: '2',
+        contactId: '1',
+        contactName: 'John Doe',
+        addressname: 'John Personal',
+        network: 'Bitcoin Network',
+        asset: 'Bitcoin',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
+      {
+        id: '3',
+        contactId: '1',
+        contactName: 'John Doe',
+        addressname: 'John Work',
+        network: 'Polygon Network',
+        asset: 'Tether',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+      {
+        id: '4',
+        contactId: '1',
+        contactName: 'John Doe',
+        addressname: 'John Vacation',
+        network: 'Ethereum Network',
+        asset: 'Tether',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
+    ],
   },
   {
     id: '2',
     name: 'Jane Smith',
     addressCount: addressCounts['2'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+    addresses: [
+      {
+        id: '5',
+        contactId: '2',
+        contactName: 'Jane Smith',
+        addressname: 'Jane Holiday',
+        network: 'Polygon Network',
+        asset: 'Tether',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+      {
+        id: '6',
+        contactId: '2',
+        contactName: 'Jane Smith',
+        addressname: 'Jane Work',
+        network: 'Ethereum Network',
+        asset: 'Tether',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
+      {
+        id: '7',
+        contactId: '2',
+        contactName: 'Jane Smith',
+        addressname: 'Jane Home',
+        network: 'Ethereum Network',
+        asset: 'Tether',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+    ],
   },
   {
     id: '3',
     name: 'Alice Johnson',
     addressCount: addressCounts['3'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+    addresses: [
+      {
+        id: '8',
+        contactId: '3',
+        contactName: 'Alice Johnson',
+        addressname: 'Alice Shopping',
+        network: 'Ethereum Network',
+        asset: 'Tether',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
+      {
+        id: '9',
+        contactId: '3',
+        contactName: 'Alice Johnson',
+        addressname: 'Alice Home',
+        network: 'Bitcoin Network',
+        asset: 'Bitcoin',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+    ],
   },
   {
     id: '4',
     name: 'Bob Brown',
     addressCount: addressCounts['4'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+    addresses: [
+      {
+        id: '10',
+        contactId: '4',
+        contactName: 'Bob Williams',
+        addressname: 'Bob Christmas',
+        network: 'Ethereum Network',
+        asset: 'Tether',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
+      {
+        id: '11',
+        contactId: '4',
+        contactName: 'Bob Williams',
+        addressname: 'Bob Work',
+        network: 'Ethereum Network',
+        asset: 'Tether',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+    ],
   },
   {
     id: '5',
     name: 'Emma Davis',
     addressCount: addressCounts['5'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+    addresses: [
+      {
+        id: '12',
+        contactId: '5',
+        contactName: 'Emma Davis',
+        addressname: 'Emma Summer',
+        network: 'Polygon Network',
+        asset: '',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
+      {
+        id: '13',
+        contactId: '5',
+        contactName: 'Emma Davis',
+        addressname: 'Emma Winter',
+        network: 'Polygon Network',
+        asset: '',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+    ],
   },
   {
     id: '6',
     name: 'Michael Brown',
     addressCount: addressCounts['6'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+    addresses: [
+      {
+        id: '14',
+        contactId: '6',
+        contactName: 'Michael Brown',
+        addressname: 'Michael Personal',
+        network: 'Bitcoin Network',
+        asset: '',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
+      {
+        id: '15',
+        contactId: '6',
+        contactName: 'Michael Brown',
+        addressname: 'Michael Work',
+        network: 'Bitcoin Network',
+        asset: '',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+    ],
   },
   {
     id: '7',
     name: 'Sophia Lee',
     addressCount: addressCounts['7'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+    addresses: [
+      {
+        id: '16',
+        contactId: '7',
+        contactName: 'Sophia Lee',
+        addressname: 'Sophia AVAX',
+        network: 'Bitcoin Network',
+        asset: 'Bitcoin',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
+    ],
   },
   {
     id: '8',
     name: 'Daniel Wilson',
     addressCount: addressCounts['8'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+    addresses: [
+      {
+        id: '17',
+        contactId: '8',
+        contactName: 'Daniel Wilson',
+        addressname: 'Daniel Personal',
+        network: 'Ethereum Network',
+        asset: 'Tether',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+    ],
   },
   {
     id: '9',
     name: 'Olivia Taylor',
     addressCount: addressCounts['9'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+    addresses: [
+      {
+        id: '18',
+        contactId: '9',
+        contactName: 'Olivia Taylor',
+        addressname: 'Olivia Savings',
+        network: 'Bitcoin Network',
+        asset: 'Bitcoin',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
+    ],
   },
   {
     id: '10',
     name: 'Jenny Roberts',
     addressCount: addressCounts['10'],
     avatar: 'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg',
+    addresses: [
+      {
+        id: '19',
+        contactId: '10',
+        contactName: 'Jenny Roberts',
+        addressname: 'Jenny Personal',
+        network: 'Bitcoin Network',
+        asset: 'Bitcoin',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+      {
+        id: '20',
+        contactId: '10',
+        contactName: 'Jenny Roberts',
+        addressname: 'Jenny Work',
+        network: 'Bitcoin Network',
+        asset: 'Bitcoin',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
+      {
+        id: '21',
+        contactId: '10',
+        contactName: 'Jenny Roberts',
+        addressname: 'Jenny Savings',
+        network: 'Bitcoin Network',
+        asset: 'Bitcoin',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+      {
+        id: '22',
+        contactId: '10',
+        contactName: 'Jenny Roberts',
+        addressname: 'Jenny Holiday',
+        network: 'Bitcoin Network',
+        asset: 'Bitcoin',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
+    ],
   },
 ];
 
