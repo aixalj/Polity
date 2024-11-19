@@ -2654,8 +2654,8 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
             >
               <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
                 <div className='w-full mb-2 flex justify-between items-center'>
-                  <div className='flex items-center gap-2 text-lg mb-3 font-medium'>
-                    <div className='border w-8 h-8 overflow-hidden  rounded-lg border-gray-300 flex items-center justify-center'>
+                  <div className='flex items-center gap-2 text-lg font-medium'>
+                    <div className='border w-8 h-8 overflow-hidden rounded-lg border-gray-300 flex items-center justify-center'>
                       <img
                         src='https://www.fintechfutures.com/files/2021/09/coinfirm.jpg'
                         alt='Coinfirm'
@@ -2663,16 +2663,16 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                         height={32}
                       />
                     </div>
-                    <h2>Coinfirm</h2>
+                    <h2 className='font-medium text-lg'>Coinfirm</h2>
                   </div>
                   <div className='rounded-lg text-gray-800 font-medium bg-gray-100 border border-gray-200 text-sm px-3 py-1 leading-2 h-7 items-center flex'>
                     Premium
                   </div>
                 </div>
-                <FSDialogTitle className='text-xl'>
-                  <div>AML Risk Report</div>
+                <FSDialogTitle className='text-2xl'>
+                  <div className='font-medium'>AML Risk Report</div>
                 </FSDialogTitle>
-                <FSDialogDescription className='text-gray-800 flex flex-col items-start gap-4 '>
+                <FSDialogDescription className='text-gray-800 flex flex-col text-sm font-medium items-start gap-1.5 '>
                   The Coinfirm AML Risk Report provides you with advanced
                   personal risk analysis for any blockchain address, enhancing
                   your vigilance against money laundering and terrorism
@@ -2700,7 +2700,7 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                     />
 
                     <p>
-                      Risk Assessment Score (C-Score): Gauge the level of risk
+                      <span className='font-medium text-gray-800'>Risk Assessment Score (C-Score):</span> Gauge the level of risk
                       with an easy-to-understand score. A higher score indicates
                       a higher risk associated with the address.
                     </p>
@@ -2715,7 +2715,7 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                     />
 
                     <p>
-                      Profile Tagging: Classify whether the address has been
+                      <span className='font-medium text-gray-800'>Profile Tagging:</span> Classify whether the address has been
                       involved in ransomware activities or not.
                     </p>
                   </div>
@@ -2729,7 +2729,7 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                     />
 
                     <p>
-                      Transaction Analysis: Understand the nature of
+                      <span className='font-medium text-gray-800'>Transaction Analysis:</span> Understand the nature of
                       transactions associated with the address, including
                       significant outgoing transactions and patterns indicative
                       of AML risks.
@@ -2746,7 +2746,7 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                     />
 
                     <p>
-                      Recommendations: Receive clear guidance on whether to
+                      <span className='font-medium text-gray-800'>Recommendations:</span> Receive clear guidance on whether to
                       transact with the address or not based on its risk
                       profile.
                     </p>
@@ -2763,7 +2763,7 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                     </div>
 
                     <p>
-                      Submit Any Address: Provide the address from any supported
+                      <span className='font-medium text-gray-800'>Submit Any Address:</span> Provide the address from any supported
                       blockchain network for analysis.
                     </p>
                   </div>
@@ -2773,7 +2773,7 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                     </div>
 
                     <p>
-                      Instant Risk Report: Receive a detailed report with a risk
+                      <span className='font-medium text-gray-800'>Instant Risk Report:</span> Receive a detailed report with a risk
                       score, balance, transaction analysis, and actionable
                       recommendations.
                     </p>
@@ -5905,14 +5905,14 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   <div className='w-full justify-between flex  py-1.5'>
                     {' '}
                     <p>Wallet</p>
-                    <p className='flex gap-2 font-medium items-center'>
+                    <p className='flex gap-2 font-semibold items-center'>
                       {selectedWallet}
                     </p>
                   </div>
                   <div className='w-full justify-between  flex py-1.5 mb-3'>
                     {' '}
                     <p>Network Account</p>
-                    <p className='flex gap-2 font-medium items-center'>
+                    <p className='flex gap-2 font-semibold items-center'>
                       {selectedNetwork === 'MATIC' ? (
                         <div className='flex gap-2 items-center'>
                           <img src='/icons/networks/MATIC.svg' />
@@ -5945,7 +5945,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   <div className='w-full justify-between flex  py-1.5'>
                     {' '}
                     <p>Total Paid</p>
-                    <div className='flex gap-2 font-medium items-center'>
+                    <div className='flex gap-2 font-semibold items-center'>
                       {selectedAsset && (
                         <img src={`/icons/tokens/${selectedAsset}.svg`} />
                       )}
@@ -5960,7 +5960,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   <div className='w-full justify-between flex  py-1.5'>
                     {' '}
                     <p>Gas Fee</p>
-                    <p className='flex gap-2 font-medium items-center'>
+                    <p className='flex gap-2 font-semibold items-center'>
                       {selectedAsset && (
                         <img src={`/icons/tokens/${selectedAsset}.svg`} />
                       )}
