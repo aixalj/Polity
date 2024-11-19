@@ -525,7 +525,9 @@ export default function Marketplace() {
                         </div>
                       </div>
                     </div>
+                    <a href="http://dfns.co" target="_blank" rel="noopener noreferrer">
                     <Button className="w-full">Buy Now</Button>
+                  </a>
                   </div>
                   <div className="w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4">
                     <div className="w-full justify-between flex items-center pb-3">
