@@ -46,6 +46,7 @@ import { Badge } from "@/components/ui/badge";
 
 import { bids, Bid } from "./biddata";
 import { useState, useEffect } from "react";
+import RebidModal from "@/components/bid/rebidmodal"; // Import the RebidModal
 
 const getTimeRemaining = (endTime: Date) => {
   const total = endTime.getTime() - new Date().getTime();
@@ -75,6 +76,8 @@ const BidTable: React.FC<{
   bids: Bid[];
 }> = ({ bids }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [isRebidModalOpen, setRebidModalOpen] = useState(false); // State for modal
+  const [selectedBid, setSelectedBid] = useState<Bid | null>(null); // State for selected bid
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -84,8 +87,27 @@ const BidTable: React.FC<{
     return () => clearInterval(timer);
   }, []);
 
+  const handleRebidClick = (bid: Bid) => {
+    setSelectedBid(bid); // Set the selected bid
+    setRebidModalOpen(true); // Open the modal
+  };
+
+  const handleConfirmRebid = (newBid: number) => {
+    // Logic to handle the new bid
+    console.log("New Bid Confirmed:", newBid);
+    setRebidModalOpen(false); // Close the modal
+  };
+
   return (
     <div className="relative w-full flex flex-col ">
+      <RebidModal
+        isOpen={isRebidModalOpen}
+        onClose={() => setRebidModalOpen(false)}
+        timeLeft={selectedBid ? formatTimeRemaining(selectedBid.endTime) : ""}
+        currentBid={selectedBid ? selectedBid.yourBid : 0}
+        highestBid={selectedBid ? selectedBid.highestBid : 0}
+        onConfirm={handleConfirmRebid}
+      />
       <div className="w-full flex flex-col gap-1 overflow-y-scroll">
         <div className="w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs">
           <div className="w-[400px] flex-none px-6 py-3">Auction</div>
@@ -94,83 +116,79 @@ const BidTable: React.FC<{
           <div className="min-w-36 flex-auto px-6 py-3">Time Remaining</div>
           <div className="min-w-30 flex-auto px-6 py-3">Status</div>
           <div className="w-full flex-auto px-6 py-3"></div>
-
-          {/* <div className="w-36 flex-auto px-6 py-3">Balance</div> */}
         </div>
         <div>
           {Array.isArray(bids) && bids.length > 0 ? (
             <div>
-              {bids
-                // .sort((a, b) => b.value - a.value)
-                .map((bid, index) => (
-                  <div
-                    key={index}
-                    className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm "
-                  >
-                    <div className="w-full flex text-left  text-gray-900">
-                      <div className="w-[400px] break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-3 h-16 ">
-                        <div className="min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl">
-                          <Image
-                            src={"/icons/coinfirm.png"}
-                            alt={bid.name}
-                            width={20}
-                            height={20}
-                          />
-                        </div>
-                        <p className="flex flex-col  items-left text-sm ">
-                          <span className="text-sm font-medium text-gray-900 ">
-                            {bid.name}
-                          </span>
-                          <span className="text-sm font-regular text-gray-600">
-                            {bid.category}
-                          </span>
-                        </p>
+              {bids.map((bid, index) => (
+                <div
+                  key={index}
+                  className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm "
+                >
+                  <div className="w-full flex text-left text-gray-900">
+                    <div className="w-[400px] break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-3 h-16 ">
+                      <div className="min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl">
+                        <Image
+                          src={"/icons/coinfirm.png"}
+                          alt={bid.name}
+                          width={20}
+                          height={20}
+                        />
                       </div>
+                      <p className="flex flex-col items-left text-sm ">
+                        <span className="text-sm font-medium text-gray-900 ">
+                          {bid.name}
+                        </span>
+                        <span className="text-sm font-regular text-gray-600">
+                          {bid.category}
+                        </span>
+                      </p>
+                    </div>
 
-                      <div className="min-w-36 gap-1.5 flex-auto  px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
-                        <Image
-                          src={"/icons/tokens/USDT.svg"}
-                          alt="USDT"
-                          width={16}
-                          height={16}
-                        />
-                        {bid.yourBid.toFixed(2)}
-                        <span className="">USDT</span>
-                      </div>
-                      <div className="min-w-36 gap-1.5 flex-auto  px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
-                        <Image
-                          src={"/icons/tokens/USDT.svg"}
-                          alt="USDT"
-                          width={16}
-                          height={16}
-                        />
-                        {bid.highestBid.toFixed(2)}
-                        <span className="">USDT</span>
-                      </div>
-                      <div className="min-w-36 flex-auto px-6 py-3 text-sm text-gray-800 h-16 flex items-center">
-                        {formatTimeRemaining(bid.endTime)}
-                      </div>
-                      <div className="min-w-30 flex-auto  px-6 py-3 h-16 flex items-center whitespace-nowrap">
-                        <Badge
-                          variant={
-                            bid.status === "Top Bidder"
-                              ? "success"
-                              : bid.status === "Outbid"
-                                ? "warning"
-                                : "success"
-                          }
-                        >
-                          {bid.status}
-                        </Badge>
-                      </div>
-                      <div className="w-full flex-auto justify-end  px-6 py-3 h-16 flex items-center whitespace-nowrap">
-                        <Button variant="outline">
-                          <Edit03 className="w-4 h-4" /> Rebid
-                        </Button>
-                      </div>
+                    <div className="min-w-36 gap-1.5 flex-auto px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
+                      <Image
+                        src={"/icons/tokens/USDT.svg"}
+                        alt="USDT"
+                        width={16}
+                        height={16}
+                      />
+                      {bid.yourBid.toFixed(2)}
+                      <span className="">USDT</span>
+                    </div>
+                    <div className="min-w-36 gap-1.5 flex-auto px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
+                      <Image
+                        src={"/icons/tokens/USDT.svg"}
+                        alt="USDT"
+                        width={16}
+                        height={16}
+                      />
+                      {bid.highestBid.toFixed(2)}
+                      <span className="">USDT</span>
+                    </div>
+                    <div className="min-w-36 flex-auto px-6 py-3 text-sm text-gray-800 h-16 flex items-center">
+                      {formatTimeRemaining(bid.endTime)}
+                    </div>
+                    <div className="min-w-30 flex-auto px-6 py-3 h-16 flex items-center whitespace-nowrap">
+                      <Badge
+                        variant={
+                          bid.status === "Top Bidder"
+                            ? "success"
+                            : bid.status === "Outbid"
+                              ? "warning"
+                              : "success"
+                        }
+                      >
+                        {bid.status}
+                      </Badge>
+                    </div>
+                    <div className="w-full flex-auto justify-end px-6 py-3 h-16 flex items-center whitespace-nowrap">
+                      <Button variant="outline" onClick={() => handleRebidClick(bid)}>
+                        <Edit03 className="w-4 h-4" /> Rebid
+                      </Button>
                     </div>
                   </div>
-                ))}
+                </div>
+              ))}
             </div>
           ) : (
             <p>No assets to display.</p>
