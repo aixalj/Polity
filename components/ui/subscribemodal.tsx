@@ -2382,7 +2382,7 @@ const SubscribeModal = () => {
           </svg>
         </div>
         <div className="fixed  bottom-0 left-0 right-0 w-full p-6 mx-auto  z-50">
-          <div className="w-full h-20 items-center flex justify-between p-6 border border-gray-200 bg-white shadow-lg rounded-2xl">
+          <div className="w-full h-20 items-center flex justify-between p-6 border shadow-lg rounded-2xl">
             <div>
               {activeTab === "payment" && (
                 <FSDialogClose>

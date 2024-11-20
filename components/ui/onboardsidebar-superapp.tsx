@@ -163,7 +163,7 @@ const OnboardSideBar = () => {
           <div className='h-full gap-3 flex flex-col justify-between'>
             <ul className='flex px-4 flex-col gap-1'>
               <li className='flex gap-2 whitespace-nowrap pb-2.5 pr-3 items-center text-xs text-gray-500'>
-                AVATAR VIRTUAL NODE
+              AVATAR SETUP
                 <div className='w-full bg-gray-300 h-[1px]'></div>
                 <div className='min-w-5 h-5 rounded-full border border-gray-300 bg-white'>
                   {(isWalletSection || isInstallationPage) && (

@@ -134,6 +134,7 @@ export default function Marketplace() {
                 {" "}
                 <TabsList className="bg-gray-50">
                   <TabsTrigger value="wallets">Wallets</TabsTrigger>
+                  <TabsTrigger value="network">Network Accounts</TabsTrigger>
                   <TabsTrigger value="xchange">X-change</TabsTrigger>
                   <TabsTrigger disabled value="security">
                     Security
