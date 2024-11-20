@@ -91,7 +91,7 @@ function BitcoinOne() {
               <div className=' max-w-screen-xl mx-auto p-6'>
                 <nav aria-label='Breadcrumb'>
                   <ol className='flex items-center gap-1 text-xs text-gray-600'>
-                    <li>
+                    {/* <li>
                       <a
                         href='#'
                         className='block transition hover:text-gray-700 font-semibold'
@@ -99,9 +99,9 @@ function BitcoinOne() {
                         {' '}
                         Wealth{' '}
                       </a>
-                    </li>
+                    </li> */}
 
-                    <li className='rtl:rotate-180'>
+                    {/* <li className='rtl:rotate-180'>
                       <svg
                         width='20'
                         height='20'
@@ -117,7 +117,7 @@ function BitcoinOne() {
                           stroke-linejoin='round'
                         />
                       </svg>
-                    </li>
+                    </li> */}
 
                     <li>
                       <a
