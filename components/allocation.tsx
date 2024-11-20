@@ -41,7 +41,7 @@ const getColorForProtocol = (symbol: string): string => {
     Aave: 'bg-blue-200',
     dHedge: 'bg-green-200',
     Lido: 'bg-orange-200',
-    PSP: 'bg-rose-300',
+    ParaSwap: 'bg-rose-300',
     OTHER: 'bg-purple-300',
     // Add more mappings as needed
   };

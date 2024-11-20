@@ -267,8 +267,8 @@ const protocols: any[] = [
     return: 0, // Example return
   },
   {
-    name: "PSP",
-    symbol: "PSP",
+    name: "ParaSwap",
+    symbol: "ParaSwap",
     description: "A decentralized exchange aggregator.",
     value: 20000, // Example value
     return: 0, // Example return
