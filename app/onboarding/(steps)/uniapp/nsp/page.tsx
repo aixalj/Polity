@@ -39,9 +39,9 @@ export default function Agreement() {
       description='Provider of virtual nodes and technical support to Clients and other network participants.'
       button1link='/onboarding/uniapp/avatar'
       button1text='Back'
-      button2link='/onboarding/uniapp/installation' // Conditional link
+      button2link='/onboarding/uniapp/wallet/setup' // Conditional link
       button2text='Continue'
-      button3link='/onboarding/uniapp/installation'
+      button3link='/onboarding/uniapp/wallet/setup'
       button3text='Skip for Now'
     >
       <div className='grid grid-cols-2 gap-4 px-6 py-4'>
