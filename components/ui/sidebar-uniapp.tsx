@@ -598,7 +598,7 @@ const SideBarUniapp = () => {
                   <CollapsibleTrigger className="w-full ease-in-out duration-200">
                     <div className="group relative  w-full outline-none  focus:tap-highlight-transparent  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
                       <Link
-                        href="/uniapp/marketplace"
+                        href="/uniapp/marketplace" 
                         className={`group focus:ring-0 ${
                           pathname === "/uniapp/marketplace"
                             ? "justify-between outline-none  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
