@@ -261,7 +261,7 @@ const SideBarUniapp = () => {
                                 ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                                 : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
                             }`}
-                            href="#"
+                            href="/uniapp/wealth/wallet1/btcnetwork"
                             id="overview"
                           >
                             <div className="flex gap-3 items-center">
@@ -327,7 +327,7 @@ const SideBarUniapp = () => {
                                 </defs>
                               </svg>
 
-                              <Link href="" className="">
+                              <Link href="/uniapp/wealth/wallet1/btcnetwork" className="">
                                 <p className="text-sm">
                                   Bitcoin Network Account
                                 </p>
@@ -345,7 +345,7 @@ const SideBarUniapp = () => {
                                 ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                                 : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
                             }`}
-                            href="#"
+                            href="/uniapp/wealth/wallet1/ethnetwork"
                             id="overview"
                           >
                             <div className="flex gap-3 items-center">
@@ -449,9 +449,13 @@ const SideBarUniapp = () => {
                         </li>
 
                         <li>
-                          <a
-                            className="group focus:ring-0 outline-none justify-between focus:outline-none focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
-                            href="#"
+                        <a
+                            className={`group focus:ring-0 ${
+                              pathname === "/uniapp/wealth/wallet1/polynetwork"
+                                ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                                : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                            }`}
+                            href="/uniapp/wealth/wallet1/polynetwork"
                             id="overview"
                           >
                             <div className="flex gap-3 items-center">
@@ -563,12 +567,15 @@ const SideBarUniapp = () => {
                                 </defs>
                               </svg>
 
-                              <div className="">
+                              <Link
+                                href="/uniapp/wealth/wallet1/polynetwork"
+                                className=""
+                              >
                                 <p className="text-sm">
                                   Polygon Network Account
                                 </p>
                                 <p className="text-xs">Polygon (0x8f...47d2)</p>
-                              </div>
+                              </Link>
                             </div>
                             <p className="ml-auto text-sm font-medium"></p>
                           </a>
@@ -598,7 +605,7 @@ const SideBarUniapp = () => {
                   <CollapsibleTrigger className="w-full ease-in-out duration-200">
                     <div className="group relative  w-full outline-none  focus:tap-highlight-transparent  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm">
                       <Link
-                        href="/uniapp/marketplace"
+                        href="/uniapp/marketplace" 
                         className={`group focus:ring-0 ${
                           pathname === "/uniapp/marketplace"
                             ? "justify-between outline-none  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
@@ -675,11 +682,11 @@ const SideBarUniapp = () => {
                       <li>
                         <Link
                           className={`group focus:ring-0 ${
-                            pathname === "/marketplace/billing"
+                            pathname === "/uniapp/marketplace/billing"
                               ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                               : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                           }`}
-                          href="/marketplace/billing"
+                          href="/uniapp/marketplace/billing"
                           id="overview"
                         >
                           <File05 className="w-4 h-4" />
@@ -689,11 +696,11 @@ const SideBarUniapp = () => {
                       <li>
                         <Link
                           className={`group focus:ring-0 ${
-                            pathname === "/marketplace/subscriptions"
+                            pathname === "/uniapp/marketplace/subscriptions"
                               ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                               : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                           }`}
-                          href="/marketplace/subscriptions"
+                          href="/uniapp/marketplace/subscriptions"
                           id="overview"
                         >
                           <PackageCheck className="w-4 h-4" />
@@ -703,11 +710,11 @@ const SideBarUniapp = () => {
                       <li>
                         <Link
                           className={`group focus:ring-0 ${
-                            pathname === "/marketplace/bids"
+                            pathname === "/uniapp/marketplace/bids"
                               ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                               : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                           }`}
-                          href="/marketplace/bids"
+                          href="/uniapp/marketplace/bids"
                           id="overview"
                         >
                           <Trophy01 className="w-4 h-4" />

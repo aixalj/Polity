@@ -1,4 +1,23 @@
 // data.js
+const networks: any[] = [
+  {
+    name: "Bitcoin",
+    symbol: "BTC",
+    value: 10000, // Example value
+  },
+  {
+    name: "Ethereum",
+    symbol: "ETH",
+    value: 10000, // Example value
+  },
+  {
+    name: "Polygon",
+    symbol: "MATIC",
+    value: 10000, // Example value
+  },
+  // Add more networks as needed
+];
+
 const networkAccounts: any[] = [
   {
     name: "Ethereum network account",
@@ -225,6 +244,44 @@ const networkAccounts: any[] = [
   },
 ];
 
+const protocols: any[] = [
+  {
+    name: "Aave",
+    symbol: "Aave",
+    description: "A decentralized lending protocol.",
+    value: 20000, // Example value
+    return: 0, // Example return
+  },
+  {
+    name: "dHedge",
+    symbol: "dHedge",
+    description: "A decentralized asset management protocol.",
+    value: 20000, // Example value
+    return: 0, // Example return
+  },
+  {
+    name: "Lido",
+    symbol: "Lido",
+    description: "A liquid staking solution for Ethereum.",
+    value: 20000, // Example value
+    return: 0, // Example return
+  },
+  {
+    name: "ParaSwap",
+    symbol: "ParaSwap",
+    description: "A decentralized exchange aggregator.",
+    value: 20000, // Example value
+    return: 0, // Example return
+  },
+  {
+    name: "Other",
+    symbol: "OTHER",
+    description: "Other protocols.",
+    value: 20000, // Example value
+    return: 0, // Example return
+  },
+];
+
 const wallets: any[] = [
   {
     wallet_name: "Main Wallet",
@@ -309,4 +366,4 @@ function getAllAssets() {
   return networkAccounts.flatMap((account) => account.assets);
 }
 
-export { networkAccounts, wallets, wealth, getAllAssets };
+export { networkAccounts, wallets, wealth, getAllAssets, protocols, networks };
