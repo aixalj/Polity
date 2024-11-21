@@ -20,6 +20,8 @@ import {
   File06,
 } from "@untitled-ui/icons-react";
 
+import { Notification } from "@/components/ui/notification";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -58,6 +60,11 @@ const getTimeRemaining = (endTime: Date) => {
   return { days, hours, minutes, seconds };
 };
 
+interface BidTableProps {
+  bids: Bid[];
+  addNotification: (title: string, description: string, status: 'success' | 'error' | 'warning' | 'info') => void; // Add this line
+}
+
 const formatTimeRemaining = (endTime: Date): string => {
   const time = getTimeRemaining(endTime);
 
@@ -74,10 +81,16 @@ const formatTimeRemaining = (endTime: Date): string => {
 
 const BidTable: React.FC<{
   bids: Bid[];
-}> = ({ bids }) => {
+  addNotification: (title: string, description: string, status: 'success' | 'error' | 'warning' | 'info') => void; // Add this line
+}> = ({ bids, addNotification }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isRebidModalOpen, setRebidModalOpen] = useState(false); // State for modal
   const [selectedBid, setSelectedBid] = useState<Bid | null>(null); // State for selected bid
+
+  // Notification state
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationTitle, setNotificationTitle] = useState("");
+  const [notificationDescription, setNotificationDescription] = useState("");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -92,11 +105,30 @@ const BidTable: React.FC<{
     setRebidModalOpen(true); // Open the modal
   };
 
+  const [notification, setNotification] = useState<{
+    title: string;
+    description: string;
+    status: 'success' | 'error' | 'warning' | 'info'; // Updated to include all status types
+  } | null>(null);
+
   const handleConfirmRebid = (newBid: number) => {
     // Logic to handle the new bid
     console.log("New Bid Confirmed:", newBid);
     setRebidModalOpen(false); // Close the modal
-  };
+
+     // Set notification state
+     addNotification("Bid Confirmed!", `Your new bid of ${newBid} has been confirmed!`, "success"); // Use addNotification directly
+     setNotificationTitle("Bid Confirmed!");
+     setNotificationDescription(`Your new bid of ${newBid} has been confirmed!`);
+     setShowNotification(true); // Show the notification
+     setTimeout(() => {
+      setShowNotification(false);
+    }, 5000);
+   };
+ 
+   const handleCloseNotification = () => {
+     setShowNotification(false); // Hide the notification
+   };
 
   return (
     <div className="relative w-full flex flex-col ">
@@ -107,7 +139,20 @@ const BidTable: React.FC<{
         currentBid={selectedBid ? selectedBid.yourBid : 0}
         highestBid={selectedBid ? selectedBid.highestBid : 0}
         onConfirm={handleConfirmRebid}
+        addNotification={addNotification}
       />
+        {/* Render the Notification */}
+        {showNotification && (
+        <div className="fixed bottom-4 left-4 max-w-sm z-50 rounded-[20px]">
+          <Notification
+            title={notificationTitle}
+            description={notificationDescription}
+            status="success"
+            className="shadow-2xl"
+            onClose={handleCloseNotification} // Close notification
+          />
+        </div>
+      )}
       <div className="w-full flex flex-col gap-1 overflow-y-scroll">
         <div className="w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs">
           <div className="w-[400px] flex-none px-6 py-3">Auction</div>

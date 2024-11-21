@@ -17,6 +17,7 @@ interface RebidModalProps {
   currentBid: number;
   highestBid: number;
   onConfirm: (newBid: number) => void;
+  addNotification: (title: string, description: string, status: "success" | "error" | "warning" | "info") => void; // Add this line
 }
 
 const RebidModal: React.FC<RebidModalProps> = ({
@@ -26,18 +27,25 @@ const RebidModal: React.FC<RebidModalProps> = ({
   currentBid,
   highestBid,
   onConfirm,
+  addNotification, // Add this line
 }) => {
   const [newBid, setNewBid] = useState(currentBid || 0); // Ensure it has a default value
 
   if (!isOpen) return null;
 
   const handleConfirm = () => {
+    console.log("Current New Bid:", newBid); // Log the current new bid
+    console.log("Current Highest Bid:", highestBid); // Log the current highest bid
+  
     if (newBid > highestBid) {
-      onConfirm(newBid);
-      onClose();
-    } else {
-      alert('Your bid must be higher than the current highest bid.');
-    }
+      onConfirm(newBid); // Call the function to confirm the new bid
+      console.log("Confirming new bid:", newBid); // Log confirmation
+      addNotification("Bid Confirmed!", `Your new bid of ${newBid} has been confirmed!`, "success");
+    }  else {
+        console.log("New bid is not higher than the highest bid."); // Log if the bid is not higher
+      }
+    onClose(); // Ensure the modal closes regardless of the condition
+    console.log("Modal should close now."); // Log modal close
   };
 
   return (
@@ -106,7 +114,7 @@ const RebidModal: React.FC<RebidModalProps> = ({
               </p>
             </div>
             <Button
-              onClick={handleConfirm}
+              onClick={handleConfirm} // This will now close the modal after confirming
               variant='default'
               className=' w-full text-white rounded-lg py-2'
             >
