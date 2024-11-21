@@ -73,8 +73,8 @@ export default function Bids() {
 
     // Show success notification
     setNotification({
-      title: 'Bid Confirmed',
-      description: `Your bid of ${newBid} USDT has been successfully placed!`,
+      title: 'Bid Updated',
+      description: `Your bid for ${newBid} has been recorded. Track your auction status in My Bids.`,
       status: 'success',
     });
     setIsModalOpen(false); // Close the modal
@@ -90,7 +90,7 @@ export default function Bids() {
             <Notification
               title={notification.title}
               description={notification.description}
-              status={notification.status}
+              status='success'
               className='shadow-2xl'
               onClose={handleCloseNotification} // Close notification
             />
