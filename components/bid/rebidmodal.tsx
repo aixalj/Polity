@@ -34,6 +34,7 @@ const RebidModal: React.FC<RebidModalProps> = ({
   const handleConfirm = () => {
     if (newBid > highestBid) {
       onConfirm(newBid);
+      onClose();
     } else {
       alert('Your bid must be higher than the current highest bid.');
     }
@@ -42,7 +43,6 @@ const RebidModal: React.FC<RebidModalProps> = ({
   return (
     <SubscribeProvider>
       {' '}
-      {/* Wrap with SubscribeProvider */}
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent
           lightCloseIcon
@@ -65,11 +65,11 @@ const RebidModal: React.FC<RebidModalProps> = ({
 
           <div className='bg-white pt-1 pb-2 p-1 rounded-xl flex-grow overflow-hidden'>
             <p className='text-sm mb-3 flex justify-between'>
-              <strong className='font-medium'>Time Left:</strong>
-              <strong className='font-semibold ml-auto'>{timeLeft}</strong>
+              <strong className='font-medium text-gray-700'>Time Left:</strong>
+              <strong className='font-semibold ml-auto text-gray-700'>{timeLeft}</strong>
             </p>
             <p className='text-sm mb-3 flex justify-between'>
-              <strong className='font-medium'>Your Bid:</strong>
+              <strong className='font-medium text-gray-700'>Your Bid:</strong>
               <div className='flex items-center'>
                 <Image
                   src='/icons/tokens/USDT.svg'
@@ -78,13 +78,13 @@ const RebidModal: React.FC<RebidModalProps> = ({
                   height={16}
                   className='mr-2.5'
                 />
-                <strong className='font-semibold ml-auto'>
+                <strong className='font-semibold ml-auto text-gray-700'>
                   {currentBid} USDT
                 </strong>
               </div>
             </p>
             <p className='text-sm mb-3 flex justify-between'>
-              <strong className='font-medium'>Current Highest Bid:</strong>
+              <strong className='font-medium text-gray-700'>Current Highest Bid:</strong>
               <div className='flex items-center'>
                 <Image
                   src='/icons/tokens/USDT.svg'
@@ -93,14 +93,14 @@ const RebidModal: React.FC<RebidModalProps> = ({
                   height={16}
                   className='mr-2.5'
                 />
-                <strong className='font-semibold ml-auto'>
+                <strong className='font-semibold ml-auto text-gray-700'>
                   {highestBid} USDT
                 </strong>
               </div>
             </p>
             <div className='w-full h-px mt-8 bg-gray-200'></div>
             <div className='w-full py-6 '>
-              <BidAmountForm />
+            <BidAmountForm />
               <p className='text-center text-sm text-gray-700 font-medium'>
                 +1 USDT minimum bid increment
               </p>
