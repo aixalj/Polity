@@ -118,17 +118,17 @@ const BidTable: React.FC<{
   } | null>(null);
 
   const handleConfirmRebid = (newBid: number) => {
-    if (newBid > (selectedBid?.highestBid || 0)) {
+    if (newBid > (selectedBid?.highestBid || 10)) {
       addNotification(
         'Bid Updated',
-        `Your bid for ${newBid} has been recorded. Track your auction status in My Bids.`,
+        `Your bid for ${newBid} Lukka Reports has been recorded. Track your auction status in My Bids.`,
         'success'
       );
       setNotifications((prev) => [
         ...prev,
         {
           title: 'Bid Updated',
-          description: `Your bid for ${newBid} has been recorded. Track your auction status in My Bids.`,
+          description: `Your bid for ${newBid} Lukka Reports has been recorded. Track your auction status in My Bids.`,
           status: 'success',
         },
       ]);
@@ -154,7 +154,7 @@ const BidTable: React.FC<{
           <Notification
             key={index}
             title={notification.title}
-            description={notification.description}
+            description='Your bid for 10 Lukka Reports has been recorded. Track your auction status in My Bids.'
             status='success'
             className='shadow-2xl'
             onClose={() => setNotifications((prev) => prev.filter((_, i) => i !== index))}

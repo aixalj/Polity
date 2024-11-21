@@ -73,7 +73,7 @@ export default function Bids() {
 
     setNotification({
       title: 'Bid Updated',
-      description: `Your bid for ${newBid} has been recorded. Track your auction status in My Bids.`,
+      description: `Your bid for ${newBid} Lukka Reports has been recorded. Track your auction status in My Bids.`,
       status: 'success',
     });
     setIsModalOpen(false); // Close the modal
@@ -88,7 +88,7 @@ export default function Bids() {
           <div className='fixed bottom-4 left-4 max-w-sm z-50 rounded-[20px]'>
             <Notification
               title={notification.title}
-              description={notification.description}
+              description='Your bid for 10 Lukka Reports has been recorded. Track your auction status in My Bids.'
               status='success'
               className='shadow-2xl'
               onClose={handleCloseNotification} // Close notification

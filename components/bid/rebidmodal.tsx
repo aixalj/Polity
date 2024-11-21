@@ -36,9 +36,9 @@ const RebidModal: React.FC<RebidModalProps> = ({
   const handleConfirm = () => {
     if (newBid > highestBid) {
       onConfirm(newBid); // Call the function to confirm the new bid
-      addNotification("Bid Confirmed!", `Your new bid of ${newBid} has been confirmed!`, "success");
+      addNotification("Bid Confirmed!", `Your new bid of ${newBid} Lukka Reports has been confirmed!`, "success");
     }  else {
-        addNotification("Bid Confirmed!", `Your new bid of ${newBid} has been confirmed!`, "success");
+        addNotification("Bid Confirmed!", `Your new bid of ${newBid} Lukka Reportshas been confirmed!`, "success");
       }
     onClose(); // Ensure the modal closes regardless of the condition
   };
