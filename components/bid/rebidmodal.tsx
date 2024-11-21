@@ -5,6 +5,10 @@ import { Dialog, DialogContent } from '@/components/ui/dialog'; // Import Dialog
 import { Plus, Minus } from 'lucide-react'; // Import icons for increment/decrement
 import { X } from 'lucide-react'; // Import the close icon
 import { DialogClose } from '@radix-ui/react-dialog';
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import { BidAmountForm } from '@/components/bid/amountform';
+import { SubscribeProvider } from '@/components/ui/subscribecontext';
 
 interface RebidModalProps {
   isOpen: boolean;
@@ -36,60 +40,82 @@ const RebidModal: React.FC<RebidModalProps> = ({
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent
-        lightCloseIcon
-        className='bg-white rounded-xl w-[410px] h-auto flex flex-col'
-      >
-        <DialogClose
-          className='absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 disabled:pointer-events-none text-blue-500' // Change to your desired color
+    <SubscribeProvider>
+      {' '}
+      {/* Wrap with SubscribeProvider */}
+      <Dialog open={isOpen} onOpenChange={onClose}>
+        <DialogContent
+          lightCloseIcon
+          className='bg-white rounded-xl w-[458px] h-auto flex flex-col'
         >
-          <X className='h-4 w-4' />
-        </DialogClose>
+          <div className=' flex flex-start pt-1.5 flex-shrink-0'>
+            <div>
+              <h2 className='text-lg font-medium mb-1.5 text-gray-900'>
+                Rebid
+              </h2>
+              <p className=' text-gray-600 text-sm font-regular'>
+                Adjust your bid for the current auction.
+              </p>
+            </div>
 
-        <div className='px-6 pt-6 flex-shrink-0'>
-          <h2 className='text-lg font-medium mb-1.5 text-gray-900'>Rebid</h2>
-          <p className='mb-4 text-gray-600 text-sm font-regular'>
-            Adjust your bid for the current auction.
-          </p>
-        </div>
-
-        <div className='bg-white px-6 pt-4 pb-4 rounded-xl flex-grow overflow-hidden'>
-          <p className='text-sm mb-2 flex justify-between'>
-            <strong className='font-medium'>Time Left:</strong>
-            <strong className='font-semibold ml-auto'>{timeLeft}</strong>
-          </p>
-          <p className='text-sm mb-2 flex justify-between'>
-            <strong className='font-medium'>Your Bid:</strong>
-            <strong className='font-semibold ml-auto'>{currentBid} USDT</strong>
-          </p>
-          <p className='text-sm mb-2 flex justify-between'>
-            <strong className='font-medium'>Current Highest Bid:</strong>
-            <strong className='font-semibold ml-auto'>{highestBid} USDT</strong>
-          </p>
-          <div className='flex items-center justify-between mb-4'>
-            <button onClick={() => setNewBid(newBid - 1)} className='p-2'>
-              <Minus className='h-5 w-5' />
-            </button>
-            <input
-              type='number'
-              value={newBid}
-              onChange={(e) => setNewBid(Number(e.target.value))}
-              className='border rounded-md text-center w-20'
-            />
-            <button onClick={() => setNewBid(newBid + 1)} className='p-2'>
-              <Plus className='h-5 w-5' />
-            </button>
+            <DialogClose className='absolute right-4 top-4 rounded-sm pt-2.5 pr-1 disabled:pointer-events-none text-gray-600'>
+              <X className='h-4 w-4' />
+            </DialogClose>
           </div>
-          <button
-            onClick={handleConfirm}
-            className='bg-green-500 text-white rounded-md py-2'
-          >
-            Confirm New Bid
-          </button>
-        </div>
-      </DialogContent>
-    </Dialog>
+
+          <div className='bg-white pt-1 pb-2 p-1 rounded-xl flex-grow overflow-hidden'>
+            <p className='text-sm mb-3 flex justify-between'>
+              <strong className='font-medium'>Time Left:</strong>
+              <strong className='font-semibold ml-auto'>{timeLeft}</strong>
+            </p>
+            <p className='text-sm mb-3 flex justify-between'>
+              <strong className='font-medium'>Your Bid:</strong>
+              <div className='flex items-center'>
+                <Image
+                  src='/icons/tokens/USDT.svg'
+                  alt='Tether (USDT)'
+                  width={16}
+                  height={16}
+                  className='mr-2.5'
+                />
+                <strong className='font-semibold ml-auto'>
+                  {currentBid} USDT
+                </strong>
+              </div>
+            </p>
+            <p className='text-sm mb-3 flex justify-between'>
+              <strong className='font-medium'>Current Highest Bid:</strong>
+              <div className='flex items-center'>
+                <Image
+                  src='/icons/tokens/USDT.svg'
+                  alt='Tether (USDT)'
+                  width={16}
+                  height={16}
+                  className='mr-2.5'
+                />
+                <strong className='font-semibold ml-auto'>
+                  {highestBid} USDT
+                </strong>
+              </div>
+            </p>
+            <div className='w-full h-px mt-8 bg-gray-200'></div>
+            <div className='w-full py-6 '>
+              <BidAmountForm />
+              <p className='text-center text-sm text-gray-700 font-medium'>
+                +1 USDT minimum bid increment
+              </p>
+            </div>
+            <Button
+              onClick={handleConfirm}
+              variant='default'
+              className=' w-full text-white rounded-lg py-2'
+            >
+              Confirm New Bid
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </SubscribeProvider>
   );
 };
 
