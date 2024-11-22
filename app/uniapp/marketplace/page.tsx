@@ -1802,7 +1802,7 @@ export default function Marketplace() {
                   <h2 className='text-2xl font-medium'>Analytics</h2>
                 </div>
                 <div className='w-full grid grid-cols-3  gap-3 justify-start '>
-                  <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
+                <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
                     <div className='w-full justify-between flex items-center pb-3'>
                       <div className='flex flex-row gap-2.5 items-center'>
                         {/* <svg
@@ -1863,38 +1863,54 @@ export default function Marketplace() {
                             </clipPath>
                           </defs>
                         </svg> */}
-                        <div className='w-10 h-10 border border-gray-300 rounded-xl flex items-center justify-center'>
-                          <Image
-                            src='/icons/coinfirm.png'
-                            alt='Coinfirm'
-                            width={24}
-                            height={24}
-                          />
+                        <div className='flex gap-2 items-center'>
+                          <div className='w-10 h-10 border border-gray-300 rounded-xl flex items-center justify-center'>
+                            <Image
+                              src='/icons/Lukka.svg'
+                              alt='Lukka'
+                              width={40}
+                              height={40}
+                            />
+                          </div>
+                          <div className='flex flex-col items-center font-medium'>Lukka</div>
                         </div>
-
-                        <h3 className='text-2xl font-medium'>
-                          Coinfirm AML Risk Report
-                        </h3>
                       </div>
                       {/* <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
                         Active wallet
                       </div> */}
                     </div>
+                    <div>
+                      <h3 className='text-2xl font-medium'>AML Risk Report</h3>
+                    </div>
                     <p className='text-sm text-gray-600 mt-2'>
-                      The Coinfirm AML Risk Report provides you with advanced
-                      personal risk analysis for any blockchain address,
-                      enhancing your vigilance against money laundering and
-                      terrorism financing activities.
+                      Advanced risk assessment tool for blockchain transactions
+                      and crypto-related activity.
                     </p>
                     <a
                       href='https://lukka.tech/'
                       target='_blank'
                       className='text-sm mt-2 mb-4 cursor-pointer font-semibold text-teal-600'
                     >
-                      Learn more about Coinfirm
+                      Learn more about Lukka
                     </a>
-                    <Link href='/marketplace/coinfirm/report'>
-                      <Button className='w-full'>Buy Report</Button>
+                    <div className='w-full flex justify-between mb-4'>
+                      <div className='flex flex-col '>
+                        <p className='text-xs text-gray-500'>
+                          Starting from
+                        </p>
+                        <div className='flex items-end '>
+                          <p className='text-xl font-semibold text-gray-900'>
+                            4.99 USDT
+                          </p>
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
+                            each/mo
+                          </p>
+                        </div>
+                      </div>
+                      
+                    </div>
+                    <Link href='/marketplace/lukka/report'>
+                      <Button className='w-full'>View Options</Button>
                     </Link>
                   </div>
                 </div>

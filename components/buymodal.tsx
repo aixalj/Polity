@@ -2657,13 +2657,13 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                   <div className='flex items-center gap-2 text-lg font-medium'>
                     <div className='border w-8 h-8 overflow-hidden rounded-lg border-gray-300 flex items-center justify-center'>
                       <img
-                        src='https://www.fintechfutures.com/files/2021/09/coinfirm.jpg'
-                        alt='Coinfirm'
+                        src='/icons/Lukka.svg'
+                        alt='Lukka'
                         width={32}
                         height={32}
                       />
                     </div>
-                    <h2 className='font-medium text-lg'>Coinfirm</h2>
+                    <h2 className='font-medium text-lg'>Lukka</h2>
                   </div>
                   <div className='rounded-lg text-gray-800 font-medium bg-gray-100 border border-gray-200 text-sm px-3 py-1 leading-2 h-7 items-center flex'>
                     Premium
@@ -2673,10 +2673,7 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                   <div className='font-medium'>AML Risk Report</div>
                 </FSDialogTitle>
                 <FSDialogDescription className='text-gray-800 flex flex-col text-sm font-medium items-start gap-1.5 '>
-                  The Coinfirm AML Risk Report provides you with advanced
-                  personal risk analysis for any blockchain address, enhancing
-                  your vigilance against money laundering and terrorism
-                  financing activities.
+                Advanced risk assessment tool for blockchain transactions and crypto-related activity.
                   {/* <Button
                   variant="link"
                   className="p-0 shadow-none text-teal-800 font-semibold h-auto"
@@ -2792,7 +2789,7 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                   Purchase Options
                 </FSDialogTitle>
                 <FSDialogDescription className='text-gray-700'>
-                  Choose how to acquire your Coinfirm AML Risk Report: Buy
+                  Choose how to acquire your Lukka AML Risk Report: Buy
                   instantly at a fixed price per report, or participate in our
                   auction for a chance to get multiple reports at a potentially
                   lower cost. Both options provide the same high-quality risk
@@ -2813,7 +2810,7 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                       >
                         <div className='w-8 h-8 rounded-lg border bg-white flex items-center justify-center pb-0.5 border-gray-300 mr-2'>
                           <Image
-                            src='/icons/coinfirm.png'
+                            src='/icons/Lukka.svg'
                             alt='single'
                             width={22}
                             height={22}
@@ -2872,7 +2869,7 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                         className='w-full items-center'>
                         <div className='w-8 h-8 rounded-lg border bg-white flex items-center justify-center pb-0.5 border-gray-300 mr-2'>
                           <Image
-                            src='/icons/coinfirm.png'
+                            src='/icons/Lukka.svg'
                             alt='single'
                             width={22}
                             height={22}
@@ -2962,7 +2959,7 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
                     {' '}
                     <p>Auction Package</p>
                     <p className='flex gap-2 font-medium items-center'>
-                      10 Coinfirm AML Risk Report
+                      10 Lukka AML Risk Report
                     </p>
                   </div>
                   <div className='w-full justify-between  flex py-1.5'>
@@ -3066,7 +3063,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                       {' '}
                       <p>Auction Package</p>
                       <div className='flex gap-2 font-medium items-center'>
-                        <p className=''>10 Coinfirm AML Risk Report</p>
+                        <p className=''>10 Lukka AML Risk Report</p>
                       </div>
                     </div>
 
@@ -5891,9 +5888,9 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   Bid successfully placed!
                 </h3>
                 <p className='text-sm font-normal text-gray-600'>
-                  Your bid for the Coinfirm AML Risk Report has been
+                  Your bid for the Lukka AML Risk Report has been
                   successfully placed. If your bid wins, you will be able to
-                  view and generate reports on the Coinfirm reports page.
+                  view and generate reports on the Lukka reports page.
                 </p>
               </div>
               <div>

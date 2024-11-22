@@ -107,7 +107,7 @@ const BillingTable: React.FC<{
                     <div className="w-[400px] flex-none px-6 py-3 flex items-center gap-3 h-16">
                       <div className="min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl">
                         <Image
-                          src={"/icons/coinfirm.png"}
+                          src={"/icons/Lukka.svg"}
                           alt={billing.name}
                           width={20}
                           height={20}
