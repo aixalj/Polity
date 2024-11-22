@@ -17,7 +17,6 @@ import Allocation from '@/components/allocation';
 import { TimeProvider } from '@/components/ui/timecontext';
 import React from 'react';
 import { Notification } from '@/components/ui/notification';
-import BTC from '@/public/icons/networks/BTC.svg';
 
 import { Button } from '@/components/ui/button';
 import { AssetTable } from '@/components/assettable';
@@ -25,11 +24,6 @@ import { PositionsTable } from '@/components/positionstable';
 import { Dapps } from '@/components/dapps';
 import WalletConnect from '@/components/ui/modals/walletConnect';
 import ConnectTodApp from '@/components/ui/modals/connectTodApp';
-import BTCdApps from '@/public/icons/dApps/BTC-dApps.svg';
-import POLdApps from '@/public/icons/dApps/POL-dApps.svg';
-import MATIC from '@/public/icons/networks/MATIC.svg';
-import ETHdApps from 'public/icons/dApps/ETH-dApps.svg';
-
 
 import {
   networkAccounts,
@@ -38,39 +32,23 @@ import {
   getAllAssets,
 } from '@/components/data';
 
+import MATIC from '@/public/icons/networks/matic.svg';
+
 function BitcoinOne() {
   const [selectedTab, setSelectedTab] = useState('overview');
   const [isWalletConnectOpen, setIsWalletConnectOpen] = useState(false);
   const [isConnectTodAppOpen, setIsConnectTodAppOpen] = useState(false);
-  const [notifications, setNotifications] = useState<any[]>([]); 
+  const [notifications, setNotifications] = useState<any[]>([]);
 
-// Determine the network account name and balance based on the current page
-const currentPath = window.location.pathname;
-
-let networkAccountName;
-let balance;
-let networkAccountImage;
-if (currentPath === '/uniapp/wealth/wallet1/btcnetwork') {
-  networkAccountName = 'Bitcoin (428f...47d2)'; // Example name for BTC network
-  balance = '$657,318.88 (211.9 BTC)'; // Example balance for BTC network
-  networkAccountImage = BTCdApps; // Set the image for BTC
-} else if (currentPath === '/uniapp/wealth/wallet1/polynetwork') {
-  networkAccountName = 'Polygon (0x8f...47d2)'; // Example name for Polygon network
-  balance = '$657,318.88 (211.9 MATIC)'; // Example balance for Polygon network
-  networkAccountImage = POLdApps; // Set the image for BTC
-} else {
-  networkAccountName = 'Ethereum (0xD2...05F6)'; // Fallback name for other pages
-  balance = '$657,318.88 (211.9 ETH)'; // Fallback balance for other pages
-  networkAccountImage = ETHdApps; // Set the image for BTC
-}
+  const networkAccountName = 'Ethereum (0xD2...05F6)';
+  const balance = '$657,318.88 (211.9 ETH)';
 
   const handleOpenModal = () => setIsWalletConnectOpen(true);
   const handleCloseModal = () => setIsWalletConnectOpen(false);
-  const handleOpenConnectTodApp = () => { 
+  const handleOpenConnectTodApp = () => {
     setIsWalletConnectOpen(false);
     setIsConnectTodAppOpen(true);
   };
-
   const handleCloseConnectTodApp = () => setIsConnectTodAppOpen(false);
 
   const addNotification = (
@@ -116,7 +94,7 @@ if (currentPath === '/uniapp/wealth/wallet1/btcnetwork') {
               <div className=' max-w-screen-xl mx-auto p-6'>
                 <nav aria-label='Breadcrumb'>
                   <ol className='flex items-center gap-1 text-xs text-gray-600'>
-                    <li>
+                    {/* <li>
                       <a
                         href='#'
                         className='block transition hover:text-gray-700 font-semibold'
@@ -124,9 +102,9 @@ if (currentPath === '/uniapp/wealth/wallet1/btcnetwork') {
                         {' '}
                         Wealth{' '}
                       </a>
-                    </li>
+                    </li> */}
 
-                    <li className='rtl:rotate-180'>
+                    {/* <li className='rtl:rotate-180'>
                       <svg
                         width='20'
                         height='20'
@@ -142,7 +120,7 @@ if (currentPath === '/uniapp/wealth/wallet1/btcnetwork') {
                           stroke-linejoin='round'
                         />
                       </svg>
-                    </li>
+                    </li> */}
 
                     <li>
                       <a
@@ -150,7 +128,7 @@ if (currentPath === '/uniapp/wealth/wallet1/btcnetwork') {
                         className='block transition hover:text-gray-700 font-semibold'
                       >
                         {' '}
-                        Main Wallet{' '}
+                        My Wallet{' '}
                       </a>
                     </li>
 
@@ -461,8 +439,6 @@ if (currentPath === '/uniapp/wealth/wallet1/btcnetwork') {
           networkAccountName={networkAccountName}
           balance={balance}
           addNotification={addNotification}
-          networkAccountImage={networkAccountImage}
-          sourcePage='/uniapp/wealth/wallet1/polynetwork' // Pass the determined source page
         />
       </TimeProvider>
     </main>
