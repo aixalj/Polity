@@ -25,6 +25,11 @@ import { PositionsTable } from '@/components/positionstable';
 import { Dapps } from '@/components/dapps';
 import WalletConnect from '@/components/ui/modals/walletConnect';
 import ConnectTodApp from '@/components/ui/modals/connectTodApp';
+import BTCdApps from '@/public/icons/dApps/BTC-dApps.svg';
+import POLdApps from '@/public/icons/dApps/POL-dApps.svg';
+import MATIC from '@/public/icons/networks/MATIC.svg';
+import ETHdApps from 'public/icons/dApps/ETH-dApps.svg';
+
 
 import {
   networkAccounts,
@@ -39,8 +44,25 @@ function BitcoinOne() {
   const [isConnectTodAppOpen, setIsConnectTodAppOpen] = useState(false);
   const [notifications, setNotifications] = useState<any[]>([]); 
 
-  const networkAccountName = 'Ethereum (0xD2...05F6)';
-  const balance = '$657,318.88 (211.9 ETH)';
+// Determine the network account name and balance based on the current page
+const currentPath = window.location.pathname;
+
+let networkAccountName;
+let balance;
+let networkAccountImage;
+if (currentPath === '/uniapp/wealth/wallet1/btcnetwork') {
+  networkAccountName = 'Bitcoin (428f...47d2)'; // Example name for BTC network
+  balance = '$657,318.88 (211.9 BTC)'; // Example balance for BTC network
+  networkAccountImage = BTCdApps; // Set the image for BTC
+} else if (currentPath === '/uniapp/wealth/wallet1/polynetwork') {
+  networkAccountName = 'Polygon (0x8f...47d2)'; // Example name for Polygon network
+  balance = '$657,318.88 (211.9 MATIC)'; // Example balance for Polygon network
+  networkAccountImage = POLdApps; // Set the image for BTC
+} else {
+  networkAccountName = 'Ethereum (0xD2...05F6)'; // Fallback name for other pages
+  balance = '$657,318.88 (211.9 ETH)'; // Fallback balance for other pages
+  networkAccountImage = ETHdApps; // Set the image for BTC
+}
 
   const handleOpenModal = () => setIsWalletConnectOpen(true);
   const handleCloseModal = () => setIsWalletConnectOpen(false);
@@ -48,6 +70,7 @@ function BitcoinOne() {
     setIsWalletConnectOpen(false);
     setIsConnectTodAppOpen(true);
   };
+
   const handleCloseConnectTodApp = () => setIsConnectTodAppOpen(false);
 
   const addNotification = (
@@ -91,7 +114,7 @@ function BitcoinOne() {
               <div className=' max-w-screen-xl mx-auto p-6'>
                 <nav aria-label='Breadcrumb'>
                   <ol className='flex items-center gap-1 text-xs text-gray-600'>
-                    {/* <li>
+                    <li>
                       <a
                         href='#'
                         className='block transition hover:text-gray-700 font-semibold'
@@ -99,9 +122,9 @@ function BitcoinOne() {
                         {' '}
                         Wealth{' '}
                       </a>
-                    </li> */}
+                    </li>
 
-                    {/* <li className='rtl:rotate-180'>
+                    <li className='rtl:rotate-180'>
                       <svg
                         width='20'
                         height='20'
@@ -117,7 +140,7 @@ function BitcoinOne() {
                           stroke-linejoin='round'
                         />
                       </svg>
-                    </li> */}
+                    </li>
 
                     <li>
                       <a
@@ -125,7 +148,7 @@ function BitcoinOne() {
                         className='block transition hover:text-gray-700 font-semibold'
                       >
                         {' '}
-                        My Wallet{' '}
+                        Main Wallet{' '}
                       </a>
                     </li>
 
@@ -3162,7 +3185,7 @@ function BitcoinOne() {
           balance={balance} 
           addNotification={addNotification}
           networkAccountImage={networkAccountImage}
-          sourcePage='wealth/wallet1/btcnetwork' // Pass the determined source page
+          sourcePage='/uniapp/wealth/wallet1/btcnetwork' // Pass the determined source page
         />
       </TimeProvider>
     </main>
