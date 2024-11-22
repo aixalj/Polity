@@ -50,7 +50,7 @@ function BitcoinOne() {
   let balance;
   let networkAccountImage;
   if (currentPath === "/uniapp/wealth/wallet1/btcnetwork") {
-    networkAccountName = "Bitcoin (428f...47d2)"; // Example name for BTC network
+    networkAccountName = "Bitcoin (428f...47d1)"; // Example name for BTC network
     balance = "$657,318.88 (211.9 BTC)"; // Example balance for BTC network
     networkAccountImage = BTCdApps; // Set the image for BTC
   } else if (currentPath === "/uniapp/wealth/wallet1/polynetwork") {
