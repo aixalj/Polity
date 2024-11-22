@@ -17,6 +17,7 @@ import Allocation from '@/components/allocation';
 import { TimeProvider } from '@/components/ui/timecontext';
 import React from 'react';
 import { Notification } from '@/components/ui/notification';
+import BTC from '@/public/icons/networks/BTC.svg';
 
 import { Button } from '@/components/ui/button';
 import { AssetTable } from '@/components/assettable';
@@ -24,7 +25,11 @@ import { PositionsTable } from '@/components/positionstable';
 import { Dapps } from '@/components/dapps';
 import WalletConnect from '@/components/ui/modals/walletConnect';
 import ConnectTodApp from '@/components/ui/modals/connectTodApp';
-import MATIC from '@/public/icons/networks/matic.svg';
+import BTCdApps from '@/public/icons/dApps/BTC-dApps.svg';
+import POLdApps from '@/public/icons/dApps/POL-dApps.svg';
+import MATIC from '@/public/icons/networks/MATIC.svg';
+import ETHdApps from 'public/icons/dApps/ETH-dApps.svg';
+
 
 import {
   networkAccounts,
@@ -37,17 +42,35 @@ function BitcoinOne() {
   const [selectedTab, setSelectedTab] = useState('overview');
   const [isWalletConnectOpen, setIsWalletConnectOpen] = useState(false);
   const [isConnectTodAppOpen, setIsConnectTodAppOpen] = useState(false);
-  const [notifications, setNotifications] = useState<any[]>([]);
+  const [notifications, setNotifications] = useState<any[]>([]); 
 
-  const networkAccountName = 'Ethereum (0xD2...05F6)';
-  const balance = '$657,318.88 (211.9 ETH)';
+// Determine the network account name and balance based on the current page
+const currentPath = window.location.pathname;
+
+let networkAccountName;
+let balance;
+let networkAccountImage;
+if (currentPath === '/wealth/wallet2/btcnetwork') {
+  networkAccountName = 'Bitcoin (428f...47d2)'; // Example name for BTC network
+  balance = '$657,318.88 (211.9 BTC)'; // Example balance for BTC network
+  networkAccountImage = BTCdApps; // Set the image for BTC
+} else if (currentPath === '/wealth/wallet2/polynetwork') {
+  networkAccountName = 'Polygon (0x8f...47d2)'; // Example name for Polygon network
+  balance = '$657,318.88 (211.9 MATIC)'; // Example balance for Polygon network
+  networkAccountImage = POLdApps; // Set the image for BTC
+} else {
+  networkAccountName = 'Ethereum (0xD2...05F6)'; // Fallback name for other pages
+  balance = '$657,318.88 (211.9 ETH)'; // Fallback balance for other pages
+  networkAccountImage = ETHdApps; // Set the image for BTC
+}
 
   const handleOpenModal = () => setIsWalletConnectOpen(true);
   const handleCloseModal = () => setIsWalletConnectOpen(false);
-  const handleOpenConnectTodApp = () => {
+  const handleOpenConnectTodApp = () => { 
     setIsWalletConnectOpen(false);
     setIsConnectTodAppOpen(true);
   };
+
   const handleCloseConnectTodApp = () => setIsConnectTodAppOpen(false);
 
   const addNotification = (
@@ -3163,6 +3186,8 @@ function BitcoinOne() {
           networkAccountName={networkAccountName}
           balance={balance}
           addNotification={addNotification}
+          networkAccountImage={networkAccountImage}
+          sourcePage='wealth/wallet2/polynetwork' // Pass the determined source page
         />
       </TimeProvider>
     </main>
