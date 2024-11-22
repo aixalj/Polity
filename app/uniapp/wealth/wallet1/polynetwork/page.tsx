@@ -11,6 +11,8 @@ import { ReceiveBtn } from "@/components/receivebtn";
 
 import { WalletProvider } from "@/components/ui/formcontext";
 
+import { usePathname } from "next/navigation";
+
 import Stats from "@/components/stats";
 
 import Allocation from "@/components/allocation";
@@ -44,7 +46,7 @@ function BitcoinOne() {
   const [notifications, setNotifications] = useState<any[]>([]);
 
   // Determine the network account name and balance based on the current page
-  const currentPath = window.location.pathname;
+  const currentPath = usePathname();
 
   let networkAccountName;
   let balance;

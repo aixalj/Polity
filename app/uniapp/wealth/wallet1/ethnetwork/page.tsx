@@ -18,6 +18,7 @@ import { TimeProvider } from "@/components/ui/timecontext";
 import React from "react";
 import { Notification } from "@/components/ui/notification";
 import BTC from "@/public/icons/networks/BTC.svg";
+import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { AssetTable } from "@/components/assettable";
@@ -44,7 +45,7 @@ function BitcoinOne() {
   const [notifications, setNotifications] = useState<any[]>([]);
 
   // Determine the network account name and balance based on the current page
-  const currentPath = window.location.pathname;
+  const currentPath = usePathname();
 
   let networkAccountName;
   let balance;
