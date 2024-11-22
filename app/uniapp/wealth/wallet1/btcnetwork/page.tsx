@@ -3186,7 +3186,7 @@ if (currentPath === '/uniapp/wealth/wallet1/btcnetwork') {
           addNotification={addNotification}
           networkAccountImage={networkAccountImage}
           sourcePage='/uniapp/wealth/wallet1/btcnetwork' // Pass the determined source page
-        />
+      />
       </TimeProvider>
     </main>
   );
