@@ -117,29 +117,26 @@ export default function Marketplace() {
                 <div className="flex items-center gap-2 text-lg mb-3 font-medium">
                   <div className="border w-8 h-8 overflow-hidden  rounded-lg border-gray-300 flex items-center justify-center">
                     <img
-                      src="https://www.fintechfutures.com/files/2021/09/coinfirm.jpg"
-                      alt="Coinfirm"
+                      src="/icons/Lukka.svg"
+                      alt="Lukka"
                       width={32}
                       height={32}
                     />
                   </div>
-                  <h2>Coinfirm</h2>
+                  <h2>Lukka</h2>
                 </div>
                 <h1 className="text-3xl font-medium leading-tight">
                   AML Risk Report
                 </h1>{" "}
                 <p className="text-sm text-gray-700 my-2 text-balance">
-                  The Coinfirm AML Risk Report provides you with advanced
-                  personal risk analysis for any blockchain address, enhancing
-                  your vigilance against money laundering and terrorism
-                  financing activities.
+                Advanced risk assessment tool for blockchain transactions and crypto-related activity.
                 </p>
                 <a
                   href="https://lukka.tech/"
                   target="_blank"
                   className="text-sm mt-2 mb-4 cursor-pointer font-semibold text-primary-700"
                 >
-                  Learn more about Coinfirm
+                  Learn more about Lukka
                 </a>
               </div>
               <div className="flex gap-3">

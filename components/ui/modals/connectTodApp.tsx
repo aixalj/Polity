@@ -20,15 +20,18 @@ import WalletConnect from '@/components/ui/modals/walletConnect';
 interface connectTodAppProps {
   isOpen: boolean;
   onClose: () => void;
-  networkAccountName: string; 
+  networkAccountName: string;
+  networkAccountImage: string;
   balance: string; 
   addNotification: (title: string, description: string, status: "success" | "error" | "warning" | "info") => void; 
+  sourcePage: string; // Add this line
 }
 
 const ConnectTodApp: React.FC<connectTodAppProps> = ({
   isOpen,
   onClose,
   networkAccountName,
+  networkAccountImage,
   balance,
   addNotification,
 }) => {
@@ -112,7 +115,7 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
             </div>
             <div className='flex items-center gap-2 border border-gray-300 rounded-xl p-2 w-full'>
               <Image
-                src={NetworkAccountWallet}
+                src={networkAccountImage}
                 alt='WC-icon'
                 width={48}
                 height={48}
