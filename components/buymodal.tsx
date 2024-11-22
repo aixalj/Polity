@@ -214,8 +214,7 @@ const BuyReportModal = () => {
           //   height="1120"
           viewBox='0 0 1600 1120'
           fill='none'
-          xmlns='http://www.w3.org/2000/svg'
-        >
+          xmlns='http://www.w3.org/2000/svg'>
           <g clip-path='url(#clip0_138_106587)'>
             <mask
               id='mask0_138_106587'
@@ -224,8 +223,7 @@ const BuyReportModal = () => {
               x='80'
               y='0'
               width='1440'
-              height='1440'
-            >
+              height='1440'>
               <path
                 d='M1520 0H80V1440H1520V0Z'
                 fill='url(#paint0_radial_138_106587)'
@@ -2451,8 +2449,7 @@ const BuyReportModal = () => {
               height='24'
               viewBox='0 0 161 24'
               fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
+              xmlns='http://www.w3.org/2000/svg'>
               <path
                 fill-rule='evenodd'
                 clip-rule='evenodd'
@@ -2648,10 +2645,7 @@ const BuyReportModal = () => {
         <div className='fixed w-full h-full '>
           <TabsContent value='payment' className=' '>
             <div
-              className='relative h-fit border gap-0 flex-none border-gray-300 rounded-3xl 
-flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full  
- bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'
-            >
+              className='relative h-fit border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
               <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
                 <div className='w-full mb-2 flex justify-between items-center'>
                   <div className='flex items-center gap-2 text-lg font-medium'>
@@ -2779,6 +2773,8 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
               </div>
             </div>
           </TabsContent>
+
+          
           <TabsContent value='recipient' className=' '>
             <div className='relative h-fit border flex-none border-gray-300 rounded-3xl flex-col p-0 grid shadow-sm max-w-[512px] mx-auto w-full gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
               <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
@@ -2934,6 +2930,7 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
               </div>
             </div>
           </TabsContent>
+
           <TabsContent value='amount' className=''>
             <div className='relative h-full max-h-[80vh] border flex-none border-gray-300 rounded-3xl flex-col p-0 grid shadow-sm max-w-[512px] mx-auto w-full gap-4 bg-white duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] overflow-y-auto'>
               {' '}
@@ -3033,13 +3030,11 @@ flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full
               </div>
             </div>
           </TabsContent>
+
           <TabsContent value='confirm' className=''>
             <div className='flex flex-col gap-2'>
               <div
-                className='relative h-fit border flex-none border-gray-300 rounded-3xl 
-flex-col  p-0   grid   shadow-sm  max-w-[512px] mx-auto w-full  
-gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'
-              >
+                className='relative h-fit border flex-none border-gray-300 rounded-3xl flex-col  p-0   grid   shadow-sm  max-w-[512px] mx-auto w-full  gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
                 <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
                   <div className='mb-2'>
                     <Scan className='w-8 h-8 text-gray-700' />
@@ -3179,6 +3174,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
               </div>
             </div>
           </TabsContent>
+
           <div className=' max-w-[512px] w-full mx-auto  z-50'>
             <div className='w-full h-20 items-center flex justify-between py-4 '>
               <div>
