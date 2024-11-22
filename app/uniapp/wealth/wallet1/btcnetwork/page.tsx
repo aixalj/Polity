@@ -3161,8 +3161,6 @@ function BitcoinOne() {
           networkAccountName={networkAccountName} 
           balance={balance} 
           addNotification={addNotification}
-          networkAccountImage={networkAccountImage}
-          sourcePage='wealth/wallet1/btcnetwork' // Pass the determined source page
         />
       </TimeProvider>
     </main>

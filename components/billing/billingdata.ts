@@ -11,7 +11,7 @@ interface Billing {
 // Create an array of simulated agreements
 const billings: Billing[] = [
   {
-    name: "Lukka AML/KYC Risk Report",
+    name: "Coinfirm AML/KYC Risk Report",
     category: "10 Reports Package",
     amount: 31,
 
@@ -20,7 +20,7 @@ const billings: Billing[] = [
   },
 
   {
-    name: "Lukka AML/KYC Risk Report",
+    name: "Coinfirm AML/KYC Risk Report",
     category: "25 Reports Package",
     amount: 28,
 

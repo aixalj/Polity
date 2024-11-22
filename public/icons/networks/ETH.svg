@@ -1,16 +1,77 @@
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_154_5784)">
-<rect width="16" height="16" rx="6" fill="#ECEFF0"/>
-<circle cx="8" cy="8" r="8" fill="#ECEFF0"/>
-<path opacity="0.6" d="M7.91158 6.84082L5 8.16446L7.91158 9.88563L10.8237 8.16446L7.91158 6.84082Z" fill="black"/>
-<path opacity="0.45" d="M5.00098 8.16449L7.91256 9.88566V6.84085V3.33325L5.00098 8.16449Z" fill="black"/>
-<path opacity="0.8" d="M7.9126 3.33325V6.84085V9.88566L10.8242 8.16449L7.9126 3.33325Z" fill="black"/>
-<path opacity="0.45" d="M5 8.7168L7.91158 12.8199V10.4369L5 8.7168Z" fill="black"/>
-<path opacity="0.8" d="M7.91162 10.4369V12.8199L10.8254 8.7168L7.91162 10.4369Z" fill="black"/>
-</g>
-<defs>
-<clipPath id="clip0_154_5784">
-<rect width="16" height="16" rx="6" fill="white"/>
-</clipPath>
-</defs>
-</svg>
+   <svg
+                          width='24'
+                          height='24'
+                          viewBox='0 0 24 24'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <g clip-path='url(#clip0_123_72115)'>
+                            <rect
+                              width='24'
+                              height='24'
+                              rx='7'
+                              fill='#ECEFF0'
+                            />
+                            <g clip-path='url(#clip1_123_72115)'>
+                              <rect
+                                width='24'
+                                height='24'
+                                rx='6'
+                                fill='#ECEFF0'
+                              />
+                              <circle cx='12' cy='12' r='12' fill='#ECEFF0' />
+                              <path
+                                opacity='0.6'
+                                d='M11.8674 10.2615L7.5 12.2469L11.8674 14.8287L16.2355 12.2469L11.8674 10.2615Z'
+                                fill='black'
+                              />
+                              <path
+                                opacity='0.45'
+                                d='M7.50146 12.2469L11.8688 14.8286V10.2614V5L7.50146 12.2469Z'
+                                fill='black'
+                              />
+                              <path
+                                opacity='0.8'
+                                d='M11.8691 5V10.2614V14.8286L16.2365 12.2469L11.8691 5Z'
+                                fill='black'
+                              />
+                              <path
+                                opacity='0.45'
+                                d='M7.5 13.0754L11.8674 19.23V15.6556L7.5 13.0754Z'
+                                fill='black'
+                              />
+                              <path
+                                opacity='0.8'
+                                d='M11.8672 15.6556V19.23L16.2378 13.0754L11.8672 15.6556Z'
+                                fill='black'
+                              />
+                            </g>
+                          </g>
+                          <rect
+                            x='0.375'
+                            y='0.375'
+                            width='23.25'
+                            height='23.25'
+                            rx='6.625'
+                            stroke='#D0D5DD'
+                            stroke-width='0.75'
+                          />
+                          <defs>
+                            <clipPath id='clip0_123_72115'>
+                              <rect
+                                width='24'
+                                height='24'
+                                rx='7'
+                                fill='white'
+                              />
+                            </clipPath>
+                            <clipPath id='clip1_123_72115'>
+                              <rect
+                                width='24'
+                                height='24'
+                                rx='6'
+                                fill='white'
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>

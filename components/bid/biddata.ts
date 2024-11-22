@@ -12,23 +12,23 @@ interface Bid {
 // Create an array of simulated agreements
 const bids: Bid[] = [
   {
-    name: "Lukka AML/KYC Risk Report",
+    name: "Coinfirm AML/KYC Risk Report",
     category: "10 Reports Package",
     yourBid: 31,
     highestBid: 31,
     endTime: new Date(Date.now() + 1355 * 1000),
     status: "Top Bidder",
-    url: "/marketplace/lukka/report",
+    url: "/marketplace/coinfirm/report",
   },
 
   {
-    name: "Lukka AML/KYC Risk Report",
+    name: "Coinfirm AML/KYC Risk Report",
     category: "25 Reports Package",
     yourBid: 28,
     highestBid: 35,
     endTime: new Date(Date.now() + 13550 * 1000),
     status: "Outbid",
-    url: "/marketplace/lukka/report",
+    url: "/marketplace/coinfirm/report",
   },
 ];
 
