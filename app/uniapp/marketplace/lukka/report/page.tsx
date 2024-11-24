@@ -57,14 +57,31 @@ import { toast } from "sonner";
 
 const SuccessIcon = () => (
   <div className="mr-3">
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="40" height="40" rx="20" fill="#D1FADF"/>
+    <svg
+      width="40"
+      height="40"
+      viewBox="0 0 40 40"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="40" height="40" rx="20" fill="#D1FADF" />
       <g clipPath="url(#clip0_408_16592)">
-        <path d="M17.5003 20.0003L19.167 21.667L22.917 17.917M16.1118 13.1826C16.7817 13.1291 17.4176 12.8657 17.929 12.4298C19.1226 11.4127 20.8781 11.4127 22.0716 12.4298C22.5831 12.8657 23.219 13.1291 23.8889 13.1826C25.452 13.3073 26.6933 14.5486 26.8181 16.1118C26.8715 16.7817 27.1349 17.4176 27.5708 17.929C28.5879 19.1226 28.5879 20.8781 27.5708 22.0716C27.1349 22.5831 26.8715 23.219 26.8181 23.8889C26.6933 25.452 25.452 26.6933 23.8889 26.8181C23.219 26.8715 22.5831 27.1349 22.0716 27.5708C20.8781 28.5879 19.1226 28.5879 17.929 27.5708C17.4176 27.1349 16.7817 26.8715 16.1118 26.8181C14.5486 26.6933 13.3073 25.452 13.1826 23.8889C13.1291 23.219 12.8657 22.5831 12.4298 22.0716C11.4127 20.8781 11.4127 19.1226 12.4298 17.929C12.8657 17.4176 13.1291 16.7817 13.1826 16.1118C13.3073 14.5486 14.5486 13.3073 16.1118 13.1826Z" stroke="#039855" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+        <path
+          d="M17.5003 20.0003L19.167 21.667L22.917 17.917M16.1118 13.1826C16.7817 13.1291 17.4176 12.8657 17.929 12.4298C19.1226 11.4127 20.8781 11.4127 22.0716 12.4298C22.5831 12.8657 23.219 13.1291 23.8889 13.1826C25.452 13.3073 26.6933 14.5486 26.8181 16.1118C26.8715 16.7817 27.1349 17.4176 27.5708 17.929C28.5879 19.1226 28.5879 20.8781 27.5708 22.0716C27.1349 22.5831 26.8715 23.219 26.8181 23.8889C26.6933 25.452 25.452 26.6933 23.8889 26.8181C23.219 26.8715 22.5831 27.1349 22.0716 27.5708C20.8781 28.5879 19.1226 28.5879 17.929 27.5708C17.4176 27.1349 16.7817 26.8715 16.1118 26.8181C14.5486 26.6933 13.3073 25.452 13.1826 23.8889C13.1291 23.219 12.8657 22.5831 12.4298 22.0716C11.4127 20.8781 11.4127 19.1226 12.4298 17.929C12.8657 17.4176 13.1291 16.7817 13.1826 16.1118C13.3073 14.5486 14.5486 13.3073 16.1118 13.1826Z"
+          stroke="#039855"
+          strokeWidth="1.66667"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </g>
       <defs>
         <clipPath id="clip0_408_16592">
-          <rect width="20" height="20" fill="white" transform="translate(10 10)"/>
+          <rect
+            width="20"
+            height="20"
+            fill="white"
+            transform="translate(10 10)"
+          />
         </clipPath>
       </defs>
     </svg>
@@ -130,9 +147,10 @@ export default function Marketplace() {
 
     // Determine network based on address format for option 2
     let network = networkIcons[selectedAccount] || "Unknown";
-    let address = selectedOption === "1"
-      ? accountAddresses[selectedAccount]
-      : externalAddress;
+    let address =
+      selectedOption === "1"
+        ? accountAddresses[selectedAccount]
+        : externalAddress;
 
     // For external addresses, detect network from address format
     if (selectedOption === "2") {
@@ -155,21 +173,39 @@ export default function Marketplace() {
 
     toast.custom((t) => (
       <div className="flex items-center gap-6 bg-white p-4 rounded-lg shadow-lg border border-gray-200">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="20" fill="#D1FADF"/>
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 40 40"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="40" height="40" rx="20" fill="#D1FADF" />
           <g clipPath="url(#clip0_408_16592)">
-            <path d="M17.5003 20.0003L19.167 21.667L22.917 17.917M16.1118 13.1826C16.7817 13.1291 17.4176 12.8657 17.929 12.4298C19.1226 11.4127 20.8781 11.4127 22.0716 12.4298C22.5831 12.8657 23.219 13.1291 23.8889 13.1826C25.452 13.3073 26.6933 14.5486 26.8181 16.1118C26.8715 16.7817 27.1349 17.4176 27.5708 17.929C28.5879 19.1226 28.5879 20.8781 27.5708 22.0716C27.1349 22.5831 26.8715 23.219 26.8181 23.8889C26.6933 25.452 25.452 26.6933 23.8889 26.8181C23.219 26.8715 22.5831 27.1349 22.0716 27.5708C20.8781 28.5879 19.1226 28.5879 17.929 27.5708C17.4176 27.1349 16.7817 26.8715 16.1118 26.8181C14.5486 26.6933 13.3073 25.452 13.1826 23.8889C13.1291 23.219 12.8657 22.5831 12.4298 22.0716C11.4127 20.8781 11.4127 19.1226 12.4298 17.929C12.8657 17.4176 13.1291 16.7817 13.1826 16.1118C13.3073 14.5486 14.5486 13.3073 16.1118 13.1826Z" stroke="#039855" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+            <path
+              d="M17.5003 20.0003L19.167 21.667L22.917 17.917M16.1118 13.1826C16.7817 13.1291 17.4176 12.8657 17.929 12.4298C19.1226 11.4127 20.8781 11.4127 22.0716 12.4298C22.5831 12.8657 23.219 13.1291 23.8889 13.1826C25.452 13.3073 26.6933 14.5486 26.8181 16.1118C26.8715 16.7817 27.1349 17.4176 27.5708 17.929C28.5879 19.1226 28.5879 20.8781 27.5708 22.0716C27.1349 22.5831 26.8715 23.219 26.8181 23.8889C26.6933 25.452 25.452 26.6933 23.8889 26.8181C23.219 26.8715 22.5831 27.1349 22.0716 27.5708C20.8781 28.5879 19.1226 28.5879 17.929 27.5708C17.4176 27.1349 16.7817 26.8715 16.1118 26.8181C14.5486 26.6933 13.3073 25.452 13.1826 23.8889C13.1291 23.219 12.8657 22.5831 12.4298 22.0716C11.4127 20.8781 11.4127 19.1226 12.4298 17.929C12.8657 17.4176 13.1291 16.7817 13.1826 16.1118C13.3073 14.5486 14.5486 13.3073 16.1118 13.1826Z"
+              stroke="#039855"
+              strokeWidth="1.66667"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </g>
           <defs>
             <clipPath id="clip0_408_16592">
-              <rect width="20" height="20" fill="white" transform="translate(10 10)"/>
+              <rect
+                width="20"
+                height="20"
+                fill="white"
+                transform="translate(10 10)"
+              />
             </clipPath>
           </defs>
         </svg>
         <div>
           <div className="font-medium">Report Generation Initiated</div>
           <div className="text-gray-600 text-sm">
-            Your AML Risk Report is being processed. Check the Report History for status updates.
+            Your AML Risk Report is being processed. Check the Report History
+            for status updates.
           </div>
         </div>
       </div>
@@ -258,7 +294,8 @@ export default function Marketplace() {
                   AML Risk Report
                 </h1>{" "}
                 <p className="text-sm text-gray-700 my-2 text-balance">
-                Advanced risk assessment tool for blockchain transactions and crypto-related activity.
+                  Advanced risk assessment tool for blockchain transactions and
+                  crypto-related activity.
                 </p>
                 <a
                   href="https://lukka.tech/"
@@ -420,8 +457,8 @@ export default function Marketplace() {
                           description="Select to manually enter a network address"
                         >
                           <div className="flex flex-col gap-1.5">
-                            <Input 
-                              placeholder="Enter Network Address..." 
+                            <Input
+                              placeholder="Enter Network Address..."
                               value={externalAddress}
                               onChange={handleAddressChange}
                               className={addressError ? "border-red-500" : ""}
