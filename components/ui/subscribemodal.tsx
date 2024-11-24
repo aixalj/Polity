@@ -136,8 +136,10 @@ const SubscribeModal = () => {
         selectedWallet.length >= 3 &&
         selectedNetwork.length >= 3 &&
         selectedAsset.length >= 3) ||
-      activeTab === 'recipient' ||
-      (activeTab === 'amount' && selectedAsset.length > 1) ||
+        
+        (activeTab === 'recipient' ) ||
+      (activeTab === 'amount') ||
+
       activeTab === 'confirm'
     ) {
       return true;
@@ -2612,6 +2614,9 @@ const SubscribeModal = () => {
             </TabsTrigger>
           </TabsList>
         </div>
+
+
+        
         <div className='fixed w-full h-full '>
           <TabsContent value='payment' className=''>
             <div className='relative h-full max-h-[80vh] overflow-y-auto border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>

@@ -2364,102 +2364,7 @@ const SendModal = () => {
             </defs>
           </svg>
         </div>
-        <div className='fixed  bottom-0 left-0 right-0 w-full p-6 mx-auto  z-50'>
-          <div className='w-full h-20 items-center flex justify-between p-6 border border-gray-200 bg-white shadow-lg rounded-2xl'>
-            <div>
-              {activeTab === 'payment' && (
-                <FSDialogClose>
-                  <Button variant='outline'>Cancel</Button>
-                </FSDialogClose>
-              )}
-              {activeTab !== 'payment' && (
-                <Button onClick={handleBack} variant='outline'>
-                  <svg
-                    width='20'
-                    height='20'
-                    viewBox='0 0 20 20'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      d='M16.6667 10H3.33337M3.33337 10L8.33337 15M3.33337 10L8.33337 5'
-                      stroke='#344054'
-                      stroke-width='1.66667'
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                    />
-                  </svg>
-                  Back
-                </Button>
-              )}
-            </div>
-
-            <div className='flex items-center gap-8'>
-              {activeTab !== 'confirm' && (
-                <Button onClick={handleContinue} disabled={!canContinue()}>
-                  Continue
-                  <svg
-                    width='20'
-                    height='20'
-                    viewBox='0 0 20 20'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      d='M3.33325 10H16.6666M16.6666 10L11.6666 5M16.6666 10L11.6666 15'
-                      stroke='white'
-                      stroke-width='1.66667'
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                    />
-                  </svg>
-                </Button>
-              )}
-              {activeTab === 'confirm' && (
-                <div className='flex gap-8 items-center '>
-                  <div className='flex flex-col gap-0 items-start justify-start'>
-                    <p className='text-xs text-gray-700 font-medium'>
-                      Total Transaction
-                    </p>
-                    <div className='flex gap-1 items-center'>
-                      <img
-                        className='w-4 h-4'
-                        src={`/icons/tokens/${selectedAsset}.svg`}
-                      />
-                      <p className='text-md font-medium'>
-                        {selectedAsset === 'ETH'
-                          ? (
-                              Number(selectedPayment) / cryptoValues.ethValue
-                            ).toLocaleString(undefined, {
-                              minimumFractionDigits: 2,
-                              maximumFractionDigits: 2,
-                            })
-                          : (Number(selectedPayment) * 1).toLocaleString(
-                              undefined,
-                              {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2,
-                              }
-                            )}
-                      </p>
-                    </div>
-                    <p className='text-xs text-gray-700 font-medium'>
-                      Total including fees = $
-                      {(
-                        cryptoValues.ethValue * 0.016789 +
-                        Number(selectedPayment)
-                      ).toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}
-                    </p>
-                  </div>
-                  <Button onClick={handleConfirm}>Confirm Payment</Button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+     
         <div className='absolute left-0 top-0  bg-gray-50/50 backdrop-blur-lg h-full flex z-40 flex-col px-6 py-12 w-80 gap-3'>
           <div className='mb-2'>
             <svg
@@ -2676,9 +2581,12 @@ const SendModal = () => {
           </TabsList>
         </div>
 
-        <TabsContent value='payment' className=' fixed w-full h-full'>
-          <div className='relative h-fit border flex-none border-gray-300 rounded-3xl flex-col p-0 grid shadow-sm  max-w-screen-sm mx-auto w-full gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
-            <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
+
+
+        <div className='fixed w-full h-full '>
+        <TabsContent value='payment' className=''>
+        <div className='relative h-full max-h-[80vh] overflow-y-auto border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
+        <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
               <div className='mb-2'>
                 <svg
                   width='32'
@@ -2765,12 +2673,10 @@ const SendModal = () => {
             </div>
           </div>
         </TabsContent>
-        <TabsContent value='recipient' className='fixed w-full h-full'>
-          <div
-            className='relative h-fit border flex-none border-gray-300 rounded-3xl 
-flex-col  p-0   grid   shadow-sm  max-w-screen-sm mx-auto w-full  
-gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'
-          >
+
+
+        <TabsContent value='recipient' className=''>
+        <div className='relative h-full max-h-[80vh] overflow-y-auto border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
             <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
               <div className='mb-2'>
                 <svg
@@ -2899,12 +2805,10 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
             </div>
           </div>
         </TabsContent>
-        <TabsContent value='amount' className='fixed w-full h-full'>
-          <div
-            className='relative h-fit border flex-none border-gray-300 rounded-3xl 
-flex-col  p-0   grid   shadow-sm  max-w-screen-sm mx-auto w-full  
-gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'
-          >
+
+
+        <TabsContent value='amount' className=''>
+        <div className='relative h-full max-h-[80vh] overflow-y-auto border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
             <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
               <div className='mb-2'>
                 <svg
@@ -3053,12 +2957,10 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
             </div>
           </div>
         </TabsContent>
-        <TabsContent value='confirm' className='fixed w-full h-full'>
-          <div
-            className='relative h-fit border flex-none border-gray-300 rounded-3xl 
-flex-col  p-0   grid   shadow-sm  max-w-screen-sm mx-auto w-full  
-gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'
-          >
+
+
+        <TabsContent value='confirm' className=''>
+        <div className='relative h-full max-h-[80vh] overflow-y-auto border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
             <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
               <div className='mb-2'>
                 <svg
@@ -3260,7 +3162,126 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
             </div>
           </div>
         </TabsContent>
+
+        <div className=' max-w-[512px] w-full mx-auto  z-50'>
+            <div className='w-full h-20 items-center flex justify-between py-4 '>
+              <div>
+                <div className=' inline-flex w-44 h-11 items-center justify-center bg-white border border-gray-300 gap-2  z-50 rounded-xl text-sm mx-auto  font-medium text-gray-700 p-3'>
+                  Powered by
+                  <svg
+                    width='67'
+                    height='12'
+                    viewBox='0 0 67 12'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <g clip-path='url(#clip0_4_25542)'>
+                      <path
+                        d='M12.8621 7.4115C12.8621 4.58757 14.9057 2.80528 17.945 2.80528C20.9843 2.80528 23.0279 4.58757 23.0279 7.4115C23.0279 10.2354 20.9843 12 17.945 12C14.9057 12 12.8621 10.2 12.8621 7.4115ZM20.3799 7.4115C20.3799 5.85838 19.74 5.13544 17.945 5.13544C16.1499 5.13544 15.51 5.85937 15.51 7.4115C15.51 8.96364 16.1321 9.6531 17.945 9.6531C19.7579 9.6531 20.3799 8.9646 20.3799 7.4115Z'
+                        fill='#101828'
+                      />
+                      <path
+                        d='M23.7739 7.4115C23.7739 4.58757 25.8176 2.80528 28.8569 2.80528C31.8961 2.80528 33.9398 4.58757 33.9398 7.4115C33.9398 10.2354 31.8961 12 28.8569 12C25.8176 12 23.7739 10.2 23.7739 7.4115ZM31.2919 7.4115C31.2919 5.85838 30.6519 5.13544 28.8569 5.13544C27.0619 5.13544 26.4219 5.85937 26.4219 7.4115C26.4219 8.96364 27.044 9.6531 28.8569 9.6531C30.6697 9.6531 31.2919 8.9646 31.2919 7.4115Z'
+                        fill='#101828'
+                      />
+                      <path
+                        d='M35.6235 11.8238C35.2924 11.8234 35.0247 11.5549 35.0247 11.2238V3.20291C35.0247 3.08107 35.1241 2.98231 35.2468 2.98231H37.2731C37.3958 2.98231 37.4953 3.08107 37.4953 3.20291V5.58875C37.4953 5.63064 37.5295 5.6646 37.5717 5.6646C37.6097 5.6646 37.6419 5.6368 37.6477 5.59951C37.8772 4.14228 38.7723 2.80624 40.9794 2.80624C43.0074 2.80624 44.0556 4.01897 44.2749 5.62036C44.2811 5.66561 44.3197 5.7 44.3658 5.7C44.4109 5.7 44.4492 5.66692 44.4562 5.62257C44.6892 4.15239 45.6035 2.80624 47.8573 2.80624C50.1506 2.80624 51.27 4.30624 51.27 6.3177V11.6033C51.27 11.7251 51.1705 11.8239 51.0478 11.8239H48.8264C48.7037 11.8239 48.6042 11.7251 48.6042 11.6033V7.20096C48.6042 5.7364 48.0891 5.18952 46.5606 5.18952C44.9428 5.18952 44.4812 5.82492 44.4812 7.36032V11.6043C44.4812 11.7262 44.3818 11.8249 44.2591 11.8249H42.0376C41.9149 11.8249 41.8155 11.7262 41.8155 11.6043V7.20198C41.8155 5.73738 41.3003 5.1905 39.7717 5.1905C38.1541 5.1905 37.6924 5.82591 37.6924 7.36134V11.6053C37.6924 11.7271 37.593 11.8259 37.4703 11.8259C37.3342 11.8259 36.3027 11.8246 35.6235 11.8238Z'
+                        fill='#101828'
+                      />
+                      <path
+                        d='M53.2191 11.8228C52.8878 11.8227 52.6191 11.5541 52.6191 11.2228V0.220601C52.6191 0.0987666 52.7186 0 52.8413 0H62.4745C62.5975 0 62.6971 0.098766 62.6971 0.220601V2.16169C62.6971 2.28352 62.5975 2.38229 62.4745 2.38229H55.5081C55.3854 2.38229 55.2859 2.48105 55.2859 2.60289V4.82627C55.2859 4.9481 55.3854 5.04686 55.5081 5.04686H62.2081C62.3311 5.04686 62.4301 5.14564 62.4301 5.26747V7.19082C62.4301 7.31268 62.3311 7.41144 62.2081 7.41144H55.5081C55.3854 7.41144 55.2859 7.5102 55.2859 7.63206V11.6023C55.2859 11.7241 55.1864 11.8229 55.0637 11.8229L53.2191 11.8228Z'
+                        fill='#101828'
+                      />
+                      <path
+                        d='M64.0562 2.40983C63.9338 2.40983 63.8342 2.31106 63.8342 2.18923V0.2206C63.8342 0.098766 63.9338 0 64.0562 0H66.278C66.4004 0 66.5 0.098766 66.5 0.220601V2.18923C66.5 2.31106 66.4004 2.40983 66.278 2.40983H64.0562ZM64.0562 11.8239C63.9338 11.8239 63.8342 11.7251 63.8342 11.6033V3.71239C63.8342 3.59056 63.9338 3.49179 64.0562 3.49179H66.278C66.4004 3.49179 66.5 3.59056 66.5 3.71239V11.6033C66.5 11.7251 66.4004 11.8239 66.278 11.8239H64.0562Z'
+                        fill='#101828'
+                      />
+                      <path
+                        d='M11.0566 6.58266C10.5248 6.08916 9.73982 5.79709 8.70092 5.70679C8.65646 5.70293 8.6219 5.66583 8.6219 5.62114C8.6219 5.57626 8.65724 5.53904 8.70194 5.53532C10.4971 5.38585 11.3943 4.49983 11.3943 2.8766C11.3943 1.94713 11.0746 1.23547 10.4344 0.741282C9.79496 0.247095 8.86496 0 7.64438 0H0.906857C0.682069 0 0.5 0.180776 0.5 0.40397V4.49046C0.5 4.6029 0.591882 4.69413 0.705124 4.69413H2.76416C2.89774 4.69413 2.9842 4.72342 3.05947 4.7968C3.13474 4.87019 3.16559 4.96513 3.16559 5.06443V6.61128C3.16559 6.72978 3.11168 6.79812 3.07473 6.82944C3.03777 6.86076 2.99031 6.8766 2.86893 6.88434H2.02978C1.97384 6.88434 1.90738 6.86208 1.87314 6.83382C1.84263 6.80856 1.82229 6.7419 1.82229 6.68232V5.99222C1.82229 5.88079 1.73108 5.79023 1.61886 5.79023H0.703428C0.591204 5.79023 0.5 5.88079 0.5 5.99222V6.68232C0.5 6.79374 0.591204 6.88434 0.703428 6.88434H1.61886C1.67616 6.88872 1.72294 6.92034 1.75447 6.95166C1.78635 6.98328 1.82229 7.03512 1.82229 7.0863V7.77642C1.82229 7.88784 1.91349 7.97838 2.02572 7.97838H2.94114C3.05337 7.97838 3.14457 7.88784 3.14457 7.77642V7.17516C3.14457 7.1001 3.15372 7.0173 3.20492 6.96576C3.25612 6.91428 3.32392 6.88296 3.36902 6.88296H7.66202C8.20724 6.88296 8.59814 6.98298 8.83514 7.1829C9.07214 7.37112 9.19046 7.69464 9.19046 8.15346C9.19046 8.61228 9.07214 8.95938 8.83514 9.15936C8.59814 9.34752 8.20724 9.44178 7.66202 9.44178H3.36936C3.25713 9.44178 3.16593 9.53232 3.16593 9.6441V11.6202C3.16593 11.7326 3.25781 11.8242 3.37105 11.8242H7.98212C9.28538 11.8242 10.2629 11.536 10.9145 10.9594C11.5662 10.3831 11.892 9.57678 11.892 8.5416C11.892 7.72998 11.6136 7.07688 11.0566 6.58266ZM8.39066 4.42953C8.17742 4.60593 7.82786 4.69413 7.34198 4.69413H3.49379C3.3619 4.69413 3.26663 4.67763 3.22527 4.64633C3.1839 4.61502 3.16593 4.57159 3.16593 4.50998V2.38207H7.3067C7.80446 2.38207 8.16584 2.47633 8.39102 2.66452C8.61614 2.84092 8.7287 3.13514 8.7287 3.54685C8.7287 3.95857 8.61578 4.24135 8.39066 4.42953Z'
+                        fill='#101828'
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id='clip0_4_25542'>
+                        <rect
+                          width='66'
+                          height='12'
+                          fill='white'
+                          transform='translate(0.5)'
+                        />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+
+              <div className='flex items-center gap-3'>
+                {activeTab === 'payment' && (
+                  <FSDialogClose>
+                    <Button variant='outline'>Cancel</Button>
+                  </FSDialogClose>
+                )}
+                {activeTab !== 'payment' && (
+                  <Button onClick={handleBack} variant='outline'>
+                    <svg
+                      width='20'
+                      height='20'
+                      viewBox='0 0 20 20'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        d='M16.6667 10H3.33337M3.33337 10L8.33337 15M3.33337 10L8.33337 5'
+                        stroke='#344054'
+                        stroke-width='1.66667'
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                      />
+                    </svg>
+                    Back
+                  </Button>
+                )}
+
+                <div className='flex items-center '>
+                  <div className='flex  items-center '>
+                    {activeTab !== 'confirm' && (
+                      <Button
+                        onClick={handleContinue}
+                        disabled={!canContinue()}
+                      >
+                        Continue
+                        <svg
+                          width='20'
+                          height='20'
+                          viewBox='0 0 20 20'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            d='M3.33325 10H16.6666M16.6666 10L11.6666 5M16.6666 10L11.6666 15'
+                            stroke='white'
+                            stroke-width='1.66667'
+                            stroke-linecap='round'
+                            stroke-linejoin='round'
+                          />
+                        </svg>
+                      </Button>
+                    )}
+                  </div>
+                  {activeTab == 'confirm' && (
+                    <Button onClick={handleConfirm}>Place Bid</Button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+
+
       </Tabs>
+
+
       <div id='loading' className='hidden relative w-full h-full'>
         <div className='fixed inset-0 w-screen h-screen mx-auto -translate-y-10 overflow-hidden '>
           <div className='absolute inset-0 z-10 h-full bg-gradient-to-b from-transparent via-gray-50/60 to-gray-50 opacity-100'></div>

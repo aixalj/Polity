@@ -8,11 +8,17 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { blo } from "blo";
 import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Progress } from "@/components/ui/progress";
 
 interface Address {
   id: string;
@@ -56,6 +62,8 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
   const { contactId } = params;
   const [contact, setContact] = useState<ContactType | null>(null);
   const [openTooltipId, setOpenTooltipId] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     const getContact = async () => {
@@ -161,128 +169,150 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
         </div>
 
         <div className="max-w-screen-xl mx-auto px-6 w-full flex-grow overflow-y-auto">
-          <div className="w-full justify-between flex items-center mb-6">
-            <div className="flex items-center gap-2">
-              <Button variant="link" size="icon" onClick={() => router.back()}>
-                <ArrowLeft className="h-4 w-4" />
-              </Button>
-              <h1 className="text-2xl font-bold">{contact.name}</h1>
+          <div className="relative w-full flex flex-col">
+            <div className="py-2.5 relative flex justify-between w-full justify-items-stretch flex-row place-content-between">
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="link"
+                  size="icon"
+                  onClick={() => router.back()}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </Button>
+                <h2 className="text-xl font-medium">{contact.name}</h2>
+              </div>
+              <div className="flex gap-3">
+                <Button
+                  onClick={() => {
+                    /* Implement edit logic */
+                  }}
+                >
+                  Edit Contact
+                </Button>
+              </div>
             </div>
-            <Button
-              onClick={() => {
-                /* Implement edit logic */
-              }}
-            >
-              Edit Contact
-            </Button>
-          </div>
 
-          {Object.entries(groupedAddresses).map(([network, addresses]) => (
-            <div key={network} className="mb-6">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8">
-                  <Image
-                    src={`/icons/networks/${network
-                      .split(" ")[0]
-                      .toUpperCase()}.svg`}
-                    alt={network}
-                    width={32}
-                    height={32}
-                  />
-                </div>
-                <h2 className="text-xl font-semibold">
-                  {network} ({addresses.length} addresses)
-                </h2>
-              </div>
+            <div className="w-full flex flex-col gap-1 overflow-y-scroll">
+              {Object.entries(groupedAddresses).map(([network, addresses]) => (
+                <Collapsible
+                  key={network}
+                  className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm"
+                >
+                  <CollapsibleTrigger className="w-full ease-in-out duration-200">
+                    <div className="w-full flex text-left text-gray-900">
+                      <div className="w-9 flex-none h-16 flex items-center justify-center align-middle">
+                        <svg
+                          className="mx-auto"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            x="0.5"
+                            y="0.5"
+                            width="19"
+                            height="19"
+                            rx="5.5"
+                            fill="white"
+                          />
+                          <rect
+                            x="0.5"
+                            y="0.5"
+                            width="19"
+                            height="19"
+                            rx="5.5"
+                            stroke="#D0D5DD"
+                          />
+                          <path
+                            d="M13 12.0001C13.412 12.0001 13.6472 11.5297 13.4 11.2001L10.4 7.20008C10.2 6.93341 9.8 6.93341 9.6 7.20008L6.6 11.2001C6.35279 11.5297 6.58798 12.0001 7 12.0001H13Z"
+                            fill="#1D2939"
+                          />
+                        </svg>
+                      </div>
+                      <div className="w-80 font-medium break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-2 h-16">
+                        <Image
+                          src={`/icons/networks/${
+                            network.toLowerCase() === "bitcoin network"
+                              ? "BTC"
+                              : network.toLowerCase() === "ethereum network"
+                              ? "ETH"
+                              : network.toLowerCase() === "polygon network"
+                              ? "MATIC"
+                              : network.toUpperCase()
+                          }.svg`}
+                          alt={network}
+                          width={32}
+                          height={32}
+                        />
+                        <div className="flex flex-col">
+                          <p>{network}</p>
+                          <p>{addresses.length} addresses</p>
+                        </div>
+                      </div>
+                      <div className="w-36 flex-auto px-6 py-3 h-16 flex items-center"></div>
+                    </div>
+                  </CollapsibleTrigger>
 
-              <div className="w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs mb-2">
-                <div className="w-1/4 px-6 py-3">Name</div>
-                <div className="w-1/2 px-6 py-3">Address</div>
-                <div className="w-1/4 px-6 py-3">Actions</div>
-              </div>
+                  <CollapsibleContent className="items-start">
+                    <div className="flex gap-2 items-center break-keep text-xs">
+                      <div className="w-9 flex-none flex items-center justify-center align-middle"></div>
+                      <p className="break-keep w-auto whitespace-nowrap pl-3 text-gray-600">
+                        Addresses
+                      </p>
+                      <div className="w-full bg-gray-300 h-[1px]"></div>
+                    </div>
 
-              <div className="flex flex-col gap-1">
-                {addresses.map((address) => (
-                  <div
-                    key={address.id}
-                    className="w-full min-w-fit flex hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm"
-                  >
-                    <div className="w-1/4 px-6 py-4 flex items-center">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6">
+                    {addresses.map((address) => (
+                      <div
+                        key={address.id}
+                        className="w-full flex text-gray-900 text-md"
+                      >
+                        <div className="w-9 flex-none"></div>
+                        <div className="w-80 flex-none px-6 py-3 flex items-center gap-3 max-h-16">
                           <Image
-                            src={`/icons/assets/${address.asset.toUpperCase()}.svg`}
+                            src={`/icons/tokens/${
+                              address.asset.toLowerCase() === "bitcoin"
+                                ? "BTC"
+                                : address.asset.toLowerCase() === "ethereum"
+                                ? "ETH"
+                                : address.asset.toLowerCase() === "tether"
+                                ? "USDT"
+                                : address.asset.toUpperCase()
+                            }.svg`}
                             alt={address.asset}
                             width={24}
                             height={24}
                           />
+                          <div className="w-full font-medium">
+                            <p className="text-sm">{address.asset}</p>
+                            <p className="text-xs text-gray-700">
+                              {network} ({address.address.slice(0, 6)}...
+                              {address.address.slice(-4)})
+                            </p>
+                          </div>
                         </div>
-                        <span>{address.asset}</span>
+                        <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
+                          50.00%
+                          <Progress value={50} />
+                        </div>
+                        <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
+                          5.00% ($500.00)
+                        </div>
+                        <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
+                          $10,000.00
+                        </div>
+                        <div className="w-36 flex-auto px-6 py-3 h-16 items-center flex">
+                          100.00 {address.asset}
+                        </div>
                       </div>
-                    </div>
-
-                    <div className="w-1/2 px-6 py-4 flex items-center">
-                      <TooltipProvider>
-                        <Tooltip
-                          open={openTooltipId === address.id}
-                          onOpenChange={() => toggleTooltip(address.id)}
-                        >
-                          <TooltipTrigger
-                            onClick={() => {
-                              navigator.clipboard.writeText(address.address);
-                              toggleTooltip(address.id);
-                            }}
-                            className="flex items-center gap-2 cursor-pointer"
-                          >
-                            <div className="w-6 h-6 overflow-hidden rounded-md border border-gray-200">
-                              <Image
-                                alt={address.address}
-                                src={blo(`0x${address.address.slice(2)}`)}
-                                width={24}
-                                height={24}
-                              />
-                            </div>
-                            <code className="text-sm bg-gray-100 p-1 rounded">
-                              {`${address.address.slice(
-                                0,
-                                6
-                              )}...${address.address.slice(-4)}`}
-                            </code>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Click to copy</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    </div>
-
-                    <div className="w-1/4 px-6 py-4 flex items-center justify-end space-x-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() =>
-                          navigator.clipboard.writeText(address.address)
-                        }
-                      >
-                        <Copy className="h-4 w-4 mr-1" />
-                        Copy
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => {
-                          /* Implement edit logic */
-                        }}
-                      >
-                        <Edit className="h-4 w-4 mr-1" />
-                        Edit
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                    ))}
+                  </CollapsibleContent>
+                </Collapsible>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </main>
