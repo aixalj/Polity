@@ -73,7 +73,10 @@ export function TimeForm({ defaultValue = "pastday" }: TimeFormProps) {
                       onValueChange={field.onChange}
                       defaultValue={defaultValue}
                     >
-                      <SelectTrigger className="w-48 gap-2 font-medium ">
+                      <SelectTrigger
+                        useShadow={true}
+                        className="w-48 gap-2 font-medium "
+                      >
                         <svg
                           width="20"
                           height="20"

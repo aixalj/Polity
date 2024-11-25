@@ -1,36 +1,36 @@
-'use client';
+"use client";
 
-import * as React from 'react';
+import * as React from "react";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-import type { Config } from 'tailwindcss';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import type { Config } from "tailwindcss";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '@/components/ui/collapsible';
+} from "@/components/ui/collapsible";
 
-import { ReceiveForm } from '@/components/receive';
+import { ReceiveForm } from "@/components/receive";
 
-import { RecipientForm } from '@/components/recipientform';
+import { RecipientForm } from "@/components/recipientform";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import { PaymentForm } from '@/components/paymentform';
+import { PaymentForm } from "@/components/paymentform";
 
-import { NetworkSelectForm } from '@/components/networkselectform';
+import { NetworkSelectForm } from "@/components/networkselectform";
 
-import { DotLottiePlayer, Controls } from '@dotlottie/react-player';
-import '@dotlottie/react-player/dist/index.css';
+import { DotLottiePlayer, Controls } from "@dotlottie/react-player";
+import "@dotlottie/react-player/dist/index.css";
 
-import Image from 'next/image';
-import fractal01 from '@/public/fractal/01.png';
-import fractal02 from '@/public/fractal/02.png';
-import fractal03 from '@/public/fractal/03.png';
+import Image from "next/image";
+import fractal01 from "@/public/fractal/01.png";
+import fractal02 from "@/public/fractal/02.png";
+import fractal03 from "@/public/fractal/03.png";
 
 import {
   useFormField,
@@ -41,7 +41,7 @@ import {
   FormDescription,
   FormMessage,
   FormField,
-} from '@/components/ui/form';
+} from "@/components/ui/form";
 
 import {
   FSDialog,
@@ -51,18 +51,18 @@ import {
   FSDialogHeader,
   FSDialogTitle,
   FSDialogTrigger,
-} from '@/components/ui/fsdialog';
+} from "@/components/ui/fsdialog";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { useContext } from 'react';
+import { useContext } from "react";
 
-import { useSubscribe } from '@/components/ui/subscribecontext';
+import { useSubscribe } from "@/components/ui/subscribecontext";
 
-import { WalletProvider } from '@/components/ui/formcontext';
-import { SubscribeProvider } from '@/components/ui/subscribecontext';
-import { LinkExternal01, UserCheck01 } from '@untitled-ui/icons-react';
-import { Notification } from '@/components/ui/notification';
+import { WalletProvider } from "@/components/ui/formcontext";
+import { SubscribeProvider } from "@/components/ui/subscribecontext";
+import { LinkExternal01, UserCheck01 } from "@untitled-ui/icons-react";
+import { Notification } from "@/components/ui/notification";
 
 // export const ConfirmationStep = () => {
 //   const { formData } = useContext(FormContext);
@@ -74,7 +74,7 @@ import { Notification } from '@/components/ui/notification';
 // };
 
 const Onboarding = () => {
-  const tabValues = ['payment', 'recipient', 'amount', 'confirm'];
+  const tabValues = ["payment", "recipient", "amount", "confirm"];
   const [activeTab, setActiveTab] = useState(tabValues[0]);
 
   const handleContinue = () => {
@@ -84,17 +84,17 @@ const Onboarding = () => {
   };
 
   const handleConfirm = () => {
-    console.log('loading');
-    const tabs = document.getElementById('send-tabs');
+    console.log("loading");
+    const tabs = document.getElementById("send-tabs");
     if (tabs) {
-      tabs.style.display = 'none'; // Hides the tabs with id "send-tabs"
-      const loadingDiv = document.getElementById('loading');
-      const completeDiv = document.getElementById('complete');
+      tabs.style.display = "none"; // Hides the tabs with id "send-tabs"
+      const loadingDiv = document.getElementById("loading");
+      const completeDiv = document.getElementById("complete");
       if (loadingDiv && completeDiv) {
-        loadingDiv.style.display = 'flex'; // Show loading div
+        loadingDiv.style.display = "flex"; // Show loading div
         setTimeout(() => {
-          loadingDiv.style.display = 'none'; // Hide loading div after 3 seconds
-          completeDiv.style.display = 'flex'; // Show complete div
+          loadingDiv.style.display = "none"; // Hide loading div after 3 seconds
+          completeDiv.style.display = "flex"; // Show complete div
         }, 6000);
       }
     }
@@ -107,7 +107,7 @@ const Onboarding = () => {
   };
 
   return (
-    <div className='flex w-full h-full bg-gray-25'>
+    <div className="flex w-full h-full bg-gray-25">
       {/* <div className="fixed inset-0 w-screen h-screen mx-auto -translate-y-10 overflow-hidden ">
         <div className="absolute inset-0 z-10 h-full bg-gradient-to-b from-transparent via-gray-50/60 to-gray-50 opacity-100"></div>
         <div className="absolute inset-0 z-10 h-full bg-gradient-to-l from-transparent via-gray-50/30 to-gray-50 opacity-100"></div>
@@ -1259,102 +1259,104 @@ const Onboarding = () => {
         </svg>
       </div> */}
 
-      <div className='  w-full h-full flex flex-col gap-6'>
-        <div className='relative h-fit border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-screen-sm mx-auto w-full bg-white'>
-          <div className='px-8 pt-8 pb-3 border-b border-gray-200 flex flex-col'>
-            <div className='w-full mb-4 flex justify-between items-center'>
-              <UserCheck01 className='w-8 h-8 text-gray-700 stroke-[1.5]'  
-              />
+      <div className="  w-full h-full flex flex-col gap-6">
+        <div className="relative h-fit border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-screen-sm mx-auto w-full bg-white">
+          <div className="px-8 pt-8 pb-3 border-b border-gray-200 flex flex-col">
+            <div className="w-full mb-4 flex justify-between items-center">
+              <UserCheck01 className="w-8 h-8 text-gray-700 stroke-[1.5]" />
             </div>
-            <div className='text-xl mb-1'>
+            <div className="text-xl mb-1">
               <div>Identity Verification with Fractal ID</div>
             </div>
-            <div className='text-gray-600 flex text-sm flex-col items-start gap-4 '>
+            <div className="text-gray-600 flex text-sm flex-col items-start gap-4 ">
               Fractal ID empowers users by verifying their identities and
               enabling access to permissioned goods and services on Polity
               Network.
             </div>
           </div>
 
-          <div className='px-6 pt-5  flex flex-col  gap-4 text-gray-600 text-sm mb-6'>
-            <div className='grid grid-cols-3 gap-4'>
-              <div className='w-full gap-3 flex flex-col '>
+          <div className="px-6 pt-5  flex flex-col  gap-4 text-gray-600 text-sm mb-6">
+            <div className="grid grid-cols-3 gap-4">
+              <div className="w-full gap-3 flex flex-col ">
                 <div>
-                  <div className='inline-block rounded-lg text-gray-800 font-medium bg-gray-100 border border-gray-200 text-xs px-1.5 py-0.5 leading-2  items-center'>
+                  <div className="inline-block rounded-lg text-gray-800 font-medium bg-gray-100 border border-gray-200 text-xs px-1.5 py-0.5 leading-2  items-center">
                     Step 1
                   </div>
                 </div>
-                <div className='w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]'>
+                <div className="w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
                   <Image
                     src={fractal01}
-                    alt='Fractal ID'
+                    alt="Fractal ID"
                     width={96}
                     height={96}
                   />
                 </div>
-                <div className='flex flex-col gap-1'>
-                  <h3 className='text-sm font-medium text-gray-900'>
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-sm font-medium text-gray-900">
                     Sign up with Fractal ID
                   </h3>
-                  <p className='text-xs text-gray-700'>
+                  <p className="text-xs text-gray-700">
                     Set up your account instantly using your email address.
                   </p>
                 </div>
               </div>
-              <div className='w-full gap-3 flex flex-col '>
+              <div className="w-full gap-3 flex flex-col ">
                 <div>
-                  <div className='inline-block rounded-lg text-gray-800 font-medium bg-gray-100 border border-gray-200 text-xs px-1.5 py-0.5 leading-2  items-center'>
+                  <div className="inline-block rounded-lg text-gray-800 font-medium bg-gray-100 border border-gray-200 text-xs px-1.5 py-0.5 leading-2  items-center">
                     Step 2
                   </div>
                 </div>
-                <div className='w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]'>
+                <div className="w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
                   <Image
                     src={fractal02}
-                    alt='Fractal ID'
+                    alt="Fractal ID"
                     width={96}
                     height={96}
                   />
                 </div>
-                <div className='flex flex-col gap-1'>
-                  <h3 className='text-sm font-medium text-gray-900'>Verify your identity</h3>
-                  <p className='text-xs text-gray-700'>
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-sm font-medium text-gray-900">
+                    Verify your identity
+                  </h3>
+                  <p className="text-xs text-gray-700">
                     Get approved quickly through a secure and seamless process.
                   </p>
                 </div>
-              </div>{' '}
-              <div className='w-full gap-3 flex flex-col '>
+              </div>{" "}
+              <div className="w-full gap-3 flex flex-col ">
                 <div>
-                  <div className='inline-block rounded-lg text-gray-800 font-medium bg-gray-100 border border-gray-200 text-xs px-1.5 py-0.5 leading-2  items-center'>
+                  <div className="inline-block rounded-lg text-gray-800 font-medium bg-gray-100 border border-gray-200 text-xs px-1.5 py-0.5 leading-2  items-center">
                     Step 3
                   </div>
                 </div>
-                <div className='w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]'>
+                <div className="w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
                   <Image
                     src={fractal03}
-                    alt='Fractal ID'
+                    alt="Fractal ID"
                     width={96}
                     height={96}
                   />
                 </div>
-                <div className='flex flex-col gap-1'>
-                  <h3 className='text-sm font-medium text-gray-900'>Use your identity</h3>
-                  <p className='text-xs text-gray-700'>
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-sm font-medium text-gray-900">
+                    Use your identity
+                  </h3>
+                  <p className="text-xs text-gray-700">
                     Get instant access to products and services which require
                     verified identity.
                   </p>
                 </div>
               </div>
             </div>
-           
           </div>
         </div>
-        <div className='flex gap-3 max-w-screen-sm mx-auto w-full justify-between'>
-          <Link href='/onboarding/superapp/avatar'>
-            <Button variant='outline'>Skip for Now</Button>
+        <div className="flex gap-3 max-w-screen-sm mx-auto w-full justify-between">
+          <Link href="/onboarding/superapp/avatar">
+            <Button variant="outline">Skip for Now</Button>
           </Link>
-          <Link href='/onboarding/superapp/avatar'>
+          <Link href="https://web.fractal.id/">
             <Button>
-              Continue to Fractal ID <LinkExternal01 className='w-5 h-5' />
+              Continue to Fractal ID <LinkExternal01 className="w-5 h-5" />
             </Button>
           </Link>
         </div>

@@ -16,12 +16,14 @@ const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & {
     hideChevron?: boolean;
+    useShadow?: boolean;
   }
->(({ className, children, hideChevron, ...props }, ref) => (
+>(({ className, children, hideChevron, useShadow = false, ...props }, ref) => (
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-9 w-full items-center justify-between rounded-xl  bg-white px-3 py-2 text-sm text-gray-700 shadow-button-secondary-default hover:bg-gray-50 hover:text-gray-800 placeholder:text-gray-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+      "flex h-9 w-full items-center justify-between rounded-xl bg-white px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-800 placeholder:text-gray-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+      useShadow ? "shadow-button-secondary-default" : "border border-gray-200",
       className
     )}
     {...props}

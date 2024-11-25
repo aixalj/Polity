@@ -95,11 +95,11 @@ export default function Bids() {
             <div className="w-full  mt-4 flex items-center justify-between">
               {" "}
               <div className="flex items-center gap-2">
-                <Link href="/marketplace">
+                {/* <Link href="/marketplace">
                   <Button size="icon" variant="ghost" className="text-gray-500">
                     <ArrowLeft className="w-4 h-4" />
                   </Button>
-                </Link>
+                </Link> */}
                 <h1 className="text-3xl font-medium leading-tight">
                   My Subscriptions
                 </h1>{" "}
