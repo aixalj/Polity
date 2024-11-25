@@ -247,7 +247,7 @@ export default function Marketplace() {
                 <li>
                   <a href="#" className="block transition ">
                     {" "}
-                    Coinfirm{" "}
+                    Lukka
                   </a>
                 </li>
                 <li className="rtl:rotate-180">
