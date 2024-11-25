@@ -19,6 +19,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Progress } from "@/components/ui/progress";
+import EditContactNameModal from "@/components/ui/modals/editContactName";
 
 interface Address {
   id: string;
@@ -64,6 +65,26 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
   const [openTooltipId, setOpenTooltipId] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  const [isModalOpen, setIsModalOpen] = useState(false); // Add state for modal
+  const [selectedContactId, setSelectedContactId] = useState<string | null>(null); // State for selected contact ID
+
+  const openModal = (id: string) => { // Define openModal function
+    setSelectedContactId(id);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => { // Define closeModal function
+    setIsModalOpen(false);
+    setSelectedContactId(null);
+  };
+
+
+  const handleEditContact = (contactId: string, contact: { name: string }) => {
+    // Logic to update the contact in your state or data source
+    console.log(`Editing contact ID: ${contactId}, New Name: ${contact.name}`);
+    // Update your contacts state here
+  };
 
   useEffect(() => {
     const getContact = async () => {
@@ -183,10 +204,8 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
               </div>
               <div className="flex gap-3">
                 <Button
-                  onClick={() => {
-                    /* Implement edit logic */
-                  }}
-                >
+                  onClick={() => openModal(contact.id)}
+                > 
                   Edit Contact
                 </Button>
               </div>
@@ -315,6 +334,13 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
           </div>
         </div>
       </div>
+      {/* Modal for editing contact name */}
+      <EditContactNameModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        contactId={selectedContactId!} // Ensure selectedContactId is not null
+        onEditContact={handleEditContact} // Pass the function here
+      />
     </main>
   );
 };
