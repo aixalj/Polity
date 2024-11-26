@@ -18,7 +18,6 @@ import { TimeProvider } from "@/components/ui/timecontext";
 import React from "react";
 import { Notification } from "@/components/ui/notification";
 import BTC from "@/public/icons/networks/BTC.svg";
-import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { AssetTable } from "@/components/assettable";
@@ -29,7 +28,9 @@ import ConnectTodApp from "@/components/ui/modals/connectTodApp";
 import BTCdApps from "@/public/icons/dApps/BTC-dApps.svg";
 import POLdApps from "@/public/icons/dApps/POL-dApps.svg";
 import MATIC from "@/public/icons/networks/MATIC.svg";
-import ETHdApps from "public/icons/dApps/ETH-dApps.svg";
+import ETHdApps from "@/public/icons/dApps/ETH-dApps.svg";
+
+import { usePathname } from "next/navigation";
 
 import {
   networkAccounts,
@@ -186,21 +187,76 @@ function BitcoinOne() {
                 <div className="w-full  mt-4 flex items-center justify-between">
                   {" "}
                   <div className="flex gap-3 items-center">
-                    <Image src={BTC} alt={"Bitcoin"} width={48} height={48} />
+                    <svg
+                      width="48"
+                      height="48"
+                      viewBox="0 0 48 48"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clip-path="url(#clip0_87_16450)">
+                        <rect width="48" height="48" rx="12" fill="#ECEFF0" />
+                        <g clip-path="url(#clip1_87_16450)">
+                          <rect width="48" height="48" rx="6" fill="#ECEFF0" />
+                          <circle cx="24" cy="24" r="24" fill="#ECEFF0" />
+                          <path
+                            opacity="0.6"
+                            d="M23.7347 20.5229L15 24.4939L23.7347 29.6574L32.4711 24.4939L23.7347 20.5229Z"
+                            fill="black"
+                          />
+                          <path
+                            opacity="0.45"
+                            d="M15.0029 24.4937L23.7377 29.6572V20.5228V10L15.0029 24.4937Z"
+                            fill="black"
+                          />
+                          <path
+                            opacity="0.8"
+                            d="M23.7378 10V20.5228V29.6572L32.4725 24.4937L23.7378 10Z"
+                            fill="black"
+                          />
+                          <path
+                            opacity="0.45"
+                            d="M15 26.1509L23.7347 38.4601V31.3111L15 26.1509Z"
+                            fill="black"
+                          />
+                          <path
+                            opacity="0.8"
+                            d="M23.7349 31.3111V38.4601L32.4761 26.1509L23.7349 31.3111Z"
+                            fill="black"
+                          />
+                        </g>
+                      </g>
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="47"
+                        height="47"
+                        rx="11.5"
+                        stroke="#D0D5DD"
+                      />
+                      <defs>
+                        <clipPath id="clip0_87_16450">
+                          <rect width="48" height="48" rx="12" fill="white" />
+                        </clipPath>
+                        <clipPath id="clip1_87_16450">
+                          <rect width="48" height="48" rx="6" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
 
                     <div>
                       <h1 className="text-2xl font-medium leading-tight">
                         Network Account Name
                       </h1>{" "}
                       <p className="text-sm text-gray-700">
-                        Bitcoin (428f...47d2)
+                        Ethereum (0xD2...05F6)
                       </p>
                     </div>
                   </div>
                   <div className="flex gap-3">
                     <Button
                       variant="default"
-                      className="bg-[#3396FF] hover:bg-[#3396FF]/90"
+                      className="bg-[#3396FF] shadow-md border border-[#3396FF] hover:bg-[#3396FF]/90"
                       onClick={handleOpenModal}
                     >
                       <svg
@@ -3182,7 +3238,7 @@ function BitcoinOne() {
           balance={balance}
           addNotification={addNotification}
           networkAccountImage={networkAccountImage}
-          sourcePage="/uniapp/wealth/wallet1/ethnetwork" // Pass the determined source page
+          sourcePage="wealth/wallet1/ethnetwork"
         />
       </TimeProvider>
     </main>
