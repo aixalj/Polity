@@ -148,7 +148,7 @@ function BitcoinOne() {
                       className="block transition hover:text-gray-700 font-semibold"
                     >
                       {" "}
-                      Main Wallet{" "}
+                      Second Wallet{" "}
                     </a>
                   </li>
 
