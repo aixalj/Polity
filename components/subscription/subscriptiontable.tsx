@@ -157,8 +157,8 @@ const SubscriptionTable: React.FC<{
                           subscription.status === "Top Bidder"
                             ? "success"
                             : subscription.status === "Outbid"
-                              ? "warning"
-                              : "success"
+                            ? "warning"
+                            : "success"
                         }
                       >
                         {subscription.status}

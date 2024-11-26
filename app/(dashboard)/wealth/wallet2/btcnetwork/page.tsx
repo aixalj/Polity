@@ -196,7 +196,7 @@ function BitcoinOne() {
                   </div>
                 </div>
                 <div className="flex gap-3">
-                  <Button
+                  {/* <Button
                     variant="default"
                     className="bg-[#3396FF] hover:bg-[#3396FF]/90"
                     onClick={handleOpenModal}
@@ -214,7 +214,7 @@ function BitcoinOne() {
                       />
                     </svg>
                     Connect
-                  </Button>
+                  </Button> */}
                   <WalletProvider>
                     <ReceiveBtn variant="network" />
                   </WalletProvider>
