@@ -2488,7 +2488,7 @@ export default function Marketplace() {
                       <div className="flex flex-row gap-2.5 items-center">
                         <div className="w-10 h-10 rounded-full flex items-center justify-center mb-5">
                           <Image
-                            src="/icons/dApps/Instadapp.svg"
+                            src="/icons/dApps/instadapp.svg"
                             alt="Instadapp"
                             width={40}
                             height={40}
@@ -2527,7 +2527,7 @@ export default function Marketplace() {
                       <div className="flex flex-row gap-2.5 items-center">
                         <div className="w-10 h-10 rounded-full flex items-center justify-center mb-5">
                           <Image
-                            src="/icons/dApps/Pancake.svg"
+                            src="/icons/dApps/pancake.svg"
                             alt="Pancake"
                             width={40}
                             height={40}
@@ -2566,7 +2566,7 @@ export default function Marketplace() {
                       <div className="flex flex-row gap-2.5 items-center">
                         <div className="w-10 h-10 rounded-full flex items-center justify-center mb-5">
                           <Image
-                            src="/icons/dApps/Paraswap.svg"
+                            src="/icons/dApps/paraswap.svg"
                             alt="Paraswap"
                             width={40}
                             height={40}
@@ -2606,7 +2606,7 @@ export default function Marketplace() {
                       <div className="flex flex-row gap-2.5 items-center">
                         <div className="w-10 h-10 rounded-full flex items-center justify-center mb-5">
                           <Image
-                            src="/icons/dApps/Swap.svg"
+                            src="/icons/dApps/swap.svg"
                             alt="Swapzone"
                             width={40}
                             height={40}
@@ -2686,7 +2686,7 @@ export default function Marketplace() {
                       <div className="flex flex-row gap-2.5 items-center">
                         <div className="w-10 h-10 rounded-full flex items-center justify-center mb-5">
                           <Image
-                            src="/icons/dApps/Uniswap.svg"
+                            src="/icons/dApps/uniswap.svg"
                             alt="Uniswap"
                             width={40}
                             height={40}

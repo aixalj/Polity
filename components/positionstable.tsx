@@ -78,7 +78,7 @@ const PositionsTable: React.FC<{
               <div className="w-full flex flex-row items-center justify-between">
                 <div className="flex flex-row items-center gap-2">
                   <Image
-                    src={`/icons/DApps/${position.DApp}.svg`}
+                    src={`/icons/dApps/${position.DApp}.svg`}
                     alt={position.DApp}
                     className="rounded-full border border-gray-200 bg-gray-50"
                     width={40}
