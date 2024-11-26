@@ -294,14 +294,14 @@ function BitcoinOne() {
                 <Allocation
                   getAllAssets={getAllAssets().filter(
                     (asset) =>
-                      asset.networkAccountName === "Ethereum network account"
+                      asset.networkAccountName === "Polygon network account"
                   )}
                 />
 
                 <AssetTable
                   getAllAssets={getAllAssets().filter(
                     (asset) =>
-                      asset.networkAccountName === "Ethereum network account"
+                      asset.networkAccountName === "Polygon network account"
                   )}
                 />
 
@@ -313,7 +313,7 @@ function BitcoinOne() {
                 <AssetTable
                   getAllAssets={getAllAssets().filter(
                     (asset) =>
-                      asset.networkAccountName === "Ethereum network account"
+                      asset.networkAccountName === "Polygon network account"
                   )}
                 />
               </div>
