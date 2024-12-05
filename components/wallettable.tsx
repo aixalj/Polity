@@ -90,7 +90,7 @@ const WalletTable: React.FC<{
             {wallets.map((wallet) => (
               <Collapsible
                 key={wallet.id}
-                className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm "
+                className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-[14px] "
               >
                 <CollapsibleTrigger className="w-full ease-in-out duration-200">
                   <div className="w-full flex text-left  text-gray-900">
@@ -134,11 +134,11 @@ const WalletTable: React.FC<{
                       />
                       {wallet.wallet_name}
                     </div>
-                    <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3">
+                    <div className="w-60 flex-none px-6 py-3 h-16 flex items-center gap-3 ">
                       {wallet.allocation.toFixed(2)}%
                       <Progress value={wallet.allocation} />
                     </div>
-                    <div className="w-36 flex-auto  px-6 py-3 h-16 flex items-center">
+                    <div className="w-36 flex-auto  px-6 py-3 h-16 flex items-center whitespace-nowrap">
                       {((wallet.return / wallet.value) * 100).toFixed(2)}% (
                       {wallet.return.toLocaleString("en-US", {
                         style: "currency",
