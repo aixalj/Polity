@@ -20,6 +20,7 @@ import { Notification } from "@/components/ui/notification";
 import BTC from "@/public/icons/networks/BTC.svg";
 
 import { Button } from "@/components/ui/button";
+import { AssetTab } from "@/components/assettab";
 import { AssetTable } from "@/components/assettable";
 import { PositionsTable } from "@/components/positionstable";
 import { Dapps } from "@/components/dapps";
@@ -364,7 +365,7 @@ function BitcoinOne() {
             </TabsContent>
             <TabsContent value="assets">
               <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
-                <AssetTable
+                <AssetTab
                   getAllAssets={getAllAssets().filter(
                     (asset) =>
                       asset.networkAccountName === "Ethereum network account"
