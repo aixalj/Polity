@@ -51,10 +51,10 @@ const AssetTab: React.FC<{
       <div className='w-full flex flex-col gap-1 overflow-y-scroll'>
         <div className='w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs'>
           <div className='w-56 flex-none px-6 py-3'>Asset</div>
-          <div className='w-52 flex-auto px-6 py-3'>Price</div>
-          <div className='w-52 flex-auto px-6 py-3'>Return</div>
-          <div className='w-52 flex-auto px-6 py-3'>Value</div>
-          <div className='w-52 flex-auto px-6 py-3'>Balance</div>
+          <div className='w-48 flex-auto px-6 py-3'>Price</div>
+          <div className='w-48 flex-auto px-6 py-3'>Return</div>
+          <div className='w-48 flex-auto px-6 py-3'>Value</div>
+          <div className='w-48 flex-auto px-6 py-3'>Balance</div>
           <div className='w-24 flex-auto px-6 py-3'></div>
         </div>
         <div>
@@ -82,13 +82,13 @@ const AssetTab: React.FC<{
                           </span>
                         </p>
                       </div>
-                      <div className='w-52 flex-auto  px-6 py-3 h-16 flex items-center'>
+                      <div className='w-48 flex-auto  px-6 py-3 h-16 flex items-center'>
                         {asset.price.toLocaleString('en-US', {
                           style: 'currency',
                           currency: 'USD',
                         })}
                       </div>
-                      <div className='w-52 flex-auto text-teal-700 px-6 py-3 h-16 flex items-center whitespace-nowrap'>
+                      <div className='w-48 flex-auto text-teal-700 px-6 py-3 h-16 flex items-center whitespace-nowrap'>
                         <TrendUp01 className='mr-1 w-5 h-5' />
                         {((asset.return / asset.value) * 100).toFixed(2)}% (
                         {asset.return.toLocaleString('en-US', {
@@ -98,53 +98,28 @@ const AssetTab: React.FC<{
                         )
                       </div>
 
-                      <div className='w-52 flex-auto px-6 py-3 h-16 flex items-center'>
+                      <div className='w-48 flex-auto px-6 py-3 h-16 flex items-center'>
                         {asset.value.toLocaleString('en-US', {
                           style: 'currency',
                           currency: 'USD',
                         })}
                       </div>
-                      <div className='w-52 flex-auto px-6 py-3 h-16 flex items-center whitespace-nowrap'>
+                      <div className='w-48 flex-auto px-6 py-3 h-16 flex items-center whitespace-nowrap'>
                         {asset.balance.toFixed(2)} {asset.symbol}
                       </div>
-                      <div className='w-20 flex-auto py-3 h-16 flex items-center whitespace-nowrap'>
+                      <div className='flex-auto py-3 h-16 flex items-center whitespace-nowrap'>
                         <Button
                           variant='secondary'
                           className='flex items-center mr-2'
                         >
-                          <svg
-                            width='16'
-                            height='16'
-                            viewBox='0 0 16 16'
-                            fill='none'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            {/* Replace with your actual icon path */}
-                            <path
-                              d='M8 0L10.39 5.61H16L11.81 9.19L13.21 15L8 11.39L2.79 15L4.19 9.19L0 5.61H5.61L8 0Z'
-                              fill='currentColor'
-                            />
-                          </svg>
+                          <QrCode01 className='w-4 h-4 text-gray-700' />
                        
                         </Button>
                         <Button
                           variant='secondary'
                           className='flex items-center'
                         >
-                          <svg
-                            width='16'
-                            height='16'
-                            viewBox='0 0 16 16'
-                            fill='none'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            {/* Replace with your actual icon path */}
-                            <path
-                              d='M8 0L10.39 5.61H16L11.81 9.19L13.21 15L8 11.39L2.79 15L4.19 9.19L0 5.61H5.61L8 0Z'
-                              fill='currentColor'
-                            />
-                          </svg>
-                          
+                          <Send02 className='w-4 h-4 text-gray-700' />
                         </Button>
                       </div>
                     </div>
