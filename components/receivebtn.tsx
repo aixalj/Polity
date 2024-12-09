@@ -41,9 +41,9 @@ import {
 
 interface ReceiveBtnProps {
   variant?: 'wealth' | 'wallet' | 'network';
-  hideText?: boolean; // New prop to control text visibility
-  className?: string; // Add className prop
-  styleType?: 'default' | 'primary' | 'secondary'; // New prop for styling
+  hideText?: boolean; 
+  className?: string; 
+  styleType?: 'default' | 'primary' | 'secondary'; 
 }
 
 // const canContinue = () => {
@@ -86,11 +86,10 @@ const ReceiveBtn: React.FC<ReceiveBtnProps> = ({
       'bg-white text-gray-700 hover:bg-gray-100 shadow-button-secondary-default items-center justify-center whitespace-nowrap rounded-xl gap-2 px-4  text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300',
   };
 
-  // Define SVG styles based on the styleType prop
   const svgStyles = {
-    default: 'white', // SVG color for default
-    primary: 'white', // SVG color for primary
-    secondary: 'black', // SVG color for secondary
+    default: 'white', 
+    primary: 'white', 
+    secondary: 'black', 
   };
   return (
     <div className={cn('flex gap-3')}>
@@ -115,7 +114,7 @@ const ReceiveBtn: React.FC<ReceiveBtnProps> = ({
               />
             </svg>{' '}
             {!hideText && <span>Receive</span>}{' '}
-            {/* Conditionally render text */}
+            
           </DialogTrigger>
           <DialogContent className='border border-gray-200 rounded-3xl p-0 flex flex-col gap-0'>
             <ReceiveModal />
@@ -141,7 +140,7 @@ const ReceiveBtn: React.FC<ReceiveBtnProps> = ({
                 stroke-linejoin='round'
               />
             </svg>{' '}
-            {!hideText && <span>Send</span>} {/* Conditionally render text */}{' '}
+            {!hideText && <span>Send</span>} 
           </FSDialogTrigger>
           <FSDialogContent className='flex w-screen h-screen bg-gray-50'>
             <SendModal />
