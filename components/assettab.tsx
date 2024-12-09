@@ -107,8 +107,8 @@ const AssetTab: React.FC<{
                       <div className='w-48 flex-auto px-6 py-3 h-16 flex items-center whitespace-nowrap'>
                         {asset.balance.toFixed(2)} {asset.symbol}
                       </div>
-                      <div className='flex-auto py-3 h-16 flex items-center whitespace-nowrap'>
-                        <ReceiveBtn variant="network" hideText={true} className='' />                       
+                      <div className='flex-auto py-3 pr-1 h-16 flex items-center whitespace-nowrap'>
+                        <ReceiveBtn variant="network" hideText={true} styleType="secondary" />                       
                       </div>
                     </div>
                   </div>
