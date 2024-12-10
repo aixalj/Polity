@@ -102,7 +102,7 @@ const PositionsTable: React.FC<{
 
                 <div className="w-48 flex-none px-6 py-3">Value</div>
               </div>
-              {Array.isArray(networkAccounts[0].positions) ? (
+              {/* {Array.isArray(networkAccounts[0].positions) ? ( */}
                 <div>
                   {position.Positions.map((positi) => (
                     <Collapsible
@@ -335,9 +335,9 @@ const PositionsTable: React.FC<{
                     </Collapsible>
                   ))}
                 </div>
-              ) : (
-                <p>No Positions to display.</p>
-              )}
+               {/*  ) : (
+                // <p>No Positions to display.</p>
+              // )} */}
             </div>
           </div>
         ))

@@ -63,7 +63,7 @@ const AssetTable: React.FC<{
                 .map((asset, index) => (
                   <div
                     key={index}
-                    className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm "
+                    className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-[14px] "
                   >
                     <div className="w-full flex text-left  text-gray-900">
                       <div className="w-80 break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-2 h-16 ">
@@ -75,7 +75,7 @@ const AssetTable: React.FC<{
                         />
                         <p className="flex gap-2 items-center font-medium">
                           {asset.name}
-                          <span className="font-regular text-gray-6000">
+                          <span className="font-regular text-gray-600">
                             {asset.symbol}
                           </span>
                         </p>

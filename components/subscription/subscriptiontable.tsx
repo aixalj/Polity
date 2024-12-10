@@ -1,51 +1,10 @@
 import * as React from "react";
-import type { Config } from "tailwindcss";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-
-import { Progress } from "@/components/ui/progress";
-import Image from "next/image";
-import Link from "next/link";
-
-import {
-  DotsVertical,
-  Download01,
-  Edit03,
-  Eye,
-  File06,
-} from "@untitled-ui/icons-react";
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-import {
-  networkAccounts,
-  wallets,
-  wealth,
-  getAllAssets,
-} from "@/components/data";
-
-import { Badge } from "@/components/ui/badge";
-
-import { subscriptions, Subscription } from "./subscriptiondata";
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import NetworkAccountModal from "@/components/ui/subscription modals/networkAccount"; // Adjust the import path as necessary
+import Image from "next/image";
+import { Subscription } from "./subscriptiondata";
 
 const getTimeRemaining = (endTime: Date) => {
   const total = endTime.getTime() - new Date().getTime();
@@ -75,6 +34,8 @@ const SubscriptionTable: React.FC<{
   subscriptions: Subscription[];
 }> = ({ subscriptions }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedAccount, setSelectedAccount] = useState<Subscription | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -83,6 +44,16 @@ const SubscriptionTable: React.FC<{
 
     return () => clearInterval(timer);
   }, []);
+
+  const handleOpenModal = (subscription: Subscription) => {
+    setSelectedAccount(subscription);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedAccount(null);
+  };
 
   return (
     <div className="relative w-full flex flex-col ">
@@ -104,7 +75,7 @@ const SubscriptionTable: React.FC<{
                   key={index}
                   className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm "
                 >
-                  <div className="w-full flex text-left  text-gray-900">
+                  <div className="w-full flex text-left text-gray-900">
                     <div className="w-[320px] break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-3 h-16 ">
                       <div className="min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl">
                         <Image
@@ -114,7 +85,7 @@ const SubscriptionTable: React.FC<{
                           height={40}
                         />
                       </div>
-                      <p className="flex flex-col  items-left text-sm ">
+                      <p className="flex flex-col items-left text-sm ">
                         <span className="text-sm font-medium text-gray-900 ">
                           {subscription.name}
                         </span>
@@ -124,7 +95,7 @@ const SubscriptionTable: React.FC<{
                       </p>
                     </div>
 
-                    <div className="min-w-36 gap-1.5 flex-auto  px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
+                    <div className="min-w-36 gap-1.5 flex-auto px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
                       <Image
                         src={"/icons/tokens/USDT.svg"}
                         alt="USDT"
@@ -134,7 +105,7 @@ const SubscriptionTable: React.FC<{
                       {subscription.yourBid.toFixed(2)}
                       <span className="">USDT</span>
                     </div>
-                    <div className="min-w-28 gap-1.5 flex-auto  px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
+                    <div className="min-w-28 gap-1.5 flex-auto px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
                       ${subscription.yourBid.toFixed(2)}
                     </div>
                     <div className="min-w-36 flex-auto px-6 py-3 text-sm text-gray-800 h-16 flex items-center">
@@ -151,7 +122,7 @@ const SubscriptionTable: React.FC<{
                         year: "numeric",
                       })}
                     </div>
-                    <div className="min-w-30 flex-auto  px-6 py-3 h-16 flex items-center whitespace-nowrap">
+                    <div className="min-w-30 flex-auto px-6 py-3 h-16 flex items-center whitespace-nowrap">
                       <Badge
                         variant={
                           subscription.status === "Top Bidder"
@@ -164,8 +135,10 @@ const SubscriptionTable: React.FC<{
                         {subscription.status}
                       </Badge>
                     </div>
-                    <div className="w-full flex-auto justify-end  px-6 py-3 h-16 flex items-center whitespace-nowrap">
-                      <Button variant="outline">Manage</Button>
+                    <div className="w-full flex-auto justify-end px-6 py-3 h-16 flex items-center whitespace-nowrap">
+                      <Button variant="outline" onClick={() => handleOpenModal(subscription)}>
+                        Manage
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -176,6 +149,21 @@ const SubscriptionTable: React.FC<{
           )}
         </div>
       </div>
+
+      {/* Network Account Modal */}
+      {selectedAccount && (
+        <NetworkAccountModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          networkAccountName={selectedAccount.name} // Replace with actual property
+          networkAccountImage={`/icons/networks/${selectedAccount.network}.svg`} // Replace with actual image path
+          balance={`${selectedAccount.yourBid.toFixed(2)} USDT`} // Replace with actual balance
+          addNotification={(title, description, status) => {
+            // Handle notifications here
+            console.log(title, description, status);
+          }}
+        />
+      )}
     </div>
   );
 };
