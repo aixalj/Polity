@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import colors from "tailwindcss/colors";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: [
@@ -124,6 +125,11 @@ const config: Config = {
         sm: "0.8125rem", // Example: overriding small size
         base: "0.875rem", // Example: overriding base size
         lg: "1rem", // Example: overriding large size
+        "button-sm": ['13px', { lineHeight: '18px', fontWeight: '600' }],
+        "button-md": ['13px', { lineHeight: '18px', fontWeight: '600' }],
+        "button-lg": ['14px', { lineHeight: '20px', fontWeight: '600' }],
+        "button-xl": ['14px', { lineHeight: '20px', fontWeight: '600' }],
+        "button-2xl": ['16px', { lineHeight: '24px', fontWeight: '600' }],
       },
       translate: {
         '7.5': '7.3rem',
@@ -144,6 +150,9 @@ const config: Config = {
         'secondary': '#F9FAFB',
         'destructive': '#FFE4E8',
         'walletconnect': '#E7F3FF',
+      },
+      textShadow: {
+        'button': '0px 1px 1px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.06)',
       },
     },
   },
@@ -180,6 +189,22 @@ const config: Config = {
     require("tailwindcss-animate"),
     require("@headlessui/tailwindcss"),
     require("@tailwindcss/forms"),
+    plugin(function ({ 
+      matchUtilities, 
+      theme 
+    }: {
+      matchUtilities: any;
+      theme: (path: string) => Record<string, string>;
+    }) {
+      matchUtilities(
+        {
+          'text-shadow': (value: string) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    }),
   ],
 } satisfies Config;
 
