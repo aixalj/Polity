@@ -19,7 +19,7 @@ const buttonVariants = cva(
         ghost: "rounded-[12px] hover:bg-gray-100 hover:text-gray-900",
         link: "text-gray-900 underline-offset-4 hover:underline",
         walletconnect: 
-          "rounded-[12px] bg-[#3396FF] text-white shadow-button-walletconnect hover:shadow-button-walletconnect-hover hover:bg-[#3396FF] hover:bg-gradient-to-b hover:from-black/10 hover:to-black/10 focus:shadow-button-walletconnect-hover focus:bg-[#3396FF] disabled:shadow-button-walletconnect-disabled disabled:bg-[#3396FF] disabled:bg-gradient-to-b disabled:from-white/30 disabled:to-white/30 disabled:opacity-100 transition-all duration-300",
+          "rounded-[12px] bg-[#3396FF] !text-white shadow-button-walletconnect hover:shadow-button-walletconnect-hover hover:bg-[#3396FF] hover:bg-gradient-to-b hover:from-black/10 hover:to-black/10 focus:shadow-button-walletconnect-hover focus:bg-[#3396FF] disabled:shadow-button-walletconnect-disabled disabled:bg-[#3396FF] disabled:bg-gradient-to-b disabled:from-white/30 disabled:to-white/30 disabled:opacity-100 transition-all duration-300 [text-shadow:0px_1px_1px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.06)] disabled:!text-white",
       },
       size: {
         sm: "h-[30px] px-[10px] gap-2 rounded-[9px] text-button-sm",
