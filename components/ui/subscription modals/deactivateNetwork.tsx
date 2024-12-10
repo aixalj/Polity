@@ -6,7 +6,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface DeactivateNetworkProps {
   isOpen: boolean;
-  onClose: () => void;
+  onClose: (result: boolean) => void;
   networkData: {
     name: string;
     network: string;
@@ -24,19 +24,31 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
 }) => {
   if (!networkData) return null;
 
+  const handleClose = () => {
+    console.log('Closing all modals');
+    onClose(false);
+  };
+
+  const handleCancel = () => {
+    console.log('Canceling deactivation');
+    onClose(false);
+  };
+
   const handleDeactivate = () => {
     console.log('Deactivating network account');
-    onClose();
+    onClose(true);
   };
 
   return (
     <DialogContent
       lightCloseIcon
+      onInteractOutside={handleClose}
+      onEscapeKeyDown={handleClose}
       className="bg-rose-600 p-1 rounded-2xl shadow-xl max-w-[90%] w-[410px] h-auto flex flex-col"
     >
       <div className="px-8 pt-5 flex-shrink-0">
         <div className="flex justify-start mb-2">
-          <X className="h-6 w-6 text-gray-50" />
+          <X className="h-6 w-6 text-gray-50 cursor-pointer" onClick={handleClose} />
         </div>
         <h2 className="text-lg font-medium mb-1.5 text-gray-50">
           Deactivate Network Account
@@ -111,7 +123,7 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
 
           <div className="flex gap-4 mt-6">
             <Button
-              onClick={onClose}
+              onClick={handleCancel}
               className="w-1/2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
               variant="secondary"
             >

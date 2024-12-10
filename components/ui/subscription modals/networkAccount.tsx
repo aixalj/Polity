@@ -34,6 +34,17 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
     setDeactivateModalOpen(true);
   };
 
+  const handleDeactivateClose = (isDeactivating: boolean) => {
+    if (isDeactivating) {
+      // If deactivating, close everything
+      setDeactivateModalOpen(false);
+      onClose();
+    } else {
+      // If canceling, just close the deactivate modal
+      setDeactivateModalOpen(false);
+    }
+  };
+
   const networkData = {
     name: networkAccountName,
     network: networkAccountImage.includes('ETH') ? 'ETH' : 
@@ -137,11 +148,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
       <Dialog open={isDeactivateModalOpen} onOpenChange={setDeactivateModalOpen}>
         <DeactivateNetwork
           isOpen={isDeactivateModalOpen}
-          onClose={() => {
-            console.log('Closing deactivate modal');
-            setDeactivateModalOpen(false);
-            onClose();
-          }}
+          onClose={handleDeactivateClose}
           networkData={networkData}
         />
       </Dialog>
