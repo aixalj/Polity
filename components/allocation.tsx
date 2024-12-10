@@ -24,7 +24,7 @@ interface Asset {
 
 const getColorForAsset = (symbol: string): string => {
   const colorMap: { [key: string]: string } = {
-    MATIC: 'bg-yellow-300',
+    POL: 'bg-yellow-300',
     ETH: 'bg-blue-300',
     USDT: 'bg-green-300',
     USDC: 'bg-red-300',
@@ -197,7 +197,7 @@ const Allocation: React.FC<{
                           ></div>
                           {protocol.symbol !== 'OTHER' && (
                             <Image
-                              src={`/icons/protocols/${protocol.symbol}.svg`} 
+                              src={`/icons/protocols/${protocol.symbol}.svg`}
                               alt={protocol.name}
                               width={24}
                               height={24}
@@ -223,77 +223,81 @@ const Allocation: React.FC<{
               </div>
             </div>
           </TabsContent>
-          <TabsContent className="w-full py-2" value="networks">
-        <div className='w-full flex flex-col'>
-          {/* Network Allocation Bar */}
-          <div className='w-full h-6 flex rounded-lg overflow-hidden'>
-            {Array.isArray(networks) && networks.length > 0 ? (
+          <TabsContent className='w-full py-2' value='networks'>
+            <div className='w-full flex flex-col'>
+              {/* Network Allocation Bar */}
               <div className='w-full h-6 flex rounded-lg overflow-hidden'>
-                {networks
-                  .sort((a, b) => b.value - a.value)
-                  .map((network) => (
-                    <div
-                      key={network.symbol}
-                      className={`h-full min-w-3 ${getColorForNetwork(network.symbol)}`} 
-                      style={{
-                        width: `${
-                          (network.value /
-                            networks.reduce(
-                              (sum: number, network: any) =>
-                                sum + network.value,
-                              0
-                            )) *
-                          100
-                        }%`,
-                      }}
-                    ></div>
-                  ))}
+                {Array.isArray(networks) && networks.length > 0 ? (
+                  <div className='w-full h-6 flex rounded-lg overflow-hidden'>
+                    {networks
+                      .sort((a, b) => b.value - a.value)
+                      .map((network) => (
+                        <div
+                          key={network.symbol}
+                          className={`h-full min-w-3 ${getColorForNetwork(
+                            network.symbol
+                          )}`}
+                          style={{
+                            width: `${
+                              (network.value /
+                                networks.reduce(
+                                  (sum: number, network: any) =>
+                                    sum + network.value,
+                                  0
+                                )) *
+                              100
+                            }%`,
+                          }}
+                        ></div>
+                      ))}
+                  </div>
+                ) : (
+                  <p>No networks to display.</p>
+                )}
               </div>
-            ) : (
-              <p>No networks to display.</p>
-            )}
-          </div>
 
-          {/* Network Data */}
-          <div className='text-sm text-gray-700 font-medium flex items-center gap-3 mt-4'>
-            {Array.isArray(networks) && networks.length > 0 ? (
+              {/* Network Data */}
               <div className='text-sm text-gray-700 font-medium flex items-center gap-3 mt-4'>
-                {networks
-                  .sort((a, b) => b.value - a.value)
-                  .map((network) => (
-                    <div
-                      key={network.symbol}
-                      className='flex items-center gap-2 py-1 px-2.5'
-                    >
-                      <div
-                        className={`size-2 rounded-full ${getColorForNetwork(network.symbol)}`} 
-                      ></div>
-                      <Image
-                        src={`/icons/networks/${network.symbol}.svg`}
-                        alt={network.name}
-                        width={24}
-                        height={24}
-                      />
-                      {network.name} •{' '}
-                      {(
-                        (network.value /
-                          networks.reduce(
-                            (sum: number, network: any) =>
-                              sum + network.value,
-                            0
-                          )) *
-                        100
-                      ).toFixed(2)}
-                      %
-                    </div>
-                  ))}
+                {Array.isArray(networks) && networks.length > 0 ? (
+                  <div className='text-sm text-gray-700 font-medium flex items-center gap-3 mt-4'>
+                    {networks
+                      .sort((a, b) => b.value - a.value)
+                      .map((network) => (
+                        <div
+                          key={network.symbol}
+                          className='flex items-center gap-2 py-1 px-2.5'
+                        >
+                          <div
+                            className={`size-2 rounded-full ${getColorForNetwork(
+                              network.symbol
+                            )}`}
+                          ></div>
+                          <Image
+                            src={`/icons/networks/${network.symbol}.svg`}
+                            alt={network.name}
+                            width={24}
+                            height={24}
+                          />
+                          {network.name} •{' '}
+                          {(
+                            (network.value /
+                              networks.reduce(
+                                (sum: number, network: any) =>
+                                  sum + network.value,
+                                0
+                              )) *
+                            100
+                          ).toFixed(2)}
+                          %
+                        </div>
+                      ))}
+                  </div>
+                ) : (
+                  <p>No networks to display.</p>
+                )}
               </div>
-            ) : (
-              <p>No networks to display.</p>
-            )}
-          </div>
-        </div>
-      </TabsContent>
+            </div>
+          </TabsContent>
         </Tabs>
       </div>
     </main>

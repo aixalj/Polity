@@ -288,7 +288,7 @@ export default function Marketplace() {
                       height={32}
                     />
                   </div>
-                  <h2>Coinfirm</h2>
+                  <h2>Lukka</h2>
                 </div>
                 <h1 className="text-3xl font-medium leading-tight">
                   AML Risk Report

@@ -197,7 +197,7 @@ const networkAccounts: any[] = [
     assets: [
       {
         name: "MATIC",
-        symbol: "MATIC",
+        symbol: "POL",
         price: 0.6577,
         return: 1224,
         value: 27114.491471,
