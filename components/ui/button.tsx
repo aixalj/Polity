@@ -5,23 +5,28 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-xl gap-2  text-sm font-medium  transition-colors focus-visible:outline-none  disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden",
+  "inline-flex items-center justify-center whitespace-nowrap gap-2 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden flex-shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-primary-500 text-white hover:bg-primary-600 shadow-button-primary-default ",
-        destructive: "bg-rose-600  hover:bg-rose-700 ",
+          "rounded-[12px] border border-white/0 bg-primary-500 focus:ring-0 focus:ring-offset-0 focus:ring-transparent text-white shadow-button-primary-default hover:shadow-button-primary-hover hover:bg-primary-600 focus:shadow-button-primary-focus focus:bg-primary-500 focus-visible:shadow-button-primary-focus focus-visible:bg-primary-500 disabled:bg-primary-200 disabled:shadow-none",
+        destructive: 
+          "rounded-[12px] border border-rose-600 bg-rose-600 shadow-button-destructive hover:border-rose-700 hover:bg-rose-700 focus:border-rose-600 focus:bg-rose-600 focus:shadow-button-destructive-focus disabled:border-rose-200 disabled:bg-rose-200 disabled:shadow-button-destructive text-white",
         outline:
-          " shadow-button-secondary-default bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-800 ",
+          "rounded-[12px] border border-white/0 bg-white shadow-button-secondary-default hover:shadow-button-secondary-hover hover:bg-[#F9FAFB] focus:shadow-button-secondary-focus focus:bg-white text-gray-700 hover:text-gray-800",
         secondary: "bg-gray-100 text-gray-900 hover:bg-gray-100/80 ",
         ghost: "hover:bg-gray-100 hover:text-gray-900 ",
         link: "text-gray-900 underline-offset-4 hover:underline",
+        walletconnect: 
+          "bg-[#3396FF] text-white shadow-button-walletconnect hover:shadow-button-walletconnect-hover hover:bg-[#3396FF] hover:bg-gradient-to-b hover:from-black/10 hover:to-black/10 focus:shadow-button-walletconnect-hover focus:bg-[#3396FF] disabled:shadow-button-walletconnect-disabled disabled:bg-[#3396FF] disabled:bg-gradient-to-b disabled:from-white/30 disabled:to-white/30 disabled:opacity-100 transition-all duration-300",
       },
       size: {
-        default: "h-9 px-3 py-2",
-        sm: "h-[36px] rounded-[9px] px-2.5",
-        lg: "h-10 rounded-[11px] px-3.5",
+        sm: "h-[30px] px-[10px] gap-2 rounded-[9px]",
+        default: "h-[36px] px-[12px] gap-2 rounded-[10px]",
+        lg: "h-[40px] px-[14px] gap-2 rounded-[11px]",
+        xl: "h-[44px] px-[16px] gap-2 rounded-[12px]",
+        "2xl": "h-[48px] px-[16px] gap-[10px] rounded-[13px]",
         icon: "h-10 w-10",
       },
     },
