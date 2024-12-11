@@ -69,8 +69,8 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
     <>
       <Dialog open={isOpen && !isDeactivateModalOpen} onOpenChange={onClose}>
         <DialogContent
-          lightCloseIcon
-          className='bg-[#3396FF] p-1 rounded-[36px] shadow-xl w-[448px] h-auto flex flex-col'
+          lightCloseIcon={false}
+          className='bg-white border border-gray-300 p-1 rounded-[24px] shadow-xl w-[448px] h-auto flex flex-col'
         >
           <div className='px-8 pt-5 flex-shrink-0'>
             <div className='flex justify-start mb-4'>
@@ -87,22 +87,22 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                 />
               </svg>
             </div>
-            <h2 className='text-lg font-medium mb-1 text-gray-50'>
-              Network Account
-            </h2>
-            <p className='text-gray-50 text-sm font-regular'>
-              Connect your network account for seamless access.
-            </p>
-          </div>
-
-          <div className='bg-white px-6 pt-4 pb-3 rounded-[32px] shadow-md flex-grow overflow-hidden flex flex-col items-center justify-center'>
             <Image
               className='mb-4'
-              src={WCCryptoIcon}
+              src={networkAccountImage}
               alt='WC-icon'
               width={48}
               height={48}
             />
+            <h2 className='text-lg font-medium mb-1 text-gray-700'>
+            {networkAccountName}
+            </h2>
+            <p className='text-gray-700 text-sm font-regular'>
+              Connect your network account for seamless access.
+            </p>
+          </div>
+
+          <div className=' px-6 pt-4 pb-3 rounded-[32px] flex-grow overflow-hidden flex flex-col items-center justify-center'>
 
             <div className='flex items-center gap-1 font-medium text-lg mb-2'>
               <Lock03 width={20} height={20} />
@@ -144,7 +144,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
               <Button
                 type='button'
                 variant='default'
-                className='w-full border border-[#2a7fe7] bg-[#3396FF] hover:bg-[#3396FF]/90'
+                className='w-full border border-rose-300 bg-white hover:bg-rose-300/90 text-rose-700'
                 onClick={handleCancelSubscription}
               >
                 Cancel Subscription
