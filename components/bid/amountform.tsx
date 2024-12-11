@@ -59,18 +59,18 @@ export function BidAmountForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-1 w-full"
+        className="w-full flex flex-col gap-1"
       >
         <FormField
           control={form.control}
           name="bitcoin"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full">
               <FormControl>
-                <div className="flex items-end gap-2 ml-auto">
+                <div className="flex gap-2 w-full">
                   <Button
                     variant="outline"
-                    className="h-11 w-full p-0  items-center flex justify-center"
+                    className="h-11 flex-1 p-0 items-center flex justify-center flex-shrink-0"
                     onClick={() => field.onChange(Number(field.value) - 1)}
                     disabled={Number(field.value) === 31}
                   >
@@ -84,22 +84,22 @@ export function BidAmountForm() {
                       <path
                         d="M4.16675 10H15.8334"
                         stroke="currentColor"
-                        stroke-width="1.66667"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.66667"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </Button>
                   <Input
                     type="number"
-                    className="min-w-72 h-11 text-center"
+                    className="flex-1 h-11 text-center"
                     value={Number(field.value)}
-                    onChange={(e) => field.onChange(Number(e.target.value))} // Handle change as number
+                    onChange={(e) => field.onChange(Number(e.target.value))}
                     placeholder="0"
                   />
                   <Button
                     variant="outline"
-                    className="h-11 w-full p-0 items-center flex justify-center"
+                    className="h-11 flex-1 p-0 items-center flex justify-center flex-shrink-0"
                     onClick={() => field.onChange(Number(field.value) + 1)}
                   >
                     <svg
@@ -112,23 +112,18 @@ export function BidAmountForm() {
                       <path
                         d="M10.0001 4.16667V15.8333M4.16675 10H15.8334"
                         stroke="currentColor"
-                        stroke-width="1.66667"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.66667"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </Button>
                 </div>
               </FormControl>
-              {/* <FormDescription>
-                This is your public display name.
-              </FormDescription> */}
               <FormMessage />
             </FormItem>
           )}
         />
-
-        {/* <Button type="submit">Submit</Button> */}
       </form>
     </Form>
   );

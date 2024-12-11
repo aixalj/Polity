@@ -316,16 +316,16 @@ export default function BlowFish({
             </div>
           </div>
         </div>
-        <div className='flex gap-3 px-6 pb-5 w-full'>
+        <div className='flex gap-2 px-4 pb-5'>
           <Button
             variant='outline'
-            className='w-full shadow-none border border-gray-300'
+            className='flex-1 shadow-none border border-gray-300 text-sm'
           >
             Reject
           </Button>
           <Button
             variant='secondary'
-            className={`${styles.buttonBg} text-white ${styles.buttonHover} w-full`}
+            className={`${styles.buttonBg} text-white ${styles.buttonHover} flex-1 text-sm`}
             onClick={cycleVariant}
           >
             Approve

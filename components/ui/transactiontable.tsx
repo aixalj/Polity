@@ -402,14 +402,14 @@ const TransactionTable: React.FC<{
                             <div>
                               <p
                                 className={`${
-                                  transaction.method === "Receive"
+                                  transaction.method === "Receive" || transaction.method === "Unstake"
                                     ? "text-teal-600"
                                     : transaction.method === "Swap"
                                     ? "text-rose-600"
                                     : "text-rose-600"
                                 } text-sm font-medium`}
                               >
-                                {transaction.method === "Receive" ? "+" : "-"}
+                                {transaction.method === "Receive" || transaction.method === "Unstake" ? "+" : "-"}
                                 {transaction.value} {transaction.token}
                               </p>
                               <p className="text-gray-600 text-xs">
