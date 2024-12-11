@@ -4309,7 +4309,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                     )}
                   </div>
                   {activeTab == 'confirm' && (
-                    <Button onClick={handleConfirm}>Place Bid</Button>
+                    <Button onClick={handleConfirm}>Subscribe</Button>
                   )}
                 </div>
               </div>

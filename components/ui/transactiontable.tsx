@@ -710,13 +710,28 @@ const TransactionTable: React.FC<{
                           </div>
                           <div className="px-6 h-11 text-gray-700 items-center flex justify-between border-t">
                             <p className="text-xs">Quantity</p>
-                            <p className="text-sm">{transaction.value}</p>
+                            <div className="flex flex-col items-end gap-0">
+                              <p className="text-xs">{transaction.value} {transaction.token}</p>
+                              {transaction.method === "Lend" && (
+                                <p className="text-xs text-gray-600">
+                                  {transaction.apy || "4.5"}% APY
+                                </p>
+                              )}
+                            </div>
                           </div>
                           <div className="px-6 h-11 items-center flex text-gray-700 justify-between border-t">
                             <p className="text-xs">Transaction Fee</p>
-                            <p className="text-sm">
-                              {transaction.transactionFee}
-                            </p>
+                            <div className="flex flex-col items-end gap-0">
+                              <p className="text-xs">
+                                {transaction.transactionFee} {transaction.network === "Bitcoin" ? "BTC" : transaction.network === "Polygon" ? "MATIC" : "ETH"}
+                              </p>
+                              <p className="text-xs text-gray-600">
+                                {getUSDValue(
+                                  transaction.transactionFee,
+                                  transaction.network === "Bitcoin" ? "BTC" : transaction.network === "Polygon" ? "MATIC" : "ETH"
+                                )}
+                              </p>
+                            </div>
                           </div>
                           <div className="px-6 h-11 items-center text-gray-700 flex justify-between border-t">
                             <p className="text-xs">Transaction Hash</p>
@@ -898,13 +913,11 @@ const TransactionTable: React.FC<{
                                       open={
                                         openTooltipId ===
                                         transaction.transactionHash +
-                                          transaction.toAddress +
                                           transaction.toAddress
                                       }
                                       onOpenChange={() =>
                                         toggleTooltip(
                                           transaction.transactionHash +
-                                            transaction.toAddress +
                                             transaction.toAddress
                                         )
                                       }
@@ -914,7 +927,6 @@ const TransactionTable: React.FC<{
                                           e.preventDefault();
                                           toggleTooltip(
                                             transaction.transactionHash +
-                                              transaction.toAddress +
                                               transaction.toAddress
                                           );
                                           navigator.clipboard.writeText(

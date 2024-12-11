@@ -3269,7 +3269,7 @@ const SendModal = () => {
                     )}
                   </div>
                   {activeTab == 'confirm' && (
-                    <Button onClick={handleConfirm}>Place Bid</Button>
+                    <Button onClick={handleConfirm}>Send</Button>
                   )}
                 </div>
               </div>

@@ -42,6 +42,14 @@ export const DestructiveSmall: Story = {
   },
 };
 
+export const SecondaryDestructiveSmall: Story = {
+  args: {
+    variant: "secondary-destructive",
+    size: "sm",
+    children: "Delete",
+  },
+};
+
 export const WalletConnectSmall: Story = {
   args: {
     variant: "walletconnect",
@@ -50,8 +58,8 @@ export const WalletConnectSmall: Story = {
   },
 };
 
-// Medium (Default) Size
-export const DefaultMedium: Story = {
+// Default Size
+export const Default: Story = {
   args: {
     variant: "default",
     size: "default",
@@ -59,7 +67,7 @@ export const DefaultMedium: Story = {
   },
 };
 
-export const OutlineMedium: Story = {
+export const Outline: Story = {
   args: {
     variant: "outline",
     size: "default",
@@ -67,7 +75,7 @@ export const OutlineMedium: Story = {
   },
 };
 
-export const DestructiveMedium: Story = {
+export const Destructive: Story = {
   args: {
     variant: "destructive",
     size: "default",
@@ -75,7 +83,15 @@ export const DestructiveMedium: Story = {
   },
 };
 
-export const WalletConnectMedium: Story = {
+export const SecondaryDestructive: Story = {
+  args: {
+    variant: "secondary-destructive",
+    size: "default",
+    children: "Delete",
+  },
+};
+
+export const WalletConnect: Story = {
   args: {
     variant: "walletconnect",
     size: "default",
@@ -108,6 +124,14 @@ export const DestructiveLarge: Story = {
   },
 };
 
+export const SecondaryDestructiveLarge: Story = {
+  args: {
+    variant: "secondary-destructive",
+    size: "lg",
+    children: "Delete",
+  },
+};
+
 export const WalletConnectLarge: Story = {
   args: {
     variant: "walletconnect",
@@ -116,7 +140,7 @@ export const WalletConnectLarge: Story = {
   },
 };
 
-// Extra Large Size
+// XL Size
 export const DefaultXL: Story = {
   args: {
     variant: "default",
@@ -136,6 +160,14 @@ export const OutlineXL: Story = {
 export const DestructiveXL: Story = {
   args: {
     variant: "destructive",
+    size: "xl",
+    children: "Delete",
+  },
+};
+
+export const SecondaryDestructiveXL: Story = {
+  args: {
+    variant: "secondary-destructive",
     size: "xl",
     children: "Delete",
   },
@@ -169,6 +201,14 @@ export const Outline2XL: Story = {
 export const Destructive2XL: Story = {
   args: {
     variant: "destructive",
+    size: "2xl",
+    children: "Delete",
+  },
+};
+
+export const SecondaryDestructive2XL: Story = {
+  args: {
+    variant: "secondary-destructive",
     size: "2xl",
     children: "Delete",
   },

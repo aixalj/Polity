@@ -14,6 +14,7 @@ interface Transaction {
   toToken?: string; // For Swap transactions
   dApp?: string; // For Swap, Stake, Unstake, Lend transactions
   valueTo?: number; // For Swap transactions
+  apy?: string; // For Lend transactions
 }
 
 // Create an array of simulated transactions
@@ -103,10 +104,11 @@ const transactions: Transaction[] = [
     fromAddress: "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
     toAddress: "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B", // Compound protocol address
     transactionFee: 0.002,
-    status: "Completed",
+    status: "Open",
     transactionHash:
       "0xmno345pqr678stu901vwx234yz567abc890def123ghi456jkl789mno012",
     dApp: "Compound",
+    apy: "4.32"
   },
   {
     method: "Send",

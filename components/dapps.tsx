@@ -151,8 +151,8 @@ const Dapps = () => {
             </Button>
             <Button
               size="sm"
-              className="bg-red-50 shadow-none text-rose-700 rounded-lg font-semibold hover:bg-rose-100"
-              variant="destructive"
+              // className="bg-red-50 shadow-none text-rose-700 rounded-lg font-semibold hover:bg-rose-100"
+              variant="secondary-destructive"
             >
               Disconnect
             </Button>
@@ -288,8 +288,8 @@ const Dapps = () => {
             </Button>
             <Button
               size="sm"
-              className="bg-red-50 shadow-none text-rose-700 rounded-lg font-semibold hover:bg-rose-100"
-              variant="destructive"
+              // className="bg-red-50 shadow-none text-rose-700 rounded-lg font-semibold hover:bg-rose-100"
+              variant="secondary-destructive"
             >
               Disconnect
             </Button>
@@ -425,8 +425,8 @@ const Dapps = () => {
             </Button>
             <Button
               size="sm"
-              className="bg-red-50 shadow-none text-rose-700 rounded-lg font-semibold hover:bg-rose-100"
-              variant="destructive"
+              // className="bg-red-50 shadow-none text-rose-700 rounded-lg font-semibold hover:bg-rose-100"
+              variant="secondary-destructive"
             >
               Disconnect
             </Button>
