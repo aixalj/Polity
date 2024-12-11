@@ -9,6 +9,7 @@ import WCCryptoIcon from '@/public/WCcryptoicons.svg';
 import dot from '@/public/dot.svg';
 import ETHNetwork from 'public/icons/networks/ETH.svg';
 import DeactivateNetwork from './deactivateNetwork';
+import { Notification } from "@/components/ui/notification";
 
 interface NetworkAccountModalProps {
   isOpen: boolean;
@@ -16,7 +17,11 @@ interface NetworkAccountModalProps {
   networkAccountName: string;
   networkAccountImage: string;
   balance: string;
-  addNotification: (title: string, description: string, status: "success" | "error" | "warning" | "info") => void;
+  addNotification: (
+    title: string, 
+    description: string, 
+    status: "success" | "error" | "warning" | "info"
+  ) => void;
 }
 
 const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
@@ -54,6 +59,10 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
     walletName: "Main Wallet",
     networkAccountName: networkAccountName,
     deactivationDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+  };
+
+  const handleNotification = (title: string, description: string, status: "success" | "error" | "warning" | "info") => {
+    Notification({ title, description, status });
   };
 
   return (
@@ -150,6 +159,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
           isOpen={isDeactivateModalOpen}
           onClose={handleDeactivateClose}
           networkData={networkData}
+          addNotification={handleNotification}
         />
       </Dialog>
     </>
