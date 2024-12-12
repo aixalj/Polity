@@ -108,7 +108,7 @@ function BitcoinOne() {
             onValueChange={(value) => setSelectedTab(value)}
           >
             <div
-              className="w-full sticky top-0 backdrop-blur-md	z-10  border-b border-gray-100 bg-white/60"
+              className="w-full backdrop-blur-md	z-10 bg-white/60"
               style={{
                 backdropFilter: "blur(10px)",
                 WebkitBackdropFilter: "blur(10px)",
