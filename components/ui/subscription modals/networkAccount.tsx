@@ -9,7 +9,7 @@ import WCCryptoIcon from '@/public/WCcryptoicons.svg';
 import dot from '@/public/dot.svg';
 import ETHNetwork from 'public/icons/networks/ETH.svg';
 import DeactivateNetwork from './deactivateNetwork';
-import { Notification } from "@/components/ui/notification";
+import { Notification } from '@/components/ui/notification';
 
 interface NetworkAccountModalProps {
   isOpen: boolean;
@@ -17,10 +17,11 @@ interface NetworkAccountModalProps {
   networkAccountName: string;
   networkAccountImage: string;
   balance: string;
+  networkAccountNumber: string;
   addNotification: (
-    title: string, 
-    description: string, 
-    status: "success" | "error" | "warning" | "info"
+    title: string,
+    description: string,
+    status: 'success' | 'error' | 'warning' | 'info'
   ) => void;
 }
 
@@ -30,6 +31,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
   networkAccountName,
   networkAccountImage,
   balance,
+  networkAccountNumber,
   addNotification,
 }) => {
   const [isDeactivateModalOpen, setDeactivateModalOpen] = useState(false);
@@ -52,16 +54,24 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
 
   const networkData = {
     name: networkAccountName,
-    network: networkAccountImage.includes('ETH') ? 'ETH' : 
-            networkAccountImage.includes('BTC') ? 'BTC' : 
-            networkAccountImage.includes('MATIC') ? 'MATIC' : 'ETH',
+    network: networkAccountImage.includes('ETH')
+      ? 'ETH'
+      : networkAccountImage.includes('BTC')
+      ? 'BTC'
+      : networkAccountImage.includes('MATIC')
+      ? 'MATIC'
+      : 'ETH',
     price: 1.99,
-    walletName: "Main Wallet",
+    walletName: 'Main Wallet',
     networkAccountName: networkAccountName,
     deactivationDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
   };
 
-  const handleNotification = (title: string, description: string, status: "success" | "error" | "warning" | "info") => {
+  const handleNotification = (
+    title: string,
+    description: string,
+    status: 'success' | 'error' | 'warning' | 'info'
+  ) => {
     Notification({ title, description, status });
   };
 
@@ -70,7 +80,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
       <Dialog open={isOpen && !isDeactivateModalOpen} onOpenChange={onClose}>
         <DialogContent
           lightCloseIcon={false}
-          className='bg-white border border-gray-300 p-1 rounded-[24px] shadow-xl w-[448px] h-auto flex flex-col'
+          className='bg-white border border-gray-300 p-0 rounded-[24px] shadow-xl w-[448px] h-auto flex flex-col'
         >
           <div className='px-8 pt-5 flex-shrink-0'>
             <div className='flex justify-start mb-4'>
@@ -95,51 +105,95 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
               height={48}
             />
             <h2 className='text-lg font-medium mb-1 text-gray-700'>
-            {networkAccountName}
+              {networkAccountName}
             </h2>
             <p className='text-gray-700 text-sm font-regular'>
-              Connect your network account for seamless access.
+              Network Account {networkAccountNumber}
+            </p>
+            <div className='flex items-center gap-2 text-gray-700 text-sm font-regular mt-1'>
+              <Image
+                src='/wallets/wallet1.svg'
+                alt='Wallet'
+                width={16}
+                height={16}
+              />
+              <span>Main Wallet</span>
+            </div>
+          </div>
+          <div className=' bg-gray-50 py-2 mb-2'>
+            <p className='text-xs font-medium text-gray-600 w-full pl-6'>
+              <strong>Subscription</strong>
             </p>
           </div>
-
-          <div className=' px-6 pt-4 pb-3 rounded-[32px] flex-grow overflow-hidden flex flex-col items-center justify-center'>
-
-            <div className='flex items-center gap-1 font-medium text-lg mb-2'>
-              <Lock03 width={20} height={20} />
-              {networkAccountName}
-            </div>
-            <div className='flex items-center gap-3 font-normal mb-4'>
-              <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
-                <Image src={dot} alt='dot' width={8} height={8} />
-                Ethereum
-              </div>
-              <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
-                <Image src={ETHNetwork} alt='ETH' width={16} height={16} /> ETH
-              </div>
-            </div>
-            <div className='text-center mb-5'>
-              <p className='text-lg font-medium mb-1'>Connect to this site?</p>
-              <p className='text-sm font-normal text-gray-600'>
-                By clicking connect, you allow this app to connect to your Network Account.
-              </p>
-            </div>
-            <div className='flex items-center gap-2 border border-gray-300 rounded-xl p-2 w-full'>
+          <div className='px-6 flex items-center gap-3 mb-4'>
+            <div className='flex items-center justify-center rounded-xl'>
               <Image
-                src={networkAccountImage}
-                alt='Network Account'
-                width={48}
-                height={48}
-                className='mr-1'
+                src={`/icons/networks/${networkData.network}.svg`}
+                alt={networkData.name}
+                width={36}
+                height={36}
               />
-              <div className='flex flex-col'>
-                <p className='text-sm font-medium text-gray-900'>
-                  Network Account Name: {networkAccountName}
-                </p>
-                <p className='text-xs font-normal text-gray-600'>
-                  Balance: {balance}
-                </p>
-              </div>
             </div>
+            <div className='flex flex-col'>
+              <span className='text-sm font-medium'>{networkData.name}</span>
+              <span className='text-sm text-gray-600'>
+                Network Account Name
+              </span>
+            </div>
+            <div className='ml-auto flex items-center'>
+              <Image
+                src='/icons/tokens/USDT.svg'
+                alt='USDT'
+                width={16}
+                height={16}
+              />
+              <span className='ml-1'>{networkData.price.toFixed(2)} USDT</span>
+              <span className='text-sm text-gray-500 ml-1'>per month</span>
+            </div>
+          </div>
+          <div className=' bg-gray-50 py-2 mb-2'>
+            <p className='text-xs font-medium text-gray-600 w-full pl-6'>
+              <strong>Subscription Details</strong>
+            </p>
+          </div>
+          <p className='px-6 text-sm mb-2 w-full flex justify-between'>
+            <strong className='font-medium'>Wallet Status</strong>{' '}
+            <strong className='font-semibold ml-auto'>
+              {networkAccountName}
+            </strong>
+          </p>
+          <p className='px-6 text-sm mb-2 w-full flex justify-between'>
+            <strong className='font-medium'>Started</strong>{' '}
+            <strong className='font-semibold ml-auto'>18 Jul 2023</strong>
+          </p>
+          <p className='px-6 text-sm mb-2 w-full flex justify-between'>
+            <strong className='font-medium'>Renews on</strong>{' '}
+            <strong className='font-semibold ml-auto'>18 Aug 2023</strong>
+          </p>
+          <div className=' bg-gray-50 py-2 mb-2'>
+            <p className='text-xs font-medium text-gray-600 w-full pl-6'>
+              <strong>Payment Method</strong>
+            </p>
+          </div>
+          <p className='px-6 text-sm mb-2 w-full flex justify-between'>
+            <strong className='font-medium'>Wallet</strong>{' '}
+            <div className='flex items-center gap-2 text-gray-700 text-sm font-regular mt-1'>
+              <Image
+                src='/wallets/wallet1.svg'
+                alt='Wallet'
+                width={16}
+                height={16}
+              />
+              <span>Main Wallet</span>
+            </div>
+          </p>
+          <p className='px-6 text-sm mb-2 w-full flex justify-between'>
+            <strong className='font-medium'>Network Account</strong>{' '}
+            <strong className='font-semibold ml-auto'>
+            Network Account Name {networkAccountNumber}
+            </strong>
+          </p>
+          <div className=' px-6 pt-4 pb-3 rounded-[32px] flex-grow overflow-hidden flex flex-col items-center justify-center'>
             <div className='flex flex-col gap-2 justify-start w-full pt-5'>
               <Button
                 type='button'
@@ -154,7 +208,10 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
         </DialogContent>
       </Dialog>
 
-      <Dialog open={isDeactivateModalOpen} onOpenChange={setDeactivateModalOpen}>
+      <Dialog
+        open={isDeactivateModalOpen}
+        onOpenChange={setDeactivateModalOpen}
+      >
         <DeactivateNetwork
           isOpen={isDeactivateModalOpen}
           onClose={handleDeactivateClose}

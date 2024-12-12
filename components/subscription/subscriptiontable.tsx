@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import NetworkAccountModal from "@/components/ui/subscription modals/networkAccount"; // Adjust the import path as necessary
 import Image from "next/image";
 import { Subscription } from "./subscriptiondata";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const getTimeRemaining = (endTime: Date) => {
   const total = endTime.getTime() - new Date().getTime();
@@ -36,6 +37,7 @@ const SubscriptionTable: React.FC<{
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAccount, setSelectedAccount] = useState<Subscription | null>(null);
+  const [activeTab, setActiveTab] = useState<"active" | "inactive">("active");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -55,111 +57,126 @@ const SubscriptionTable: React.FC<{
     setSelectedAccount(null);
   };
 
-  return (
-    <div className="relative w-full flex flex-col ">
-      <div className="w-full flex flex-col gap-1 overflow-y-scroll">
-        <div className="w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs">
-          <div className="w-[320px] flex-none px-6 py-3">Product</div>
-          <div className="min-w-36 flex-none px-6 py-3">Cost</div>
-          <div className="min-w-28 flex-auto px-6 py-3">Value</div>
-          <div className="min-w-36 flex-auto px-6 py-3">Started</div>
-          <div className="min-w-36 flex-auto px-6 py-3">Renews</div>
-          <div className="min-w-30 flex-auto px-6 py-3">Status</div>
-          <div className="w-full flex-auto px-6 py-3"></div>
-        </div>
-        <div>
-          {Array.isArray(subscriptions) && subscriptions.length > 0 ? (
-            <div>
-              {subscriptions.map((subscription, index) => (
-                <div
-                  key={index}
-                  className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm "
-                >
-                  <div className="w-full flex text-left text-gray-900">
-                    <div className="w-[320px] break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-3 h-16 ">
-                      <div className="min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl">
-                        <Image
-                          src={`/icons/networks/${subscription.network}.svg`}
-                          alt={subscription.name}
-                          width={40}
-                          height={40}
-                        />
-                      </div>
-                      <p className="flex flex-col items-left text-sm ">
-                        <span className="text-sm font-medium text-gray-900 ">
-                          {subscription.name}
-                        </span>
-                        <span className="text-sm font-regular text-gray-600">
-                          {subscription.category}
-                        </span>
-                      </p>
-                    </div>
+  const filteredSubscriptions = subscriptions.filter(subscription => 
+    activeTab === "active" ? subscription.status === "Active" : subscription.status === "Inactive"
+  );
 
-                    <div className="min-w-36 gap-1.5 flex-auto px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
-                      <Image
-                        src={"/icons/tokens/USDT.svg"}
-                        alt="USDT"
-                        width={16}
-                        height={16}
-                      />
-                      {subscription.yourBid.toFixed(2)}
-                      <span className="">USDT</span>
-                    </div>
-                    <div className="min-w-28 gap-1.5 flex-auto px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
-                      ${subscription.yourBid.toFixed(2)}
-                    </div>
-                    <div className="min-w-36 flex-auto px-6 py-3 text-sm text-gray-800 h-16 flex items-center">
-                      {subscription.startTime.toLocaleDateString("en-GB", {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </div>
-                    <div className="min-w-36 flex-auto px-6 py-3 text-sm text-gray-800 h-16 flex items-center">
-                      {subscription.endTime.toLocaleDateString("en-GB", {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </div>
-                    <div className="min-w-30 flex-auto px-6 py-3 h-16 flex items-center whitespace-nowrap">
-                      <Badge
-                        variant={
-                          subscription.status === "Top Bidder"
-                            ? "success"
-                            : subscription.status === "Outbid"
-                            ? "warning"
-                            : "success"
-                        }
-                      >
-                        {subscription.status}
-                      </Badge>
-                    </div>
-                    <div className="w-full flex-auto justify-end px-6 py-3 h-16 flex items-center whitespace-nowrap">
-                      <Button variant="outline" onClick={() => handleOpenModal(subscription)}>
-                        Manage
-                      </Button>
+  return (
+    <div className="relative w-full flex flex-col">
+      <Tabs defaultValue="active" className="w-full" onValueChange={(value) => setActiveTab(value as "active" | "inactive")}>
+        <TabsList className="mb-4">
+          <TabsTrigger value="active" className="px-4">
+            Active
+          </TabsTrigger>
+          <TabsTrigger value="inactive" className="px-4">
+            Inactive
+          </TabsTrigger>
+        </TabsList>
+
+        <div className="w-full flex flex-col gap-1 overflow-y-scroll">
+          <div className="w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs">
+            <div className="w-[320px] flex-none px-6 py-3">Product</div>
+            <div className="min-w-36 flex-none px-6 py-3">Cost</div>
+            <div className="min-w-28 flex-auto px-6 py-3">Value</div>
+            <div className="min-w-36 flex-auto px-6 py-3">Started</div>
+            <div className="min-w-36 flex-auto px-6 py-3">Renews</div>
+            <div className="min-w-30 flex-auto px-6 py-3">Status</div>
+            <div className="w-full flex-auto px-6 py-3"></div>
+          </div>
+          <div>
+            {Array.isArray(filteredSubscriptions) && filteredSubscriptions.length > 0 ? (
+              <div>
+                {filteredSubscriptions.map((subscription, index) => (
+                  <div
+                    key={index}
+                    className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm "
+                  >
+                    <div className="w-full flex text-left text-gray-900">
+                      <div className="w-[320px] break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-3 h-16 ">
+                        <div className="min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl">
+                          <Image
+                            src={`/icons/networks/${subscription.network}.svg`}
+                            alt={subscription.name}
+                            width={40}
+                            height={40}
+                          />
+                        </div>
+                        <p className="flex flex-col items-left text-sm ">
+                          <span className="text-sm font-medium text-gray-900 ">
+                            {subscription.name}
+                          </span>
+                          <span className="text-sm font-regular text-gray-600">
+                            {subscription.category}
+                          </span>
+                        </p>
+                      </div>
+
+                      <div className="min-w-36 gap-1.5 flex-auto px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
+                        <Image
+                          src={"/icons/tokens/USDT.svg"}
+                          alt="USDT"
+                          width={16}
+                          height={16}
+                        />
+                        {subscription.yourBid.toFixed(2)}
+                        <span className="">USDT</span>
+                      </div>
+                      <div className="min-w-28 gap-1.5 flex-auto px-6 py-3 text-sm text-gray-600 h-16 flex items-center">
+                        ${subscription.yourBid.toFixed(2)}
+                      </div>
+                      <div className="min-w-36 flex-auto px-6 py-3 text-sm text-gray-800 h-16 flex items-center">
+                        {subscription.startTime.toLocaleDateString("en-GB", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </div>
+                      <div className="min-w-36 flex-auto px-6 py-3 text-sm text-gray-800 h-16 flex items-center">
+                        {subscription.endTime.toLocaleDateString("en-GB", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </div>
+                      <div className="min-w-30 flex-auto px-6 py-3 h-16 flex items-center whitespace-nowrap">
+                        <Badge
+                          variant={
+                            subscription.status === "Top Bidder"
+                              ? "success"
+                              : subscription.status === "Outbid"
+                              ? "warning"
+                              : "success"
+                          }
+                        >
+                          {subscription.status}
+                        </Badge>
+                      </div>
+                      <div className="w-full flex-auto justify-end px-6 py-3 h-16 flex items-center whitespace-nowrap">
+                        <Button variant="outline" onClick={() => handleOpenModal(subscription)}>
+                          Manage
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p>No assets to display.</p>
-          )}
+                ))}
+              </div>
+            ) : ( 
+              <p>No assets to display.</p>
+            )}
+          </div>
         </div>
-      </div>
+      </Tabs>
 
       {/* Network Account Modal */}
       {selectedAccount && (
         <NetworkAccountModal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          networkAccountName={selectedAccount.name} // Replace with actual property
-          networkAccountImage={`/icons/networks/${selectedAccount.network}.svg`} // Replace with actual image path
-          balance={`${selectedAccount.yourBid.toFixed(2)} USDT`} // Replace with actual balance
+          networkAccountName={selectedAccount.name}
+          networkAccountImage={`/icons/networks/${selectedAccount.network}.svg`}
+          balance={`${selectedAccount.yourBid.toFixed(2)} USDT`}
+          networkAccountNumber={selectedAccount.id || "1"}
           addNotification={(title, description, status) => {
-            // Handle notifications here
             console.log(title, description, status);
           }}
         />

@@ -1,5 +1,6 @@
 // Define the Agreement interface
-interface Subscription {
+export interface Subscription {
+  id: string;
   name: string;
   network: string;
   category: string;
@@ -10,8 +11,9 @@ interface Subscription {
 }
 
 // Create an array of simulated agreements
-const subscriptions: Subscription[] = [
+export const subscriptions: Subscription[] = [
   {
+    id: "(428f...47d2)",
     name: "Bitcoin Network Account",
     network: "BTC",
     category: "Network Account Name",
@@ -22,6 +24,7 @@ const subscriptions: Subscription[] = [
   },
 
   {
+    id: "(0x8f...47d2)",
     name: "Ethereum Network Account",
     network: "ETH",
     category: "Network Account Name",
@@ -32,5 +35,3 @@ const subscriptions: Subscription[] = [
   },
 ];
 
-export { subscriptions };
-export type { Subscription };
