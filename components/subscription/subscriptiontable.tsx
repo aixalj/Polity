@@ -141,10 +141,10 @@ const SubscriptionTable: React.FC<{
                       <div className="min-w-30 flex-auto px-6 py-3 h-16 flex items-center whitespace-nowrap">
                         <Badge
                           variant={
-                            subscription.status === "Top Bidder"
+                            subscription.status === "Active"
                               ? "success"
-                              : subscription.status === "Outbid"
-                              ? "warning"
+                              : subscription.status === "Inactive"
+                              ? "secondary"
                               : "success"
                           }
                         >
@@ -152,8 +152,11 @@ const SubscriptionTable: React.FC<{
                         </Badge>
                       </div>
                       <div className="w-full flex-auto justify-end px-6 py-3 h-16 flex items-center whitespace-nowrap">
-                        <Button variant="outline" onClick={() => handleOpenModal(subscription)}>
-                          Manage
+                        <Button 
+                          variant="outline" 
+                          onClick={() => handleOpenModal(subscription)}
+                        >
+                          {subscription.status === "Inactive" ? "Resubscribe" : "Manage"}
                         </Button>
                       </div>
                     </div>

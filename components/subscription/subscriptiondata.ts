@@ -33,5 +33,16 @@ export const subscriptions: Subscription[] = [
     endTime: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000),
     status: "Active",
   },
+
+  {
+    id: "(0x9f...47e3)",
+    name: "Polygon Network Account",
+    network: "MATIC",
+    category: "Network Account Name",
+    yourBid: 1.99,
+    startTime: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000),
+    endTime: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+    status: "Inactive"
+  },
 ];
 
