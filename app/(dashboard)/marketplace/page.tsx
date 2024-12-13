@@ -1688,7 +1688,7 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <a
-                      href="http://dfns.co"
+                      href="https://safeheron.com/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

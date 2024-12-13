@@ -6,7 +6,7 @@ import Script from "next/script";
 import { VercelToolbar } from "@vercel/toolbar/next";
 
 import { SideBar } from "@/components/ui/sidebar";
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 

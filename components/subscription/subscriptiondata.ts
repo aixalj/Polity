@@ -1,5 +1,6 @@
 // Define the Agreement interface
-interface Subscription {
+export interface Subscription {
+  id: string;
   name: string;
   network: string;
   category: string;
@@ -10,8 +11,9 @@ interface Subscription {
 }
 
 // Create an array of simulated agreements
-const subscriptions: Subscription[] = [
+export const subscriptions: Subscription[] = [
   {
+    id: "(428f...47d2)",
     name: "Bitcoin Network Account",
     network: "BTC",
     category: "Network Account Name",
@@ -22,6 +24,7 @@ const subscriptions: Subscription[] = [
   },
 
   {
+    id: "(0x8f...47d2)",
     name: "Ethereum Network Account",
     network: "ETH",
     category: "Network Account Name",
@@ -30,7 +33,16 @@ const subscriptions: Subscription[] = [
     endTime: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000),
     status: "Active",
   },
+
+  {
+    id: "(0x9f...47e3)",
+    name: "Polygon Network Account",
+    network: "MATIC",
+    category: "Network Account Name",
+    yourBid: 1.99,
+    startTime: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000),
+    endTime: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+    status: "Inactive"
+  },
 ];
 
-export { subscriptions };
-export type { Subscription };
