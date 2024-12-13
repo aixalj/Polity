@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { TransactionTable } from "@/components/ui/transactiontable";
 import { TimeProvider } from "@/components/ui/timecontext";
+import { FilterProvider } from "@/components/ui/filtercontext";
 import { transactions } from "@/components/transactionData";
 
 import "@/app/globals.css";
@@ -11,9 +12,11 @@ const meta: Meta<typeof TransactionTable> = {
   component: TransactionTable,
   decorators: [
     (Story) => (
-      <TimeProvider>
-        <Story />
-      </TimeProvider>
+      <FilterProvider>
+        <TimeProvider>
+          <Story />
+        </TimeProvider>
+      </FilterProvider>
     ),
   ],
   parameters: {
@@ -50,7 +53,7 @@ export const ManyTransactions: Story = {
       .map((_, index) => ({
         ...transactions[index % transactions.length],
         transactionHash: `0x${index.toString(16).padStart(3, "0")}...${index.toString(16).padStart(3, "0")}`,
-        timestamp: new Date(Date.now() - index * 3600000).toISOString(), // Each transaction 1 hour apart
+        timestamp: new Date(Date.now() - index * 3600000).toISOString(),
       })),
   },
 };

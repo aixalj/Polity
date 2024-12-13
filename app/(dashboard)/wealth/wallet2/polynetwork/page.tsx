@@ -201,8 +201,7 @@ function BitcoinOne() {
                   </div>
                   <div className="flex gap-3">
                     <Button
-                      variant="default"
-                      className="bg-[#3396FF] hover:bg-[#3396FF]/90"
+                      variant="walletconnect"
                       onClick={handleOpenModal}
                     >
                       <svg

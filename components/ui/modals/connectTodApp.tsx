@@ -133,8 +133,8 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
             <div className='flex flex-col gap-2 justify-start w-full pt-5'>
               <Button
                 type='submit'
-                variant='default'
-                className='w-full border border-[#2a7fe7] bg-[#3396FF] hover:bg-[#3396FF]/90'
+                variant='walletconnect'
+                className='w-full'
                 onClick={handleConnect} 
               >
                 {isLoading ? ( 

@@ -4,38 +4,73 @@ import { Button } from "@/components/ui/button";
 
 import "@/app/globals.css";
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: "Polity Design System/Components/Button",
   component: Button,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
-  // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  // argTypes: {
-  //   backgroundColor : { control: "color" },
-  // },
-  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
   args: { onClick: fn() },
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
+// Small Size
+export const DefaultSmall: Story = {
   args: {
     variant: "default",
+    size: "sm",
     children: "Button",
   },
 };
 
-export const Secondary: Story = {
+export const OutlineSmall: Story = {
   args: {
-    variant: "secondary",
+    variant: "outline",
+    size: "sm",
+    children: "Button",
+  },
+};
+
+export const DestructiveSmall: Story = {
+  args: {
+    variant: "destructive",
+    size: "sm",
+    children: "Delete",
+  },
+};
+
+export const SecondaryDestructiveSmall: Story = {
+  args: {
+    variant: "secondary-destructive",
+    size: "sm",
+    children: "Delete",
+  },
+};
+
+export const WalletConnectSmall: Story = {
+  args: {
+    variant: "walletconnect",
+    size: "sm",
+    children: "Connect Wallet",
+  },
+};
+
+// Default Size
+export const Default: Story = {
+  args: {
+    variant: "default",
+    size: "default",
+    children: "Button",
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    variant: "outline",
+    size: "default",
     children: "Button",
   },
 };
@@ -43,66 +78,146 @@ export const Secondary: Story = {
 export const Destructive: Story = {
   args: {
     variant: "destructive",
+    size: "default",
     children: "Delete",
   },
 };
 
-export const Outline: Story = {
+export const SecondaryDestructive: Story = {
   args: {
-    variant: "outline",
-    children: "Outline",
-  },
-};
-
-export const Ghost: Story = {
-  args: {
-    variant: "ghost",
-    children: "Ghost",
-  },
-};
-
-export const Link: Story = {
-  args: {
-    variant: "link",
-    children: "Link",
-  },
-};
-
-// Size variants
-export const Small: Story = {
-  args: {
-    size: "sm",
-    children: "Small",
-  },
-};
-
-export const Default: Story = {
-  args: {
+    variant: "secondary-destructive",
     size: "default",
-    children: "Default",
+    children: "Delete",
   },
 };
 
-export const Large: Story = {
+export const WalletConnect: Story = {
   args: {
-    size: "lg",
-    children: "Large",
+    variant: "walletconnect",
+    size: "default",
+    children: "Connect Wallet",
   },
 };
 
-// You can add more stories to showcase different combinations of props
-export const OutlineSmall: Story = {
+// Large Size
+export const DefaultLarge: Story = {
+  args: {
+    variant: "default",
+    size: "lg",
+    children: "Button",
+  },
+};
+
+export const OutlineLarge: Story = {
   args: {
     variant: "outline",
-    size: "sm",
-    children: "Outline Small",
+    size: "lg",
+    children: "Button",
   },
 };
 
-export const GhostLarge: Story = {
+export const DestructiveLarge: Story = {
   args: {
-    variant: "ghost",
+    variant: "destructive",
     size: "lg",
-    children: "Ghost Large",
+    children: "Delete",
+  },
+};
+
+export const SecondaryDestructiveLarge: Story = {
+  args: {
+    variant: "secondary-destructive",
+    size: "lg",
+    children: "Delete",
+  },
+};
+
+export const WalletConnectLarge: Story = {
+  args: {
+    variant: "walletconnect",
+    size: "lg",
+    children: "Connect Wallet",
+  },
+};
+
+// XL Size
+export const DefaultXL: Story = {
+  args: {
+    variant: "default",
+    size: "xl",
+    children: "Button",
+  },
+};
+
+export const OutlineXL: Story = {
+  args: {
+    variant: "outline",
+    size: "xl",
+    children: "Button",
+  },
+};
+
+export const DestructiveXL: Story = {
+  args: {
+    variant: "destructive",
+    size: "xl",
+    children: "Delete",
+  },
+};
+
+export const SecondaryDestructiveXL: Story = {
+  args: {
+    variant: "secondary-destructive",
+    size: "xl",
+    children: "Delete",
+  },
+};
+
+export const WalletConnectXL: Story = {
+  args: {
+    variant: "walletconnect",
+    size: "xl",
+    children: "Connect Wallet",
+  },
+};
+
+// 2XL Size
+export const Default2XL: Story = {
+  args: {
+    variant: "default",
+    size: "2xl",
+    children: "Button",
+  },
+};
+
+export const Outline2XL: Story = {
+  args: {
+    variant: "outline",
+    size: "2xl",
+    children: "Button",
+  },
+};
+
+export const Destructive2XL: Story = {
+  args: {
+    variant: "destructive",
+    size: "2xl",
+    children: "Delete",
+  },
+};
+
+export const SecondaryDestructive2XL: Story = {
+  args: {
+    variant: "secondary-destructive",
+    size: "2xl",
+    children: "Delete",
+  },
+};
+
+export const WalletConnect2XL: Story = {
+  args: {
+    variant: "walletconnect",
+    size: "2xl",
+    children: "Connect Wallet",
   },
 };

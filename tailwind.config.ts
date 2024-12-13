@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import colors from "tailwindcss/colors";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: [
@@ -91,8 +92,24 @@ const config: Config = {
           "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
         "button-primary-default":
           "0px 0px 0px 1px #3B867E, 0px 1px 2px 0px rgba(16, 24, 40, 0.50), 0px 4px 12px 0px rgba(0, 0, 0, 0.12), 0px 0px 0px 3px #E8F5F4, 0px 9px 14px -5px rgba(255, 255, 255, 0.30) inset",
+        "button-primary-hover":
+          "0px 0px 0px 1px #1B665E, 0px 1px 2px 0px rgba(16, 24, 40, 0.50), 0px 4px 12px 0px rgba(0, 0, 0, 0.12), 0px 0px 0px 3px #E8F5F4, 0px 9px 14px -5px rgba(255, 255, 255, 0.30) inset",
+        "button-primary-focus":
+          "0px 0px 0px 1px #2ED3B7, 0px 1px 2px 0px rgba(16, 24, 40, 0.50), 0px 0px 0px 3px #CCFBEF, 0px 4px 8px -5px #EAECF0 inset",
         "button-secondary-default":
           "0px 0px 0px 1px #EAECF0, 0px 1px 2px 0px rgba(16, 24, 40, 0.50), 0px 0px 0px 3px #F9FAFB, 0px 2px 4px -2px #EAECF0 inset",
+        "button-secondary-hover":
+          "0px 0px 0px 1px #EAECF0, 0px 1px 2px 0px rgba(16, 24, 40, 0.50), 0px 4px 12px 0px rgba(0, 0, 0, 0.12), 0px 0px 0px 3px #F9FAFB, 0px 2px 4px -3px #EAECF0 inset",
+        "button-secondary-focus":
+          "0px 0px 0px 1px #2ED3B7, 0px 1px 2px 0px rgba(16, 24, 40, 0.50), 0px 0px 0px 3px #CCFBEF, 0px 4px 8px -5px #EAECF0 inset",
+        "button-walletconnect":
+          "0px 0px 0px 1px #3396FF, 0px 1px 2px 0px rgba(16, 24, 40, 0.50), 0px 0px 0px 3px #E7F3FF, 0px 9px 14px -5px rgba(255, 255, 255, 0.30) inset",
+        "button-walletconnect-hover":
+          "0px 0px 0px 1px #3396FF, 0px 1px 2px 0px rgba(16, 24, 40, 0.50), 0px 4px 12px 0px rgba(0, 0, 0, 0.12), 0px 0px 0px 3px #E7F3FF, 0px 9px 14px -5px rgba(255, 255, 255, 0.30) inset",
+        "button-walletconnect-disabled":
+          "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
+        "button-destructive": "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
+        "button-destructive-focus": "0px 1px 2px 0px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px #FFE4E8",
       },
       borderRadius: {
         "tremor-small": "0.375rem",
@@ -108,9 +125,34 @@ const config: Config = {
         sm: "0.8125rem", // Example: overriding small size
         base: "0.875rem", // Example: overriding base size
         lg: "1rem", // Example: overriding large size
+        "button-sm": ['13px', { lineHeight: '18px', fontWeight: '600' }],
+        "button-md": ['13px', { lineHeight: '18px', fontWeight: '600' }],
+        "button-lg": ['14px', { lineHeight: '20px', fontWeight: '600' }],
+        "button-xl": ['14px', { lineHeight: '20px', fontWeight: '600' }],
+        "button-2xl": ['16px', { lineHeight: '24px', fontWeight: '600' }],
       },
       translate: {
         '7.5': '7.3rem',
+      },
+      ringColor: {
+        'primary': '#CCFBEF',
+      },
+      ringOffsetWidth: {
+        '3': '3px',
+        '4': '4px',
+      },
+      ringWidth: {
+        '3': '3px',
+        '4': '4px',
+      },
+      ringOffsetColor: {
+        'primary': '#E8F5F4',
+        'secondary': '#F9FAFB',
+        'destructive': '#FFE4E8',
+        'walletconnect': '#E7F3FF',
+      },
+      textShadow: {
+        'button': '0px 1px 1px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.06)',
       },
     },
   },
@@ -147,6 +189,22 @@ const config: Config = {
     require("tailwindcss-animate"),
     require("@headlessui/tailwindcss"),
     require("@tailwindcss/forms"),
+    plugin(function ({ 
+      matchUtilities, 
+      theme 
+    }: {
+      matchUtilities: any;
+      theme: (path: string) => Record<string, string>;
+    }) {
+      matchUtilities(
+        {
+          'text-shadow': (value: string) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    }),
   ],
 } satisfies Config;
 

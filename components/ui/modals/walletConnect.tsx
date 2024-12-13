@@ -103,8 +103,8 @@ const WalletConnect: React.FC<WalletConnectProps> = ({
           <div className="flex justify-start w-full pt-5">
             <Button
               type="submit"
-              variant="default"
-              className="w-full   border  border-[#2a7fe7] bg-[#3396FF] hover:bg-[#3396FF]/90 shadow-[0_4px_10px_rgba(231,243,255,0.5)] transition duration-300"
+              variant="walletconnect"
+              className="w-full"
               onClick={handleClick}
               disabled={loading}
             >
