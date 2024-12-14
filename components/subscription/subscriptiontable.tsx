@@ -13,6 +13,7 @@ import {
   useSubscribe,
 } from '@/components/ui/subscribecontext';
 import { WalletProvider } from '@/components/ui/formcontext';
+import NoSubscription from '@/components/ui/subscription modals/noSubscription';
 
 const getTimeRemaining = (endTime: Date) => {
   const total = endTime.getTime() - new Date().getTime();
@@ -62,7 +63,21 @@ const SubscriptionTable: React.FC<{
 
   const handleOpenModal = (subscription: Subscription) => {
     if (subscription.status === 'Inactive') {
-      setIsSubscribeModalOpen(true);
+      if (subscription.network === 'Fireblocks') {
+        setSelectedAccount({
+          ...subscription,
+          isFireblocksInactive: true
+        });
+        setIsModalOpen(true);
+      } else if (subscription.network === 'MATIC') {
+        setSelectedAccount({
+          ...subscription,
+          status: 'Inactive'
+        });
+        setIsModalOpen(true);
+      } else {
+        setIsSubscribeModalOpen(true);
+      }
     } else {
       setSelectedAccount(subscription);
       setIsModalOpen(true);
@@ -76,9 +91,19 @@ const SubscriptionTable: React.FC<{
 
   const filteredSubscriptions = subscriptions.filter((subscription) =>
     activeTab === 'active'
-      ? subscription.status === 'Active'
+      ? subscription.status === 'Active' || subscription.status === 'Pending'
       : subscription.status === 'Inactive'
   );
+
+  const handleInstallClick = (subscription: Subscription) => {
+    if (subscription.name.includes('Safeheron')) {
+      setSelectedAccount(subscription);
+      setIsModalOpen(true);
+    } else {
+      // Handle other install cases
+      console.log('Installing...');
+    }
+  };
 
   return (
     <div className='relative w-full flex flex-col'>
@@ -169,18 +194,28 @@ const SubscriptionTable: React.FC<{
                               ? 'success'
                               : subscription.status === 'Deactivated'
                               ? 'destructive'
+                              : subscription.status === 'Pending'
+                              ? 'pending'
                               : 'destructive'
                           }
                         >
                           {subscription.status}
                         </Badge>
                       </div>
-                      <div className='w-full flex-auto justify-end px-6 py-3 h-16 flex items-center whitespace-nowrap'>
+                      <div className='w-full flex-auto justify-end px-6 py-3 h-16 flex items-center whitespace-nowrap gap-2'>
+                        {subscription.status === 'Pending' && (
+                          <Button
+                            variant='outline'
+                            onClick={() => handleInstallClick(subscription)}
+                          >
+                            Install
+                          </Button>
+                        )}
                         <Button
                           variant='outline'
                           onClick={() => {
                             if (subscription.status === 'Inactive') {
-                              handleOpenModal(subscription); // Open modal with inactive status
+                              handleOpenModal(subscription);
                             } else {
                               setSelectedAccount(subscription);
                               setIsModalOpen(true);
@@ -197,7 +232,7 @@ const SubscriptionTable: React.FC<{
                 ))}
               </div>
             ) : (
-              <p>No assets to display.</p>
+              <NoSubscription />
             )}
           </div>
         </div>
@@ -217,6 +252,7 @@ const SubscriptionTable: React.FC<{
           }}
           status={selectedAccount.status}
           onResubscribe={handleOpenSubscribeModal}
+          isDFNS={selectedAccount.network === 'DFNS'}
         />
       )}
 
