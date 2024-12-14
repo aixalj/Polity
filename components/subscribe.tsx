@@ -20,6 +20,8 @@ interface SubscribeProps {
 }
 
 const Subscribe: React.FC<SubscribeProps> = ({ variant = "wealth", provider }) => {
+  const buttonText = variant === "network" ? "Buy Now" : "Subscribe Now";
+  
   return (
     <div className="flex gap-3">
       <SubscribeProvider>
@@ -27,7 +29,7 @@ const Subscribe: React.FC<SubscribeProps> = ({ variant = "wealth", provider }) =
           <FSDialog>
             <FSDialogTrigger asChild>
               <Button variant="default" className="w-full" size="default">
-                Subscribe Now
+                {buttonText}
               </Button>
             </FSDialogTrigger>
             <FSDialogContent className="flex w-screen h-screen bg-gray-50">

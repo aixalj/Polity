@@ -66,11 +66,13 @@ import { Scan, Wallet02 } from '@untitled-ui/icons-react';
 interface SubscribeModalProps {
   provider: 'Safeheron' | 'DFNS' | 'Fireblocks';
   initialTab?: 'payment' | 'recipient' | 'amount' | 'confirm';
+  children?: React.ReactNode; // Add this line
 }
 
 const SubscribeModal = ({
   provider,
   initialTab = 'payment',
+  children  // Add this line
 }: SubscribeModalProps) => {
   const tabValues: ('payment' | 'recipient' | 'amount' | 'confirm')[] = [
     'payment',
@@ -6910,7 +6912,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   </div>
                 </div>
 
-                {bitcoinCount >= 1 && (
+                {bitcoinCount >= 0 && (
                   <div className='flex w-full mt-3 items-center justify-between mb-4  px-6'>
                     <div className='flex gap-3  items-center '>
                       <svg
@@ -7019,7 +7021,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   </div>
                 )}
 
-                {ethCount >= 1 && (
+                {ethCount >= 0 && (
                   <div className='flex w-full mt-3 items-center justify-between mb-4  px-6'>
                     <div className='flex gap-3  items-center '>
                       <svg
@@ -7144,7 +7146,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   </div>
                 )}
 
-                {polygonCount >= 1 && (
+                {polygonCount >= 0 && (
                   <div className='flex w-full mt-3 items-center justify-between mb-4  px-6'>
                     <div className='flex gap-3  items-center '>
                       <svg

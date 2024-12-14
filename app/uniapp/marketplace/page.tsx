@@ -975,7 +975,7 @@ export default function Marketplace() {
                       </div>
                     </div>
 
-                    <Subscribe variant='wealth' />
+                    <Subscribe variant='wealth' provider='Safeheron' />
                   </div>
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
                     <div className='w-full justify-between flex items-center pb-3'>
@@ -1131,7 +1131,7 @@ export default function Marketplace() {
                       </div>
                     </div>
 
-                    <Subscribe variant='wealth' />
+                    <Subscribe variant='wealth' provider='Fireblocks' />
                   </div>
                 </div>
               </div>
@@ -1495,16 +1495,14 @@ export default function Marketplace() {
                     </div>
                     <div className='w-full flex justify-between mt-2 mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>
-                          Available Networks
-                        </p>
+                        <p className='text-xs text-gray-500'>-</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            1.99 USDT
+                            Unaivailable
                           </p>
-                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
+                          {/* <p className="text-sm text-gray-500 mb-0.5 ml-0.5">
                             each/mo
-                          </p>
+                          </p> */}
                         </div>
                       </div>
                       <div className='flex flex-col items-end'>
@@ -1516,12 +1514,13 @@ export default function Marketplace() {
                         </div>
                       </div>
                     </div>
-                    <a
-                      href='http://dfns.co'
-                      target='_blank'
-                      rel='noopener noreferrer'
-                    >
-                      <Button className='w-full'>Buy Now</Button>
+                    <a href='/marketplace/subscriptions'>
+                      <Button
+                        variant='secondary'
+                        className='w-full bg-white shadow-button-secondary-default hover:bg-white'
+                      >
+                        Manage
+                      </Button>
                     </a>
                   </div>
                 </div>
@@ -1802,7 +1801,7 @@ export default function Marketplace() {
                   <h2 className='text-2xl font-medium'>Analytics</h2>
                 </div>
                 <div className='w-full grid grid-cols-3  gap-3 justify-start '>
-                <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
+                  <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
                     <div className='w-full justify-between flex items-center pb-3'>
                       <div className='flex flex-row gap-2.5 items-center'>
                         {/* <svg
@@ -1872,7 +1871,9 @@ export default function Marketplace() {
                               height={40}
                             />
                           </div>
-                          <div className='flex flex-col items-center font-medium'>Lukka</div>
+                          <div className='flex flex-col items-center font-medium'>
+                            Lukka
+                          </div>
                         </div>
                       </div>
                       {/* <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
@@ -1895,9 +1896,7 @@ export default function Marketplace() {
                     </a>
                     <div className='w-full flex justify-between mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>
-                          Starting from
-                        </p>
+                        <p className='text-xs text-gray-500'>Starting from</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
                             4.99 USDT
@@ -1907,7 +1906,6 @@ export default function Marketplace() {
                           </p>
                         </div>
                       </div>
-                      
                     </div>
                     <Link href='/marketplace/lukka/report'>
                       <Button className='w-full'>View Options</Button>

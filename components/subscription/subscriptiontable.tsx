@@ -15,7 +15,6 @@ import {
 import { WalletProvider } from '@/components/ui/formcontext';
 import NoSubscription from '@/components/ui/subscription modals/noSubscription';
 
-
 const getTimeRemaining = (endTime: Date) => {
   const total = endTime.getTime() - new Date().getTime();
   const seconds = Math.floor((total / 1000) % 60);
@@ -67,13 +66,13 @@ const SubscriptionTable: React.FC<{
       if (subscription.network === 'Fireblocks') {
         setSelectedAccount({
           ...subscription,
-          isFireblocksInactive: true
+          isFireblocksInactive: true,
         });
         setIsModalOpen(true);
       } else if (subscription.network === 'MATIC') {
         setSelectedAccount({
           ...subscription,
-          status: 'Inactive'
+          status: 'Inactive',
         });
         setIsModalOpen(true);
       } else {
@@ -265,15 +264,15 @@ const SubscriptionTable: React.FC<{
         <FSDialogContent className=' w-full overflow-y-auto bg-white rounded-xl'>
           <WalletProvider>
             <SubscribeProvider>
-              <SubscribeModal 
+              <SubscribeModal
                 provider={
-                  (selectedAccount?.network === 'Fireblocks' || 
-                   selectedAccount?.network === 'Safeheron' || 
-                   selectedAccount?.network === 'DFNS') 
-                    ? selectedAccount.network 
+                  selectedAccount?.network === 'Fireblocks' ||
+                  selectedAccount?.network === 'Safeheron' ||
+                  selectedAccount?.network === 'DFNS'
+                    ? selectedAccount.network
                     : 'DFNS'
-                } 
-                initialTab="confirm"
+                }
+                initialTab='confirm'
               />
             </SubscribeProvider>
           </WalletProvider>
