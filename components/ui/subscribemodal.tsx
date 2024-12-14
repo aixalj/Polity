@@ -65,11 +65,20 @@ import { Scan, Wallet02 } from '@untitled-ui/icons-react';
 
 interface SubscribeModalProps {
   provider: 'Safeheron' | 'DFNS' | 'Fireblocks';
+  initialTab?: 'payment' | 'recipient' | 'amount' | 'confirm';
 }
 
-const SubscribeModal = ({ provider }: SubscribeModalProps) => {
-  const tabValues = ['payment', 'recipient', 'amount', 'confirm'];
-  const [activeTab, setActiveTab] = useState(tabValues[0]);
+const SubscribeModal = ({
+  provider,
+  initialTab = 'payment',
+}: SubscribeModalProps) => {
+  const tabValues: ('payment' | 'recipient' | 'amount' | 'confirm')[] = [
+    'payment',
+    'recipient',
+    'amount',
+    'confirm',
+  ];
+  const [activeTab, setActiveTab] = useState(initialTab || tabValues[0]);
   // const [bitcoinCount, setBitcoinCount] = useState(0);
   const {
     bitcoinCount,
@@ -180,10 +189,6 @@ const SubscribeModal = ({ provider }: SubscribeModalProps) => {
   const canContinue = () => {
     if (
       activeTab === 'payment' ||
-      (activeTab === 'payment' &&
-        selectedWallet.length >= 3 &&
-        selectedNetwork.length >= 3 &&
-        selectedAsset.length >= 3) ||
       activeTab === 'recipient' ||
       activeTab === 'amount' ||
       activeTab === 'confirm'
@@ -1274,7 +1279,9 @@ const SubscribeModal = ({ provider }: SubscribeModalProps) => {
       </div>
       <Tabs
         value={activeTab}
-        onValueChange={setActiveTab}
+        onValueChange={(value) =>
+          setActiveTab(value as 'payment' | 'recipient' | 'amount' | 'confirm')
+        }
         defaultValue='payment'
         id='send-tabs'
         className='flex w-screen h-screen bg-gray-50'
@@ -2749,6 +2756,7 @@ const SubscribeModal = ({ provider }: SubscribeModalProps) => {
                     <p className='text-sm text-gray-600 '>per month</p>
                   </div>
                 </div>
+
                 <div className='w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2'>
                   Features
                 </div>
@@ -3530,6 +3538,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                         </p>
                       </div>
                     </div>
+
                     <div className='flex flex-col items-end font-medium leading-5'>
                       <div className='flex items-center gap-1'>
                         <p className='text-sm text-gray-600 mr-1'>1x</p>
@@ -3576,439 +3585,393 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                     </div>
                   </div>
 
-                  {bitcoinCount >= 1 && (
-                    <div className='flex w-full mt-3 items-center justify-between mb-4  px-6'>
-                      <div className='flex gap-3  items-center '>
-                        <svg
-                          width='32'
-                          height='32'
-                          viewBox='0 0 32 32'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
-                        >
-                          <g clip-path='url(#clip0_164_3339)'>
+                  <div className='flex w-full mt-3 items-center justify-between mb-4  px-6'>
+                    <div className='flex gap-3  items-center '>
+                      <svg
+                        width='32'
+                        height='32'
+                        viewBox='0 0 32 32'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <g clip-path='url(#clip0_164_3339)'>
+                          <rect width='32' height='32' rx='9' fill='#F7931A' />
+                          <g clip-path='url(#clip1_164_3339)'>
                             <rect
                               width='32'
                               height='32'
-                              rx='9'
+                              rx='6'
                               fill='#F7931A'
                             />
-                            <g clip-path='url(#clip1_164_3339)'>
-                              <rect
-                                width='32'
-                                height='32'
-                                rx='6'
-                                fill='#F7931A'
-                              />
-                              <path
-                                d='M31.5216 19.8705C29.3847 28.442 20.7031 33.6584 12.1306 31.521C3.56168 29.3841 -1.65477 20.702 0.483083 12.1312C2.61906 3.5587 11.3006 -1.65814 19.8705 0.478775C28.4424 2.61569 33.6585 11.2987 31.5214 19.8706L31.5215 19.8705H31.5216Z'
-                                fill='#F7931A'
-                              />
-                              <path
-                                fill-rule='evenodd'
-                                clip-rule='evenodd'
-                                d='M23.0573 13.7204C23.3758 11.5911 21.7547 10.4466 19.538 9.68305L20.2571 6.79879L18.5014 6.36131L17.8014 9.16963C17.3398 9.05451 16.8658 8.94603 16.3947 8.8385L17.0998 6.01165L15.3451 5.57416L14.6256 8.45748C14.2437 8.37051 13.8685 8.28456 13.5046 8.194L13.5066 8.18493L11.0854 7.58031L10.6183 9.45555C10.6183 9.45555 11.9209 9.75414 11.8935 9.77252C12.6045 9.94997 12.733 10.4206 12.7117 10.7937L11.8926 14.0795C11.9415 14.0919 12.005 14.1099 12.0751 14.1381L12.0241 14.1254C11.9808 14.1145 11.9357 14.1033 11.8895 14.0922L10.7414 18.6952C10.6545 18.9112 10.4339 19.2354 9.93685 19.1123C9.95445 19.1378 8.66075 18.7938 8.66075 18.7938L7.78906 20.8036L10.0739 21.3731C10.3241 21.4359 10.5713 21.5003 10.8161 21.5641C10.9871 21.6087 11.1569 21.653 11.3256 21.6961L10.5991 24.6135L12.3528 25.051L13.0723 22.1646C13.5514 22.2946 14.0163 22.4146 14.4715 22.5277L13.7544 25.4005L15.5102 25.8379L16.2367 22.9261C19.2306 23.4927 21.4818 23.2642 22.4293 20.5563C23.1929 18.376 22.3913 17.1185 20.8162 16.2984C21.9635 16.0338 22.8276 15.2793 23.058 13.7206L23.0574 13.7202L23.0573 13.7204ZM19.0459 19.3455C18.5481 21.3458 15.417 20.5188 13.9845 20.1404C13.8556 20.1064 13.7405 20.076 13.6423 20.0516L14.6064 16.1866C14.7261 16.2165 14.8724 16.2493 15.0381 16.2865L15.0381 16.2865C16.5199 16.6191 19.5559 17.3004 19.046 19.3455H19.0459ZM15.3354 14.4927C16.5297 14.8115 19.1351 15.5068 19.5889 13.6888H19.589C20.0524 11.8294 17.5203 11.2688 16.2837 10.995C16.1446 10.9642 16.0218 10.937 15.9216 10.9121L15.0475 14.4174C15.13 14.4379 15.2269 14.4638 15.3354 14.4927Z'
-                                fill='white'
-                              />
-                            </g>
+                            <path
+                              d='M31.5216 19.8705C29.3847 28.442 20.7031 33.6584 12.1306 31.521C3.56168 29.3841 -1.65477 20.702 0.483083 12.1312C2.61906 3.5587 11.3006 -1.65814 19.8705 0.478775C28.4424 2.61569 33.6585 11.2987 31.5214 19.8706L31.5215 19.8705H31.5216Z'
+                              fill='#F7931A'
+                            />
+                            <path
+                              fill-rule='evenodd'
+                              clip-rule='evenodd'
+                              d='M23.0573 13.7204C23.3758 11.5911 21.7547 10.4466 19.538 9.68305L20.2571 6.79879L18.5014 6.36131L17.8014 9.16963C17.3398 9.05451 16.8658 8.94603 16.3947 8.8385L17.0998 6.01165L15.3451 5.57416L14.6256 8.45748C14.2437 8.37051 13.8685 8.28456 13.5046 8.194L13.5066 8.18493L11.0854 7.58031L10.6183 9.45555C10.6183 9.45555 11.9209 9.75414 11.8935 9.77252C12.6045 9.94997 12.733 10.4206 12.7117 10.7937L11.8926 14.0795C11.9415 14.0919 12.005 14.1099 12.0751 14.1381L12.0241 14.1254C11.9808 14.1145 11.9357 14.1033 11.8895 14.0922L10.7414 18.6952C10.6545 18.9112 10.4339 19.2354 9.93685 19.1123C9.95445 19.1378 8.66075 18.7938 8.66075 18.7938L7.78906 20.8036L10.0739 21.3731C10.3241 21.4359 10.5713 21.5003 10.8161 21.5641C10.9871 21.6087 11.1569 21.653 11.3256 21.6961L10.5991 24.6135L12.3528 25.051L13.0723 22.1646C13.5514 22.2946 14.0163 22.4146 14.4715 22.5277L13.7544 25.4005L15.5102 25.8379L16.2367 22.9261C19.2306 23.4927 21.4818 23.2642 22.4293 20.5563C23.1929 18.376 22.3913 17.1185 20.8162 16.2984C21.9635 16.0338 22.8276 15.2793 23.058 13.7206L23.0574 13.7202L23.0573 13.7204ZM19.0459 19.3455C18.5481 21.3458 15.417 20.5188 13.9845 20.1404C13.8556 20.1064 13.7405 20.076 13.6423 20.0516L14.6064 16.1866C14.7261 16.2165 14.8724 16.2493 15.0381 16.2865L15.0381 16.2865C16.5199 16.6191 19.5559 17.3004 19.046 19.3455H19.0459ZM15.3354 14.4927C16.5297 14.8115 19.1351 15.5068 19.5889 13.6888H19.589C20.0524 11.8294 17.5203 11.2688 16.2837 10.995C16.1446 10.9642 16.0218 10.937 15.9216 10.9121L15.0475 14.4174C15.13 14.4379 15.2269 14.4638 15.3354 14.4927Z'
+                              fill='white'
+                            />
                           </g>
-                          <rect
-                            x='0.5'
-                            y='0.5'
-                            width='31'
-                            height='31'
-                            rx='8.5'
-                            stroke='#D0D5DD'
-                          />
+                        </g>
+                        <rect
+                          x='0.5'
+                          y='0.5'
+                          width='31'
+                          height='31'
+                          rx='8.5'
+                          stroke='#D0D5DD'
+                        />
+                        <defs>
+                          <clipPath id='clip0_164_3339'>
+                            <rect width='32' height='32' rx='9' fill='white' />
+                          </clipPath>
+                          <clipPath id='clip1_164_3339'>
+                            <rect width='32' height='32' rx='6' fill='white' />
+                          </clipPath>
+                        </defs>
+                      </svg>
+
+                      <div className='flex flex-col  items-start justify-start'>
+                        <p className='text-md font-medium'>
+                          Bitcoin Network Account
+                        </p>
+                        <p className='text-sm text-gray-700 font-medium'>
+                          Monthly Plan
+                        </p>
+                      </div>
+                    </div>
+                    <div className='flex flex-col items-end font-medium leading-5'>
+                      <div className='flex items-center gap-1'>
+                        <p className='text-sm text-gray-600 mr-1'>
+                          1x
+                        </p>
+                        <svg
+                          width='16'
+                          height='16'
+                          viewBox='0 0 16 16'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <g clip-path='url(#clip0_150_11733)'>
+                            <rect
+                              width='16'
+                              height='16'
+                              rx='8'
+                              fill='#50AF95'
+                            />
+                            <path
+                              d='M15.7589 9.93524C14.6904 14.221 10.3496 16.8292 6.06335 15.7605C1.77889 14.692 -0.829339 10.351 0.239588 6.06558C1.30758 1.77935 5.64835 -0.829071 9.93329 0.239387C14.2192 1.30785 16.8273 5.64936 15.7587 9.93532L15.7588 9.93524H15.7589Z'
+                              fill='#50AF95'
+                            />
+                            <path
+                              fill-rule='evenodd'
+                              clip-rule='evenodd'
+                              d='M9.01232 8.90696C8.95575 8.91121 8.66349 8.92865 8.01155 8.92865C7.49302 8.92865 7.12486 8.91309 6.9957 8.90696C4.9918 8.81881 3.49607 8.46998 3.49607 8.05233C3.49607 7.63467 4.9918 7.28631 6.9957 7.19675V8.55955C7.12675 8.56897 7.50198 8.59113 8.02051 8.59113C8.64275 8.59113 8.95434 8.5652 9.01044 8.56002V7.19769C11.0101 7.28678 12.5025 7.63562 12.5025 8.05233C12.5025 8.46904 11.0106 8.81787 9.01044 8.90649L9.01232 8.90696ZM9.01232 7.05674V5.83725H11.803V3.9776H4.20505V5.83725H6.99523V7.05627C4.72735 7.16045 3.02185 7.60969 3.02185 8.14802C3.02185 8.68635 4.72735 9.13512 6.99523 9.23977V13.1476H9.01185V9.23835C11.2745 9.13418 12.9772 8.68541 12.9772 8.14755C12.9772 7.60969 11.276 7.16092 9.01185 7.05627L9.01232 7.05674Z'
+                              fill='white'
+                            />
+                          </g>
                           <defs>
-                            <clipPath id='clip0_164_3339'>
+                            <clipPath id='clip0_150_11733'>
                               <rect
-                                width='32'
-                                height='32'
-                                rx='9'
-                                fill='white'
-                              />
-                            </clipPath>
-                            <clipPath id='clip1_164_3339'>
-                              <rect
-                                width='32'
-                                height='32'
-                                rx='6'
+                                width='16'
+                                height='16'
+                                rx='8'
                                 fill='white'
                               />
                             </clipPath>
                           </defs>
                         </svg>
 
-                        <div className='flex flex-col  items-start justify-start'>
-                          <p className='text-md font-medium'>
-                            Bitcoin Network Account
-                          </p>
-                          <p className='text-sm text-gray-700 font-medium'>
-                            Monthly Plan
-                          </p>
-                        </div>
+                        <h3 className='text-md text-gray-800 '>
+                          {bitcoinCount * 1.99} USDT
+                        </h3>
                       </div>
-                      <div className='flex flex-col items-end font-medium leading-5'>
-                        <div className='flex items-center gap-1'>
-                          <p className='text-sm text-gray-600 mr-1'>
-                            {bitcoinCount}x
-                          </p>
-                          <svg
-                            width='16'
-                            height='16'
-                            viewBox='0 0 16 16'
-                            fill='none'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            <g clip-path='url(#clip0_150_11733)'>
-                              <rect
-                                width='16'
-                                height='16'
-                                rx='8'
-                                fill='#50AF95'
-                              />
-                              <path
-                                d='M15.7589 9.93524C14.6904 14.221 10.3496 16.8292 6.06335 15.7605C1.77889 14.692 -0.829339 10.351 0.239588 6.06558C1.30758 1.77935 5.64835 -0.829071 9.93329 0.239387C14.2192 1.30785 16.8273 5.64936 15.7587 9.93532L15.7588 9.93524H15.7589Z'
-                                fill='#50AF95'
-                              />
-                              <path
-                                fill-rule='evenodd'
-                                clip-rule='evenodd'
-                                d='M9.01232 8.90696C8.95575 8.91121 8.66349 8.92865 8.01155 8.92865C7.49302 8.92865 7.12486 8.91309 6.9957 8.90696C4.9918 8.81881 3.49607 8.46998 3.49607 8.05233C3.49607 7.63467 4.9918 7.28631 6.9957 7.19675V8.55955C7.12675 8.56897 7.50198 8.59113 8.02051 8.59113C8.64275 8.59113 8.95434 8.5652 9.01044 8.56002V7.19769C11.0101 7.28678 12.5025 7.63562 12.5025 8.05233C12.5025 8.46904 11.0106 8.81787 9.01044 8.90649L9.01232 8.90696ZM9.01232 7.05674V5.83725H11.803V3.9776H4.20505V5.83725H6.99523V7.05627C4.72735 7.16045 3.02185 7.60969 3.02185 8.14802C3.02185 8.68635 4.72735 9.13512 6.99523 9.23977V13.1476H9.01185V9.23835C11.2745 9.13418 12.9772 8.68541 12.9772 8.14755C12.9772 7.60969 11.276 7.16092 9.01185 7.05627L9.01232 7.05674Z'
-                                fill='white'
-                              />
-                            </g>
-                            <defs>
-                              <clipPath id='clip0_150_11733'>
-                                <rect
-                                  width='16'
-                                  height='16'
-                                  rx='8'
-                                  fill='white'
-                                />
-                              </clipPath>
-                            </defs>
-                          </svg>
-
-                          <h3 className='text-md text-gray-800 '>
-                            {bitcoinCount * 1.99} USDT
-                          </h3>
-                        </div>
-                        <p className='text-sm text-gray-600 '>per month</p>
-                      </div>
+                      <p className='text-sm text-gray-600 '>per month</p>
                     </div>
-                  )}
+                  </div>
 
-                  {ethCount >= 1 && (
-                    <div className='flex w-full mt-3 items-center justify-between mb-4  px-6'>
-                      <div className='flex gap-3  items-center '>
-                        <svg
-                          width='32'
-                          height='32'
-                          viewBox='0 0 32 32'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
-                        >
-                          <g clip-path='url(#clip0_164_3363)'>
+                  <div className='flex w-full mt-3 items-center justify-between mb-4  px-6'>
+                    <div className='flex gap-3  items-center '>
+                      <svg
+                        width='32'
+                        height='32'
+                        viewBox='0 0 32 32'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <g clip-path='url(#clip0_164_3363)'>
+                          <rect width='32' height='32' rx='9' fill='#ECEFF0' />
+                          <g clip-path='url(#clip1_164_3363)'>
                             <rect
                               width='32'
                               height='32'
-                              rx='9'
+                              rx='6'
                               fill='#ECEFF0'
                             />
-                            <g clip-path='url(#clip1_164_3363)'>
-                              <rect
-                                width='32'
-                                height='32'
-                                rx='6'
-                                fill='#ECEFF0'
-                              />
-                              <circle cx='16' cy='16' r='16' fill='#ECEFF0' />
-                              <path
-                                opacity='0.6'
-                                d='M15.8232 13.6819L10 16.3292L15.8232 19.7715L21.6474 16.3292L15.8232 13.6819Z'
-                                fill='black'
-                              />
-                              <path
-                                opacity='0.45'
-                                d='M10.002 16.3291L15.8251 19.7715V13.6819V6.66666L10.002 16.3291Z'
-                                fill='black'
-                              />
-                              <path
-                                opacity='0.8'
-                                d='M15.8252 6.66666V13.6819V19.7715L21.6484 16.3291L15.8252 6.66666Z'
-                                fill='black'
-                              />
-                              <path
-                                opacity='0.45'
-                                d='M10 17.4339L15.8232 25.64V20.874L10 17.4339Z'
-                                fill='black'
-                              />
-                              <path
-                                opacity='0.8'
-                                d='M15.8232 20.874V25.64L21.6507 17.4339L15.8232 20.874Z'
-                                fill='black'
-                              />
-                            </g>
+                            <circle cx='16' cy='16' r='16' fill='#ECEFF0' />
+                            <path
+                              opacity='0.6'
+                              d='M15.8232 13.6819L10 16.3292L15.8232 19.7715L21.6474 16.3292L15.8232 13.6819Z'
+                              fill='black'
+                            />
+                            <path
+                              opacity='0.45'
+                              d='M10.002 16.3291L15.8251 19.7715V13.6819V6.66666L10.002 16.3291Z'
+                              fill='black'
+                            />
+                            <path
+                              opacity='0.8'
+                              d='M15.8252 6.66666V13.6819V19.7715L21.6484 16.3291L15.8252 6.66666Z'
+                              fill='black'
+                            />
+                            <path
+                              opacity='0.45'
+                              d='M10 17.4339L15.8232 25.64V20.874L10 17.4339Z'
+                              fill='black'
+                            />
+                            <path
+                              opacity='0.8'
+                              d='M15.8232 20.874V25.64L21.6507 17.4339L15.8232 20.874Z'
+                              fill='black'
+                            />
                           </g>
-                          <rect
-                            x='0.5'
-                            y='0.5'
-                            width='31'
-                            height='31'
-                            rx='8.5'
-                            stroke='#D0D5DD'
-                          />
-                          <defs>
-                            <clipPath id='clip0_164_3363'>
-                              <rect
-                                width='32'
-                                height='32'
-                                rx='9'
-                                fill='white'
-                              />
-                            </clipPath>
-                            <clipPath id='clip1_164_3363'>
-                              <rect
-                                width='32'
-                                height='32'
-                                rx='6'
-                                fill='white'
-                              />
-                            </clipPath>
-                          </defs>
-                        </svg>
+                        </g>
+                        <rect
+                          x='0.5'
+                          y='0.5'
+                          width='31'
+                          height='31'
+                          rx='8.5'
+                          stroke='#D0D5DD'
+                        />
+                        <defs>
+                          <clipPath id='clip0_164_3363'>
+                            <rect width='32' height='32' rx='9' fill='white' />
+                          </clipPath>
+                          <clipPath id='clip1_164_3363'>
+                            <rect width='32' height='32' rx='6' fill='white' />
+                          </clipPath>
+                        </defs>
+                      </svg>
 
-                        <div className='flex flex-col  items-start justify-start'>
-                          <p className='text-md font-medium'>
-                            Ethereum Network Account
-                          </p>
-                          <p className='text-sm text-gray-700 font-medium'>
-                            Monthly Plan
-                          </p>
-                        </div>
-                      </div>
-                      <div className='flex flex-col items-end font-medium leading-5'>
-                        <div className='flex items-center gap-1'>
-                          <p className='text-sm text-gray-600 mr-1'>
-                            {ethCount}x
-                          </p>
-                          <svg
-                            width='16'
-                            height='16'
-                            viewBox='0 0 16 16'
-                            fill='none'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            <g clip-path='url(#clip0_150_11733)'>
-                              <rect
-                                width='16'
-                                height='16'
-                                rx='8'
-                                fill='#50AF95'
-                              />
-                              <path
-                                d='M15.7589 9.93524C14.6904 14.221 10.3496 16.8292 6.06335 15.7605C1.77889 14.692 -0.829339 10.351 0.239588 6.06558C1.30758 1.77935 5.64835 -0.829071 9.93329 0.239387C14.2192 1.30785 16.8273 5.64936 15.7587 9.93532L15.7588 9.93524H15.7589Z'
-                                fill='#50AF95'
-                              />
-                              <path
-                                fill-rule='evenodd'
-                                clip-rule='evenodd'
-                                d='M9.01232 8.90696C8.95575 8.91121 8.66349 8.92865 8.01155 8.92865C7.49302 8.92865 7.12486 8.91309 6.9957 8.90696C4.9918 8.81881 3.49607 8.46998 3.49607 8.05233C3.49607 7.63467 4.9918 7.28631 6.9957 7.19675V8.55955C7.12675 8.56897 7.50198 8.59113 8.02051 8.59113C8.64275 8.59113 8.95434 8.5652 9.01044 8.56002V7.19769C11.0101 7.28678 12.5025 7.63562 12.5025 8.05233C12.5025 8.46904 11.0106 8.81787 9.01044 8.90649L9.01232 8.90696ZM9.01232 7.05674V5.83725H11.803V3.9776H4.20505V5.83725H6.99523V7.05627C4.72735 7.16045 3.02185 7.60969 3.02185 8.14802C3.02185 8.68635 4.72735 9.13512 6.99523 9.23977V13.1476H9.01185V9.23835C11.2745 9.13418 12.9772 8.68541 12.9772 8.14755C12.9772 7.60969 11.276 7.16092 9.01185 7.05627L9.01232 7.05674Z'
-                                fill='white'
-                              />
-                            </g>
-                            <defs>
-                              <clipPath id='clip0_150_11733'>
-                                <rect
-                                  width='16'
-                                  height='16'
-                                  rx='8'
-                                  fill='white'
-                                />
-                              </clipPath>
-                            </defs>
-                          </svg>
-
-                          <h3 className='text-md text-gray-800 '>
-                            {ethCount * 1.99} USDT
-                          </h3>
-                        </div>
-                        <p className='text-sm text-gray-600 '>per month</p>
+                      <div className='flex flex-col  items-start justify-start'>
+                        <p className='text-md font-medium'>
+                          Ethereum Network Account
+                        </p>
+                        <p className='text-sm text-gray-700 font-medium'>
+                          Monthly Plan
+                        </p>
                       </div>
                     </div>
-                  )}
-
-                  {polygonCount >= 1 && (
-                    <div className='flex w-full mt-3 items-center justify-between mb-4  px-6'>
-                      <div className='flex gap-3  items-center '>
+                    <div className='flex flex-col items-end font-medium leading-5'>
+                      <div className='flex items-center gap-1'>
+                        <p className='text-sm text-gray-600 mr-1'>
+                          1x
+                        </p>
                         <svg
-                          width='32'
-                          height='32'
-                          viewBox='0 0 32 32'
+                          width='16'
+                          height='16'
+                          viewBox='0 0 16 16'
                           fill='none'
                           xmlns='http://www.w3.org/2000/svg'
                         >
-                          <g clip-path='url(#clip0_164_3389)'>
+                          <g clip-path='url(#clip0_150_11733)'>
                             <rect
-                              width='32'
-                              height='32'
-                              rx='9'
-                              fill='url(#paint0_linear_164_3389)'
+                              width='16'
+                              height='16'
+                              rx='8'
+                              fill='#50AF95'
                             />
-                            <g clip-path='url(#clip1_164_3389)'>
-                              <rect
-                                width='32'
-                                height='32'
-                                rx='6'
-                                fill='url(#paint1_linear_164_3389)'
-                              />
-                              <mask
-                                id='mask0_164_3389'
-                                maskUnits='userSpaceOnUse'
-                                x='0'
-                                y='0'
-                                width='32'
-                                height='32'
-                              >
-                                <path
-                                  d='M16.0004 31.6742C24.6571 31.6742 31.6747 24.6566 31.6747 15.9999C31.6747 7.34328 24.6571 0.325684 16.0004 0.325684C7.34377 0.325684 0.326172 7.34328 0.326172 15.9999C0.326172 24.6566 7.34377 31.6742 16.0004 31.6742Z'
-                                  fill='white'
-                                />
-                              </mask>
-                              <g mask='url(#mask0_164_3389)'>
-                                <path
-                                  d='M33.1586 -1.15848H-1.1582V33.1583H33.1586V-1.15848Z'
-                                  fill='url(#paint2_linear_164_3389)'
-                                />
-                              </g>
-                              <path
-                                d='M20.5333 19.3824L24.9679 16.8217C25.2027 16.6861 25.348 16.4339 25.348 16.1625V11.0419C25.348 10.7712 25.2021 10.5184 24.9679 10.3827L20.5333 7.82206C20.2984 7.68638 20.0072 7.68702 19.7723 7.82206L15.3378 10.3827C15.1029 10.5184 14.9576 10.7712 14.9576 11.0419V20.1933L11.8479 21.9885L8.7381 20.1933V16.6022L11.8479 14.807L13.8991 15.991V13.5821L12.228 12.6176C12.1128 12.551 11.981 12.5158 11.8472 12.5158C11.7135 12.5158 11.5816 12.551 11.4671 12.6176L7.0325 15.1782C6.79762 15.3139 6.65234 15.5661 6.65234 15.8374V20.9581C6.65234 21.2288 6.79826 21.4816 7.0325 21.6173L11.4671 24.1779C11.7013 24.3129 11.9931 24.3129 12.228 24.1779L16.6626 21.6179C16.8975 21.4822 17.0427 21.2294 17.0427 20.9587V11.8073L17.0991 11.7753L20.1525 10.0121L23.2623 11.8073V15.3984L20.1525 17.1936L18.1045 16.0109V18.4198L19.7723 19.383C20.0072 19.5181 20.2984 19.5181 20.5333 19.383V19.3824Z'
-                                fill='white'
-                              />
-                            </g>
+                            <path
+                              d='M15.7589 9.93524C14.6904 14.221 10.3496 16.8292 6.06335 15.7605C1.77889 14.692 -0.829339 10.351 0.239588 6.06558C1.30758 1.77935 5.64835 -0.829071 9.93329 0.239387C14.2192 1.30785 16.8273 5.64936 15.7587 9.93532L15.7588 9.93524H15.7589Z'
+                              fill='#50AF95'
+                            />
+                            <path
+                              fill-rule='evenodd'
+                              clip-rule='evenodd'
+                              d='M9.01232 8.90696C8.95575 8.91121 8.66349 8.92865 8.01155 8.92865C7.49302 8.92865 7.12486 8.91309 6.9957 8.90696C4.9918 8.81881 3.49607 8.46998 3.49607 8.05233C3.49607 7.63467 4.9918 7.28631 6.9957 7.19675V8.55955C7.12675 8.56897 7.50198 8.59113 8.02051 8.59113C8.64275 8.59113 8.95434 8.5652 9.01044 8.56002V7.19769C11.0101 7.28678 12.5025 7.63562 12.5025 8.05233C12.5025 8.46904 11.0106 8.81787 9.01044 8.90649L9.01232 8.90696ZM9.01232 7.05674V5.83725H11.803V3.9776H4.20505V5.83725H6.99523V7.05627C4.72735 7.16045 3.02185 7.60969 3.02185 8.14802C3.02185 8.68635 4.72735 9.13512 6.99523 9.23977V13.1476H9.01185V9.23835C11.2745 9.13418 12.9772 8.68541 12.9772 8.14755C12.9772 7.60969 11.276 7.16092 9.01185 7.05627L9.01232 7.05674Z'
+                              fill='white'
+                            />
                           </g>
-                          <rect
-                            x='0.5'
-                            y='0.5'
-                            width='31'
-                            height='31'
-                            rx='8.5'
-                            stroke='#D0D5DD'
-                          />
                           <defs>
-                            <linearGradient
-                              id='paint0_linear_164_3389'
-                              x1='-5.84797'
-                              y1='2.63006'
-                              x2='27.1869'
-                              y2='22.8458'
-                              gradientUnits='userSpaceOnUse'
-                            >
-                              <stop stop-color='#A229C5' />
-                              <stop offset='1' stop-color='#7B3FE4' />
-                            </linearGradient>
-                            <linearGradient
-                              id='paint1_linear_164_3389'
-                              x1='-5.84797'
-                              y1='2.63006'
-                              x2='27.1869'
-                              y2='22.8458'
-                              gradientUnits='userSpaceOnUse'
-                            >
-                              <stop stop-color='#A229C5' />
-                              <stop offset='1' stop-color='#7B3FE4' />
-                            </linearGradient>
-                            <linearGradient
-                              id='paint2_linear_164_3389'
-                              x1='-7.42956'
-                              y1='1.662'
-                              x2='27.997'
-                              y2='23.3414'
-                              gradientUnits='userSpaceOnUse'
-                            >
-                              <stop stop-color='#A229C5' />
-                              <stop offset='1' stop-color='#7B3FE4' />
-                            </linearGradient>
-                            <clipPath id='clip0_164_3389'>
+                            <clipPath id='clip0_150_11733'>
                               <rect
-                                width='32'
-                                height='32'
-                                rx='9'
-                                fill='white'
-                              />
-                            </clipPath>
-                            <clipPath id='clip1_164_3389'>
-                              <rect
-                                width='32'
-                                height='32'
-                                rx='6'
+                                width='16'
+                                height='16'
+                                rx='8'
                                 fill='white'
                               />
                             </clipPath>
                           </defs>
                         </svg>
 
-                        <div className='flex flex-col  items-start justify-start'>
-                          <p className='text-md font-medium'>
-                            Polygon Network Account
-                          </p>
-                          <p className='text-sm text-gray-700 font-medium'>
-                            Monthly Plan
-                          </p>
-                        </div>
+                        <h3 className='text-md text-gray-800 '>
+                          {ethCount * 1.99} USDT
+                        </h3>
                       </div>
-                      <div className='flex flex-col items-end font-medium leading-5'>
-                        <div className='flex items-center gap-1'>
-                          <p className='text-sm text-gray-600 mr-1'>
-                            {polygonCount}x
-                          </p>
-                          <svg
-                            width='16'
-                            height='16'
-                            viewBox='0 0 16 16'
-                            fill='none'
-                            xmlns='http://www.w3.org/2000/svg'
+                      <p className='text-sm text-gray-600 '>per month</p>
+                    </div>
+                  </div>
+
+                  <div className='flex w-full mt-3 items-center justify-between mb-4  px-6'>
+                    <div className='flex gap-3  items-center '>
+                      <svg
+                        width='32'
+                        height='32'
+                        viewBox='0 0 32 32'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <g clip-path='url(#clip0_164_3389)'>
+                          <rect
+                            width='32'
+                            height='32'
+                            rx='9'
+                            fill='url(#paint0_linear_164_3389)'
+                          />
+                          <g clip-path='url(#clip1_164_3389)'>
+                            <rect
+                              width='32'
+                              height='32'
+                              rx='6'
+                              fill='url(#paint1_linear_164_3389)'
+                            />
+                            <mask
+                              id='mask0_164_3389'
+                              maskUnits='userSpaceOnUse'
+                              x='0'
+                              y='0'
+                              width='32'
+                              height='32'
+                            >
+                              <path
+                                d='M16.0004 31.6742C24.6571 31.6742 31.6747 24.6566 31.6747 15.9999C31.6747 7.34328 24.6571 0.325684 16.0004 0.325684C7.34377 0.325684 0.326172 7.34328 0.326172 15.9999C0.326172 24.6566 7.34377 31.6742 16.0004 31.6742Z'
+                                fill='white'
+                              />
+                            </mask>
+                            <g mask='url(#mask0_164_3389)'>
+                              <path
+                                d='M33.1586 -1.15848H-1.1582V33.1583H33.1586V-1.15848Z'
+                                fill='url(#paint2_linear_164_3389)'
+                              />
+                            </g>
+                            <path
+                              d='M20.5333 19.3824L24.9679 16.8217C25.2027 16.6861 25.348 16.4339 25.348 16.1625V11.0419C25.348 10.7712 25.2021 10.5184 24.9679 10.3827L20.5333 7.82206C20.2984 7.68638 20.0072 7.68702 19.7723 7.82206L15.3378 10.3827C15.1029 10.5184 14.9576 10.7712 14.9576 11.0419V20.1933L11.8479 21.9885L8.7381 20.1933V16.6022L11.8479 14.807L13.8991 15.991V13.5821L12.228 12.6176C12.1128 12.551 11.981 12.5158 11.8472 12.5158C11.7135 12.5158 11.5816 12.551 11.4671 12.6176L7.0325 15.1782C6.79762 15.3139 6.65234 15.5661 6.65234 15.8374V20.9581C6.65234 21.2288 6.79826 21.4816 7.0325 21.6173L11.4671 24.1779C11.7013 24.3129 11.9931 24.3129 12.228 24.1779L16.6626 21.6179C16.8975 21.4822 17.0427 21.2294 17.0427 20.9587V11.8073L17.0991 11.7753L20.1525 10.0121L23.2623 11.8073V15.3984L20.1525 17.1936L18.1045 16.0109V18.4198L19.7723 19.383C20.0072 19.5181 20.2984 19.5181 20.5333 19.383V19.3824Z'
+                              fill='white'
+                            />
+                          </g>
+                        </g>
+                        <rect
+                          x='0.5'
+                          y='0.5'
+                          width='31'
+                          height='31'
+                          rx='8.5'
+                          stroke='#D0D5DD'
+                        />
+                        <defs>
+                          <linearGradient
+                            id='paint0_linear_164_3389'
+                            x1='-5.84797'
+                            y1='2.63006'
+                            x2='27.1869'
+                            y2='22.8458'
+                            gradientUnits='userSpaceOnUse'
                           >
-                            <g clip-path='url(#clip0_150_11733)'>
+                            <stop stop-color='#A229C5' />
+                            <stop offset='1' stop-color='#7B3FE4' />
+                          </linearGradient>
+                          <linearGradient
+                            id='paint1_linear_164_3389'
+                            x1='-5.84797'
+                            y1='2.63006'
+                            x2='27.1869'
+                            y2='22.8458'
+                            gradientUnits='userSpaceOnUse'
+                          >
+                            <stop stop-color='#A229C5' />
+                            <stop offset='1' stop-color='#7B3FE4' />
+                          </linearGradient>
+                          <linearGradient
+                            id='paint2_linear_164_3389'
+                            x1='-7.42956'
+                            y1='1.662'
+                            x2='27.997'
+                            y2='23.3414'
+                            gradientUnits='userSpaceOnUse'
+                          >
+                            <stop stop-color='#A229C5' />
+                            <stop offset='1' stop-color='#7B3FE4' />
+                          </linearGradient>
+                          <clipPath id='clip0_164_3389'>
+                            <rect width='32' height='32' rx='9' fill='white' />
+                          </clipPath>
+                          <clipPath id='clip1_164_3389'>
+                            <rect width='32' height='32' rx='6' fill='white' />
+                          </clipPath>
+                        </defs>
+                      </svg>
+
+                      <div className='flex flex-col  items-start justify-start'>
+                        <p className='text-md font-medium'>
+                          Polygon Network Account
+                        </p>
+                        <p className='text-sm text-gray-700 font-medium'>
+                          Monthly Plan
+                        </p>
+                      </div>
+                    </div>
+                    <div className='flex flex-col items-end font-medium leading-5'>
+                      <div className='flex items-center gap-1'>
+                        <p className='text-sm text-gray-600 mr-1'>
+                          1x
+                        </p>
+                        <svg
+                          width='16'
+                          height='16'
+                          viewBox='0 0 16 16'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <g clip-path='url(#clip0_150_11733)'>
+                            <rect
+                              width='16'
+                              height='16'
+                              rx='8'
+                              fill='#50AF95'
+                            />
+                            <path
+                              d='M15.7589 9.93524C14.6904 14.221 10.3496 16.8292 6.06335 15.7605C1.77889 14.692 -0.829339 10.351 0.239588 6.06558C1.30758 1.77935 5.64835 -0.829071 9.93329 0.239387C14.2192 1.30785 16.8273 5.64936 15.7587 9.93532L15.7588 9.93524H15.7589Z'
+                              fill='#50AF95'
+                            />
+                            <path
+                              fill-rule='evenodd'
+                              clip-rule='evenodd'
+                              d='M9.01232 8.90696C8.95575 8.91121 8.66349 8.92865 8.01155 8.92865C7.49302 8.92865 7.12486 8.91309 6.9957 8.90696C4.9918 8.81881 3.49607 8.46998 3.49607 8.05233C3.49607 7.63467 4.9918 7.28631 6.9957 7.19675V8.55955C7.12675 8.56897 7.50198 8.59113 8.02051 8.59113C8.64275 8.59113 8.95434 8.5652 9.01044 8.56002V7.19769C11.0101 7.28678 12.5025 7.63562 12.5025 8.05233C12.5025 8.46904 11.0106 8.81787 9.01044 8.90649L9.01232 8.90696ZM9.01232 7.05674V5.83725H11.803V3.9776H4.20505V5.83725H6.99523V7.05627C4.72735 7.16045 3.02185 7.60969 3.02185 8.14802C3.02185 8.68635 4.72735 9.13512 6.99523 9.23977V13.1476H9.01185V9.23835C11.2745 9.13418 12.9772 8.68541 12.9772 8.14755C12.9772 7.60969 11.276 7.16092 9.01185 7.05627L9.01232 7.05674Z'
+                              fill='white'
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id='clip0_150_11733'>
                               <rect
                                 width='16'
                                 height='16'
                                 rx='8'
-                                fill='#50AF95'
-                              />
-                              <path
-                                d='M15.7589 9.93524C14.6904 14.221 10.3496 16.8292 6.06335 15.7605C1.77889 14.692 -0.829339 10.351 0.239588 6.06558C1.30758 1.77935 5.64835 -0.829071 9.93329 0.239387C14.2192 1.30785 16.8273 5.64936 15.7587 9.93532L15.7588 9.93524H15.7589Z'
-                                fill='#50AF95'
-                              />
-                              <path
-                                fill-rule='evenodd'
-                                clip-rule='evenodd'
-                                d='M9.01232 8.90696C8.95575 8.91121 8.66349 8.92865 8.01155 8.92865C7.49302 8.92865 7.12486 8.91309 6.9957 8.90696C4.9918 8.81881 3.49607 8.46998 3.49607 8.05233C3.49607 7.63467 4.9918 7.28631 6.9957 7.19675V8.55955C7.12675 8.56897 7.50198 8.59113 8.02051 8.59113C8.64275 8.59113 8.95434 8.5652 9.01044 8.56002V7.19769C11.0101 7.28678 12.5025 7.63562 12.5025 8.05233C12.5025 8.46904 11.0106 8.81787 9.01044 8.90649L9.01232 8.90696ZM9.01232 7.05674V5.83725H11.803V3.9776H4.20505V5.83725H6.99523V7.05627C4.72735 7.16045 3.02185 7.60969 3.02185 8.14802C3.02185 8.68635 4.72735 9.13512 6.99523 9.23977V13.1476H9.01185V9.23835C11.2745 9.13418 12.9772 8.68541 12.9772 8.14755C12.9772 7.60969 11.276 7.16092 9.01185 7.05627L9.01232 7.05674Z'
                                 fill='white'
                               />
-                            </g>
-                            <defs>
-                              <clipPath id='clip0_150_11733'>
-                                <rect
-                                  width='16'
-                                  height='16'
-                                  rx='8'
-                                  fill='white'
-                                />
-                              </clipPath>
-                            </defs>
-                          </svg>
+                            </clipPath>
+                          </defs>
+                        </svg>
 
-                          <h3 className='text-md text-gray-800 '>
-                            {polygonCount * 1.99} USDT
-                          </h3>
-                        </div>
-                        <p className='text-sm text-gray-600 '>per month</p>
+                        <h3 className='text-md text-gray-800 '>
+                          {polygonCount * 1.99} USDT
+                        </h3>
                       </div>
+                      <p className='text-sm text-gray-600 '>per month</p>
                     </div>
-                  )}
+                  </div>
 
                   <div className='w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2'>
                     Payment Summary

@@ -512,6 +512,76 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                     <div className='flex items-center justify-between py-2'>
                       <div className='flex items-center gap-3'>
                         <Image
+                          src='/icons/networks/BTC.svg'
+                          alt='BTC'
+                          width={36}
+                          height={36}
+                        />
+                        <div>
+                          <p className='text-sm font-medium'>Bitcoin Network Account</p>
+                          <p className='text-xs text-gray-600'>Network Account Name</p>
+                        </div>
+                      </div>
+                      <div className='flex items-center gap-4'>
+                        <div className='flex flex-col items-end'>
+                          <div className='flex items-center'>
+                            <Image
+                              src='/icons/tokens/USDT.svg'
+                              alt='USDT'
+                              width={16}
+                              height={16}
+                            />
+                            <span className='ml-1 text-sm font-semibold'>1.99 USDT</span>
+                          </div>
+                          <span className='text-xs text-gray-500'>per month</span>
+                        </div>
+                        <Button
+                          variant='outline'
+                          className='text-primary hover:text-primary opacity-50 cursor-not-allowed'
+                          disabled
+                        >
+                          Resubscribe
+                        </Button>
+                      </div>
+                    </div>
+                    <div className='flex items-center justify-between py-2'>
+                      <div className='flex items-center gap-3'>
+                        <Image
+                          src='/icons/networks/ETH.svg'
+                          alt='ETH'
+                          width={36}
+                          height={36}
+                        />
+                        <div>
+                          <p className='text-sm font-medium'>Ethereum Network Account</p>
+                          <p className='text-xs text-gray-600'>Network Account Name</p>
+                        </div>
+                      </div>
+                      <div className='flex items-center gap-4'>
+                        <div className='flex flex-col items-end'>
+                          <div className='flex items-center'>
+                            <Image
+                              src='/icons/tokens/USDT.svg'
+                              alt='USDT'
+                              width={16}
+                              height={16}
+                            />
+                            <span className='ml-1 text-sm font-semibold'>1.99 USDT</span>
+                          </div>
+                          <span className='text-xs text-gray-500'>per month</span>
+                        </div>
+                        <Button
+                          variant='outline'
+                          className='text-primary hover:text-primary opacity-50 cursor-not-allowed'
+                          disabled
+                        >
+                          Resubscribe
+                        </Button>
+                      </div>
+                    </div>
+                    <div className='flex items-center justify-between py-2'>
+                      <div className='flex items-center gap-3'>
+                        <Image
                           src='/icons/networks/MATIC.svg'
                           alt='Polygon'
                           width={36}

@@ -271,8 +271,9 @@ const SubscriptionTable: React.FC<{
                    selectedAccount?.network === 'Safeheron' || 
                    selectedAccount?.network === 'DFNS') 
                     ? selectedAccount.network 
-                    : 'DFNS' // Default fallback
+                    : 'DFNS'
                 } 
+                initialTab="confirm"
               />
             </SubscribeProvider>
           </WalletProvider>
