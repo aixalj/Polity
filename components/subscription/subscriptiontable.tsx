@@ -265,7 +265,15 @@ const SubscriptionTable: React.FC<{
         <FSDialogContent className=' w-full overflow-y-auto bg-white rounded-xl'>
           <WalletProvider>
             <SubscribeProvider>
-              <SubscribeModal />
+              <SubscribeModal 
+                provider={
+                  (selectedAccount?.network === 'Fireblocks' || 
+                   selectedAccount?.network === 'Safeheron' || 
+                   selectedAccount?.network === 'DFNS') 
+                    ? selectedAccount.network 
+                    : 'DFNS' // Default fallback
+                } 
+              />
             </SubscribeProvider>
           </WalletProvider>
         </FSDialogContent>
