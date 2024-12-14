@@ -542,14 +542,16 @@ export default function Marketplace() {
                         </div>
                       </div>
                     </div>
-                    <a href='/marketplace/subscriptions'>
-                      <Button
-                        variant='secondary'
-                        className='w-full bg-white shadow-button-secondary-default hover:bg-white'
-                      >
-                        Manage
-                      </Button>
-                    </a>
+                    <div className='mt-auto'>
+                      <a href='/marketplace/subscriptions'>
+                        <Button
+                          variant='secondary'
+                          className='w-full bg-white shadow-button-secondary-default hover:bg-white'
+                        >
+                          Manage
+                        </Button>
+                      </a>
+                    </div>
                   </div>
 
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -974,8 +976,9 @@ export default function Marketplace() {
                         </div>
                       </div>
                     </div>
-
-                    <Subscribe variant='wealth' provider='Safeheron' />
+                    <div className='mt-auto'>
+                      <Subscribe variant='wealth' provider='Safeheron' />
+                    </div>
                   </div>
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
                     <div className='w-full justify-between flex items-center pb-3'>
@@ -1130,8 +1133,9 @@ export default function Marketplace() {
                         </div>
                       </div>
                     </div>
-
-                    <Subscribe variant='wealth' provider='Fireblocks' />
+                    <div className='mt-auto'>
+                      <Subscribe variant='wealth' provider='Fireblocks' />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1495,14 +1499,16 @@ export default function Marketplace() {
                     </div>
                     <div className='w-full flex justify-between mt-2 mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>-</p>
+                        <p className='text-xs text-gray-500'>
+                          Add Network Account
+                        </p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            Unaivailable
+                            1.99 USDT
                           </p>
-                          {/* <p className="text-sm text-gray-500 mb-0.5 ml-0.5">
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
                             each/mo
-                          </p> */}
+                          </p>
                         </div>
                       </div>
                       <div className='flex flex-col items-end'>
@@ -1514,14 +1520,9 @@ export default function Marketplace() {
                         </div>
                       </div>
                     </div>
-                    <a href='/marketplace/subscriptions'>
-                      <Button
-                        variant='secondary'
-                        className='w-full bg-white shadow-button-secondary-default hover:bg-white'
-                      >
-                        Manage
-                      </Button>
-                    </a>
+                    <div className='mt-auto'>
+                      <Subscribe variant='network' provider='DFNS' />
+                    </div>
                   </div>
                 </div>
               </div>

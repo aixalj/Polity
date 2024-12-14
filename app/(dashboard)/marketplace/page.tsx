@@ -570,8 +570,9 @@ export default function Marketplace() {
                         </div>
                       </div>
                     </div>
-
-                    <Subscribe variant='wealth' provider='DFNS' />
+                    <div className='mt-auto'>
+                      <Subscribe variant='wealth' provider='DFNS' />
+                    </div>
                   </div>
 
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -1108,7 +1109,9 @@ export default function Marketplace() {
                       </div>
                     </div>
 
-                    <Subscribe variant='wealth' provider='Safeheron' />
+                    <div className='mt-auto'>
+                      <Subscribe variant='wealth' provider='Safeheron' />
+                    </div>
                   </div>
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
                     <div className='w-full justify-between flex items-center pb-3'>
@@ -1264,7 +1267,9 @@ export default function Marketplace() {
                       </div>
                     </div>
 
-                    <Subscribe variant='wealth' provider='Fireblocks' />
+                    <div className='mt-auto'>
+                      <Subscribe variant='wealth' provider='Fireblocks' />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1649,7 +1654,9 @@ export default function Marketplace() {
                         </div>
                       </div>
                     </div>
-                   <Subscribe variant='network' provider='DFNS' />
+                    <div className='mt-auto'>
+                      <Subscribe variant='network' provider='DFNS' />
+                    </div>
                   </div>
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
                     <div className='w-full justify-between flex items-center pb-3'>
@@ -1793,7 +1800,9 @@ export default function Marketplace() {
                         </div>
                       </div>
                     </div>
-                    <Subscribe variant='network' provider='Safeheron' />
+                    <div className='mt-auto'>
+                      <Subscribe variant='network' provider='Safeheron' />
+                    </div>
                   </div>
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
                     <div className='w-full justify-between flex items-center pb-3'>
@@ -1931,7 +1940,9 @@ export default function Marketplace() {
                         </div>
                       </div>
                     </div>
+                    <div className='mt-auto'>
                     <Subscribe variant='network' provider='Fireblocks' />
+                    </div>
                   </div>
                 </div>
               </div>
