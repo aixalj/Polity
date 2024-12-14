@@ -14,6 +14,8 @@ import {
 } from '@/components/ui/subscribecontext';
 import { WalletProvider } from '@/components/ui/formcontext';
 import NoSubscription from '@/components/ui/subscription modals/noSubscription';
+import WarningAlert from '@/components/ui/subscription modals/warningAlert';
+import LockedAlert from '@/components/ui/subscription modals/lockedAlert';
 
 const getTimeRemaining = (endTime: Date) => {
   const total = endTime.getTime() - new Date().getTime();
@@ -107,6 +109,8 @@ const SubscriptionTable: React.FC<{
 
   return (
     <div className='relative w-full flex flex-col'>
+      <WarningAlert isVisible={true} />
+      <LockedAlert isVisible={true} />
       <Tabs
         defaultValue='active'
         className='w-full'
