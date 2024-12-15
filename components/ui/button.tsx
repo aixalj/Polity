@@ -10,18 +10,18 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "rounded-[12px] border border-white/0 bg-primary-500 focus:ring-0 focus:ring-offset-0 focus:ring-transparent text-white shadow-button-primary-default hover:shadow-button-primary-hover hover:bg-primary-600 focus:shadow-button-primary-focus focus:bg-primary-500 focus-visible:shadow-button-primary-focus focus-visible:bg-primary-500 disabled:bg-primary-200 disabled:shadow-none [text-shadow:0px_1px_1px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.06)] !text-white disabled:!text-white",
+          "rounded-[12px] border border-white/0 bg-primary-500 text-sm font-semibold focus:ring-0 focus:ring-offset-0 focus:ring-transparent text-white shadow-button-primary-default hover:shadow-button-primary-hover hover:bg-primary-600 focus:shadow-button-primary-focus focus:bg-primary-500 focus-visible:shadow-button-primary-focus focus-visible:bg-primary-500 disabled:bg-primary-200 disabled:shadow-none [text-shadow:0px_1px_1px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.06)] !text-white disabled:!text-white",
         destructive: 
-          "rounded-[12px] border border-rose-600 bg-rose-600 shadow-button-destructive hover:border-rose-700 hover:bg-rose-700 focus:border-rose-600 focus:bg-rose-600 focus:shadow-button-destructive-focus disabled:border-rose-200 disabled:bg-rose-200 disabled:shadow-button-destructive [text-shadow:0px_1px_1px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.06)] !text-white disabled:!text-white",
+          "rounded-[12px] border border-rose-600 bg-rose-600 text-sm font-semibold shadow-button-destructive hover:border-rose-700 hover:bg-rose-700 focus:border-rose-600 focus:bg-rose-600 focus:shadow-button-destructive-focus disabled:border-rose-200 disabled:bg-rose-200 disabled:shadow-button-destructive [text-shadow:0px_1px_1px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.06)] !text-white disabled:!text-white",
         "secondary-destructive":
-          "rounded-[12px] border border-rose-50 bg-rose-50 !text-rose-700 hover:bg-rose-100 hover:border-rose-100 focus:border-rose-50 focus:bg-rose-50 focus:shadow-button-destructive-focus [text-shadow:0px_1px_1px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.06)] disabled:!text-rose-700",
+          "rounded-[12px] border border-rose-50 text-sm font-semibold bg-rose-50 !text-rose-700 hover:bg-rose-100 hover:border-rose-100 focus:border-rose-50 focus:bg-rose-50 focus:shadow-button-destructive-focus [text-shadow:0px_1px_1px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.06)] disabled:!text-rose-700",
         outline:
-          "rounded-[12px] border border-white/0 bg-white shadow-button-secondary-default hover:shadow-button-secondary-hover hover:bg-[#F9FAFB] focus:shadow-button-secondary-focus focus:bg-white text-gray-700 hover:text-gray-800",
-        secondary: "rounded-[12px] bg-gray-100 text-gray-900 hover:bg-gray-100/80",
-        ghost: "rounded-[12px] hover:bg-gray-100 hover:text-gray-900",
+          "rounded-[12px] border border-white/0 text-sm font-semibold bg-white shadow-button-secondary-default hover:shadow-button-secondary-hover hover:bg-[#F9FAFB] focus:shadow-button-secondary-focus focus:bg-white text-gray-700 hover:text-gray-800",
+        secondary: "rounded-[12px] bg-gray-100 text-gray-900 shadow-button-secondary-default text-sm font-semibold hover:bg-gray-100/80",
+        ghost: "rounded-[12px] hover:bg-gray-100 text-sm font-semibold hover:text-gray-900",
         link: "text-gray-900 underline-offset-4 hover:underline",
         walletconnect: 
-          "rounded-[12px] bg-[#3396FF] !text-white shadow-button-walletconnect hover:shadow-button-walletconnect-hover hover:bg-[#3396FF] hover:bg-gradient-to-b hover:from-black/10 hover:to-black/10 focus:shadow-button-walletconnect-hover focus:bg-[#3396FF] disabled:shadow-button-walletconnect-disabled disabled:bg-[#3396FF] disabled:bg-gradient-to-b disabled:from-white/30 disabled:to-white/30 disabled:opacity-100 transition-all duration-300 [text-shadow:0px_1px_1px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.06)] disabled:!text-white",
+          "rounded-[12px] bg-[#3396FF] !text-white shadow-button-walletconnect text-sm font-semibold hover:shadow-button-walletconnect-hover hover:bg-[#3396FF] hover:bg-gradient-to-b hover:from-black/10 hover:to-black/10 focus:shadow-button-walletconnect-hover focus:bg-[#3396FF] disabled:shadow-button-walletconnect-disabled disabled:bg-[#3396FF] disabled:bg-gradient-to-b disabled:from-white/30 disabled:to-white/30 disabled:opacity-100 transition-all duration-300 [text-shadow:0px_1px_1px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.06)] disabled:!text-white",
       },
       size: {
         sm: "h-[30px] px-[10px] gap-2 rounded-[9px] text-button-sm",

@@ -42,6 +42,15 @@ interface NetworkAccount {
   }[];
 }
 
+interface Wallet {
+  id: string;
+  wallet_id: string;
+  wallet_name: string;
+  allocation: number;
+  return: number;
+  value: number;
+}
+
 const PositionIcons = {
   Staking: (
     <div className='w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center'>
@@ -72,8 +81,10 @@ const PositionIcons = {
 
 const PositionsTable = ({
   networkAccounts,
+  wallets,
 }: {
   networkAccounts: NetworkAccount[];
+  wallets: Wallet[];
 }) => {
   return (
     <div className='relative w-full gap-3 flex flex-col'>

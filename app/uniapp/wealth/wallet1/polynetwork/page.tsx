@@ -219,7 +219,7 @@ function BitcoinOne() {
                       Connect
                     </Button>
                     <WalletProvider>
-                      <ReceiveBtn variant="network" />
+                      <ReceiveBtn variant="network" styleType="secondary" />
                     </WalletProvider>
                   </div>
                 </div>
