@@ -54,33 +54,102 @@ const networkAccounts: any[] = [
     positions: [
       {
         DApp: "Aave",
-        TotalValue: 9237.34,
+        TotalValue: 98765.43,
         Positions: [
           {
             Position: "Staking",
-            Value: 9237.34,
+            Value: 19753.09,
             Asset: "ETH",
-            Amount: 0.35,
-            Yield: 9.99,
+            Amount: 6.8,
+            Yield: 4.2,
             RewardsEarned: 0.034,
-            LockupPeriod: "30 days",
+            LockupPeriod: "30 days"
           },
-        ],
+          {
+            Position: "Lending",
+            Value: 19753.09,
+            Asset: "USDC",
+            Amount: 19753.09,
+            Yield: 3.8,
+            RewardsEarned: 102.34,
+            LockupPeriod: "No lockup"
+          },
+          {
+            Position: "Borrowing",
+            Value: 19753.09,
+            Asset: "USDT",
+            Amount: 19753.09,
+            Yield: 2.5
+          },
+          {
+            Position: "Deposits",
+            Value: 19753.09,
+            Asset: "ETH",
+            Amount: 6.8,
+            Yield: 3.2,
+            RewardsEarned: 0.015,
+            LockupPeriod: "7 days"
+          },
+          {
+            Position: "Liquidity Pools",
+            Value: 19753.09,
+            Asset: "ETH-USDC",
+            Amount: 6.8,
+            Yield: 12.5,
+            RewardsEarned: 0.089,
+            LockupPeriod: "14 days"
+          }
+        ]
       },
       {
         DApp: "Compound",
         TotalValue: 98765.43,
         Positions: [
           {
-            Position: "Borrowing",
-            Value: 98765.43,
-            Asset: "USDC",
-            CollateralAsset: "ETH",
-            Amount: 9.99,
-            Yield: 9.99,
+            Position: "Staking",
+            Value: 19753.09,
+            Asset: "COMP",
+            Amount: 98.5,
+            Yield: 5.1,
+            RewardsEarned: 1.23,
+            LockupPeriod: "90 days"
           },
-        ],
-      },
+          {
+            Position: "Lending",
+            Value: 19753.09,
+            Asset: "DAI",
+            Amount: 19753.09,
+            Yield: 4.2,
+            RewardsEarned: 89.45,
+            LockupPeriod: "No lockup"
+          },
+          {
+            Position: "Borrowing",
+            Value: 19753.09,
+            Asset: "USDC",
+            Amount: 19753.09,
+            Yield: 3.1
+          },
+          {
+            Position: "Deposits",
+            Value: 19753.09,
+            Asset: "ETH",
+            Amount: 6.8,
+            Yield: 2.8,
+            RewardsEarned: 0.012,
+            LockupPeriod: "3 days"
+          },
+          {
+            Position: "Liquidity Pools",
+            Value: 19753.09,
+            Asset: "COMP-ETH",
+            Amount: 45.6,
+            Yield: 15.3,
+            RewardsEarned: 2.34,
+            LockupPeriod: "30 days"
+          }
+        ]
+      }
     ],
     get allocation() {
       return (this.value / wealth.totalAssets) * 100;
