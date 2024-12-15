@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import PolityLogo from '@/public/polity.svg';
-import Avatar from '@/public/avatar.jpg';
+import Avatar from '@/public/Avatar.jpg';
 import { UserPlus } from 'lucide-react';
 import {
   Tooltip,
