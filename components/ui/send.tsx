@@ -47,6 +47,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { useContext } from 'react';
 import { useWallet } from './formcontext';
+import { usePathname } from 'next/navigation';
 
 // export const ConfirmationStep = () => {
 //   const { formData } = useContext(FormContext);
@@ -60,6 +61,8 @@ import { useWallet } from './formcontext';
 const SendModal = () => {
   const tabValues = ['payment', 'recipient', 'amount', 'confirm'];
   const [activeTab, setActiveTab] = useState(tabValues[0]);
+  const pathname = usePathname(); // Import usePathname from 'next/navigation'
+
 
   const cryptoValues = {
     ethValue: 3004.9, // Example ETH value in USD
@@ -115,10 +118,7 @@ const SendModal = () => {
 
   const canContinue = () => {
     if (
-      (activeTab === 'payment' &&
-        selectedWallet.length >= 3 &&
-        selectedNetwork.length >= 3 &&
-        selectedAsset.length >= 3) ||
+      activeTab === 'payment'||
       (activeTab === 'recipient' && selectedRecipient.length > 3) ||
       (activeTab === 'amount' && selectedPayment > 0.1) ||
       activeTab === 'confirm'
@@ -2615,7 +2615,7 @@ const SendModal = () => {
                 From
               </div>
               <div className='flex gap-3 mt-3 items-center mb-6 px-6'>
-                <ReceiveForm />
+                <ReceiveForm currentPath={pathname}/>
               </div>
               <div className='w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2'>
                 Balance

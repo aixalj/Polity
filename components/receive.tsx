@@ -30,16 +30,31 @@ import { Button, buttonVariants } from '@/components/ui/button';
 
 import { useWallet } from '@/components/ui/formcontext'; // Adjust the import path as necessary
 
-export function ReceiveForm() {
+interface ReceiveFormProps {
+  currentPath?: string;
+}
+
+export function ReceiveForm({ currentPath }: ReceiveFormProps) {
   // 1. Define your form.
+  const defaultNetwork = currentPath?.includes('ethnetwork') ? 'ETH' : 
+                        currentPath?.includes('polynetwork') ? 'MATIC' : 
+                        '';
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      wallet: '',
-      network: '',
+      wallet: currentPath?.includes('wallet1') ? 'Main Wallet' : 
+              currentPath?.includes('wallet2') ? 'Second Wallet' : 
+              '',
+      network: defaultNetwork,
       asset: 'USDT',
     },
   });
+
+  // Set default value based on path
+  const defaultWallet = currentPath?.includes('wallet1') ? 'Main Wallet' : 
+                       currentPath?.includes('wallet2') ? 'Second Wallet' : 
+                       undefined;
 
   // Watch the value of the first field
   const wallet = form.watch('wallet');
@@ -117,9 +132,10 @@ export function ReceiveForm() {
               <FormLabel className=''>Wallet {availableBalance}</FormLabel>
               <FormControl>
                 <Select
-                  value={field.value}
+                  defaultValue={defaultWallet}
+                  disabled 
                   onValueChange={(value) => {
-                    field.onChange(value); // Update form state when value changes
+                    field.onChange(value);
                   }}
                 >
                   <SelectTrigger className='w-full h-11 border-gray-300 text-gray-500 font-regular gap-2 '>
@@ -541,9 +557,9 @@ export function ReceiveForm() {
               <FormControl>
                 {/* <Select /> */}
                 <Select
-                  value={field.value}
+                  defaultValue={defaultNetwork}
+                  disabled={!!defaultNetwork} // Will be disabled only if defaultNetwork has a value
                   onValueChange={field.onChange}
-                  disabled={isDisabled}
                 >
                   <SelectTrigger className='w-full gap-2 h-11 border-gray-300 text-gray-500 font-regular '>
                     <SelectValue
