@@ -69,35 +69,35 @@ const networkAccounts: any[] = [
             Position: "Lending",
             Value: 19753.09,
             Asset: "USDC",
-            Amount: 19753.09,
+            Symbol: "",
+            AmountLent: 19753.09,
             Yield: 3.8,
             RewardsEarned: 102.34,
-            LockupPeriod: "No lockup"
+            RewardsValue: 9.99,
           },
           {
             Position: "Borrowing",
             Value: 19753.09,
-            Asset: "USDT",
+            AssetBorrowed: "USDT",
+            CollateralAsset: "ETH",
             Amount: 19753.09,
             Yield: 2.5
           },
           {
             Position: "Deposits",
             Value: 19753.09,
-            Asset: "ETH",
-            Amount: 6.8,
+            AssetDeposited: "ETH",
             Yield: 3.2,
             RewardsEarned: 0.015,
-            LockupPeriod: "7 days"
+            RewardsValue: 9.99,
           },
           {
             Position: "Liquidity Pools",
             Value: 19753.09,
-            Asset: "ETH-USDC",
-            Amount: 6.8,
-            Yield: 12.5,
+            Pool: "ETH-USDC",
+            Balance: 6.8,
             RewardsEarned: 0.089,
-            LockupPeriod: "14 days"
+            RewardsValue: 9.99,
           }
         ]
       },
@@ -121,7 +121,7 @@ const networkAccounts: any[] = [
             Amount: 19753.09,
             Yield: 4.2,
             RewardsEarned: 89.45,
-            LockupPeriod: "No lockup"
+            
           },
           {
             Position: "Borrowing",
@@ -436,3 +436,4 @@ function getAllAssets() {
 }
 
 export { networkAccounts, wallets, wealth, getAllAssets, protocols, networks };
+
