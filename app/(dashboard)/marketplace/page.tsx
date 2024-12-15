@@ -8,7 +8,7 @@ import { Progress } from '@/components/ui/progress';
 
 import { Subscribe } from '@/components/subscribe';
 import { SubscribeProvider } from '@/components/ui/subscribecontext';
-import { SubscribeModal } from "@/components/ui/subscribemodal"; // Add this import
+import { SubscribeModal } from '@/components/ui/subscribemodal'; // Add this import
 
 import {
   Tooltip,
@@ -437,8 +437,8 @@ export default function Marketplace() {
                       </div> */}
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
-                      Network institutional-grade multi-party computation (MPC)
-                      wallet. Built on DFNS user infrastructure.
+                      Network institutional-grade multi-party computation
+                      (MPC) wallet. Built on DFNS user infrastructure.
                     </p>
                     <a
                       href='https://www.dfns.co/'
@@ -1941,7 +1941,7 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <div className='mt-auto'>
-                    <Subscribe variant='network' provider='Fireblocks' />
+                      <Subscribe variant='network' provider='Fireblocks' />
                     </div>
                   </div>
                 </div>
