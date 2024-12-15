@@ -5,22 +5,31 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Notification } from '@/components/ui/notification';
 
-interface DeactivateNetworkProps {
-  isOpen: boolean;
-  onClose: (result: boolean) => void;
-  networkData: {
+interface NetworkData {
+  name: string;
+  network: string;
+  price: number;
+  walletName: string;
+  networkAccountName: string;
+  deactivationDate: Date;
+  isDFNSCancellation?: boolean;
+  subscriptions?: Array<{
     name: string;
     network: string;
     price: number;
-    walletName: string;
-    networkAccountName: string;
-    deactivationDate: Date;
-  } | null;
+  }>;
+}
+
+interface DeactivateNetworkProps {
+  isOpen: boolean;
+  onClose: (result: boolean) => void;
+  networkData: NetworkData;
   addNotification: (
     title: string,
     description: string,
     status: 'success' | 'error' | 'warning' | 'info'
   ) => void;
+  isFromTable?: boolean;
 }
 
 const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
@@ -28,6 +37,7 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
   onClose,
   networkData,
   addNotification,
+  isFromTable,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -53,22 +63,28 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
         description: `${networkData?.name} network account has been deactivated successfully.`,
         status: 'success',
       });
-      onClose(true);
+
+      if (isFromTable && !networkData.isDFNSCancellation) {
+        const event = new Event('closeAllModals');
+        window.dispatchEvent(event);
+      } else {
+        onClose(true);
+      }
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleOutsideClick = () => {
-    onClose(false);  // Close deactivate modal
+    onClose(false); // Close deactivate modal
     // Force close parent modal too
     const event = new Event('closeAllModals');
     window.dispatchEvent(event);
   };
 
   return (
-    <Dialog 
-      open={isOpen} 
+    <Dialog
+      open={isOpen}
       onOpenChange={(open) => {
         if (!open) handleOutsideClick();
       }}
@@ -96,37 +112,180 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
 
         <div className='bg-white px-6 py-4 rounded-xl shadow-md flex-grow overflow-hidden'>
           <div className='space-y-6'>
-            <div>
-              <p className='text-base font-medium mb-4'>You are deactivating</p>
-              <div className='flex items-center gap-3 mb-4'>
-                <div className='min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl'>
-                  <Image
-                    src={`/icons/networks/${networkData.network}.svg`}
-                    alt={networkData.name}
-                    width={40}
-                    height={40}
-                  />
+            {networkData.isDFNSCancellation ? (
+              <>
+                <div className='space-y-4 mb-6'>
+                  {networkData.subscriptions?.map((sub) => (
+                    <div
+                      key={sub.network}
+                      className='flex items-center justify-between py-2'
+                    >
+                      <div className='flex items-center gap-3'>
+                        <Image
+                          src={`/icons/networks/${sub.network}.svg`}
+                          alt={sub.name}
+                          width={36}
+                          height={36}
+                        />
+                        <div>
+                          <p className='text-sm font-medium'>{sub.name}</p>
+                          <p className='text-xs text-gray-600'>
+                            {sub.network === 'DFNS'
+                              ? 'Wallet Name'
+                              : 'Network Account Name'}
+                          </p>
+                        </div>
+                      </div>
+                      <div className='flex items-center'>
+                        <Image
+                          src='/icons/tokens/USDT.svg'
+                          alt='USDT'
+                          width={16}
+                          height={16}
+                        />
+                        <span className='ml-1 text-sm font-semibold'>
+                          {sub.price.toFixed(2)} USDT
+                        </span>
+                        <span className='text-xs text-gray-500 ml-1'>
+                          per month
+                        </span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className='flex flex-col'>
-                  <span className='text-sm font-medium'>{networkData.name}</span>
-                  <span className='text-sm text-gray-600'>
-                    Network Account Name
-                  </span>
+                <div className='flex items-center justify-between py-2 border-t border-gray-100'>
+                  <span className='text-sm font-medium'>Total</span>
+                  <div className='flex items-center'>
+                    <Image
+                      src='/icons/tokens/USDT.svg'
+                      alt='USDT'
+                      width={16}
+                      height={16}
+                    />
+                    <span className='ml-1 text-sm font-semibold'>
+                      15.96 USDT
+                    </span>
+                    <span className='text-xs text-gray-500 ml-1'>
+                      per month
+                    </span>
+                  </div>
                 </div>
-                <div className='ml-auto flex items-center'>
-                  <Image
-                    src='/icons/tokens/USDT.svg'
-                    alt='USDT'
-                    width={16}
-                    height={16}
-                  />
-                  <span className='ml-1'>
-                    {networkData.price.toFixed(2)} USDT
-                  </span>
-                  <span className='text-sm text-gray-500 ml-1'>per month</span>
+              </>
+            ) : networkData.name.includes('Safeheron') ? (
+              <>
+                <div className='flex items-center gap-3 mb-2'>
+                  <div className='flex items-center justify-center rounded-xl'>
+                    <Image
+                      src='/icons/networks/Safeheron.svg'
+                      alt='Safeheron'
+                      width={36}
+                      height={36}
+                    />
+                  </div>
+                  <div className='flex flex-col'>
+                    <span className='text-sm font-medium text-gray-800'>
+                      Safeheron - Premium
+                    </span>
+                    <span className='text-xs text-gray-600'>Wallet Name</span>
+                  </div>
+                  <div className='ml-auto flex flex-col items-right'>
+                    <div className='flex items-center'>
+                      <Image
+                        src='/icons/tokens/USDT.svg'
+                        alt='USDT'
+                        width={16}
+                        height={16}
+                      />
+                      <span className='ml-1 text-sm font-semibold'>
+                        9.99 USDT
+                      </span>
+                    </div>
+                    <span className='text-sm text-gray-500 text-right'>
+                      per month
+                    </span>
+                  </div>
+                </div>
+
+                {['Bitcoin', 'Ethereum', 'Polygon'].map((network) => (
+                  <div
+                    key={network}
+                    className='flex items-center justify-between py-2'
+                  >
+                    <div className='flex items-center gap-3'>
+                      <Image
+                        src={`/icons/networks/${
+                          network === 'Bitcoin'
+                            ? 'BTC'
+                            : network === 'Ethereum'
+                            ? 'ETH'
+                            : 'MATIC'
+                        }.svg`}
+                        alt={network}
+                        width={36}
+                        height={36}
+                      />
+                      <div>
+                        <p className='text-sm font-medium'>
+                          {network} Network Account
+                        </p>
+                        <p className='text-xs text-gray-600'>
+                          Network Account Name
+                        </p>
+                      </div>
+                    </div>
+                    <div className='flex flex-col items-end'>
+                      <div className='flex items-center'>
+                        <Image
+                          src='/icons/tokens/USDT.svg'
+                          alt='USDT'
+                          width={16}
+                          height={16}
+                        />
+                        <span className='ml-1 text-sm font-semibold'>
+                          1.99 USDT
+                        </span>
+                      </div>
+                      <span className='text-xs text-gray-500'>per month</span>
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : (
+              <div className='flex items-center justify-between mb-6'>
+                <div className='flex items-center gap-3 mb-4'>
+                  <div className='min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl'>
+                    <Image
+                      src={`/icons/networks/${networkData.network}.svg`}
+                      alt={networkData.name}
+                      width={40}
+                      height={40}
+                    />
+                  </div>
+                  <div className='flex flex-col'>
+                    <span className='text-sm font-medium'>
+                      {networkData.name}
+                    </span>
+                    <span className='text-sm text-gray-600'>
+                      Network Account Name
+                    </span>
+                  </div>
+                  <div className='ml-auto flex items-center'>
+                    <Image
+                      src='/icons/tokens/USDT.svg'
+                      alt='USDT'
+                      width={16}
+                      height={16}
+                    />
+                    <span className='ml-1'>
+                      {networkData.price.toFixed(2)} USDT
+                    </span>
+                    <span className='text-sm text-gray-500 ml-1'>
+                      per month
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             <div>
               <p className='text-sm font-medium text-gray-600 mb-2'>
@@ -169,7 +328,9 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
                 </div>
                 <div className='flex items-center gap-2 text-sm'>
                   <div className='text-rose-500'>✕</div>
-                  <span>Inability to view the dashboard chart and analytics</span>
+                  <span>
+                    Inability to view the dashboard chart and analytics
+                  </span>
                 </div>
               </div>
             </div>

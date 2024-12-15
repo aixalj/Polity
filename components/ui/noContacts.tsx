@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Button } from './button';
+import { Button } from './button'; 
 import EmptyStateIcon from 'public/empty-state-graphic.svg'; // Reuse the same icon
 
 interface NoContactsProps {

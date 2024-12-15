@@ -5,52 +5,35 @@ import { useState } from "react";
 import type { Config } from "tailwindcss";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
-import { ReceiveForm } from "@/components/receive";
-
 import { SubscribeModal } from "@/components/ui/subscribemodal";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-
-import { WalletProvider } from "@/components/ui/formcontext";
-
-import { SubscribeProvider } from "@/components/ui/subscribecontext";
-
 import {
   FSDialog,
   FSDialogContent,
-  FSDialogDescription,
-  FSDialogHeader,
-  FSDialogTitle,
   FSDialogTrigger,
 } from "@/components/ui/fsdialog";
+import { WalletProvider } from "@/components/ui/formcontext";
+import { SubscribeProvider } from "@/components/ui/subscribecontext";
 
-interface ReceiveBtnProps {
+interface SubscribeProps {
   variant?: "wealth" | "wallet" | "network";
+  provider: 'Safeheron' | 'DFNS' | 'Fireblocks';
 }
 
-import Link from "next/link";
-
-const Subscribe: React.FC<ReceiveBtnProps> = ({ variant = "wealth" }) => {
+const Subscribe: React.FC<SubscribeProps> = ({ variant = "wealth", provider }) => {
+  const buttonText = variant === "network" ? "Buy Now" : "Subscribe Now";
+  
   return (
     <div className="flex gap-3">
       <SubscribeProvider>
         <WalletProvider>
           <FSDialog>
-            <DialogTrigger asChild>
+            <FSDialogTrigger asChild>
               <Button variant="default" className="w-full" size="default">
-                Subscribe Now
+                {buttonText}
               </Button>
-            </DialogTrigger>
+            </FSDialogTrigger>
             <FSDialogContent className="flex w-screen h-screen bg-gray-50">
-              <SubscribeModal />
+              <SubscribeModal provider={provider} />
             </FSDialogContent>
           </FSDialog>
         </WalletProvider>
