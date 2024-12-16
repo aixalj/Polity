@@ -47,7 +47,7 @@ export default function Agreement() {
       icon={<Users03 className="w-8 h-8 text-gray-700" />}
       title="Create your Avatar Identity"
       description="Choose a name and upload an image that represent your Avatar."
-      button1link="/onboarding/uniapp/verification"
+      button1link="/onboarding/select-your-account"
       button1text="Back"
       button2link="/onboarding/uniapp/nsp"
       button2text="Continue"
