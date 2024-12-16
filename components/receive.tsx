@@ -37,47 +37,58 @@ interface ReceiveFormProps {
 
 export function ReceiveForm({ currentPath }: ReceiveFormProps) {
   // 1. Define your form.
-  const defaultNetwork = currentPath?.includes('ethnetwork')
-    ? 'ETH'
-    : currentPath?.includes('polynetwork')
-    ? 'MATIC'
-    : '';
+  const defaultNetwork =
+    currentPath?.includes('/wealth/wallet1/') &&
+    (currentPath?.includes('ethnetwork') ||
+      currentPath?.includes('polynetwork')) &&
+    currentPath?.includes('uniapp')
+      ? currentPath?.includes('ethnetwork')
+        ? 'ETH'
+        : 'MATIC'
+      : currentPath?.includes('uniapp') && !currentPath?.includes('/wealth/')
+      ? ''
+      : currentPath?.includes('ethnetwork')
+      ? 'ETH'
+      : currentPath?.includes('polynetwork')
+      ? 'MATIC'
+      : '';
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      wallet: currentPath?.includes('/wealth/wallet1/') && 
-              (currentPath?.includes('ethnetwork') || 
-               currentPath?.includes('polynetwork')) && 
-              currentPath?.includes('uniapp')
-              ? 'My Wallet'
-              : currentPath?.includes('uniapp') && 
-                !currentPath?.includes('/wealth/')
-              ? 'My Wallet'
-              : currentPath?.includes('wallet1')
-              ? 'Main Wallet'
-              : currentPath?.includes('wallet2')
-              ? 'Second Wallet'
-              : '',
+      wallet:
+        currentPath?.includes('/wealth/wallet1/') &&
+        (currentPath?.includes('ethnetwork') ||
+          currentPath?.includes('polynetwork')) &&
+        currentPath?.includes('uniapp')
+          ? 'My Wallet'
+          : currentPath?.includes('uniapp') &&
+            !currentPath?.includes('/wealth/')
+          ? 'My Wallet'
+          : currentPath?.includes('wallet1')
+          ? 'Main Wallet'
+          : currentPath?.includes('wallet2')
+          ? 'Second Wallet'
+          : '',
       network: defaultNetwork,
       asset: 'USDT',
     },
   });
 
   // Set default value based on path
-  const defaultWallet = currentPath?.includes('/wealth/wallet1/') && 
-                     (currentPath?.includes('ethnetwork') || 
-                      currentPath?.includes('polynetwork')) && 
-                     currentPath?.includes('uniapp')
-                     ? 'My Wallet'
-                     : currentPath?.includes('uniapp') && 
-                       !currentPath?.includes('/wealth/')
-                     ? 'My Wallet'
-                     : currentPath?.includes('wallet1')
-                     ? 'Main Wallet'
-                     : currentPath?.includes('wallet2')
-                     ? 'Second Wallet'
-                     : 'Main Wallet';
+  const defaultWallet =
+    currentPath?.includes('/wealth/wallet1/') &&
+    (currentPath?.includes('ethnetwork') ||
+      currentPath?.includes('polynetwork')) &&
+    currentPath?.includes('uniapp')
+      ? 'My Wallet'
+      : currentPath?.includes('uniapp') && !currentPath?.includes('/wealth/')
+      ? 'My Wallet'
+      : currentPath?.includes('wallet1')
+      ? 'Main Wallet'
+      : currentPath?.includes('wallet2')
+      ? 'Second Wallet'
+      : 'Main Wallet';
 
   // Watch the value of the first field
   const wallet = form.watch('wallet');
@@ -598,11 +609,13 @@ export function ReceiveForm({ currentPath }: ReceiveFormProps) {
               <FormControl>
                 {/* <Select /> */}
                 <Select
-                  defaultValue={defaultNetwork}
-                  disabled={!!defaultNetwork} // Will be disabled only if defaultNetwork has a value
-                  onValueChange={field.onChange}
+                   defaultValue={defaultNetwork || 'ETH' || 'MATIC'}
+                   disabled
+                   onValueChange={(value) => {
+                     field.onChange(value);
+                   }}
                 >
-                  <SelectTrigger className='w-full gap-2 h-11 border-gray-300 text-gray-500 font-regular '>
+                  <SelectTrigger className='w-full gap-2 h-11 border-gray-300 text-gray-500 font-regular'>
                     <SelectValue
                       className=''
                       placeholder='Select a Network Account...'
@@ -674,7 +687,7 @@ export function ReceiveForm({ currentPath }: ReceiveFormProps) {
                         </svg>
 
                         <p className='text-gray-900 font-medium'>
-                          Network Account Name (1Lbc...nX71)
+                          Network Account Name (1Lbc...X71)
                         </p>
                       </div>
                     </SelectItem>
@@ -758,7 +771,7 @@ export function ReceiveForm({ currentPath }: ReceiveFormProps) {
                           </defs>
                         </svg>
 
-                        <p className='text-gray-900 font-medium'>
+                        <p className='text-gray-900 font-medium line-clamp-1'>
                           Network Account Name (0x71...w628)
                         </p>
                       </div>
@@ -873,7 +886,7 @@ export function ReceiveForm({ currentPath }: ReceiveFormProps) {
                           </defs>
                         </svg>
 
-                        <p className='text-gray-900 font-medium'>
+                        <p className='text-gray-900 font-medium line-clamp-1'>
                           Network Account Name (0x8f...47d2)
                         </p>
                       </div>
