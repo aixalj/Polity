@@ -11,6 +11,7 @@ import ETHNetwork from 'public/icons/networks/ETH.svg';
 import DeactivateNetwork from './deactivateNetwork';
 import { Notification } from '@/components/ui/notification';
 import { Badge } from '@/components/ui/badge';
+import Link from 'next/link';
 
 interface NetworkAccountModalProps {
   isOpen: boolean;
@@ -813,9 +814,11 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
               <div className=' px-6 pb-5 rounded-[32px] flex-grow flex flex-col items-center justify-center w-full'>
                 {status === 'Pending' ? (
                   <div className='flex gap-2 w-full'>
-                    <Button type='button' variant='default' className='w-1/2'>
-                      Install Wallet
-                    </Button>
+                    <Link href='/onboarding/superapp/wallet/customize' className='w-1/2'>
+                      <Button type='button' variant='default' className='w-full'>
+                        Install Wallet
+                      </Button>
+                    </Link>
                     <Button
                       type='button'
                       variant='secondary-destructive'
