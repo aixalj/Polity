@@ -326,7 +326,7 @@ function BitcoinOne() {
             <div className=' relative flex w-full flex-row'>
                   <h4 className='text-lg font-medium'>Connected dApps</h4>
                 </div>
-                <div className='flex flex-col items-center justify-center rounded-lg overflow-hidden bg-gray-50 pt-3 pb-12'>
+                <div className='flex flex-col items-center justify-center rounded-lg overflow-hidden bg-gray-50 pb-12'>
                   <div className='-mb-8'>
                     <svg
                       width='216'
