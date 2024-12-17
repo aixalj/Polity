@@ -127,7 +127,7 @@ const SendModal = () => {
   };
 
   return (
-    <div className='flex w-screen h-screen bg-gray-50'>
+    <div className='flex w-screen min-h-screen overflow-scroll h-full bg-gray-50'>
       <div className='absolute top-[-40%]'>
         <svg
           //   width="1600"
@@ -1211,9 +1211,9 @@ const SendModal = () => {
         onValueChange={setActiveTab}
         defaultValue='payment'
         id='send-tabs'
-        className='flex w-screen h-screen bg-gray-50'
+        className='flex w-screen min-h-screen bg-gray-50 overflow-auto'
       >
-        <div className='fixed inset-0 w-screen h-screen mx-auto -translate-y-10 overflow-hidden '>
+        <div className='inset-0 w-screen min-h-screen mx-auto -translate-y-10'>
           <div className='absolute inset-0 z-10 h-full bg-gradient-to-b from-transparent via-gray-50/60 to-gray-50 opacity-100'></div>
           <div className='absolute inset-0 z-10 h-full bg-gradient-to-l from-transparent via-gray-50/30 to-gray-50 opacity-100'></div>
           <div className='absolute inset-0 z-10 h-full bg-gradient-to-r from-transparent via-gray-50/30 to-gray-50 opacity-100'></div>
@@ -2581,8 +2581,8 @@ const SendModal = () => {
         </div>
 
         <div className='fixed w-full h-full '>
-          <TabsContent value='payment' className=''>
-            <div className='relative h-full max-h-[80vh] overflow-y-auto border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
+          <TabsContent value='payment' className='h-auto'>
+            <div className=' h-auto border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
               <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
                 <div className='mb-2'>
                   <svg
@@ -2673,8 +2673,8 @@ const SendModal = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value='recipient' className=''>
-            <div className='relative h-full max-h-[80vh] overflow-y-auto border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
+          <TabsContent value='recipient' className='h-auto'>
+            <div className='relative h-auto border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
               <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
                 <div className='mb-2'>
                   <svg
@@ -2804,8 +2804,8 @@ const SendModal = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value='amount' className=''>
-            <div className='relative h-full max-h-[80vh] overflow-y-auto border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
+          <TabsContent value='amount' className='h-auto'>
+            <div className='relative h-auto border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
               <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
                 <div className='mb-2'>
                   <svg
@@ -2964,8 +2964,8 @@ const SendModal = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value='confirm' className=''>
-            <div className='relative h-full max-h-[80vh] overflow-y-auto border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
+          <TabsContent value='confirm' className='h-auto'>
+            <div className='relative h-auto border gap-0 flex-none border-gray-300 rounded-3xl flex-col  p-0  grid   shadow-sm  max-w-[512px] mx-auto w-full bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
               <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
                 <div className='mb-2'>
                   <svg
@@ -3232,7 +3232,6 @@ const SendModal = () => {
           </div>
         </div>
       </Tabs>
-
       <div id='loading' className='hidden relative w-full h-full'>
         <div className='fixed inset-0 w-screen h-screen mx-auto -translate-y-10 overflow-hidden '>
           <div className='absolute inset-0 z-10 h-full bg-gradient-to-b from-transparent via-gray-50/60 to-gray-50 opacity-100'></div>
