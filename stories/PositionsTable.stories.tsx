@@ -1,9 +1,34 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { PositionsTable } from "@/components/positionstable";
-import { positions } from "@/components/positiondata";
+import { networkAccounts, wallets } from "@/components/data";
 
 import "@/app/globals.css";
+
+// Define types for the position data structure
+interface Position {
+  Position: string;
+  Value: number;
+  Asset?: string;
+  Amount?: number;
+  Yield: number;
+  RewardsEarned?: number;
+  RewardsValue?: number;
+  LockupPeriod?: string;
+  Symbol?: string;
+  AmountLent?: number;
+  AssetBorrowed?: string;
+  CollateralAsset?: string;
+  AssetDeposited?: string;
+  Pool?: string;
+  Balance?: number;
+}
+
+interface DAppPosition {
+  DApp: string;
+  TotalValue: number;
+  Positions: Position[];
+}
 
 const meta: Meta<typeof PositionsTable> = {
   title: "Polity Design System/Tables/PositionsTable",
@@ -17,94 +42,132 @@ const meta: Meta<typeof PositionsTable> = {
 export default meta;
 type Story = StoryObj<typeof PositionsTable>;
 
+// Get positions from the first network account as example data
+const samplePositions = networkAccounts[0].positions[0].Positions;
+
 export const Default: Story = {
   args: {
-    positions: positions,
+    networkAccounts: networkAccounts,
+    wallets: wallets
   },
 };
 
 export const EmptyTable: Story = {
   args: {
-    positions: [],
+    networkAccounts: [],
+    wallets: wallets
   },
 };
 
 export const FewPositions: Story = {
   args: {
-    positions: positions.slice(0, 1),
+    networkAccounts: networkAccounts.slice(0, 1),
+    wallets: wallets
   },
 };
 
 export const ManyPositions: Story = {
   args: {
-    positions: Array(20)
+    networkAccounts: Array(20)
       .fill(null)
       .map((_, index) => ({
-        ...positions[index % positions.length],
-        name: `Position ${index + 1}`,
-        size: +(Math.random() * 10).toFixed(2),
-        entryPrice: Math.floor(Math.random() * 50000),
-        markPrice: Math.floor(Math.random() * 50000),
-        pnl: Math.floor(Math.random() * 10000 - 5000),
-        pnlPercent: +(Math.random() * 20 - 10).toFixed(2),
-        liquidationPrice: Math.floor(Math.random() * 50000),
-        type: index % 2 === 0 ? "Long" : "Short",
+        ...networkAccounts[0],
+        name: `Network Account ${index + 1}`,
+        positions: [{
+          DApp: `DApp ${index + 1}`,
+          TotalValue: Math.floor(Math.random() * 100000),
+          Positions: samplePositions.map((pos: Position) => ({
+            ...pos,
+            Value: Math.floor(Math.random() * 50000),
+            Yield: +(Math.random() * 10).toFixed(2),
+            RewardsEarned: +(Math.random() * 100).toFixed(3),
+          }))
+        }]
       })),
+    wallets: wallets
   },
 };
 
-export const AllLongs: Story = {
+export const DifferentDApps: Story = {
   args: {
-    positions: [
-      { ...positions[0], type: "Long", pnl: 1500, pnlPercent: 5.5 },
-      { ...positions[0], type: "Long", pnl: 750, pnlPercent: 2.5 },
-      { ...positions[0], type: "Long", pnl: -300, pnlPercent: -1.2 },
-      { ...positions[0], type: "Long", pnl: -900, pnlPercent: -4.8 },
-    ],
+    networkAccounts: [{
+      ...networkAccounts[0],
+      positions: [
+        {
+          DApp: "Aave",
+          TotalValue: 150000,
+          Positions: samplePositions
+        },
+        {
+          DApp: "Compound",
+          TotalValue: 85000,
+          Positions: samplePositions
+        },
+        {
+          DApp: "Uniswap",
+          TotalValue: 65000,
+          Positions: samplePositions
+        }
+      ]
+    }],
+    wallets: wallets
   },
 };
 
-export const AllShorts: Story = {
+export const HighValues: Story = {
   args: {
-    positions: [
-      { ...positions[1], type: "Short", pnl: 2000, pnlPercent: 8.5 },
-      { ...positions[1], type: "Short", pnl: 1000, pnlPercent: 4.2 },
-      { ...positions[1], type: "Short", pnl: -500, pnlPercent: -2.1 },
-      { ...positions[1], type: "Short", pnl: -1500, pnlPercent: -6.3 },
-    ],
+    networkAccounts: [{
+      ...networkAccounts[0],
+      positions: [{
+        DApp: "Aave",
+        TotalValue: 1000000,
+        Positions: samplePositions.map((pos: Position) => ({
+          ...pos,
+          Value: Math.floor(Math.random() * 500000 + 500000),
+          Yield: +(Math.random() * 15 + 5).toFixed(2),
+          RewardsEarned: +(Math.random() * 1000).toFixed(3),
+        }))
+      }]
+    }],
+    wallets: wallets
   },
 };
 
-export const HighProfitLoss: Story = {
+export const LowValues: Story = {
   args: {
-    positions: [
-      { ...positions[0], pnl: 100000, pnlPercent: 45.5, type: "Long" },
-      { ...positions[0], pnl: 50000, pnlPercent: 25.2, type: "Long" },
-      { ...positions[1], pnl: -75000, pnlPercent: -35.8, type: "Short" },
-      { ...positions[1], pnl: -25000, pnlPercent: -12.4, type: "Short" },
-    ],
+    networkAccounts: [{
+      ...networkAccounts[0],
+      positions: [{
+        DApp: "Aave",
+        TotalValue: 1000,
+        Positions: samplePositions.map((pos: Position) => ({
+          ...pos,
+          Value: Math.floor(Math.random() * 500 + 100),
+          Yield: +(Math.random() * 2).toFixed(2),
+          RewardsEarned: +(Math.random() * 1).toFixed(3),
+        }))
+      }]
+    }],
+    wallets: wallets
   },
 };
 
-export const NearLiquidation: Story = {
+export const DifferentYields: Story = {
   args: {
-    positions: [
-      { 
-        ...positions[0], 
-        markPrice: 38500, 
-        liquidationPrice: 38000,
-        pnl: -500,
-        pnlPercent: -1.5,
-        type: "Long" 
-      },
-      { 
-        ...positions[1], 
-        markPrice: 2350,
-        liquidationPrice: 2400,
-        pnl: -300,
-        pnlPercent: -2.8,
-        type: "Short" 
-      },
-    ],
+    networkAccounts: [{
+      ...networkAccounts[0],
+      positions: [{
+        DApp: "Aave",
+        TotalValue: 100000,
+        Positions: [
+          { ...samplePositions[0], Yield: 15.5 },
+          { ...samplePositions[0], Yield: 8.2 },
+          { ...samplePositions[0], Yield: 4.5 },
+          { ...samplePositions[0], Yield: 2.1 },
+          { ...samplePositions[0], Yield: 0.5 },
+        ]
+      }]
+    }],
+    wallets: wallets
   },
 }; 

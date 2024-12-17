@@ -4,7 +4,9 @@ interface Asset {
   balance: number;
   value: number;
   change24h: number;
-  type: string;
+  allocation: number;
+  price: number;
+  return: number;
 }
 
 const assets: Asset[] = [
@@ -14,7 +16,9 @@ const assets: Asset[] = [
     balance: 0.5,
     value: 21000,
     change24h: 2.5,
-    type: "Cryptocurrency",
+    allocation: 35.5,
+    price: 42000,
+    return: 15.2,
   },
   {
     name: "Ethereum",
@@ -22,7 +26,9 @@ const assets: Asset[] = [
     balance: 5.0,
     value: 1800,
     change24h: -1.2,
-    type: "Cryptocurrency",
+    allocation: 25.3,
+    price: 360,
+    return: -3.5,
   },
 ];
 
