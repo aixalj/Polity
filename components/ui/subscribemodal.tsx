@@ -63,6 +63,19 @@ import { Scan, Wallet02 } from '@untitled-ui/icons-react';
 //   };
 // };
 
+// Add this function near the top of the file, before the SubscribeModal component
+const getImagePath = (provider: string) => {
+  // Special cases that need specific casing
+  if (provider.toLowerCase() === 'fireblocks') {
+    return `/icons/networks/Fireblocks.svg`;
+  }
+  if (provider.toLowerCase() === 'safeheron') {
+    return `/icons/networks/Safeheron.svg`;
+  }
+  // For DFNS and others, use uppercase
+  return `/icons/networks/${provider.toUpperCase()}.svg`;
+};
+
 interface SubscribeModalProps {
   provider: 'Safeheron' | 'DFNS' | 'Fireblocks';
   initialTab?: 'payment' | 'recipient' | 'amount' | 'confirm';
@@ -2676,7 +2689,8 @@ const SubscribeModal = ({
               <FSDialogHeader className='px-6 pt-6 pb-3 flex flex-col'>
                 <div className='w-full mb-2 flex justify-between items-center'>
                   <Image
-                    src={`/icons/networks/${provider.toLowerCase()}.svg`}
+                                        src={getImagePath(provider)}
+
                     alt={provider}
                     width={40}
                     height={40}
