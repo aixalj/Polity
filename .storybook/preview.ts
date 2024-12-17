@@ -8,6 +8,31 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    options: {
+      storySort: {
+        order: [
+          'Polity Design System',
+          [
+            'Docs',
+            'Foundations',
+            'Components',
+            'Modals',
+            'Tables',
+            'Patterns',
+            'Navigation',
+            '*'
+          ],
+          'Foundations',
+          [
+            'Colors',
+            'Typography',
+            '*'
+          ],
+          'Components',
+          '*'
+        ],
+      },
+    },
   },
 };
 

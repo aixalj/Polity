@@ -15,10 +15,9 @@ const meta: Meta<typeof Badge> = {
     variant: {
       control: { type: "select" },
       options: [
-        "default",
-        "secondary",
+      
         "destructive",
-        "outline",
+  
         "success",
         "warning",
         "transaction",
@@ -30,18 +29,7 @@ const meta: Meta<typeof Badge> = {
 export default meta;
 type Story = StoryObj<typeof Badge>;
 
-export const Default: Story = {
-  args: {
-    children: "Default Badge",
-  },
-};
 
-export const Secondary: Story = {
-  args: {
-    variant: "secondary",
-    children: "Secondary Badge",
-  },
-};
 
 export const Destructive: Story = {
   args: {
@@ -50,12 +38,7 @@ export const Destructive: Story = {
   },
 };
 
-export const Outline: Story = {
-  args: {
-    variant: "outline",
-    children: "Outline Badge",
-  },
-};
+
 
 export const Success: Story = {
   args: {
@@ -86,10 +69,9 @@ export const Transaction: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-wrap gap-4">
-      <Badge>Default</Badge>
-      <Badge variant="secondary">Secondary</Badge>
+      
       <Badge variant="destructive">Destructive</Badge>
-      <Badge variant="outline">Outline</Badge>
+      
       <Badge variant="success">Success</Badge>
       <Badge variant="warning">Warning</Badge>
       <Badge variant="transaction">
