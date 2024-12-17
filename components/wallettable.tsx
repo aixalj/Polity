@@ -213,7 +213,10 @@ const WalletTable: React.FC<{
                           })}
                         </div>
                         <div className='w-36 flex-auto px-6 py-3 h-16 items-center flex'>
-                          {account.balance.toFixed(2)} {account.id}
+                          {account.balance.toLocaleString(undefined, { 
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2 
+                          })} {account.id}
                         </div>
                       </Link>
                     ))}
