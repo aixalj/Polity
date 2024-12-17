@@ -29,7 +29,7 @@ export default function Agreement() {
       banner: DFNSBanner,
       description:
         'Network institutional-grade multi-party computation (MPC) wallet. Built on DFNS user infrastructure.',
-      learnMoreUrl: 'https://dfns.io',
+      learnMoreUrl: 'https://www.dfns.co/',
       features: [
         'MPC-based cryptography eliminates the potential risk of a single point of failure on private keys.',
         'Zero-trust security architecture defends against third-party malicious acts.',
