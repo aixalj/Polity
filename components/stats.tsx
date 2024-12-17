@@ -512,8 +512,66 @@ export function Stats({ variant = 'wealth' }: StatsProps) {
               </h2>
 
               <div className='flex mt-6 items-center gap-2'>
-                <div className='flex gap-1 items-center rounded-md text-sm text-gray-800 font-medium'>
-                  0.00%
+                <div className='flex gap-1 items-center rounded-md text-sm text-teal-800 font-medium'>
+                {selectedTime === 'pastday'
+                    ? `${(((1711234.87 - 1700000) / 1700000) * 100).toFixed(
+                        2
+                      )}% ($${(1711234.87 - 1700000).toLocaleString('en-US')})`
+                    : selectedTime === 'pastweek'
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.95) / (1700000 * 0.95)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.95
+                      ).toLocaleString('en-US')})`
+                    : selectedTime === 'pastmonth'
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.9) / (1700000 * 0.9)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.9
+                      ).toLocaleString('en-US')})`
+                    : selectedTime === 'threemonths'
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.85) / (1700000 * 0.85)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.85
+                      ).toLocaleString('en-US')})`
+                    : selectedTime === 'yeartodate'
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.8
+                      ).toLocaleString('en-US')})`
+                    : selectedTime === 'pastyear'
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.75) / (1700000 * 0.75)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.75
+                      ).toLocaleString('en-US')})`
+                    : selectedTime === 'alltime'
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.7) / (1700000 * 0.7)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.7
+                      ).toLocaleString('en-US')})`
+                    : `${(
+                        ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.8
+                      ).toLocaleString('en-US')})`}
                 </div>
                 <p className='text-gray-600 text-sm font-medium'>{timeLabel}</p>
               </div>
@@ -588,8 +646,66 @@ export function Stats({ variant = 'wealth' }: StatsProps) {
               </h2>
 
               <div className='flex mt-6 items-center gap-2'>
-                <div className='flex gap-1 items-center rounded-md text-sm text-gray-800 font-medium'>
-                  0.00%
+                <div className='flex gap-1 items-center rounded-md text-sm text-teal-800 font-medium'>
+                {selectedTime === 'pastday'
+                    ? `${(((1711234.87 - 1700000) / 1700000) * 100).toFixed(
+                        2
+                      )}% ($${(1711234.87 - 1700000).toLocaleString('en-US')})`
+                    : selectedTime === 'pastweek'
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.95) / (1700000 * 0.95)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.95
+                      ).toLocaleString('en-US')})`
+                    : selectedTime === 'pastmonth'
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.9) / (1700000 * 0.9)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.9
+                      ).toLocaleString('en-US')})`
+                    : selectedTime === 'threemonths'
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.85) / (1700000 * 0.85)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.85
+                      ).toLocaleString('en-US')})`
+                    : selectedTime === 'yeartodate'
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.8
+                      ).toLocaleString('en-US')})`
+                    : selectedTime === 'pastyear'
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.75) / (1700000 * 0.75)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.75
+                      ).toLocaleString('en-US')})`
+                    : selectedTime === 'alltime'
+                    ? `${(
+                        ((1711234.87 - 1700000 * 0.7) / (1700000 * 0.7)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.7
+                      ).toLocaleString('en-US')})`
+                    : `${(
+                        ((1711234.87 - 1700000 * 0.8) / (1700000 * 0.8)) *
+                        100
+                      ).toFixed(2)}% ($${(
+                        1711234.87 -
+                        1700000 * 0.8
+                      ).toLocaleString('en-US')})`}
                 </div>
                 <p className='text-gray-600 text-sm font-medium'>{timeLabel}</p>
               </div>
