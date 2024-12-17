@@ -63,13 +63,13 @@ export default function Agreement() {
               secure and sovereign real time communication.
             </p>
             <div className='flex gap-3 max-w-screen-sm mx-auto w-full justify-betwee mb-2.5'>
-              <Link href='https://app.element.io'>
+              <Link href='https://app.element.io' target='_blank'>
                 <Button variant='default'>
                   Go to Element <LinkExternal01 className='w-5 h-5' />{' '}
                 </Button>
               </Link>
             </div>
-            <Link href='#' className='text-sm text-primary-500 font-semibold'>
+            <Link href='https://element.io/' target='_blank' className='text-sm text-primary-500 font-semibold'>
               Learn more about Element
             </Link>
           </div>
@@ -91,7 +91,7 @@ export default function Agreement() {
               Once you get set up with Element, a unique Matrix User ID will be
               created. Keep it handy as you will need it for the following step.{' '}
             </p>
-            <Link href='#' className='text-sm text-primary-500 font-semibold'>
+            <Link href='https://element.io/user-guide' target='_blank' className='text-sm text-primary-500 font-semibold'>
               Read Element user guide
             </Link>
           </div>

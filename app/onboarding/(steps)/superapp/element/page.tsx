@@ -32,7 +32,7 @@ export default function Agreement() {
             </p>
             <div>
               <div className="inline-flex flex-col gap-3 mt-3 ">
-                <Link href="https://element.io/">
+                <Link href="https://element.io/ target='_blank'">
                   <Button
                     size="sm"
                     className="w-auto h-[30px] text-sm inline-flex"
@@ -41,7 +41,7 @@ export default function Agreement() {
                   </Button>
                 </Link>
 
-                <Link href="https://element.io/">
+                <Link href="https://element.io/" target="_blank">
                   <Button
                     variant="link"
                     className="p-0 h-auto shadow-none text-primary-500 w-auto inline-flex"
@@ -73,7 +73,7 @@ export default function Agreement() {
             </div>
 
             <div className=" mt-auto ">
-              <Link href="https://element.io/user-guide">
+              <Link href="https://element.io/user-guide" target="_blank">
                 <Button
                   variant="link"
                   className="p-0 h-auto shadow-none text-primary-500 w-auto inline-flex"
