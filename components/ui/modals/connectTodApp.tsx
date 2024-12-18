@@ -10,6 +10,7 @@ import Image from 'next/image';
 import WCCryptoIcon from '@/public/WCcryptoicons.svg';
 import NetworkAccountWallet from '@/public/NetworkAccountWallet.svg';
 import ETHNetwork from 'public/icons/networks/ETH.svg';
+import POLNetwork from 'public/icons/networks/MATIC.svg';
 import dot from '@/public/dot.svg';
 import { Lock03, Loading02 } from '@untitled-ui/icons-react';
 
@@ -100,10 +101,11 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
             <div className='flex items-center gap-3 font-normal mb-4'>
               <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
                 <Image src={dot} alt='dot' width={8} height={8} />
-                Ethereum
+                 {networkAccountName.split(' ')[0]}
               </div>
               <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
-                <Image src={ETHNetwork} alt='ETH' width={16} height={16} /> ETH
+                <Image src={networkAccountName.split(' ')[0] === 'Polygon' ? POLNetwork : ETHNetwork} alt='ETH' width={16} height={16} /> 
+                {networkAccountName.split(' ')[0] === 'Polygon' ? 'POL' : 'ETH'}
               </div>
             </div>
             <div className='text-center mb-5'>
