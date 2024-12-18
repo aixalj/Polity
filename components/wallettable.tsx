@@ -52,22 +52,8 @@ const WalletTable: React.FC<{
   wallets: Wallet[];
   networkAccounts: NetworkAccount[];
 }> = ({ wallets, networkAccounts }) => {
-  // const [wallets, setWallets] = useState<Wallet[]>([]);
-  // useEffect(() => {
-  //   const fetchWallets = async () => {
-  //     const { data, error } = await supabase
-  //       .from("wallets")
-  //       .select("id, wallet_id, wallet_name, allocation, return, value");
-
-  //     if (error) {
-  //       console.error("Error fetching wallets:", error);
-  //     } else {
-  //       setWallets(data || []);
-  //     }
-  //   };
-
-  //   fetchWallets();
-  // }, []);
+  // Single state to track which wallet is open
+  const [openWalletId, setOpenWalletId] = useState<string | null>(null);
 
   return (
     <div className='relative w-full flex flex-col'>
@@ -89,14 +75,20 @@ const WalletTable: React.FC<{
           <div>
             {wallets.map((wallet) => (
               <Collapsible
-                key={wallet.id}
-                className='w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-[14px] '
+                key={wallet.wallet_id}
+                className='w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-[14px]'
+                open={openWalletId === wallet.wallet_id}
+                onOpenChange={(open) => {
+                  setOpenWalletId(open ? wallet.wallet_id : null);
+                }}
               >
                 <CollapsibleTrigger className='w-full ease-in-out duration-200'>
-                  <div className='w-full flex text-left  text-gray-900'>
+                  <div className='w-full flex text-left text-gray-900'>
                     <div className='w-9 flex-none h-16 flex items-center justify-center align-middle'>
                       <svg
-                        className='mx-auto'
+                        className={`mx-auto transition-transform duration-200 ${
+                          openWalletId === wallet.wallet_id ? 'rotate-180' : ''
+                        }`}
                         width='20'
                         height='20'
                         viewBox='0 0 20 20'

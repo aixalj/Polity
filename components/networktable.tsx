@@ -12,6 +12,7 @@ import { Progress } from '@/components/ui/progress';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 interface Networks {
   name: string;
@@ -27,6 +28,8 @@ interface Networks {
 const NetworkTable: React.FC<{
   networkAccounts: Networks[];
 }> = ({ networkAccounts }) => {
+  const [openNetworkId, setOpenNetworkId] = useState<string | null>(null);
+
   return (
     <div className='relative w-full flex flex-col'>
       <div className='p-4 relative flex justify-between w-full justify-items-stretch flex-row place-content-between	'>
@@ -53,13 +56,19 @@ const NetworkTable: React.FC<{
                 .map((network) => (
                   <Collapsible
                     key={network.id}
-                    className='w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-[14px] '
+                    className='w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-[14px]'
+                    open={openNetworkId === network.id}
+                    onOpenChange={(open) => {
+                      setOpenNetworkId(open ? network.id : null);
+                    }}
                   >
                     <CollapsibleTrigger className='w-full ease-in-out duration-200'>
-                      <div className='w-full flex text-left  text-gray-900'>
+                      <div className='w-full flex text-left text-gray-900'>
                         <div className='w-9 flex-none h-16 flex items-center justify-center align-middle'>
                           <svg
-                            className='mx-auto'
+                            className={`mx-auto transition-transform duration-200 ${
+                              openNetworkId === network.id ? 'rotate-180' : ''
+                            }`}
                             width='20'
                             height='20'
                             viewBox='0 0 20 20'
