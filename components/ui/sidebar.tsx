@@ -94,7 +94,7 @@ const SideBar = () => {
           </svg> */}
         </SelectTrigger>
         <SelectContent className="  bg-white ">
-          <SelectItem value="AristoInvest" className="w-full">
+          {/* <SelectItem value="AristoInvest" className="w-full">
             <div className="flex gap-3 items-center w-full justify-between">
               <div className="flex gap-2 items-center w-full">
                 <div className="size-8 rounded-md border-gray-300 border overflow-hidden">
@@ -117,7 +117,7 @@ const SideBar = () => {
                 Active
               </div>
             </div>
-          </SelectItem>
+          </SelectItem> */}
           {/* <SelectItem value="SocratesProperties" disabled={true}>
             {" "}
             <div className="flex gap-2 items-center">
@@ -136,7 +136,7 @@ const SideBar = () => {
               </div>
             </div>
           </SelectItem> */}
-          <div className="w-full h-[1px] bg-gray-200"></div>
+          {/* <div className="w-full h-[1px] bg-gray-200"></div> */}
           <a href="/onboarding" className="flex gap-2 items-center">
             <SelectItem className="flex gap-2 items-center w-full" value="#">
               <div className="flex gap-2 items-center">

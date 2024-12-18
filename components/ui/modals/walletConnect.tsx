@@ -12,6 +12,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
 import { Loading02, AlertCircle } from "@untitled-ui/icons-react";
+import BlowFish from '@/components/ui/blowfish';
 
 interface WalletConnectProps {
   isOpen: boolean;

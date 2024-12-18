@@ -17,18 +17,19 @@ import { Lock03, Loading02 } from '@untitled-ui/icons-react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import WalletConnect from '@/components/ui/modals/walletConnect'; 
+import BlowFish from '@/components/ui/blowfish';
 
-interface connectTodAppProps {
+interface ConnectTodAppProps {
   isOpen: boolean;
   onClose: () => void;
   networkAccountName: string;
   networkAccountImage: string;
-  balance: string; 
-  addNotification: (title: string, description: string, status: "success" | "error" | "warning" | "info") => void; 
-  sourcePage: string; // Add this line
+  balance: string;
+  addNotification: (title: string, description: string, status: "success" | "error" | "warning" | "info") => void;
+  sourcePage: string;
 }
 
-const ConnectTodApp: React.FC<connectTodAppProps> = ({
+const ConnectTodApp: React.FC<ConnectTodAppProps> = ({
   isOpen,
   onClose,
   networkAccountName,
@@ -36,25 +37,21 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
   balance,
   addNotification,
 }) => {
-  const [showWalletConnect, setShowWalletConnect] = useState(false); 
-  const [isLoading, setIsLoading] = useState(false); 
+  const [showWalletConnect, setShowWalletConnect] = useState(false);
+  const [showBlowfish, setShowBlowfish] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCancel = () => {
-    onClose(); 
-    setShowWalletConnect(true); 
+    onClose();
+    setShowWalletConnect(true);
   };
+
   const handleConnect = () => {
-    setIsLoading(true); 
-    onClose(); 
-
-    setTimeout(() => {
-      addNotification("Connection Successful!", "You have successfully connected your wallet.", "success"); 
-    }, 200); 
-
-    setTimeout(() => {
-      setIsLoading(false); // Reset loading state after 5000 milliseconds
-    }, 5000); 
+    setIsLoading(true);
+    onClose();
+    setShowBlowfish(true);
   };
+
   return (
     <>
       <Dialog open={isOpen} onOpenChange={onClose}>
@@ -174,14 +171,25 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
           </div>
         </DialogContent>
       </Dialog>
-      {showWalletConnect && (
-        <WalletConnect
-          isOpen={showWalletConnect}
-          onConnect={() => {  
-          }}
-          onClose={() => setShowWalletConnect(false)}
-        />
-      )}
+      <WalletConnect 
+        isOpen={showWalletConnect} 
+        onClose={() => setShowWalletConnect(false)}
+        onConnect={() => {
+          setShowWalletConnect(false);
+          setIsLoading(false);
+        }}
+      />
+      <BlowFish
+        isOpen={showBlowfish}
+        onClose={() => setShowBlowfish(false)}
+        onApprove={() => {
+          setShowBlowfish(false);
+          addNotification("Connection Successful!", "You have successfully connected your wallet.", "success");
+        }}
+        networkAccountName={networkAccountName}
+        networkAccountImage={networkAccountImage}
+        balance={balance}
+      />
     </>
   );
 };
