@@ -132,7 +132,7 @@ export default function Transactions() {
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="w-[440px]">
-                        <BlowFish />
+                        {/* <BlowFish /> */}
                       </DialogContent>
                     </Dialog>
                   </div>

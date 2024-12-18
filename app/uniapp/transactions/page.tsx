@@ -44,7 +44,7 @@ import {
 } from "@/components/ui/tooltip";
 
 import { Button } from "@/components/ui/button";
-import BlowFish from "@/components/ui/blowfish";
+// import BlowFish from "@/components/ui/blowfish";
 import { FilterProvider } from "@/components/ui/filtercontext";
 
 export default function Transactions() {
@@ -130,7 +130,7 @@ export default function Transactions() {
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="w-[440px]">
-                        <BlowFish />
+                        {/* <BlowFish /> */}
                       </DialogContent>
                     </Dialog>
                   </div>
