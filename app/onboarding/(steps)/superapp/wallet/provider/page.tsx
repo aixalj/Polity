@@ -29,7 +29,7 @@ export default function Agreement() {
       banner: DFNSBanner,
       description:
         'Network institutional-grade multi-party computation (MPC) wallet. Built on DFNS user infrastructure.',
-      learnMoreUrl: 'https://dfns.io',
+      learnMoreUrl: 'https://www.dfns.co/',
       features: [
         'MPC-based cryptography eliminates the potential risk of a single point of failure on private keys.',
         'Zero-trust security architecture defends against third-party malicious acts.',
@@ -69,9 +69,9 @@ export default function Agreement() {
         'Battle-tested and flexible wallet infrastructure with multi-layer security.',
       learnMoreUrl: 'https://www.fireblocks.com',
       features: [
-        'Utilizes MPC for distributed key management, increasing security by dividing key control.',
-        'Securely connect to dApps, flexibly access EVM and non-EVM chains.',
-        'Maintain full control and ownership, ensuring no risk of asset misappropriation.',
+        'Secure wallets powered by MPC technology, eliminating single points of failure.',
+        'Robust security with compliance features to meet regulatory and policy requirements.',
+        'Seamless access to Web3 and DeFi applications for trading, gaming, and NFTs.',
       ],
       integrations: [
         { name: 'DeFi', icon: DeFi },
@@ -111,7 +111,7 @@ export default function Agreement() {
         {walletProviders.map((provider, index) => (
           <div
             key={index}
-            className='w-full flex flex-col gap-3 max-w-full border border-gray-300 bg-white rounded-3xl'
+            className='w-full flex flex-col justify-between pb-3 gap-3 max-w-full border border-gray-300 bg-white rounded-3xl'
           >
             <div className='w-full flex flex-col p-2'></div>
             <div className='w-full px-6 pb-4 justify-between flex items-center border-b border-gray-200'>
@@ -150,7 +150,7 @@ export default function Agreement() {
                 {provider.features.map((feature, featureIndex) => (
                   <li
                     key={featureIndex}
-                    className='flex gap-3 text-gray-600 text-sm items-center'
+                    className='flex gap-2.5 text-gray-600 text-sm items-center'
                   >
                     <Image
                       src={CheckIcon}

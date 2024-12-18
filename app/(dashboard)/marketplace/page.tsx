@@ -440,13 +440,13 @@ export default function Marketplace() {
                       Network institutional-grade multi-party computation
                       (MPC) wallet. Built on DFNS user infrastructure.
                     </p>
-                    <a
+                    <Link
                       href='https://www.dfns.co/'
                       target='_blank'
                       className='text-sm my-2 cursor-pointer font-semibold text-teal-600'
                     >
                       Learn more about DFNS
-                    </a>
+                    </Link>
                     <div className='group mb-2'>
                       <p className='text-sm text-gray-800 mb-1'>
                         Subscribe to a new Wallet
@@ -1566,13 +1566,13 @@ export default function Marketplace() {
                       Network institutional-grade multi-party computation (MPC)
                       wallet. Built on DFNS user infrastructure.
                     </p>
-                    <a
+                    <Link
                       href='https://www.dfns.co/'
                       target='_blank'
                       className='text-sm my-2 cursor-pointer font-semibold text-teal-600'
                     >
                       Learn more about DFNS
-                    </a>
+                    </Link>
                     <div className='group mb-2'>
                       <p className='text-sm text-gray-800 mb-1'>
                         Available Networks

@@ -180,18 +180,18 @@ const networkAccounts: any[] = [
     network: "Polygon",
     address: "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
     assets: [
-      {
-        name: "Cardano",
-        symbol: "ADA",
-        price: 0.44,
-        return: 1224,
-        value: 1165.6172,
-        balance: 2649.13,
-        value24HoursAgo: 3.5,
-        allocation: 0,
-        networkAccountName: "Ethereum network account",
-        walletName: "Main Wallet",
-      },
+      // {
+      //   name: "Cardano",
+      //   symbol: "ADA",
+      //   price: 0.44,
+      //   return: 1224,
+      //   value: 1165.6172,
+      //   balance: 2649.13,
+      //   value24HoursAgo: 3.5,
+      //   allocation: 0,
+      //   networkAccountName: "Ethereum network account",
+      //   walletName: "Main Wallet",
+      // },
     ],
     get allocation() {
       return (this.value / wealth.totalAssets) * 100;
