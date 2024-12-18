@@ -1354,7 +1354,7 @@ const Onboarding = () => {
           <Link href="/onboarding/superapp/avatar">
             <Button variant="outline">Skip for Now</Button>
           </Link>
-          <Link href="https://web.fractal.id/">
+          <Link target="_blank" href="https://web.fractal.id/">
             <Button>
               Continue to Fractal ID <LinkExternal01 className="w-5 h-5" />
             </Button>

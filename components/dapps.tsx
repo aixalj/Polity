@@ -17,9 +17,11 @@ import Link from "next/link";
 import Image from "next/image";
 interface DappsProps {
   network?: 'eth' | 'btc' | 'pol';
+  isLoading?: boolean;
+  error?: string;
 }
 
-const Dapps = ({ network = 'eth' }: DappsProps) => {
+const Dapps = ({ network = 'eth', isLoading = false, error }: DappsProps) => {
   // Helper function to get network-specific currency label
   const getCurrencyLabel = () => {
     switch (network) {
@@ -31,6 +33,24 @@ const Dapps = ({ network = 'eth' }: DappsProps) => {
         return 'ETH';
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="relative w-full flex flex-col">
+        {/* Add loading state UI here */}
+        <div className="p-4">Loading dApps...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="relative w-full flex flex-col">
+        {/* Add error state UI here */}
+        <div className="p-4 text-red-600">{error}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full flex flex-col">

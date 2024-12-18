@@ -307,7 +307,7 @@ function BitcoinOne() {
                   )}
                 />
 
-                <Dapps />
+                <Dapps network="pol" />
               </div>
             </TabsContent>
             <TabsContent value="assets">
