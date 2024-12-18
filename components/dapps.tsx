@@ -8,11 +8,30 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 
+import ETHNetwork from 'public/icons/networks/ETH.svg';
+import POLNetwork from 'public/icons/networks/MATIC.svg';
+
 import { Progress } from "@/components/ui/progress";
 
 import Link from "next/link";
+import Image from "next/image";
+interface DappsProps {
+  network?: 'eth' | 'btc' | 'pol';
+}
 
-const Dapps = () => {
+const Dapps = ({ network = 'eth' }: DappsProps) => {
+  // Helper function to get network-specific currency label
+  const getCurrencyLabel = () => {
+    switch (network) {
+      case 'btc':
+        return 'BTC';
+      case 'pol':
+        return 'MATIC';
+      default:
+        return 'ETH';
+    }
+  };
+
   return (
     <div className="relative w-full flex flex-col">
       <div className="p-4 relative flex justify-between w-full justify-items-stretch flex-row place-content-between	">
@@ -67,60 +86,15 @@ const Dapps = () => {
                 <div className="w-1.5 h-1.5  bg-emerald-500 rounded-full"></div>
 
                 <div className="text-center text-gray-800 text-xs font-medium ">
-                  Ethereum
+                  {network === 'eth' ? 'Ethereum' : 'Polygon'}
                 </div>
               </div>
               <div className="pl-1.5 pr-2 py-0.5 bg-gray-100 rounded-md border border-gray-200 justify-start items-center gap-1 inline-flex">
-                <svg
-                  width="13"
-                  height="12"
-                  viewBox="0 0 13 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clip-path="url(#clip0_99_98895)">
-                    <circle cx="6.5" cy="6" r="6" fill="#ECEFF0" />
-                    <path
-                      opacity="0.6"
-                      d="M6.43368 5.13071L4.25 6.12344L6.43368 7.41431L8.61777 6.12344L6.43368 5.13071Z"
-                      fill="black"
-                    />
-                    <path
-                      opacity="0.45"
-                      d="M4.25073 6.12343L6.43442 7.4143V5.1307V2.5L4.25073 6.12343Z"
-                      fill="black"
-                    />
-                    <path
-                      opacity="0.8"
-                      d="M6.43445 2.5V5.1307V7.4143L8.61813 6.12343L6.43445 2.5Z"
-                      fill="black"
-                    />
-                    <path
-                      opacity="0.45"
-                      d="M4.25 6.53769L6.43368 9.61499V7.82775L4.25 6.53769Z"
-                      fill="black"
-                    />
-                    <path
-                      opacity="0.8"
-                      d="M6.43372 7.82775V9.61499L8.61902 6.53769L6.43372 7.82775Z"
-                      fill="black"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_99_98895">
-                      <rect
-                        x="0.5"
-                        width="12"
-                        height="12"
-                        rx="6"
-                        fill="white"
-                      />
-                    </clipPath>
-                  </defs>
-                </svg>
+              
+                <Image src={network === 'eth' ? ETHNetwork : POLNetwork} alt='ETH' width={11} height={11} /> 
 
                 <div className="text-center text-gray-800 text-xs font-medium ">
-                  ETH
+                  {getCurrencyLabel()}
                 </div>
               </div>
             </div>
@@ -204,60 +178,15 @@ const Dapps = () => {
                 <div className="w-1.5 h-1.5  bg-emerald-500 rounded-full"></div>
 
                 <div className="text-center text-gray-800 text-xs font-medium ">
-                  Ethereum
+                  {network === 'eth' ? 'Ethereum' : 'Polygon'}
                 </div>
               </div>
               <div className="pl-1.5 pr-2 py-0.5 bg-gray-100 rounded-md border border-gray-200 justify-start items-center gap-1 inline-flex">
-                <svg
-                  width="13"
-                  height="12"
-                  viewBox="0 0 13 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clip-path="url(#clip0_99_98895)">
-                    <circle cx="6.5" cy="6" r="6" fill="#ECEFF0" />
-                    <path
-                      opacity="0.6"
-                      d="M6.43368 5.13071L4.25 6.12344L6.43368 7.41431L8.61777 6.12344L6.43368 5.13071Z"
-                      fill="black"
-                    />
-                    <path
-                      opacity="0.45"
-                      d="M4.25073 6.12343L6.43442 7.4143V5.1307V2.5L4.25073 6.12343Z"
-                      fill="black"
-                    />
-                    <path
-                      opacity="0.8"
-                      d="M6.43445 2.5V5.1307V7.4143L8.61813 6.12343L6.43445 2.5Z"
-                      fill="black"
-                    />
-                    <path
-                      opacity="0.45"
-                      d="M4.25 6.53769L6.43368 9.61499V7.82775L4.25 6.53769Z"
-                      fill="black"
-                    />
-                    <path
-                      opacity="0.8"
-                      d="M6.43372 7.82775V9.61499L8.61902 6.53769L6.43372 7.82775Z"
-                      fill="black"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_99_98895">
-                      <rect
-                        x="0.5"
-                        width="12"
-                        height="12"
-                        rx="6"
-                        fill="white"
-                      />
-                    </clipPath>
-                  </defs>
-                </svg>
+              
+                <Image src={network === 'eth' ? ETHNetwork : POLNetwork} alt='ETH' width={11} height={11} /> 
 
                 <div className="text-center text-gray-800 text-xs font-medium ">
-                  ETH
+                  {getCurrencyLabel()}
                 </div>
               </div>
             </div>
@@ -341,60 +270,15 @@ const Dapps = () => {
                 <div className="w-1.5 h-1.5  bg-emerald-500 rounded-full"></div>
 
                 <div className="text-center text-gray-800 text-xs font-medium ">
-                  Ethereum
+                  {network === 'eth' ? 'Ethereum' : 'Polygon'}
                 </div>
               </div>
               <div className="pl-1.5 pr-2 py-0.5 bg-gray-100 rounded-md border border-gray-200 justify-start items-center gap-1 inline-flex">
-                <svg
-                  width="13"
-                  height="12"
-                  viewBox="0 0 13 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clip-path="url(#clip0_99_98895)">
-                    <circle cx="6.5" cy="6" r="6" fill="#ECEFF0" />
-                    <path
-                      opacity="0.6"
-                      d="M6.43368 5.13071L4.25 6.12344L6.43368 7.41431L8.61777 6.12344L6.43368 5.13071Z"
-                      fill="black"
-                    />
-                    <path
-                      opacity="0.45"
-                      d="M4.25073 6.12343L6.43442 7.4143V5.1307V2.5L4.25073 6.12343Z"
-                      fill="black"
-                    />
-                    <path
-                      opacity="0.8"
-                      d="M6.43445 2.5V5.1307V7.4143L8.61813 6.12343L6.43445 2.5Z"
-                      fill="black"
-                    />
-                    <path
-                      opacity="0.45"
-                      d="M4.25 6.53769L6.43368 9.61499V7.82775L4.25 6.53769Z"
-                      fill="black"
-                    />
-                    <path
-                      opacity="0.8"
-                      d="M6.43372 7.82775V9.61499L8.61902 6.53769L6.43372 7.82775Z"
-                      fill="black"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_99_98895">
-                      <rect
-                        x="0.5"
-                        width="12"
-                        height="12"
-                        rx="6"
-                        fill="white"
-                      />
-                    </clipPath>
-                  </defs>
-                </svg>
+              
+                <Image src={network === 'eth' ? ETHNetwork : POLNetwork} alt='ETH' width={11} height={11} /> 
 
                 <div className="text-center text-gray-800 text-xs font-medium ">
-                  ETH
+                  {getCurrencyLabel()}
                 </div>
               </div>
             </div>
