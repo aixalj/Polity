@@ -74,7 +74,7 @@ const ReceiveModal = () => {
   } = useWallet();
 
   return (
-    <div className=" p-0 flex flex-col gap-0">
+    <div className=" p-0 flex flex-col gap-0 ">
       <div className="px-6 pt-6 pb-3 flex flex-col">
         <div className="mb-2">
           <svg
