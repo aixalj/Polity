@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import type { Config } from 'tailwindcss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
@@ -84,6 +84,15 @@ function BitcoinOne() {
   ) => {
     setNotifications((prev) => [...prev, { title, description, status }]);
   };
+  useEffect(() => {
+    if (notifications.length > 0) {
+      const timer = setTimeout(() => {
+        setNotifications([]);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [notifications]);
 
   return (
     <main className='w-full h-full'>
