@@ -2711,18 +2711,18 @@ const SendModal = () => {
                   <div className='flex gap-3 mt-3 items-center mb-6 px-6'>
                     <RecipientForm />
                   </div>
-                  <div className='w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium text-gray-600 py-2'>
+                  <div className='w-full bg-gray-50 uppercase px-6 text-xs mb-2 font-medium text-gray-600 py-2'>
                     From
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex'>
                       {' '}
                       <p>Wallet</p>
                       <p className='flex gap-2 font-medium items-center'>
                         {selectedWallet}
                       </p>
                     </div>
-                    <div className='w-full justify-between  flex py-1.5'>
+                    <div className='w-full justify-between  flex pt-0.5 '>
                       {' '}
                       <p>Network Account</p>
                       <p className='font-medium'>
@@ -2750,11 +2750,11 @@ const SendModal = () => {
                       </p>
                     </div>
                   </div>
-                  <div className='w-full bg-gray-50 uppercase px-6 text-xs mb-3 font-medium mt-3 text-gray-600 py-2'>
+                  <div className='w-full bg-gray-50 uppercase px-6 text-xs mb-2 font-medium mt-3 text-gray-600 py-2'>
                     Balance
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex'>
                       {' '}
                       <p>Available Balance</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -2764,7 +2764,7 @@ const SendModal = () => {
                         {availableBalance}
                       </p>
                     </div>
-                    <div className='w-full justify-between  flex py-1.5'>
+                    <div className='w-full justify-between  flex pt-0.5'>
                       {' '}
                       <p>USD Equivalent</p>
                       <p className='flex gap-2 font-medium items-center'>
