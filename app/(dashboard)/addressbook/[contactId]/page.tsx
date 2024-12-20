@@ -158,7 +158,7 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
   }, [contactId]);
 
   if (!contact) {
-    return <div>No contact available</div>;
+    return ;
   }
 
   const toggleTooltip = (id: string) => {
