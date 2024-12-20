@@ -893,8 +893,8 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                   ]
                 : undefined,
           }}
-          addNotification={handleNotification}
-          isFromTable={!isDFNS}
+          addNotification={addNotification}
+          isFromTable={true}
         />
       )}
 

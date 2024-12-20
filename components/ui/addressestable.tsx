@@ -250,9 +250,9 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
       <div className="w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs">
         <div className="w-10 px-2 py-3"></div>
         <div className="w-1/5 px-6 py-3">Contact</div>
-        <div className="w-1/5 px-4 py-3">Network</div>
-        <div className="w-1/6 pl-2 py-3">Asset</div>
-        <div className="w-1/5 pr-1 py-3">Address</div>
+        <div className="w-1/5 px-6 py-3">Network</div>
+        <div className="w-1/6 px-6 py-3">Asset</div>
+        <div className="w-1/5 px-6 py-3">Address</div>
         <div className="w-32 px-6 py-3"></div>
       </div>
       <div className="flex-grow overflow-y-auto">
@@ -284,7 +284,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   </p>
                 </div>
               </div>
-              <div className="w-1/5 px-5 py-3 flex items-center">
+              <div className="w-1/5 px-6 py-3 flex flex-start items-center">
                 <div className="w-8 h-8 flex-shrink-0 mr-2">
                   <Image
                     src={getNetworkIcon(address.network)}
@@ -298,7 +298,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   {getNetworkName(address.network)}
                 </span>
               </div>
-              <div className="w-1/6 px-5 py-3 flex items-center">
+              <div className="w-1/6 px-6 py-3 flex items-center">
                 {address.asset ? (
                   <>
                     <div className="w-5 h-5 mr-2 flex-shrink-0">
@@ -317,7 +317,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   <span className="text-gray-400"></span>
                 )}
               </div>
-              <div className="w-1/4 px-4 py-3 flex items-center">
+              <div className="w-1/5 px-6 py-3 flex items-center">
                 <div ref={tooltipRef}>
                   {/^\d/.test(address.address) ? (
                     <TooltipProvider>
@@ -393,7 +393,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   )}
                 </div>
               </div>
-              <div className="w-50 pr-6 py-3 flex items-center justify-end space-x-4">
+              <div className="w-50 px-6 py-3 flex items-center justify-end space-x-4">
                 <Button
                   variant="outline"
                   size="sm"
