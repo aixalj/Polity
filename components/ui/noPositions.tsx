@@ -2851,7 +2851,7 @@ const NoPositions = () => {
       </div>
       <h2 className='text-lg font-medium text-gray-900'>No positions found</h2>
       <p className='text-sm text-gray-600 mt-1 w-full max-w-96 text-center'>
-        You currently don’t have any positions on any protocols. As you
+        You currently don&apos;t have any positions on any protocols. As you
         allocate funds, the details will be shown here.
       </p>
     </div>

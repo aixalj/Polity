@@ -76,7 +76,9 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
   ); // State for selected contact ID
 
   const [isEditAddressModalOpen, setIsEditAddressModalOpen] = useState(false);
-  const [selectedAddressId, setSelectedAddressId] = useState<string | null>(null);
+  const [selectedAddressId, setSelectedAddressId] = useState<string | null>(
+    null
+  );
 
   const openModal = (id: string) => {
     // Define openModal function
@@ -156,11 +158,29 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
   }, [contactId]);
 
   if (!contact) {
-    return <div>No contact available</div>;
+    return (
+      <main className="w-full h-full">
+        <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
+          <div className='w-full sticky top-0 backdrop-blur-md z-10 border-b border-gray-100 bg-white/60'>
+            <div className='py-2.5 relative flex justify-between w-full justify-items-stretch flex-row place-content-between px-6'>
+              <div className='flex items-center gap-2'>
+                <Button
+                  variant='link'
+                  size='icon'
+                  onClick={() => router.back()}
+                >
+                  <ArrowLeft className='h-4 w-4' />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    );
   }
 
   const toggleTooltip = (id: string) => {
-    setOpenTooltipId((prevId) => (prevId === id ? null : id));
+    setOpenTooltipId((prevId) => (prevId === id ? null : id)); 
   };
 
   // Group addresses by network
@@ -326,7 +346,9 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
                         />
                         <div className='flex flex-col'>
                           <p>{network}</p>
-                          <p className="text-xs font-regular text-gray-600">{addresses.length} addresses</p>
+                          <p className='text-xs font-regular text-gray-600'>
+                            {addresses.length} addresses
+                          </p>
                         </div>
                       </div>
                       <div className='w-36 flex-auto px-6 py-3 h-16 flex items-center'></div>
@@ -349,7 +371,6 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
                       >
                         <div className='w-9 flex-none'></div>
 
-                       
                         <div className='w-[300px] flex-none px-6 py-3 flex items-center gap-3'>
                           <FavoriteStar
                             isFavorite={favorites.includes(address.id)}
@@ -362,7 +383,6 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
                           </div>
                         </div>
 
-                  
                         <div className='w-[300px] flex-none px-6 py-3 flex items-center gap-3'>
                           <Image
                             src={`/icons/tokens/${
@@ -394,7 +414,6 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
                           </div>
                         </div>
 
-                        
                         <div className='w-[250px] flex-none px-6 py-3 flex items-center'>
                           <div ref={tooltipRef}>
                             <TooltipProvider>
@@ -406,41 +425,50 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
                                   onClick={(e) => {
                                     e.preventDefault();
                                     toggleTooltip(address.id);
-                                    navigator.clipboard.writeText(address.address);
+                                    navigator.clipboard.writeText(
+                                      address.address
+                                    );
                                   }}
                                   asChild
                                 >
-                                  <span className="flex items-center gap-2 cursor-pointer">
-                                    <div className="w-6 h-6 overflow-hidden rounded-md border border-gray-200">
+                                  <span className='flex items-center gap-2 cursor-pointer'>
+                                    <div className='w-6 h-6 overflow-hidden rounded-md border border-gray-200'>
                                       <Image
                                         alt={address.address}
-                                        src={blo(`0x${address.address.slice(2)}`)}
+                                        src={blo(
+                                          `0x${address.address.slice(2)}`
+                                        )}
                                         width={24}
                                         height={24}
                                       />
                                     </div>
                                     <p className='text-sm font-medium text-gray-700 underline underline-offset-4'>
-                                      {address.address.slice(0, 6)}...{address.address.slice(-4)}
+                                      {address.address.slice(0, 6)}...
+                                      {address.address.slice(-4)}
                                     </p>
                                     <svg
-                                      width="12"
-                                      height="12"
-                                      viewBox="0 0 12 12"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
+                                      width='12'
+                                      height='12'
+                                      viewBox='0 0 12 12'
+                                      fill='none'
+                                      xmlns='http://www.w3.org/2000/svg'
                                     >
-                                      <g clipPath="url(#clip0_1278_40151)">
+                                      <g clipPath='url(#clip0_1278_40151)'>
                                         <path
-                                          d="M2.5 7.5C2.03406 7.5 1.80109 7.5 1.61732 7.42388C1.37229 7.32239 1.17761 7.12771 1.07612 6.88268C1 6.69891 1 6.46594 1 6V2.6C1 2.03995 1 1.75992 1.10899 1.54601C1.20487 1.35785 1.35785 1.20487 1.54601 1.10899C1.75992 1 2.03995 1 2.6 1H6C6.46594 1 6.69891 1 6.88268 1.07612C7.12771 1.17761 7.32239 1.37229 7.42388 1.61732C7.5 1.80109 7.5 2.03406 7.5 2.5M6.1 11H9.4C9.96005 11 10.2401 11 10.454 10.891C10.6422 10.7951 10.7951 10.6422 10.891 10.454C11 10.2401 11 9.96005 11 9.4V6.1C11 5.53995 11 5.25992 10.891 5.04601C10.7951 4.85785 10.6422 4.70487 10.454 4.60899C10.2401 4.5 9.96005 4.5 9.4 4.5H6.1C5.53995 4.5 5.25992 4.5 5.04601 4.60899C4.85785 4.70487 4.70487 4.85785 4.60899 5.04601C4.5 5.25992 4.5 5.53995 4.5 6.1V9.4C4.5 9.96005 4.5 10.2401 4.60899 10.454C4.70487 10.6422 4.85785 10.7951 5.04601 10.891C5.25992 11 5.53995 11 6.1 11Z"
-                                          stroke="#344054"
-                                          strokeWidth="1.25"
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
+                                          d='M2.5 7.5C2.03406 7.5 1.80109 7.5 1.61732 7.42388C1.37229 7.32239 1.17761 7.12771 1.07612 6.88268C1 6.69891 1 6.46594 1 6V2.6C1 2.03995 1 1.75992 1.10899 1.54601C1.20487 1.35785 1.35785 1.20487 1.54601 1.10899C1.75992 1 2.03995 1 2.6 1H6C6.46594 1 6.69891 1 6.88268 1.07612C7.12771 1.17761 7.32239 1.37229 7.42388 1.61732C7.5 1.80109 7.5 2.03406 7.5 2.5M6.1 11H9.4C9.96005 11 10.2401 11 10.454 10.891C10.6422 10.7951 10.7951 10.6422 10.891 10.454C11 10.2401 11 9.96005 11 9.4V6.1C11 5.53995 11 5.25992 10.891 5.04601C10.7951 4.85785 10.6422 4.70487 10.454 4.60899C10.2401 4.5 9.96005 4.5 9.4 4.5H6.1C5.53995 4.5 5.25992 4.5 5.04601 4.60899C4.85785 4.70487 4.70487 4.85785 4.60899 5.04601C4.5 5.25992 4.5 5.53995 4.5 6.1V9.4C4.5 9.96005 4.5 10.2401 4.60899 10.454C4.70487 10.6422 4.85785 10.7951 5.04601 10.891C5.25992 11 5.53995 11 6.1 11Z'
+                                          stroke='#344054'
+                                          strokeWidth='1.25'
+                                          strokeLinecap='round'
+                                          strokeLinejoin='round'
                                         />
                                       </g>
                                       <defs>
-                                        <clipPath id="clip0_1278_40151">
-                                          <rect width="12" height="12" fill="white" />
+                                        <clipPath id='clip0_1278_40151'>
+                                          <rect
+                                            width='12'
+                                            height='12'
+                                            fill='white'
+                                          />
                                         </clipPath>
                                       </defs>
                                     </svg>
@@ -456,12 +484,12 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
 
                         <div className='flex-1 px-6 py-3 flex justify-end'>
                           <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-8"
+                            variant='outline'
+                            size='sm'
+                            className='h-8'
                             onClick={() => handleEdit(address.id)}
                           >
-                            <Edit3 className="h-4 w-4" />
+                            <Edit3 className='h-4 w-4' />
                             Edit
                           </Button>
                         </div>
@@ -485,15 +513,19 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
         isOpen={isEditAddressModalOpen}
         onClose={() => setIsEditAddressModalOpen(false)}
         addressData={{
-          ...(contact?.addresses.find(addr => addr.id === selectedAddressId) || {
+          ...(contact?.addresses.find(
+            (addr) => addr.id === selectedAddressId
+          ) || {
             id: '',
             network: '',
             asset: '',
             address: '',
-            contactId: ''
+            contactId: '',
           }),
           contactName: contact?.name || '',
-          addressname: contact?.addresses.find(addr => addr.id === selectedAddressId)?.asset || ''
+          addressname:
+            contact?.addresses.find((addr) => addr.id === selectedAddressId)
+              ?.asset || '',
         }}
         onSave={handleSave}
         onRemove={handleRemove}

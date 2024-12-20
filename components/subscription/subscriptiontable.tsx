@@ -50,11 +50,13 @@ const SubscriptionTable: React.FC<{
     null
   );
   const [activeTab, setActiveTab] = useState<'active' | 'inactive'>('active');
-  const [notifications, setNotifications] = useState<Array<{
-    title: string;
-    description: string;
-    status: 'success' | 'error' | 'warning' | 'info';
-  }>>([]);
+  const [notifications, setNotifications] = useState<
+    Array<{
+      title: string;
+      description: string;
+      status: 'success' | 'error' | 'warning' | 'info';
+    }>
+  >([]);
 
   const handleOpenSubscribeModal = () => {
     setIsSubscribeModalOpen(true); // Open the subscribe modal
@@ -154,7 +156,7 @@ const SubscriptionTable: React.FC<{
             <div className='min-w-36 flex-auto px-6 py-3'>Started</div>
             <div className='min-w-36 flex-auto px-6 py-3'>Renews</div>
             <div className='min-w-30 flex-auto px-6 py-3'>Status</div>
-            <div className='w-full flex-auto px-6 py-3'></div>
+            <div className='w-[240px] flex-auto px-6 py-3'></div>
           </div>
           <div>
             {Array.isArray(filteredSubscriptions) &&
@@ -228,13 +230,15 @@ const SubscriptionTable: React.FC<{
                         </Badge>
                       </div>
                       <div className='w-full flex-auto justify-end px-6 py-3 h-16 flex items-center whitespace-nowrap gap-2'>
-                        {subscription.status === 'Pending' && (
+                        {subscription.status === 'Pending' ? (
                           <Button
                             variant='outline'
                             onClick={() => handleInstallClick(subscription)}
                           >
                             Install
                           </Button>
+                        ) : (
+                          <div className="w-[73px]"></div>
                         )}
                         <Button
                           variant='outline'
@@ -303,18 +307,16 @@ const SubscriptionTable: React.FC<{
       </FSDialog>
 
       {/* Add fixed positioning container for notifications */}
-      <div className="fixed bottom-4 left-4 z-[100] flex flex-col gap-2 w-[416px]">
+      <div className='fixed bottom-4 left-4 z-[100] flex flex-col gap-2 w-[416px]'>
         {notifications.map((notification, index) => (
           <Notification
             key={index}
             title={notification.title}
             description={notification.description}
             status={notification.status}
-            className="shadow-2xl"
+            className='shadow-2xl'
             onClose={() => {
-              setNotifications((prev) =>
-                prev.filter((_, i) => i !== index)
-              );
+              setNotifications((prev) => prev.filter((_, i) => i !== index));
             }}
           />
         ))}

@@ -2851,7 +2851,7 @@ const NoAssettab = () => {
       </div>
       <h2 className='text-lg font-medium text-gray-900'>No assets found</h2>
       <p className='text-sm text-gray-600 mt-1 w-full max-w-96 text-center'>
-        You currently don’t have any assets. As you
+        You currently don&apos;t have any assets. As you allocate funds, the
         allocate funds, the details will be shown here.
       </p>
     </div>

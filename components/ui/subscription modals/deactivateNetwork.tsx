@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { X } from 'lucide-react';
+import { X, XCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Notification } from '@/components/ui/notification';
@@ -98,11 +98,11 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
         >
           <div className='px-8 pt-5 flex-shrink-0'>
             <div className='flex justify-start mb-2'>
-              <X
-                className='h-6 w-6 text-gray-50 cursor-pointer'
-                onClick={handleClose}
-              />
+            <XCircle
+              className='h-6 w-6 text-gray-50'
+            />
             </div>
+
             <h2 className='text-lg font-medium mb-1.5 text-gray-50'>
               Deactivate Network Account
             </h2>
