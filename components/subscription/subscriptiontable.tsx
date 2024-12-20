@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/subscribecontext';
 import { WalletProvider } from '@/components/ui/formcontext';
 import NoSubscription from '@/components/ui/subscription modals/noSubscription';
+import { Notification } from '@/components/ui/notification';
 
 const getTimeRemaining = (endTime: Date) => {
   const total = endTime.getTime() - new Date().getTime();
@@ -49,6 +50,12 @@ const SubscriptionTable: React.FC<{
     null
   );
   const [activeTab, setActiveTab] = useState<'active' | 'inactive'>('active');
+  const [notifications, setNotifications] = useState<Array<{
+    title: string;
+    description: string;
+    status: 'success' | 'error' | 'warning' | 'info';
+  }>>([]);
+
   const handleOpenSubscribeModal = () => {
     setIsSubscribeModalOpen(true); // Open the subscribe modal
   };
@@ -104,6 +111,24 @@ const SubscriptionTable: React.FC<{
       console.log('Installing...');
     }
   };
+
+  const addNotification = (
+    title: string,
+    description: string,
+    status: 'success' | 'error' | 'warning' | 'info'
+  ) => {
+    setNotifications((prev) => [...prev, { title, description, status }]);
+  };
+
+  useEffect(() => {
+    if (notifications.length > 0) {
+      const timer = setTimeout(() => {
+        setNotifications([]);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [notifications]);
 
   return (
     <div className='relative w-full flex flex-col'>
@@ -247,9 +272,7 @@ const SubscriptionTable: React.FC<{
           networkAccountImage={`/icons/networks/${selectedAccount.network}.svg`}
           balance={`${selectedAccount.yourBid.toFixed(2)} USDT`}
           networkAccountNumber={selectedAccount.id || '1'}
-          addNotification={(title, description, status) => {
-            console.log(title, description, status);
-          }}
+          addNotification={addNotification}
           status={selectedAccount.status}
           onResubscribe={handleOpenSubscribeModal}
           isDFNS={selectedAccount.network === 'DFNS'}
@@ -278,6 +301,24 @@ const SubscriptionTable: React.FC<{
           </WalletProvider>
         </FSDialogContent>
       </FSDialog>
+
+      {/* Add fixed positioning container for notifications */}
+      <div className="fixed bottom-4 left-4 z-[100] flex flex-col gap-2 w-[416px]">
+        {notifications.map((notification, index) => (
+          <Notification
+            key={index}
+            title={notification.title}
+            description={notification.description}
+            status={notification.status}
+            className="shadow-2xl"
+            onClose={() => {
+              setNotifications((prev) =>
+                prev.filter((_, i) => i !== index)
+              );
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
 };
