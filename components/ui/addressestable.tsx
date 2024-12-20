@@ -284,7 +284,7 @@ const AddressesTable: React.FC<AddressesTableProps> = ({
                   </p>
                 </div>
               </div>
-              <div className="w-1/5 px-5 py-3 flex items-center">
+              <div className="w-1/5 px-5 py-3 flex flex-start items-center">
                 <div className="w-8 h-8 flex-shrink-0 mr-2">
                   <Image
                     src={getNetworkIcon(address.network)}

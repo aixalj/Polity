@@ -1,5 +1,7 @@
 
 
+'use client';
+
 import Image from "next/image";
 import type { Config } from "tailwindcss";
 import { useState, useEffect } from "react";
@@ -1728,7 +1730,7 @@ function BitcoinOne() {
                             mask='url(#path-326-inside-161_99_76756)'
                           />
                           <mask id='path-328-inside-162_99_76756' fill='white'>
-                            <path d='M168.515 104.681H176.1V112.267H168.515V104.681Z' />
+                            <path d='M168.515 104.681H176.1V112.267H168.515V104.681Z'/>
                           </mask>
                           <path
                             d='M176.1 112.267V112.767H176.6V112.267H176.1ZM175.6 104.681V112.267H176.6V104.681H175.6ZM176.1 111.767H168.515V112.767H176.1V111.767Z'
@@ -3164,7 +3166,7 @@ function BitcoinOne() {
                     No dApps found
                   </h2>
                   <p className='text-sm text-gray-600 mt-1 w-full max-w-96 text-center'>
-                    You currently don’t have any dApps connected to your wallet.
+                    You currently don&apos;t have any dApps connected to your wallet.
                     As you connect dApps, their details will be shown here.
                   </p>
                 </div>

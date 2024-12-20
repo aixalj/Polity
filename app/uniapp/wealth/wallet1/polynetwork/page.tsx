@@ -3164,7 +3164,7 @@ function BitcoinOne() {
                     No dApps found
                   </h2>
                   <p className='text-sm text-gray-600 mt-1 w-full max-w-96 text-center'>
-                    You currently don’t have any dApps connected to your wallet.
+                    You currently don't have any dApps connected to your wallet.
                     As you connect dApps, their details will be shown here.
                   </p>
                 </div>

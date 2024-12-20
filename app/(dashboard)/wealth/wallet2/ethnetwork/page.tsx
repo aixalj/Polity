@@ -1439,6 +1439,10 @@ function BitcoinOne() {
                             <path d='M130.589 89.5117H138.174V97.0969H130.589V89.5117Z' />
                           </mask>
                           <path
+                            d='M130.589 89.5117H138.174V97.0969H130.589V89.5117Z'
+                            fill='#F9FAFB'
+                          />
+                          <path
                             d='M138.174 97.0969V97.5969H138.674V97.0969H138.174ZM137.674 89.5117V97.0969H138.674V89.5117H137.674ZM138.174 96.5969H130.589V97.5969H138.174V96.5969Z'
                             fill='#D0D5DD'
                             mask='url(#path-246-inside-121_99_76756)'
@@ -3220,7 +3224,7 @@ function BitcoinOne() {
                     No dApps found
                   </h2>
                   <p className='text-sm text-gray-600 mt-1 w-full max-w-96 text-center'>
-                    You currently don’t have any dApps connected to your wallet.
+                    You currently don't have any dApps connected to your wallet.
                     As you connect dApps, their details will be shown here.
                   </p>
                 </div>
