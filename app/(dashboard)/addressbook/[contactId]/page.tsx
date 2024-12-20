@@ -158,11 +158,29 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
   }, [contactId]);
 
   if (!contact) {
-    return ;
+    return (
+      <main className="w-full h-full">
+        <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
+          <div className='w-full sticky top-0 backdrop-blur-md z-10 border-b border-gray-100 bg-white/60'>
+            <div className='py-2.5 relative flex justify-between w-full justify-items-stretch flex-row place-content-between px-6'>
+              <div className='flex items-center gap-2'>
+                <Button
+                  variant='link'
+                  size='icon'
+                  onClick={() => router.back()}
+                >
+                  <ArrowLeft className='h-4 w-4' />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    );
   }
 
   const toggleTooltip = (id: string) => {
-    setOpenTooltipId((prevId) => (prevId === id ? null : id));
+    setOpenTooltipId((prevId) => (prevId === id ? null : id)); 
   };
 
   // Group addresses by network
