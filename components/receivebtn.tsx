@@ -110,7 +110,10 @@ const ReceiveBtn: React.FC<ReceiveBtnProps> = ({
               {!hideText && <span>Receive</span>}
             </Button>
           </DialogTrigger>
-          <DialogContent className='border border-gray-200 rounded-3xl p-0 flex flex-col gap-0'>
+          <DialogContent 
+            isReceiveModal
+            className='border border-gray-200 rounded-3xl p-0 flex flex-col gap-0'
+          >
             <ReceiveModal />
           </DialogContent>
         </Dialog>

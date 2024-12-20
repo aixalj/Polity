@@ -4,9 +4,8 @@ import * as React from "react";
 import type { Config } from "tailwindcss";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
+import { useState } from "react";
 import { usePathname } from "next/navigation";
-
 import {
   Select,
   SelectContent,
@@ -15,7 +14,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { useState } from "react";
 import Image from "next/image";
 import {
   Collapsible,
@@ -32,6 +30,7 @@ import {
 
 import Link from "next/link";
 import { File05, PackageCheck, Trophy01 } from "@untitled-ui/icons-react";
+import OnramperModal from "@/components/onramper/onramper";
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,16 +38,13 @@ const SideBar = () => {
 
   const [openStates, setOpenStates] = useState<{ [key: string]: boolean }>({});
 
+  // Add state at the top of component
+  const [isOnramperOpen, setIsOnramperOpen] = useState(false);
+  const [notifications, setNotifications] = useState<Array<{ title: string }>>([]);
+
   // Handler to toggle the open state
   const handleOpenChange = (id: string, isOpen: boolean) => {
     setOpenStates((prev) => ({ ...prev, [id]: isOpen }));
-
-    // const MyCollapsible = () => {
-    //   const [isOpen, setIsOpen] = useState(false);
-
-    //   const handleOpenChange = (open: boolean) => {
-    //     setIsOpen(open);
-    //   };
   };
 
   return (
@@ -1439,9 +1435,12 @@ const SideBar = () => {
                       Trade your cash for crypto at the best rates.
                     </p>
 
-                    <a className="mt-4 text-emerald-700 font-semibold">
+                    <Button 
+                      className="mt-4 bg-white !text-emerald-700 !outline-none !shadow-none text-left !p-0 !justify-start focus:bg-white focus:text-emerald-700 items-left hover:bg-white hover:text-emerald-700 font-semibold cursor-pointer"
+                      onClick={() => setIsOnramperOpen(true)}
+                    >
                       Buy Now
-                    </a>
+                    </Button>
                   </div>
                 </li>
               </ul>
@@ -1449,6 +1448,12 @@ const SideBar = () => {
           </div>
         </nav>
       </div>
+
+      <OnramperModal
+        isOpen={isOnramperOpen}
+        onClose={() => setIsOnramperOpen(false)}
+        setNotifications={setNotifications} 
+      />
     </div>
   );
 };

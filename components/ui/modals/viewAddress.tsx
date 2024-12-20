@@ -20,7 +20,7 @@ import { Dialog, DialogContent } from '@/components/ui/dialog'; // Import Dialog
 
 interface ViewAddressProps {
   isOpen: boolean;
-  onClose: () => void;
+  onClose: (closeAll?: boolean) => void;
   addressData: {
     contactName: string;
     addressname: string;
@@ -121,7 +121,7 @@ const ViewAddress: React.FC<ViewAddressProps> = ({
     : null;
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={() => onClose(true)}>
       <DialogContent
         lightCloseIcon
         className='bg-primary-500 p-1 rounded-2xl shadow-xl  w-[410px] h-auto flex flex-col '

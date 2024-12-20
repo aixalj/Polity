@@ -13,7 +13,7 @@ import Link from "next/link";
 
 interface NotificationProps {
   title: string;
-  description: string;
+  description: React.ReactNode;
   status: "success" | "error" | "warning" | "info";
   link?: string;
   linkText?: string;
@@ -58,7 +58,7 @@ const Notification = ({
       )}
 
       <div className="flex flex-col flex-grow">
-        <h3 className="font-semibold mb-1">{title}</h3>
+        <h3 className="font-semibold mb-1 text-gray-900">{title}</h3>
         <p className="text-pretty">{description}</p>
         {link && (
           <Link href={link} className="flex items-center mt-3 gap-2">
