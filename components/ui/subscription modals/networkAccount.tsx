@@ -240,9 +240,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                       per month
                     </span>
                   </div>
-                  
                 </div>
-                
 
                 <div className='flex items-center justify-between py-2'>
                   <div className='flex items-center gap-3'>
@@ -504,7 +502,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                 ) : networkAccountName.includes('Fireblocks') ? (
                   <>
                     {/* Original single network display for Fireblocks */}
-                    <div className='flex items-center gap-3 mb-2'>
+                    <div className='flex items-center gap-2 mb-2'>
                       <div className='flex items-center justify-center rounded-xl'>
                         <Image
                           src='/icons/networks/Fireblocks.svg'
@@ -537,12 +535,12 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                           per month
                         </span>
                       </div>
-                      <div className='w-[26%]'></div>
+                      <div className='w-[23%]'></div>
                     </div>
 
                     {/* Polygon Network Account row */}
-                    <div className='flex items-center justify-between py-2'>
-                      <div className='flex items-center gap-3'>
+                    <div className='flex items-center justify-between py-2 gap-1'>
+                      <div className='flex items-center gap-2'>
                         <Image
                           src='/icons/networks/BTC.svg'
                           alt='BTC'
@@ -558,7 +556,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                           </p>
                         </div>
                       </div>
-                      <div className='flex items-center gap-4'>
+                      <div className='flex items-center '>
                         <div className='flex flex-col items-end'>
                           <div className='flex items-center'>
                             <Image
@@ -567,7 +565,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                               width={16}
                               height={16}
                             />
-                            <span className='ml-1 text-sm font-semibold'>
+                            <span className='ml-1 text-sm font-semibold line-through text-gray-400 '>
                               1.99 USDT
                             </span>
                           </div>
@@ -575,17 +573,19 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                             per month
                           </span>
                         </div>
+                      </div>
+                      <div className='flex !justify-end '>
                         <Button
                           variant='outline'
-                          className='text-primary hover:text-primary opacity-50 cursor-not-allowed'
+                          className='text-primary hover:text-primary opacity-50 cursor-not-allowed !px-2 !py-1 !text-xs'
                           disabled
                         >
                           Resubscribe
                         </Button>
                       </div>
                     </div>
-                    <div className='flex items-center justify-between py-2'>
-                      <div className='flex items-center gap-3'>
+                    <div className='flex items-center justify-between py-2 gap-1'>
+                      <div className='flex items-center gap-2'>
                         <Image
                           src='/icons/networks/ETH.svg'
                           alt='ETH'
@@ -593,15 +593,15 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                           height={36}
                         />
                         <div>
-                          <p className='text-sm font-medium'>
-                            Ethereum Network Account
+                          <p className='text-sm font-medium truncate line-clamp-1'>
+                            Ethereum Network Acc...
                           </p>
                           <p className='text-xs text-gray-600'>
                             Network Account Name
                           </p>
                         </div>
                       </div>
-                      <div className='flex items-center gap-4'>
+                      <div className='flex items-center '>
                         <div className='flex flex-col items-end'>
                           <div className='flex items-center'>
                             <Image
@@ -610,7 +610,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                               width={16}
                               height={16}
                             />
-                            <span className='ml-1 text-sm font-semibold'>
+                            <span className='ml-1 text-sm font-semibold line-through text-gray-400 '>
                               1.99 USDT
                             </span>
                           </div>
@@ -618,25 +618,27 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                             per month
                           </span>
                         </div>
+                      </div>
+                      <div className='flex !justify-end '>
                         <Button
                           variant='outline'
-                          className='text-primary hover:text-primary opacity-50 cursor-not-allowed'
+                          className='text-primary hover:text-primary opacity-50 cursor-not-allowed !px-2 !py-1 !text-xs'
                           disabled
                         >
                           Resubscribe
                         </Button>
                       </div>
                     </div>
-                    <div className='flex items-center justify-between py-2'>
-                      <div className='flex items-center gap-3'>
+                    <div className='flex items-center justify-between py-2 gap-1'>
+                      <div className='flex items-center gap-2'>
                         <Image
                           src='/icons/networks/MATIC.svg'
-                          alt='Polygon'
+                          alt='MATIC'
                           width={36}
                           height={36}
                         />
                         <div>
-                          <p className='text-sm font-medium'>
+                          <p className='text-sm font-medium truncate'>
                             Polygon Network Account
                           </p>
                           <p className='text-xs text-gray-600'>
@@ -644,7 +646,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                           </p>
                         </div>
                       </div>
-                      <div className='flex items-center gap-4'>
+                      <div className='flex items-center '>
                         <div className='flex flex-col items-end'>
                           <div className='flex items-center'>
                             <Image
@@ -653,7 +655,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                               width={16}
                               height={16}
                             />
-                            <span className='ml-1 text-sm font-semibold'>
+                            <span className='ml-1 text-sm font-semibold line-through text-gray-400 '>
                               1.99 USDT
                             </span>
                           </div>
@@ -661,9 +663,11 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                             per month
                           </span>
                         </div>
+                      </div>
+                      <div className='flex !justify-end '>
                         <Button
                           variant='outline'
-                          className='text-primary hover:text-primary opacity-50 cursor-not-allowed'
+                          className='text-primary hover:text-primary opacity-50 cursor-not-allowed !px-2 !py-1 !text-xs'
                           disabled
                         >
                           Resubscribe

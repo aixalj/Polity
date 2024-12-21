@@ -43,6 +43,17 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
+  const isWalletDeactivation =
+    networkData.name?.includes('Safeheron') ||
+    networkData.name?.includes('DFNS');
+
+  const modalTitle = isWalletDeactivation
+    ? 'Deactivate Wallet'
+    : 'Deactivate Network Account';
+  const entityType = isWalletDeactivation ? 'Wallet' : 'Network Account';
+
+  const networkAccountImage = `/icons/networks/${networkData.network}.svg`;
+
   const handleClose = () => {
     console.log('Closing all modals');
     onClose(false);
@@ -98,31 +109,30 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
         >
           <div className='px-8 pt-5 flex-shrink-0'>
             <div className='flex justify-start mb-2'>
-            <XCircle
-              className='h-6 w-6 text-gray-50'
-            />
+              <XCircle className='h-6 w-6 text-gray-50' />
             </div>
 
             <h2 className='text-lg font-medium mb-1.5 text-gray-50'>
-              Deactivate Network Account
+              {modalTitle}
             </h2>
-            <p className='mb-4 text-gray-50 text-sm font-regular'>
-              You&apos;ll lose access to this Network Account at the end of your
-              subscription on {networkData.deactivationDate.toLocaleDateString()}.
+            <p className=' text-gray-50 text-sm font-regular'>
+              You&apos;ll lose access to this {entityType} at the end of your
+              subscription on{' '}
+              {networkData.deactivationDate.toLocaleDateString()}.
             </p>
           </div>
 
-          <div className='bg-white px-6 py-4 rounded-xl shadow-md flex-grow overflow-hidden'>
-            <div className='space-y-6'>
+          <div className='bg-white py-4 rounded-xl shadow-md flex-grow overflow-hidden'>
+            <div className='space-y-3'>
               {networkData.isDFNSCancellation ? (
                 <>
-                  <div className='space-y-4 mb-6'>
+                  <div className='space-y-4 mb-2 px-6'>
                     {networkData.subscriptions?.map((sub) => (
                       <div
                         key={sub.network}
                         className='flex items-center justify-between py-2'
                       >
-                        <div className='flex items-center gap-3'>
+                        <div className='flex items-center gap-2'>
                           <Image
                             src={`/icons/networks/${sub.network}.svg`}
                             alt={sub.name}
@@ -131,51 +141,47 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
                           />
                           <div>
                             <p className='text-sm font-medium'>{sub.name}</p>
-                            <p className='text-xs text-gray-600'>
+                            <p className='text-xs text-gray-600 truncate'>
                               {sub.network === 'DFNS'
                                 ? 'Wallet Name'
                                 : 'Network Account Name'}
                             </p>
                           </div>
                         </div>
-                        <div className='flex items-center'>
+                        <div className='flex items-start'>
                           <Image
                             src='/icons/tokens/USDT.svg'
                             alt='USDT'
+                            className='w-4 h-4 mt-1'
                             width={16}
                             height={16}
                           />
-                          <span className='ml-1 text-sm font-semibold'>
-                            {sub.price.toFixed(2)} USDT
-                          </span>
-                          <span className='text-xs text-gray-500 ml-1'>
-                            per month
-                          </span>
+                          <div className='flex flex-col'>
+                            <span className='ml-1 text-sm font-semibold truncate'>
+                              {sub.price.toFixed(2)} USDT
+                            </span>
+                            <span className='text-xs text-gray-500 ml-1 truncate'>
+                              per month
+                            </span>
+                          </div>
                         </div>
                       </div>
                     ))}
                   </div>
-                  <div className='flex items-center justify-between py-2 border-t border-gray-100'>
-                    <span className='text-sm font-medium'>Total</span>
-                    <div className='flex items-center'>
-                      <Image
-                        src='/icons/tokens/USDT.svg'
-                        alt='USDT'
-                        width={16}
-                        height={16}
-                      />
-                      <span className='ml-1 text-sm font-semibold'>
-                        15.96 USDT
-                      </span>
-                      <span className='text-xs text-gray-500 ml-1'>
-                        per month
-                      </span>
-                    </div>
-                  </div>
                 </>
               ) : networkData.name.includes('Safeheron') ? (
                 <>
-                  <div className='flex items-center gap-3 mb-2'>
+                  <div>
+                    <p className='text-sm font-medium text-gray-700 px-6'>
+                      You are deactivating
+                    </p>
+                  </div>
+                  <div className='bg-gray-50 py-2 mb-1 w-full'>
+                    <p className='text-xs font-medium text-gray-600 ml-6'>
+                      PRODUCTS
+                    </p>
+                  </div>
+                  <div className='flex items-center gap-3 mb-2 px-6'>
                     <div className='flex items-center justify-center rounded-xl'>
                       <Image
                         src='/icons/networks/Safeheron.svg'
@@ -211,7 +217,7 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
                   {['Bitcoin', 'Ethereum', 'Polygon'].map((network) => (
                     <div
                       key={network}
-                      className='flex items-center justify-between py-2'
+                      className='flex items-center justify-between py-2 px-6'
                     >
                       <div className='flex items-center gap-3'>
                         <Image
@@ -253,8 +259,18 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
                   ))}
                 </>
               ) : (
-                <div className='flex items-center justify-between mb-6'>
-                  <div className='flex items-center gap-3 mb-4'>
+                <div className=''>
+                  <div className='flex items-center justify-between mb-3'>
+                    <p className='text-sm font-medium text-gray-700 px-6'>
+                      You are deactivating
+                    </p>
+                  </div>
+                  <div className='bg-gray-50 py-2 mb-1 w-full'>
+                    <p className='text-xs font-medium text-gray-600 ml-6'>
+                      PRODUCTS
+                    </p>
+                  </div>
+                  <div className='flex items-center gap-3 mb-4 mt-4 px-6'>
                     <div className='min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl'>
                       <Image
                         src={`/icons/networks/${networkData.network}.svg`}
@@ -264,80 +280,124 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
                       />
                     </div>
                     <div className='flex flex-col'>
-                      <span className='text-sm font-medium'>
+                      <span className='text-sm font-medium text-gray-800'>
                         {networkData.name}
                       </span>
                       <span className='text-sm text-gray-600'>
                         Network Account Name
                       </span>
                     </div>
-                    <div className='ml-auto flex items-center'>
+                    <div className='ml-auto flex items-start'>
                       <Image
                         src='/icons/tokens/USDT.svg'
                         alt='USDT'
+                        className='w-4 h-4 mt-1'
                         width={16}
                         height={16}
                       />
-                      <span className='ml-1'>
-                        {networkData.price.toFixed(2)} USDT
-                      </span>
-                      <span className='text-sm text-gray-500 ml-1'>
-                        per month
-                      </span>
+                      <div className='flex flex-col items-start'>
+                        <span className='ml-1 text-sm font-semibold text-gray-800'>
+                          {networkData.price.toFixed(2)} USDT
+                        </span>
+                        <span className='text-sm text-gray-500 ml-1'>
+                          per month
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               )}
 
               <div>
-                <p className='text-sm font-medium text-gray-600 mb-2'>
-                  PAYMENT METHOD
-                </p>
-                <div className='space-y-2'>
+                <div className='bg-gray-50 py-2 mb-1 w-full'>
+                  <p className='text-xs font-medium text-gray-600 ml-6'>
+                    PAYMENT METHOD
+                  </p>
+                </div>
+                <div className='space-y-2 px-6'>
                   <div className='flex justify-between items-center'>
                     <span className='text-sm'>Wallet</span>
-                    <span className='text-sm font-medium'>
-                      {networkData.walletName}
-                    </span>
+                    <div className='flex items-center gap-2'>
+                      <Image
+                        src='/wallets/wallet1.svg'
+                        alt='wallet'
+                        width={16}
+                        height={16}
+                      />
+                      <span className='text-sm font-medium'>
+                        {networkData.walletName}
+                      </span>
+                    </div>
                   </div>
                   <div className='flex justify-between items-center'>
                     <span className='text-sm'>Network Account</span>
-                    <span className='text-sm font-medium'>
-                      {networkData.networkAccountName}
-                    </span>
+                    <div className='flex items-center gap-2'>
+                      <Image
+                        src={networkAccountImage}
+                        alt={networkAccountImage}
+                        width={16}
+                        height={16}
+                      />
+                      <span className='text-sm font-medium'>
+                        {networkData.networkAccountName}
+                      </span>
+                    </div>
+                  </div>
+                  <div className='flex justify-between items-center'>
+                    <p className='text-sm font-medium text-gray-700'>
+                      If you deactivate, the following will happen:
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div>
-                <p className='text-sm font-medium text-gray-600 mb-2'>
-                  DEACTIVATION IMPACTS
-                </p>
-                <div className='space-y-2'>
+                <div className='bg-gray-50 py-2 mb-2 w-full'>
+                  <p className='text-xs font-medium text-gray-600 ml-6'>
+                    DEACTIVATION IMPACTS
+                  </p>
+                </div>
+                <div className='space-y-2 px-6'>
                   <div className='flex items-center gap-2 text-sm'>
-                    <div className='text-emerald-500'>✓</div>
-                    <span>
+                    <Image
+                      src='/CheckIconNew.svg'
+                      alt='checkmark'
+                      width={40}
+                      height={40}
+                    />
+                    <span className='text-sm font-normal text-gray-800'>
                       You will still own all coins, tokens, and positions in the
                       Network Accounts and across all protocols.
                     </span>
                   </div>
                   <div className='flex items-center gap-2 text-sm'>
-                    <div className='text-rose-500'>✕</div>
-                    <span>
+                    <Image
+                      src='/check-icon-close.svg'
+                      alt='checkmark'
+                      width={32}
+                      height={32}
+                    />
+                    <span className='text-sm font-normal text-gray-800'>
                       Lose access to WalletConnect and all WalletConnect related
                       features
                     </span>
                   </div>
-                  <div className='flex items-center gap-2 text-sm'>
-                    <div className='text-rose-500'>✕</div>
-                    <span>
+                  <div className='flex items-center gap-2 text-sm !mb-6'>
+                    <Image
+                      src='/check-icon-close.svg'
+                      className='w-6 h-6'
+                      alt='checkmark'
+                      width={24}
+                      height={24}
+                    />
+                    <span className='text-sm font-normal text-gray-800'>
                       Inability to view the dashboard chart and analytics
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className='flex gap-4 mt-6'>
+              <div className='flex gap-4 mt-7 px-6 justify-center'>
                 <Button
                   onClick={handleCancel}
                   className='w-1/2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
