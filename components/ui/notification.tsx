@@ -41,14 +41,14 @@ const Notification = ({
             : status === "info"
             ? "bg-white text-gray-700"
             : status === "error"
-            ? "bg-rose-50 text-rose-700"
+            ? "bg-white text-gray-700"
             : "bg-amber-50 text-amber-700" 
         }`,
         className
       )}
     >
        {status === "error" ? (
-        <AlertCircle className="min-w-5 min-h-5 max-w-5 max-h-5" />
+        <AlertTriangle className="min-w-[40px] min-h-[40px] max-w-[40px] max-h-[40px] bg-red-100 rounded-full text-red-600 p-[8px]" />
       ) : status === "success" ? (
        <CheckVerified01 className="min-w-11 min-h-11 max-w-11 max-h-11 bg-green-100 rounded-full text-green-600 p-2.5" />
       ) : status === "info" ? (
