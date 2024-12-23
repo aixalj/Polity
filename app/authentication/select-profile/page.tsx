@@ -73,7 +73,7 @@ export default function SelectProfilePage() {
             >
               <div className={`flex items-center justify-between p-4 rounded-[24px] border h-[106px] border-gray-200 transition-all group
                 ${option.id === 'clients' 
-                  ? 'hover:shadow-sm shadow-sm' 
+                  ? 'hover:shadow-sm shadow-inner' 
                   : 'bg-gray-100'}`}>
                 <div className='flex items-center justify-between w-full gap-4'>
                   <div className='flex items-center gap-4'>
