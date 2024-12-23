@@ -15,16 +15,25 @@ import { Lock03, Loading02 } from '@untitled-ui/icons-react';
 
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import WalletConnect from '@/components/ui/modals/walletConnect'; 
+import WalletConnect from '@/components/ui/modals/walletConnect';
 
 interface connectTodAppProps {
   isOpen: boolean;
   onClose: () => void;
   networkAccountName: string;
   networkAccountImage: string;
-  balance: string; 
-  addNotification: (title: string, description: string, status: "success" | "error" | "warning" | "info") => void; 
-  sourcePage: string; // Add this line
+  balance: string;
+  addNotification: (
+    title: string,
+    description: string,
+    status: 'success' | 'error' | 'warning' | 'info'
+  ) => void;
+  sourcePage: string;
+  selectedDApp?: {
+    name: string;
+    icon: string;
+    url: string;
+  };
 }
 
 const ConnectTodApp: React.FC<connectTodAppProps> = ({
@@ -34,25 +43,31 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
   networkAccountImage,
   balance,
   addNotification,
+  sourcePage,
+  selectedDApp,
 }) => {
-  const [showWalletConnect, setShowWalletConnect] = useState(false); 
-  const [isLoading, setIsLoading] = useState(false); 
+  const [showWalletConnect, setShowWalletConnect] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCancel = () => {
-    onClose(); 
-    setShowWalletConnect(true); 
+    onClose();
+    setShowWalletConnect(true);
   };
   const handleConnect = () => {
-    setIsLoading(true); 
-    onClose(); 
+    setIsLoading(true);
+    onClose();
 
     setTimeout(() => {
-      addNotification("Connection Successful!", "You have successfully connected your wallet.", "success"); 
-    }, 200); 
+      addNotification(
+        'Connection Successful!',
+        'You have successfully connected your wallet.',
+        'success'
+      );
+    }, 200);
 
     setTimeout(() => {
       setIsLoading(false); // Reset loading state after 5000 milliseconds
-    }, 5000); 
+    }, 2000);
   };
   return (
     <>
@@ -87,15 +102,15 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
           <div className='bg-white px-6 pt-4 pb-3 rounded-[32px] shadow-md flex-grow overflow-hidden flex flex-col items-center justify-center'>
             <Image
               className='mb-4'
-              src={WCCryptoIcon}
-              alt='WC-icon'
+              src={selectedDApp?.icon || WCCryptoIcon}
+              alt={selectedDApp?.name || 'WC-icon'}
               width={48}
               height={48}
             />
 
             <div className='flex items-center gap-1 font-medium text-lg mb-2'>
               <Lock03 width={20} height={20} />
-              app.dhedge.org
+              {selectedDApp?.url || 'app.dhedge.org'}
             </div>
             <div className='flex items-center gap-3 font-normal mb-4'>
               <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
@@ -135,9 +150,9 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
                 type='submit'
                 variant='walletconnect'
                 className='w-full'
-                onClick={handleConnect} 
+                onClick={handleConnect}
               >
-                {isLoading ? ( 
+                {isLoading ? (
                   <>
                     <Loading02 width={20} height={20} />
                     Connecting...
@@ -175,8 +190,7 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
       {showWalletConnect && (
         <WalletConnect
           isOpen={showWalletConnect}
-          onConnect={() => {  
-          }}
+          onConnect={() => {}}
           onClose={() => setShowWalletConnect(false)}
         />
       )}
