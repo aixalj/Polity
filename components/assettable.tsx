@@ -19,6 +19,13 @@ import {
   getAllAssets,
 } from '@/components/data';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+
 interface AssetTableProps {
   variant: 'default' | 'network';
   asset: Asset;
@@ -46,7 +53,7 @@ const AssetTable: React.FC<{
         </div>
       </div>
       {/* // ) : null} */}
-      <div className='w-full flex flex-col gap-1 overflow-y-scroll'>
+      <div className='w-full flex flex-col gap-1'>
         <div className='w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs'>
           <div className='w-80 flex-none px-6 py-3'>Asset</div>
           <div className='w-60 flex-none px-6 py-3'>Allocation %</div>
@@ -123,11 +130,21 @@ const AssetTable: React.FC<{
                         })}
                       </div>
                       <div className='w-36 flex-auto px-6 py-3 h-16 items-center flex whitespace-nowrap'>
-                        {asset.balance.toLocaleString(undefined, {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                        })}{' '}
-                        {asset.symbol}
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              {Math.floor(asset.balance).toLocaleString()} {asset.symbol}
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>
+                                {asset.balance.toLocaleString(undefined, {
+                                  maximumFractionDigits: 8,
+                                })}{' '}
+                                {asset.symbol}
+                              </p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
                       </div>
                     </div>
                   </div>
