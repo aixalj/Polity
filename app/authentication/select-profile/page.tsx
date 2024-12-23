@@ -66,8 +66,15 @@ export default function SelectProfilePage() {
         {/* Profile Options */}
         <div className='space-y-3'>
           {profileOptions.map((option) => (
-            <Link key={option.id} href={option.href} className='block'>
-              <div className='flex items-center justify-between p-4 rounded-[24px] border h-[106px] border-gray-200 hover:border-[#05603A] hover:shadow-sm transition-all group'>
+            <Link 
+              key={option.id} 
+              href={option.id === 'clients' ? option.href : '#'}
+              className={option.id === 'clients' ? 'block' : 'block pointer-events-none'}
+            >
+              <div className={`flex items-center justify-between p-4 rounded-[24px] border h-[106px] border-gray-200 transition-all group
+                ${option.id === 'clients' 
+                  ? 'hover:shadow-sm shadow-sm' 
+                  : 'bg-gray-100'}`}>
                 <div className='flex items-center justify-between w-full gap-4'>
                   <div className='flex items-center gap-4'>
                     <div className='min-w-[50px] w-[50px] h-[50px] flex items-center justify-center'>
@@ -88,9 +95,11 @@ export default function SelectProfilePage() {
                       </p>
                     </div>
                   </div>
-                  <div className='flex items-center justify-center min-w-[40px] w-[40px] h-[40px] rounded-full bg-gray-200'>
-                    <ArrowRight className='w-5 h-5 text-gray-600 group-hover:text-[#05603A]' />
-                  </div>
+                  {option.id === 'clients' && (
+                    <div className='flex items-center justify-center min-w-[30px] w-[30px] h-[30px] rounded-full bg-gray-200'>
+                      <ArrowRight className='w-4 h-4 text-gray-600 group-hover:text-[#05603A]' />
+                    </div>
+                  )}
                 </div>
               </div>
             </Link>
