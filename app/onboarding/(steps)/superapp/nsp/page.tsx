@@ -105,23 +105,23 @@ export default function Agreement() {
         </div>
         <div className='flex flex-col gap-1.5'>
           <Label>Select a Network Service Provider</Label>
-          <Select onValueChange={handleProviderChange}> {/* Update to handle selection */}
+          <Select onValueChange={handleProviderChange}>
             <SelectTrigger>
               <SelectValue placeholder='Select a Network Service Provider...' />
             </SelectTrigger>
             <SelectContent className='rounded-xl flex items-center'>
               <SelectItem value='bastion' className='flex items-center'>
                 <div className='flex items-center'>
-                <Image
-                  src={'/bastion.png'}
-                  alt='Bastion'
-                  width={32}
-                  height={32}
-                  className='mr-2'
-                />
-                <div className='flex items-center'>
-                  <span className='text-[14px] font-medium'>Bastion Cooperative</span>
-                </div>
+                  <Image
+                    src={'/bastion.png'}
+                    alt='Bastion'
+                    width={32}
+                    height={32}
+                    className='mr-2'
+                  />
+                  <div className='flex items-center'>
+                    <span className='text-[14px] font-medium'>Bastion Cooperative</span>
+                  </div>
                 </div>
               </SelectItem>
             </SelectContent>
@@ -134,6 +134,17 @@ export default function Agreement() {
             Please insert your Matrix User ID (@username:matrix.org) found in
             your Element application.
           </p>
+        </div>
+
+        <div className='relative flex items-center px-6'>
+          <div className='flex-grow border-t border-gray-200'></div>
+          <span className='flex-shrink mx-2 text-gray-600 text-sm font-medium'>OR</span>
+          <div className='flex-grow border-t border-gray-200'></div>
+        </div>
+
+        <div className='flex flex-col gap-1.5'>
+          <Label>Email Address</Label>
+          <Input placeholder='name@example.com' type='email' />
         </div>
       </div>
     </OnboardingBlock>
