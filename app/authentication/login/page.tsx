@@ -121,13 +121,13 @@ export default function RegistrationPage() {
         </div>
 
         {/* Request Link */}
-        <a 
+        {/* <a 
           href='#' 
           className='text-primary-500 hover:text-primary-600 text-[14px] font-semibold'
           onClick={handleRequestLink}
         >
           Request a link from Bastion Cooperative
-        </a>
+        </a> */}
       </div>
 
       {/* Link Expired Modal */}

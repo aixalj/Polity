@@ -330,7 +330,7 @@ function BitcoinOne() {
               </div>
             </TabsContent>
 
-            <TabsContent value="dApps">
+            <TabsContent value="dApps"> 
             <div className='max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full'>
             <div className=' relative flex w-full flex-row'>
                   <h4 className='text-lg font-medium'>Connected dApps</h4>

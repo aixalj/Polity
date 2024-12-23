@@ -384,7 +384,7 @@ function BitcoinOne() {
                   )}
                 />
               </div>
-            </TabsContent>
+            </TabsContent> 
 
             <TabsContent value='dApps'>
               <div className='max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full'>

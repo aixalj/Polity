@@ -13,7 +13,7 @@ import { Progress } from "@/components/ui/progress";
 import Link from "next/link";
 
 const Dapps = () => {
-  return (
+  return ( 
     <div className="relative w-full flex flex-col">
       <div className="p-4 relative flex justify-between w-full justify-items-stretch flex-row place-content-between	">
         <div className="flex flex-col max-w-[30rem]">

@@ -383,7 +383,7 @@ function BitcoinOne() {
                       asset.networkAccountName === "Ethereum network account"
                   )}
                 />
-              </div>
+              </div> 
             </TabsContent>
 
             <TabsContent value="dApps">
