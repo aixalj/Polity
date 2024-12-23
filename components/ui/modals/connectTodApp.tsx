@@ -34,6 +34,7 @@ interface connectTodAppProps {
     icon: string;
     url: string;
   };
+  onConnect: () => void;
 }
 
 const ConnectTodApp: React.FC<connectTodAppProps> = ({
@@ -45,6 +46,7 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
   addNotification,
   sourcePage,
   selectedDApp,
+  onConnect,
 }) => {
   const [showWalletConnect, setShowWalletConnect] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -56,7 +58,6 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
   const handleConnect = () => {
     setIsLoading(true);
     onClose();
-
     setTimeout(() => {
       addNotification(
         'Connection Successful!',
@@ -66,7 +67,7 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
     }, 200);
 
     setTimeout(() => {
-      setIsLoading(false); // Reset loading state after 5000 milliseconds
+      setIsLoading(false);
     }, 2000);
   };
   return (

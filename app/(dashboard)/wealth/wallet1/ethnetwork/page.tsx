@@ -47,6 +47,11 @@ function BitcoinOne() {
   const [isWalletConnectOpen, setIsWalletConnectOpen] = useState(false);
   const [isConnectTodAppOpen, setIsConnectTodAppOpen] = useState(false);
   const [notifications, setNotifications] = useState<any[]>([]);
+  const [selectedDApp, setSelectedDApp] = useState<{
+    name: string;
+    icon: string;
+    url: string;
+  } | null>(null);
 
   // Determine the network account name and balance based on the current page
   const currentPath = usePathname();
@@ -81,13 +86,6 @@ function BitcoinOne() {
   };
 
   // Add these state variables at the top of the component
-  const [selectedDApp, setSelectedDApp] = useState({
-    name: '',
-    icon: '',
-    url: '',
-  });
-
-  // Add new state for the connection modal
   const [connectingDApp, setConnectingDApp] = useState<{
     name: string;
     icon: string;
@@ -96,19 +94,24 @@ function BitcoinOne() {
 
   // Update the connection handler
   const handleDAppConnect = (name: string, icon: string, url: string) => {
-    setConnectingDApp({ name, icon, url });
+    // Only proceed if we're in the dApps tab
+    if (selectedTab === 'dApps') {
+      setSelectedDApp({ name, icon, url });
+      setIsConnectTodAppOpen(true);
+    }
   };
 
   // Add the confirmation handler
   const handleConnectionConfirm = () => {
-    if (connectingDApp) {
-      setConnectedDApps((prev) => [...prev, connectingDApp]);
+    if (selectedDApp) {
+      setConnectedDApps((prev) => [...prev, selectedDApp]);
       addNotification(
         'DApp Connected',
-        `${connectingDApp.name} has been connected successfully.`,
+        `${selectedDApp.name} has been connected successfully.`,
         'success'
       );
-      setConnectingDApp(null);
+      setSelectedDApp(null);
+      setIsConnectTodAppOpen(false);
     }
   };
 
@@ -151,6 +154,10 @@ function BitcoinOne() {
       return () => clearTimeout(timer);
     }
   }, [notifications]);
+
+  const handleConnectClick = () => {
+    handleConnectionConfirm();
+  };
 
   return (
     <main className='w-full h-full'>
@@ -675,16 +682,9 @@ function BitcoinOne() {
                                 <path d='M160.93 44H168.515V51.5852H160.93V44Z' />
                               </mask>
                               <path
-                                d='M168.515 51.5852V52.0852H169.015V51.5852H168.515ZM168.015 44V51.5852H169.015V44H168.015ZM168.515 51.0852H160.93V52.0852H168.515V51.0852Z'
-                                fill='#D0D5DD'
-                                mask='url(#path-38-inside-17_99_76756)'
+                                d='M168.515 44H176.1V51.5852H168.515V44Z'
+                                fill='#F9FAFB'
                               />
-                              <mask
-                                id='path-40-inside-18_99_76756'
-                                fill='white'
-                              >
-                                <path d='M168.515 44H176.1V51.5852H168.515V44Z' />
-                              </mask>
                               <path
                                 d='M176.1 51.5852V52.0852H176.6V51.5852H176.1ZM175.6 44V51.5852H176.6V44H175.6ZM176.1 51.0852H168.515V52.0852H176.1V51.0852Z'
                                 fill='#D0D5DD'
@@ -1444,6 +1444,10 @@ function BitcoinOne() {
                                 <path d='M123.004 74.3398H130.589V81.925H123.004V74.3398Z' />
                               </mask>
                               <path
+                                d='M123.004 74.3398H130.589V81.925H123.004V74.3398Z'
+                                fill='#F9FAFB'
+                              />
+                              <path
                                 d='M130.589 81.925V82.425H131.089V81.925H130.589ZM130.089 74.3398V81.925H131.089V74.3398H130.089ZM130.589 81.425H123.004V82.425H130.589V81.425Z'
                                 fill='#D0D5DD'
                                 mask='url(#path-172-inside-84_99_76756)'
@@ -1476,6 +1480,10 @@ function BitcoinOne() {
                               >
                                 <path d='M145.759 74.3398H153.344V81.925H145.759V74.3398Z' />
                               </mask>
+                              <path
+                                d='M145.759 74.3398H153.344V81.925H145.759V74.3398Z'
+                                fill='#F9FAFB'
+                              />
                               <path
                                 d='M153.344 81.925V82.425H153.844V81.925H153.344ZM152.844 74.3398V81.925H153.844V74.3398H152.844ZM153.344 81.425H145.759V82.425H153.344V81.425Z'
                                 fill='#D0D5DD'
@@ -3101,17 +3109,6 @@ function BitcoinOne() {
                                 id='path-460-inside-228_99_76756'
                                 fill='white'
                               >
-                                <path d='M123.004 135.021H130.589V142.607H123.004V135.021Z' />
-                              </mask>
-                              <path
-                                d='M130.589 142.607V143.107H131.089V142.607H130.589ZM130.089 135.021V142.607H131.089V135.021H130.089ZM130.589 142.107H123.004V143.107H130.589V142.107Z'
-                                fill='#D0D5DD'
-                                mask='url(#path-460-inside-228_99_76756)'
-                              />
-                              <mask
-                                id='path-462-inside-229_99_76756'
-                                fill='white'
-                              >
                                 <path d='M130.589 135.021H138.174V142.607H130.589V135.021Z' />
                               </mask>
                               <path
@@ -3121,17 +3118,6 @@ function BitcoinOne() {
                               />
                               <mask
                                 id='path-464-inside-230_99_76756'
-                                fill='white'
-                              >
-                                <path d='M138.174 135.021H145.759V142.607H138.174V135.021Z' />
-                              </mask>
-                              <path
-                                d='M145.759 142.607V143.107H146.259V142.607H145.759ZM145.259 135.021V142.607H146.259V135.021H145.259ZM145.759 142.107H138.174V143.107H145.759V142.107Z'
-                                fill='#D0D5DD'
-                                mask='url(#path-464-inside-230_99_76756)'
-                              />
-                              <mask
-                                id='path-466-inside-231_99_76756'
                                 fill='white'
                               >
                                 <path d='M145.759 135.021H153.344V142.607H145.759V135.021Z' />
@@ -5350,10 +5336,11 @@ function BitcoinOne() {
           onClose={handleCloseConnectTodApp}
           networkAccountName={networkAccountName}
           balance={balance}
-          addNotification={addNotification}
           networkAccountImage={networkAccountImage}
           sourcePage='wealth/wallet1/ethnetwork'
-          selectedDApp={selectedDApp}
+          selectedDApp={selectedDApp || undefined}
+          addNotification={addNotification}
+          onConnect={handleConnectClick}
         />
       </TimeProvider>
     </main>
