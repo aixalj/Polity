@@ -25,7 +25,7 @@ import { Button } from "@/components/ui/button";
 import { AssetTab } from "@/components/assettab";
 import { AssetTable } from "@/components/assettable";
 import { PositionsTable } from "@/components/positionstable";
-import { Dapps } from "@/components/dapps";
+// import { Dapps } from "@/components/dapps";
 import WalletConnect from "@/components/ui/modals/walletConnect";
 import ConnectTodApp from "@/components/ui/modals/connectTodApp";
 import BTCdApps from "@/public/icons/dApps/BTC-dApps.svg";
@@ -372,7 +372,7 @@ function BitcoinOne() {
                   )}
                 />
 
-                <Dapps />
+                {/* <Dapps /> */}
               </div>
             </TabsContent>
             <TabsContent value="assets">
@@ -3736,7 +3736,7 @@ function BitcoinOne() {
           onClose={handleCloseModal}
           onConnect={handleOpenConnectTodApp}
         />
-        <ConnectTodApp
+        {/* <ConnectTodApp
           isOpen={isConnectTodAppOpen}
           onClose={() => setIsConnectTodAppOpen(false)}
           networkAccountName={networkAccountName}
@@ -3744,7 +3744,7 @@ function BitcoinOne() {
           addNotification={addNotification}
           networkAccountImage={networkAccountImage}
           sourcePage="wealth/wallet2/ethnetwork"
-        />
+        /> */}
       </TimeProvider>
     </main>
   );
