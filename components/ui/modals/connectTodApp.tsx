@@ -57,18 +57,16 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
   };
   const handleConnect = () => {
     setIsLoading(true);
-    onClose();
     setTimeout(() => {
+      onConnect();
+      onClose();
       addNotification(
         'Connection Successful!',
-        'You have successfully connected your wallet.',
+        'Access and transactions through the dApp are enabled. Monitor and manage your activities as needed.',
         'success'
       );
-    }, 200);
-
-    setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1000);
   };
   return (
     <>
