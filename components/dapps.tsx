@@ -257,7 +257,6 @@ const Dapps = () => {
               </div>
             </div>
           </div>
-          Open dApp{' '}
           <div className='flex flex-col gap-2 w-full'>
             <Button
               size='sm'
