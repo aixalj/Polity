@@ -33,6 +33,8 @@ import POLdApps from '@/public/icons/dApps/POL-dApps.svg';
 import MATIC from '@/public/icons/networks/MATIC.svg';
 import ETHdApps from '@/public/icons/dApps/ETH-dApps.svg';
 import { Pagination } from '@/components/ui/pagination';
+import wcConnectIcon from '@/public/wc-connect-icon.svg';
+import { Loading02 } from '@untitled-ui/icons-react';
 
 import { usePathname } from 'next/navigation';
 
@@ -95,13 +97,25 @@ function BitcoinOne() {
     url: string;
   } | null>(null);
 
-  // Update the connection handler
-  const handleDAppConnect = (name: string, icon: string, url: string) => {
-    // Only proceed if we're in the dApps tab
-    if (selectedTab === 'dApps') {
-      setSelectedDApp({ name, icon, url });
-      setIsConnectTodAppOpen(true);
-    }
+  const handleDAppConnect = (
+    name: string,
+    icon: string,
+    url: string
+  ): Promise<void> => {
+    return new Promise((resolve) => {
+      // Only proceed if we're in the dApps tab
+      if (selectedTab === 'dApps') {
+        setSelectedDApp({ name, icon, url });
+        setIsConnectTodAppOpen(true);
+
+        // Simulate an asynchronous operation (e.g., API call)
+        setTimeout(() => {
+          resolve(); // Resolve the promise after the operation
+        }, 1000); // Adjust the timeout as needed
+      } else {
+        resolve(); // Resolve immediately if not in the dApps tab
+      }
+    });
   };
 
   // Add the confirmation handler
@@ -136,9 +150,20 @@ function BitcoinOne() {
     }>
   >([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   // Add disconnect handler
-  const handleDAppDisconnect = (dAppName: string) => {
-    setConnectedDApps((prev) => prev.filter((dApp) => dApp.name !== dAppName));
+  const handleDAppDisconnect = (dAppName: string): Promise<void> => {
+    return new Promise((resolve) => {
+      setConnectedDApps((prev) =>
+        prev.filter((dApp) => dApp.name !== dAppName)
+      );
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        resolve(); // Resolve the promise after the timeout
+      }, 1000);
+    });
   };
 
   const addNotification = (
@@ -3712,7 +3737,6 @@ function BitcoinOne() {
               </div>
             </TabsContent>
 
-
             <TabsContent value='assets'>
               <div className='max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full'>
                 <AssetTab
@@ -3734,85 +3758,88 @@ function BitcoinOne() {
 
                   {connectedDApps.length > 0 ? (
                     <>
-                   <div className='items-center justify-center rounded-[24px] overflow-hidden bg-gray-50 p-3'>
-                      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-                        {connectedDApps.map((dApp, index) => (
-                          <div
-                            key={index}
-                            className='flex flex-col items-center bg-white border border-gray-200 px-4 py-3 rounded-2xl'
-                          >
-                            <Image
-                              src={dApp.icon}
-                              alt={dApp.name}
-                              width={48}
-                              height={48}
-                              className='mb-4'
-                            />
-                            <div className='flex items-center gap-1 font-medium text-lg mb-2'>
-                              <Lock03 width={20} height={20} />
-                              {dApp.url}
-                            </div>
-                            <div className='flex items-center gap-3 font-normal mb-4'>
-                              <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
-                                <div className='w-1.5 h-1.5 bg-emerald-500 rounded-full'></div>
-                                Ethereum
+                      <div className='items-center justify-center rounded-[24px] overflow-hidden bg-gray-50 p-3'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+                          {connectedDApps.map((dApp, index) => (
+                            <div
+                              key={index}
+                              className='flex flex-col items-center bg-white border border-gray-200 px-4 py-3 rounded-2xl'
+                            >
+                              <Image
+                                src={dApp.icon}
+                                alt={dApp.name}
+                                width={48}
+                                height={48}
+                                className='mb-4'
+                              />
+                              <div className='flex items-center gap-1 font-medium text-lg mb-2'>
+                                <Lock03 width={20} height={20} />
+                                {dApp.url}
                               </div>
-                              <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
-                                <Image
-                                  src='/icons/networks/ETH.svg'
-                                  alt='ETH'
-                                  width={16}
-                                  height={16}
-                                />
-                                ETH
-                              </div>
-                            </div>
-                            <div className='flex flex-col gap-2 w-full'>
-                              <Button
-                                size='sm'
-                                className='rounded-lg font-semibold'
-                                variant='outline'
-                                onClick={() => window.open(dApp.url, '_blank')}
-                              >
-                                Open dApp
-                                <svg
-                                  width='16'
-                                  height='16'
-                                  viewBox='0 0 16 16'
-                                  fill='none'
-                                >
-                                  <path
-                                    d='M14 6L14 2M14 2H10M14 2L8.66667 7.33333M6.66667 3.33333H5.2C4.0799 3.33333 3.51984 3.33333 3.09202 3.55132C2.71569 3.74307 2.40973 4.04903 2.21799 4.42535C2 4.85318 2 5.41323 2 6.53333V10.8C2 11.9201 2 12.4802 2.21799 12.908C2.40973 13.2843 2.71569 13.5903 3.09202 13.782C3.51984 14 4.0799 14 5.2 14H9.46667C10.5868 14 11.1468 14 11.5746 13.782C11.951 13.5903 12.2569 13.2843 12.4487 12.908C12.6667 12.4802 12.6667 11.9201 12.6667 10.8V9.33333'
-                                    stroke='#344054'
-                                    strokeWidth='1.66667'
-                                    strokeLinecap='round'
-                                    strokeLinejoin='round'
+                              <div className='flex items-center gap-3 font-normal mb-4'>
+                                <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
+                                  <div className='w-1.5 h-1.5 bg-emerald-500 rounded-full'></div>
+                                  Ethereum
+                                </div>
+                                <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
+                                  <Image
+                                    src='/icons/networks/ETH.svg'
+                                    alt='ETH'
+                                    width={16}
+                                    height={16}
                                   />
-                                </svg>
-                              </Button>
-                              <Button
-                                size='sm'
-                                variant='secondary-destructive'
-                                onClick={() => handleDAppDisconnect(dApp.name)}
-                              >
-                                Disconnect
-                              </Button>
+                                  ETH
+                                </div>
+                              </div>
+                              <div className='flex flex-col gap-2 w-full'>
+                                <Button
+                                  size='sm'
+                                  className='rounded-lg font-semibold'
+                                  variant='outline'
+                                  onClick={() =>
+                                    window.open(dApp.url, '_blank')
+                                  }
+                                >
+                                  Open dApp
+                                  <svg
+                                    width='16'
+                                    height='16'
+                                    viewBox='0 0 16 16'
+                                    fill='none'
+                                  >
+                                    <path
+                                      d='M14 6L14 2M14 2H10M14 2L8.66667 7.33333M6.66667 3.33333H5.2C4.0799 3.33333 3.51984 3.33333 3.09202 3.55132C2.71569 3.74307 2.40973 4.04903 2.21799 4.42535C2 4.85318 2 5.41323 2 6.53333V10.8C2 11.9201 2 12.4802 2.21799 12.908C2.40973 13.2843 2.71569 13.5903 3.09202 13.782C3.51984 14 4.0799 14 5.2 14H9.46667C10.5868 14 11.1468 14 11.5746 13.782C11.951 13.5903 12.2569 13.2843 12.4487 12.908C12.6667 12.4802 12.6667 11.9201 12.6667 10.8V9.33333'
+                                      stroke='#344054'
+                                      strokeWidth='1.66667'
+                                      strokeLinecap='round'
+                                      strokeLinejoin='round'
+                                    />
+                                  </svg>
+                                </Button>
+                                <Button
+                                  size='sm'
+                                  variant='secondary-destructive'
+                                  onClick={() =>
+                                    handleDAppDisconnect(dApp.name)
+                                  }
+                                >
+                                  Disconnect
+                                </Button>
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                    <div className=' !w-full'>
-                    <Pagination
-                      totalPages={10}
-                      currentPage={1}
-                      totalItems={24} // Add totalItems prop
-                      itemsPerPage={8} // Add itemsPerPage prop
-                      onPageChange={() => {}}
-                    />
-                  </div>
-                  </>
-                   
+                      <div className=' !w-full'>
+                        <Pagination
+                          totalPages={10}
+                          currentPage={1}
+                          totalItems={24} // Add totalItems prop
+                          itemsPerPage={8} // Add itemsPerPage prop
+                          onPageChange={() => {}}
+                        />
+                      </div>
+                    </>
                   ) : (
                     <div className='flex flex-col items-center justify-center rounded-lg overflow-hidden bg-gray-50 pb-12'>
                       <div className='-mb-8'>
@@ -7290,13 +7317,27 @@ function BitcoinOne() {
                           </div>
                         </div>
                         {connectedDApps.some((dApp) => dApp.name === 'Aave') ? (
-                          <div className='bg-green-100 border border-green-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-green-800 font-medium'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-green-500'></div>
+                          <div className='bg-green-100 border border-green-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-green-800 font-medium'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />{' '}
+                            </div>
                             Connected
                           </div>
                         ) : (
-                          <div className='bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-gray-600 font-medium opacity-50'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-gray-400'></div>
+                          <div className='bg-gray-100 border border-gray-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-gray-600 font-medium opacity-50'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />
+                            </div>
                             Not Connected
                           </div>
                         )}
@@ -7317,52 +7358,76 @@ function BitcoinOne() {
                           DeFi
                         </div>
                       </div>
-                      <Link href='#'>
-                        <Button
-                          variant={
-                            connectedDApps.some((dApp) => dApp.name === 'Aave')
-                              ? 'destructive'
-                              : 'walletconnect'
-                          }
-                          className='w-full'
-                          onClick={() => {
-                            const isConnected = connectedDApps.some(
-                              (dApp) => dApp.name === 'Aave'
-                            );
-                            if (isConnected) {
-                              handleDAppDisconnect('Aave');
-                            } else {
-                              handleDAppConnect(
-                                'Aave',
-                                '/icons/DApps/Aave.svg',
-                                'https://aave.com'
-                              );
+                      <div className='flex flex-row justify-between items-center gap-5 !w-full'>
+                        <Link href='#' className='flex-grow'>
+                          <Button
+                            variant={
+                              connectedDApps.some(
+                                (dApp) => dApp.name === 'Aave'
+                              )
+                                ? 'secondary-destructive'
+                                : 'walletconnect'
                             }
-                          }}
-                        >
-                          {connectedDApps.some(
-                            (dApp) => dApp.name === 'Aave'
-                          ) ? (
-                            'Disconnect'
-                          ) : (
-                            <>
-                              <svg
-                                width='28'
-                                height='16'
-                                viewBox='0 0 28 16'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                              >
-                                <path
-                                  d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
-                                  fill='white'
-                                />
-                              </svg>
-                              Connect
-                            </>
-                          )}
-                        </Button>
-                      </Link>
+                            className='!w-full flex items-center justify-center'
+                            onClick={() => {
+                              const isConnected = connectedDApps.some(
+                                (dApp) => dApp.name === 'Aave'
+                              );
+                              if (isConnected) {
+                                setIsLoading(true); // Set loading state to true for disconnect
+                                handleDAppDisconnect('Aave').then(() => {
+                                  setIsLoading(false); // Reset loading state after disconnect
+                                });
+                              } else {
+                                setIsLoading(true); // Set loading state to true for connect
+                                handleDAppConnect(
+                                  'Aave',
+                                  '/icons/DApps/Aave.svg',
+                                  'https://aave.com'
+                                ).then(() => {
+                                  setIsLoading(false); // Reset loading state after connect
+                                });
+                              }
+                            }}
+                          >
+                            {connectedDApps.some(
+                              (dApp) => dApp.name === 'Aave'
+                            ) ? (
+                              isLoading ? ( // Show loading state only when disconnecting
+                                <>
+                                  <Loading02 width={20} height={20} />
+                                  Disconnecting...
+                                </>
+                              ) : (
+                                'Disconnect'
+                              )
+                            ) : (
+                              <>
+                                <svg
+                                  width='28'
+                                  height='16'
+                                  viewBox='0 0 28 16'
+                                  fill='none'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path
+                                    d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
+                                    fill='white'
+                                  />
+                                </svg>
+                                Connect
+                              </>
+                            )}
+                          </Button>
+                        </Link>
+                        <Link href='https://aave.com' target='_blank'>
+                          <LinkExternal01
+                            width={25}
+                            height={25}
+                            className='text-gray-700'
+                          />
+                        </Link>
+                      </div>
                     </div>
 
                     <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -7380,13 +7445,27 @@ function BitcoinOne() {
                         {connectedDApps.some(
                           (dApp) => dApp.name === 'Clearpool'
                         ) ? (
-                          <div className='bg-green-100 border border-green-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-green-800 font-medium'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-green-500'></div>
+                          <div className='bg-green-100 border border-green-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-green-800 font-medium'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />{' '}
+                            </div>
                             Connected
                           </div>
                         ) : (
-                          <div className='bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-gray-600 font-medium opacity-50'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-gray-400'></div>
+                          <div className='bg-gray-100 border border-gray-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-gray-600 font-medium opacity-50'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />
+                            </div>
                             Not Connected
                           </div>
                         )}
@@ -7407,54 +7486,63 @@ function BitcoinOne() {
                           DeFi
                         </div>
                       </div>
-                      <Link href='#'>
-                        <Button
-                          variant={
-                            connectedDApps.some(
-                              (dApp) => dApp.name === 'Clearpool'
-                            )
-                              ? 'destructive'
-                              : 'walletconnect'
-                          }
-                          className='w-full'
-                          onClick={() => {
-                            const isConnected = connectedDApps.some(
-                              (dApp) => dApp.name === 'Clearpool'
-                            );
-                            if (isConnected) {
-                              handleDAppDisconnect('Clearpool');
-                            } else {
-                              handleDAppConnect(
-                                'Clearpool',
-                                '/icons/DApps/Clearpool.svg',
-                                'https://clearpool.finance'
-                              );
+                      <div className='flex flex-row justify-between items-center gap-5 !w-full'>
+                        <Link href='#' className='flex-grow'>
+                          <Button
+                            variant={
+                              connectedDApps.some(
+                                (dApp) => dApp.name === 'Clearpool'
+                              )
+                                ? 'secondary-destructive'
+                                : 'walletconnect'
                             }
-                          }}
-                        >
-                          {connectedDApps.some(
-                            (dApp) => dApp.name === 'Clearpool'
-                          ) ? (
-                            'Disconnect'
-                          ) : (
-                            <>
-                              <svg
-                                width='28'
-                                height='16'
-                                viewBox='0 0 28 16'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                              >
-                                <path
-                                  d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
-                                  fill='white'
-                                />
-                              </svg>
-                              Connect
-                            </>
-                          )}
-                        </Button>
-                      </Link>
+                            className='w-full'
+                            onClick={() => {
+                              const isConnected = connectedDApps.some(
+                                (dApp) => dApp.name === 'Clearpool'
+                              );
+                              if (isConnected) {
+                                handleDAppDisconnect('Clearpool');
+                              } else {
+                                handleDAppConnect(
+                                  'Clearpool',
+                                  '/icons/DApps/Clearpool.svg',
+                                  'https://clearpool.finance'
+                                );
+                              }
+                            }}
+                          >
+                            {connectedDApps.some(
+                              (dApp) => dApp.name === 'Clearpool'
+                            ) ? (
+                              'Disconnect'
+                            ) : (
+                              <>
+                                <svg
+                                  width='28'
+                                  height='16'
+                                  viewBox='0 0 28 16'
+                                  fill='none'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path
+                                    d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
+                                    fill='white'
+                                  />
+                                </svg>
+                                Connect
+                              </>
+                            )}
+                          </Button>
+                        </Link>
+                        <Link href='https://clearpool.finance' target='_blank'>
+                          <LinkExternal01
+                            width={25}
+                            height={25}
+                            className='text-gray-700'
+                          />
+                        </Link>
+                      </div>
                     </div>
 
                     <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -7472,13 +7560,27 @@ function BitcoinOne() {
                         {connectedDApps.some(
                           (dApp) => dApp.name === 'Compound'
                         ) ? (
-                          <div className='bg-green-100 border border-green-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-green-800 font-medium'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-green-500'></div>
+                          <div className='bg-green-100 border border-green-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-green-800 font-medium'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />{' '}
+                            </div>
                             Connected
                           </div>
                         ) : (
-                          <div className='bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-gray-600 font-medium opacity-50'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-gray-400'></div>
+                          <div className='bg-gray-100 border border-gray-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-gray-600 font-medium opacity-50'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />
+                            </div>
                             Not Connected
                           </div>
                         )}
@@ -7500,13 +7602,14 @@ function BitcoinOne() {
                           DeFi
                         </div>
                       </div>
-                      <Link href='#'>
+                      <div className='flex flex-row justify-between items-center gap-5 !w-full'>
+                      <Link href='#' className='flex-grow'>
                         <Button
                           variant={
                             connectedDApps.some(
                               (dApp) => dApp.name === 'Compound'
                             )
-                              ? 'destructive'
+                              ? 'secondary-destructive'
                               : 'walletconnect'
                           }
                           className='w-full'
@@ -7548,6 +7651,14 @@ function BitcoinOne() {
                           )}
                         </Button>
                       </Link>
+                      <Link href='https://compound.finance' target='_blank'>
+                        <LinkExternal01
+                          width={25}
+                          height={25}
+                            className='text-gray-700'
+                          />
+                        </Link>
+                      </div>
                     </div>
 
                     <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -7565,13 +7676,27 @@ function BitcoinOne() {
                         {connectedDApps.some(
                           (dApp) => dApp.name === 'dHedge'
                         ) ? (
-                          <div className='bg-green-100 border border-green-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-green-800 font-medium'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-green-500'></div>
+                          <div className='bg-green-100 border border-green-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-green-800 font-medium'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />{' '}
+                            </div>
                             Connected
                           </div>
                         ) : (
-                          <div className='bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-gray-600 font-medium opacity-50'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-gray-400'></div>
+                          <div className='bg-gray-100 border border-gray-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-gray-600 font-medium opacity-50'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />
+                            </div>
                             Not Connected
                           </div>
                         )}
@@ -7591,13 +7716,14 @@ function BitcoinOne() {
                           DeFi
                         </div>
                       </div>
-                      <Link href='#'>
+                      <div className='flex flex-row justify-between items-center gap-5 !w-full'>
+                      <Link href='#' className='flex-grow'>
                         <Button
                           variant={
                             connectedDApps.some(
                               (dApp) => dApp.name === 'dHedge'
                             )
-                              ? 'destructive'
+                              ? 'secondary-destructive'
                               : 'walletconnect'
                           }
                           className='w-full'
@@ -7639,6 +7765,14 @@ function BitcoinOne() {
                           )}
                         </Button>
                       </Link>
+                      <Link href='https://dhedge.org' target='_blank'>
+                        <LinkExternal01
+                          width={25}
+                          height={25}
+                          className='text-gray-700'
+                        />
+                      </Link>
+                      </div>
                     </div>
 
                     <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -7656,13 +7790,27 @@ function BitcoinOne() {
                         {connectedDApps.some(
                           (dApp) => dApp.name === 'Enzyme'
                         ) ? (
-                          <div className='bg-green-100 border border-green-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-green-800 font-medium'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-green-500'></div>
+                          <div className='bg-green-100 border border-green-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-green-800 font-medium'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />{' '}
+                            </div>
                             Connected
                           </div>
                         ) : (
-                          <div className='bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-gray-600 font-medium opacity-50'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-gray-400'></div>
+                          <div className='bg-gray-100 border border-gray-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-gray-600 font-medium opacity-50'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />
+                            </div>
                             Not Connected
                           </div>
                         )}
@@ -7683,13 +7831,14 @@ function BitcoinOne() {
                           DeFi
                         </div>
                       </div>
-                      <Link href='#'>
+                      <div className='flex flex-row justify-between items-center gap-5 !w-full'>
+                      <Link href='#' className='flex-grow'>
                         <Button
                           variant={
                             connectedDApps.some(
                               (dApp) => dApp.name === 'Enzyme'
                             )
-                              ? 'destructive'
+                              ? 'secondary-destructive'
                               : 'walletconnect'
                           }
                           className='w-full'
@@ -7731,6 +7880,14 @@ function BitcoinOne() {
                           )}
                         </Button>
                       </Link>
+                      <Link href='https://enzyme.finance' target='_blank'>
+                        <LinkExternal01
+                          width={25}
+                          height={25}
+                          className='text-gray-700'
+                        />
+                      </Link>
+                      </div>
                     </div>
 
                     <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -7748,13 +7905,27 @@ function BitcoinOne() {
                         {connectedDApps.some(
                           (dApp) => dApp.name === 'Fjord'
                         ) ? (
-                          <div className='bg-green-100 border border-green-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-green-800 font-medium'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-green-500'></div>
+                          <div className='bg-green-100 border border-green-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-green-800 font-medium'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />{' '}
+                            </div>
                             Connected
                           </div>
                         ) : (
-                          <div className='bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-gray-600 font-medium opacity-50'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-gray-400'></div>
+                          <div className='bg-gray-100 border border-gray-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-gray-600 font-medium opacity-50'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />
+                            </div>
                             Not Connected
                           </div>
                         )}
@@ -7776,11 +7947,12 @@ function BitcoinOne() {
                           DeFi
                         </div>
                       </div>
-                      <Link href='#'>
+                      <div className='flex flex-row justify-between items-center gap-5 !w-full'>
+                      <Link href='#' className='flex-grow'>
                         <Button
                           variant={
                             connectedDApps.some((dApp) => dApp.name === 'Fjord')
-                              ? 'destructive'
+                              ? 'secondary-destructive'
                               : 'walletconnect'
                           }
                           className='w-full'
@@ -7822,6 +7994,14 @@ function BitcoinOne() {
                           )}
                         </Button>
                       </Link>
+                      <Link href='https://fjord.finance' target='_blank'>
+                        <LinkExternal01
+                          width={25}
+                          height={25}
+                          className='text-gray-700'
+                        />
+                      </Link>
+                      </div>
                     </div>
 
                     <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -7839,13 +8019,27 @@ function BitcoinOne() {
                         {connectedDApps.some(
                           (dApp) => dApp.name === 'Instadapp'
                         ) ? (
-                          <div className='bg-green-100 border border-green-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-green-800 font-medium'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-green-500'></div>
+                          <div className='bg-green-100 border border-green-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-green-800 font-medium'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />{' '}
+                            </div>
                             Connected
                           </div>
                         ) : (
-                          <div className='bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-gray-600 font-medium opacity-50'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-gray-400'></div>
+                          <div className='bg-gray-100 border border-gray-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-gray-600 font-medium opacity-50'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />
+                            </div>
                             Not Connected
                           </div>
                         )}
@@ -7865,13 +8059,14 @@ function BitcoinOne() {
                           DeFi
                         </div>
                       </div>
-                      <Link href='#'>
+                      <div className='flex flex-row justify-between items-center gap-5 !w-full'>
+                      <Link href='#' className='flex-grow'>
                         <Button
                           variant={
                             connectedDApps.some(
                               (dApp) => dApp.name === 'Instadapp'
                             )
-                              ? 'destructive'
+                              ? 'secondary-destructive'
                               : 'walletconnect'
                           }
                           className='w-full'
@@ -7913,6 +8108,14 @@ function BitcoinOne() {
                           )}
                         </Button>
                       </Link>
+                      <Link href='https://instadapp.io' target='_blank'>
+                        <LinkExternal01
+                          width={25}
+                          height={25}
+                          className='text-gray-700'
+                        />
+                      </Link>
+                      </div>
                     </div>
 
                     <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -7930,13 +8133,27 @@ function BitcoinOne() {
                         {connectedDApps.some(
                           (dApp) => dApp.name === 'Pancake'
                         ) ? (
-                          <div className='bg-green-100 border border-green-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-green-800 font-medium'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-green-500'></div>
+                          <div className='bg-green-100 border border-green-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-green-800 font-medium'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />{' '}
+                            </div>
                             Connected
                           </div>
                         ) : (
-                          <div className='bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-gray-600 font-medium opacity-50'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-gray-400'></div>
+                          <div className='bg-gray-100 border border-gray-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-gray-600 font-medium opacity-50'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />
+                            </div>
                             Not Connected
                           </div>
                         )}
@@ -7956,13 +8173,14 @@ function BitcoinOne() {
                           DeFi
                         </div>
                       </div>
-                      <Link href='#'>
+                      <div className='flex flex-row justify-between items-center gap-5 !w-full'>
+                      <Link href='#' className='flex-grow'>
                         <Button
                           variant={
                             connectedDApps.some(
                               (dApp) => dApp.name === 'Pancake'
                             )
-                              ? 'destructive'
+                              ? 'secondary-destructive'
                               : 'walletconnect'
                           }
                           className='w-full'
@@ -8004,6 +8222,14 @@ function BitcoinOne() {
                           )}
                         </Button>
                       </Link>
+                      <Link href='https://pancakeswap.finance' target='_blank'>
+                        <LinkExternal01
+                          width={25}
+                          height={25}
+                          className='text-gray-700'
+                        />
+                      </Link>
+                      </div>
                     </div>
 
                     <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -8021,13 +8247,27 @@ function BitcoinOne() {
                         {connectedDApps.some(
                           (dApp) => dApp.name === 'Paraswap'
                         ) ? (
-                          <div className='bg-green-100 border border-green-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-green-800 font-medium'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-green-500'></div>
+                          <div className='bg-green-100 border border-green-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-green-800 font-medium'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />{' '}
+                            </div>
                             Connected
                           </div>
                         ) : (
-                          <div className='bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-gray-600 font-medium opacity-50'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-gray-400'></div>
+                          <div className='bg-gray-100 border border-gray-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-gray-600 font-medium opacity-50'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />
+                            </div>
                             Not Connected
                           </div>
                         )}
@@ -8048,13 +8288,14 @@ function BitcoinOne() {
                           DeFi
                         </div>
                       </div>
-                      <Link href='#'>
+                      <div className='flex flex-row justify-between items-center gap-5 !w-full'>
+                      <Link href='#' className='flex-grow'>
                         <Button
                           variant={
                             connectedDApps.some(
                               (dApp) => dApp.name === 'Paraswap'
                             )
-                              ? 'destructive'
+                              ? 'secondary-destructive'
                               : 'walletconnect'
                           }
                           className='w-full'
@@ -8096,6 +8337,14 @@ function BitcoinOne() {
                           )}
                         </Button>
                       </Link>
+                      <Link href='https://paraswap.io' target='_blank'>
+                        <LinkExternal01
+                          width={25}
+                          height={25}
+                          className='text-gray-700'
+                        />
+                      </Link>
+                      </div>
                     </div>
 
                     <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -8113,13 +8362,27 @@ function BitcoinOne() {
                         {connectedDApps.some(
                           (dApp) => dApp.name === 'Swapzone'
                         ) ? (
-                          <div className='bg-green-100 border border-green-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-green-800 font-medium'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-green-500'></div>
+                          <div className='bg-green-100 border border-green-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-green-800 font-medium'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />{' '}
+                            </div>
                             Connected
                           </div>
                         ) : (
-                          <div className='bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-gray-600 font-medium opacity-50'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-gray-400'></div>
+                          <div className='bg-gray-100 border border-gray-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-gray-600 font-medium opacity-50'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />
+                            </div>
                             Not Connected
                           </div>
                         )}
@@ -8140,13 +8403,14 @@ function BitcoinOne() {
                           DeFi
                         </div>
                       </div>
-                      <Link href='#'>
+                      <div className='flex flex-row justify-between items-center gap-5 !w-full'>
+                      <Link href='#' className='flex-grow'>
                         <Button
                           variant={
                             connectedDApps.some(
                               (dApp) => dApp.name === 'Swapzone'
                             )
-                              ? 'destructive'
+                              ? 'secondary-destructive'
                               : 'walletconnect'
                           }
                           className='w-full'
@@ -8188,6 +8452,14 @@ function BitcoinOne() {
                           )}
                         </Button>
                       </Link>
+                      <Link href='https://swapzone.io' target='_blank'>
+                        <LinkExternal01
+                          width={25}
+                          height={25}
+                          className='text-gray-700'
+                        />
+                      </Link>
+                      </div>
                     </div>
 
                     <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -8205,13 +8477,27 @@ function BitcoinOne() {
                         {connectedDApps.some(
                           (dApp) => dApp.name === 'Tokenset'
                         ) ? (
-                          <div className='bg-green-100 border border-green-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-green-800 font-medium'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-green-500'></div>
+                          <div className='bg-green-100 border border-green-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-green-800 font-medium'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />{' '}
+                            </div>
                             Connected
                           </div>
                         ) : (
-                          <div className='bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-gray-600 font-medium opacity-50'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-gray-400'></div>
+                          <div className='bg-gray-100 border border-gray-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-gray-600 font-medium opacity-50'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />
+                            </div>
                             Not Connected
                           </div>
                         )}
@@ -8232,13 +8518,14 @@ function BitcoinOne() {
                           DeFi
                         </div>
                       </div>
-                      <Link href='#'>
+                      <div className='flex flex-row justify-between items-center gap-5 !w-full'>
+                      <Link href='#' className='flex-grow'>
                         <Button
                           variant={
                             connectedDApps.some(
                               (dApp) => dApp.name === 'Tokenset'
                             )
-                              ? 'destructive'
+                              ? 'secondary-destructive'
                               : 'walletconnect'
                           }
                           className='w-full'
@@ -8280,6 +8567,14 @@ function BitcoinOne() {
                           )}
                         </Button>
                       </Link>
+                      <Link href='https://tokenset.com' target='_blank'>
+                        <LinkExternal01
+                          width={25}
+                          height={25}
+                          className='text-gray-700'
+                        />
+                      </Link>
+                      </div>
                     </div>
 
                     <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -8297,13 +8592,27 @@ function BitcoinOne() {
                         {connectedDApps.some(
                           (dApp) => dApp.name === 'Uniswap'
                         ) ? (
-                          <div className='bg-green-100 border border-green-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-green-800 font-medium'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-green-500'></div>
+                          <div className='bg-green-100 border border-green-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-green-800 font-medium'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />{' '}
+                            </div>
                             Connected
                           </div>
                         ) : (
-                          <div className='bg-gray-100 border border-gray-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-gray-600 font-medium opacity-50'>
-                            <div className='w-1.5 h-1.5 rounded-full bg-gray-400'></div>
+                          <div className='bg-gray-100 border border-gray-200 py-1 pr-2 pl-1 flex gap-1 items-center rounded-lg text-xs text-gray-600 font-medium opacity-50'>
+                            <div>
+                              <Image
+                                src={wcConnectIcon}
+                                alt='WC Connect'
+                                width={25}
+                                height={25}
+                              />
+                            </div>
                             Not Connected
                           </div>
                         )}
@@ -8324,13 +8633,14 @@ function BitcoinOne() {
                           DeFi
                         </div>
                       </div>
-                      <Link href='#'>
+                      <div className='flex flex-row justify-between items-center gap-5 !w-full'>
+                      <Link href='#' className='flex-grow'>
                         <Button
                           variant={
                             connectedDApps.some(
                               (dApp) => dApp.name === 'Uniswap'
                             )
-                              ? 'destructive'
+                              ? 'secondary-destructive'
                               : 'walletconnect'
                           }
                           className='w-full'
@@ -8372,7 +8682,15 @@ function BitcoinOne() {
                           )}
                         </Button>
                       </Link>
-                    </div>
+                      <Link href='https://uniswap.org' target='_blank'>
+                        <LinkExternal01
+                          width={25}
+                          height={25}
+                          className='text-gray-700'
+                        />
+                      </Link>
+                      </div>
+                    </div> 
                   </div>
                 </div>
               </div>
@@ -8408,6 +8726,7 @@ function BitcoinOne() {
           selectedDApp={selectedDApp || undefined}
           addNotification={addNotification}
           onConnect={handleConnectClick}
+          variant='walletconnect'
         />
       </TimeProvider>
     </main>

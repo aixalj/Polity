@@ -35,6 +35,8 @@ interface connectTodAppProps {
     url: string;
   };
   onConnect: () => void;
+  showWalletConnectOnClose?: boolean;
+  variant: string;
 }
 
 const ConnectTodApp: React.FC<connectTodAppProps> = ({
@@ -47,12 +49,17 @@ const ConnectTodApp: React.FC<connectTodAppProps> = ({
   sourcePage,
   selectedDApp,
   onConnect,
+  showWalletConnectOnClose = true,
+  variant,
 }) => {
   const [showWalletConnect, setShowWalletConnect] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCancel = () => {
     onClose();
+    if (selectedDApp?.name) {
+      return;
+    }
     setShowWalletConnect(true);
   };
   const handleConnect = () => {
