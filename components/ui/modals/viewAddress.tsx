@@ -130,7 +130,7 @@ const ViewAddress: React.FC<ViewAddressProps> = ({
           <div className='flex justify-start mb-2'>
             <Eye className='h-6 w-6 text-gray-50' />
           </div>
-          <h2 className='text-lg font-medium mb-1.5 text-gray-50'>
+          <h2 className='text-lg font-normal mb-1.5 text-gray-50'>
             View Address
           </h2>
           <p className='mb-4 text-gray-50 text-sm font-regular whitespace-nowrap'>
@@ -140,33 +140,33 @@ const ViewAddress: React.FC<ViewAddressProps> = ({
 
         <div className='bg-white px-6 pt-4 pb-4 rounded-xl shadow-md flex-grow overflow-hidden'>
           <div className='-mx-6 bg-gray-50 py-2 mb-2'>
-            <p className='text-xs font-medium text-gray-600 w-full pl-6'>
-              <strong>CONTACT DETAILS</strong>
+            <p className='text-xs font-normal text-gray-600 w-full pl-6'>
+              <strong className='font-normal'>CONTACT DETAILS</strong>
             </p>
           </div>
           <p className='text-sm mb-2 w-full flex justify-between'>
-            <strong className='font-medium'>Contact Name:</strong>{' '}
-            <strong className='font-semibold ml-auto'>
+            <strong className='font-normal'>Contact Name:</strong>{' '}
+            <strong className='font-medium ml-auto'>
               {addressData.contactName}
             </strong>
           </p>
           <p className='text-sm mb-2 flex justify-between'>
-            <strong className='font-medium'>Address Name:</strong>{' '}
-            <strong className='font-semibold ml-auto'>
+            <strong className='font-normal'>Address Name:</strong>{' '}
+            <strong className='font-medium ml-auto'>
               {addressData.addressname}
             </strong>
           </p>
           <p className='text-sm mb-2 flex justify-between items-center'>
-            <strong className='font-medium'>Network:</strong>{' '}
-            <strong className='font-semibold ml-auto flex items-center'>
+            <strong className='font-normal'>Network:</strong>{' '}
+            <strong className='font-medium ml-auto flex items-center'>
               {getNetworkIcon()}
               {addressData.network}
             </strong>
           </p>
           {assetDetails && (
             <p className='text-sm mb-2 flex justify-between items-center'>
-              <strong className='font-medium'>Asset:</strong>{' '}
-              <strong className='font-semibold ml-auto flex items-center'>
+              <strong className='font-normal'>Asset:</strong>{' '}
+              <strong className='font-medium ml-auto flex items-center'>
                 <Image
                   src={assetDetails.icon}
                   alt={assetDetails.name}
@@ -177,9 +177,9 @@ const ViewAddress: React.FC<ViewAddressProps> = ({
             </p>
           )}
           <p className='text-sm flex justify-between'>
-            <strong className='font-medium'>Network Address:</strong>
+            <strong className='font-normal'>Network Address:</strong>
             <span className='flex items-center'>
-              <strong className='font-semibold ml-auto'>
+              <strong className='font-medium ml-auto'>
                 {truncateAddress(addressData.address, 20)}
               </strong>
               <TooltipProvider>
