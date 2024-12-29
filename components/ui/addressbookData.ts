@@ -127,7 +127,7 @@ export const addresses: Address[] = [
     contactName: 'Emma Davis',
     addressname: 'Emma Summer',
     network: 'Polygon Network',
-    asset: '',
+    asset: 'Tether',
     address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
@@ -136,7 +136,7 @@ export const addresses: Address[] = [
     contactName: 'Emma Davis',
     addressname: 'Emma Winter',
     network: 'Polygon Network',
-    asset: '',
+    asset: 'Tether',
     address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
@@ -145,7 +145,7 @@ export const addresses: Address[] = [
     contactName: 'Michael Brown',
     addressname: 'Michael Personal',
     network: 'Bitcoin Network',
-    asset: '',
+    asset: 'Bitcoin',
     address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
@@ -154,7 +154,7 @@ export const addresses: Address[] = [
     contactName: 'Michael Brown',
     addressname: 'Michael Work',
     network: 'Bitcoin Network',
-    asset: '',
+    asset: 'Bitcoin',
     address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
@@ -385,7 +385,7 @@ export const contacts: Contact[] = [
         contactName: 'Emma Davis',
         addressname: 'Emma Summer',
         network: 'Polygon Network',
-        asset: '',
+        asset: 'Tether',
         address: '0xabcdef1234567890abcdef1234567890abcdef12',
       },
       {
@@ -394,7 +394,7 @@ export const contacts: Contact[] = [
         contactName: 'Emma Davis',
         addressname: 'Emma Winter',
         network: 'Polygon Network',
-        asset: '',
+        asset: 'Tether',
         address: '0x1234567890abcdef1234567890abcdef12345678',
       },
     ],
@@ -411,7 +411,7 @@ export const contacts: Contact[] = [
         contactName: 'Michael Brown',
         addressname: 'Michael Personal',
         network: 'Bitcoin Network',
-        asset: '',
+        asset: 'Bitcoin',
         address: '0xabcdef1234567890abcdef1234567890abcdef12',
       },
       {
@@ -420,7 +420,7 @@ export const contacts: Contact[] = [
         contactName: 'Michael Brown',
         addressname: 'Michael Work',
         network: 'Bitcoin Network',
-        asset: '',
+        asset: 'Bitcoin',
         address: '0x1234567890abcdef1234567890abcdef12345678',
       },
     ],
