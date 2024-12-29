@@ -431,7 +431,23 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
                                   }}
                                   asChild
                                 >
-                                  <span className='flex items-center gap-2 cursor-pointer'>
+                                   <span
+                            className="underline underline-offset-4 cursor-pointer flex items-center gap-2"
+                            onClick={() => {
+                              navigator.clipboard.writeText(address.address);
+                              const tooltip = document.querySelector(
+                                `[id="${address.id}"]`
+                              );
+                              if (tooltip) {
+                                tooltip.textContent = "Copied!";
+                                setTimeout(() => {
+                                  if (tooltip) {
+                                    tooltip.textContent = "Click to copy";
+                                  }
+                                }, 2000);
+                              }
+                            }}
+                          >
                                     <div className='w-6 h-6 overflow-hidden rounded-md border border-gray-200'>
                                       <Image
                                         alt={address.address}
@@ -476,7 +492,7 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
                                 </TooltipTrigger>
                                 <TooltipContent>
                                   <p id={address.id}>Click to copy</p>
-                                </TooltipContent>
+                                </TooltipContent> 
                               </Tooltip>
                             </TooltipProvider>
                           </div>
