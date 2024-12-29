@@ -1414,7 +1414,7 @@ const SideBar = () => {
             <div className="flex flex-col gap-4">
               <ul className="flex flex-col gap-2">
                 <li>
-                  <div className="flex flex-col px-4 py-5 gap-1 rounded-xl bg-white border border-gray-300 text-sm shadow-sm">
+                  <div className="flex flex-col px-4 pt-4 gap-1 rounded-xl bg-white border border-gray-300 text-sm shadow-sm">
                     <svg
                       width="103"
                       height="16"
@@ -1436,7 +1436,7 @@ const SideBar = () => {
                     </p>
 
                     <Button 
-                      className="mt-4 bg-white !text-emerald-700 !outline-none !shadow-none text-left !p-0 !justify-start focus:bg-white focus:text-emerald-700 items-left hover:bg-white hover:text-emerald-700 font-semibold cursor-pointer"
+                      className="mb-1 bg-white !text-emerald-700 !outline-none !shadow-none text-left !p-0 !justify-start focus:bg-white focus:text-emerald-700 items-left hover:bg-white hover:text-emerald-700 font-semibold cursor-pointer"
                       onClick={() => setIsOnramperOpen(true)}
                     >
                       Buy Now
