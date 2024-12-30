@@ -2623,7 +2623,7 @@ const SendModal = () => {
                     Balance
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex'>
                       {' '}
                       <p>Available Balance</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -2633,7 +2633,7 @@ const SendModal = () => {
                         {availableBalance}
                       </p>
                     </div>
-                    <div className='w-full justify-between  flex py-1.5'>
+                    <div className='w-full justify-between  flex'>
                       {' '}
                       <p>USD Equivalent</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -2860,7 +2860,7 @@ const SendModal = () => {
                     To
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5 mb-3'>
+                    <div className='w-full justify-between flex  mb-3'>
                       {' '}
                       <p>Recipient</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -2872,14 +2872,14 @@ const SendModal = () => {
                     From
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex'>
                       {' '}
                       <p>Wallet</p>
                       <p className='flex gap-2 font-medium items-center'>
                         {selectedWallet}
                       </p>
                     </div>
-                    <div className='w-full justify-between  flex py-1.5 mb-3'>
+                    <div className='w-full justify-between  flex mb-3'>
                       {' '}
                       <p>Network Account</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -2911,7 +2911,7 @@ const SendModal = () => {
                     Balance
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex'>
                       {' '}
                       <p>Available Balance</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -2924,7 +2924,7 @@ const SendModal = () => {
                         {availableBalance}
                       </p>
                     </div>
-                    <div className='w-full justify-between  flex py-1.5'>
+                    <div className='w-full justify-between  flex'>
                       {' '}
                       <p>USD Equivalent</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -3041,16 +3041,16 @@ const SendModal = () => {
                     Transaction Details
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex'>
                       {' '}
                       <p>Transaction Fee</p>
                       <p className='flex gap-2 font-medium items-center'>
-                        <img src={`/icons/networks/${selectedNetwork}.svg`} />
+                        <img src={`/icons/networks/ETH.svg`} />
                         0.016789 {selectedNetwork} ($
                         {(cryptoValues.ethValue * 0.016789).toFixed(2)})
                       </p>
                     </div>
-                    <div className='w-full justify-between flex  py-1.5 mb-3'>
+                    <div className='w-full justify-between flex mb-3'>
                       {' '}
                       <p>Total Transaction Amount</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -3069,7 +3069,7 @@ const SendModal = () => {
                     To
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5 mb-3'>
+                    <div className='w-full justify-between flex  mb-3'>
                       {' '}
                       <p>Recipient</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -3081,14 +3081,14 @@ const SendModal = () => {
                     From
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex '>
                       {' '}
                       <p>Wallet</p>
                       <p className='flex gap-2 font-medium items-center'>
                         {selectedWallet}
                       </p>
                     </div>
-                    <div className='w-full justify-between  flex py-1.5 mb-3'>
+                    <div className='w-full justify-between  flex mb-3'>
                       {' '}
                       <p>Network Account</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -3120,7 +3120,7 @@ const SendModal = () => {
                     Balance
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex '>
                       {' '}
                       <p>Available Balance</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -3130,7 +3130,7 @@ const SendModal = () => {
                         {availableBalance}
                       </p>
                     </div>
-                    <div className='w-full justify-between  flex py-1.5'>
+                    <div className='w-full justify-between  flex'>
                       {' '}
                       <p>USD Equivalent</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -3237,7 +3237,7 @@ const SendModal = () => {
             </div>
           </div>
         </Tabs>
-        <div id='loading' className='hidden relative w-full h-auto'>
+        <div id='loading' className='hidden relative w-full h-full'>
           <div className='fixed inset-0 w-screen h-screen mx-auto -translate-y-10 overflow-hidden '>
             <div className='absolute inset-0 z-10 h-full bg-gradient-to-b from-transparent via-gray-50/60 to-gray-50 opacity-100'></div>
             <div className='absolute inset-0 z-10 h-full bg-gradient-to-l from-transparent via-gray-50/30 to-gray-50 opacity-100'></div>
@@ -4402,7 +4402,7 @@ const SendModal = () => {
             Processing your payment... Please wait.
           </div>
         </div>
-        <div id='complete' className='hidden w-full h-auto'>
+        <div id='complete' className='hidden w-full h-full'>
           <div className=' w-full h-full flex flex-col gap-4  text-sm font-medium text-gray-700 justify-center items-center'>
             <div className='fixed inset-0 w-screen h-screen mx-auto -translate-y-10 overflow-hidden '>
               <div className='absolute inset-0 z-10 h-full bg-gradient-to-b from-transparent via-gray-50/60 to-gray-50 opacity-100'></div>
@@ -5556,9 +5556,7 @@ const SendModal = () => {
             </div>
             <div className='fixed w-full h-full'>
               <div
-                className='relative h-fit border flex-none border-gray-300 rounded-3xl 
-flex-col  p-0   grid   shadow-sm  max-w-screen-sm mx-auto w-full  
-gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'
+                className='relative h-fit border flex-none border-gray-300 rounded-3xl flex-col  p-0   grid   shadow-sm  max-w-screen-sm mx-auto w-full  gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'
               >
                 <div className='px-6 pt-6 pb-0 flex flex-col text-center items-center'>
                   <div className='-mb-8'>
@@ -5905,16 +5903,16 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                     Transaction Summary
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex  '>
                       {' '}
                       <p>Transaction Fee</p>
                       <p className='flex gap-2 font-medium items-center'>
-                        <img src={`/icons/networks/${selectedNetwork}.svg`} />
+                        <img src={`/icons/networks/ETH.svg`} />
                         0.016789 {selectedNetwork} ($
                         {(cryptoValues.ethValue * 0.016789).toFixed(2)})
                       </p>
                     </div>
-                    <div className='w-full justify-between flex  py-1.5 '>
+                    <div className='w-full justify-between flex mb-3 '>
                       {' '}
                       <p>Total Transaction Amount</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -5931,7 +5929,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   </div>
 
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5 mb-3'>
+                    <div className='w-full justify-between flex  mb-3'>
                       {' '}
                       <p>Recipient</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -5941,14 +5939,14 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   </div>
 
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex  '>
                       {' '}
                       <p>Wallet</p>
                       <p className='flex gap-2 font-medium items-center'>
                         {selectedWallet}
                       </p>
                     </div>
-                    <div className='w-full justify-between  flex py-1.5 mb-3'>
+                    <div className='w-full justify-between  flex mb-3'>
                       {' '}
                       <p>Network Account</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -5980,7 +5978,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                     Balance
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex '>
                       {' '}
                       <p>Available Balance</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -5990,7 +5988,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                         {availableBalance}
                       </p>
                     </div>
-                    <div className='w-full justify-between  flex py-1.5'>
+                    <div className='w-full justify-between  flex '>
                       {' '}
                       <p>USD Equivalent</p>
                       <p className='flex gap-2 font-medium items-center'>

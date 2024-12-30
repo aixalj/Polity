@@ -18,6 +18,7 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import WalletConnect from '@/components/ui/modals/walletConnect'; 
 import BlowFish from '@/components/ui/blowfish';
+// import WalletConnect from '@/components/ui/modals/walletConnect';
 
 interface ConnectTodAppProps {
   isOpen: boolean;
@@ -25,8 +26,20 @@ interface ConnectTodAppProps {
   networkAccountName: string;
   networkAccountImage: string;
   balance: string;
-  addNotification: (title: string, description: string, status: "success" | "error" | "warning" | "info") => void;
+  addNotification: (
+    title: string,
+    description: string,
+    status: 'success' | 'error' | 'warning' | 'info'
+  ) => void;
   sourcePage: string;
+  selectedDApp?: {
+    name: string;
+    icon: string;
+    url: string;
+  };
+  onConnect: () => void;
+  showWalletConnectOnClose?: boolean;
+  variant: string;
 }
 
 const ConnectTodApp: React.FC<ConnectTodAppProps> = ({
@@ -36,6 +49,11 @@ const ConnectTodApp: React.FC<ConnectTodAppProps> = ({
   networkAccountImage,
   balance,
   addNotification,
+  sourcePage,
+  selectedDApp,
+  onConnect,
+  showWalletConnectOnClose = true,
+  variant,
 }) => {
   const [showWalletConnect, setShowWalletConnect] = useState(false);
   const [showBlowfish, setShowBlowfish] = useState(false);
@@ -43,6 +61,9 @@ const ConnectTodApp: React.FC<ConnectTodAppProps> = ({
 
   const handleCancel = () => {
     onClose();
+    if (selectedDApp?.name) {
+      return;
+    }
     setShowWalletConnect(true);
   };
 
@@ -85,15 +106,15 @@ const ConnectTodApp: React.FC<ConnectTodAppProps> = ({
           <div className='bg-white px-6 pt-4 pb-3 rounded-[32px] shadow-md flex-grow overflow-hidden flex flex-col items-center justify-center'>
             <Image
               className='mb-4'
-              src={WCCryptoIcon}
-              alt='WC-icon'
+              src={selectedDApp?.icon || WCCryptoIcon}
+              alt={selectedDApp?.name || 'WC-icon'}
               width={48}
               height={48}
             />
 
             <div className='flex items-center gap-1 font-medium text-lg mb-2'>
               <Lock03 width={20} height={20} />
-              app.dhedge.org
+              {selectedDApp?.url || 'app.dhedge.org'}
             </div>
             <div className='flex items-center gap-3 font-normal mb-4'>
               <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
@@ -134,9 +155,9 @@ const ConnectTodApp: React.FC<ConnectTodAppProps> = ({
                 type='submit'
                 variant='walletconnect'
                 className='w-full'
-                onClick={handleConnect} 
+                onClick={handleConnect}
               >
-                {isLoading ? ( 
+                {isLoading ? (
                   <>
                     <Loading02 width={20} height={20} />
                     Connecting...

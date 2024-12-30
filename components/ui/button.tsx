@@ -14,7 +14,7 @@ const buttonVariants = cva(
         destructive: 
           "rounded-[12px] border border-rose-600 bg-rose-600 text-sm font-semibold shadow-button-destructive hover:border-rose-700 hover:bg-rose-700 focus:border-rose-600 focus:bg-rose-600 focus:shadow-button-destructive-focus disabled:border-rose-200 disabled:bg-rose-200 disabled:shadow-button-destructive [text-shadow:0px_1px_1px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.06)] !text-white disabled:!text-white",
         "secondary-destructive":
-          "rounded-[12px] border border-rose-50 text-sm font-semibold bg-rose-50 !text-rose-700 hover:bg-rose-100 hover:border-rose-100 focus:border-rose-50 focus:bg-rose-50 focus:shadow-button-destructive-focus [text-shadow:0px_1px_1px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.06)] disabled:!text-rose-700",
+          "rounded-[12px] border border-rose-50 text-sm font-semibold bg-rose-50 !text-rose-700 hover:bg-rose-100 hover:border-rose-100 [text-shadow:0px_1px_1px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.06)] disabled:!text-rose-700",
         outline:
           "rounded-[12px] border border-white/0 text-sm font-semibold bg-white shadow-button-secondary-default hover:shadow-button-secondary-hover hover:bg-[#F9FAFB] focus:shadow-button-secondary-focus focus:bg-white text-gray-700 hover:text-gray-800",
         secondary: "rounded-[12px] bg-gray-100 text-gray-900 shadow-button-secondary-default text-sm font-semibold hover:bg-gray-100/80",
