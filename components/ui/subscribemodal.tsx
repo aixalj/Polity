@@ -5421,7 +5421,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
       </div>
 
       
-      <div id='complete' className='hidden absolute top-0 w-full h-full overflow-y-auto'>
+      <div id='complete' className='hidden absolute top-0 w-full h-full overflow-y-auto flex justify-center'>
       <div className='fixed inset-0 w-screen h-screen mx-auto -translate-y-10 overflow-hidden '>
             <div className='absolute inset-0 z-10 h-full bg-gradient-to-b from-transparent via-gray-50/60 to-gray-50 opacity-100'></div>
             <div className='absolute inset-0 z-10 h-full bg-gradient-to-l from-transparent via-gray-50/30 to-gray-50 opacity-100'></div>
@@ -6572,7 +6572,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
               </defs>
             </svg>
           </div>
-        <div className=' w-full h-auto flex flex-col gap-4  text-sm font-medium text-gray-700 justify-center items-center'>
+        {/* <div className=' w-full h-auto flex flex-col gap-4  text-sm font-medium text-gray-700 justify-center items-center'> */}
           <div className=''>
             <div className='relative h-fit border z-20 flex-none border-gray-300 rounded-3xl flex-col  p-0   grid   shadow-sm  max-w-[512px] mx-auto w-full  gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
               <div className='px-6 pt-6 pb-0 flex flex-col text-center items-center'>
@@ -7428,7 +7428,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
               </div>
             </div>
           </div>
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );
