@@ -22,7 +22,7 @@ import BTC from "@/public/icons/networks/BTC.svg";
 import { Button } from "@/components/ui/button";
 import { AssetTable } from "@/components/assettable";
 import { PositionsTable } from "@/components/positionstable";
-import { Dapps } from "@/components/dapps";
+// import { Dapps } from "@/components/dapps";
 import WalletConnect from "@/components/ui/modals/walletConnect";
 import ConnectTodApp from "@/components/ui/modals/connectTodApp";
 import BTCdApps from "@/public/icons/dApps/BTC-dApps.svg";
@@ -270,7 +270,7 @@ function BitcoinOne() {
             <Stats variant="btc" />
           </div>
         </div>
-        <WalletConnect
+        {/* <WalletConnect
           isOpen={isWalletConnectOpen}
           onClose={handleCloseModal}
           onConnect={handleOpenConnectTodApp}
@@ -283,7 +283,7 @@ function BitcoinOne() {
           addNotification={addNotification}
           networkAccountImage={networkAccountImage}
           sourcePage="wealth/wallet1/btcnetwork" // Pass the determined source page
-        />
+        /> */}
       </TimeProvider>
     </main>
   );
