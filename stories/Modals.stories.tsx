@@ -52,19 +52,19 @@ export const AddAddressModal: Story = {
   ),
 };
 
-export const ConnectTodAppModal: Story = {
-  render: () => (
-    <ConnectTodApp
-      isOpen={true}
-      onClose={() => {}}
-      networkAccountName="Main Account"
-      networkAccountImage="/path/to/image.png"
-      balance="1.5 ETH"
-      addNotification={mockAddNotification}
-      sourcePage="wallet"
-    />
-  ),
-};
+// export const ConnectTodAppModal: Story = {
+//   render: () => (
+//     <ConnectTodApp
+//       isOpen={true}
+//       onClose={() => {}}
+//       networkAccountName="Main Account"
+//       networkAccountImage="/path/to/image.png"
+//       balance="1.5 ETH"
+//       addNotification={mockAddNotification}
+//       sourcePage="wallet"
+//     />
+//   ),
+// };
 
 export const EditAddressModal: Story = {
   render: () => (
