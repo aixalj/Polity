@@ -3478,7 +3478,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   Balance
                 </div>
                 <div className='px-6 pb-5 flex flex-col gap-2 text-gray-700 text-sm'>
-                  <div className='w-full justify-between flex  py-1.5'>
+                  <div className='w-full justify-between flex '>
                     {' '}
                     <p>Available Balance</p>
                     <p className='flex gap-2 font-medium items-center'>
@@ -3488,7 +3488,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                       {availableBalance}
                     </p>
                   </div>
-                  <div className='w-full justify-between  flex py-1.5'>
+                  <div className='w-full justify-between  flex'>
                     {' '}
                     <p>USD Equivalent</p>
                     <p className='flex gap-2 font-medium items-center'>
@@ -3977,7 +3977,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                     Payment Summary
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex'>
                       {' '}
                       <p>Today you&apos;ll pay</p>
                       <div className='flex gap-2 font-medium items-center'>
@@ -3994,7 +3994,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                         </div>
                       </div>
                     </div>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex'>
                       {' '}
                       <div>
                         <p>
@@ -4037,7 +4037,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                         </div>
                       </div>
                     </div>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex'>
                       {' '}
                       <p>Gas Fee</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -4047,7 +4047,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                         0.00 USDT
                       </p>
                     </div>
-                    <div className='w-full justify-between  flex py-1.5 mb-3'>
+                    <div className='w-full justify-between  flex  mb-3'>
                       {' '}
                       <p>Network</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -4077,14 +4077,14 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                     Payment Method
                   </div>
                   <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex'>
                       {' '}
                       <p>Wallet</p>
                       <p className='flex gap-2 font-medium items-center'>
                         {selectedWallet}
                       </p>
                     </div>
-                    <div className='w-full justify-between  flex py-1.5 mb-3'>
+                    <div className='w-full justify-between  flex mb-3'>
                       {' '}
                       <p>Network Account</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -4116,7 +4116,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                     Balance
                   </div>
                   <div className='px-6 flex pb-5 flex-col gap-2 text-gray-700 text-sm'>
-                    <div className='w-full justify-between flex  py-1.5'>
+                    <div className='w-full justify-between flex '>
                       {' '}
                       <p>Available Balance</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -4126,7 +4126,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                         {availableBalance}
                       </p>
                     </div>
-                    <div className='w-full justify-between  flex py-1.5'>
+                    <div className='w-full justify-between  flex '>
                       {' '}
                       <p>USD Equivalent</p>
                       <p className='flex gap-2 font-medium items-center'>
@@ -5419,9 +5419,10 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
           Processing your payment... Please wait.
         </div>
       </div>
-      <div id='complete' className='hidden w-full h-full'>
-        <div className=' w-full h-full flex flex-col gap-4  text-sm font-medium text-gray-700 justify-center items-center'>
-          <div className='fixed inset-0 w-screen h-screen mx-auto -translate-y-10 overflow-hidden '>
+
+      
+      <div id='complete' className='hidden absolute top-0 w-full h-full overflow-y-auto'>
+      <div className='fixed inset-0 w-screen h-screen mx-auto -translate-y-10 overflow-hidden '>
             <div className='absolute inset-0 z-10 h-full bg-gradient-to-b from-transparent via-gray-50/60 to-gray-50 opacity-100'></div>
             <div className='absolute inset-0 z-10 h-full bg-gradient-to-l from-transparent via-gray-50/30 to-gray-50 opacity-100'></div>
             <div className='absolute inset-0 z-10 h-full bg-gradient-to-r from-transparent via-gray-50/30 to-gray-50 opacity-100'></div>
@@ -6571,12 +6572,9 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
               </defs>
             </svg>
           </div>
-          <div className='fixed w-full h-full'>
-            <div
-              className='relative h-fit border flex-none border-gray-300 rounded-3xl 
-flex-col  p-0   grid   shadow-sm  max-w-[512px] mx-auto w-full  
-gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'
-            >
+        <div className=' w-full h-auto flex flex-col gap-4  text-sm font-medium text-gray-700 justify-center items-center'>
+          <div className=''>
+            <div className='relative h-fit border z-20 flex-none border-gray-300 rounded-3xl flex-col  p-0   grid   shadow-sm  max-w-[512px] mx-auto w-full  gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]'>
               <div className='px-6 pt-6 pb-0 flex flex-col text-center items-center'>
                 <div className='-mb-8'>
                   <svg
@@ -7310,14 +7308,14 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                 </div>
 
                 <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                  <div className='w-full justify-between flex  py-1.5'>
+                  <div className='w-full justify-between flex'>
                     {' '}
                     <p>Wallet</p>
                     <p className='flex gap-2 font-medium items-center'>
                       {selectedWallet}
                     </p>
                   </div>
-                  <div className='w-full justify-between  flex py-1.5 mb-3'>
+                  <div className='w-full justify-between  flex  mb-3'>
                     {' '}
                     <p>Network Account</p>
                     <p className='flex gap-2 font-medium items-center'>
@@ -7350,7 +7348,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                   Payment Method
                 </div>
                 <div className='px-6 flex flex-col gap-2 text-gray-700 text-sm'>
-                  <div className='w-full justify-between flex  py-1.5'>
+                  <div className='w-full justify-between flex'>
                     {' '}
                     <p>Total Paid</p>
                     <div className='flex gap-2 font-medium items-center'>
@@ -7367,7 +7365,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                       </div>
                     </div>
                   </div>
-                  <div className='w-full justify-between flex  py-1.5'>
+                  <div className='w-full justify-between flex'>
                     {' '}
                     <div>
                       <p>
@@ -7410,7 +7408,7 @@ gap-4  bg-white  duration-200 data-[state=open]:animate-in data-[state=closed]:a
                       </div>
                     </div>
                   </div>
-                  <div className='w-full justify-between flex  py-1.5'>
+                  <div className='w-full justify-between flex'>
                     {' '}
                     <p>Gas Fee</p>
                     <p className='flex gap-2 font-medium items-center'>
