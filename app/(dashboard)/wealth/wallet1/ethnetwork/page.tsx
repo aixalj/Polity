@@ -189,10 +189,10 @@ function BitcoinOne() {
   }, [notifications]);
 
   const handleConnectClick = () => {
-    if (selectedDApp) {
-      setConnectedDApps((prev) => [...prev, selectedDApp]);
-      handleCloseConnectTodApp();
+    if (selectedDApp?.name) {
+      setConnectedDApps([selectedDApp]); // Replace the list with just this dApp
     }
+    handleCloseConnectTodApp();
   };
 
   return (
