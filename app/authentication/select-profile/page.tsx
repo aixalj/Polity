@@ -22,7 +22,7 @@ const profileOptions: ProfileOption[] = [
     id: 'clients',
     title: 'Clients',
     description: 'Individuals transacting and investing in digital assets',
-    icon: '/select-profile-icon-1.svg',
+    icon: '/Select-Profile-Icon-1.svg',
     href: '/onboarding/',
   },
   {
@@ -30,7 +30,7 @@ const profileOptions: ProfileOption[] = [
     title: 'Network Service Provider',
     description:
       'Provider of infrastructure and technical support to Clients and other Network participants',
-    icon: '/select-profile-icon-2.svg',
+    icon: '/Select-Profile-Icon-2.svg',
     href: '/onboarding/nsp',
   },
   {
@@ -38,7 +38,7 @@ const profileOptions: ProfileOption[] = [
     title: 'Network Operator',
     description:
       'Provider of transaction validation, network administration, mapping and identity services',
-    icon: '/select-profile-icon-3.svg',
+    icon: '/Select-Profile-Icon-3.svg',
     href: '/onboarding/operator',
   },
 ];
