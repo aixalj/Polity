@@ -35,6 +35,7 @@ import ETHdApps from '@/public/icons/dApps/ETH-dApps.svg';
 import { Pagination } from '@/components/ui/pagination';
 import wcConnectIcon from '@/public/wc-connect-icon.svg';
 import { Loading02 } from '@untitled-ui/icons-react';
+import WCCryptoIcon from '@/public/WCcryptoicons.svg';
 
 import { usePathname } from 'next/navigation';
 
@@ -78,7 +79,15 @@ function BitcoinOne() {
     networkAccountImage = ETHdApps; // Set the image for BTC
   }
 
-  const handleOpenModal = () => setIsWalletConnectOpen(true);
+  const handleOpenModal = () => {
+    // Set the dHedge details explicitly
+    setSelectedDApp({
+      name: 'dHedge',
+      icon: '/icons/dApps/dHedge.svg', // Replace with the actual path to the dHedge icon
+      url: 'https://dhedge.org', // dHedge URL
+    });
+    setIsWalletConnectOpen(true); // Open the wallet connect modal
+  };
   const handleCloseModal = () => setIsWalletConnectOpen(false);
   const handleOpenConnectTodApp = () => {
     setSelectedDApp({
@@ -86,42 +95,39 @@ function BitcoinOne() {
       icon: '',
       url: '',
     });
-    setIsWalletConnectOpen(false);
     setIsConnectTodAppOpen(true);
+    // The parent will handle closing the WalletConnect modal after ConnectTodApp is ready
+    setIsWalletConnectOpen(false);
   };
 
-  // Add these state variables at the top of the component
-  const [connectingDApp, setConnectingDApp] = useState<{
-    name: string;
-    icon: string;
-    url: string;
-  } | null>(null);
-
-  const handleDAppConnect = (
-    name: string,
-    icon: string,
-    url: string
-  ): Promise<void> => {
+  const handleDAppConnect = (name: string, icon: string, url: string): Promise<void> => {
     return new Promise((resolve) => {
-      // Only proceed if we're in the dApps tab
+      console.log('handleDAppConnect called with:', { name, icon, url });
+      
       if (selectedTab === 'dApps') {
-        setSelectedDApp({ name, icon, url });
+        setSelectedDApp({
+          name,
+          icon,
+          url
+        });
+        console.log('selectedDApp set to:', { name, icon, url });
         setIsConnectTodAppOpen(true);
-
-        // Simulate an asynchronous operation (e.g., API call)
-        setTimeout(() => {
-          resolve(); // Resolve the promise after the operation
-        }, 1000); // Adjust the timeout as needed
-      } else {
-        resolve(); // Resolve immediately if not in the dApps tab
       }
+      resolve();
     });
   };
 
-  // Add the confirmation handler
   const handleConnectionConfirm = () => {
     if (selectedDApp) {
-      setConnectedDApps((prev) => [...prev, selectedDApp]);
+      // Only add to connectedDApps after user confirms in the modal
+      setConnectedDApps((prev) => {
+        // Limit to a maximum of 24 dApps
+        if (prev.length < 24) {
+          return [...prev, selectedDApp];
+        }
+        return prev; // Do not add if already at max
+      });
+
       addNotification(
         'DApp Connected',
         `${selectedDApp.name} has been connected successfully.`,
@@ -183,14 +189,34 @@ function BitcoinOne() {
     }
   }, [notifications]);
 
-  const handleConnectClick = () => {
-    const dApp = {
-      name: selectedDApp?.name || 'dHedge',
-      icon: selectedDApp?.icon || '/icons/DApps/dHedge.svg',
-      url: selectedDApp?.url || 'https://app.dhedge.org',
-    };
-    setConnectedDApps((prev) => [...prev, dApp]);
+  // const handleConnectClick = () => {
+  //   if (selectedDApp?.name) {
+  //     setConnectedDApps([selectedDApp]); // Replace the list with just this dApp
+  //   }
+  //   handleCloseConnectTodApp();
+  // };
+
+  const handleConnectClick = (dAppNameOrObject?: string | { name: string; icon: string; url: string }) => {
+    if (typeof dAppNameOrObject === 'object') {
+      // Handle object case (from Blowfish)
+      const dApp = dAppNameOrObject;
+      setConnectedDApps((prev) => {
+        const isAlreadyConnected = prev.some((connected) => connected.name === dApp.name);
+        if (isAlreadyConnected) return prev;
+        return [...prev, dApp];
+      });
+    } else {
+      // Handle string case (from ConnectTodApp)
+      if (!selectedDApp) return;
+      setConnectedDApps((prev) => {
+        const isAlreadyConnected = prev.some((connected) => connected.name === selectedDApp.name);
+        if (isAlreadyConnected) return prev;
+        return [...prev, selectedDApp];
+      });
+    }
+  
     handleCloseConnectTodApp();
+    setIsWalletConnectOpen(false);
   };
 
   return (
@@ -479,70 +505,79 @@ function BitcoinOne() {
                 </div>
                 {connectedDApps.length > 0 ? (
                   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-                    {connectedDApps.map((dApp, index) => (
-                      <div
-                        key={index}
-                        className='flex flex-col items-center bg-white border border-gray-200 px-4 py-3 rounded-2xl'
-                      >
-                        <Image
-                          src={dApp.icon}
-                          alt={dApp.name}
-                          width={48}
-                          height={48}
-                          className='mb-4'
-                        />
-                        <div className='flex items-center gap-1 font-medium text-lg mb-2'>
-                          <Lock03 width={20} height={20} />
-                          {dApp.url}
-                        </div>
-                        <div className='flex items-center gap-3 font-normal mb-4'>
-                          <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
-                            <div className='w-1.5 h-1.5 bg-emerald-500 rounded-full'></div>
-                            Ethereum
-                          </div>
-                          <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
-                            <Image
-                              src='/icons/networks/ETH.svg'
-                              alt='ETH'
-                              width={16}
-                              height={16}
-                            />
-                            ETH
-                          </div>
-                        </div>
-                        <div className='flex flex-col gap-2 w-full'>
-                          <Button
-                            size='sm'
-                            className='rounded-lg font-semibold'
-                            variant='outline'
-                            onClick={() => window.open(dApp.url, '_blank')}
-                          >
-                            Open dApp
-                            <svg
-                              width='16'
-                              height='16'
-                              viewBox='0 0 16 16'
-                              fill='none'
+                    {connectedDApps
+                      .slice() // Create a shallow copy to avoid mutating the original array
+                      .sort((a, b) => a.name.localeCompare(b.name)) // Sort alphabetically by name
+                      .map((dApp, index) => (
+                        <div
+                          key={index}
+                          className='flex flex-col items-center bg-white border border-gray-200 px-4 py-3 rounded-2xl'
+                        >
+                          <Image
+                            src={dApp.icon} // This will show the icon of the connected dApp
+                            alt={dApp.name}
+                            width={48}
+                            height={48}
+                            className='mb-4'
+                          />
+                          <div className='flex items-center gap-1 font-medium text-lg mb-2'>
+                            <Lock03 width={20} height={20} />
+                            <Link
+                              href={dApp.url}
+                              target='_blank'
+                              rel='noopener noreferrer'
                             >
-                              <path
-                                d='M14 6L14 2M14 2H10M14 2L8.66667 7.33333M6.66667 3.33333H5.2C4.0799 3.33333 3.51984 3.33333 3.09202 3.55132C2.71569 3.74307 2.40973 4.04903 2.21799 4.42535C2 4.85318 2 5.41323 2 6.53333V10.8C2 11.9201 2 12.4802 2.21799 12.908C2.40973 13.2843 2.71569 13.5903 3.09202 13.782C3.51984 14 4.0799 14 5.2 14H9.46667C10.5868 14 11.1468 14 11.5746 13.782C11.951 13.5903 12.2569 13.2843 12.4487 12.908C12.6667 12.4802 12.6667 11.9201 12.6667 10.8V9.33333'
-                                stroke='#344054'
-                                strokeWidth='1.66667'
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
+                              {dApp.url}
+                            </Link>
+                          </div>
+                          <div className='flex items-center gap-3 font-normal mb-4'>
+                            <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
+                              <div className='w-1.5 h-1.5 bg-emerald-500 rounded-full'></div>
+                              Ethereum
+                            </div>
+                            <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
+                              <Image
+                                src='/icons/networks/ETH.svg'
+                                alt='ETH'
+                                width={16}
+                                height={16}
                               />
-                            </svg>
-                          </Button>
-                          <Button
-                            size='sm'
-                            variant='secondary-destructive'
-                            onClick={() => handleDAppDisconnect(dApp.name)}
-                          >
-                            Disconnect
-                          </Button>
+                              ETH
+                            </div>
+                          </div>
+                          <div className='flex flex-col gap-2 w-full'>
+                            <Button
+                              size='sm'
+                              className='rounded-lg font-semibold'
+                              variant='outline'
+                              onClick={() => window.open(dApp.url, '_blank')}
+                            >
+                              Open dApp
+                              <svg
+                                width='16'
+                                height='16'
+                                viewBox='0 0 16 16'
+                                fill='none'
+                              >
+                                <path
+                                  d='M14 6L14 2M14 2H10M14 2L8.66667 7.33333M6.66667 3.33333H5.2C4.0799 3.33333 3.51984 3.33333 3.09202 3.55132C2.71569 3.74307 2.40973 4.04903 2.21799 4.42535C2 4.85318 2 5.41323 2 6.53333V10.8C2 11.9201 2 12.4802 2.21799 12.908C2.40973 13.2843 2.71569 13.5903 3.09202 13.782C3.51984 14 4.0799 14 5.2 14H9.46667C10.5868 14 11.1468 14 11.5746 13.782C11.951 13.5903 12.2569 13.2843 12.4487 12.908C12.6667 12.4802 12.6667 11.9201 12.6667 10.8V9.33333'
+                                  stroke='#344054'
+                                  strokeWidth='1.66667'
+                                  strokeLinecap='round'
+                                  strokeLinejoin='round'
+                                />
+                              </svg>
+                            </Button>
+                            <Button
+                              size='sm'
+                              variant='secondary-destructive'
+                              onClick={() => handleDAppDisconnect(dApp.name)}
+                            >
+                              Disconnect
+                            </Button>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 ) : (
                   <div className='flex flex-col items-center justify-center rounded-lg overflow-hidden bg-gray-50 pb-12'>
@@ -2020,17 +2055,6 @@ function BitcoinOne() {
                             />
                             <mask
                               id='path-306-inside-151_99_76756'
-                              fill='white'
-                            >
-                              <path d='M85.078 104.682H92.6632V112.267H85.078V104.682Z' />
-                            </mask>
-                            <path
-                              d='M92.6632 112.267V112.767H93.1632V112.267H92.6632ZM92.1632 104.682V112.267H93.1632V104.682H92.1632ZM92.6632 111.767H85.078V112.767H92.6632V111.767Z'
-                              fill='#D0D5DD'
-                              mask='url(#path-306-inside-151_99_76756)'
-                            />
-                            <mask
-                              id='path-308-inside-152_99_76756'
                               fill='white'
                             >
                               <path d='M92.663 104.681H100.248V112.267H92.663V104.681Z' />
@@ -4873,6 +4897,10 @@ function BitcoinOne() {
                                 <path d='M168.515 74.3398H176.1V81.925H168.515V74.3398Z' />
                               </mask>
                               <path
+                                d='M168.515 74.3398H176.1V81.925H168.515V74.3398Z'
+                                fill='#F9FAFB'
+                              />
+                              <path
                                 d='M176.1 81.925V82.425H176.6V81.925H176.1ZM175.6 74.3398V81.925H176.6V74.3398H175.6ZM176.1 81.425H168.515V82.425H176.1V81.425Z'
                                 fill='#D0D5DD'
                                 mask='url(#path-184-inside-90_99_76756)'
@@ -5609,6 +5637,10 @@ function BitcoinOne() {
                               >
                                 <path d='M100.248 104.681H107.833V112.267H100.248V104.681Z' />
                               </mask>
+                              <path
+                                d='M100.248 104.681H107.833V112.267H100.248V104.681Z'
+                                fill='#F9FAFB'
+                              />
                               <path
                                 d='M107.833 112.267V112.767H108.333V112.267H107.833ZM107.333 104.681V112.267H108.333V104.681H107.333ZM107.833 111.767H100.248V112.767H107.833V111.767Z'
                                 fill='#D0D5DD'
@@ -7603,58 +7635,58 @@ function BitcoinOne() {
                         </div>
                       </div>
                       <div className='flex flex-row justify-between items-center gap-5 !w-full'>
-                      <Link href='#' className='flex-grow'>
-                        <Button
-                          variant={
-                            connectedDApps.some(
-                              (dApp) => dApp.name === 'Compound'
-                            )
-                              ? 'secondary-destructive'
-                              : 'walletconnect'
-                          }
-                          className='w-full'
-                          onClick={() => {
-                            const isConnected = connectedDApps.some(
-                              (dApp) => dApp.name === 'Compound'
-                            );
-                            if (isConnected) {
-                              handleDAppDisconnect('Compound');
-                            } else {
-                              handleDAppConnect(
-                                'Compound',
-                                '/icons/DApps/Compound.svg',
-                                'https://compound.finance'
-                              );
+                        <Link href='#' className='flex-grow'>
+                          <Button
+                            variant={
+                              connectedDApps.some(
+                                (dApp) => dApp.name === 'Compound'
+                              )
+                                ? 'secondary-destructive'
+                                : 'walletconnect'
                             }
-                          }}
-                        >
-                          {connectedDApps.some(
-                            (dApp) => dApp.name === 'Compound'
-                          ) ? (
-                            'Disconnect'
-                          ) : (
-                            <>
-                              <svg
-                                width='28'
-                                height='16'
-                                viewBox='0 0 28 16'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                              >
-                                <path
-                                  d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
-                                  fill='white'
-                                />
-                              </svg>
-                              Connect
-                            </>
-                          )}
-                        </Button>
-                      </Link>
-                      <Link href='https://compound.finance' target='_blank'>
-                        <LinkExternal01
-                          width={25}
-                          height={25}
+                            className='w-full'
+                            onClick={() => {
+                              const isConnected = connectedDApps.some(
+                                (dApp) => dApp.name === 'Compound'
+                              );
+                              if (isConnected) {
+                                handleDAppDisconnect('Compound');
+                              } else {
+                                handleDAppConnect(
+                                  'Compound',
+                                  '/icons/DApps/Compound.svg',
+                                  'https://compound.finance'
+                                );
+                              }
+                            }}
+                          >
+                            {connectedDApps.some(
+                              (dApp) => dApp.name === 'Compound'
+                            ) ? (
+                              'Disconnect'
+                            ) : (
+                              <>
+                                <svg
+                                  width='28'
+                                  height='16'
+                                  viewBox='0 0 28 16'
+                                  fill='none'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path
+                                    d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
+                                    fill='white'
+                                  />
+                                </svg>
+                                Connect
+                              </>
+                            )}
+                          </Button>
+                        </Link>
+                        <Link href='https://compound.finance' target='_blank'>
+                          <LinkExternal01
+                            width={25}
+                            height={25}
                             className='text-gray-700'
                           />
                         </Link>
@@ -7717,61 +7749,61 @@ function BitcoinOne() {
                         </div>
                       </div>
                       <div className='flex flex-row justify-between items-center gap-5 !w-full'>
-                      <Link href='#' className='flex-grow'>
-                        <Button
-                          variant={
-                            connectedDApps.some(
-                              (dApp) => dApp.name === 'dHedge'
-                            )
-                              ? 'secondary-destructive'
-                              : 'walletconnect'
-                          }
-                          className='w-full'
-                          onClick={() => {
-                            const isConnected = connectedDApps.some(
-                              (dApp) => dApp.name === 'dHedge'
-                            );
-                            if (isConnected) {
-                              handleDAppDisconnect('dHedge');
-                            } else {
-                              handleDAppConnect(
-                                'dHedge',
-                                '/icons/DApps/dHedge.svg',
-                                'https://dhedge.org'
-                              );
+                        <Link href='#' className='flex-grow'>
+                          <Button
+                            variant={
+                              connectedDApps.some(
+                                (dApp) => dApp.name === 'dHedge'
+                              )
+                                ? 'secondary-destructive'
+                                : 'walletconnect'
                             }
-                          }}
-                        >
-                          {connectedDApps.some(
-                            (dApp) => dApp.name === 'dHedge'
-                          ) ? (
-                            'Disconnect'
-                          ) : (
-                            <>
-                              <svg
-                                width='28'
-                                height='16'
-                                viewBox='0 0 28 16'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                              >
-                                <path
-                                  d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
-                                  fill='white'
-                                />
-                              </svg>
-                              Connect
-                            </>
-                          )}
-                        </Button>
-                      </Link>
-                      <Link href='https://dhedge.org' target='_blank'>
-                        <LinkExternal01
-                          width={25}
-                          height={25}
-                          className='text-gray-700'
-                        />
-                      </Link>
+                            className='w-full'
+                            onClick={() => {
+                              const isConnected = connectedDApps.some(
+                                (dApp) => dApp.name === 'dHedge'
+                              );
+                              if (isConnected) {
+                                handleDAppDisconnect('dHedge');
+                              } else {
+                                handleDAppConnect(
+                                  'dHedge',
+                                  '/icons/DApps/dHedge.svg',
+                                  'https://dhedge.org'
+                                );
+                              }
+                            }}
+                          >
+                            {connectedDApps.some(
+                              (dApp) => dApp.name === 'dHedge'
+                            ) ? (
+                              'Disconnect'
+                            ) : (
+                              <>
+                                <svg
+                                  width='28'
+                                  height='16'
+                                  viewBox='0 0 28 16'
+                                  fill='none'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path
+                                    d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
+                                    fill='white'
+                                  />
+                                </svg>
+                                Connect
+                              </>
+                            )}
+                          </Button>
+                        </Link>
+                        <Link href='https://dhedge.org' target='_blank'>
+                          <LinkExternal01
+                            width={25}
+                            height={25}
+                            className='text-gray-700'
+                          />
+                        </Link>
                       </div>
                     </div>
 
@@ -7832,61 +7864,61 @@ function BitcoinOne() {
                         </div>
                       </div>
                       <div className='flex flex-row justify-between items-center gap-5 !w-full'>
-                      <Link href='#' className='flex-grow'>
-                        <Button
-                          variant={
-                            connectedDApps.some(
-                              (dApp) => dApp.name === 'Enzyme'
-                            )
-                              ? 'secondary-destructive'
-                              : 'walletconnect'
-                          }
-                          className='w-full'
-                          onClick={() => {
-                            const isConnected = connectedDApps.some(
-                              (dApp) => dApp.name === 'Enzyme'
-                            );
-                            if (isConnected) {
-                              handleDAppDisconnect('Enzyme');
-                            } else {
-                              handleDAppConnect(
-                                'Enzyme',
-                                '/icons/DApps/Enzyme.svg',
-                                'https://enzyme.finance'
-                              );
+                        <Link href='#' className='flex-grow'>
+                          <Button
+                            variant={
+                              connectedDApps.some(
+                                (dApp) => dApp.name === 'Enzyme'
+                              )
+                                ? 'secondary-destructive'
+                                : 'walletconnect'
                             }
-                          }}
-                        >
-                          {connectedDApps.some(
-                            (dApp) => dApp.name === 'Enzyme'
-                          ) ? (
-                            'Disconnect'
-                          ) : (
-                            <>
-                              <svg
-                                width='28'
-                                height='16'
-                                viewBox='0 0 28 16'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                              >
-                                <path
-                                  d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
-                                  fill='white'
-                                />
-                              </svg>
-                              Connect
-                            </>
-                          )}
-                        </Button>
-                      </Link>
-                      <Link href='https://enzyme.finance' target='_blank'>
-                        <LinkExternal01
-                          width={25}
-                          height={25}
-                          className='text-gray-700'
-                        />
-                      </Link>
+                            className='w-full'
+                            onClick={() => {
+                              const isConnected = connectedDApps.some(
+                                (dApp) => dApp.name === 'Enzyme'
+                              );
+                              if (isConnected) {
+                                handleDAppDisconnect('Enzyme');
+                              } else {
+                                handleDAppConnect(
+                                  'Enzyme',
+                                  '/icons/DApps/Enzyme.svg',
+                                  'https://enzyme.finance'
+                                );
+                              }
+                            }}
+                          >
+                            {connectedDApps.some(
+                              (dApp) => dApp.name === 'Enzyme'
+                            ) ? (
+                              'Disconnect'
+                            ) : (
+                              <>
+                                <svg
+                                  width='28'
+                                  height='16'
+                                  viewBox='0 0 28 16'
+                                  fill='none'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path
+                                    d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
+                                    fill='white'
+                                  />
+                                </svg>
+                                Connect
+                              </>
+                            )}
+                          </Button>
+                        </Link>
+                        <Link href='https://enzyme.finance' target='_blank'>
+                          <LinkExternal01
+                            width={25}
+                            height={25}
+                            className='text-gray-700'
+                          />
+                        </Link>
                       </div>
                     </div>
 
@@ -7948,59 +7980,61 @@ function BitcoinOne() {
                         </div>
                       </div>
                       <div className='flex flex-row justify-between items-center gap-5 !w-full'>
-                      <Link href='#' className='flex-grow'>
-                        <Button
-                          variant={
-                            connectedDApps.some((dApp) => dApp.name === 'Fjord')
-                              ? 'secondary-destructive'
-                              : 'walletconnect'
-                          }
-                          className='w-full'
-                          onClick={() => {
-                            const isConnected = connectedDApps.some(
-                              (dApp) => dApp.name === 'Fjord'
-                            );
-                            if (isConnected) {
-                              handleDAppDisconnect('Fjord');
-                            } else {
-                              handleDAppConnect(
-                                'Fjord',
-                                '/icons/DApps/Fjord.svg',
-                                'https://fjord.finance'
-                              );
+                        <Link href='#' className='flex-grow'>
+                          <Button
+                            variant={
+                              connectedDApps.some(
+                                (dApp) => dApp.name === 'Fjord'
+                              )
+                                ? 'secondary-destructive'
+                                : 'walletconnect'
                             }
-                          }}
-                        >
-                          {connectedDApps.some(
-                            (dApp) => dApp.name === 'Fjord'
-                          ) ? (
-                            'Disconnect'
-                          ) : (
-                            <>
-                              <svg
-                                width='28'
-                                height='16'
-                                viewBox='0 0 28 16'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                              >
-                                <path
-                                  d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
-                                  fill='white'
-                                />
-                              </svg>
-                              Connect
-                            </>
-                          )}
-                        </Button>
-                      </Link>
-                      <Link href='https://fjord.finance' target='_blank'>
-                        <LinkExternal01
-                          width={25}
-                          height={25}
-                          className='text-gray-700'
-                        />
-                      </Link>
+                            className='w-full'
+                            onClick={() => {
+                              const isConnected = connectedDApps.some(
+                                (dApp) => dApp.name === 'Fjord'
+                              );
+                              if (isConnected) {
+                                handleDAppDisconnect('Fjord');
+                              } else {
+                                handleDAppConnect(
+                                  'Fjord',
+                                  '/icons/DApps/Fjord.svg',
+                                  'https://fjord.finance'
+                                );
+                              }
+                            }}
+                          >
+                            {connectedDApps.some(
+                              (dApp) => dApp.name === 'Fjord'
+                            ) ? (
+                              'Disconnect'
+                            ) : (
+                              <>
+                                <svg
+                                  width='28'
+                                  height='16'
+                                  viewBox='0 0 28 16'
+                                  fill='none'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path
+                                    d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
+                                    fill='white'
+                                  />
+                                </svg>
+                                Connect
+                              </>
+                            )}
+                          </Button>
+                        </Link>
+                        <Link href='https://fjord.finance' target='_blank'>
+                          <LinkExternal01
+                            width={25}
+                            height={25}
+                            className='text-gray-700'
+                          />
+                        </Link>
                       </div>
                     </div>
 
@@ -8060,61 +8094,61 @@ function BitcoinOne() {
                         </div>
                       </div>
                       <div className='flex flex-row justify-between items-center gap-5 !w-full'>
-                      <Link href='#' className='flex-grow'>
-                        <Button
-                          variant={
-                            connectedDApps.some(
-                              (dApp) => dApp.name === 'Instadapp'
-                            )
-                              ? 'secondary-destructive'
-                              : 'walletconnect'
-                          }
-                          className='w-full'
-                          onClick={() => {
-                            const isConnected = connectedDApps.some(
-                              (dApp) => dApp.name === 'Instadapp'
-                            );
-                            if (isConnected) {
-                              handleDAppDisconnect('Instadapp');
-                            } else {
-                              handleDAppConnect(
-                                'Instadapp',
-                                '/icons/DApps/Instadapp.svg',
-                                'https://instadapp.io'
-                              );
+                        <Link href='#' className='flex-grow'>
+                          <Button
+                            variant={
+                              connectedDApps.some(
+                                (dApp) => dApp.name === 'Instadapp'
+                              )
+                                ? 'secondary-destructive'
+                                : 'walletconnect'
                             }
-                          }}
-                        >
-                          {connectedDApps.some(
-                            (dApp) => dApp.name === 'Instadapp'
-                          ) ? (
-                            'Disconnect'
-                          ) : (
-                            <>
-                              <svg
-                                width='28'
-                                height='16'
-                                viewBox='0 0 28 16'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                              >
-                                <path
-                                  d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
-                                  fill='white'
-                                />
-                              </svg>
-                              Connect
-                            </>
-                          )}
-                        </Button>
-                      </Link>
-                      <Link href='https://instadapp.io' target='_blank'>
-                        <LinkExternal01
-                          width={25}
-                          height={25}
-                          className='text-gray-700'
-                        />
-                      </Link>
+                            className='w-full'
+                            onClick={() => {
+                              const isConnected = connectedDApps.some(
+                                (dApp) => dApp.name === 'Instadapp'
+                              );
+                              if (isConnected) {
+                                handleDAppDisconnect('Instadapp');
+                              } else {
+                                handleDAppConnect(
+                                  'Instadapp',
+                                  '/icons/DApps/Instadapp.svg',
+                                  'https://instadapp.io'
+                                );
+                              }
+                            }}
+                          >
+                            {connectedDApps.some(
+                              (dApp) => dApp.name === 'Instadapp'
+                            ) ? (
+                              'Disconnect'
+                            ) : (
+                              <>
+                                <svg
+                                  width='28'
+                                  height='16'
+                                  viewBox='0 0 28 16'
+                                  fill='none'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path
+                                    d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
+                                    fill='white'
+                                  />
+                                </svg>
+                                Connect
+                              </>
+                            )}
+                          </Button>
+                        </Link>
+                        <Link href='https://instadapp.io' target='_blank'>
+                          <LinkExternal01
+                            width={25}
+                            height={25}
+                            className='text-gray-700'
+                          />
+                        </Link>
                       </div>
                     </div>
 
@@ -8174,61 +8208,64 @@ function BitcoinOne() {
                         </div>
                       </div>
                       <div className='flex flex-row justify-between items-center gap-5 !w-full'>
-                      <Link href='#' className='flex-grow'>
-                        <Button
-                          variant={
-                            connectedDApps.some(
-                              (dApp) => dApp.name === 'Pancake'
-                            )
-                              ? 'secondary-destructive'
-                              : 'walletconnect'
-                          }
-                          className='w-full'
-                          onClick={() => {
-                            const isConnected = connectedDApps.some(
-                              (dApp) => dApp.name === 'Pancake'
-                            );
-                            if (isConnected) {
-                              handleDAppDisconnect('Pancake');
-                            } else {
-                              handleDAppConnect(
-                                'Pancake',
-                                '/icons/DApps/Pancake.svg',
-                                'https://pancakeswap.finance'
-                              );
+                        <Link href='#' className='flex-grow'>
+                          <Button
+                            variant={
+                              connectedDApps.some(
+                                (dApp) => dApp.name === 'Pancake'
+                              )
+                                ? 'secondary-destructive'
+                                : 'walletconnect'
                             }
-                          }}
+                            className='w-full'
+                            onClick={() => {
+                              const isConnected = connectedDApps.some(
+                                (dApp) => dApp.name === 'Pancake'
+                              );
+                              if (isConnected) {
+                                handleDAppDisconnect('Pancake');
+                              } else {
+                                handleDAppConnect(
+                                  'Pancake',
+                                  '/icons/DApps/Pancake.svg',
+                                  'https://pancakeswap.finance'
+                                );
+                              }
+                            }}
+                          >
+                            {connectedDApps.some(
+                              (dApp) => dApp.name === 'Pancake'
+                            ) ? (
+                              'Disconnect'
+                            ) : (
+                              <>
+                                <svg
+                                  width='28'
+                                  height='16'
+                                  viewBox='0 0 28 16'
+                                  fill='none'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path
+                                    d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
+                                    fill='white'
+                                  />
+                                </svg>
+                                Connect
+                              </>
+                            )}
+                          </Button>
+                        </Link>
+                        <Link
+                          href='https://pancakeswap.finance'
+                          target='_blank'
                         >
-                          {connectedDApps.some(
-                            (dApp) => dApp.name === 'Pancake'
-                          ) ? (
-                            'Disconnect'
-                          ) : (
-                            <>
-                              <svg
-                                width='28'
-                                height='16'
-                                viewBox='0 0 28 16'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                              >
-                                <path
-                                  d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
-                                  fill='white'
-                                />
-                              </svg>
-                              Connect
-                            </>
-                          )}
-                        </Button>
-                      </Link>
-                      <Link href='https://pancakeswap.finance' target='_blank'>
-                        <LinkExternal01
-                          width={25}
-                          height={25}
-                          className='text-gray-700'
-                        />
-                      </Link>
+                          <LinkExternal01
+                            width={25}
+                            height={25}
+                            className='text-gray-700'
+                          />
+                        </Link>
                       </div>
                     </div>
 
@@ -8289,61 +8326,61 @@ function BitcoinOne() {
                         </div>
                       </div>
                       <div className='flex flex-row justify-between items-center gap-5 !w-full'>
-                      <Link href='#' className='flex-grow'>
-                        <Button
-                          variant={
-                            connectedDApps.some(
-                              (dApp) => dApp.name === 'Paraswap'
-                            )
-                              ? 'secondary-destructive'
-                              : 'walletconnect'
-                          }
-                          className='w-full'
-                          onClick={() => {
-                            const isConnected = connectedDApps.some(
-                              (dApp) => dApp.name === 'Paraswap'
-                            );
-                            if (isConnected) {
-                              handleDAppDisconnect('Paraswap');
-                            } else {
-                              handleDAppConnect(
-                                'Paraswap',
-                                '/icons/DApps/Paraswap.svg',
-                                'https://paraswap.io'
-                              );
+                        <Link href='#' className='flex-grow'>
+                          <Button
+                            variant={
+                              connectedDApps.some(
+                                (dApp) => dApp.name === 'Paraswap'
+                              )
+                                ? 'secondary-destructive'
+                                : 'walletconnect'
                             }
-                          }}
-                        >
-                          {connectedDApps.some(
-                            (dApp) => dApp.name === 'Paraswap'
-                          ) ? (
-                            'Disconnect'
-                          ) : (
-                            <>
-                              <svg
-                                width='28'
-                                height='16'
-                                viewBox='0 0 28 16'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                              >
-                                <path
-                                  d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
-                                  fill='white'
-                                />
-                              </svg>
-                              Connect
-                            </>
-                          )}
-                        </Button>
-                      </Link>
-                      <Link href='https://paraswap.io' target='_blank'>
-                        <LinkExternal01
-                          width={25}
-                          height={25}
-                          className='text-gray-700'
-                        />
-                      </Link>
+                            className='w-full'
+                            onClick={() => {
+                              const isConnected = connectedDApps.some(
+                                (dApp) => dApp.name === 'Paraswap'
+                              );
+                              if (isConnected) {
+                                handleDAppDisconnect('Paraswap');
+                              } else {
+                                handleDAppConnect(
+                                  'Paraswap',
+                                  '/icons/DApps/Paraswap.svg',
+                                  'https://paraswap.io'
+                                );
+                              }
+                            }}
+                          >
+                            {connectedDApps.some(
+                              (dApp) => dApp.name === 'Paraswap'
+                            ) ? (
+                              'Disconnect'
+                            ) : (
+                              <>
+                                <svg
+                                  width='28'
+                                  height='16'
+                                  viewBox='0 0 28 16'
+                                  fill='none'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path
+                                    d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
+                                    fill='white'
+                                  />
+                                </svg>
+                                Connect
+                              </>
+                            )}
+                          </Button>
+                        </Link>
+                        <Link href='https://paraswap.io' target='_blank'>
+                          <LinkExternal01
+                            width={25}
+                            height={25}
+                            className='text-gray-700'
+                          />
+                        </Link>
                       </div>
                     </div>
 
@@ -8404,61 +8441,61 @@ function BitcoinOne() {
                         </div>
                       </div>
                       <div className='flex flex-row justify-between items-center gap-5 !w-full'>
-                      <Link href='#' className='flex-grow'>
-                        <Button
-                          variant={
-                            connectedDApps.some(
-                              (dApp) => dApp.name === 'Swapzone'
-                            )
-                              ? 'secondary-destructive'
-                              : 'walletconnect'
-                          }
-                          className='w-full'
-                          onClick={() => {
-                            const isConnected = connectedDApps.some(
-                              (dApp) => dApp.name === 'Swapzone'
-                            );
-                            if (isConnected) {
-                              handleDAppDisconnect('Swapzone');
-                            } else {
-                              handleDAppConnect(
-                                'Swapzone',
-                                '/icons/DApps/Swapzone.svg',
-                                'https://swapzone.io'
-                              );
+                        <Link href='#' className='flex-grow'>
+                          <Button
+                            variant={
+                              connectedDApps.some(
+                                (dApp) => dApp.name === 'Swapzone'
+                              )
+                                ? 'secondary-destructive'
+                                : 'walletconnect'
                             }
-                          }}
-                        >
-                          {connectedDApps.some(
-                            (dApp) => dApp.name === 'Swapzone'
-                          ) ? (
-                            'Disconnect'
-                          ) : (
-                            <>
-                              <svg
-                                width='28'
-                                height='16'
-                                viewBox='0 0 28 16'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                              >
-                                <path
-                                  d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
-                                  fill='white'
-                                />
-                              </svg>
-                              Connect
-                            </>
-                          )}
-                        </Button>
-                      </Link>
-                      <Link href='https://swapzone.io' target='_blank'>
-                        <LinkExternal01
-                          width={25}
-                          height={25}
-                          className='text-gray-700'
-                        />
-                      </Link>
+                            className='w-full'
+                            onClick={() => {
+                              const isConnected = connectedDApps.some(
+                                (dApp) => dApp.name === 'Swapzone'
+                              );
+                              if (isConnected) {
+                                handleDAppDisconnect('Swapzone');
+                              } else {
+                                handleDAppConnect(
+                                  'Swapzone',
+                                  '/icons/DApps/Swapzone.svg',
+                                  'https://swapzone.io'
+                                );
+                              }
+                            }}
+                          >
+                            {connectedDApps.some(
+                              (dApp) => dApp.name === 'Swapzone'
+                            ) ? (
+                              'Disconnect'
+                            ) : (
+                              <>
+                                <svg
+                                  width='28'
+                                  height='16'
+                                  viewBox='0 0 28 16'
+                                  fill='none'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path
+                                    d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
+                                    fill='white'
+                                  />
+                                </svg>
+                                Connect
+                              </>
+                            )}
+                          </Button>
+                        </Link>
+                        <Link href='https://swapzone.io' target='_blank'>
+                          <LinkExternal01
+                            width={25}
+                            height={25}
+                            className='text-gray-700'
+                          />
+                        </Link>
                       </div>
                     </div>
 
@@ -8519,61 +8556,61 @@ function BitcoinOne() {
                         </div>
                       </div>
                       <div className='flex flex-row justify-between items-center gap-5 !w-full'>
-                      <Link href='#' className='flex-grow'>
-                        <Button
-                          variant={
-                            connectedDApps.some(
-                              (dApp) => dApp.name === 'Tokenset'
-                            )
-                              ? 'secondary-destructive'
-                              : 'walletconnect'
-                          }
-                          className='w-full'
-                          onClick={() => {
-                            const isConnected = connectedDApps.some(
-                              (dApp) => dApp.name === 'Tokenset'
-                            );
-                            if (isConnected) {
-                              handleDAppDisconnect('Tokenset');
-                            } else {
-                              handleDAppConnect(
-                                'Tokenset',
-                                '/icons/DApps/Tokenset.svg',
-                                'https://tokenset.com'
-                              );
+                        <Link href='#' className='flex-grow'>
+                          <Button
+                            variant={
+                              connectedDApps.some(
+                                (dApp) => dApp.name === 'Tokenset'
+                              )
+                                ? 'secondary-destructive'
+                                : 'walletconnect'
                             }
-                          }}
-                        >
-                          {connectedDApps.some(
-                            (dApp) => dApp.name === 'Tokenset'
-                          ) ? (
-                            'Disconnect'
-                          ) : (
-                            <>
-                              <svg
-                                width='28'
-                                height='16'
-                                viewBox='0 0 28 16'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                              >
-                                <path
-                                  d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
-                                  fill='white'
-                                />
-                              </svg>
-                              Connect
-                            </>
-                          )}
-                        </Button>
-                      </Link>
-                      <Link href='https://tokenset.com' target='_blank'>
-                        <LinkExternal01
-                          width={25}
-                          height={25}
-                          className='text-gray-700'
-                        />
-                      </Link>
+                            className='w-full'
+                            onClick={() => {
+                              const isConnected = connectedDApps.some(
+                                (dApp) => dApp.name === 'Tokenset'
+                              );
+                              if (isConnected) {
+                                handleDAppDisconnect('Tokenset');
+                              } else {
+                                handleDAppConnect(
+                                  'Tokenset',
+                                  '/icons/DApps/Tokenset.svg',
+                                  'https://tokenset.com'
+                                );
+                              }
+                            }}
+                          >
+                            {connectedDApps.some(
+                              (dApp) => dApp.name === 'Tokenset'
+                            ) ? (
+                              'Disconnect'
+                            ) : (
+                              <>
+                                <svg
+                                  width='28'
+                                  height='16'
+                                  viewBox='0 0 28 16'
+                                  fill='none'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path
+                                    d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
+                                    fill='white'
+                                  />
+                                </svg>
+                                Connect
+                              </>
+                            )}
+                          </Button>
+                        </Link>
+                        <Link href='https://tokenset.com' target='_blank'>
+                          <LinkExternal01
+                            width={25}
+                            height={25}
+                            className='text-gray-700'
+                          />
+                        </Link>
                       </div>
                     </div>
 
@@ -8634,63 +8671,63 @@ function BitcoinOne() {
                         </div>
                       </div>
                       <div className='flex flex-row justify-between items-center gap-5 !w-full'>
-                      <Link href='#' className='flex-grow'>
-                        <Button
-                          variant={
-                            connectedDApps.some(
-                              (dApp) => dApp.name === 'Uniswap'
-                            )
-                              ? 'secondary-destructive'
-                              : 'walletconnect'
-                          }
-                          className='w-full'
-                          onClick={() => {
-                            const isConnected = connectedDApps.some(
-                              (dApp) => dApp.name === 'Uniswap'
-                            );
-                            if (isConnected) {
-                              handleDAppDisconnect('Uniswap');
-                            } else {
-                              handleDAppConnect(
-                                'Uniswap',
-                                '/icons/DApps/Uniswap.svg',
-                                'https://uniswap.org'
-                              );
+                        <Link href='#' className='flex-grow'>
+                          <Button
+                            variant={
+                              connectedDApps.some(
+                                (dApp) => dApp.name === 'Uniswap'
+                              )
+                                ? 'secondary-destructive'
+                                : 'walletconnect'
                             }
-                          }}
-                        >
-                          {connectedDApps.some(
-                            (dApp) => dApp.name === 'Uniswap'
-                          ) ? (
-                            'Disconnect'
-                          ) : (
-                            <>
-                              <svg
-                                width='28'
-                                height='16'
-                                viewBox='0 0 28 16'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                              >
-                                <path
-                                  d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
-                                  fill='white'
-                                />
-                              </svg>
-                              Connect
-                            </>
-                          )}
-                        </Button>
-                      </Link>
-                      <Link href='https://uniswap.org' target='_blank'>
-                        <LinkExternal01
-                          width={25}
-                          height={25}
-                          className='text-gray-700'
-                        />
-                      </Link>
+                            className='w-full'
+                            onClick={() => {
+                              const isConnected = connectedDApps.some(
+                                (dApp) => dApp.name === 'Uniswap'
+                              );
+                              if (isConnected) {
+                                handleDAppDisconnect('Uniswap');
+                              } else {
+                                handleDAppConnect(
+                                  'Uniswap',
+                                  '/icons/DApps/Uniswap.svg',
+                                  'https://uniswap.org'
+                                );
+                              }
+                            }}
+                          >
+                            {connectedDApps.some(
+                              (dApp) => dApp.name === 'Uniswap'
+                            ) ? (
+                              'Disconnect'
+                            ) : (
+                              <>
+                                <svg
+                                  width='28'
+                                  height='16'
+                                  viewBox='0 0 28 16'
+                                  fill='none'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path
+                                    d='M6.26063 3.12611C10.535 -1.04204 17.4651 -1.04204 21.7395 3.12611L22.254 3.62777C22.4677 3.83617 22.4677 4.17406 22.254 4.38248L20.4941 6.09849C20.3873 6.20271 20.2141 6.20271 20.1072 6.09849L19.3994 5.40817C16.4173 2.50036 11.5827 2.50036 8.60084 5.40817L7.84271 6.14746C7.73585 6.25166 7.5626 6.25166 7.45574 6.14746L5.69598 4.43142C5.48226 4.22302 5.48226 3.88512 5.69598 3.67671L6.26063 3.12611ZM25.3788 6.67504L26.9451 8.2023C27.1586 8.41069 27.1586 8.74871 26.9451 8.95707L19.883 15.8437C19.6693 16.0521 19.3229 16.0521 19.1091 15.8437L14.0967 10.956C14.0434 10.9039 13.9568 10.9039 13.9034 10.956L8.89125 15.8437C8.67753 16.0521 8.33102 16.0521 8.1173 15.8437L1.05507 8.95687C0.841346 8.74851 0.841346 8.41069 1.05507 8.20222L2.62126 6.67496C2.83498 6.46654 3.18149 6.46654 3.39521 6.67496L8.40747 11.5627C8.46091 11.6147 8.54753 11.6147 8.60096 11.5627L13.613 6.67496C13.8267 6.46654 14.1732 6.46654 14.387 6.67494L19.3992 11.5627C19.4527 11.6147 19.5392 11.6147 19.5928 11.5627L24.6049 6.67504C24.8187 6.46664 25.1651 6.46664 25.3788 6.67504Z'
+                                    fill='white'
+                                  />
+                                </svg>
+                                Connect
+                              </>
+                            )}
+                          </Button>
+                        </Link>
+                        <Link href='https://uniswap.org' target='_blank'>
+                          <LinkExternal01
+                            width={25}
+                            height={25}
+                            className='text-gray-700'
+                          />
+                        </Link>
                       </div>
-                    </div> 
+                    </div>
                   </div>
                 </div>
               </div>

@@ -16,9 +16,10 @@ import { Lock03, Loading02 } from '@untitled-ui/icons-react';
 
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import WalletConnect from '@/components/ui/modals/walletConnect'; 
+import WalletConnect from '@/components/ui/modals/walletConnect';
 import BlowFish from '@/components/ui/blowfish';
 // import WalletConnect from '@/components/ui/modals/walletConnect';
+import Link from 'next/link';
 
 interface ConnectTodAppProps {
   isOpen: boolean;
@@ -37,7 +38,9 @@ interface ConnectTodAppProps {
     icon: string;
     url: string;
   };
-  onConnect: () => void;
+  onConnect: (
+    dAppNameOrObject?: string | { name: string; icon: string; url: string }
+  ) => void;
   showWalletConnectOnClose?: boolean;
   variant: string;
 }
@@ -58,6 +61,31 @@ const ConnectTodApp: React.FC<ConnectTodAppProps> = ({
   const [showWalletConnect, setShowWalletConnect] = useState(false);
   const [showBlowfish, setShowBlowfish] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [dAppData, setDAppData] = useState<typeof selectedDApp>(selectedDApp);
+  const [approvedDApp, setApprovedDApp] =
+    useState<typeof selectedDApp>(selectedDApp);
+
+  const handleConnectClick = (dApp?: {
+    name: string;
+    icon: string;
+    url: string;
+  }) => {
+    setApprovedDApp(dApp);
+    setShowBlowfish(true);
+  };
+
+  React.useEffect(() => {
+    if (selectedDApp?.name && selectedDApp?.icon && selectedDApp?.url) {
+      setDAppData(selectedDApp);
+      console.log('Setting dAppData:', selectedDApp);
+    }
+  }, [selectedDApp]);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setIsLoading(false);
+    }
+  }, [isOpen]);
 
   const handleCancel = () => {
     onClose();
@@ -68,10 +96,17 @@ const ConnectTodApp: React.FC<ConnectTodAppProps> = ({
   };
 
   const handleConnect = () => {
+    if (selectedDApp?.name && selectedDApp?.icon && selectedDApp?.url) {
+      setDAppData(selectedDApp);
+    }
     setIsLoading(true);
     onClose();
     setShowBlowfish(true);
   };
+
+  React.useEffect(() => {
+    console.log('dAppData changed:', dAppData);
+  }, [dAppData]);
 
   return (
     <>
@@ -114,15 +149,30 @@ const ConnectTodApp: React.FC<ConnectTodAppProps> = ({
 
             <div className='flex items-center gap-1 font-medium text-lg mb-2'>
               <Lock03 width={20} height={20} />
-              {selectedDApp?.url || 'app.dhedge.org'}
+              <Link
+                href={selectedDApp?.url || 'app.dhedge.org'}
+                target='_blank'
+                className='text-lg font-medium'
+              >
+                {selectedDApp?.url || 'app.dhedge.org'}
+              </Link>
             </div>
             <div className='flex items-center gap-3 font-normal mb-4'>
               <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
                 <Image src={dot} alt='dot' width={8} height={8} />
-                 {networkAccountName.split(' ')[0]}
+                {networkAccountName.split(' ')[0]}
               </div>
               <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
-                <Image src={networkAccountName.split(' ')[0] === 'Polygon' ? POLNetwork : ETHNetwork} alt='ETH' width={16} height={16} /> 
+                <Image
+                  src={
+                    networkAccountName.split(' ')[0] === 'Polygon'
+                      ? POLNetwork
+                      : ETHNetwork
+                  }
+                  alt='ETH'
+                  width={16}
+                  height={16}
+                />
                 {networkAccountName.split(' ')[0] === 'Polygon' ? 'POL' : 'ETH'}
               </div>
             </div>
@@ -192,8 +242,8 @@ const ConnectTodApp: React.FC<ConnectTodAppProps> = ({
           </div>
         </DialogContent>
       </Dialog>
-      <WalletConnect 
-        isOpen={showWalletConnect} 
+      <WalletConnect
+        isOpen={showWalletConnect}
         onClose={() => setShowWalletConnect(false)}
         onConnect={() => {
           setShowWalletConnect(false);
@@ -202,14 +252,26 @@ const ConnectTodApp: React.FC<ConnectTodAppProps> = ({
       />
       <BlowFish
         isOpen={showBlowfish}
-        onClose={() => setShowBlowfish(false)}
+        onClose={() => {
+          setShowBlowfish(false);
+          setIsLoading(false);
+        }}
         onApprove={() => {
           setShowBlowfish(false);
-          addNotification("Connection Successful!", "You have successfully connected your wallet.", "success");
+          setIsLoading(false);
+          if (dAppData) {
+            onConnect(dAppData);
+          }
+          addNotification(
+            'Connection Successful!',
+            'You have successfully connected your wallet.',
+            'success'
+          );
         }}
         networkAccountName={networkAccountName}
         networkAccountImage={networkAccountImage}
         balance={balance}
+        selectedDApp={dAppData}
       />
     </>
   );

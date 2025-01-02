@@ -1,14 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Lock03 } from '@untitled-ui/icons-react';
 import { Badge } from '@/components/ui/badge';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import ETHNetwork from 'public/icons/networks/ETH.svg';
 import POLNetwork from 'public/icons/networks/MATIC.svg';
-
+import WCCryptoIcon from '@/public/WCcryptoicons.svg';
+import Link from 'next/link';
 type VariantType = 'warning' | 'critical' | 'secure';
 
 interface BlowFishProps {
@@ -19,6 +20,12 @@ interface BlowFishProps {
   networkAccountName: string;
   networkAccountImage: string;
   balance: string;
+  selectedDApp?: {
+    name: string;
+    icon: string;
+    url: string;
+  };
+  onDAppConnect?: (dApp: { name: string; icon: string; url: string }) => void;
 }
 
 export default function BlowFish({
@@ -29,17 +36,28 @@ export default function BlowFish({
   networkAccountName,
   networkAccountImage,
   balance,
+  selectedDApp,
+  onDAppConnect,
 }: BlowFishProps) {
   const [variant, setVariant] = useState<VariantType>(initialVariant);
 
+  useEffect(() => {
+    console.log('BlowFish - selectedDApp changed:', {
+      name: selectedDApp?.name,
+      icon: selectedDApp?.icon,
+      url: selectedDApp?.url,
+      isOpen,
+    });
+  }, [selectedDApp, isOpen]);
+
   // Helper function to determine if we're on Polygon network
   const isPolygonNetwork = networkAccountName.toLowerCase().includes('polygon');
-  
+
   // Helper function to get network-specific currency label
-  const getCurrencyLabel = () => isPolygonNetwork ? 'MATIC' : 'ETH';
-  
+  const getCurrencyLabel = () => (isPolygonNetwork ? 'MATIC' : 'ETH');
+
   // Helper function to get network name
-  const getNetworkName = () => isPolygonNetwork ? 'Polygon' : 'Ethereum';
+  const getNetworkName = () => (isPolygonNetwork ? 'Polygon' : 'Ethereum');
 
   const getVariantStyles = () => {
     switch (variant) {
@@ -100,30 +118,54 @@ export default function BlowFish({
     });
   };
 
+  const handleApprove = () => {
+    if (selectedDApp && onDAppConnect) {
+      onDAppConnect(selectedDApp);
+    }
+    onApprove();
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[440px] p-0 rounded-[37px]">
+      <DialogContent className='w-[440px] p-0 rounded-[37px]'>
+        <DialogTitle className='sr-only'>
+          Connect to {selectedDApp?.name || 'DApp'}
+        </DialogTitle>
         <div className={`${styles.bgColor} p-1 rounded-[36px] w-full`}>
           <div className='bg-white rounded-[32px]'>
             <div className='flex flex-col items-center pt-7 pb-5 px-6'>
-              <div className='rounded-full h-12 w-12 mb-4 flex items-center justify-center bg-[#00A0D0]'>
-                <svg
-                  width="33"
-                  height="32"
-                  viewBox="0 0 33 32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect x="0.5" width="32" height="32" rx="16" fill="#00A0D0" />
-                  <path
-                    d="M24.25 24.6506L20.9444 22.9006V12.8293L24.25 14.4146V24.6506ZM8.75 26L12.0647 24.4939V15.878L8.75 17.4634V26ZM14.8075 23.364L18.1998 21.9976V6L14.8056 7.5061L14.8075 23.364Z"
-                    fill="white"
-                  />
-                </svg>
+              <div className='rounded-full h-12 w-12 mb-4 flex items-center justify-center'>
+                {selectedDApp?.icon && selectedDApp?.name ? (
+                  <div className='rounded-full overflow-hidden'>
+                    <Image
+                      src={selectedDApp.icon}
+                      alt={selectedDApp.name}
+                      width={48}
+                      height={48}
+                      className='object-contain'
+                      priority
+                    />
+                  </div>
+                ) : (
+                  <div className='rounded-full overflow-hidden'>
+                    <Image
+                      src={WCCryptoIcon}
+                      alt='WalletConnect'
+                      width={48}
+                      height={48}
+                    />
+                  </div>
+                )}
               </div>
               <div className='flex items-center gap-1'>
                 <Lock03 className='h-5 w-5' />
-                <p className='text-lg font-medium'>app.dhedge.org</p>
+                <Link
+                  href={selectedDApp?.url || 'app.dhedge.org'}
+                  target='_blank'
+                  className='text-lg font-medium'
+                >
+                  {selectedDApp?.url || 'app.dhedge.org'}
+                </Link>
               </div>
               <div className='flex mt-2 gap-3'>
                 <Badge variant='transaction'>
@@ -143,8 +185,8 @@ export default function BlowFish({
               <div className='flex flex-col mt-5 gap-1 text-center'>
                 <p className='text-lg font-medium'>Approve this transaction?</p>
                 <p className='text-sm text-gray-600'>
-                  By clicking connect, you allow this app to connect to your Network
-                  Account.{' '}
+                  By clicking connect, you allow this app to connect to your
+                  Network Account.{' '}
                 </p>
               </div>
             </div>
@@ -164,7 +206,9 @@ export default function BlowFish({
                   <div className='w-full justify-between  flex py-1.5'>
                     {' '}
                     <p>Total Transaction Amount</p>
-                    <p className='flex gap-2 font-medium items-center'>$105.50</p>
+                    <p className='flex gap-2 font-medium items-center'>
+                      $105.50
+                    </p>
                   </div>
                 </div>
               </div>
@@ -198,7 +242,7 @@ export default function BlowFish({
                 <div
                   className={`w-full rounded-2xl border p-1 ${styles.borderColor} text-sm ${styles.bgLight} ${styles.textColor} cursor-pointer`}
                   onClick={cycleVariant}
-                  role="button"
+                  role='button'
                   tabIndex={0}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -354,7 +398,7 @@ export default function BlowFish({
               <Button
                 variant='secondary'
                 className={`${styles.buttonBg} text-white ${styles.buttonHover} flex-1 text-sm`}
-                onClick={onApprove}
+                onClick={handleApprove}
               >
                 Approve
               </Button>
