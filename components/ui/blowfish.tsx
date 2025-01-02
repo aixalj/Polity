@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import ETHNetwork from 'public/icons/networks/ETH.svg';
 import POLNetwork from 'public/icons/networks/MATIC.svg';
 import WCCryptoIcon from '@/public/WCcryptoicons.svg';
-
+import Link from 'next/link';
 type VariantType = 'warning' | 'critical' | 'secure';
 
 interface BlowFishProps {
@@ -25,6 +25,7 @@ interface BlowFishProps {
     icon: string;
     url: string;
   };
+  onDAppConnect?: (dApp: { name: string; icon: string; url: string }) => void;
 }
 
 export default function BlowFish({
@@ -36,6 +37,7 @@ export default function BlowFish({
   networkAccountImage,
   balance,
   selectedDApp,
+  onDAppConnect,
 }: BlowFishProps) {
   const [variant, setVariant] = useState<VariantType>(initialVariant);
 
@@ -116,6 +118,13 @@ export default function BlowFish({
     });
   };
 
+  const handleApprove = () => {
+    if (selectedDApp && onDAppConnect) {
+      onDAppConnect(selectedDApp);
+    }
+    onApprove();
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className='w-[440px] p-0 rounded-[37px]'>
@@ -150,9 +159,13 @@ export default function BlowFish({
               </div>
               <div className='flex items-center gap-1'>
                 <Lock03 className='h-5 w-5' />
-                <p className='text-lg font-medium'>
+                <Link
+                  href={selectedDApp?.url || 'app.dhedge.org'}
+                  target='_blank'
+                  className='text-lg font-medium'
+                >
                   {selectedDApp?.url || 'app.dhedge.org'}
-                </p>
+                </Link>
               </div>
               <div className='flex mt-2 gap-3'>
                 <Badge variant='transaction'>
@@ -385,7 +398,7 @@ export default function BlowFish({
               <Button
                 variant='secondary'
                 className={`${styles.buttonBg} text-white ${styles.buttonHover} flex-1 text-sm`}
-                onClick={onApprove}
+                onClick={handleApprove}
               >
                 Approve
               </Button>

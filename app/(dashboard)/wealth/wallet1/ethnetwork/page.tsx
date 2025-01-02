@@ -79,7 +79,15 @@ function BitcoinOne() {
     networkAccountImage = ETHdApps; // Set the image for BTC
   }
 
-  const handleOpenModal = () => setIsWalletConnectOpen(true);
+  const handleOpenModal = () => {
+    // Set the dHedge details explicitly
+    setSelectedDApp({
+      name: 'dHedge',
+      icon: '/icons/dApps/dHedge.svg', // Replace with the actual path to the dHedge icon
+      url: 'https://dhedge.org', // dHedge URL
+    });
+    setIsWalletConnectOpen(true); // Open the wallet connect modal
+  };
   const handleCloseModal = () => setIsWalletConnectOpen(false);
   const handleOpenConnectTodApp = () => {
     setSelectedDApp({
@@ -87,46 +95,39 @@ function BitcoinOne() {
       icon: '',
       url: '',
     });
-    setIsWalletConnectOpen(false);
     setIsConnectTodAppOpen(true);
+    // The parent will handle closing the WalletConnect modal after ConnectTodApp is ready
+    setIsWalletConnectOpen(false);
   };
 
-  // Add these state variables at the top of the component
-  const [connectingDApp, setConnectingDApp] = useState<{
-    name: string;
-    icon: string;
-    url: string;
-  } | null>(null);
-
-  const handleDAppConnect = (
-    name: string,
-    icon: string,
-    url: string
-  ): Promise<void> => {
+  const handleDAppConnect = (name: string, icon: string, url: string): Promise<void> => {
     return new Promise((resolve) => {
-      // Only proceed if we're in the dApps tab
+      console.log('handleDAppConnect called with:', { name, icon, url });
+      
       if (selectedTab === 'dApps') {
-        // Set the selected dApp
-        setSelectedDApp({ name, icon, url });
+        setSelectedDApp({
+          name,
+          icon,
+          url
+        });
+        console.log('selectedDApp set to:', { name, icon, url });
         setIsConnectTodAppOpen(true);
-
-        // Replace existing dApps with the new one
-        setConnectedDApps([{ name, icon, url }]); // Only keep the newly connected dApp
-
-        // Simulate an asynchronous operation (e.g., API call)
-        setTimeout(() => {
-          resolve(); // Resolve the promise after the operation
-        }, 1000); // Adjust the timeout as needed
-      } else {
-        resolve(); // Resolve immediately if not in the dApps tab
       }
+      resolve();
     });
   };
 
-  // Add the confirmation handler
   const handleConnectionConfirm = () => {
     if (selectedDApp) {
-      setConnectedDApps((prev) => [...prev, selectedDApp]);
+      // Only add to connectedDApps after user confirms in the modal
+      setConnectedDApps((prev) => {
+        // Limit to a maximum of 24 dApps
+        if (prev.length < 24) {
+          return [...prev, selectedDApp];
+        }
+        return prev; // Do not add if already at max
+      });
+
       addNotification(
         'DApp Connected',
         `${selectedDApp.name} has been connected successfully.`,
@@ -188,11 +189,40 @@ function BitcoinOne() {
     }
   }, [notifications]);
 
-  const handleConnectClick = () => {
-    if (selectedDApp?.name) {
-      setConnectedDApps([selectedDApp]); // Replace the list with just this dApp
+  // const handleConnectClick = () => {
+  //   if (selectedDApp?.name) {
+  //     setConnectedDApps([selectedDApp]); // Replace the list with just this dApp
+  //   }
+  //   handleCloseConnectTodApp();
+  // };
+
+  const handleConnectClick = (dAppNameOrObject?: string | { name: string; icon: string; url: string }) => {
+    if (typeof dAppNameOrObject === 'object') {
+      // Handle object case (from Blowfish)
+      const dApp = dAppNameOrObject;
+      setConnectedDApps((prev) => {
+        const isAlreadyConnected = prev.some((connected) => connected.name === dApp.name);
+        if (isAlreadyConnected) return prev;
+        return [...prev, dApp];
+      });
+    } else {
+      // Handle string case (from ConnectTodApp)
+      if (!selectedDApp) return;
+      setConnectedDApps((prev) => {
+        const isAlreadyConnected = prev.some((connected) => connected.name === selectedDApp.name);
+        if (isAlreadyConnected) return prev;
+        return [...prev, selectedDApp];
+      });
     }
+  
+    addNotification(
+      'DApp Connected',
+      'Connection successful',
+      'success'
+    );
+  
     handleCloseConnectTodApp();
+    setIsWalletConnectOpen(false);
   };
 
   return (
@@ -481,76 +511,79 @@ function BitcoinOne() {
                 </div>
                 {connectedDApps.length > 0 ? (
                   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-                    {connectedDApps.map((dApp, index) => (
-                      <div
-                        key={index}
-                        className='flex flex-col items-center bg-white border border-gray-200 px-4 py-3 rounded-2xl'
-                      >
-                        <Image
-                          src={dApp.icon} // This will show the icon of the connected dApp
-                          alt={dApp.name}
-                          width={48}
-                          height={48}
-                          className='mb-4'
-                        />
-                        <div className='flex items-center gap-1 font-medium text-lg mb-2'>
-                          <Lock03 width={20} height={20} />
-                          <Link
-                            href={dApp.url}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                          >
-                            {dApp.url}
-                          </Link>
-                        </div>
-                        <div className='flex items-center gap-3 font-normal mb-4'>
-                          <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
-                            <div className='w-1.5 h-1.5 bg-emerald-500 rounded-full'></div>
-                            Ethereum
-                          </div>
-                          <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
-                            <Image
-                              src='/icons/networks/ETH.svg'
-                              alt='ETH'
-                              width={16}
-                              height={16}
-                            />
-                            ETH
-                          </div>
-                        </div>
-                        <div className='flex flex-col gap-2 w-full'>
-                          <Button
-                            size='sm'
-                            className='rounded-lg font-semibold'
-                            variant='outline'
-                            onClick={() => window.open(dApp.url, '_blank')}
-                          >
-                            Open dApp
-                            <svg
-                              width='16'
-                              height='16'
-                              viewBox='0 0 16 16'
-                              fill='none'
+                    {connectedDApps
+                      .slice() // Create a shallow copy to avoid mutating the original array
+                      .sort((a, b) => a.name.localeCompare(b.name)) // Sort alphabetically by name
+                      .map((dApp, index) => (
+                        <div
+                          key={index}
+                          className='flex flex-col items-center bg-white border border-gray-200 px-4 py-3 rounded-2xl'
+                        >
+                          <Image
+                            src={dApp.icon} // This will show the icon of the connected dApp
+                            alt={dApp.name}
+                            width={48}
+                            height={48}
+                            className='mb-4'
+                          />
+                          <div className='flex items-center gap-1 font-medium text-lg mb-2'>
+                            <Lock03 width={20} height={20} />
+                            <Link
+                              href={dApp.url}
+                              target='_blank'
+                              rel='noopener noreferrer'
                             >
-                              <path
-                                d='M14 6L14 2M14 2H10M14 2L8.66667 7.33333M6.66667 3.33333H5.2C4.0799 3.33333 3.51984 3.33333 3.09202 3.55132C2.71569 3.74307 2.40973 4.04903 2.21799 4.42535C2 4.85318 2 5.41323 2 6.53333V10.8C2 11.9201 2 12.4802 2.21799 12.908C2.40973 13.2843 2.71569 13.5903 3.09202 13.782C3.51984 14 4.0799 14 5.2 14H9.46667C10.5868 14 11.1468 14 11.5746 13.782C11.951 13.5903 12.2569 13.2843 12.4487 12.908C12.6667 12.4802 12.6667 11.9201 12.6667 10.8V9.33333'
-                                stroke='#344054'
-                                strokeWidth='1.66667'
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
+                              {dApp.url}
+                            </Link>
+                          </div>
+                          <div className='flex items-center gap-3 font-normal mb-4'>
+                            <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
+                              <div className='w-1.5 h-1.5 bg-emerald-500 rounded-full'></div>
+                              Ethereum
+                            </div>
+                            <div className='flex items-center text-xs font-medium gap-1 bg-gray-100 border border-gray-200 rounded-[4px] px-[6px] py-[3px]'>
+                              <Image
+                                src='/icons/networks/ETH.svg'
+                                alt='ETH'
+                                width={16}
+                                height={16}
                               />
-                            </svg>
-                          </Button>
-                          <Button
-                            size='sm'
-                            variant='secondary-destructive'
-                            onClick={() => handleDAppDisconnect(dApp.name)}
-                          >
-                            Disconnect
-                          </Button>
+                              ETH
+                            </div>
+                          </div>
+                          <div className='flex flex-col gap-2 w-full'>
+                            <Button
+                              size='sm'
+                              className='rounded-lg font-semibold'
+                              variant='outline'
+                              onClick={() => window.open(dApp.url, '_blank')}
+                            >
+                              Open dApp
+                              <svg
+                                width='16'
+                                height='16'
+                                viewBox='0 0 16 16'
+                                fill='none'
+                              >
+                                <path
+                                  d='M14 6L14 2M14 2H10M14 2L8.66667 7.33333M6.66667 3.33333H5.2C4.0799 3.33333 3.51984 3.33333 3.09202 3.55132C2.71569 3.74307 2.40973 4.04903 2.21799 4.42535C2 4.85318 2 5.41323 2 6.53333V10.8C2 11.9201 2 12.4802 2.21799 12.908C2.40973 13.2843 2.71569 13.5903 3.09202 13.782C3.51984 14 4.0799 14 5.2 14H9.46667C10.5868 14 11.1468 14 11.5746 13.782C11.951 13.5903 12.2569 13.2843 12.4487 12.908C12.6667 12.4802 12.6667 11.9201 12.6667 10.8V9.33333'
+                                  stroke='#344054'
+                                  strokeWidth='1.66667'
+                                  strokeLinecap='round'
+                                  strokeLinejoin='round'
+                                />
+                              </svg>
+                            </Button>
+                            <Button
+                              size='sm'
+                              variant='secondary-destructive'
+                              onClick={() => handleDAppDisconnect(dApp.name)}
+                            >
+                              Disconnect
+                            </Button>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 ) : (
                   <div className='flex flex-col items-center justify-center rounded-lg overflow-hidden bg-gray-50 pb-12'>
