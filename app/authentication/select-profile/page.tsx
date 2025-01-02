@@ -23,7 +23,7 @@ const profileOptions: ProfileOption[] = [
     title: 'Clients',
     description: 'Individuals transacting and investing in digital assets',
     icon: '/select-profile-icon-1.svg',
-    href: '/onboarding/client',
+    href: '/onboarding/',
   },
   {
     id: 'nsp',

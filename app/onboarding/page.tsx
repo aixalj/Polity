@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import PolityLogo from '@/public/polity.svg';
 import Avatar from '@/public/Avatar.png';
@@ -10,6 +9,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import Link from 'next/link';
 
 const SHOW_PENDING = false; // Toggle this to control visibility
 
@@ -27,6 +27,7 @@ export default function InvestorPortal() {
 
         <div className='flex items-center gap-6'>
           {/* Connected Avatar */}
+          <Link href='/'>
           <div className='border border-gray-300 hover:border-gray-300 hover:shadow-sm transition-all duration-200 rounded-2xl py-10 px-14 flex flex-col items-center gap-2 cursor-pointer group relative'>
             <div className='w-16 h-16 rounded-[10px] border border-gray-200 overflow-hidden'>
               <Image src={Avatar} alt='Avatar' width={64} height={64} />
@@ -38,6 +39,7 @@ export default function InvestorPortal() {
             </div>
             <div className='absolute bottom-0 left-1/2 w-3/4 h-[4px] bg-primary-400 rounded-[4px] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 -translate-x-1/2' />
           </div>
+          </Link>
 
           <div className='border border-gray-300 hover:border-gray-300 hover:shadow-sm transition-all duration-200 rounded-2xl py-10 px-14 flex flex-col items-center gap-2 cursor-pointer group relative'>
             <div className='w-16 h-16 rounded-[10px] border border-gray-200 overflow-hidden'>
