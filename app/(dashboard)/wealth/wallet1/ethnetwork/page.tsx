@@ -215,12 +215,6 @@ function BitcoinOne() {
       });
     }
   
-    addNotification(
-      'DApp Connected',
-      'Connection successful',
-      'success'
-    );
-  
     handleCloseConnectTodApp();
     setIsWalletConnectOpen(false);
   };
