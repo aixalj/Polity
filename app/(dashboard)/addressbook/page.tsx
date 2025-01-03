@@ -247,7 +247,7 @@ export default function AddressBook() {
               </nav>
               <div className='w-full mt-4 flex items-center justify-between'>
                 <div>
-                  <h1 className='text-3xl font-medium leading-tight'>
+                  <h1 className='text-4xl !line-height-[44px] font-medium'>
                     Address Book
                   </h1>
                 </div>
