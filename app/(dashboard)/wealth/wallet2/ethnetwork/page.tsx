@@ -7341,7 +7341,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/Aave.svg'
+                              src='/icons/dApps/Aave.svg'
                               alt='Aave'
                               width={40}
                               height={40}
@@ -7414,7 +7414,7 @@ function BitcoinOne() {
                                 setIsLoading(true); // Set loading state to true for connect
                                 handleDAppConnect(
                                   'Aave',
-                                  '/icons/DApps/Aave.svg',
+                                  '/icons/dApps/Aave.svg',
                                   'https://aave.com'
                                 ).then(() => {
                                   setIsLoading(false); // Reset loading state after connect
@@ -7467,7 +7467,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/Clearpool.svg'
+                              src='/icons/dApps/Clearpool.svg'
                               alt='Clearpool'
                               width={40}
                               height={40}
@@ -7538,7 +7538,7 @@ function BitcoinOne() {
                               } else {
                                 handleDAppConnect(
                                   'Clearpool',
-                                  '/icons/DApps/Clearpool.svg',
+                                  '/icons/dApps/Clearpool.svg',
                                   'https://clearpool.finance'
                                 );
                               }
@@ -7582,7 +7582,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/Compound.svg'
+                              src='/icons/dApps/Compound.svg'
                               alt='Compound'
                               width={40}
                               height={40}
@@ -7654,7 +7654,7 @@ function BitcoinOne() {
                               } else {
                                 handleDAppConnect(
                                   'Compound',
-                                  '/icons/DApps/Compound.svg',
+                                  '/icons/dApps/Compound.svg',
                                   'https://compound.finance'
                                 );
                               }
@@ -7698,7 +7698,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/dHedge.svg'
+                              src='/icons/dApps/dHedge.svg'
                               alt='dHedge'
                               width={40}
                               height={40}
@@ -7768,7 +7768,7 @@ function BitcoinOne() {
                               } else {
                                 handleDAppConnect(
                                   'dHedge',
-                                  '/icons/DApps/dHedge.svg',
+                                  '/icons/dApps/dHedge.svg',
                                   'https://dhedge.org'
                                 );
                               }
@@ -7812,7 +7812,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/Enzyme.svg'
+                              src='/icons/dApps/Enzyme.svg'
                               alt='Enzyme'
                               width={40}
                               height={40}
@@ -7883,7 +7883,7 @@ function BitcoinOne() {
                               } else {
                                 handleDAppConnect(
                                   'Enzyme',
-                                  '/icons/DApps/Enzyme.svg',
+                                  '/icons/dApps/Enzyme.svg',
                                   'https://enzyme.finance'
                                 );
                               }
@@ -7927,7 +7927,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/Fjord.svg'
+                              src='/icons/dApps/Fjord.svg'
                               alt='Fjord'
                               width={40}
                               height={40}
@@ -7999,7 +7999,7 @@ function BitcoinOne() {
                               } else {
                                 handleDAppConnect(
                                   'Fjord',
-                                  '/icons/DApps/Fjord.svg',
+                                  '/icons/dApps/Fjord.svg',
                                   'https://fjord.finance'
                                 );
                               }
@@ -8043,7 +8043,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/Instadapp.svg'
+                              src='/icons/dApps/Instadapp.svg'
                               alt='Instadapp'
                               width={40}
                               height={40}
@@ -8113,7 +8113,7 @@ function BitcoinOne() {
                               } else {
                                 handleDAppConnect(
                                   'Instadapp',
-                                  '/icons/DApps/Instadapp.svg',
+                                  '/icons/dApps/Instadapp.svg',
                                   'https://instadapp.io'
                                 );
                               }
@@ -8157,7 +8157,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/Pancake.svg'
+                              src='/icons/dApps/Pancake.svg'
                               alt='Pancake'
                               width={40}
                               height={40}
@@ -8227,7 +8227,7 @@ function BitcoinOne() {
                               } else {
                                 handleDAppConnect(
                                   'Pancake',
-                                  '/icons/DApps/Pancake.svg',
+                                  '/icons/dApps/Pancake.svg',
                                   'https://pancakeswap.finance'
                                 );
                               }
@@ -8274,7 +8274,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/Paraswap.svg'
+                              src='/icons/dApps/Paraswap.svg'
                               alt='Paraswap'
                               width={40}
                               height={40}
@@ -8345,7 +8345,7 @@ function BitcoinOne() {
                               } else {
                                 handleDAppConnect(
                                   'Paraswap',
-                                  '/icons/DApps/Paraswap.svg',
+                                  '/icons/dApps/Paraswap.svg',
                                   'https://paraswap.io'
                                 );
                               }
@@ -8389,7 +8389,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/Swap.svg'
+                              src='/icons/dApps/Swap.svg'
                               alt='Swapzone'
                               width={40}
                               height={40}
@@ -8460,7 +8460,7 @@ function BitcoinOne() {
                               } else {
                                 handleDAppConnect(
                                   'Swapzone',
-                                  '/icons/DApps/Swapzone.svg',
+                                  '/icons/dApps/Swapzone.svg',
                                   'https://swapzone.io'
                                 );
                               }
@@ -8504,7 +8504,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/tokenset.svg'
+                              src='/icons/dApps/tokenset.svg'
                               alt='Tokenset'
                               width={40}
                               height={40}
@@ -8575,7 +8575,7 @@ function BitcoinOne() {
                               } else {
                                 handleDAppConnect(
                                   'Tokenset',
-                                  '/icons/DApps/Tokenset.svg',
+                                  '/icons/dApps/Tokenset.svg',
                                   'https://tokenset.com'
                                 );
                               }
@@ -8619,7 +8619,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/Uniswap.svg'
+                              src='/icons/dApps/Uniswap.svg'
                               alt='Uniswap'
                               width={40}
                               height={40}
@@ -8690,7 +8690,7 @@ function BitcoinOne() {
                               } else {
                                 handleDAppConnect(
                                   'Uniswap',
-                                  '/icons/DApps/Uniswap.svg',
+                                  '/icons/dApps/Uniswap.svg',
                                   'https://uniswap.org'
                                 );
                               }
