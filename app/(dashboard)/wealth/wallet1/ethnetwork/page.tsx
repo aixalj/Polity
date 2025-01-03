@@ -83,7 +83,7 @@ function BitcoinOne() {
     // Set the dHedge details explicitly
     setSelectedDApp({
       name: 'dHedge',
-      icon: '/icons/dApps/dHedge.png', // Replace with the actual path to the dHedge icon
+      icon: '/icons/dApps/dHedge.svg', // Replace with the actual path to the dHedge icon
       url: 'https://dhedge.org', // dHedge URL
     });
     setIsWalletConnectOpen(true); // Open the wallet connect modal
@@ -7341,7 +7341,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/Aave.png'
+                              src='/icons/DApps/Aave.svg'
                               alt='Aave'
                               width={40}
                               height={40}
@@ -7414,7 +7414,7 @@ function BitcoinOne() {
                                 setIsLoading(true); // Set loading state to true for connect
                                 handleDAppConnect(
                                   'Aave',
-                                  '/icons/DApps/Aave.png',
+                                  '/icons/DApps/Aave.svg',
                                   'https://aave.com'
                                 ).then(() => {
                                   setIsLoading(false); // Reset loading state after connect
