@@ -68,7 +68,7 @@ const Allocation: React.FC<{
       <div className='relative w-full  bg-white border rounded-2xl border-gray-300 px-5 pt-5 pb-4 flex flex-col gap-6'>
         <div className='relative flex justify-between w-full justify-items-stretch flex-row place-content-between	'>
           <div className='flex flex-col max-w-[30rem]'>
-            <h2 className='text-lg font-medium'>Allocation</h2>
+            <h2 className='text-lg leading-6 font-medium'>Allocation</h2>
           </div>
         </div>
         <Tabs defaultValue='assets'>
