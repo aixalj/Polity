@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { Button } from "@/components/ui/button";
-import { Edit2, Plus, Eye, PlusSquare } from "lucide-react";
-import { ContactWithFormattedCount } from "@/components/ui/addressbookData";
-import { Pagination } from "@/components/ui/pagination";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import EditContactNameModal from "@/components/ui/modals/editContactName"; // Import the modal
+import * as React from 'react';
+import { Button } from '@/components/ui/button';
+import { Edit2, Plus, Eye, PlusSquare } from 'lucide-react';
+import { ContactWithFormattedCount } from '@/components/ui/addressbookData';
+import { Pagination } from '@/components/ui/pagination';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import EditContactNameModal from '@/components/ui/modals/editContactName'; // Import the modal
 
 interface AllContactsTableProps {
   contacts: ContactWithFormattedCount[];
@@ -73,61 +73,60 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs">
-        <div className="w-full px-6 py-3">Contact</div>
+    <div className='flex flex-col h-full'>
+      <div className='w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs'>
+        <div className='w-full px-6 py-3'>Contact</div>
       </div>
-      <div className="flex-grow overflow-y-auto">
-        <div className="w-full flex flex-col gap-1">
+      <div className='flex-grow overflow-y-auto'>
+        <div className='w-full flex flex-col gap-1'>
           {paginatedContacts.length === 0 ? (
-            <p className="text-center text-gray-500">No contacts found.</p>
+            <p className='text-center text-gray-500'>No contacts found.</p>
           ) : (
             paginatedContacts.map((contact) => (
               <div
                 key={contact.id}
-                className="w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm"
+                onClick={() => router.push(`/addressbook/${contact.id}`)}
+                className='w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm cursor-pointer'
               >
-                <div className="w-full flex text-left text-gray-700">
-                  <div className="flex-grow px-6 py-3 flex items-center gap-3 h-16">
-                    {/* <div className='size-11 rounded-xl border-gray-300 border overflow-hidden'>
-                      {/* <Image
-                        src={contact.avatar}
-                        alt={`${contact.name}'s avatar`}
-                        className='w-full h-full object-cover'
-                        width={40}
-                        height={40} 
-                      /> 
-                    </div> */}
+                <div className='w-full flex text-left text-gray-700'>
+                  <div className='flex-grow px-6 py-3 flex items-center gap-3 h-16'>
                     <div>
-                      <p className="font-medium">{contact.name}</p>
-                      <p className="text-sm text-gray-500">
+                      <p className='font-medium'>{contact.name}</p>
+                      <p className='text-sm text-gray-500'>
                         {contact.formattedAddressCount} addresses
                       </p>
                     </div>
                   </div>
-                  <div className="flex-shrink-0 px-6 py-3 flex items-center justify-end space-x-4">
+                  <div className='flex-shrink-0 px-6 py-3 flex items-center justify-end space-x-4'>
                     <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-8"
-                      onClick={() =>
-                        onAddAddressButton(contact.id, contact.name)
-                      }
+                      variant='outline'
+                      size='sm'
+                      className='h-8'
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onAddAddressButton(contact.id, contact.name);
+                      }}
                     >
-                      <PlusSquare className="h-4 w-4" />
+                      <PlusSquare className='h-4 w-4' />
                       Add Address
                     </Button>
                     <button
-                      className="text-gray-700 hover:text-gray-700 transition-colors"
-                      onClick={() => openModal(contact.id)}
+                      className='text-gray-700 hover:text-gray-700 transition-colors'
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openModal(contact.id);
+                      }}
                     >
-                      <Edit2 className="h-5 w-5" />
+                      <Edit2 className='h-5 w-5' />
                     </button>
                     <button
-                      className="text-gray-700 hover:text-gray-700 transition-colors"
-                      onClick={() => router.push(`/addressbook/${contact.id}`)}
+                      className='text-gray-700 hover:text-gray-700 transition-colors'
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push(`/addressbook/${contact.id}`);
+                      }}
                     >
-                      <Eye className="h-5 w-5" />
+                      <Eye className='h-5 w-5' />
                     </button>
                   </div>
                 </div>
@@ -136,7 +135,7 @@ const AllContactsTable: React.FC<AllContactsTableProps> = ({
           )}
         </div>
       </div>
-      <div className="mt-auto pt-4 pb-4 bg-white border-gray-200">
+      <div className='mt-auto pt-4 pb-4 bg-white border-gray-200'>
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
