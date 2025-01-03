@@ -1959,7 +1959,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/Aave.svg'
+                            src='/icons/dApps/Aave.png'
                             alt='Aave'
                             width={40}
                             height={40}
