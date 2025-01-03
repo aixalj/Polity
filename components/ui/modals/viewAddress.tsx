@@ -145,28 +145,28 @@ const ViewAddress: React.FC<ViewAddressProps> = ({
             </p>
           </div>
           <p className='text-sm mb-2 w-full flex justify-between'>
-            <strong className='font-normal'>Contact Name:</strong>{' '}
-            <strong className='font-medium ml-auto'>
+            <strong className='font-medium text-[#344054]'>Contact Name:</strong>{' '}
+            <strong className='font-semibold ml-auto text-[#344054]'>
               {addressData.contactName}
             </strong>
           </p>
           <p className='text-sm mb-2 flex justify-between'>
-            <strong className='font-normal'>Address Name:</strong>{' '}
-            <strong className='font-medium ml-auto'>
+            <strong className='font-medium text-[#344054]'>Address Name:</strong>{' '}
+            <strong className='font-semibold ml-auto text-[#344054]'>
               {addressData.addressname}
             </strong>
           </p>
           <p className='text-sm mb-2 flex justify-between items-center'>
-            <strong className='font-normal'>Network:</strong>{' '}
-            <strong className='font-medium ml-auto flex items-center'>
+            <strong className='font-medium text-[#344054]'>Network:</strong>{' '}
+            <strong className='font-semibold ml-auto flex items-center text-[#344054]'>
               {getNetworkIcon()}
               {addressData.network}
             </strong>
           </p>
           {assetDetails && (
             <p className='text-sm mb-2 flex justify-between items-center'>
-              <strong className='font-normal'>Asset:</strong>{' '}
-              <strong className='font-medium ml-auto flex items-center'>
+              <strong className='font-medium text-[#344054]'>Asset:</strong>{' '}
+              <strong className='font-semibold ml-auto flex items-center text-[#344054]'>
                 <Image
                   src={assetDetails.icon}
                   alt={assetDetails.name}
@@ -177,9 +177,9 @@ const ViewAddress: React.FC<ViewAddressProps> = ({
             </p>
           )}
           <p className='text-sm flex justify-between'>
-            <strong className='font-normal'>Network Address:</strong>
+            <strong className='font-medium text-[#344054]'>Network Address:</strong>
             <span className='flex items-center'>
-              <strong className='font-medium ml-auto'>
+              <strong className='font-semibold ml-auto text-[#344054]'>
                 {truncateAddress(addressData.address, 20)}
               </strong>
               <TooltipProvider>
