@@ -7341,7 +7341,7 @@ function BitcoinOne() {
                         <div className='flex flex-row gap-2.5 items-center'>
                           <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                             <Image
-                              src='/icons/DApps/Aave.svg'
+                              src='/icons/DApps/Aave.png'
                               alt='Aave'
                               width={40}
                               height={40}
@@ -7414,7 +7414,7 @@ function BitcoinOne() {
                                 setIsLoading(true); // Set loading state to true for connect
                                 handleDAppConnect(
                                   'Aave',
-                                  '/icons/DApps/Aave.svg',
+                                  '/icons/DApps/Aave.png',
                                   'https://aave.com'
                                 ).then(() => {
                                   setIsLoading(false); // Reset loading state after connect
