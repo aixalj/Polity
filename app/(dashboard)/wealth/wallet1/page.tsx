@@ -1,54 +1,54 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import type { Config } from "tailwindcss";
+import Image from 'next/image';
+import type { Config } from 'tailwindcss';
 
-import { WalletTable } from "@/components/wallettable";
+import { WalletTable } from '@/components/wallettable';
 
-import { NetworkTable } from "@/components/networktable";
+import { NetworkTable } from '@/components/networktable';
 
-import { AssetTable } from "@/components/assettable";
+import { AssetTable } from '@/components/assettable';
 
-import { PageHeader } from "@/components/pageheader";
+import { PageHeader } from '@/components/pageheader';
 
-import Stats from "@/components/stats";
+import Stats from '@/components/stats';
 
-import Allocation from "@/components/allocation";
+import Allocation from '@/components/allocation';
 
-import { TimeProvider } from "@/components/ui/timecontext";
+import { TimeProvider } from '@/components/ui/timecontext';
 
 import {
   networkAccounts,
   wallets,
   wealth,
   getAllAssets,
-} from "@/components/data";
+} from '@/components/data';
 
 function Wallet2() {
   return (
-    <main className="w-full h-full">
+    <main className='w-full h-full'>
       <TimeProvider>
-        <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll pb-12">
-          <PageHeader variant="mainwallet" />
+        <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll pb-12'>
+          <PageHeader variant='mainwallet' />
 
-          <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 pb-40">
-            <Stats variant="wallet" />
+          <div className='max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 pb-40'>
+            <Stats variant='wallet' />
 
             <Allocation
               getAllAssets={getAllAssets().filter(
-                (asset) => asset.walletName === "Main Wallet"
+                (asset) => asset.walletName === 'Main Wallet'
               )}
             />
 
             <NetworkTable
               networkAccounts={networkAccounts.filter(
-                (account) => account.walletName === "Main Wallet"
+                (account) => account.walletName === 'Main Wallet'
               )}
             />
 
             <AssetTable
               getAllAssets={getAllAssets().filter(
-                (asset) => asset.walletName === "Main Wallet"
+                (asset) => asset.walletName === 'Main Wallet'
               )}
             />
           </div>

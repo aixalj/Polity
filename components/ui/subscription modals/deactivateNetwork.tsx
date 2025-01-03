@@ -105,7 +105,7 @@ const DeactivateNetwork: React.FC<DeactivateNetworkProps> = ({
         <DialogContent
           onInteractOutside={handleOutsideClick}
           lightCloseIcon
-          className='bg-rose-600 p-1 rounded-2xl shadow-xl max-w-[90%] w-[410px] h-auto flex flex-col'
+          className='bg-rose-600 p-1 rounded-2xl shadow-xl max-w-[90%] w-[512px] h-auto flex flex-col'
         >
           <div className='px-8 pt-5 flex-shrink-0'>
             <div className='flex justify-start mb-2'>

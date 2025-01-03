@@ -1959,7 +1959,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/Aave.svg'
+                            src='/icons/dApps/Aave.png'
                             alt='Aave'
                             width={40}
                             height={40}
@@ -1999,7 +1999,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/Clearpool.svg'
+                            src='/icons/dApps/Clearpool.png'
                             alt='Clearpool'
                             width={40}
                             height={40}
@@ -2039,7 +2039,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/Compound.svg'
+                            src='/icons/dApps/Compound.png'
                             alt='Compound'
                             width={40}
                             height={40}
@@ -2119,7 +2119,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/Enzyme.svg'
+                            src='/icons/dApps/Enzyme.png'
                             alt='Enzyme'
                             width={40}
                             height={40}
@@ -2159,7 +2159,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/Fjord.svg'
+                            src='/icons/dApps/Fjord.png'
                             alt='Fjord'
                             width={40}
                             height={40}
@@ -2200,7 +2200,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/instadapp.svg'
+                            src='/icons/dApps/instadapp.png'
                             alt='Instadapp'
                             width={40}
                             height={40}
@@ -2239,7 +2239,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/pancake.svg'
+                            src='/icons/dApps/pancake.png'
                             alt='Pancake'
                             width={40}
                             height={40}
@@ -2278,7 +2278,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/paraswap.svg'
+                            src='/icons/dApps/paraswap.png'
                             alt='Paraswap'
                             width={40}
                             height={40}
@@ -2318,7 +2318,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/swap.svg'
+                            src='/icons/dApps/swap.png'
                             alt='Swapzone'
                             width={40}
                             height={40}
@@ -2358,7 +2358,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/tokenset.svg'
+                            src='/icons/dApps/tokenset.png'
                             alt='Tokenset'
                             width={40}
                             height={40}
@@ -2398,7 +2398,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/uniswap.svg'
+                            src='/icons/dApps/uniswap.png'
                             alt='Uniswap'
                             width={40}
                             height={40}

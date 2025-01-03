@@ -166,7 +166,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
       >
         <DialogContent
           lightCloseIcon={false}
-          className='bg-white border border-gray-300 p-0 rounded-[24px] shadow-xl w-[448px] h-auto flex flex-col'
+          className='bg-white border border-gray-300 p-0 rounded-[24px] shadow-xl w-[512px] h-auto flex flex-col'
         >
           {isFireblocksInactive ? (
             <>
@@ -424,7 +424,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                         </div>
                         <span className='text-xs text-gray-500'>per month</span>
                       </div>
-                      <div className='w-[3%]'></div>
+                      <div></div>
                     </div>
 
                     {/* Filter networks based on active status */}
@@ -451,7 +451,11 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                             </p>
                           </div>
                         </div>
-                        <div className='flex flex-col items-end'>
+                        <div
+                          className={`flex flex-col items-end ml-1 ${
+                            network === 'Bitcoin' ? 'ml-4' : ''
+                          }`}
+                        >
                           <div className='flex items-center'>
                             <Image
                               src='/icons/tokens/USDT.svg'
@@ -535,7 +539,6 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                           per month
                         </span>
                       </div>
-                      <div className='w-[23%]'></div>
                     </div>
 
                     {/* Polygon Network Account row */}
@@ -711,8 +714,9 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                           per month
                         </span>
                       </div>
-                      <div className='w-[18%]'></div>
+                      <div className='w-[22%]'></div>
                     </div>
+                    
 
                     {/* Additional network rows */}
                     {['Bitcoin', 'Ethereum', 'Polygon'].map((network) => (
@@ -743,7 +747,7 @@ const NetworkAccountModal: React.FC<NetworkAccountModalProps> = ({
                           </div>
                         </div>
                         <div className='flex items-center gap-4'>
-                          <div className='flex flex-col items-end'>
+                          <div className='flex flex-col items-end mr-7'>
                             <div className='flex items-center'>
                               <Image
                                 src='/icons/tokens/USDT.svg'
