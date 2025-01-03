@@ -65,10 +65,10 @@ const Allocation: React.FC<{
 }> = ({ getAllAssets }) => {
   return (
     <main className='w-full h-full flex flex-col gap-3'>
-      <div className='relative w-full  bg-white border rounded-2xl border-gray-300 p-5 flex flex-col gap-6'>
+      <div className='relative w-full  bg-white border rounded-2xl border-gray-300 px-5 pt-5 pb-4 flex flex-col gap-6'>
         <div className='relative flex justify-between w-full justify-items-stretch flex-row place-content-between	'>
           <div className='flex flex-col max-w-[30rem]'>
-            <h2 className='text-xl font-medium'>Allocation</h2>
+            <h2 className='text-lg leading-6 font-medium'>Allocation</h2>
           </div>
         </div>
         <Tabs defaultValue='assets'>
@@ -107,7 +107,7 @@ const Allocation: React.FC<{
               )}
             </div>
 
-            <div className='text-sm text-gray-700 font-medium flex items-center gap-3 mt-4'>
+            <div className='text-sm text-gray-700 font-medium flex items-center gap-3 mt-2'>
               {Array.isArray(getAllAssets) && getAllAssets.length > 0 ? (
                 <div className='text-sm text-gray-700 font-medium flex items-center gap-3 mt-4'>
                   {getAllAssets
@@ -180,7 +180,7 @@ const Allocation: React.FC<{
               </div>
 
               {/* Protocol Data */}
-              <div className='text-sm text-gray-700 font-medium flex items-center gap-3 mt-4'>
+              <div className='text-sm text-gray-700 font-medium flex items-center gap-3 mt-2'>
                 {Array.isArray(protocols) && protocols.length > 0 ? (
                   <div className='text-sm text-gray-700 font-medium flex items-center gap-3 mt-4'>
                     {protocols
@@ -257,7 +257,7 @@ const Allocation: React.FC<{
               </div>
 
               {/* Network Data */}
-              <div className='text-sm text-gray-700 font-medium flex items-center gap-3 mt-4'>
+              <div className='text-sm text-gray-700 font-medium flex items-center gap-3 mt-2'>
                 {Array.isArray(networks) && networks.length > 0 ? (
                   <div className='text-sm text-gray-700 font-medium flex items-center gap-3 mt-4'>
                     {networks
