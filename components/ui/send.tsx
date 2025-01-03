@@ -2365,7 +2365,7 @@ const SendModal = () => {
             </svg>
           </div>
 
-          <div className='absolute left-0 top-0  bg-gray-50/50 backdrop-blur-lg h-full flex z-40 flex-col px-6 py-12 w-80 gap'>
+          <div className='absolute left-0 top-0  bg-gray-50/50 backdrop-blur-lg h-full flex z-40 flex-col px-6 py-12 w-80 gap-2'>
             <div className='mb-2'>
               <svg
                 width='32'
@@ -2388,14 +2388,14 @@ const SendModal = () => {
               Follow the steps to transfer funds from your Wallet and Network
               Account to a designated recipient.
             </p>
-            <TabsList className='flex relative bg-gray-50/0 flex-col gap-1 py-6 w-full items-start z-50'>
+            <TabsList className='flex relative bg-gray-50/0 flex-col gap-1 !px-0 py-6 w-full items-start z-50'>
               <TabsTrigger
                 value='payment'
                 style={{ pointerEvents: 'none' }}
                 className={`w-full items-center justify-start group focus:ring-0 outline-none focus:tap-highlight-transparent focus:outline-none relative flex gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out ${
                   tabValues.indexOf('payment') > tabValues.indexOf(activeTab)
-                    ? 'text-gray-400'
-                    : 'text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border'
+                    ? 'text-gray-600'
+                    : 'text-gray-800 hover:text-gray-800 hover:bg-white hover:shadow-sm target:bg-white target:text-gray-800 focus:text-gray-800 data-[state=active]:border-gray-300 data-[state=active]:border'
                 }`}
               >
                 <svg
@@ -2440,8 +2440,8 @@ const SendModal = () => {
                 value='recipient'
                 className={`w-full items-center justify-start group focus:ring-0 outline-none focus:tap-highlight-transparent focus:outline-none relative flex gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out ${
                   tabValues.indexOf('recipient') > tabValues.indexOf(activeTab)
-                    ? 'text-gray-400'
-                    : 'text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border'
+                    ? 'text-gray-600'
+                    : 'text-gray-800 hover:text-gray-800 hover:bg-white hover:shadow-sm target:bg-white target:text-gray-800  focus:text-gray-800 border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border'
                 }`}
               >
                 <svg
@@ -2487,8 +2487,8 @@ const SendModal = () => {
                 //   className=" w-full items-center justify-start group focus:ring-0 outline-none  focus:tap-highlight-transparent focus:outline-none relative flex  gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border"
                 className={`w-full items-center justify-start group focus:ring-0 outline-none focus:tap-highlight-transparent focus:outline-none relative flex gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out ${
                   tabValues.indexOf('amount') > tabValues.indexOf(activeTab)
-                    ? 'text-gray-400'
-                    : 'text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border'
+                    ? 'text-gray-600'
+                    : 'text-gray-800 hover:text-gray-800 hover:bg-white hover:shadow-sm target:bg-white target:text-gray-800 focus:text-gray-800 border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border'
                 }`}
               >
                 <svg
@@ -2539,8 +2539,8 @@ const SendModal = () => {
                 style={{ pointerEvents: 'none' }}
                 className={`w-full items-center justify-start group focus:ring-0 outline-none focus:tap-highlight-transparent focus:outline-none relative flex gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out ${
                   tabValues.indexOf('confirm') > tabValues.indexOf(activeTab)
-                    ? 'text-gray-400'
-                    : 'text-gray-900 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border'
+                    ? 'text-gray-600'
+                    : 'text-gray-800 hover:text-gray-800 hover:bg-white hover:shadow-sm target:bg-white target:text-gray-800 focus:text-gray-800 border border-transparent target:border-gray-300 data-[state=active]:border-gray-300 data-[state=active]:border'
                 }`}
               >
                 <svg
