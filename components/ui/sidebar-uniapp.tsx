@@ -258,8 +258,8 @@ const SideBarUniapp = () => {
                           <a
                             className={`group focus:ring-0 ${
                               pathname === "/uniapp/wealth/wallet1/btcnetwork"
-                                ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-900 shadow-sm"
+                                : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-gray-900 hover:bg-white hover:shadow-sm target:bg-white target:text-gray-900 border border-transparent target:border-gray-200"
                             }`}
                             href="/uniapp/wealth/wallet1/btcnetwork"
                             id="overview"
@@ -342,8 +342,8 @@ const SideBarUniapp = () => {
                           <a
                             className={`group focus:ring-0 ${
                               pathname === "/uniapp/wealth/wallet1/ethnetwork"
-                                ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-900 shadow-sm"
+                                : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-gray-900 hover:bg-white hover:shadow-sm target:bg-white target:text-gray-900 border border-transparent target:border-gray-200"
                             }`}
                             href="/uniapp/wealth/wallet1/ethnetwork"
                             id="overview"
@@ -452,8 +452,8 @@ const SideBarUniapp = () => {
                         <a
                             className={`group focus:ring-0 ${
                               pathname === "/uniapp/wealth/wallet1/polynetwork"
-                                ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                                : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-black hover:bg-white hover:shadow-sm target:bg-white target:text-black border border-transparent target:border-gray-200"
+                                ? "justify-between outline-none focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-900 shadow-sm"
+                                : "outline-none justify-between focus:outline-none focus:tap-highlight-transparent  relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 hover:text-gray-900 hover:bg-white hover:shadow-sm target:bg-white target:text-gray-900 border border-transparent target:border-gray-200"
                             }`}
                             href="/uniapp/wealth/wallet1/polynetwork"
                             id="overview"
