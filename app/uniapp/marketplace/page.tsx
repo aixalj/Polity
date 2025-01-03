@@ -474,7 +474,7 @@ export default function Marketplace() {
                         Active wallet
                       </div>
                     </div>
-                    <p className='text-sm text-gray-600 mt-2'>
+                    <p className='text-[0.88vw] text-gray-600 mt-2 line-clamp-2'>
                       Network institutional-grade multi-party computation (MPC)
                       wallet. Built on DFNS user infrastructure.
                     </p>
@@ -643,12 +643,11 @@ export default function Marketplace() {
                         Active wallet
                       </div> */}
                     </div>
-                    <p className='text-sm text-gray-600 mt-2'>
+                    <p className='text-[0.88vw] text-gray-600 mt-2'>
                       An institutional-grade MPC self-custody platform for
                       digital assets.
 
                     </p>
-                    <br />
                     <a
                       href='https://safeheron.com'
                       target='_blank'
@@ -799,11 +798,10 @@ export default function Marketplace() {
                         Coming soon!
                       </div> */}
                     </div>
-                    <p className='text-sm text-gray-600 mt-2'>
+                    <p className='text-[0.88vw] text-gray-600 mt-2'>
                       Battle-tested and flexible wallet infrastructure with
                       multi-layer security.
                     </p>
-                    <br />
                     <a
                       href='https://www.fireblocks.com/'
                       target='_blank'
@@ -1205,7 +1203,7 @@ export default function Marketplace() {
                         Active wallet
                       </div>
                     </div>
-                    <p className='text-sm text-gray-600 mt-2'>
+                    <p className='text-[0.88vw] text-gray-600 mt-2 line-clamp-2'>
                       Network institutional-grade multi-party computation (MPC)
                       wallet. Built on DFNS user infrastructure.
                     </p>

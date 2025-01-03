@@ -7,7 +7,7 @@ import PolityLogo from '@/public/polity.svg';
 import { Wallet02 } from '@untitled-ui/icons-react';
 import { Notification } from '@/components/ui/notification';
 import { LinkExpired } from '@/components/authentication/modals/linkExpired';
-
+import Link from 'next/link';
 interface NotificationType {
   title: string;
   description: string;
@@ -72,6 +72,7 @@ export default function RegistrationPage() {
         </div>
 
         {/* Continue Button */}
+        <Link href='/onboarding' className='w-full flex items-center justify-center'>
         <Button 
           variant='default' 
           className='w-full max-w-md text-white mb-4'
@@ -79,6 +80,7 @@ export default function RegistrationPage() {
         >
           Continue
         </Button>
+        </Link>
 
         {/* OR Divider */}
         <div className='w-full max-w-md flex items-center justify-center mb-4'>
