@@ -192,8 +192,8 @@ const SideBarUniapp = () => {
                         <Image
                           src={`/wallets/wallet1.svg`}
                           alt={"Main Wallet"}
-                          width={24}
-                          height={24}
+                          width={20}
+                          height={20}
                         />
                         My Wallet
                       </div>
