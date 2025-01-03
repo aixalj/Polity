@@ -47,11 +47,11 @@ const PageHeader: React.FC<PageHeaderProps> = ({ variant = 'default' }) => {
 
   return (
     <div
-      className='w-full sticky top-0 backdrop-blur-md z-10 border-b border-gray-100 bg-white/60'
+      className='w-full backdrop-blur-md z-50 bg-white/60'
       style={{
         backdropFilter: 'blur(10px)',
         WebkitBackdropFilter: 'blur(10px)',
-        backgroundColor: 'rgba(255, 255, 255, 0.6)',
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
       }}
     >
       <div className='max-w-screen-xl mx-auto p-6'>
@@ -202,12 +202,12 @@ const PageHeader: React.FC<PageHeaderProps> = ({ variant = 'default' }) => {
           ) : (
             <div className='flex gap-3 items-center'>
               {variant === 'mainwallet' ? ( // SVG for Main Wallet
-                 <Image
-                 src={`/wallets/wallet1.svg`}
-                 alt={'Main Wallet'}
-                 width={48}
-                 height={48}
-               />
+                <Image
+                  src={`/wallets/wallet1.svg`}
+                  alt={'Main Wallet'}
+                  width={48}
+                  height={48}
+                />
               ) : variant === 'secondwallet' ? (
                 <Image
                   src={`/wallets/wallet2.svg`}
@@ -234,16 +234,16 @@ const PageHeader: React.FC<PageHeaderProps> = ({ variant = 'default' }) => {
                 ) : variant === 'mywallet' ? ( // New variant for My Wallet
                   <>
                     <div className='flex items-start gap-3'>
-                   <Image
-                                  src={`/wallets/wallet1.svg`}
-                                  alt={'Main Wallet'}
-                                  width={48}
-                                  height={48}
-                                />
-                    <h1 className='text-2xl font-medium leading-tight'>
-                      My Wallet
-                    </h1>
-                    {/* <p className='text-sm text-gray-700'>Your Wallet Description</p> */}
+                      <Image
+                        src={`/wallets/wallet1.svg`}
+                        alt={'Main Wallet'}
+                        width={48}
+                        height={48}
+                      />
+                      <h1 className='text-2xl font-medium leading-tight'>
+                        My Wallet
+                      </h1>
+                      {/* <p className='text-sm text-gray-700'>Your Wallet Description</p> */}
                     </div>
                   </>
                 ) : null}
