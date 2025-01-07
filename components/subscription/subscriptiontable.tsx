@@ -148,9 +148,9 @@ const SubscriptionTable: React.FC<{
           </TabsTrigger>
         </TabsList>
 
-        <div className='w-full flex flex-col gap-1 overflow-y-scroll'>
-          <div className='w-full min-w-fit flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs'>
-            <div className='w-[320px] flex-none px-6 py-3'>Product</div>
+        <div className='w-full flex flex-col gap-1 '>
+          <div className='w-full  flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs'>
+            <div className='w-[290px] flex-none px-6 py-3'>Product</div>
             <div className='min-w-36 flex-none px-6 py-3'>Cost</div>
             <div className='min-w-28 flex-auto px-6 py-3'>Value</div>
             <div className='min-w-36 flex-auto px-6 py-3'>Started</div>
@@ -168,7 +168,7 @@ const SubscriptionTable: React.FC<{
                     className='w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm '
                   >
                     <div className='w-full flex text-left text-gray-900'>
-                      <div className='w-[320px] break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-3 h-16 '>
+                      <div className='w-[290px] break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-3 h-16 '>
                         <div className='min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl'>
                           <Image
                             src={`/icons/networks/${subscription.network}.svg`}
@@ -229,7 +229,7 @@ const SubscriptionTable: React.FC<{
                           {subscription.status}
                         </Badge>
                       </div>
-                      <div className='w-full flex-auto justify-end px-6 py-3 h-16 flex items-center whitespace-nowrap gap-2'>
+                      <div className=' flex-auto px-4 py-3 h-16 flex items-center whitespace-nowrap gap-2'>
                         {subscription.status === 'Pending' ? (
                           <Button
                             variant='outline'
@@ -237,11 +237,12 @@ const SubscriptionTable: React.FC<{
                           >
                             Install
                           </Button>
-                        ) : (
-                          <div className="w-[73px]"></div>
-                        )}
+                        ) : subscription.status !== 'Inactive' ? (
+                          <div className='w-[76px]'></div>
+                        ) : null}
                         <Button
                           variant='outline'
+                          className='flex flex-end'
                           onClick={() => {
                             if (subscription.status === 'Inactive') {
                               handleOpenModal(subscription);
