@@ -474,7 +474,7 @@ export default function Marketplace() {
                         Active wallet
                       </div>
                     </div>
-                    <p className='text-[0.88vw] text-gray-600 mt-2 line-clamp-2'>
+                    <p className='text-sm text-gray-600 mt-2 line-clamp-2'>
                       Network institutional-grade multi-party computation (MPC)
                       wallet. Built on DFNS user infrastructure.
                     </p>
@@ -643,7 +643,7 @@ export default function Marketplace() {
                         Active wallet
                       </div> */}
                     </div>
-                    <p className='text-[0.88vw] text-gray-600 mt-2'>
+                    <p className='text-sm text-gray-600 mt-2'>
                       An institutional-grade MPC self-custody platform for
                       digital assets.
 
@@ -798,7 +798,7 @@ export default function Marketplace() {
                         Coming soon!
                       </div> */}
                     </div>
-                    <p className='text-[0.88vw] text-gray-600 mt-2'>
+                    <p className='text-sm text-gray-600 mt-2'>
                       Battle-tested and flexible wallet infrastructure with
                       multi-layer security.
                     </p>
@@ -921,7 +921,7 @@ export default function Marketplace() {
             <div className='max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full'>
               <div className='relative w-full flex flex-col pb-40'>
                 <div className='py-4 relative flex w-full flex-row	'>
-                  <h2 className='text-2xl font-medium'>Wallets</h2>
+                  <h2 className='text-2xl font-medium'>Network Accounts</h2>
                 </div>
                 <div className='w-full grid grid-cols-3  gap-3 justify-start '>
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -1203,7 +1203,7 @@ export default function Marketplace() {
                         Active wallet
                       </div>
                     </div>
-                    <p className='text-[0.88vw] text-gray-600 mt-2 line-clamp-2'>
+                    <p className='text-sm text-gray-600 mt-2 line-clamp-2'>
                       Network institutional-grade multi-party computation (MPC)
                       wallet. Built on DFNS user infrastructure.
                     </p>
