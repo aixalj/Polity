@@ -182,7 +182,7 @@ const AddAddress: React.FC<AddAddressProps> = ({
                 <DropdownMenu onOpenChange={setIsNetworkDropdownOpen}>
                   <DropdownMenuTrigger asChild>
                     <div
-                      className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10  ${isNetworkDropdownOpen ? "border-primary-500 ring-2 ring-primary-50" : ""}`}
+                      className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10  ${isNetworkDropdownOpen ? "ring-2 ring-opacity-50 border-[2px] border-primary-500 ring-[#d2e9e5]" : ""}`}
                     >
                       <span className="mr-2">{getNetworkIcon()}</span>
                       <span
@@ -251,7 +251,7 @@ const AddAddress: React.FC<AddAddressProps> = ({
                   <DropdownMenu onOpenChange={setIsAssetDropdownOpen}>
                     <DropdownMenuTrigger asChild>
                       <div
-                        className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3 ${isAssetDropdownOpen ? "border-primary-500 ring-2 ring-primary-50" : ""}`}
+                        className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3 ${isAssetDropdownOpen ? "ring-2 ring-opacity-50 border-[2px] border-primary-500 ring-[#d2e9e5]" : ""}`}
                       >
                         {getAssetIcon()}
                         <span
