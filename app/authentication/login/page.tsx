@@ -52,13 +52,13 @@ export default function RegistrationPage() {
         </div>
 
         {/* Title and Description */}
-        <h1 className='text-2xl font-medium text-gray-900 text-[32px] mb-2'>
+        <h1 className='text-2xl font-medium text-gray-900 text-[32px] mb-5'>
           Client Login
         </h1>
-        <p className='text-gray-900 font-normal text-[14px] text-center mb-5 max-w-md'>
+        {/* <p className='text-gray-900 font-normal text-[14px] text-center mb-5 max-w-md'>
           You can log in, add an additional authentication method, or request an
           onboarding link from Bastion Cooperative.
-        </p>
+        </p> */}
 
         {/* Email Input */}
         <div className='w-full max-w-md mb-4'>
