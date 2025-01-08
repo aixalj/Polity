@@ -16,11 +16,14 @@ import { Loading02 } from '@untitled-ui/icons-react';
 import { usePathname } from 'next/navigation';
 import { Notification } from '@/components/ui/notification';
 import { CheckVerified01 } from '@untitled-ui/icons-react';
+import OnramperSVG from './onramper-widget';
 
 interface OnramperModalProps {
   isOpen: boolean;
   onClose: () => void;
-  setNotifications: React.Dispatch<React.SetStateAction<Array<{ title: string }>>>;
+  setNotifications: React.Dispatch<
+    React.SetStateAction<Array<{ title: string }>>
+  >;
 }
 
 const OnramperModal: React.FC<OnramperModalProps> = ({
@@ -33,18 +36,16 @@ const OnramperModal: React.FC<OnramperModalProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const pathname = usePathname();
   const isUniapp = pathname?.includes('uniapp');
+  const [showWidget, setShowWidget] = useState(false);
 
   const handleContinue = () => {
     setIsLoading(true);
+    setShowWidget(true);
     onClose();
 
     setTimeout(() => {
-      setNotifications([{ title: "Purchase Successful" }]);
-    }, 200);
-
-    setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 1000);
   };
 
   return (
@@ -56,14 +57,19 @@ const OnramperModal: React.FC<OnramperModalProps> = ({
         >
           <div className='px-9 pt-5 flex-shrink-0'>
             <div className='flex justify-start mb-2'>
-              <Image src='/onramper.svg' alt='Onramper' width={128} height={32} />
+              <Image
+                src='/onramper.svg'
+                alt='Onramper'
+                width={128}
+                height={32}
+              />
             </div>
             <h2 className='text-lg font-medium mb-2 text-gray-900'>
               Buy Crypto with Cash
             </h2>
             <p className='mb-3 text-gray-700 text-sm font-regular'>
-              Select the wallet and network account you would like to purchase and
-              deposit the assets into.
+              Select the wallet and network account you would like to purchase
+              and deposit the assets into.
             </p>
           </div>
 
@@ -113,13 +119,19 @@ const OnramperModal: React.FC<OnramperModalProps> = ({
                   <SelectContent className='bg-white rounded-2xl'>
                     <SelectItem value='BTC'>
                       <div className='flex items-center gap-2'>
-                        <img src='/icons/networks/BTC.svg' className='w-5 h-5' />
+                        <img
+                          src='/icons/networks/BTC.svg'
+                          className='w-5 h-5'
+                        />
                         <span>Bitcoin Network Account Name (428f...47d2)</span>
                       </div>
                     </SelectItem>
                     <SelectItem value='ETH'>
                       <div className='flex items-center gap-2'>
-                        <img src='/icons/networks/ETH.svg' className='w-5 h-5' />
+                        <img
+                          src='/icons/networks/ETH.svg'
+                          className='w-5 h-5'
+                        />
                         <span>Ethereum Network Account Name (0xD2...05F6)</span>
                       </div>
                     </SelectItem>
@@ -156,6 +168,17 @@ const OnramperModal: React.FC<OnramperModalProps> = ({
           </div>
         </DialogContent>
       </Dialog>
+
+      {showWidget && (
+        <Dialog open={showWidget} onOpenChange={() => setShowWidget(false)}>
+          <DialogContent className='p-0 bg-transparent border-none shadow-none [&>button]:hidden'>
+            <OnramperSVG
+              setNotifications={setNotifications}
+              onClose={() => setShowWidget(false)}
+            />
+          </DialogContent>
+        </Dialog>
+      )}
     </>
   );
 };
