@@ -133,7 +133,7 @@ const SubscriptionTable: React.FC<{
   }, [notifications]);
 
   return (
-    <div className='relative w-full min-w-[1130px] flex flex-col overscroll-y-none'>
+    <div className='relative w-full min-w-[1024px] max-w-[1440px] mx-auto flex flex-col overscroll-y-none'>
       <Tabs
         defaultValue='active'
         className='w-full'
@@ -149,14 +149,14 @@ const SubscriptionTable: React.FC<{
         </TabsList>
 
         <div className='w-full flex flex-col gap-1 overscroll-y-none'>
-          <div className='w-full min-w-[1130px] flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs'>
-            <div className='w-72 flex-none px-6 py-3'>Product</div>
+          <div className='w-full flex bg-gray-50 rounded-xl font-medium text-gray-500 text-xs'>
+            <div className='w-64 flex-none px-6 py-3'>Product</div>
             <div className='w-36 flex-none px-6 py-3'>Cost</div>
-            <div className='w-36 flex-none px-6 py-3'>Value</div>
-            <div className='w-36 flex-none px-6 py-3'>Started</div>
-            <div className='w-36 flex-none px-6 py-3'>Renews</div>
-            <div className='w-36 flex-none px-6 py-3'>Status</div>
-            <div className='w-[140px] flex-none pl-0 pr-6 py-3'></div>
+            <div className='w-32 flex-none px-6 py-3'>Value</div>
+            <div className='w-32 flex-none px-6 py-3'>Started</div>
+            <div className='w-32 flex-none px-6 py-3'>Renews</div>
+            <div className='w-32 flex-none px-6 py-3'>Status</div>
+            <div className='flex-1 pl-0 pr-6 py-3 flex justify-end min-w-[180px]'></div>
           </div>
           <div>
             {Array.isArray(filteredSubscriptions) &&
@@ -165,10 +165,10 @@ const SubscriptionTable: React.FC<{
                 {filteredSubscriptions.map((subscription, index) => (
                   <div
                     key={index}
-                    className='w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm '
+                    className='w-full flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm'
                   >
                     <div className='w-full flex text-left text-gray-900'>
-                      <div className='w-72 break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-3 h-16 '>
+                      <div className='w-64 break-keep whitespace-nowrap flex-none px-6 py-3 flex items-center gap-3 h-16'>
                         <div className='min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl'>
                           <Image
                             src={`/icons/networks/${subscription.network}.svg`}
@@ -187,7 +187,7 @@ const SubscriptionTable: React.FC<{
                         </p>
                       </div>
 
-                      <div className='min-w-36 gap-1.5 flex-none px-6 py-3 text-sm text-gray-600 h-16 flex items-center'>
+                      <div className='w-36 flex-none px-6 py-3 text-sm text-gray-600 h-16 flex items-center gap-1.5'>
                         <Image
                           src={'/icons/tokens/USDT.svg'}
                           alt='USDT'
@@ -197,24 +197,24 @@ const SubscriptionTable: React.FC<{
                         {subscription.yourBid.toFixed(2)}
                         <span className=''>USDT</span>
                       </div>
-                      <div className='min-w-36 gap-1.5 flex-none px-6 py-3 text-sm text-gray-600 h-16 flex items-center'>
+                      <div className='w-32 flex-none px-6 py-3 text-sm text-gray-600 h-16 flex items-center gap-1.5'>
                         ${subscription.yourBid.toFixed(2)}
                       </div>
-                      <div className='w-36 flex-none px-6 py-3 text-sm text-gray-800 h-16 flex items-center'>
+                      <div className='w-32 flex-none px-6 py-3 text-sm text-gray-800 h-16 flex items-center'>
                         {subscription.startTime.toLocaleDateString('en-GB', {
                           day: '2-digit',
                           month: 'short',
                           year: 'numeric',
                         })}
                       </div>
-                      <div className='w-36 flex-none px-6 py-3 text-sm text-gray-800 h-16 flex items-center'>
+                      <div className='w-32 flex-none px-6 py-3 text-sm text-gray-800 h-16 flex items-center'>
                         {subscription.endTime.toLocaleDateString('en-GB', {
                           day: '2-digit',
                           month: 'short',
                           year: 'numeric',
                         })}
                       </div>
-                      <div className='w-36 flex-none px-6 py-3 h-16 flex items-center whitespace-nowrap'>
+                      <div className='w-32 flex-none px-6 py-3 h-16 flex items-center whitespace-nowrap'>
                         <Badge
                           variant={
                             subscription.status === 'Active'
@@ -229,7 +229,7 @@ const SubscriptionTable: React.FC<{
                           {subscription.status}
                         </Badge>
                       </div>
-                      <div className='w-[140px] flex-none pl-0 pr-6 py-3 h-16 flex items-center justify-end whitespace-nowrap gap-2'>
+                      <div className='flex-1 pl-0 pr-6 py-3 h-16 flex items-center justify-end whitespace-nowrap gap-2 min-w-[180px]'>
                         {subscription.status === 'Pending' ? (
                           <Button
                             variant='outline'
