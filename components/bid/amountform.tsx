@@ -70,7 +70,7 @@ export function BidAmountForm() {
                 <div className="flex gap-2 w-full">
                   <Button
                     variant="outline"
-                    className="h-11 flex-1 p-0 items-center flex justify-center flex-shrink-0"
+                    className="h-10 flex-1 p-0 items-center flex justify-center flex-shrink-0"
                     onClick={() => field.onChange(Number(field.value) - 1)}
                     disabled={Number(field.value) === 31}
                   >
@@ -92,14 +92,14 @@ export function BidAmountForm() {
                   </Button>
                   <Input
                     type="number"
-                    className="flex-1 h-11 text-center"
+                    className="flex-1 h-10 text-center text-regular text-[14px]"
                     value={Number(field.value)}
                     onChange={(e) => field.onChange(Number(e.target.value))}
                     placeholder="0"
                   />
                   <Button
                     variant="outline"
-                    className="h-11 flex-1 p-0 items-center flex justify-center flex-shrink-0"
+                    className="h-10 flex-1 p-0 items-center flex justify-center flex-shrink-0"
                     onClick={() => field.onChange(Number(field.value) + 1)}
                   >
                     <svg
