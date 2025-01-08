@@ -14,32 +14,32 @@ const ContactNameEditedSaved: React.FC<ContactNameEditedSavedProps> = ({
   onClose,
 }) => {
   return (
-    <Dialog open={isOpen} onClose={onClose} className='relative z-50'>
-      <div className='fixed inset-0 flex items-center justify-center bg-[#F2F4F7] bg-opacity-50 z-50'>
-        <Dialog.Panel className='bg-white rounded-2xl shadow-lg p-6 w-[410px]'>
-          <div className='flex flex-col items-center'>
-            <Image
-              src={savedIcon}
-              alt='Saved Icon'
-              width={100}
-              height={100}
-              className='mb-4'
-            />
-            <h2 className='text-xl font-medium'>Contact Name Edited</h2>
-            <p className='text-center font-regular text-sm text-gray-600 mt-2'>
-              Your contact name has been successfully updated.
-            </p>
-            <Button
-              onClick={onClose}
-              variant='default'
-              className='mt-4 w-full bg-teal-700 text-white py-2 px-4 rounded-xl hover:bg-teal-600 transition'
-            >
-              Done
-            </Button>
-          </div>
-        </Dialog.Panel>
-      </div>
-    </Dialog>
+<Dialog open={isOpen} onClose={onClose} className='relative z-50'>
+<div className='fixed inset-0 flex items-center justify-center bg-[#F2F4F7] bg-opacity-50 z-50'>
+  <Dialog.Panel className='bg-white rounded-2xl shadow-lg p-6 w-[410px] h-[410px]'>
+    <div className='flex flex-col items-center'>
+      <Image
+        src={savedIcon}
+        alt='Saved Icon'
+        width={210}
+        height={210}
+        className='mb-24'
+      />
+      <h2 className='text-xl font-medium'>Contact Name Edited</h2>
+      <p className='text-center font-regular text-sm text-gray-600 mt-2'>
+      Your contact name has been successfully updated.
+      </p>
+      <Button
+        onClick={onClose}
+        variant='default'
+        className='mt-4 w-full bg-teal-700 text-white py-2 px-4 rounded-xl hover:bg-teal-600 transition'
+      >
+        Done
+      </Button>
+    </div>
+  </Dialog.Panel>
+</div>
+</Dialog>
   );
 };
 
