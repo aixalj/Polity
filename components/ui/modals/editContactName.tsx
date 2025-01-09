@@ -168,7 +168,7 @@ const EditContactNameModal: React.FC<EditContactNameModalProps> = ({
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
                     placeholder='Contact Name'
-                    className='w-full h-10 text-gray-900 mb-3 text-sm font-medium pr-10 rounded-xl font-regular focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50 border-0.5 border-gray-300'
+                    className='w-full h-10 text-gray-900 text-sm font-medium mb-3 pr-10 rounded-xl focus:!border-primary-500 focus:ring-2 focus:ring-[#d2e9e5] focus:ring-opacity-50 focus:!border-[2px] border-gray-300'
                   />
                 </Label>
                 <div>

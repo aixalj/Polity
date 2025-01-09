@@ -43,17 +43,17 @@ const WalletConnect: React.FC<WalletConnectProps> = ({
 
   const handleClick = async () => {
     if (loading) return;
-  
+
     setLoading(true);
     setErrorMessage(null);
-  
+
     try {
       await onConnect();
       // Don't call onClose() here anymore since the parent will handle it
     } catch (error) {
       setErrorMessage('Error setting up connection, please try again.');
     }
-  
+
     setLoading(false);
   };
 
@@ -61,7 +61,7 @@ const WalletConnect: React.FC<WalletConnectProps> = ({
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent
         lightCloseIcon
-        className='bg-[#3396FF] p-1 rounded-[36px] shadow-xl w-[448px] h-auto flex flex-col '
+        className='bg-[#3396FF] p-1 rounded-[36px] shadow-xl w-[448px] h-auto flex flex-col [&>button>svg]:w-7 [&>button>svg]:h-7 [&>button>svg]:px-1 [&>button>svg]:py-1 [&>button]:absolute [&>button]:right-7 [&>button]:top-4'
       >
         <div className='px-8 pt-5 flex-shrink-0'>
           <div className='flex justify-start mb-4'>
@@ -78,7 +78,7 @@ const WalletConnect: React.FC<WalletConnectProps> = ({
               />
             </svg>
           </div>
-          <h2 className='text-lg font-medium mb-1 text-gray-50'>
+          <h2 className='text-[20px] font-medium mb-1 text-gray-50'>
             WalletConnect
           </h2>
           <p className=' text-gray-50 text-sm font-regular'>
@@ -93,19 +93,19 @@ const WalletConnect: React.FC<WalletConnectProps> = ({
             </p>
           </div>
           <ul>
-            <li className='flex items-center gap-2 font-normal text-sm mb-2'>
+            <li className='flex items-center gap-2 font-normal text-sm mb-2 text-gray-800'>
               <Image src={Check1} alt='Check 1' width={16} height={16} />
               Open a WalletConnect supported dApp
             </li>
-            <li className='flex items-center gap-2 font-normal text-sm mb-2'>
+            <li className='flex items-center gap-2 font-normal text-sm mb-2 text-gray-800'>
               <Image src={Check2} alt='Check 2' width={16} height={16} />
               Select WalletConnect as the wallet
             </li>
-            <li className='flex items-center gap-2 font-normal text-sm mb-2'>
+            <li className='flex items-center gap-2 font-normal text-sm mb-2 text-gray-800'>
               <Image src={Check3} alt='Check 3' width={16} height={16} />
               Copy the pairing code
             </li>
-            <li className='flex items-center gap-2 font-normal text-sm'>
+            <li className='flex items-center gap-2 font-normal text-sm text-gray-800'>
               <Image src={Check4} alt='Check 4' width={16} height={16} />
               Click ‘Connect Now’
             </li>

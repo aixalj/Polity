@@ -9,6 +9,8 @@ import { Notification } from '@/components/ui/notification';
 import { LinkExpired } from '@/components/authentication/modals/linkExpired';
 import { Disclaimer } from '@/components/authentication/modals/disclaimer';
 import { TermsOfUse } from '@/components/authentication/modals/termsofUse';
+import poweredbyDynamic from '@/public/powered-by-dynamic.svg';
+import Link from 'next/link';
 
 interface NotificationType {
   title: string;
@@ -136,6 +138,11 @@ export default function RegistrationPage() {
             <Wallet02 className='w-4 h-4' />
             Continue with a wallet
           </Button>
+          <Link href='https://dynamic.xyz' target='_blank' className='flex items-center justify-center gap-2 pt-1'>
+          <div>
+          <Image src={poweredbyDynamic} alt='Powered by Dynamic' width={180} height={180} />
+          </div>
+          </Link>
         </div>
 
         {/* Request Link */}

@@ -104,14 +104,14 @@ const RebidModal: React.FC<RebidModalProps> = ({
             <div className='w-full h-px mt-8 bg-gray-200'></div>
             <div className='w-full py-6 '>
             <BidAmountForm />
-              <p className='text-center text-sm text-gray-700 font-medium'>
+              <p className='text-center text-sm mt-4 text-gray-700 font-medium'>
                 +1 USDT minimum bid increment
               </p>
             </div>
             <Button
               onClick={handleConfirm} // This will now close the modal after confirming
               variant='default'
-              className=' w-full text-white rounded-lg py-2'
+              className=' w-full text-white rounded-lg'
             >
               Confirm New Bid
             </Button>

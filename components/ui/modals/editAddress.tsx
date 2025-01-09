@@ -161,11 +161,11 @@ const EditAddress: React.FC<EditAddressProps> = ({
             <div className='bg-white px-6 pt-4 pb-6 rounded-xl shadow-md flex-grow overflow-hidden'>
               <div>
                 <Label className='block mb-1.5'>Contact Name</Label>
-                <input
+                <Input
                   type='text'
                   value={addressData?.contactName}
                   disabled
-                  className='w-full rounded-xl h-10 mb-3 pr-10 text-sm font-medium border border-gray-300 bg-gray-100 cursor-not-allowed'
+                  className='h-10 mb-3 text-gray-900 pr-10 font-regular focus:!border-primary-500 focus:ring-2 focus:ring-[#d2e9e5] focus:ring-opacity-50 border-0.5 border-gray-300'
                 />
               </div>
               <div>
@@ -178,7 +178,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                       setAddressName(e.target.value);
                       setIsModified(true);
                     }}
-                    className='w-full h-10 text-gray-900 text-sm font-medium mb-3 pr-10  border rounded-xl border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
+                    className='w-full h-10 text-gray-900 text-sm font-medium mb-3 pr-10 rounded-xl focus:!border-primary-500 focus:ring-2 focus:ring-[#d2e9e5] focus:ring-opacity-50 focus:!border-[2px] border-gray-300'
                   />
                   {isModified && ( // Show checkmark if edited
                     <Check className='absolute right-2 top-1/2 transform -translate-y-3.5 h-5 w-5 text-green-500' />
@@ -193,7 +193,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                     <div
                       className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3 ${
                         isNetworkDropdownOpen
-                          ? 'border-primary-500 ring-2 ring-primary-50'
+                          ? 'ring-2 ring-opacity-50 border-[2px] border-primary-500 ring-[#d2e9e5]'
                           : ''
                       }`}
                     >
@@ -280,7 +280,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                       <div
                         className={`flex items-center mt-1 w-full border border-gray-300 rounded-[12px] p-2 cursor-pointer h-10 mb-3 ${
                           isAssetDropdownOpen
-                            ? 'border-primary-500 ring-2 ring-primary-50'
+                            ? 'ring-2 ring-opacity-50 border-[2px] border-primary-500 ring-[#d2e9e5]'
                             : ''
                         }`}
                       >
@@ -363,8 +363,8 @@ const EditAddress: React.FC<EditAddressProps> = ({
                     setNetworkAddress(e.target.value);
                     setIsModified(true);
                   }}
-                  className='w-full h-10 text-gray-900 text-sm font-medium pr-10 font-regular border rounded-xl border-gray-300 focus:border-primary-500 focus:ring focus:ring-primary-50 focus:ring-opacity-50'
-                />
+                  className='w-full h-10 text-gray-900 text-sm font-medium mb-3 pr-10 rounded-xl focus:!border-primary-500 focus:ring-2 focus:ring-[#d2e9e5] focus:ring-opacity-50 focus:!border-[2px] border-gray-300'
+                  />
                 {isModified && ( // Show checkmark if edited
                   <Check className='absolute right-7 top-[50%] transform translate-y-7.5 h-5 w-5 text-green-500' />
                 )}
