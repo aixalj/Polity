@@ -67,6 +67,7 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
   const [contact, setContact] = useState<ContactType | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]); // State for favorites
   const [openTooltipId, setOpenTooltipId] = useState<string | null>(null);
+  const [openNetworkId, setOpenNetworkId] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -159,8 +160,8 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
 
   if (!contact) {
     return (
-      <main className="w-full h-full">
-        <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
+      <main className='w-full h-full'>
+        <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
           <div className='w-full sticky top-0 backdrop-blur-md z-10 border-b border-gray-100 bg-white/60'>
             <div className='py-2.5 relative flex justify-between w-full justify-items-stretch flex-row place-content-between px-6'>
               <div className='flex items-center gap-2'>
@@ -180,7 +181,7 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
   }
 
   const toggleTooltip = (id: string) => {
-    setOpenTooltipId((prevId) => (prevId === id ? null : id)); 
+    setOpenTooltipId((prevId) => (prevId === id ? null : id));
   };
 
   // Group addresses by network
@@ -294,13 +295,23 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
               {Object.entries(groupedAddresses).map(([network, addresses]) => (
                 <Collapsible
                   key={network}
+                  open={openNetworkId === network}
                   className='w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm'
                 >
-                  <CollapsibleTrigger className='w-full ease-in-out duration-200'>
+                  <CollapsibleTrigger
+                    className='w-full ease-in-out duration-200'
+                    onClick={() =>
+                      setOpenNetworkId(
+                        openNetworkId === network ? null : network
+                      )
+                    }
+                  >
                     <div className='w-full flex text-left text-gray-900'>
                       <div className='w-9 flex-none h-16 flex items-center justify-center align-middle'>
                         <svg
-                          className='mx-auto'
+                          className={`mx-auto transition-transform duration-200 group ${
+                            openNetworkId === network ? 'rotate-180' : ''
+                          }`}
                           width='20'
                           height='20'
                           viewBox='0 0 20 20'
@@ -313,7 +324,11 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
                             width='19'
                             height='19'
                             rx='5.5'
-                            fill='white'
+                            className={`fill-white ${
+                              openNetworkId === network
+                                ? 'fill-white'
+                                : 'group-hover:fill-[#F2F4F7]'
+                            }`}
                           />
                           <rect
                             x='0.5'
@@ -321,11 +336,18 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
                             width='19'
                             height='19'
                             rx='5.5'
-                            stroke='#D0D5DD'
+                            className={`${
+                              openNetworkId === network
+                                ? 'stroke-[#D0D5DD]'
+                                : 'stroke-transparent group-hover:stroke-[#D0D5DD]'
+                            }`}
                           />
                           <path
-                            d='M13 12.0001C13.412 12.0001 13.6472 11.5297 13.4 11.2001L10.4 7.20008C10.2 6.93341 9.8 6.93341 9.6 7.20008L6.6 11.2001C6.35279 11.5297 6.58798 12.0001 7 12.0001H13Z'
-                            fill='#1D2939'
+                            d='M14 8L10 12L6 8'
+                            stroke='#475467'
+                            strokeWidth='1.5'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
                           />
                         </svg>
                       </div>
@@ -431,23 +453,26 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
                                   }}
                                   asChild
                                 >
-                                   <span
-                            className="underline underline-offset-4 cursor-pointer flex items-center gap-2"
-                            onClick={() => {
-                              navigator.clipboard.writeText(address.address);
-                              const tooltip = document.querySelector(
-                                `[id="${address.id}"]`
-                              );
-                              if (tooltip) {
-                                tooltip.textContent = "Copied!";
-                                setTimeout(() => {
-                                  if (tooltip) {
-                                    tooltip.textContent = "Click to copy";
-                                  }
-                                }, 2000);
-                              }
-                            }}
-                          >
+                                  <span
+                                    className='underline underline-offset-4 cursor-pointer flex items-center gap-2'
+                                    onClick={() => {
+                                      navigator.clipboard.writeText(
+                                        address.address
+                                      );
+                                      const tooltip = document.querySelector(
+                                        `[id="${address.id}"]`
+                                      );
+                                      if (tooltip) {
+                                        tooltip.textContent = 'Copied!';
+                                        setTimeout(() => {
+                                          if (tooltip) {
+                                            tooltip.textContent =
+                                              'Click to copy';
+                                          }
+                                        }, 2000);
+                                      }
+                                    }}
+                                  >
                                     <div className='w-6 h-6 overflow-hidden rounded-md border border-gray-200'>
                                       <Image
                                         alt={address.address}
@@ -492,7 +517,7 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
                                 </TooltipTrigger>
                                 <TooltipContent>
                                   <p id={address.id}>Click to copy</p>
-                                </TooltipContent> 
+                                </TooltipContent>
                               </Tooltip>
                             </TooltipProvider>
                           </div>

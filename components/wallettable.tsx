@@ -9,6 +9,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
+import { ChevronDown } from 'lucide-react';
 
 import Image from 'next/image';
 
@@ -101,7 +102,11 @@ const WalletTable: React.FC<{
                           width='19'
                           height='19'
                           rx='5.5'
-                          fill='white'
+                          className={`fill-white ${
+                            openWalletId === wallet.wallet_id
+                              ? 'fill-white'
+                              : 'group-hover:fill-[#F2F4F7]'
+                          }`}
                         />
                         <rect
                           x='0.5'
@@ -109,11 +114,18 @@ const WalletTable: React.FC<{
                           width='19'
                           height='19'
                           rx='5.5'
-                          stroke='#D0D5DD'
+                          className={`${
+                            openWalletId === wallet.wallet_id
+                              ? 'stroke-[#D0D5DD]'
+                              : 'stroke-transparent group-hover:stroke-[#D0D5DD]'
+                          }`}
                         />
                         <path
-                          d='M13 12.0001C13.412 12.0001 13.6472 11.5297 13.4 11.2001L10.4 7.20008C10.2 6.93341 9.8 6.93341 9.6 7.20008L6.6 11.2001C6.35279 11.5297 6.58798 12.0001 7 12.0001H13Z'
-                          fill='#1D2939'
+                          d='M14 8L10 12L6 8'
+                          stroke='#475467'
+                          strokeWidth='1.5'
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
                         />
                       </svg>
                     </div>
@@ -131,23 +143,23 @@ const WalletTable: React.FC<{
                       <Progress value={wallet.allocation} />
                     </div>
                     <div className='w-36 flex-auto  px-6 py-3 h-16 flex items-center whitespace-nowrap text-teal-700 font-semibold'>
-                    <div className='flex items-center gap-1 mr-1'>
-                          <svg
-                            width='12'
-                            height='12'
-                            viewBox='0 0 12 12'
-                            fill='none'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            <path
-                              d='M11 3.5L7.06568 7.43432C6.86768 7.63232 6.76867 7.73133 6.65451 7.76842C6.55409 7.80105 6.44591 7.80105 6.34549 7.76842C6.23133 7.73133 6.13232 7.63232 5.93431 7.43431L4.56568 6.06568C4.36768 5.86768 4.26867 5.76867 4.15451 5.73158C4.05409 5.69895 3.94591 5.69895 3.84549 5.73158C3.73133 5.76867 3.63232 5.86768 3.43431 6.06569L1 8.5M11 3.5H7.5M11 3.5V7'
-                              stroke='#0f766e'
-                              stroke-width='1.5'
-                              stroke-linecap='round'
-                              stroke-linejoin='round'
-                            />
-                          </svg>
-                        </div>
+                      <div className='flex items-center gap-1 mr-1'>
+                        <svg
+                          width='12'
+                          height='12'
+                          viewBox='0 0 12 12'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            d='M11 3.5L7.06568 7.43432C6.86768 7.63232 6.76867 7.73133 6.65451 7.76842C6.55409 7.80105 6.44591 7.80105 6.34549 7.76842C6.23133 7.73133 6.13232 7.63232 5.93431 7.43431L4.56568 6.06568C4.36768 5.86768 4.26867 5.76867 4.15451 5.73158C4.05409 5.69895 3.94591 5.69895 3.84549 5.73158C3.73133 5.76867 3.63232 5.86768 3.43431 6.06569L1 8.5M11 3.5H7.5M11 3.5V7'
+                            stroke='#0f766e'
+                            stroke-width='1.5'
+                            stroke-linecap='round'
+                            stroke-linejoin='round'
+                          />
+                        </svg>
+                      </div>
                       {((wallet.return / wallet.value) * 100).toFixed(2)}% (
                       {wallet.return.toLocaleString('en-US', {
                         style: 'currency',
@@ -222,10 +234,11 @@ const WalletTable: React.FC<{
                           })}
                         </div>
                         <div className='w-36 flex-auto px-6 py-3 h-16 items-center flex'>
-                          {account.balance.toLocaleString(undefined, { 
+                          {account.balance.toLocaleString(undefined, {
                             minimumFractionDigits: 2,
-                            maximumFractionDigits: 2 
-                          })} {account.id}
+                            maximumFractionDigits: 2,
+                          })}{' '}
+                          {account.id}
                         </div>
                       </Link>
                     ))}
