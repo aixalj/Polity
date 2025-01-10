@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import PolityLogo from '@/public/polity.svg';
 import Avatar from '@/public/Avatar.png';
+import PlatoInvest from '@/public/PlatoInvest.png';
 import { UserPlus01 } from '@untitled-ui/icons-react';
 import {
   Tooltip,
@@ -44,9 +45,9 @@ export default function InvestorPortal() {
           <Link href='/onboarding/superapp/nsp'>
           <div className='border border-gray-300 hover:border-gray-300 hover:shadow-sm transition-all duration-200 rounded-2xl py-10 px-14 flex flex-col items-center gap-2 cursor-pointer group relative'>
             <div className='w-16 h-16 rounded-[10px] border border-gray-200 overflow-hidden'>
-              <Image src={Avatar} alt='Avatar' width={64} height={64} />
+              <Image src={PlatoInvest} alt='PlatoInvest' width={64} height={64} />
             </div>
-            <p className='font-medium'>AristoInvest</p>
+            <p className='font-medium'>PlatoInvest</p>
             <TooltipProvider>
               <Tooltip delayDuration={50}>
                 <TooltipTrigger>

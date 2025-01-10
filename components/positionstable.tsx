@@ -14,6 +14,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { useState } from 'react';
 
 import {
   LayersThree01,
@@ -86,6 +87,8 @@ const PositionsTable = ({
   networkAccounts: NetworkAccount[];
   wallets: Wallet[];
 }) => {
+  const [openWalletId, setOpenWalletId] = useState<string | null>(null);
+
   return (
     <div className='relative w-full gap-3 flex flex-col'>
       {networkAccounts?.map((account) =>
@@ -126,11 +129,22 @@ const PositionsTable = ({
                   key={positi.Position}
                   className='w-full min-w-fit flex flex-col hover:bg-gray-50 duration-200 ease-in-out rounded-xl text-sm'
                 >
-                  <CollapsibleTrigger className='w-full'>
+                  <CollapsibleTrigger
+                    className='w-full'
+                    onClick={() =>
+                      setOpenWalletId(
+                        openWalletId === positi.Position
+                          ? null
+                          : positi.Position
+                      )
+                    }
+                  >
                     <div className='w-full flex text-left text-gray-900'>
                       <div className='w-9 flex-none h-16 flex items-center justify-center'>
                         <svg
-                          className='mx-auto'
+                          className={`mx-auto transition-transform duration-200 ${
+                            openWalletId === positi.Position ? 'rotate-180' : ''
+                          }`}
                           width='20'
                           height='20'
                           viewBox='0 0 20 20'
@@ -143,7 +157,11 @@ const PositionsTable = ({
                             width='19'
                             height='19'
                             rx='5.5'
-                            fill='white'
+                            className={`fill-white ${
+                              openWalletId === positi.Position
+                                ? 'fill-white'
+                                : 'group-hover:fill-[#F2F4F7]'
+                            }`}
                           />
                           <rect
                             x='0.5'
@@ -151,11 +169,18 @@ const PositionsTable = ({
                             width='19'
                             height='19'
                             rx='5.5'
-                            stroke='#D0D5DD'
+                            className={`${
+                              openWalletId === positi.Position
+                                ? 'stroke-[#D0D5DD]'
+                                : 'stroke-transparent group-hover:stroke-[#D0D5DD]'
+                            }`}
                           />
                           <path
-                            d='M13 12.0001C13.412 12.0001 13.6472 11.5297 13.4 11.2001L10.4 7.20008C10.2 6.93341 9.8 6.93341 9.6 7.20008L6.6 11.2001C6.35279 11.5297 6.58798 12.0001 7 12.0001H13Z'
-                            fill='#1D2939'
+                            d='M14 8L10 12L6 8'
+                            stroke='#475467'
+                            strokeWidth='1.5'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
                           />
                         </svg>
                       </div>
@@ -195,13 +220,13 @@ const PositionsTable = ({
                           <div className='w-9 flex-none'></div>
                           <div className='w-56 flex-none px-6 py-3 flex items-center gap-3'>
                             <div className='w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center'>
-                            <Image
-                                        className=''
-                                        src='/icons/networks/Tether.svg'
-                                        alt='Tether'
-                                        width={32}
-                                        height={32}
-                                      />
+                              <Image
+                                className=''
+                                src='/icons/networks/Tether.svg'
+                                alt='Tether'
+                                width={32}
+                                height={32}
+                              />
                             </div>
                             <p>SYMBOL</p>
                           </div>
@@ -241,13 +266,13 @@ const PositionsTable = ({
                           <div className='w-9 flex-none'></div>
                           <div className='w-56 flex-none px-6 py-3 flex items-center gap-3'>
                             <div className='w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center'>
-                            <Image
-                                        className=''
-                                        src='/icons/networks/USDC.svg'
-                                        alt='USDC'
-                                        width={32}
-                                        height={32}
-                                      />
+                              <Image
+                                className=''
+                                src='/icons/networks/USDC.svg'
+                                alt='USDC'
+                                width={32}
+                                height={32}
+                              />
                             </div>
                             <p>SYMBOL</p>
                           </div>
@@ -287,26 +312,26 @@ const PositionsTable = ({
                           <div className='w-9 flex-none'></div>
                           <div className='w-56 flex-none px-6 py-3 flex items-center gap-3'>
                             <div className='w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center'>
-                            <Image
-                                        className=''
-                                        src='/icons/networks/USDC.svg'
-                                        alt='USDC'
-                                        width={32}
-                                        height={32}
-                                      />
+                              <Image
+                                className=''
+                                src='/icons/networks/USDC.svg'
+                                alt='USDC'
+                                width={32}
+                                height={32}
+                              />
                             </div>
                             <p>SYMBOL</p>
                           </div>
                           <div className='w-44 flex-none'></div>
                           <div className='w-56  px-6 py-3 flex items-center gap-3'>
                             <div className='w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center'>
-                            <Image
-                                        className=''
-                                        src='/icons/networks/USDC.svg'
-                                        alt='USDC'
-                                        width={32}
-                                        height={32}
-                                      />
+                              <Image
+                                className=''
+                                src='/icons/networks/USDC.svg'
+                                alt='USDC'
+                                width={32}
+                                height={32}
+                              />
                             </div>
                             <p>SYMBOL</p>
                           </div>
@@ -341,13 +366,13 @@ const PositionsTable = ({
                           <div className='w-9 flex-none'></div>
                           <div className='w-56 flex-none px-6 py-3 flex items-center gap-3'>
                             <div className='w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center'>
-                            <Image
-                                        className=''
-                                        src='/icons/networks/Tether.svg'
-                                        alt='Tether'
-                                        width={32}
-                                        height={32}
-                                      />
+                              <Image
+                                className=''
+                                src='/icons/networks/Tether.svg'
+                                alt='Tether'
+                                width={32}
+                                height={32}
+                              />
                             </div>
                             <p>SYMBOL</p>
                           </div>
