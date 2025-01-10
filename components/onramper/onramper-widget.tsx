@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import onramperWidget from '@/public/onramper-widget.svg';
+import onramperWidget from '@/public/Onramper-Widget.svg';
 
 interface OnramperSVGProps {
   setNotifications?: React.Dispatch<
