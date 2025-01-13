@@ -40,7 +40,7 @@ const transactions: Transaction[] = [
     value: 500,
     network: "Ethereum",
     wallet: "Main Wallet",
-    fromAddress: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    fromAddress: "Network Account Name",
     toAddress: "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
     transactionFee: 0.001,
     status: "Completed",
