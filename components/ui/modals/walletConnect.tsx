@@ -62,7 +62,7 @@ const WalletConnect: React.FC<WalletConnectProps> = ({
       <DialogContent
         lightCloseIcon
         className='bg-[#3396FF] p-1 rounded-[36px] shadow-xl w-[448px] h-auto flex flex-col [&>button>svg]:w-7 [&>button>svg]:h-7 [&>button>svg]:px-1 [&>button>svg]:py-1 [&>button]:absolute [&>button]:right-7 [&>button]:top-4'
-      >
+      > 
         <div className='px-8 pt-5 flex-shrink-0'>
           <div className='flex justify-start mb-4'>
             <svg
