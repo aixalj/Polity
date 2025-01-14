@@ -330,33 +330,44 @@ export function TransactionFilters() {
                   className={`transform transition-transform ${
                     openSections[section.id] ? "rotate-180" : ""
                   }`}
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    x="0.5"
-                    y="0.5"
-                    width="19"
-                    height="19"
-                    rx="5.5"
-                    fill="white"
-                  />
-                  <rect
-                    x="0.5"
-                    y="0.5"
-                    width="19"
-                    height="19"
-                    rx="5.5"
-                    stroke="#D0D5DD"
-                  />
-                  <path
-                    d="M13 12.0001C13.412 12.0001 13.6472 11.5297 13.4 11.2001L10.4 7.20008C10.2 6.93341 9.8 6.93341 9.6 7.20008L6.6 11.2001C6.35279 11.5297 6.58798 12.0001 7 12.0001H13Z"
-                    fill="#1D2939"
-                  />
-                </svg>
+                  width='20'
+                            height='20'
+                            viewBox='0 0 20 20'
+                            fill='none'
+                            xmlns='http://www.w3.org/2000/svg'
+                          >
+                            <rect
+                              x='0.5'
+                              y='0.5'
+                              width='19'
+                              height='19'
+                              rx='5.5'
+                              className={`fill-white ${
+                                openSections[section.id]
+                                  ? 'fill-white'
+                                  : 'group-hover:fill-[#F2F4F7]'
+                              }`}
+                            />
+                            <rect
+                              x='0.5'
+                              y='0.5'
+                              width='19'
+                              height='19'
+                              rx='5.5'
+                              className={`${
+                                openSections[section.id]
+                                  ? 'stroke-[#D0D5DD]'
+                                  : 'stroke-transparent group-hover:stroke-[#D0D5DD]'
+                              }`}
+                            />
+                            <path
+                              d='M14 8L10 12L6 8'
+                              stroke='#475467'
+                              strokeWidth='1.5'
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                            />
+                          </svg>
               </CollapsibleTrigger>
               <CollapsibleContent className="space-y-2">
                 {section.options.map(renderFilterOption)}

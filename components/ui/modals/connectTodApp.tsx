@@ -113,7 +113,7 @@ const ConnectTodApp: React.FC<ConnectTodAppProps> = ({
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent
           lightCloseIcon
-          className='bg-[#3396FF] p-1 rounded-[36px] shadow-xl w-[448px] h-auto flex flex-col '
+          className='bg-[#3396FF] p-1 rounded-[36px] shadow-xl w-[448px] h-auto flex flex-col [&>button>svg]:w-7 [&>button>svg]:h-7 [&>button>svg]:px-1 [&>button>svg]:py-1 [&>button]:absolute [&>button]:right-7 [&>button]:top-4'
         >
           <div className='px-8 pt-5 flex-shrink-0'>
             <div className='flex justify-start mb-4'>
@@ -130,7 +130,7 @@ const ConnectTodApp: React.FC<ConnectTodAppProps> = ({
                 />
               </svg>
             </div>
-            <h2 className='text-lg font-medium mb-1 text-gray-50'>
+            <h2 className='text-[20px] font-medium mb-1 text-gray-50'>
               WalletConnect
             </h2>
             <p className=' text-gray-50 text-sm font-regular'>
