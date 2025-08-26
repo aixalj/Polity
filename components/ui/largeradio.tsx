@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
-import { Circle } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
+import * as React from 'react';
+import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
+import { Circle } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Select, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
 
 interface RadioOptionProps {
   value: string;
@@ -36,14 +36,16 @@ const RadioOption = ({
 
   return (
     <>
-      <RadioGroupItem value={value} onClick={handleChange}> {/* Add onClick to handle selection */}
-        <div className="flex flex-col text-left">
-          <p className="font-medium text-sm text-gray-700">{title}</p>
-          <p className="text-sm text-gray-600">{description}</p>
+      <RadioGroupItem value={value} onClick={handleChange}>
+        {' '}
+        {/* Add onClick to handle selection */}
+        <div className='flex flex-col text-left'>
+          <p className='font-medium text-sm text-gray-700'>{title}</p>
+          <p className='text-sm text-gray-600'>{description}</p>
         </div>
       </RadioGroupItem>
       {children && (
-        <div className="space-y-2">
+        <div className='space-y-2'>
           {React.Children.map(children, (child) => {
             if (React.isValidElement(child)) {
               return React.cloneElement(child, {
@@ -62,11 +64,15 @@ const RadioOption = ({
 const RadioGroup = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
->(({ className, ...props }, ref) => {
+>(({ className, value, onValueChange, ...props }, ref) => {
   return (
-    <RadioGroupContext.Provider value={props}>
+    <RadioGroupContext.Provider
+      value={{ value: value || undefined, onValueChange }}
+    >
       <RadioGroupPrimitive.Root
-        className={cn("grid gap-4", className)}
+        className={cn('grid gap-4', className)}
+        value={value}
+        onValueChange={onValueChange}
         {...props}
         ref={ref}
       />
@@ -83,14 +89,14 @@ const RadioGroupItem = React.forwardRef<
     <RadioGroupPrimitive.Item
       ref={ref}
       className={cn(
-        "group relative flex w-full cursor-pointer rounded-xl border border-gray-200 p-4 transition-all hover:bg-gray-50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-primary-500 data-[state=checked]:bg-teal-50",
+        'group relative flex w-full cursor-pointer rounded-xl border border-gray-200 p-4 transition-all hover:bg-gray-50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-primary-500 data-[state=checked]:bg-teal-50',
         className
       )}
       {...props}
     >
-      <div className="mr-4 flex translate-y-0.5 h-4 w-4 items-center justify-center rounded-full border border-gray-300 group-data-[state=checked]:border-primary-500">
+      <div className='mr-4 flex translate-y-0.5 h-4 w-4 items-center justify-center rounded-full border border-gray-300 group-data-[state=checked]:border-primary-500'>
         <RadioGroupPrimitive.Indicator>
-          <Circle className="h-1.5 w-1.5 fill-primary-500 text-primary-500" />
+          <Circle className='h-1.5 w-1.5 fill-primary-500 text-primary-500' />
         </RadioGroupPrimitive.Indicator>
       </div>
       {children}

@@ -1217,7 +1217,7 @@ const SideBar = () => {
                       </li>
                       <li>
                         <Link
-                          className={`group focus:ring-0 ${
+                          className={`group focus:ring-0 hidden ${
                             pathname === "/marketplace/bids"
                               ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                               : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
@@ -1225,7 +1225,7 @@ const SideBar = () => {
                           href="/marketplace/bids"
                           id="overview"
                         >
-                          <Trophy01 className="w-4 h-4" />
+                          <Trophy01 className="w-4 h-4 hidden" />
                           My Bids
                         </Link>
                       </li>
