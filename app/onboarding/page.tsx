@@ -43,7 +43,7 @@ export default function InvestorPortal() {
           </Link>
 
           <Link href='/onboarding/superapp/nsp'>
-          <div className='border border-gray-300 hover:border-gray-300 hover:shadow-sm transition-all duration-200 rounded-2xl py-10 px-14 flex flex-col items-center gap-2 cursor-pointer group relative'>
+          <div className=' border border-gray-300 hover:border-gray-300 hover:shadow-sm transition-all duration-200 rounded-2xl py-10 px-14 flex flex-col items-center gap-2 cursor-pointer group relative'>
             <div className='w-16 h-16 rounded-[10px] border border-gray-200 overflow-hidden'>
               <Image src={PlatoInvest} alt='PlatoInvest' width={64} height={64} />
             </div>
@@ -72,7 +72,7 @@ export default function InvestorPortal() {
             <div className='absolute bottom-0 left-1/2 w-3/4 h-[4px] bg-amber-500 rounded-[4px] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 -translate-x-1/2' />
           </div>
           </Link>
-          <div className='border border-gray-300 bg-gray-50 h-full w-full justify-center hover:border-gray-300 hover:shadow-sm transition-all duration-200 rounded-2xl py-10 px-14 flex flex-col items-center gap-2 cursor-pointer group relative'>
+          <div className=' border border-gray-300 bg-gray-50 h-full w-full justify-center hover:border-gray-300 hover:shadow-sm transition-all duration-200 rounded-2xl py-10 px-14 flex flex-col items-center gap-2 cursor-pointer group relative'>
             <Link href='/onboarding/select-your-account'>
               <div className='flex flex-col items-center gap-2'>
                 <UserPlus01 className='w-8 h-8' />

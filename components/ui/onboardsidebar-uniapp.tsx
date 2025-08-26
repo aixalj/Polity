@@ -59,6 +59,12 @@ const avatarVirtualNodeLinks = [
     text: 'Connect with NSP',
     className: 'font-medium',
   },
+  {
+    href: '/onboarding/uniapp/agreement',
+    icon: PencilLine,
+    text: 'Sign Agreement',
+    className: 'font-medium',
+  },
 ];
 
 const walletSetupLinks = [
@@ -146,7 +152,7 @@ const OnboardSideBar = () => {
           <div className='h-full gap-3 flex flex-col justify-between'>
             <ul className='flex px-4 flex-col gap-1'>
               <li className='flex gap-2 whitespace-nowrap pb-2.5 pr-3 items-center text-xs text-gray-500'>
-              AVATAR SETUP
+                AVATAR SETUP
                 <div className='w-full bg-gray-300 h-[1px]'></div>
                 <div className='min-w-5 h-5 rounded-full border border-gray-300 bg-white'>
                   {(isWalletSection || isInstallationPage) && (
@@ -162,8 +168,8 @@ const OnboardSideBar = () => {
                         pathname === link.href
                           ? 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-800 shadow-sm'
                           : isLinkComplete(pathname, link.href)
-                            ? 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-600 '
-                            : 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-600 target:bg-white target:text-black border border-transparent '
+                          ? 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-600 '
+                          : 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-600 target:bg-white target:text-black border border-transparent '
                       }`}
                       href={link.href}
                     >
@@ -187,10 +193,11 @@ const OnboardSideBar = () => {
                 WALLET SETUP
                 <div className='w-full bg-gray-300 h-[1px]'></div>
                 <div className='min-w-5 h-5 rounded-full border border-gray-300 bg-white'>
-                  
+                  {isWalletSetupPage && (
+                    <Image src={CheckIcon} alt='Check' width={20} height={20} />
+                  )}
                 </div>
               </li>
-              
             </ul>
           </div>
         </nav>

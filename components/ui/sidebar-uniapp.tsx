@@ -633,7 +633,7 @@ const SideBarUniapp = () => {
                         </div>
                       </Link>
                       <a
-                        className="z-10 ml-auto cursor-pointer h-5 w-5 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
+                        className="hidden z-10 ml-auto cursor-pointer h-5 w-5 absolute right-0 my-3 items-center flex justify-center mr-3 inset-y-0 rounded-lg border border-transparent duration-200 ease-in-out bg-gray-100/0 active:bg-gray-100 hover:bg-gray-100 group-hover:border-gray-300 font-medium"
                         onClick={() =>
                           handleOpenChange(
                             "collapsible5",
@@ -678,7 +678,7 @@ const SideBarUniapp = () => {
                     </div>
                   </CollapsibleTrigger>
                   <CollapsibleContent className="items-start">
-                    <ul className="flex pl-6 flex-col gap-1">
+                    <ul className="flex pl-6 flex-col gap-1 hidden">
                       <li>
                         <Link
                           className={`group focus:ring-0 ${
@@ -876,8 +876,8 @@ const SideBarUniapp = () => {
                 <a
                   className={`group focus:ring-0 ${
                     pathname === "#"
-                      ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                      : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                      ? "hidden w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
+                      : "hidden w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
                   href="#"
                   id="overview"
