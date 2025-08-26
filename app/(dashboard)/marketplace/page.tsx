@@ -832,7 +832,7 @@ export default function Marketplace() {
                         Subscribe to a new Wallet
                       </p>
 
-                      <div className='flex flex-row hidden'>
+                     {/* <div className='flex flex-row hidden'>
                         <TooltipProvider>
                           <Tooltip>
                             <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
@@ -901,12 +901,12 @@ export default function Marketplace() {
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
-                      </div> 
+                      </div> */}
                     </div> 
 
-                    <div className='w-full flex justify-between mt-[4.5rem] mb-4'>
+                    <div className='w-full flex justify-between mt-[3.5rem] mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 hidden'>Starting from</p>
+                        <p className='text-xs text-gray-500'>-</p>
                         <div className='flex items-end '>
                         <p className='text-xl font-semibold text-gray-900'>
                             Unavailable
@@ -1921,12 +1921,12 @@ export default function Marketplace() {
                     </a>
                     <div className='w-full flex justify-between mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>Starting from</p>
+                        <p className='text-xs text-gray-500'>-</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            4.99 USDT
+                            Unavailable
                           </p>
-                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5 hidden'>
                             each/mo
                           </p>
                         </div>

@@ -33,21 +33,29 @@ import { useEffect } from 'react';
 
 export default function Marketplace() {
   const [isOnramperOpen, setIsOnramperOpen] = useState(false);
-  const [notifications, setNotifications] = useState<Array<{ title: string }>>([]);
+  const [notifications, setNotifications] = useState<Array<{ title: string }>>(
+    []
+  );
 
   const addNotification = (
     title: string,
     description: React.ReactNode,
-    status: "success" | "error" | "warning" | "info",
+    status: 'success' | 'error' | 'warning' | 'info',
     options?: {
-      position?: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
+      position?:
+        | 'top-left'
+        | 'top-center'
+        | 'top-right'
+        | 'bottom-left'
+        | 'bottom-center'
+        | 'bottom-right';
       duration?: number;
       style?: React.CSSProperties;
     }
   ) => {
     toast[status](title, {
       description: description,
-      ...options
+      ...options,
     });
   };
 
@@ -64,7 +72,7 @@ export default function Marketplace() {
   return (
     <main className='w-full h-full'>
       <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
-        <Tabs defaultValue='wallets'>
+        <Tabs defaultValue='network'>
           <div className='w-full sticky top-0 backdrop-blur-md	z-10  border-b border-gray-100 bg-white/60'>
             <div className=' max-w-screen-xl mx-auto p-6'>
               <nav aria-label='Breadcrumb'>
@@ -177,7 +185,7 @@ export default function Marketplace() {
               <div className='w-full  mt-4 flex items-center pb-1'>
                 {' '}
                 <TabsList className='bg-gray-50'>
-                  <TabsTrigger value='wallets'>Wallets</TabsTrigger>
+                  {/* <TabsTrigger value='wallets hidden'>Wallets</TabsTrigger> */}
                   <TabsTrigger value='network'>Network Accounts</TabsTrigger>
                   <TabsTrigger value='xchange'>X-change</TabsTrigger>
                   <TabsTrigger value='security'>Security</TabsTrigger>
@@ -188,7 +196,7 @@ export default function Marketplace() {
               </div>
             </div>
           </div>
-          <TabsContent value='wallets'>
+          <TabsContent value='wallets' className='hidden'>
             <div className='max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full'>
               <div className='relative w-full flex flex-col pb-40'>
                 <div className='py-4 relative flex w-full flex-row	'>
@@ -565,7 +573,7 @@ export default function Marketplace() {
                         <p className='text-xs text-gray-500'>-</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            Unaivailable
+                            Unavailable
                           </p>
                           {/* <p className="text-sm text-gray-500 mb-0.5 ml-0.5">
                             each/mo
@@ -646,7 +654,6 @@ export default function Marketplace() {
                     <p className='text-sm text-gray-600 mt-2'>
                       An institutional-grade MPC self-custody platform for
                       digital assets.
-
                     </p>
                     <a
                       href='https://safeheron.com'
@@ -1199,7 +1206,7 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>DFNS</h3>
                       </div>
-                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
+                      <div className='hidden bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
                         Active wallet
                       </div>
                     </div>
@@ -1214,7 +1221,7 @@ export default function Marketplace() {
                     >
                       Learn more about DFNS
                     </Link>
-                    <div className='group mb-2'>
+                    <div className='group mb-2 hidden'>
                       <p className='text-sm text-gray-800 mb-1'>
                         Available Networks{' '}
                       </p>
@@ -1272,31 +1279,26 @@ export default function Marketplace() {
                         </TooltipProvider>
                       </div>
                     </div>
-                    <div className='w-full flex justify-between mt-2 mb-4'>
+                    <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>
-                          Add Network Account
-                        </p>
+                        <p className='text-xs text-gray-500 font-medium '>Please upgrade to SuperApp</p>
                         <div className='flex items-end '>
-                          <p className='text-xl font-semibold text-gray-900'>
-                            1.99 USDT
-                          </p>
-                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
-                            each/mo
+                        <p className='text-xl font-semibold text-gray-900'>
+                            Unavailable
                           </p>
                         </div>
                       </div>
                       <div className='flex flex-col items-end'>
-                        <p className='text-xs text-gray-500'>Total</p>
+                        <p className='text-xs text-gray-500'>Wallets</p>
                         <div className='flex items-end '>
                           <p className='text-md font-medium text-gray-800'>
-                            3/9
+                            0/9
                           </p>
                         </div>
                       </div>
                     </div>
                     <div className='mt-auto'>
-                      <Subscribe variant='network' provider='DFNS' />
+                    <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
                     </div>
                   </div>
                 </div>
@@ -1619,19 +1621,19 @@ export default function Marketplace() {
                     </a>
                     <div className='w-full flex justify-between mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>Starting from</p>
+                        <p className='text-xs text-gray-500'>-</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            4.99 USDT
+                            Unavailable
                           </p>
-                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5 hidden'>
                             each/mo
                           </p>
                         </div>
                       </div>
                     </div>
                     <Link href='/marketplace/lukka/report'>
-                      <Button className='w-full'>View Options</Button>
+                      <Button className='w-full' variant='outline' disabled={true}>Unavailable</Button>
                     </Link>
                   </div>
                 </div>
@@ -2148,8 +2150,8 @@ export default function Marketplace() {
             description={
               <>
                 Your purchase and deposit of{' '}
-                <span className="font-bold">1.5857437474 ETH</span>{' '}
-                have been successfully processed.
+                <span className='font-bold'>1.5857437474 ETH</span> have been
+                successfully processed.
               </>
             }
             status='success'
