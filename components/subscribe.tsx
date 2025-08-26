@@ -1,38 +1,48 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { useState } from "react";
-import type { Config } from "tailwindcss";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { SubscribeModal } from "@/components/ui/subscribemodal";
+import * as React from 'react';
+import { useState } from 'react';
+import type { Config } from 'tailwindcss';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { SubscribeModal } from '@/components/ui/subscribemodal';
 import {
   FSDialog,
   FSDialogContent,
   FSDialogTrigger,
-} from "@/components/ui/fsdialog";
-import { WalletProvider } from "@/components/ui/formcontext";
-import { SubscribeProvider } from "@/components/ui/subscribecontext";
+} from '@/components/ui/fsdialog';
+import { WalletProvider } from '@/components/ui/formcontext';
+import { SubscribeProvider } from '@/components/ui/subscribecontext';
 
 interface SubscribeProps {
-  variant?: "wealth" | "wallet" | "network";
+  variant?: 'wealth' | 'wallet' | 'network';
   provider: 'Safeheron' | 'DFNS' | 'Fireblocks';
+  disabled?: boolean;
 }
 
-const Subscribe: React.FC<SubscribeProps> = ({ variant = "wealth", provider }) => {
-  const buttonText = variant === "network" ? "Buy Now" : "Subscribe Now";
-  
+const Subscribe: React.FC<SubscribeProps> = ({
+  variant = 'wealth',
+  provider,
+  disabled = false,
+}) => {
+  const buttonText = variant === 'network' ? 'Buy Now' : 'Subscribe Now';
+
   return (
-    <div className="flex gap-3">
+    <div className='flex gap-3'>
       <SubscribeProvider>
         <WalletProvider>
           <FSDialog>
             <FSDialogTrigger asChild>
-              <Button variant="default" className="w-full" size="default">
+              <Button
+                variant='default'
+                className='w-full'
+                size='default'
+                disabled={disabled}
+              >
                 {buttonText}
               </Button>
             </FSDialogTrigger>
-            <FSDialogContent className="flex w-screen h-screen bg-gray-50">
+            <FSDialogContent className='flex w-screen h-screen bg-gray-50'>
               <SubscribeModal provider={provider} />
             </FSDialogContent>
           </FSDialog>

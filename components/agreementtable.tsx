@@ -77,7 +77,7 @@ const AgreementTable: React.FC<{
                         <div className="min-w-10 h-10 bg-white border border-gray-200 shadow-sm flex items-center justify-center rounded-xl">
                           <File06 className="w-5 h-5 text-gray-600" />
                         </div>
-                        <p className="flex gap-2 items-center text-sm text-gray-900 font-medium">
+                        <p className="flex gap-2 items-center text-sm text-gray-900 font-medium text-wrap">
                           {agreement.name}
                         </p>
                       </div>

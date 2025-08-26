@@ -27,14 +27,30 @@ const agreements: Agreement[] = [
     url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
   },
   {
+    name: "Virtual Currency Wallet Agreement - Safeheron",
+    nspName: "Bastion Cooperative",
+    nspUsername: "bastion",
+    dateSigned: "2024-02-28T14:45:00Z",
+    status: "Pending",
+    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
+  },
+  {
+    name: "Master Purchase & Subscription Agreement (Products and Services) + Annexes",
+    nspName: "Bastion Cooperative",
+    nspUsername: "bastion",
+    dateSigned: "2024-02-28T14:45:00Z",
+    status: "Pending",
+    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
+  },
+  /*{
     name: "Data Storage and Management Agreement",
     nspName: "Bastion Cooperative",
     nspUsername: "bastion",
     dateSigned: "2024-01-10T11:15:00Z",
     status: "Signed",
     url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
-  },
-  {
+  },*/
+ /* {
     name: "Decentralized Identity Service Agreement",
     nspName: "Bastion Cooperative",
     nspUsername: "bastion",
@@ -50,7 +66,7 @@ const agreements: Agreement[] = [
     status: "Signed",
     url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
   },
-  {
+  /*{
     name: "Blockchain Node Hosting Agreement",
     nspName: "Bastion Cooperative",
     nspUsername: "bastion",
@@ -73,7 +89,7 @@ const agreements: Agreement[] = [
     dateSigned: "2024-03-01T09:00:00Z",
     status: "Signed",
     url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
-  },
+  },*/
 ];
 
 export { agreements };

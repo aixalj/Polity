@@ -1266,12 +1266,10 @@ const Onboarding = () => {
               <UserCheck01 className="w-8 h-8 text-gray-700 stroke-[1.5]" />
             </div>
             <div className="text-xl mb-1">
-              <div>Identity Verification with Fractal ID</div>
+              <div>Identity Verification with Veriff</div>
             </div>
             <div className="text-gray-600 flex text-sm flex-col items-start gap-4 ">
-              Fractal ID empowers users by verifying their identities and
-              enabling access to permissioned goods and services on Polity
-              Network.
+            Veriff empowers users by verifying their identities and enabling access to permissioned goods and services on Polity Network.
             </div>
           </div>
 
@@ -1283,20 +1281,20 @@ const Onboarding = () => {
                     Step 1
                   </div>
                 </div>
-                <div className="w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
+                <div className="w-full h-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
                   <Image
                     src={fractal01}
                     alt="Fractal ID"
                     width={96}
-                    height={96}
+                    height={156}
                   />
                 </div>
                 <div className="flex flex-col gap-1">
                   <h3 className="text-sm font-medium text-gray-900">
-                    Sign up with Fractal ID
+                  Take photo of your ID
                   </h3>
                   <p className="text-xs text-gray-700">
-                    Set up your account instantly using your email address.
+                  Real-time feedback & auto-detection of document type.
                   </p>
                 </div>
               </div>
@@ -1306,20 +1304,20 @@ const Onboarding = () => {
                     Step 2
                   </div>
                 </div>
-                <div className="w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
+                <div className="w-full h-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
                   <Image
                     src={fractal02}
                     alt="Fractal ID"
                     width={96}
-                    height={96}
+                    height={156}
                   />
                 </div>
                 <div className="flex flex-col gap-1">
                   <h3 className="text-sm font-medium text-gray-900">
-                    Verify your identity
+                  Take a selfie
                   </h3>
                   <p className="text-xs text-gray-700">
-                    Get approved quickly through a secure and seamless process.
+                  Assisted capture ensures clarity and liveness without hassle.
                   </p>
                 </div>
               </div>{" "}
@@ -1329,21 +1327,20 @@ const Onboarding = () => {
                     Step 3
                   </div>
                 </div>
-                <div className="w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
+                <div className="w-full h-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
                   <Image
                     src={fractal03}
                     alt="Fractal ID"
                     width={96}
-                    height={96}
+                    height={156}
                   />
                 </div>
                 <div className="flex flex-col gap-1">
                   <h3 className="text-sm font-medium text-gray-900">
-                    Use your identity
+                  Get a decision
                   </h3>
                   <p className="text-xs text-gray-700">
-                    Get instant access to products and services which require
-                    verified identity.
+                  AI-powered verification provides results in seconds.
                   </p>
                 </div>
               </div>
@@ -1356,7 +1353,7 @@ const Onboarding = () => {
           </Link>
           <Link target="_blank" href="https://web.fractal.id/">
             <Button>
-              Continue to Fractal ID <LinkExternal01 className="w-5 h-5" />
+              Continue to Veriff <LinkExternal01 className="w-5 h-5" />
             </Button>
           </Link>
         </div>

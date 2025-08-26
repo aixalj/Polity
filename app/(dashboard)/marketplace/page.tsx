@@ -811,9 +811,9 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Fireblocks</h3>
                       </div>
-                      {/* <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                       <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
                         Coming soon!
-                      </div> */}
+                      </div> 
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
                       Battle-tested and flexible wallet infrastructure with
@@ -828,11 +828,11 @@ export default function Marketplace() {
                     </a>
 
                     <div className='group mb-2'>
-                      <p className='text-sm text-gray-800 mb-1'>
+                      <p className='text-sm text-gray-800 mb-1 hidden'>
                         Subscribe to a new Wallet
                       </p>
 
-                      <div className='flex flex-row'>
+                      <div className='flex flex-row hidden'>
                         <TooltipProvider>
                           <Tooltip>
                             <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
@@ -901,18 +901,15 @@ export default function Marketplace() {
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
-                      </div>
-                    </div>
+                      </div> 
+                    </div> 
 
-                    <div className='w-full flex justify-between mt-2 mb-4'>
+                    <div className='w-full flex justify-between mt-[4.5rem] mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>Starting from</p>
+                        <p className='text-xs text-gray-500 hidden'>Starting from</p>
                         <div className='flex items-end '>
-                          <p className='text-xl font-semibold text-gray-900'>
-                            9.99 USDT
-                          </p>
-                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
-                            each/mo
+                        <p className='text-xl font-semibold text-gray-900'>
+                            Unavailable
                           </p>
                         </div>
                       </div>
@@ -927,7 +924,7 @@ export default function Marketplace() {
                     </div>
 
                     <div className='mt-auto'>
-                      <Subscribe variant='wealth' provider='Fireblocks' />
+                      <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
                     </div>
                   </div>
                 </div>
@@ -1904,9 +1901,9 @@ export default function Marketplace() {
                           </div>
                         </div>
                       </div>
-                      {/* <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
-                        Active wallet
-                      </div> */}
+                       <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                        Coming soon!
+                      </div> 
                     </div>
                     <div>
                       <h3 className='text-2xl font-medium'>AML Risk Report</h3>
@@ -1936,7 +1933,7 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <Link href='/marketplace/lukka/report'>
-                      <Button className='w-full'>View Options</Button>
+                      <Button className='w-full' variant='outline' disabled={true}>Unavailable</Button>
                     </Link>
                   </div>
                 </div>
