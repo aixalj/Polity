@@ -11,36 +11,36 @@ interface Agreement {
 // Create an array of simulated agreements
 const agreements: Agreement[] = [
   {
-    name: "Network Service Agreement",
-    nspName: "Bastion Cooperative",
-    nspUsername: "bastion",
-    dateSigned: "2024-03-15T09:30:00Z",
-    status: "Signed",
-    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
+    name: 'Network Service Agreement',
+    nspName: 'Bastion Cooperative',
+    nspUsername: 'bastion',
+    dateSigned: '2024-03-15T09:30:00Z',
+    status: 'Signed',
+    url: 'https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf',
   },
   {
-    name: "Virtual Currency Wallet Agreement - DFNS",
-    nspName: "Bastion Cooperative",
-    nspUsername: "bastion",
-    dateSigned: "2024-02-28T14:45:00Z",
-    status: "Pending",
-    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
+    name: 'Virtual Currency Wallet Agreement - DFNS',
+    nspName: 'Bastion Cooperative',
+    nspUsername: 'bastion',
+    dateSigned: '2024-02-28T14:45:00Z',
+    status: 'Pending',
+    url: 'https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf',
   },
   {
-    name: "Virtual Currency Wallet Agreement - Safeheron",
-    nspName: "Bastion Cooperative",
-    nspUsername: "bastion",
-    dateSigned: "2024-02-28T14:45:00Z",
-    status: "Pending",
-    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
+    name: 'Virtual Currency Wallet Agreement - Safeheron',
+    nspName: 'Bastion Cooperative',
+    nspUsername: 'bastion',
+    dateSigned: '2024-02-28T14:45:00Z',
+    status: 'Pending',
+    url: 'https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf',
   },
   {
-    name: "Master Purchase & Subscription Agreement (Products and Services) + Annexes",
-    nspName: "Bastion Cooperative",
-    nspUsername: "bastion",
-    dateSigned: "2024-02-28T14:45:00Z",
-    status: "Pending",
-    url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
+    name: 'Master Purchase & Subscription Agreement (Products and Services) + Annexes',
+    nspName: 'Bastion Cooperative',
+    nspUsername: 'bastion',
+    dateSigned: '2024-02-28T14:45:00Z',
+    status: 'Pending',
+    url: 'https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf',
   },
   /*{
     name: "Data Storage and Management Agreement",
@@ -50,7 +50,7 @@ const agreements: Agreement[] = [
     status: "Signed",
     url: "https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf",
   },*/
- /* {
+  /* {
     name: "Decentralized Identity Service Agreement",
     nspName: "Bastion Cooperative",
     nspUsername: "bastion",
@@ -92,5 +92,21 @@ const agreements: Agreement[] = [
   },*/
 ];
 
-export { agreements };
+// Function to get agreements filtered by path
+const getAgreementsByPath = (pathname?: string): Agreement[] => {
+  if (pathname?.includes('/uniapp')) {
+    // For uniapp routes, hide the "Master Purchase & Subscription Agreement"
+    return agreements.filter(
+      (agreement) =>
+        ![
+          'Master Purchase & Subscription Agreement (Products and Services) + Annexes',
+          'Virtual Currency Wallet Agreement - Safeheron',
+          'Virtual Currency Wallet Agreement - DFNS',
+        ].some((name) => agreement.name.includes(name))
+    );
+  }
+  return agreements;
+};
+
+export { agreements, getAgreementsByPath };
 export type { Agreement };
