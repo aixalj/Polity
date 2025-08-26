@@ -28,9 +28,9 @@ import { DotLottiePlayer, Controls } from "@dotlottie/react-player";
 import "@dotlottie/react-player/dist/index.css";
 
 import Image from "next/image";
-import fractal01 from "@/public/fractal/01.png";
-import fractal02 from "@/public/fractal/02.png";
-import fractal03 from "@/public/fractal/03.png";
+import veriff01 from "@/public/veriff/01.png";
+import veriff02 from "@/public/veriff/02.png";
+import veriff03 from "@/public/veriff/03.png";
 
 import {
   useFormField,
@@ -1281,12 +1281,13 @@ const Onboarding = () => {
                     Step 1
                   </div>
                 </div>
-                <div className="w-full h-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
+                <div className="w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
                   <Image
-                    src={fractal01}
-                    alt="Fractal ID"
+                    src={veriff01}
+                    alt="Veriff ID"
+                    className="w-full h-full object-contain"
                     width={96}
-                    height={156}
+                    height={96}
                   />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -1304,12 +1305,13 @@ const Onboarding = () => {
                     Step 2
                   </div>
                 </div>
-                <div className="w-full h-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
+                <div className="w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
                   <Image
-                    src={fractal02}
-                    alt="Fractal ID"
+                    src={veriff02}
+                    alt="Veriff ID"
+                    className="w-full h-full object-contain"
                     width={96}
-                    height={156}
+                    height={96}
                   />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -1327,12 +1329,13 @@ const Onboarding = () => {
                     Step 3
                   </div>
                 </div>
-                <div className="w-full h-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
+                <div className="w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]">
                   <Image
-                    src={fractal03}
-                    alt="Fractal ID"
+                    src={veriff03}
+                    alt="Veriff ID"
+                    className="w-full h-full object-contain"
                     width={96}
-                    height={156}
+                    height={96}
                   />
                 </div>
                 <div className="flex flex-col gap-1">
