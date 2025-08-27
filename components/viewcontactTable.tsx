@@ -18,13 +18,11 @@ import { useState, useEffect } from 'react';
 
 import { createClient } from '@supabase/supabase-js';
 
-/*const supabaseUrl = 'https://ilzanfrmzylbvkoyhefz.supabase.co';
+const supabaseUrl = 'https://ilzanfrmzylbvkoyhefz.supabase.co';
 const supabaseKey =
   process.env.SUPABASE_KEY ||
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlsemFuZnJtenlsYnZrb3loZWZ6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxNTAxNTg2MCwiZXhwIjoyMDMwNTkxODYwfQ.NUkkfYlSq3iHkr1hjIK3uMev7VzKt6F_2fqTne4JKNU';
-const supabase = createClient(supabaseUrl, supabaseKey);*/
-
-import { supabase } from '@/lib/supabase-browser';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 import { Progress } from '@/components/ui/progress';
 
