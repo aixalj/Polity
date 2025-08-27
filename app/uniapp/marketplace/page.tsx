@@ -1206,8 +1206,8 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>DFNS</h3>
                       </div>
-                      <div className='hidden bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
-                        Active wallet
+                      <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                        Upgrade to SuperApp
                       </div>
                     </div>
                     <p className='text-sm text-gray-600 mt-2 line-clamp-2'>
@@ -1301,6 +1301,288 @@ export default function Marketplace() {
                     <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
                     </div>
                   </div>
+
+                  <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
+                    <div className='w-full justify-between flex items-center pb-3'>
+                      <div className='flex flex-row gap-2.5 items-center'>
+                        <svg
+                          width='40'
+                          height='40'
+                          viewBox='0 0 40 40'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <g clip-path='url(#clip0_127_3951)'>
+                            <rect
+                              width='40'
+                              height='40'
+                              rx='11'
+                              fill='#11B799'
+                            />
+                            <path
+                              fill-rule='evenodd'
+                              clip-rule='evenodd'
+                              d='M15.8225 13.6245C15.8213 13.185 15.8201 12.7456 15.8201 12.3066L15.8245 12.3109V7.86242C15.8245 7.70857 15.8289 7.55472 15.8685 7.40087C15.952 7.07118 16.3212 6.89974 16.6245 7.06238C16.8047 7.1547 16.9586 7.28657 17.108 7.42284C17.199 7.50705 17.2899 7.59113 17.3809 7.67517C17.8215 8.08246 18.2612 8.48881 18.6948 8.90421C19.0059 9.20042 19.3313 9.48034 19.6571 9.7606C19.81 9.8921 19.9629 10.0237 20.1145 10.157C20.5003 10.5 20.8664 10.8603 21.233 11.2212C21.3551 11.3414 21.4772 11.4616 21.6002 11.5812C21.9518 11.9285 22.3166 12.2626 22.6902 12.5835C22.8094 12.6864 22.9218 12.7959 23.0348 12.906C23.1052 12.9746 23.1759 13.0434 23.2485 13.111C23.4558 13.3029 23.6617 13.4966 23.8678 13.6904C24.3083 14.1046 24.7492 14.5193 25.2044 14.9176C25.2627 14.9686 25.321 15.0195 25.3793 15.0703C25.9844 15.5986 26.5863 16.1241 27.1516 16.6935C27.7846 17.3322 28.4502 17.9381 29.1159 18.5441C29.4857 18.8807 29.8555 19.2173 30.2197 19.5596C30.6196 19.9332 31.0196 20.3112 31.4196 20.6893C31.7844 21.0321 31.991 21.4321 31.9734 21.9508C31.9635 22.2186 31.976 22.4888 31.9884 22.7577C31.9925 22.8465 31.9966 22.9351 31.9998 23.0234C31.9998 23.0295 31.9999 23.0357 31.9999 23.0419C32.0003 23.098 32.0007 23.1566 31.9691 23.2081C31.9163 23.296 31.8504 23.3531 31.7449 23.296C31.712 23.2785 31.6791 23.2615 31.6464 23.2446C31.5392 23.1892 31.4338 23.1348 31.3361 23.0674C30.8806 22.7429 30.4079 22.4453 29.9345 22.1473C29.773 22.0456 29.6115 21.9438 29.4505 21.841C28.9825 21.5414 28.5056 21.2485 28.0293 20.956C27.8346 20.8364 27.64 20.7169 27.4461 20.597L27.4403 20.5933C26.1368 19.7857 24.8333 18.9781 23.5254 18.1705C22.8514 17.7508 22.1751 17.3358 21.4982 16.9203C21.2392 16.7613 20.9801 16.6023 20.7211 16.443C20.7053 16.4343 20.6894 16.4254 20.6736 16.4166C20.6014 16.3762 20.5286 16.3355 20.4529 16.3067C20.2595 16.232 20.1672 16.2847 20.1057 16.4869C20.0969 16.5045 20.0925 16.5221 20.0925 16.5397C20.0266 17.1111 20.0705 17.6562 20.5145 18.0914C20.5789 18.1539 20.6432 18.2166 20.7074 18.2793C20.9322 18.4988 21.1567 18.718 21.3892 18.9266C22.1496 19.6123 22.8704 20.342 23.5825 21.0805C23.6096 21.1075 23.6346 21.1367 23.6589 21.165C23.6702 21.1781 23.6813 21.1911 23.6924 21.2036C24.0221 21.564 24.1759 21.986 24.1759 22.4783C24.1733 22.9846 24.1754 23.4893 24.1775 23.9943C24.1789 24.3312 24.1803 24.6682 24.1803 25.0059C24.1803 25.2301 24.1583 25.2433 23.9561 25.129C23.7627 25.0235 23.5913 24.8784 23.4331 24.729C23.1171 24.4261 22.7947 24.1289 22.472 23.8315C22.0406 23.4339 21.6088 23.0358 21.1914 22.6234C19.9171 21.3575 18.5986 20.1399 17.2782 18.9205C17.2185 18.8654 17.1589 18.8103 17.0992 18.7551C16.9959 18.6584 16.8904 18.5639 16.7849 18.4694C16.6794 18.3749 16.574 18.2804 16.4707 18.1837C16.0443 17.7837 15.8069 17.3089 15.8157 16.7023C15.828 15.6775 15.8253 14.6506 15.8225 13.6245ZM24.1583 29.8852H24.1188H24.1144V32.0831C24.1144 32.2677 24.0924 32.4524 24.0484 32.6282C23.9693 32.9359 23.7451 33.0678 23.4463 32.9667C23.2485 32.9007 23.0595 32.7996 22.9056 32.6502C22.6836 32.4392 22.4606 32.2282 22.2375 32.0172C22.0144 31.8062 21.7914 31.5952 21.5694 31.3842C20.5233 30.3841 19.4428 29.4212 18.3626 28.4586C18.104 28.228 17.8453 27.9975 17.5871 27.7665C17.2132 27.4314 16.8551 27.0823 16.4961 26.7324C16.2854 26.527 16.0743 26.3213 15.8597 26.1181C14.8839 25.1905 13.8993 24.2762 12.8752 23.4015C12.2085 22.8305 11.5791 22.2223 10.9497 21.6141C10.7699 21.4404 10.59 21.2666 10.4093 21.0937C10.0821 20.7833 9.7509 20.4768 9.4201 20.1707C9.14659 19.9176 8.87333 19.6648 8.60278 19.4101C8.47091 19.287 8.34784 19.1464 8.23795 19.0013C8.07972 18.7947 7.99181 18.5617 8.0006 18.2892C8.01002 17.9973 8.00823 17.7032 8.00643 17.4084C8.00571 17.2903 8.00499 17.1722 8.00499 17.054C8.00499 16.8825 8.04016 16.8562 8.1984 16.8913C8.2907 16.9089 8.36982 16.9485 8.44894 17.0012C10.0709 18.065 11.6928 19.1244 13.3191 20.1838C13.6756 20.4153 14.0329 20.6461 14.39 20.8768C14.887 21.1979 15.3836 21.5187 15.8773 21.841C16.3473 22.1483 16.8159 22.4564 17.2842 22.7644C17.9544 23.2051 18.6242 23.6455 19.2969 24.0828C19.7012 24.345 20.1071 24.6056 20.5137 24.8665C20.7614 25.0255 21.0094 25.1846 21.2573 25.3444C21.6419 25.5928 22.0254 25.8422 22.4089 26.0917C22.7924 26.3411 23.1759 26.5906 23.5605 26.839C23.5957 26.8607 23.6302 26.8838 23.6648 26.9069C23.7211 26.9444 23.7776 26.9821 23.8374 27.0148C24.0572 27.1379 24.1583 27.3269 24.1583 27.5775V29.8852Z'
+                              fill='white'
+                            />
+                          </g>
+                          <rect
+                            x='0.5'
+                            y='0.5'
+                            width='39'
+                            height='39'
+                            rx='10.5'
+                            stroke='#D0D5DD'
+                          />
+                          <defs>
+                            <clipPath id='clip0_127_3951'>
+                              <rect
+                                width='40'
+                                height='40'
+                                rx='11'
+                                fill='white'
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+
+                        <h3 className='text-2xl font-medium'>Safeheron</h3>
+                      </div>
+                      <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                        Upgrade to SuperApp
+                      </div>
+                    </div>
+                    <p className='text-sm text-gray-600 mt-2'>
+                      An institutional-grade MPC self-custody platform for
+                      digital assets.
+
+                    </p>
+                    <a
+                      href='https://safeheron.com'
+                      target='_blank'
+                      className='text-sm my-2 cursor-pointer font-semibold text-teal-600'
+                    >
+                      Learn more about Safeheron
+                    </a>
+                    <div className='group mb-2 hidden'>
+                      <p className='text-sm text-gray-800 mb-1'>
+                        Available Networks
+                      </p>
+                      <div className='flex flex-row'>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/icons/networks/BTC.svg'
+                                alt='BTC'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>BTC</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/icons/networks/ETH.svg'
+                                alt='ETH'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>ETH</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/icons/networks/MATIC.svg'
+                                alt='MATIC'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Polygon</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                    </div>
+                    <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
+                      <div className='flex flex-col '>
+                        <p className='text-xs text-gray-500 font-medium '>Please upgrade to SuperApp</p>
+                        <div className='flex items-end '>
+                        <p className='text-xl font-semibold text-gray-900'>
+                            Unavailable
+                          </p>
+                        </div>
+                      </div>
+                      <div className='flex flex-col items-end'>
+                        <p className='text-xs text-gray-500'>Wallets</p>
+                        <div className='flex items-end '>
+                          <p className='text-md font-medium text-gray-800'>
+                            0/9
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='mt-auto'>
+                    <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
+                    </div>
+                  </div>
+                  <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
+                    <div className='w-full justify-between flex items-center pb-3'>
+                      <div className='flex flex-row gap-2.5 items-center'>
+                        <svg
+                          width='40'
+                          height='40'
+                          viewBox='0 0 40 40'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <g clip-path='url(#clip0_127_5074)'>
+                            <rect width='40' height='40' rx='11' fill='white' />
+                            <path
+                              d='M31.1946 8C31.7248 8 32.1546 8.42981 32.1546 8.96V31.04C32.1546 31.5702 31.7248 32 31.1946 32H8.80546C8.27527 32 7.84546 31.5702 7.84546 31.04V8.96C7.84546 8.42981 8.27527 8 8.80546 8H31.1946ZM20 14.6667L13.2474 25.3333H26.7525L20 14.6667Z'
+                              fill='#14223D'
+                            />
+                          </g>
+                          <rect
+                            x='0.5'
+                            y='0.5'
+                            width='39'
+                            height='39'
+                            rx='10.5'
+                            stroke='#D0D5DD'
+                          />
+                          <defs>
+                            <clipPath id='clip0_127_5074'>
+                              <rect
+                                width='40'
+                                height='40'
+                                rx='11'
+                                fill='white'
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+
+                        <h3 className='text-2xl font-medium'>Fireblocks</h3>
+                      </div>
+                       <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                        Coming soon!
+                      </div>
+                    </div>
+                    <p className='text-sm text-gray-600 mt-2'>
+                      Battle-tested and flexible wallet infrastructure with
+                      multi-layer security.
+                    </p>
+                    <a
+                      href='https://www.fireblocks.com/'
+                      target='_blank'
+                      className='text-sm my-2 cursor-pointer font-semibold text-teal-600'
+                    >
+                      Learn more about Fireblocks
+                    </a>
+
+                    <div className='group mb-2 hidden'>
+                      <p className='text-sm text-gray-800 mb-1'>
+                        Available Networks
+                      </p>
+                      <div className='flex flex-row'>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/icons/networks/BTC.svg'
+                                alt='BTC'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>BTC</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/icons/networks/ETH.svg'
+                                alt='ETH'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>ETH</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/icons/networks/MATIC.svg'
+                                alt='MATIC'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Polygon</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                    </div>
+                    <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
+                      <div className='flex flex-col '>
+                        <p className='text-xs text-gray-500'>-</p>
+                        <div className='flex items-end '>
+                        <p className='text-xl font-semibold text-gray-900'>
+                            Unavailable
+                          </p>
+                        </div>
+                      </div>
+                      <div className='flex flex-col items-end'>
+                        <p className='text-xs text-gray-500'>Wallets</p>
+                        <div className='flex items-end '>
+                          <p className='text-md font-medium text-gray-800'>
+                            0/9
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='mt-auto'>
+                      <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
+                    </div>
+                  </div>
+
+
+
+
                 </div>
               </div>
             </div>

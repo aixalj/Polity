@@ -1500,9 +1500,9 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Fireblocks</h3>
                       </div>
-                      {/* <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                      <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
                         Coming soon!
-                      </div> */}
+                      </div> 
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
                       Battle-tested and flexible wallet infrastructure with
@@ -1516,7 +1516,7 @@ export default function Marketplace() {
                       Learn more about Fireblocks
                     </a>
 
-                    <div className='group mb-2'>
+                    <div className='group mb-2 hidden'>
                       <p className='text-sm text-gray-800 mb-1'>
                         Available Networks
                       </p>
@@ -1574,22 +1574,19 @@ export default function Marketplace() {
                         </TooltipProvider>
                       </div>
                     </div>
-                    <div className='w-full flex justify-between mt-2 mb-4'>
+
+
+                    <div className='w-full flex justify-between mt-[4rem] mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>
-                          Add Network Account
-                        </p>
+                        <p className='text-xs text-gray-500'>-</p>
                         <div className='flex items-end '>
-                          <p className='text-xl font-semibold text-gray-900'>
-                            1.99 USDT
-                          </p>
-                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
-                            each/mo
+                        <p className='text-xl font-semibold text-gray-900'>
+                            Unavailable
                           </p>
                         </div>
                       </div>
                       <div className='flex flex-col items-end'>
-                        <p className='text-xs text-gray-500'>Total</p>
+                        <p className='text-xs text-gray-500'>Wallets</p>
                         <div className='flex items-end '>
                           <p className='text-md font-medium text-gray-800'>
                             0/9
@@ -1597,8 +1594,10 @@ export default function Marketplace() {
                         </div>
                       </div>
                     </div>
+
+
                     <div className='mt-auto'>
-                      <Subscribe variant='network' provider='Fireblocks' />
+                      <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
                     </div>
                   </div>
                 </div>
