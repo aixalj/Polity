@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
   Collapsible,
@@ -92,12 +92,25 @@ const walletSetupLinks = [
 
 const OnboardSideBar = () => {
   const pathname = usePathname();
+  const [showWalletCheckIcon, setShowWalletCheckIcon] = useState(false);
 
   const isWalletSection = pathname.startsWith('/onboarding/uniapp/wallet');
   const isAvatarSection =
     pathname.startsWith('/onboarding/uniapp') && !isWalletSection;
   const isInstallationPage = pathname === '/onboarding/uniapp/installation';
   const isWalletSetupPage = pathname === '/onboarding/uniapp/wallet/setup';
+
+  useEffect(() => {
+    if (isWalletSetupPage) {
+      const timer = setTimeout(() => {
+        setShowWalletCheckIcon(true);
+      }, 3000); // 3 seconds
+
+      return () => clearTimeout(timer);
+    } else {
+      setShowWalletCheckIcon(false);
+    }
+  }, [isWalletSetupPage]);
 
   const isLinkComplete = (currentPath: string, linkHref: string) => {
     if (isInstallationPage) {
@@ -193,7 +206,7 @@ const OnboardSideBar = () => {
                 WALLET SETUP
                 <div className='w-full bg-gray-300 h-[1px]'></div>
                 <div className='min-w-5 h-5 rounded-full border border-gray-300 bg-white'>
-                  {isWalletSetupPage && (
+                  {showWalletCheckIcon && (
                     <Image src={CheckIcon} alt='Check' width={20} height={20} />
                   )}
                 </div>
