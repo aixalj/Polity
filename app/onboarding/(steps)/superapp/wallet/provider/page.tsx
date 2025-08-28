@@ -30,6 +30,7 @@ export default function Agreement() {
       description:
         'Network institutional-grade multi-party computation (MPC) wallet. Built on DFNS user infrastructure.',
       learnMoreUrl: 'https://www.dfns.co/',
+      available: true,
       features: [
         'MPC-based cryptography eliminates the potential risk of a single point of failure on private keys.',
         'Zero-trust security architecture defends against third-party malicious acts.',
@@ -49,6 +50,7 @@ export default function Agreement() {
       description:
         'An institutional-grade MPC self-custody platform for digital assets.',
       learnMoreUrl: 'https://www.safeheron.com',
+      available: true,
       features: [
         'Utilizes MPC for distributed key management, increasing security by dividing key control.',
         'Securely connect to dApps, flexibly access EVM and non-EVM chains.',
@@ -68,6 +70,7 @@ export default function Agreement() {
       description:
         'Battle-tested and flexible wallet infrastructure with multi-layer security.',
       learnMoreUrl: 'https://www.fireblocks.com',
+      available: false,
       features: [
         'Secure wallets powered by MPC technology, eliminating single points of failure.',
         'Robust security with compliance features to meet regulatory and policy requirements.',
@@ -83,6 +86,7 @@ export default function Agreement() {
   ];
 
   const handleSelect = (provider: (typeof walletProviders)[0]) => {
+    if (!provider.available) return; // Don't allow selection of unavailable providers
     setSelectedProvider(
       selectedProvider?.name === provider.name ? null : provider
     );
@@ -125,14 +129,20 @@ export default function Agreement() {
                 />
                 <h3 className='text-xl font-medium'>{provider.name}</h3>
               </div>
-              <input
-                type='radio'
-                name='walletProvider'
-                id={`provider-${provider.name}`}
-                className='w-5 h-5 text-teal-600 border-gray-300 shadow-md rounded-full focus:ring-teal-500'
-                onChange={() => handleSelect(provider)}
-                checked={selectedProvider?.name === provider.name}
-              />
+              {!provider.available ? (
+                <span className='px-2 py-1 text-xs font-medium bg-purple-100 border border-purple-200 text-purple-800 rounded-md'>
+                  Coming Soon!
+                </span>
+              ) : (
+                <input
+                  type='radio'
+                  name='walletProvider'
+                  id={`provider-${provider.name}`}
+                  className='w-5 h-5 text-teal-600 border-gray-300 shadow-md rounded-full focus:ring-teal-500'
+                  onChange={() => handleSelect(provider)}
+                  checked={selectedProvider?.name === provider.name}
+                />
+              )}
             </div>
             <p className='text-sm px-6 text-gray-600 mt-2'>
               {provider.description}
@@ -163,7 +173,9 @@ export default function Agreement() {
                   </li>
                 ))}
               </ul>
-              <p className='text-sm font-medium text-gray-800 mt-4 mb-2'>Integrations</p>
+              <p className='text-sm font-medium text-gray-800 mt-4 mb-2'>
+                Integrations
+              </p>
               <div className='flex flex-wrap gap-2'>
                 {provider.integrations.map((integration, index) => (
                   <span
@@ -191,8 +203,11 @@ export default function Agreement() {
                 }
                 className='w-full'
                 onClick={() => handleSelect(provider)}
+                disabled={!provider.available}
               >
-                {selectedProvider?.name === provider.name
+                {!provider.available
+                  ? 'Unavailable'
+                  : selectedProvider?.name === provider.name
                   ? 'Selected'
                   : 'Select'}
               </Button>

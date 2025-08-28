@@ -13,7 +13,7 @@ export interface Subscription {
 
 // Create an array of simulated agreements
 export const subscriptions: Subscription[] = [
-  {
+  /*{
     id: '(0x7e...93f1)',
     name: 'Fireblocks - Premium',
     network: 'Fireblocks',
@@ -22,7 +22,7 @@ export const subscriptions: Subscription[] = [
     startTime: new Date('2023-07-18'),
     endTime: new Date('2023-08-18'),
     status: 'Inactive',
-  },
+  },*/
   {
     id: '(0x7e...93f1)',
     name: 'Safeheron - Premium',

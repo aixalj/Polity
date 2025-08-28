@@ -1883,9 +1883,9 @@ export default function Marketplace() {
                           </div>
                         </div>
                       </div>
-                      {/* <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
-                        Active wallet
-                      </div> */}
+                       <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                        Coming soon!
+                      </div> 
                     </div>
                     <div>
                       <h3 className='text-2xl font-medium'>AML Risk Report</h3>
