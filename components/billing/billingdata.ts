@@ -11,18 +11,18 @@ interface Billing {
 // Create an array of simulated agreements
 const billings: Billing[] = [
   {
-    name: "Onramper",
-    category: "Onramper",
-    amount: 10,
+    name: "DFNS",
+    category: "DFNS",
+    amount: 9.99,
 
     billingDate: new Date(Date.now() + 1355 * 1000),
     status: "Paid",
   },
 
   {
-    name: "Onramper",
-    category: "Onramper",
-    amount: 10,
+    name: "DFNS",
+    category: "DFNS",
+    amount: 9.99,
 
     billingDate: new Date(Date.now() + 13550 * 1000),
     status: "Paid",
