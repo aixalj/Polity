@@ -11,18 +11,18 @@ interface Billing {
 // Create an array of simulated agreements
 const billings: Billing[] = [
   {
-    name: "Lukka AML/KYC Risk Report",
-    category: "10 Reports Package",
-    amount: 31,
+    name: "Onramper",
+    category: "Onramper",
+    amount: 10,
 
     billingDate: new Date(Date.now() + 1355 * 1000),
     status: "Paid",
   },
 
   {
-    name: "Lukka AML/KYC Risk Report",
-    category: "25 Reports Package",
-    amount: 28,
+    name: "Onramper",
+    category: "Onramper",
+    amount: 10,
 
     billingDate: new Date(Date.now() + 13550 * 1000),
     status: "Paid",
