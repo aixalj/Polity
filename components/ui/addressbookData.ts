@@ -73,7 +73,7 @@ export const addresses: Address[] = [
     contactName: 'Jane Smith',
     addressname: 'Jane Work',
     network: 'Ethereum Network',
-    asset: '',
+    asset: 'Tether',
     address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
@@ -127,7 +127,7 @@ export const addresses: Address[] = [
     contactName: 'Emma Davis',
     addressname: 'Emma Summer',
     network: 'Polygon Network',
-    asset: '',
+    asset: 'USDC',
     address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
   {
@@ -136,7 +136,7 @@ export const addresses: Address[] = [
     contactName: 'Emma Davis',
     addressname: 'Emma Winter',
     network: 'Polygon Network',
-    asset: '',
+    asset: 'USDC',
     address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
@@ -190,7 +190,7 @@ export const addresses: Address[] = [
     contactName: 'Jenny Roberts',
     addressname: 'Jenny Personal',
     network: 'Bitcoin Network',
-    asset: '',
+    asset: 'Bitcoin',
     address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
   },
   {
@@ -218,6 +218,62 @@ export const addresses: Address[] = [
     addressname: 'Jenny Holiday',
     network: 'Bitcoin Network',
     asset: 'Bitcoin',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
+  },
+
+
+  {
+    id: '23',
+    contactId: '7',
+    contactName: 'Sophia Lee',
+    addressname: 'Sophia Business',
+    network: 'Ethereum Network',
+    asset: 'Tether',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
+  },
+  {
+    id: '24',
+    contactId: '7',
+    contactName: 'Sophia Lee',
+    addressname: 'Sophia Personal',
+    network: 'Ethereum Network',
+    asset: 'Tether',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
+  },
+  {
+    id: '25',
+    contactId: '8',
+    contactName: 'Daniel Wilson',
+    addressname: 'Daniel Work',
+    network: 'Bitcoin Network',
+    asset: 'Bitcoin',
+    address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
+  },
+  {
+    id: '26',
+    contactId: '8',
+    contactName: 'Daniel Wilson',
+    addressname: 'Daniel Investment',
+    network: 'Ethereum Network',
+    asset: 'Tether',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
+  },
+  {
+    id: '27',
+    contactId: '9',
+    contactName: 'Olivia Taylor',
+    addressname: 'Olivia Business',
+    network: 'Ethereum Network',
+    asset: 'Tether',
+    address: '0x1234567890abcdef1234567890abcdef12345678', // Full-length address
+  },
+  {
+    id: '28',
+    contactId: '9',
+    contactName: 'Olivia Taylor',
+    addressname: 'Olivia Personal',
+    network: 'Ethereum Network',
+    asset: 'Tether',
     address: '0xabcdef1234567890abcdef1234567890abcdef12', // Full-length address
   },
 ];
@@ -263,7 +319,7 @@ export const contacts: Contact[] = [
         contactName: 'John Doe',
         addressname: 'John Personal',
         network: 'Bitcoin Network',
-        asset: '',
+        asset: 'Bitcoin',
         address: '0xabcdef1234567890abcdef1234567890abcdef12',
       },
       {
@@ -298,7 +354,7 @@ export const contacts: Contact[] = [
         contactName: 'Jane Smith',
         addressname: 'Jane Holiday',
         network: 'Polygon Network',
-        asset: '',
+        asset: 'USDT',
         address: '0x1234567890abcdef1234567890abcdef12345678',
       },
       {
@@ -307,7 +363,7 @@ export const contacts: Contact[] = [
         contactName: 'Jane Smith',
         addressname: 'Jane Work',
         network: 'Ethereum Network',
-        asset: '',
+        asset: 'Tether',
         address: '0xabcdef1234567890abcdef1234567890abcdef12',
       },
       {
@@ -385,7 +441,7 @@ export const contacts: Contact[] = [
         contactName: 'Emma Davis',
         addressname: 'Emma Summer',
         network: 'Polygon Network',
-        asset: '',
+        asset: 'USDC',
         address: '0xabcdef1234567890abcdef1234567890abcdef12',
       },
       {
@@ -394,7 +450,7 @@ export const contacts: Contact[] = [
         contactName: 'Emma Davis',
         addressname: 'Emma Winter',
         network: 'Polygon Network',
-        asset: '',
+        asset: 'USDC',
         address: '0x1234567890abcdef1234567890abcdef12345678',
       },
     ],
@@ -440,6 +496,24 @@ export const contacts: Contact[] = [
         asset: 'Bitcoin',
         address: '0xabcdef1234567890abcdef1234567890abcdef12',
       },
+      {
+        id: '23',
+        contactId: '7',
+        contactName: 'Sophia Lee',
+        addressname: 'Sophia Business',
+        network: 'Ethereum Network',
+        asset: 'USDC',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+      {
+        id: '24',
+        contactId: '7',
+        contactName: 'Sophia Lee',
+        addressname: 'Sophia Personal',
+        network: 'Polygon Network',
+        asset: 'Tether',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
     ],
   },
   {
@@ -455,6 +529,24 @@ export const contacts: Contact[] = [
         addressname: 'Daniel Personal',
         network: 'Ethereum Network',
         asset: 'Tether',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+      {
+        id: '25',
+        contactId: '8',
+        contactName: 'Daniel Wilson',
+        addressname: 'Daniel Work',
+        network: 'Bitcoin Network',
+        asset: 'Bitcoin',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
+      {
+        id: '26',
+        contactId: '8',
+        contactName: 'Daniel Wilson',
+        addressname: 'Daniel Investment',
+        network: 'Polygon Network',
+        asset: 'USDC',
         address: '0x1234567890abcdef1234567890abcdef12345678',
       },
     ],
@@ -474,6 +566,24 @@ export const contacts: Contact[] = [
         asset: 'Bitcoin',
         address: '0xabcdef1234567890abcdef1234567890abcdef12',
       },
+      {
+        id: '27',
+        contactId: '9',
+        contactName: 'Olivia Taylor',
+        addressname: 'Olivia Business',
+        network: 'Ethereum Network',
+        asset: 'Tether',
+        address: '0x1234567890abcdef1234567890abcdef12345678',
+      },
+      {
+        id: '28',
+        contactId: '9',
+        contactName: 'Olivia Taylor',
+        addressname: 'Olivia Personal',
+        network: 'Polygon Network',
+        asset: 'USDC',
+        address: '0xabcdef1234567890abcdef1234567890abcdef12',
+      },
     ],
   },
   {
@@ -488,7 +598,7 @@ export const contacts: Contact[] = [
         contactName: 'Jenny Roberts',
         addressname: 'Jenny Personal',
         network: 'Bitcoin Network',
-        asset: '',
+        asset: 'Bitcoin',
         address: '0x1234567890abcdef1234567890abcdef12345678',
       },
       {
