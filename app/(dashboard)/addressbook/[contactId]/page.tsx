@@ -161,24 +161,24 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
   if (!contact) {
     return (
       <main className='w-full h-full'>
-        <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
-          <div className='w-full sticky top-0 backdrop-blur-md z-10 border-b border-gray-100 bg-white/60'>
-            <div className='py-2.5 relative flex justify-between w-full justify-items-stretch flex-row place-content-between px-6'>
-              <div className='flex items-center gap-2'>
-                <Button
-                  variant='link'
-                  size='icon'
-                  onClick={() => router.back()}
-                >
-                  <ArrowLeft className='h-4 w-4' />
-                </Button>
-              </div>
+      <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
+        <div className='w-full sticky top-0 backdrop-blur-md z-10 border-b border-gray-100 bg-white/60'>
+          <div className='py-2.5 relative flex justify-between w-full justify-items-stretch flex-row place-content-between px-6 max-sm:px-4'>
+            <div className='flex items-center gap-2'>
+              <Button
+                variant='link'
+                size='icon'
+                onClick={() => router.back()}
+              >
+                <ArrowLeft className='h-4 w-4' />
+              </Button>
             </div>
           </div>
         </div>
-      </main>
-    );
-  }
+      </div>
+    </main>
+  );
+}
 
   const toggleTooltip = (id: string) => {
     setOpenTooltipId((prevId) => (prevId === id ? null : id));
@@ -198,9 +198,9 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
 
   return (
     <main className='w-full h-full'>
-      <div className='x-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
+      <div className='x-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 max-sm:gap-0 overflow-scroll'>
         <div className='w-full sticky top-0 backdrop-blur-md z-10 bg-white/60'>
-          <div className='max-w-screen-xl mx-auto px-6 pt-6 pb-4'>
+          <div className='max-w-screen-xl mx-auto px-6 max-sm:px-4 pt-6 max-sm:pt-4 pb-4'>
             <nav aria-label='Breadcrumb' className='mb-4'>
               <ol className='flex items-center gap-1 text-xs text-gray-600'>
                 <li>
@@ -271,10 +271,10 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
           </div>
         </div>
 
-        <div className='max-w-screen-xl mx-auto px-6 w-full flex-grow overflow-y-auto'>
+        <div className='max-w-screen-xl mx-auto px-6 max-sm:px-4 w-full flex-grow overflow-y-auto'>
           <div className='relative w-full flex flex-col'>
-            <div className='py-2.5 relative flex justify-between w-full justify-items-stretch flex-row place-content-between'>
-              <div className='flex items-center gap-2'>
+            <div className='py-2.5 relative flex max-sm:flex-col justify-between max-sm:gap-3 w-full justify-items-stretch flex-row place-content-between px-4 max-sm:px-0'>
+              <div className='flex items-center max-sm:justify-start gap-2 max-sm:w-full'>
                 <Button
                   variant='link'
                   size='icon'
@@ -284,8 +284,11 @@ const ViewContact: React.FC<{ params: { contactId: string } }> = ({
                 </Button>
                 <h2 className='text-xl font-medium'>{contact.name}</h2>
               </div>
-              <div className='flex gap-3'>
-                <Button onClick={() => openModal(contact.id)}>
+              <div className='flex gap-3 max-sm:w-full'>
+                <Button
+                  className='max-sm:w-full'
+                  onClick={() => openModal(contact.id)}
+                >
                   Edit Contact
                 </Button>
               </div>

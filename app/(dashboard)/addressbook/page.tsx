@@ -201,177 +201,179 @@ export default function AddressBook() {
 
   return (
     <main className='w-full h-full'>
-      <div className='x-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
-        <Tabs
-          value={activeTab}
-          onValueChange={(value: string) => handleTabChange(value as TabType)}
-        >
-          <div className='w-full sticky top-0 backdrop-blur-md	z-10 bg-white/60'>
-            <div className='max-w-screen-xl mx-auto px-6 pt-6 pb-4'>
-              <nav aria-label='Breadcrumb' className='mb-4'>
-                <ol className='flex items-center gap-1 text-xs text-gray-600'>
-                  <li>
-                    <a
-                      href='#'
-                      className='block transition hover:text-gray-700 font-semibold'
-                    >
-                      Avatar Name
-                    </a>
-                  </li>
-                  <li className='rtl:rotate-180'>
-                    <svg
-                      width='20'
-                      height='20'
-                      viewBox='0 0 20 20'
-                      fill='none'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path
-                        d='M5.83337 18.3334L14.1667 1.66675'
-                        stroke='#D0D5DD'
-                        strokeWidth='1.66667'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                      />
-                    </svg>
-                  </li>
-                  <li>
-                    <a
-                      href='#'
-                      className='block transition text-gray-800 font-semibold'
-                    >
-                      Address Book
-                    </a>
-                  </li>
-                </ol>
-              </nav>
-              <div className='w-full mt-4 flex items-center justify-between'>
-                <div>
-                  <h1 className='text-3xl leading-tight font-medium'>
+    <div className='x-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
+      <Tabs
+        value={activeTab}
+        onValueChange={(value: string) => handleTabChange(value as TabType)}
+      >
+        <div className='w-full sticky top-0 backdrop-blur-md	z-10 bg-white/60'>
+          <div className='max-w-screen-xl mx-auto px-6 pt-6 pb-4'>
+            <nav aria-label='Breadcrumb' className='mb-4'>
+              <ol className='flex items-center gap-1 text-xs text-gray-600'>
+                <li>
+                  <a
+                    href='#'
+                    className='block transition hover:text-gray-700 font-semibold'
+                  >
+                    Avatar Name
+                  </a>
+                </li>
+                <li className='rtl:rotate-180'>
+                  <svg
+                    width='20'
+                    height='20'
+                    viewBox='0 0 20 20'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M5.83337 18.3334L14.1667 1.66675'
+                      stroke='#D0D5DD'
+                      strokeWidth='1.66667'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                  </svg>
+                </li>
+                <li>
+                  <a
+                    href='#'
+                    className='block transition text-gray-800 font-semibold'
+                  >
                     Address Book
-                  </h1>
-                </div>
-                <div className='flex gap-3'>
-                  <Button onClick={handleOpenNewContactModal}>
-                    New Contact
-                  </Button>{' '}
-                  {/* Open modal on click */}
-                </div>
+                  </a>
+                </li>
+              </ol>
+            </nav>
+            <div className='w-full mt-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-0'>
+              <div>
+                <h1 className='text-3xl leading-tight font-medium max-sm:text-2xl'>
+                  Address Book
+                </h1>
               </div>
-              <div className='w-full mt-4'>
-                <SearchBar
-                  placeholder='Search by contact name...'
-                  onSearch={handleSearchInput}
-                  value={searchTerm} // Pass the searchTerm to the SearchBar
-                  onErrorChange={(error) => {
-                    /* Handle error */
-                  }}
-                  onSelect={handleSelect} // Pass the handleSelect function
-                />
-              </div>
-              <div className='flex justify-between items-center w-full mt-4'>
-                <h2 className='text-xl font-medium'>
-                  {isValidTab(activeTab) &&
-                    (activeTab === 'contacts' ? 'All Contacts' : 'Addresses')}
-                </h2>
-                <TabsList className='bg-gray-100 p-2 rounded-xl'>
-                  <TabsTrigger
-                    value='contacts'
-                    className='rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm'
-                  >
-                    All Contacts
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value='addresses'
-                    className='rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm'
-                  >
-                    Addresses
-                  </TabsTrigger>
-                </TabsList>
+              <div className='flex gap-3'>
+                <Button
+                  onClick={handleOpenNewContactModal}
+                  className='w-full lg:w-auto'
+                >
+                  New Contact
+                </Button>
               </div>
             </div>
-          </div>
-          <div
-            ref={contentRef}
-            className='max-w-screen-xl mx-auto px-6 w-full flex-grow overflow-y-auto'
-          >
-            {contacts.length === 0 ? ( // Check if there are no contacts
-              <NoContacts onNewContact={handleOpenNewContactModal} /> // Render NoContacts component
-            ) : searchTerm && noResults ? (
-              <SearchError
-                message='No matching contacts found'
-                onClearSearch={handleClearSearch}
-                onNewContact={handleOpenNewContactModal}
+            <div className='w-full mt-4'>
+              <SearchBar
+                placeholder='Search by contact name...'
+                onSearch={handleSearchInput}
+                value={searchTerm} // Pass the searchTerm to the SearchBar
+                onErrorChange={(error) => {
+                  /* Handle error */
+                }}
+                onSelect={handleSelect} // Pass the handleSelect function
               />
-            ) : (
-              <>
-                <TabsContent value='contacts'>
-                  <div>
-                    <AllContactsTable
-                      contacts={filteredContacts} // Use filteredContacts
-                      onEdit={handleEdit} // Pass the handleEdit function here
-                      onView={handleView} // Add the onView function here
-                      onAddAddressButton={handleAddAddress} // This is for the button in the table
-                      searchTerm={searchTerm}
-                      // address={addresses}
-                    />
-                  </div>
-                </TabsContent>
-                <TabsContent value='addresses'>
-                  <div>
-                    <AddressesTable
-                      addresses={filteredAddresses} // Use filteredAddresses
-                      onEdit={handleEditAddress}
-                      onView={handleViewAddress}
-                      onToggleFavorite={handleToggleFavorite}
-                      searchTerm={searchTerm}
-                      favorites={favorites}
-                    />
-                  </div>
-                </TabsContent>
-              </>
-            )}
+            </div>
+            <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between w-full mt-4 gap-4 lg:gap-0'>
+              <h2 className='text-xl font-medium'>
+                {isValidTab(activeTab) &&
+                  (activeTab === 'contacts' ? 'All Contacts' : 'Addresses')}
+              </h2>
+              <TabsList className='bg-gray-100 p-2 rounded-xl w-full lg:w-auto'>
+                <TabsTrigger
+                  value='contacts'
+                  className='flex-1 lg:flex-initial rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm'
+                >
+                  All Contacts
+                </TabsTrigger>
+                <TabsTrigger
+                  value='addresses'
+                  className='flex-1 lg:flex-initial rounded-lg data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm'
+                >
+                  Addresses
+                </TabsTrigger>
+              </TabsList>
+            </div>
           </div>
-        </Tabs>
-      </div>
-
-      {/* Render the NewContact modal */}
-      <NewContact
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onAddContact={handleAddContact}
-        onAddAddress={handleNewAddAddress} // This is for the modal
-      />
-
-      {/* Render the AddAddress modal */}
-      <AddAddress
-        isOpen={isAddAddressModalOpen}
-        onClose={() => setIsAddAddressModalOpen(false)}
-        onAddAddress={handleNewAddAddress}
-        contactName={selectedContactName} // Pass the selected contact name
-      />
-
-      {/* Render the EditContact modal */}
-      <EditContactNameModal
-        isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        contactId={selectedContactId!} // Ensure selectedContactId is not null
-        onEditContact={handleEditContact} // Pass the function here
-      />
-
-      {/* Render the Notification */}
-      {showNotification && (
-        <div className='fixed bottom-4 left-4 max-w-sm z-50 rounded-[20px]'>
-          <Notification
-            title='Address added to favorites!'
-            description="You've successfully added this address to your favorites."
-            status='success'
-            className='shadow-2xl'
-            onClose={() => setShowNotification(false)} // Close notification
-          />
         </div>
-      )}
-    </main>
+        <div
+          ref={contentRef}
+          className='max-w-screen-xl mx-auto px-6 w-full flex-grow overflow-y-auto'
+        >
+          {contacts.length === 0 ? ( // Check if there are no contacts
+            <NoContacts onNewContact={handleOpenNewContactModal} /> // Render NoContacts component
+          ) : searchTerm && noResults ? (
+            <SearchError
+              message='No matching contacts found'
+              onClearSearch={handleClearSearch}
+              onNewContact={handleOpenNewContactModal}
+            />
+          ) : (
+            <>
+              <TabsContent value='contacts'>
+                <div>
+                  <AllContactsTable
+                    contacts={filteredContacts} // Use filteredContacts
+                    onEdit={handleEdit} // Pass the handleEdit function here
+                    onView={handleView} // Add the onView function here
+                    onAddAddressButton={handleAddAddress} // This is for the button in the table
+                    searchTerm={searchTerm}
+                    // address={addresses}
+                  />
+                </div>
+              </TabsContent>
+              <TabsContent value='addresses'>
+                <div>
+                  <AddressesTable
+                    addresses={filteredAddresses} // Use filteredAddresses
+                    onEdit={handleEditAddress}
+                    onView={handleViewAddress}
+                    onToggleFavorite={handleToggleFavorite}
+                    searchTerm={searchTerm}
+                    favorites={favorites}
+                  />
+                </div>
+              </TabsContent>
+            </>
+          )}
+        </div>
+      </Tabs>
+    </div>
+
+    {/* Render the NewContact modal */}
+    <NewContact
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      onAddContact={handleAddContact}
+      onAddAddress={handleNewAddAddress} // This is for the modal
+    />
+
+    {/* Render the AddAddress modal */}
+    <AddAddress
+      isOpen={isAddAddressModalOpen}
+      onClose={() => setIsAddAddressModalOpen(false)}
+      onAddAddress={handleNewAddAddress}
+      contactName={selectedContactName} // Pass the selected contact name
+    />
+
+    {/* Render the EditContact modal */}
+    <EditContactNameModal
+      isOpen={isEditModalOpen}
+      onClose={() => setIsEditModalOpen(false)}
+      contactId={selectedContactId!} // Ensure selectedContactId is not null
+      onEditContact={handleEditContact} // Pass the function here
+    />
+
+    {/* Render the Notification */}
+    {showNotification && (
+      <div className='fixed bottom-4 left-4 max-w-sm z-50 rounded-[20px]'>
+        <Notification
+          title='Address added to favorites!'
+          description="You've successfully added this address to your favorites."
+          status='success'
+          className='shadow-2xl'
+          onClose={() => setShowNotification(false)} // Close notification
+        />
+      </div>
+    )}
+  </main>
   );
 }
 
