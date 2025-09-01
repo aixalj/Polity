@@ -105,8 +105,8 @@ export default function Billings() {
         </div>
 
         <div>
-          <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
-            <div className="relative w-full flex flex-col pb-40">
+          <div className="max-w-screen-xl px-6 max-sm:px-4 w-full  mx-auto flex flex-col gap-3 h-full">
+            <div className="relative w-full flex flex-col pb-40 max-sm:pb-20">
               <BillingTable billings={billings} />
             </div>
           </div>

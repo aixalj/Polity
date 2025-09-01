@@ -87,88 +87,88 @@ export default function Bids() {
 
   return (
     <main className="w-full h-full">
-      <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
-        {/* Render the Notification */}
-        {notification && (
-          <div className="fixed bottom-4 left-4 max-w-sm z-50 rounded-[20px]">
-            <Notification
-              title={notification.title}
-              description="Your bid for 10 Lukka Reports has been recorded. Track your auction status in My Bids."
-              status="success"
-              className="shadow-2xl"
-              onClose={handleCloseNotification} // Close notification
-            />
-          </div>
-        )}
-
-        <div className="w-full sticky top-0 backdrop-blur-md	z-10  border-b border-gray-100 bg-white/60">
-          <div className=" max-w-screen-xl mx-auto p-6">
-            <nav aria-label="Breadcrumb">
-              <ol className="flex items-center gap-1 text-xs text-gray-600">
-                <li>
-                  <a href="#" className="block transition hover:text-gray-700">
-                    {" "}
-                    Marketplace{" "}
-                  </a>
-                </li>
-
-                <li className="rtl:rotate-180">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5.83337 18.3334L14.1667 1.66675"
-                      stroke="#D0D5DD"
-                      stroke-width="1.66667"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </li>
-                <li>
-                  <a href="#" className="block transition text-gray-800">
-                    {" "}
-                    My Bids{" "}
-                  </a>
-                </li>
-              </ol>
-            </nav>
-
-            <div className="w-full  mt-4 flex items-center justify-between">
-              {" "}
-              <div className="flex items-center gap-2">
-                {/* <Link href='/marketplace'>
-                  <Button size='icon' variant='ghost' className='text-gray-500'>
-                    <ArrowLeft className='w-4 h-4' />
-                  </Button>
-                </Link> */}
-                <h1 className="text-3xl font-medium leading-tight">My Bids</h1>{" "}
-              </div>
-            </div>
-          </div>
+    <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
+      {/* Render the Notification */}
+      {notification && (
+        <div className="fixed bottom-4 left-4 max-w-sm z-50 rounded-[20px]">
+          <Notification
+            title={notification.title}
+            description="Your bid for 10 Lukka Reports has been recorded. Track your auction status in My Bids."
+            status="success"
+            className="shadow-2xl"
+            onClose={handleCloseNotification} // Close notification
+          />
         </div>
+      )}
 
-        <div>
-          <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
-            <div className="relative w-full flex flex-col pb-40">
-              <BidTable bids={bids} addNotification={addNotification} />
-              <RebidModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                timeLeft="10:00"
-                currentBid={100} // Example current bid
-                highestBid={90} // Example highest bid
-                onConfirm={handleConfirmBid} // Pass the confirm function
-                addNotification={addNotification}
-              />
+      <div className="w-full sticky top-0 backdrop-blur-md	z-10   bg-white/60">
+        <div className=" max-w-screen-xl mx-auto p-6 max-sm:p-4">
+          <nav aria-label="Breadcrumb">
+            <ol className="flex items-center gap-1 text-xs text-gray-600">
+              <li>
+                <a href="#" className="block transition hover:text-gray-700">
+                  {" "}
+                  Marketplace{" "}
+                </a>
+              </li>
+
+              <li className="rtl:rotate-180">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.83337 18.3334L14.1667 1.66675"
+                    stroke="#D0D5DD"
+                    stroke-width="1.66667"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </li>
+              <li>
+                <a href="#" className="block transition text-gray-800">
+                  {" "}
+                  My Bids{" "}
+                </a>
+              </li>
+            </ol>
+          </nav>
+
+          <div className="w-full  mt-4 flex items-center justify-between">
+            {" "}
+            <div className="flex items-center gap-2">
+              {/* <Link href='/marketplace'>
+                <Button size='icon' variant='ghost' className='text-gray-500'>
+                  <ArrowLeft className='w-4 h-4' />
+                </Button>
+              </Link> */}
+              <h1 className="text-3xl font-medium leading-tight">My Bids</h1>{" "}
             </div>
           </div>
         </div>
       </div>
-    </main>
+
+      <div>
+        <div className="max-w-screen-xl px-6 max-sm:px-4 w-full  mx-auto flex flex-col gap-3 h-full">
+          <div className="relative w-full flex flex-col pb-40 max-sm:pb-20">
+            <BidTable bids={bids} addNotification={addNotification} />
+            <RebidModal
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              timeLeft="10:00"
+              currentBid={100} // Example current bid
+              highestBid={90} // Example highest bid
+              onConfirm={handleConfirmBid} // Pass the confirm function
+              addNotification={addNotification}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
   );
 }

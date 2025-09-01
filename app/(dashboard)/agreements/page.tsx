@@ -38,7 +38,7 @@ export default function Agreements() {
     <main className="w-full h-full">
       <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
         <div className="w-full sticky top-0 backdrop-blur-md	z-10  border-b border-gray-100 bg-white/60">
-          <div className=" max-w-screen-xl mx-auto p-6">
+          <div className=" max-w-screen-xl mx-auto p-6 max-sm:p-4">
             <nav aria-label="Breadcrumb">
               <ol className="flex items-center gap-1 text-xs text-gray-600">
                 <li>
@@ -84,7 +84,7 @@ export default function Agreements() {
             <div className="w-full  mt-4 flex items-center justify-between">
               {" "}
               <div>
-                <h1 className="text-3xl font-medium leading-tight">
+                <h1 className="text-3xl font-medium leading-tight max-sm:text-2xl">
                   Agreements
                 </h1>{" "}
               </div>
@@ -111,7 +111,7 @@ export default function Agreements() {
             </div>
           </div>
         </div>
-        <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
+        <div className="max-w-screen-xl px-6 max-sm:px-3 w-full  mx-auto flex flex-col gap-3 h-full">
           <AgreementTable agreements={getAllAgreements()} />
         </div>
       </div>
