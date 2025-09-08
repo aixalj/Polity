@@ -25,26 +25,34 @@ import Link from 'next/link';
 import { LinkExternal01 } from '@untitled-ui/icons-react';
 import OnramperModal from '@/components/onramper/onramper';
 import { useState, useEffect } from 'react';
-import { toast } from "sonner";
+import { toast } from 'sonner';
 import { Notification } from '@/components/ui/notification';
 
 export default function Marketplace() {
   const [isOnramperOpen, setIsOnramperOpen] = useState(false);
-  const [notifications, setNotifications] = useState<Array<{ title: string }>>([]);
+  const [notifications, setNotifications] = useState<Array<{ title: string }>>(
+    []
+  );
 
   const addNotification = (
     title: string,
     description: React.ReactNode,
-    status: "success" | "error" | "warning" | "info",
+    status: 'success' | 'error' | 'warning' | 'info',
     options?: {
-      position?: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
+      position?:
+        | 'top-left'
+        | 'top-center'
+        | 'top-right'
+        | 'bottom-left'
+        | 'bottom-center'
+        | 'bottom-right';
       duration?: number;
       style?: React.CSSProperties;
     }
   ) => {
     toast[status](title, {
       description: description,
-      ...options
+      ...options,
     });
   };
 
@@ -472,8 +480,8 @@ export default function Marketplace() {
                       </div> */}
                     </div>
                     <p className='text-sm text-gray-600 mt-2 line-clamp-2'>
-                      Network institutional-grade multi-party computation
-                      (MPC) wallet. Built on DFNS user infrastructure.
+                      Network institutional-grade multi-party computation (MPC)
+                      wallet. Built on DFNS user infrastructure.
                     </p>
                     <Link
                       href='https://www.dfns.co/'
@@ -811,9 +819,9 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Fireblocks</h3>
                       </div>
-                       <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                      {/* <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
                         Coming soon!
-                      </div> 
+                      </div> */}
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
                       Battle-tested and flexible wallet infrastructure with
@@ -828,11 +836,11 @@ export default function Marketplace() {
                     </a>
 
                     <div className='group mb-2'>
-                      <p className='text-sm text-gray-800 mb-1 hidden'>
+                      <p className='text-sm text-gray-800 mb-1'>
                         Subscribe to a new Wallet
                       </p>
 
-                     {/* <div className='flex flex-row hidden'>
+                      <div className='flex flex-row '>
                         <TooltipProvider>
                           <Tooltip>
                             <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
@@ -901,15 +909,18 @@ export default function Marketplace() {
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
-                      </div> */}
-                    </div> 
+                      </div>
+                    </div>
 
-                    <div className='w-full flex justify-between mt-[3.5rem] mb-4'>
+                    <div className='w-full flex justify-between mt-2 mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>-</p>
+                        <p className='text-xs text-gray-500'>Starting from</p>
                         <div className='flex items-end '>
-                        <p className='text-xl font-semibold text-gray-900'>
-                            Unavailable
+                          <p className='text-xl font-semibold text-gray-900'>
+                            9.99 USDT
+                          </p>
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
+                            each/mo
                           </p>
                         </div>
                       </div>
@@ -924,7 +935,7 @@ export default function Marketplace() {
                     </div>
 
                     <div className='mt-auto'>
-                      <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
+                      <Subscribe variant='wealth' provider='Fireblocks' />
                     </div>
                   </div>
                 </div>
@@ -1367,7 +1378,6 @@ export default function Marketplace() {
                     <p className='text-sm text-gray-600 mt-2'>
                       An institutional-grade MPC self-custody platform for
                       digital assets.
-
                     </p>
                     <a
                       href='https://safeheron.com'
@@ -1500,9 +1510,9 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Fireblocks</h3>
                       </div>
-                      <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                      {/* <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
                         Coming soon!
-                      </div> 
+                      </div> */}
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
                       Battle-tested and flexible wallet infrastructure with
@@ -1516,7 +1526,7 @@ export default function Marketplace() {
                       Learn more about Fireblocks
                     </a>
 
-                    <div className='group mb-2 hidden'>
+                    <div className='group mb-2'>
                       <p className='text-sm text-gray-800 mb-1'>
                         Available Networks
                       </p>
@@ -1575,18 +1585,22 @@ export default function Marketplace() {
                       </div>
                     </div>
 
-
-                    <div className='w-full flex justify-between mt-[4rem] mb-4'>
+                    <div className='w-full flex justify-between mt-2 mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>-</p>
+                        <p className='text-xs text-gray-500'>
+                          Add Network Account
+                        </p>
                         <div className='flex items-end '>
-                        <p className='text-xl font-semibold text-gray-900'>
-                            Unavailable
+                          <p className='text-xl font-semibold text-gray-900'>
+                            1.99 USDT
+                          </p>
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
+                            each/mo
                           </p>
                         </div>
                       </div>
                       <div className='flex flex-col items-end'>
-                        <p className='text-xs text-gray-500'>Wallets</p>
+                        <p className='text-xs text-gray-500'>Total</p>
                         <div className='flex items-end '>
                           <p className='text-md font-medium text-gray-800'>
                             0/9
@@ -1595,9 +1609,8 @@ export default function Marketplace() {
                       </div>
                     </div>
 
-
                     <div className='mt-auto'>
-                      <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
+                      <Subscribe variant='network' provider='Fireblocks' />
                     </div>
                   </div>
                 </div>
@@ -1693,7 +1706,7 @@ export default function Marketplace() {
                       Learn more about Onramper
                     </a>
 
-                    <Button 
+                    <Button
                       className='w-full'
                       onClick={() => setIsOnramperOpen(true)}
                     >
@@ -1900,9 +1913,9 @@ export default function Marketplace() {
                           </div>
                         </div>
                       </div>
-                       <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                      <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
                         Coming soon!
-                      </div> 
+                      </div>
                     </div>
                     <div>
                       <h3 className='text-2xl font-medium'>AML Risk Report</h3>
@@ -1932,7 +1945,13 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <Link href='/marketplace/lukka/report'>
-                      <Button className='w-full' variant='outline' disabled={true}>Unavailable</Button>
+                      <Button
+                        className='w-full'
+                        variant='outline'
+                        disabled={true}
+                      >
+                        Unavailable
+                      </Button>
                     </Link>
                   </div>
                 </div>
@@ -2435,14 +2454,14 @@ export default function Marketplace() {
         </Tabs>
       </div>
 
-      <OnramperModal 
+      <OnramperModal
         isOpen={isOnramperOpen}
         onClose={() => setIsOnramperOpen(false)}
         setNotifications={setNotifications}
       />
 
       {/* Add fixed positioning container for notifications */}
-      <div className="fixed bottom-4 left-4 z-50 flex flex-col gap-2 w-[416px]">
+      <div className='fixed bottom-4 left-4 z-50 flex flex-col gap-2 w-[416px]'>
         {notifications.map((notification, index) => (
           <Notification
             key={index}
@@ -2450,16 +2469,14 @@ export default function Marketplace() {
             description={
               <>
                 Your purchase and deposit of{' '}
-                <span className="font-bold">1.5857437474 ETH</span>{' '}
-                have been successfully processed.
+                <span className='font-bold'>1.5857437474 ETH</span> have been
+                successfully processed.
               </>
             }
-            status="success"
-            className="shadow-2xl"
+            status='success'
+            className='shadow-2xl'
             onClose={() => {
-              setNotifications((prev) =>
-                prev.filter((_, i) => i !== index)
-              );
+              setNotifications((prev) => prev.filter((_, i) => i !== index));
             }}
           />
         ))}

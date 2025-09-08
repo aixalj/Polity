@@ -70,7 +70,7 @@ export default function Agreement() {
       description:
         'Battle-tested and flexible wallet infrastructure with multi-layer security.',
       learnMoreUrl: 'https://www.fireblocks.com',
-      available: false,
+      available: true,
       features: [
         'Secure wallets powered by MPC technology, eliminating single points of failure.',
         'Robust security with compliance features to meet regulatory and policy requirements.',

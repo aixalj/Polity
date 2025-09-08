@@ -1483,8 +1483,8 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Fireblocks</h3>
                       </div>
-                       <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
-                        Coming soon!
+                       <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                        Upgrade to SuperApp
                       </div>
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
@@ -1559,7 +1559,7 @@ export default function Marketplace() {
                     </div>
                     <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>-</p>
+                        <p className='text-xs text-gray-500 font-medium '>Please upgrade to SuperApp</p>
                         <div className='flex items-end '>
                         <p className='text-xl font-semibold text-gray-900'>
                             Unavailable

@@ -26,8 +26,7 @@ export default function Installation() {
   return (
     <div className='w-full h-full flex flex-col gap-6'>
       <div
-        className='relative h-fit pt-24 items-center text-center gap-0 flex  
-flex-col  p-0     max-w-screen-sm mx-auto w-full'
+        className='relative h-fit pt-24 items-center text-center gap-0 flex flex-col p-0 max-w-screen-sm mx-auto w-full'
       >
         {/* <div className='relative  flex  w-full h-full'>
           {' '}
