@@ -34,14 +34,14 @@ const agreements: Agreement[] = [
     status: 'Pending',
     url: 'https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf',
   },
-  {
+  /*{
     name: 'Master Purchase & Subscription Agreement (Products and Services) + Annexes',
     nspName: 'Bastion Cooperative',
     nspUsername: 'bastion',
     dateSigned: '2024-02-28T14:45:00Z',
     status: 'Pending',
     url: 'https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf',
-  },
+  },*/
   /*{
     name: "Data Storage and Management Agreement",
     nspName: "Bastion Cooperative",
