@@ -1913,9 +1913,9 @@ export default function Marketplace() {
                           </div>
                         </div>
                       </div>
-                      <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
+                      {/* <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
                         Coming soon!
-                      </div>
+                      </div> */}
                     </div>
                     <div>
                       <h3 className='text-2xl font-medium'>AML Risk Report</h3>
@@ -1933,12 +1933,12 @@ export default function Marketplace() {
                     </a>
                     <div className='w-full flex justify-between mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>-</p>
+                        <p className='text-xs text-gray-500'>Starting from</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            Unavailable
+                            4.99 USDT
                           </p>
-                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5 hidden'>
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
                             each/mo
                           </p>
                         </div>
@@ -1947,10 +1947,10 @@ export default function Marketplace() {
                     <Link href='/marketplace/lukka/report'>
                       <Button
                         className='w-full'
-                        variant='outline'
-                        disabled={true}
+                        variant='default'
+                        
                       >
-                        Unavailable
+                       View Options
                       </Button>
                     </Link>
                   </div>
