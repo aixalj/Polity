@@ -1285,7 +1285,7 @@ const Onboarding = () => {
                 </div>
                 <div className='w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]'>
                   <Image
-                    src={veriff01}
+                    src='/veriff/01.png'
                     alt='Veriff ID'
                     className='w-full h-full object-contain rounded-xl border border-[#E8E9F4]'
                     width={200}
@@ -1311,7 +1311,7 @@ const Onboarding = () => {
                 </div>
                 <div className='w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]'>
                   <Image
-                    src={veriff02}
+                    src='/veriff/02.png'
                     alt='Veriff ID'
                     className='w-full h-full object-contain rounded-xl border border-[#E8E9F4]'
                     width={200}
@@ -1338,7 +1338,7 @@ const Onboarding = () => {
                 </div>
                 <div className='w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]'>
                   <Image
-                    src={veriff03}
+                    src='/veriff/03.png'
                     alt='Veriff ID'
                     className='w-full h-full object-contain rounded-xl border border-[#E8E9F4]'
                     width={200}
