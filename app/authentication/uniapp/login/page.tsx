@@ -18,13 +18,15 @@ export default function RegistrationPage() {
   const [email, setEmail] = useState('');
   const [notifications, setNotifications] = useState<NotificationType[]>([]);
   const [isLinkExpiredOpen, setIsLinkExpiredOpen] = useState(false);
+  const [isDynamicModalOpen, setIsDynamicModalOpen] = useState(false);
 
   // Example of showing error notification
   const handleContinue = () => {
     setNotifications([
       {
         title: 'Authorization Failed',
-        description: 'The email or password you entered is incorrect. Please try again.',
+        description:
+          'The email or password you entered is incorrect. Please try again.',
         status: 'error',
       },
       ...notifications,
@@ -34,6 +36,10 @@ export default function RegistrationPage() {
   const handleRequestLink = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsLinkExpiredOpen(true);
+  };
+
+  const handleDynamicClick = () => {
+    setIsDynamicModalOpen(true);
   };
 
   return (
@@ -72,14 +78,17 @@ export default function RegistrationPage() {
         </div>
 
         {/* Continue Button */}
-        <Link href='/onboarding/uniapp' className='w-full flex items-center justify-center'>
-        <Button 
-          variant='default' 
-          className='w-full max-w-md text-white mb-4'
-        //   onClick={handleContinue}
+        <Link
+          href='/onboarding'
+          className='w-full flex items-center justify-center'
         >
-          Continue
-        </Button>
+          <Button
+            variant='default'
+            className='w-full max-w-md text-white mb-4'
+            //   onClick={handleContinue}
+          >
+            Continue
+          </Button>
         </Link>
 
         {/* OR Divider */}
@@ -120,6 +129,20 @@ export default function RegistrationPage() {
             <Wallet02 className='w-4 h-4' />
             Continue with a wallet
           </Button>
+
+          <Button
+            variant='secondary'
+            className='w-full flex items-center justify-center gap-2 border border-gray-200 !bg-white !shadow-sm'
+            onClick={handleDynamicClick}
+          >
+            <Image
+              src='/Dynamic-Logo-1.svg'
+              alt='Dynamic'
+              width={20}
+              height={20}
+            />
+            Continue with Dynamic
+          </Button>
         </div>
 
         {/* Request Link */}
@@ -133,10 +156,34 @@ export default function RegistrationPage() {
       </div>
 
       {/* Link Expired Modal */}
-      <LinkExpired 
+      <LinkExpired
         isOpen={isLinkExpiredOpen}
         onClose={() => setIsLinkExpiredOpen(false)}
       />
+
+      {/* Dynamic Widget Modal */}
+      {isDynamicModalOpen && (
+        <div
+          className='fixed inset-0 z-50 flex items-center justify-center bg-[#F2F4F7]/50 backdrop-blur'
+          onClick={() => setIsDynamicModalOpen(false)}
+        >
+          <div
+            className='relative w-full h-full max-w-4xl max-h-[90vh] rounded-lg p-8'
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Dynamic Widget SVG */}
+            <div className='w-full h-full flex items-center justify-center'>
+              <Image
+                src='/Dynamic-Widget.svg'
+                alt='Dynamic Widget'
+                width={800}
+                height={600}
+                className='w-full h-full object-contain'
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Notifications */}
       <div className='fixed bottom-4 left-4 z-[100] flex flex-col gap-2 w-[430px] rounded-[20px]'>
