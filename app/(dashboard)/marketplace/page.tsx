@@ -1764,9 +1764,9 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>ScamSniffer</h3>
                       </div>
-                      {/* <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
+                      <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
                         Coming soon!
-                      </div> */}
+                      </div> 
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
                       All-in-One Web3 Anti-Scam Solution. Enhance anti-scam
@@ -1783,10 +1783,10 @@ export default function Marketplace() {
 
                     <div className='w-full flex justify-between mt-auto mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 hidden'>-</p>
+                        <p className='text-xs text-gray-500 '>-</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            Free
+                            Unavailable
                           </p>
                         </div>
                       </div>
