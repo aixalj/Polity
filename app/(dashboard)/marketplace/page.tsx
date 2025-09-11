@@ -1783,10 +1783,10 @@ export default function Marketplace() {
 
                     <div className='w-full flex justify-between mt-auto mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>-</p>
+                        <p className='text-xs text-gray-500 hidden'>-</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            Unavailable
+                            Free
                           </p>
                         </div>
                       </div>
