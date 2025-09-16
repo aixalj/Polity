@@ -79,7 +79,7 @@ export default function RegistrationPage() {
 
         {/* Continue Button */}
         <Link
-          href='/onboarding'
+          href='/onboarding/uniapp'
           className='w-full flex items-center justify-center'
         >
           <Button
