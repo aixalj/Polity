@@ -43,7 +43,7 @@ export default function Agreement() {
         { name: 'WalletConnect', icon: WalletConnect },
       ],
     },
-    {
+    /*{
       name: 'Safeheron',
       logo: SH,
       banner: SHBanner,
@@ -62,7 +62,7 @@ export default function Agreement() {
         { name: 'Blowfish', icon: Blowfish },
         { name: 'WalletConnect', icon: WalletConnect },
       ],
-    },
+    },*/
     {
       name: 'Fireblocks',
       logo: FB,
@@ -70,7 +70,7 @@ export default function Agreement() {
       description:
         'Battle-tested and flexible wallet infrastructure with multi-layer security.',
       learnMoreUrl: 'https://www.fireblocks.com',
-      available: false,
+      available: true,
       features: [
         'Secure wallets powered by MPC technology, eliminating single points of failure.',
         'Robust security with compliance features to meet regulatory and policy requirements.',
@@ -111,7 +111,7 @@ export default function Agreement() {
           </div>
         </div>
       </div>
-      <div className='w-full grid grid-cols-3 max-w-screen-xl mx-auto gap-6 justify-start'>
+      <div className='w-full grid grid-cols-2 max-w-screen-xl mx-auto gap-6 justify-start'>
         {walletProviders.map((provider, index) => (
           <div
             key={index}

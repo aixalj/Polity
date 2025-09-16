@@ -29,7 +29,7 @@ export default function Installation() {
         className='relative h-fit pt-24 items-center text-center gap-0 flex  
 flex-col  p-0     max-w-screen-sm mx-auto w-full'
       >
-        {/* <div className='relative  flex  w-full h-full'>
+         <div className='relative  flex  w-full h-full'>
           {' '}
           <Image
             className='absolute -top-12 left-0 w-full h-full'
@@ -61,8 +61,8 @@ flex-col  p-0     max-w-screen-sm mx-auto w-full'
               </div>
             </div>
           </div>
-        </div> */}
-        {/* <h1 className='text-xl font-medium mt-11'>
+        </div>
+         <h1 className='text-xl font-medium mt-11'>
           {isLoading
             ? 'Your Avatar Virtual Node is currently installing'
             : 'Avatar Virtual Node is installed'}
@@ -78,7 +78,7 @@ flex-col  p-0     max-w-screen-sm mx-auto w-full'
               <Button>Continue to Wallet Setup</Button>
             </Link>
           </div>
-        </> */}
+        </> 
       </div>
       <style jsx>{`
         .spinner {

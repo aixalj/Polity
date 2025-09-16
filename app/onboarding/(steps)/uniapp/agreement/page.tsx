@@ -125,9 +125,9 @@ export default function Agreement() {
         regarding its subject matter.
       </div>
       <div className="flex px-6 pt-6 pb-5 bg-white border-t border-gray-200 absolute bottom-0 w-full">
-        <Link href="/onboarding/uniapp/wallet/setup" className="w-full">
+        <Link href="/onboarding/uniapp/installation/" className="w-full">
           <Button className="min-w-full">Agree & Continue</Button>
-        </Link>
+        </Link> 
       </div>
     </OnboardingBlock>
   );
