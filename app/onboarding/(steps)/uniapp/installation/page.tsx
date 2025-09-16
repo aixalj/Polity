@@ -74,7 +74,7 @@ flex-col  p-0     max-w-screen-sm mx-auto w-full'
             Please wait while the installation completes.
           </p>
           <div className='inline-flex mx-auto gap-4'>
-            <Link href='/onboarding/uniapp/wallet/setup'>
+            <Link href='/onboarding/uniapp/wallet/provider'>
               <Button>Continue to Wallet Setup</Button>
             </Link>
           </div>

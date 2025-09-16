@@ -69,12 +69,12 @@ const avatarVirtualNodeLinks = [
 
 const walletSetupLinks = [
   {
-    href: '/onboarding/wallet/provider',
+    href: '/onboarding/uniapp/wallet/provider',
     icon: CreditCardSearch,
     text: 'Select Provider',
   },
   {
-    href: '/onboarding/wallet/customize',
+    href: '/onboarding/uniapp/wallet/customize',
     icon: CreditCardEdit,
     text: 'Customize Wallet',
   },
@@ -84,7 +84,7 @@ const walletSetupLinks = [
   //text: 'Confirm Wallet',
   //},
   {
-    href: '/onboarding/wallet/agreement',
+    href: '/onboarding/uniapp/wallet/agreement',
     icon: PencilLine,
     text: 'Sign Agreement',
   },
@@ -206,11 +206,38 @@ const OnboardSideBar = () => {
                 WALLET SETUP
                 <div className='w-full bg-gray-300 h-[1px]'></div>
                 <div className='min-w-5 h-5 rounded-full border border-gray-300 bg-white'>
-                  {showWalletCheckIcon && (
+                  {isWalletSetupPage && (
                     <Image src={CheckIcon} alt='Check' width={20} height={20} />
                   )}
                 </div>
               </li>
+              {isWalletSection &&
+                walletSetupLinks.map((link, index) => (
+                  <li key={index}>
+                    <Link
+                      className={`group focus:ring-0 ${
+                        pathname === link.href
+                          ? 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-800 shadow-sm'
+                          : isLinkComplete(pathname, link.href)
+                            ? 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-600 '
+                            : 'w-full outline-none focus:tap-highlight-transparent hover:text-black hover:bg-white hover:shadow-sm focus:tap-highlight-transparent focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-600 target:bg-white target:text-black border border-transparent '
+                      }`}
+                      href={link.href}
+                    >
+                      <link.icon className='w-5 h-5' />
+                      {link.text}
+                      {isLinkComplete(pathname, link.href) && (
+                        <Image
+                          src={CheckIcon}
+                          alt='Check'
+                          className='ml-auto'
+                          width={20}
+                          height={20}
+                        />
+                      )}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </div>
         </nav>
