@@ -1452,7 +1452,7 @@ export default function Marketplace() {
                         <p className='text-xs text-gray-500'>Starting from</p>
                         <div className='flex items-end '>
                         <p className='text-xl font-semibold text-gray-900'>
-                            9.99 USDT
+                            1.99 USDT
                           </p>
                         </div>
                       </div>
@@ -1467,7 +1467,7 @@ export default function Marketplace() {
                     </div>
 
                     <div className='mt-auto'>
-                    <Subscribe variant='wealth' provider='Fireblocks' />
+                    <Subscribe variant='network' provider='Fireblocks' />
                     </div>
                   </div>
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
