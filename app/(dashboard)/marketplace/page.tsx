@@ -177,7 +177,7 @@ export default function Marketplace() {
                   <TabsTrigger value='wallets'>Wallets</TabsTrigger>
                   <TabsTrigger value='network'>Network Accounts</TabsTrigger>
                   <TabsTrigger value='xchange'>X-change</TabsTrigger>
-                  <TabsTrigger value='security'>Security</TabsTrigger>
+                  <TabsTrigger value='security' className='hidden'>Security</TabsTrigger>
                   <TabsTrigger value='risk'>Risk</TabsTrigger>
                   <TabsTrigger value='analytics'>Analytics</TabsTrigger>
                   <TabsTrigger value='dApps'>dApps</TabsTrigger>
@@ -1723,7 +1723,7 @@ export default function Marketplace() {
             </div>
           </TabsContent>
 
-          <TabsContent value='security'>
+          <TabsContent value='security' className='hidden'>
             <div className='max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full'>
               <div className='relative w-full flex flex-col pb-40'>
                 <div className='py-4 relative flex w-full flex-row	'>
