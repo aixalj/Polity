@@ -196,7 +196,7 @@ export default function Marketplace() {
               </div>
             </div>
           </div>
-          <TabsContent value='wallets'>
+          <TabsContent value='wallets' className=''>
             <div className='max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full'>
               <div className='relative w-full flex flex-col pb-40'>
                 <div className='py-4 relative flex w-full flex-row	'>
