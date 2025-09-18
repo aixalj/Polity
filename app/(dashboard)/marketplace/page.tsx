@@ -609,6 +609,161 @@ export default function Marketplace() {
                       <Subscribe variant='wealth' provider='DFNS' />
                     </div>
                   </div>
+                  <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
+                    <div className='w-full justify-between flex items-center pb-3'>
+                      <div className='flex flex-row gap-2.5 items-center'>
+                        <svg
+                          width='40'
+                          height='40'
+                          viewBox='0 0 40 40'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <g clip-path='url(#clip0_127_5074)'>
+                            <rect width='40' height='40' rx='11' fill='white' />
+                            <path
+                              d='M31.1946 8C31.7248 8 32.1546 8.42981 32.1546 8.96V31.04C32.1546 31.5702 31.7248 32 31.1946 32H8.80546C8.27527 32 7.84546 31.5702 7.84546 31.04V8.96C7.84546 8.42981 8.27527 8 8.80546 8H31.1946ZM20 14.6667L13.2474 25.3333H26.7525L20 14.6667Z'
+                              fill='#14223D'
+                            />
+                          </g>
+                          <rect
+                            x='0.5'
+                            y='0.5'
+                            width='39'
+                            height='39'
+                            rx='10.5'
+                            stroke='#D0D5DD'
+                          />
+                          <defs>
+                            <clipPath id='clip0_127_5074'>
+                              <rect
+                                width='40'
+                                height='40'
+                                rx='11'
+                                fill='white'
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+
+                        <h3 className='text-2xl font-medium'>Fireblocks</h3>
+                      </div>
+                       {/*<div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                        Coming soon!
+                      </div> */}
+                    </div>
+                    <p className='text-sm text-gray-600 mt-2'>
+                      Battle-tested and flexible wallet infrastructure with
+                      multi-layer security.
+                    </p>
+                    <a
+                      href='https://www.fireblocks.com/'
+                      target='_blank'
+                      className='text-sm my-2 cursor-pointer font-semibold text-teal-600'
+                    >
+                      Learn more about Fireblocks
+                    </a>
+
+                    <div className='group mb-2'>
+                      <p className='text-sm text-gray-800 mb-1 '>
+                        Subscribe to a new Wallet
+                      </p>
+
+                      <div className='flex flex-row '>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/fireblock/fireblocks-blue.svg'
+                                alt='fireblock'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>BTC</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/fireblock/fireblocks-green.svg'
+                                alt='fireblock'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>ETH</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/fireblock/fireblocks-purple.svg'
+                                alt='fireblock'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Polygon</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/fireblock/fireblocks-yellow.svg'
+                                alt='fireblock'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Polygon</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div> 
+                    </div> 
+
+                    <div className='w-full flex justify-between mt-2 mb-4'>
+                      <div className='flex flex-col '>
+                        <p className='text-xs text-gray-500'>Starting from</p>
+                        <div className='flex items-end '>
+                        <p className='text-xl font-semibold text-gray-900'>
+                            9.99 USDT
+                          </p>
+                        </div>
+                      </div>
+                      <div className='flex flex-col items-end'>
+                        <p className='text-xs text-gray-500'>Wallets</p>
+                        <div className='flex items-end '>
+                          <p className='text-md font-medium text-gray-800'>
+                            0/1
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className='mt-auto'>
+                    <Subscribe variant='wealth' provider='Fireblocks' />
+                    </div>
+                  </div>
 
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
                     <div className='w-full justify-between flex items-center pb-3'>
@@ -772,161 +927,7 @@ export default function Marketplace() {
                       <Subscribe variant='wealth' provider='Safeheron' />
                     </div>
                   </div>
-                  <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
-                    <div className='w-full justify-between flex items-center pb-3'>
-                      <div className='flex flex-row gap-2.5 items-center'>
-                        <svg
-                          width='40'
-                          height='40'
-                          viewBox='0 0 40 40'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
-                        >
-                          <g clip-path='url(#clip0_127_5074)'>
-                            <rect width='40' height='40' rx='11' fill='white' />
-                            <path
-                              d='M31.1946 8C31.7248 8 32.1546 8.42981 32.1546 8.96V31.04C32.1546 31.5702 31.7248 32 31.1946 32H8.80546C8.27527 32 7.84546 31.5702 7.84546 31.04V8.96C7.84546 8.42981 8.27527 8 8.80546 8H31.1946ZM20 14.6667L13.2474 25.3333H26.7525L20 14.6667Z'
-                              fill='#14223D'
-                            />
-                          </g>
-                          <rect
-                            x='0.5'
-                            y='0.5'
-                            width='39'
-                            height='39'
-                            rx='10.5'
-                            stroke='#D0D5DD'
-                          />
-                          <defs>
-                            <clipPath id='clip0_127_5074'>
-                              <rect
-                                width='40'
-                                height='40'
-                                rx='11'
-                                fill='white'
-                              />
-                            </clipPath>
-                          </defs>
-                        </svg>
-
-                        <h3 className='text-2xl font-medium'>Fireblocks</h3>
-                      </div>
-                       <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
-                        Coming soon!
-                      </div> 
-                    </div>
-                    <p className='text-sm text-gray-600 mt-2'>
-                      Battle-tested and flexible wallet infrastructure with
-                      multi-layer security.
-                    </p>
-                    <a
-                      href='https://www.fireblocks.com/'
-                      target='_blank'
-                      className='text-sm my-2 cursor-pointer font-semibold text-teal-600'
-                    >
-                      Learn more about Fireblocks
-                    </a>
-
-                    <div className='group mb-2'>
-                      <p className='text-sm text-gray-800 mb-1 hidden'>
-                        Subscribe to a new Wallet
-                      </p>
-
-                     {/* <div className='flex flex-row hidden'>
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
-                              {' '}
-                              <Image
-                                className=''
-                                src='/providers/icons/fireblock/fireblocks-blue.svg'
-                                alt='fireblock'
-                                width={24}
-                                height={24}
-                              />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>BTC</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
-                              {' '}
-                              <Image
-                                className=''
-                                src='/providers/icons/fireblock/fireblocks-green.svg'
-                                alt='fireblock'
-                                width={24}
-                                height={24}
-                              />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>ETH</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
-                              {' '}
-                              <Image
-                                className=''
-                                src='/providers/icons/fireblock/fireblocks-purple.svg'
-                                alt='fireblock'
-                                width={24}
-                                height={24}
-                              />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>Polygon</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
-                              {' '}
-                              <Image
-                                className=''
-                                src='/providers/icons/fireblock/fireblocks-yellow.svg'
-                                alt='fireblock'
-                                width={24}
-                                height={24}
-                              />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>Polygon</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </div> */}
-                    </div> 
-
-                    <div className='w-full flex justify-between mt-[3.5rem] mb-4'>
-                      <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>-</p>
-                        <div className='flex items-end '>
-                        <p className='text-xl font-semibold text-gray-900'>
-                            Unavailable
-                          </p>
-                        </div>
-                      </div>
-                      <div className='flex flex-col items-end'>
-                        <p className='text-xs text-gray-500'>Wallets</p>
-                        <div className='flex items-end '>
-                          <p className='text-md font-medium text-gray-800'>
-                            0/1
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className='mt-auto'>
-                      <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -1324,6 +1325,161 @@ export default function Marketplace() {
                           fill='none'
                           xmlns='http://www.w3.org/2000/svg'
                         >
+                          <g clip-path='url(#clip0_127_5074)'>
+                            <rect width='40' height='40' rx='11' fill='white' />
+                            <path
+                              d='M31.1946 8C31.7248 8 32.1546 8.42981 32.1546 8.96V31.04C32.1546 31.5702 31.7248 32 31.1946 32H8.80546C8.27527 32 7.84546 31.5702 7.84546 31.04V8.96C7.84546 8.42981 8.27527 8 8.80546 8H31.1946ZM20 14.6667L13.2474 25.3333H26.7525L20 14.6667Z'
+                              fill='#14223D'
+                            />
+                          </g>
+                          <rect
+                            x='0.5'
+                            y='0.5'
+                            width='39'
+                            height='39'
+                            rx='10.5'
+                            stroke='#D0D5DD'
+                          />
+                          <defs>
+                            <clipPath id='clip0_127_5074'>
+                              <rect
+                                width='40'
+                                height='40'
+                                rx='11'
+                                fill='white'
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+
+                        <h3 className='text-2xl font-medium'>Fireblocks</h3>
+                      </div>
+                       {/*<div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                        Coming soon!
+                      </div> */}
+                    </div>
+                    <p className='text-sm text-gray-600 mt-2'>
+                      Battle-tested and flexible wallet infrastructure with
+                      multi-layer security.
+                    </p>
+                    <a
+                      href='https://www.fireblocks.com/'
+                      target='_blank'
+                      className='text-sm my-2 cursor-pointer font-semibold text-teal-600'
+                    >
+                      Learn more about Fireblocks
+                    </a>
+
+                    <div className='group mb-2'>
+                      <p className='text-sm text-gray-800 mb-1 '>
+                        Subscribe to a new Wallet
+                      </p>
+
+                      <div className='flex flex-row '>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/fireblock/fireblocks-blue.svg'
+                                alt='fireblock'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>BTC</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/fireblock/fireblocks-green.svg'
+                                alt='fireblock'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>ETH</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/fireblock/fireblocks-purple.svg'
+                                alt='fireblock'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Polygon</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/fireblock/fireblocks-yellow.svg'
+                                alt='fireblock'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Polygon</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div> 
+                    </div> 
+
+                    <div className='w-full flex justify-between mt-2 mb-4'>
+                      <div className='flex flex-col '>
+                        <p className='text-xs text-gray-500'>Starting from</p>
+                        <div className='flex items-end '>
+                        <p className='text-xl font-semibold text-gray-900'>
+                            9.99 USDT
+                          </p>
+                        </div>
+                      </div>
+                      <div className='flex flex-col items-end'>
+                        <p className='text-xs text-gray-500'>Wallets</p>
+                        <div className='flex items-end '>
+                          <p className='text-md font-medium text-gray-800'>
+                            0/1
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className='mt-auto'>
+                    <Subscribe variant='wealth' provider='Fireblocks' />
+                    </div>
+                  </div>
+                  <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
+                    <div className='w-full justify-between flex items-center pb-3'>
+                      <div className='flex flex-row gap-2.5 items-center'>
+                        <svg
+                          width='40'
+                          height='40'
+                          viewBox='0 0 40 40'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
                           <g clip-path='url(#clip0_127_3951)'>
                             <rect
                               width='40'
@@ -1461,145 +1617,7 @@ export default function Marketplace() {
                       <Subscribe variant='network' provider='Safeheron' />
                     </div>
                   </div>
-                  <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
-                    <div className='w-full justify-between flex items-center pb-3'>
-                      <div className='flex flex-row gap-2.5 items-center'>
-                        <svg
-                          width='40'
-                          height='40'
-                          viewBox='0 0 40 40'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
-                        >
-                          <g clip-path='url(#clip0_127_5074)'>
-                            <rect width='40' height='40' rx='11' fill='white' />
-                            <path
-                              d='M31.1946 8C31.7248 8 32.1546 8.42981 32.1546 8.96V31.04C32.1546 31.5702 31.7248 32 31.1946 32H8.80546C8.27527 32 7.84546 31.5702 7.84546 31.04V8.96C7.84546 8.42981 8.27527 8 8.80546 8H31.1946ZM20 14.6667L13.2474 25.3333H26.7525L20 14.6667Z'
-                              fill='#14223D'
-                            />
-                          </g>
-                          <rect
-                            x='0.5'
-                            y='0.5'
-                            width='39'
-                            height='39'
-                            rx='10.5'
-                            stroke='#D0D5DD'
-                          />
-                          <defs>
-                            <clipPath id='clip0_127_5074'>
-                              <rect
-                                width='40'
-                                height='40'
-                                rx='11'
-                                fill='white'
-                              />
-                            </clipPath>
-                          </defs>
-                        </svg>
-
-                        <h3 className='text-2xl font-medium'>Fireblocks</h3>
-                      </div>
-                      <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
-                        Coming soon!
-                      </div> 
-                    </div>
-                    <p className='text-sm text-gray-600 mt-2'>
-                      Battle-tested and flexible wallet infrastructure with
-                      multi-layer security.
-                    </p>
-                    <a
-                      href='https://www.fireblocks.com/'
-                      target='_blank'
-                      className='text-sm my-2 cursor-pointer font-semibold text-teal-600'
-                    >
-                      Learn more about Fireblocks
-                    </a>
-
-                    <div className='group mb-2 hidden'>
-                      <p className='text-sm text-gray-800 mb-1'>
-                        Available Networks
-                      </p>
-                      <div className='flex flex-row'>
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
-                              {' '}
-                              <Image
-                                className=''
-                                src='/icons/networks/BTC.svg'
-                                alt='BTC'
-                                width={24}
-                                height={24}
-                              />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>BTC</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
-                              {' '}
-                              <Image
-                                className=''
-                                src='/icons/networks/ETH.svg'
-                                alt='ETH'
-                                width={24}
-                                height={24}
-                              />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>ETH</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
-                              {' '}
-                              <Image
-                                className=''
-                                src='/icons/networks/MATIC.svg'
-                                alt='MATIC'
-                                width={24}
-                                height={24}
-                              />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>Polygon</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </div>
-                    </div>
-
-
-                    <div className='w-full flex justify-between mt-[4rem] mb-4'>
-                      <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>-</p>
-                        <div className='flex items-end '>
-                        <p className='text-xl font-semibold text-gray-900'>
-                            Unavailable
-                          </p>
-                        </div>
-                      </div>
-                      <div className='flex flex-col items-end'>
-                        <p className='text-xs text-gray-500'>Wallets</p>
-                        <div className='flex items-end '>
-                          <p className='text-md font-medium text-gray-800'>
-                            0/9
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div className='mt-auto'>
-                      <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
             </div>
