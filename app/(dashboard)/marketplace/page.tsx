@@ -182,7 +182,7 @@ export default function Marketplace() {
               <div className='w-full  mt-4 flex items-center pb-1'>
                 {' '}
                 <TabsList className='bg-gray-50'>
-                  <TabsTrigger value='wallets'>Wallets test</TabsTrigger>
+                  <TabsTrigger value='wallets'>Wallets</TabsTrigger>
                   <TabsTrigger value='network'>Network Accounts</TabsTrigger>
                   <TabsTrigger value='xchange'>X-change</TabsTrigger>
                   <TabsTrigger value='security'>Security</TabsTrigger>
