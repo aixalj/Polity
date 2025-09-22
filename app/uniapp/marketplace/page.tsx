@@ -192,7 +192,7 @@ export default function Marketplace() {
                     Security
                   </TabsTrigger>
                   <TabsTrigger value='risk'>Risk</TabsTrigger>
-                  <TabsTrigger value='analytics' className='hidden'>Analytics</TabsTrigger>
+                  <TabsTrigger value='analytics'>Analytics</TabsTrigger>
                   <TabsTrigger value='dApps'>dApps</TabsTrigger>
                 </TabsList>
               </div>
@@ -1637,9 +1637,9 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Onramper</h3>
                       </div>
-                      {/* <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
-                        Active wallet
-                      </div> */}
+                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
+                        Upgrade to SuperApp
+                      </div>
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
                       Trade your cash for crypto at the best rates. Smart
@@ -1657,8 +1657,10 @@ export default function Marketplace() {
                     <Button
                       className='w-full'
                       onClick={() => setIsOnramperOpen(true)}
+                      disabled={true}
+                      variant='outline'
                     >
-                      Buy Crypto with Cash
+                      Unavailable
                     </Button>
                   </div>
                 </div>
@@ -1861,8 +1863,8 @@ export default function Marketplace() {
                           </div>
                         </div>
                       </div>
-                      <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
-                        Coming soon!
+                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
+                        Upgrade to SuperApp
                       </div>
                     </div>
                     <div>
