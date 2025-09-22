@@ -1188,38 +1188,48 @@ const SideBar = () => {
                     </div>
                   </CollapsibleTrigger>
                   <CollapsibleContent className='items-start'>
-                    <ul className='flex pl-1 flex-col gap-1'>
+                    <ul className='flex pl-6 flex-col gap-1'>
                       <li>
-                        <div className='w-full relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-400 border border-transparent cursor-not-allowed'>
+                        <Link
+                          className={`group focus:ring-0  ${
+                            pathname === '/marketplace/billing'
+                              ? '   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
+                              : 'w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
+                          }`}
+                          href='/marketplace/billing'
+                          id='billing'
+                        >
                           <File05 className='w-4 h-4' />
                           <span>Billing</span>
-                          <div className='ml-auto bg-purple-100 border border-purple-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
-                            Coming soon!
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div className='w-full relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-400 border border-transparent cursor-not-allowed'>
-                          <PackageCheck className='w-4 h-4' />
-                          <span className='whitespace-nowrap'>
-                            My Subscriptions
-                          </span>
-                          <div className='ml-auto whitespace-nowrap bg-purple-100 border border-purple-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
-                            Coming soon!
-                          </div>
-                        </div>
+                        </Link>
                       </li>
                       <li>
                         <Link
                           className={`group focus:ring-0  ${
-                            pathname === "/marketplace/bids"
-                              ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
-                              : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
+                            pathname === '/marketplace/subscriptions'
+                              ? '   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
+                              : 'w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
                           }`}
-                          href="/marketplace/bids"
-                          id="overview"
+                          href='/marketplace/subscriptions'
+                          id='subscriptions'
                         >
-                          <Trophy01 className="w-4 h-4 " />
+                          <PackageCheck className='w-4 h-4' />
+                          <span className='whitespace-nowrap'>
+                            My Subscriptions
+                          </span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className={`group focus:ring-0  ${
+                            pathname === '/marketplace/bids'
+                              ? '   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
+                              : 'w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
+                          }`}
+                          href='/marketplace/bids'
+                          id='overview'
+                        >
+                          <Trophy01 className='w-4 h-4 ' />
                           My Bids
                         </Link>
                       </li>
