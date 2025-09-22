@@ -10,8 +10,8 @@ export default function AVN() {
   return (
     <OnboardingBlock
       icon={<ImageUserLeft className='w-8 h-8 text-gray-700' />}
-      title='Avatar Virtual Node'
-      description='Your Avatar Virtual Node is your own digital company and a gateway into the Web3 space. '
+      title='Application Virtual Node'
+      description='Your Application Virtual Node is your own digital company and a gateway into the Web3 space. '
       button1link='/onboarding/superapp/nsp'
       button1text='Back'
       button2link='/onboarding/superapp/agreement'
