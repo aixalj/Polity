@@ -1188,7 +1188,7 @@ const SideBar = () => {
                     </div>
                   </CollapsibleTrigger>
                   <CollapsibleContent className='items-start'>
-                    <ul className='flex pl-2 flex-col gap-1'>
+                    <ul className='flex pl-1 flex-col gap-1'>
                       <li>
                         <div className='w-full relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-400 border border-transparent cursor-not-allowed'>
                           <File05 className='w-4 h-4' />
@@ -1201,7 +1201,9 @@ const SideBar = () => {
                       <li>
                         <div className='w-full relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-400 border border-transparent cursor-not-allowed'>
                           <PackageCheck className='w-4 h-4' />
-                          <span className='whitespace-nowrap'>My Subscriptions</span>
+                          <span className='whitespace-nowrap'>
+                            My Subscriptions
+                          </span>
                           <div className='ml-auto whitespace-nowrap bg-purple-100 border border-purple-200 py-0.5 px-2 flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
                             Coming soon!
                           </div>
