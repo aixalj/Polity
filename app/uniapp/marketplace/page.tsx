@@ -72,7 +72,7 @@ export default function Marketplace() {
   return (
     <main className='w-full h-full'>
       <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
-        <Tabs defaultValue='network'>
+        <Tabs defaultValue='wallets'>
           <div className='w-full sticky top-0 backdrop-blur-md	z-10  border-b border-gray-100 bg-white/60'>
             <div className=' max-w-screen-xl mx-auto p-6'>
               <nav aria-label='Breadcrumb'>
@@ -185,10 +185,12 @@ export default function Marketplace() {
               <div className='w-full  mt-4 flex items-center pb-1'>
                 {' '}
                 <TabsList className='bg-gray-50'>
-                  <TabsTrigger value='wallets'>Wallets</TabsTrigger> 
+                  <TabsTrigger value='wallets'>Wallets</TabsTrigger>
                   <TabsTrigger value='network'>Network Accounts</TabsTrigger>
                   <TabsTrigger value='xchange'>X-change</TabsTrigger>
-                  <TabsTrigger value='security' className='hidden'>Security</TabsTrigger>
+                  <TabsTrigger value='security' className='hidden'>
+                    Security
+                  </TabsTrigger>
                   <TabsTrigger value='risk'>Risk</TabsTrigger>
                   <TabsTrigger value='analytics'>Analytics</TabsTrigger>
                   <TabsTrigger value='dApps'>dApps</TabsTrigger>
@@ -478,7 +480,7 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>DFNS</h3>
                       </div>
-                      <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
                         Upgrade to SuperApp
                       </div>
                     </div>
@@ -553,9 +555,11 @@ export default function Marketplace() {
                     </div>
                     <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 font-medium '>Please upgrade to SuperApp</p>
+                        <p className='text-xs text-gray-500 font-medium '>
+                          Please upgrade to SuperApp
+                        </p>
                         <div className='flex items-end '>
-                        <p className='text-xl font-semibold text-gray-900'>
+                          <p className='text-xl font-semibold text-gray-900'>
                             Unavailable
                           </p>
                         </div>
@@ -570,7 +574,13 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <div className='mt-auto'>
-                    <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
+                      <Button
+                        variant='outline'
+                        className='w-full'
+                        disabled={true}
+                      >
+                        Unavailable
+                      </Button>
                     </div>
                   </div>
 
@@ -613,7 +623,7 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Fireblocks</h3>
                       </div>
-                      <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
                         Upgrade to SuperApp
                       </div>
                     </div>
@@ -689,9 +699,11 @@ export default function Marketplace() {
                     </div>
                     <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 font-medium'>Please upgrade to SuperApp</p>
+                        <p className='text-xs text-gray-500 font-medium'>
+                          Please upgrade to SuperApp
+                        </p>
                         <div className='flex items-end '>
-                        <p className='text-xl font-semibold text-gray-900'>
+                          <p className='text-xl font-semibold text-gray-900'>
                             Unavailable
                           </p>
                         </div>
@@ -706,7 +718,13 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <div className='mt-auto'>
-                      <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
+                      <Button
+                        variant='outline'
+                        className='w-full'
+                        disabled={true}
+                      >
+                        Unavailable
+                      </Button>
                     </div>
                   </div>
 
@@ -756,14 +774,13 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Safeheron</h3>
                       </div>
-                      <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
                         Upgrade to SuperApp
                       </div>
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
                       An institutional-grade MPC self-custody platform for
                       digital assets.
-
                     </p>
                     <a
                       href='https://safeheron.com'
@@ -832,9 +849,11 @@ export default function Marketplace() {
                     </div>
                     <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 font-medium '>Please upgrade to SuperApp</p>
+                        <p className='text-xs text-gray-500 font-medium '>
+                          Please upgrade to SuperApp
+                        </p>
                         <div className='flex items-end '>
-                        <p className='text-xl font-semibold text-gray-900'>
+                          <p className='text-xl font-semibold text-gray-900'>
                             Unavailable
                           </p>
                         </div>
@@ -849,14 +868,15 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <div className='mt-auto'>
-                    <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
+                      <Button
+                        variant='outline'
+                        className='w-full'
+                        disabled={true}
+                      >
+                        Unavailable
+                      </Button>
                     </div>
                   </div>
-                  
-
-
-
-
                 </div>
               </div>
             </div>
@@ -1144,7 +1164,7 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>DFNS</h3>
                       </div>
-                      <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
                         Upgrade to SuperApp
                       </div>
                     </div>
@@ -1219,9 +1239,11 @@ export default function Marketplace() {
                     </div>
                     <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 font-medium '>Please upgrade to SuperApp</p>
+                        <p className='text-xs text-gray-500 font-medium '>
+                          Please upgrade to SuperApp
+                        </p>
                         <div className='flex items-end '>
-                        <p className='text-xl font-semibold text-gray-900'>
+                          <p className='text-xl font-semibold text-gray-900'>
                             Unavailable
                           </p>
                         </div>
@@ -1236,7 +1258,13 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <div className='mt-auto'>
-                    <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
+                      <Button
+                        variant='outline'
+                        className='w-full'
+                        disabled={true}
+                      >
+                        Unavailable
+                      </Button>
                     </div>
                   </div>
 
@@ -1279,7 +1307,7 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Fireblocks</h3>
                       </div>
-                      <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
                         Upgrade to SuperApp
                       </div>
                     </div>
@@ -1355,9 +1383,11 @@ export default function Marketplace() {
                     </div>
                     <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 font-medium'>Please upgrade to SuperApp</p>
+                        <p className='text-xs text-gray-500 font-medium'>
+                          Please upgrade to SuperApp
+                        </p>
                         <div className='flex items-end '>
-                        <p className='text-xl font-semibold text-gray-900'>
+                          <p className='text-xl font-semibold text-gray-900'>
                             Unavailable
                           </p>
                         </div>
@@ -1372,7 +1402,13 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <div className='mt-auto'>
-                      <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
+                      <Button
+                        variant='outline'
+                        className='w-full'
+                        disabled={true}
+                      >
+                        Unavailable
+                      </Button>
                     </div>
                   </div>
 
@@ -1422,14 +1458,13 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Safeheron</h3>
                       </div>
-                      <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
                         Upgrade to SuperApp
                       </div>
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
                       An institutional-grade MPC self-custody platform for
                       digital assets.
-
                     </p>
                     <a
                       href='https://safeheron.com'
@@ -1498,9 +1533,11 @@ export default function Marketplace() {
                     </div>
                     <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 font-medium '>Please upgrade to SuperApp</p>
+                        <p className='text-xs text-gray-500 font-medium '>
+                          Please upgrade to SuperApp
+                        </p>
                         <div className='flex items-end '>
-                        <p className='text-xl font-semibold text-gray-900'>
+                          <p className='text-xl font-semibold text-gray-900'>
                             Unavailable
                           </p>
                         </div>
@@ -1515,14 +1552,15 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <div className='mt-auto'>
-                    <Button variant='outline' className='w-full' disabled={true}>Unavailable</Button>
+                      <Button
+                        variant='outline'
+                        className='w-full'
+                        disabled={true}
+                      >
+                        Unavailable
+                      </Button>
                     </div>
                   </div>
-                  
-
-
-
-
                 </div>
               </div>
             </div>
@@ -1823,9 +1861,9 @@ export default function Marketplace() {
                           </div>
                         </div>
                       </div>
-                       <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                      <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
                         Coming soon!
-                      </div> 
+                      </div>
                     </div>
                     <div>
                       <h3 className='text-2xl font-medium'>AML Risk Report</h3>
@@ -1855,7 +1893,13 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <Link href='/marketplace/lukka/report'>
-                      <Button className='w-full' variant='outline' disabled={true}>Unavailable</Button>
+                      <Button
+                        className='w-full'
+                        variant='outline'
+                        disabled={true}
+                      >
+                        Unavailable
+                      </Button>
                     </Link>
                   </div>
                 </div>
