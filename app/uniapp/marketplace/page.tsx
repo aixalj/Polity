@@ -192,7 +192,7 @@ export default function Marketplace() {
                     Security
                   </TabsTrigger>
                   <TabsTrigger value='risk'>Risk</TabsTrigger>
-                  <TabsTrigger value='analytics'>Analytics</TabsTrigger>
+                  <TabsTrigger value='analytics' className='hidden'>Analytics</TabsTrigger>
                   <TabsTrigger value='dApps'>dApps</TabsTrigger>
                 </TabsList>
               </div>
