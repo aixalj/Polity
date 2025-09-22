@@ -1663,6 +1663,41 @@ export default function Marketplace() {
                       Unavailable
                     </Button>
                   </div>
+                  <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
+                    <div className='w-full justify-between flex items-center pb-3'>
+                      <div className='flex flex-row gap-2.5 items-center'>
+                        <Image
+                          src='/due-logo.svg'
+                          alt='Due'
+                          width={40}
+                          height={40}
+                        />
+
+                        <h3 className='text-2xl font-medium'>Due</h3>
+                      </div>
+                      <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                        Coming soon!
+                      </div>
+                    </div>
+                    <p className='text-sm text-gray-600 mt-2'>
+                    Open a borderless account from anywhere, send and receive payments worldwide, with instant access to funds in digital dollars or local currency. 
+                    </p>
+                    <a
+                      href='https://www.opendue.com/'
+                      target='_blank'
+                      className='text-sm mt-2 mb-4 cursor-pointer font-semibold text-teal-600'
+                    >
+                      Learn more about Due
+                    </a>
+
+                    <Button 
+                      className='w-full'
+                      disabled={true}
+                      variant='outline'
+                    >
+                      Unavailable
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
