@@ -185,7 +185,9 @@ export default function Marketplace() {
                   <TabsTrigger value='wallets'>Wallets</TabsTrigger>
                   <TabsTrigger value='network'>Network Accounts</TabsTrigger>
                   <TabsTrigger value='xchange'>X-change</TabsTrigger>
-                  <TabsTrigger value='security' className='hidden'>Security</TabsTrigger>
+                  <TabsTrigger value='security' className='hidden'>
+                    Security
+                  </TabsTrigger>
                   <TabsTrigger value='risk'>Risk</TabsTrigger>
                   <TabsTrigger value='analytics'>Analytics</TabsTrigger>
                   <TabsTrigger value='dApps'>dApps</TabsTrigger>
@@ -656,7 +658,7 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Fireblocks</h3>
                       </div>
-                       {/*<div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                      {/*<div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
                         Coming soon!
                       </div> */}
                     </div>
@@ -746,14 +748,14 @@ export default function Marketplace() {
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
-                      </div> 
-                    </div> 
+                      </div>
+                    </div>
 
                     <div className='w-full flex justify-between mt-2 mb-4'>
                       <div className='flex flex-col '>
                         <p className='text-xs text-gray-500'>Starting from</p>
                         <div className='flex items-end '>
-                        <p className='text-xl font-semibold text-gray-900'>
+                          <p className='text-xl font-semibold text-gray-900'>
                             9.99 USDT
                           </p>
                         </div>
@@ -769,7 +771,7 @@ export default function Marketplace() {
                     </div>
 
                     <div className='mt-auto'>
-                    <Subscribe variant='wealth' provider='Fireblocks' />
+                      <Subscribe variant='wealth' provider='Fireblocks' />
                     </div>
                   </div>
 
@@ -935,7 +937,6 @@ export default function Marketplace() {
                       <Subscribe variant='wealth' provider='Safeheron' />
                     </div>
                   </div>
-                  
                 </div>
               </div>
             </div>
@@ -1362,7 +1363,7 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Fireblocks</h3>
                       </div>
-                       {/*<div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                      {/*<div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
                         Coming soon!
                       </div> */}
                     </div>
@@ -1452,14 +1453,14 @@ export default function Marketplace() {
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
-                      </div> 
-                    </div> 
+                      </div>
+                    </div>
 
                     <div className='w-full flex justify-between mt-2 mb-4'>
                       <div className='flex flex-col '>
                         <p className='text-xs text-gray-500'>Starting from</p>
                         <div className='flex items-end '>
-                        <p className='text-xl font-semibold text-gray-900'>
+                          <p className='text-xl font-semibold text-gray-900'>
                             1.99 USDT
                           </p>
                         </div>
@@ -1475,7 +1476,7 @@ export default function Marketplace() {
                     </div>
 
                     <div className='mt-auto'>
-                    <Subscribe variant='network' provider='Fireblocks' />
+                      <Subscribe variant='network' provider='Fireblocks' />
                     </div>
                   </div>
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
@@ -1531,7 +1532,6 @@ export default function Marketplace() {
                     <p className='text-sm text-gray-600 mt-2'>
                       An institutional-grade MPC self-custody platform for
                       digital assets.
-
                     </p>
                     <a
                       href='https://safeheron.com'
@@ -1625,7 +1625,6 @@ export default function Marketplace() {
                       <Subscribe variant='network' provider='Safeheron' />
                     </div>
                   </div>
-                  
                 </div>
               </div>
             </div>
@@ -1702,7 +1701,7 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Onramper</h3>
                       </div>
-                      <div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                      <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
                         Coming soon!
                       </div>
                     </div>
@@ -1722,6 +1721,43 @@ export default function Marketplace() {
                     <Button
                       className='w-full'
                       onClick={() => setIsOnramperOpen(true)}
+                      disabled={true}
+                      variant='outline'
+                    >
+                      Unavailable
+                    </Button>
+                  </div>
+                  <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
+                    <div className='w-full justify-between flex items-center pb-3'>
+                      <div className='flex flex-row gap-2.5 items-center'>
+                        <Image
+                          src='/due-logo.svg'
+                          alt='Due'
+                          width={40}
+                          height={40}
+                        />
+
+                        <h3 className='text-2xl font-medium'>Due</h3>
+                      </div>
+                      <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
+                        Coming soon!
+                      </div>
+                    </div>
+                    <p className='text-sm text-gray-600 mt-2'>
+                      Open a borderless account from anywhere, send and receive
+                      payments worldwide, with instant access to funds in
+                      digital dollars or local currency.
+                    </p>
+                    <a
+                      href='https://www.opendue.com/'
+                      target='_blank'
+                      className='text-sm mt-2 mb-4 cursor-pointer font-semibold text-teal-600'
+                    >
+                      Learn more about Due
+                    </a>
+
+                    <Button
+                      className='w-full'
                       disabled={true}
                       variant='outline'
                     >
@@ -1781,7 +1817,7 @@ export default function Marketplace() {
                       </div>
                       <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
                         Coming soon!
-                      </div> 
+                      </div>
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
                       All-in-One Web3 Anti-Scam Solution. Enhance anti-scam
@@ -1960,12 +1996,8 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <Link href='/marketplace/lukka/report'>
-                      <Button
-                        className='w-full'
-                        variant='default'
-                        
-                      >
-                       View Options
+                      <Button className='w-full' variant='default'>
+                        View Options
                       </Button>
                     </Link>
                   </div>
