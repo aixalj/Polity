@@ -64,13 +64,13 @@ flex-col  p-0     max-w-screen-sm mx-auto w-full'
         </div>
          <h1 className='text-xl font-medium mt-11'>
           {isLoading
-            ? 'Your Avatar Virtual Node is currently installing'
-            : 'Avatar Virtual Node is installed'}
+            ? 'Your Application Virtual Node is currently installing'
+            : 'Application Virtual Node is installed'}
         </h1>
 
         <>
           <p className='text-gray-600 text-sm mb-14 text-balance mt-1'>
-            Your Avatar Virtual Node is now in the process of installation.
+            Your Application Virtual Node is now in the process of installation.
             Please wait while the installation completes.
           </p>
           <div className='inline-flex mx-auto gap-4'>
