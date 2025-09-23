@@ -103,7 +103,7 @@ export default function InvestorPortal() {
             </Link>
             <button
               onClick={() => setIsEditModalOpen(true)}
-              className='absolute top-2 right-3 flex items-center gap-1 text-gray-600 hover:text-gray-800 transition-colors'
+              className='hidden absolute top-2 right-3 items-center gap-1 text-gray-600 hover:text-gray-800 transition-colors'
             >
               <Edit01 className='w-3 h-3' />
               <span className='text-sm font-medium'>Edit</span>
