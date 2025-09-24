@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import PolityLogo from '@/public/polity.svg';
 import Avatar from '@/public/Avatar.png';
+import AvatarDefault from '@/public/Avatar-Image-Upload.svg';
+import AvatarChange from '@/public/Avatar-Change.svg';
 import PlatoInvest from '@/public/PlatoInvest.png';
 import {
   UserPlus01,
@@ -196,7 +198,7 @@ export default function InvestorPortal() {
               </p>
               <div className='flex flex-col gap-3'>
                 <label
-                  className='w-40 h-40 cursor-pointer flex items-center justify-center relative overflow-hidden'
+                  className='w-40 h-40 cursor-pointer flex items-center justify-center relative overflow-hidden group'
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}
                 >
@@ -206,23 +208,22 @@ export default function InvestorPortal() {
                     accept='image/*'
                     onChange={handleFileChange}
                   />
-                  {/* Background image - current avatar */}
+                  {/* Default avatar - visible by default */}
                   <Image
-                    src={Avatar}
+                    src={AvatarDefault}
                     alt='Current Avatar'
                     width={180}
                     height={180}
-                    className='absolute inset-0 w-full h-full object-cover opacity-30'
+                    className='absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0'
                   />
-                  {/* Upload overlay */}
-                  <div className='relative z-10 flex flex-col items-center gap-3'>
-                    <div className='flex flex-col items-center justify-center'>
-                      <p className='text-primary-500 text-sm font-semibold'>
-                        Click to upload
-                      </p>
-                      <p className='text-xs text-gray-600'>or drag and drop</p>
-                    </div>
-                  </div>
+                  {/* Hover avatar - hidden by default, visible on hover */}
+                  <Image
+                    src={AvatarChange}
+                    alt='Avatar Change'
+                    width={180}
+                    height={180}
+                    className='absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100'
+                  />
                 </label>
 
                 {previewUrl && (
