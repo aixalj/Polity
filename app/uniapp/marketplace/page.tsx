@@ -1675,7 +1675,7 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Due</h3>
                       </div>
-                      <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
+                      <div className='hidden bg-purple-100 border border-purple-200 py-0.5 px-2 gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
                         Coming soon!
                       </div>
                     </div>
@@ -1694,10 +1694,15 @@ export default function Marketplace() {
 
                     <Button
                       className='w-full'
-                      disabled={true}
-                      variant='outline'
+                      variant='default'
+                      onClick={() =>
+                        window.open(
+                          'https://app.due.network/auth/signup',
+                          '_blank'
+                        )
+                      }
                     >
-                      Unavailable
+                      Create Account
                     </Button>
                   </div>
                 </div>
