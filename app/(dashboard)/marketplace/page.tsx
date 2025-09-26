@@ -1701,7 +1701,7 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Onramper</h3>
                       </div>
-                      <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
+                      <div className='bg-purple-100 border hidden border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
                         Coming soon!
                       </div>
                     </div>
@@ -1720,11 +1720,10 @@ export default function Marketplace() {
 
                     <Button
                       className='w-full'
-                      onClick={() => setIsOnramperOpen(true)}
-                      disabled={true}
-                      variant='outline'
+                      onClick={() => setIsOnramperOpen(true)}                     
+                      variant='default'
                     >
-                      Unavailable
+                      Buy with Crypto Cash
                     </Button>
                   </div>
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>

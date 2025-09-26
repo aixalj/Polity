@@ -1420,7 +1420,7 @@ const SideBar = () => {
                 <li>
                   <div className='flex flex-col px-4 pt-4 gap-1 rounded-xl bg-white border border-gray-300 text-sm shadow-sm'>
                     <div className='flex flex-col items-start justify-between gap-3 mb-2'>
-                      <div className='bg-purple-100 border border-purple-200 py-0.5 px-2 whitespace-nowrap  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
+                      <div className='bg-purple-100 border hidden border-purple-200 py-0.5 px-2 whitespace-nowrap  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
                         Coming soon!
                       </div>
                       <svg
@@ -1447,10 +1447,9 @@ const SideBar = () => {
                     <Button
                       className='mb-1 bg-white !text-emerald-700 !outline-none !shadow-none text-left !p-0 !justify-start focus:bg-white focus:text-emerald-700 items-left hover:bg-white hover:text-emerald-700 font-semibold cursor-pointer'
                       onClick={() => setIsOnramperOpen(true)}
-                      disabled={true}
-                      variant='outline'
+                      variant='default'
                     >
-                      Unavailable
+                      Buy with Crypto Cash
                     </Button>
                   </div>
                 </li>
