@@ -226,7 +226,7 @@ export default function Marketplace() {
                     </div>
                     <p className='text-sm text-gray-600 mt-2 line-clamp-2'>
                       Get additional avatars at no cost. Expand your avatars
-                      free of charge, no payment required.
+                      free of charge.
                     </p>
                     <Link
                       href='https://www.dfns.co/'
@@ -339,12 +339,12 @@ export default function Marketplace() {
 
                     <div className='w-full flex justify-between mt-2 mb-4'>
                       <div className='flex flex-col'>
-                        <p className='text-xs text-gray-500'>No payment required</p>
+                        <p className='text-xs text-gray-500'>with SuperApp subscription</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
                             Free
                           </p>
-                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5 hidden'>
                             with SuperApp subscription
                           </p>
                         </div>
