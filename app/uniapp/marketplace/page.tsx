@@ -353,7 +353,7 @@ export default function Marketplace() {
                         <p className='text-xs text-gray-500'>Avatars</p>
                         <div className='flex items-end '>
                           <p className='text-md font-medium text-gray-800'>
-                            0/2
+                            1/5
                           </p>
                         </div>
                       </div>
