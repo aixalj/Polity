@@ -31,7 +31,7 @@ import { Notification } from '@/components/ui/notification';
 export default function Marketplace() {
   const [isOnramperOpen, setIsOnramperOpen] = useState(false);
   const [notifications, setNotifications] = useState<Array<{ title: string }>>(
-    []
+    [],
   );
 
   const addNotification = (
@@ -48,7 +48,7 @@ export default function Marketplace() {
         | 'bottom-right';
       duration?: number;
       style?: React.CSSProperties;
-    }
+    },
   ) => {
     toast[status](title, {
       description: description,
@@ -69,7 +69,7 @@ export default function Marketplace() {
   return (
     <main className='w-full h-full'>
       <div className='mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll'>
-        <Tabs defaultValue='wallets'>
+        <Tabs defaultValue='avatars'>
           <div className='w-full sticky top-0 backdrop-blur-md	z-10  border-b border-gray-100 bg-white/60'>
             <div className=' max-w-screen-xl mx-auto p-6'>
               <nav aria-label='Breadcrumb'>
@@ -182,6 +182,7 @@ export default function Marketplace() {
               <div className='w-full  mt-4 flex items-center pb-1'>
                 {' '}
                 <TabsList className='bg-gray-50'>
+                  <TabsTrigger value='avatars'>Avatars</TabsTrigger>
                   <TabsTrigger value='wallets'>Wallets</TabsTrigger>
                   <TabsTrigger value='network'>Network Accounts</TabsTrigger>
                   <TabsTrigger value='xchange'>X-change</TabsTrigger>
@@ -195,6 +196,174 @@ export default function Marketplace() {
               </div>
             </div>
           </div>
+
+          <TabsContent value='avatars'>
+            <div className='max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full'>
+              <div className='relative w-full flex flex-col pb-40'>
+                <div className='py-4 relative flex w-full flex-row	'>
+                  <h2 className='text-2xl font-medium'>Avatars</h2>
+                </div>
+                <div className='w-full grid grid-cols-3  gap-3 justify-start '>
+                  <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
+                    <div className='w-full justify-between flex items-center pb-3'>
+                      <div className='flex flex-row gap-2.5 items-center'>
+                        <div className='size-11 rounded-md border-gray-300 border overflow-hidden'>
+                          <img
+                            src={
+                              'https://ethics.org.au/wp-content/uploads/2021/03/Aristotle_sq.jpg'
+                            }
+                            className='w-full h-full'
+                          />
+                        </div>
+                        <h3 className='text-2xl font-medium'>Avatar</h3>
+                      </div>
+                      {/* <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                        Active wallet
+                      </div> */}
+                    </div>
+                    <p className='text-sm text-gray-600 mt-2 line-clamp-2'>
+                      Get additional avatars at no cost. Expand your avatars
+                      free of charge, no payment required.
+                    </p>
+                    <Link
+                      href='https://www.dfns.co/'
+                      target='_blank'
+                      className='text-sm my-2 cursor-pointer font-semibold text-teal-600 hidden'
+                    >
+                      Learn more about DFNS
+                    </Link>
+                    <div className='group mb-2 hidden'>
+                      <p className='text-sm text-gray-800 mb-1'>
+                        Subscribe to a new Wallet
+                      </p>
+                      <div className='flex flex-row'>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/dfns/dfns-green.svg'
+                                alt='dfns'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>BTC</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/dfns/dfns-blue.svg'
+                                alt='dfns'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>ETH</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/dfns/dfns-yellow.svg'
+                                alt='dfns'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Polygon</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/dfns/dfns-purple.svg'
+                                alt='dfns'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Polygon</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                    </div>
+                    {/* <div className="w-full flex justify-between mt-2 mb-4">
+                      <div className="flex flex-col ">
+                        <p className="text-xs text-gray-500">-</p>
+                        <div className="flex items-end ">
+                          <p className="text-xl font-semibold text-gray-900">
+                            Unavailable
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-end">
+                        <p className="text-xs text-gray-500">Wallets</p>
+                        <div className="flex items-end ">
+                          <p className="text-md font-medium text-gray-800">
+                            1/1
+                          </p>
+                        </div>
+                      </div>
+                    </div> */}
+                    {/* <a href="/marketplace/subscriptions">
+                      <Button
+                        variant="secondary"
+                        className="w-full bg-white shadow-button-secondary-default hover:bg-white"
+                      >
+                        Manage
+                      </Button>
+                    </a> */}
+
+                    <div className='w-full flex justify-between mt-2 mb-4'>
+                      <div className='flex flex-col'>
+                        <p className='text-xs text-gray-500'>No payment required</p>
+                        <div className='flex items-end '>
+                          <p className='text-xl font-semibold text-gray-900'>
+                            Free
+                          </p>
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
+                            with SuperApp subscription
+                          </p>
+                        </div>
+                      </div>
+                      <div className='flex flex-col items-end'>
+                        <p className='text-xs text-gray-500'>Avatars</p>
+                        <div className='flex items-end '>
+                          <p className='text-md font-medium text-gray-800'>
+                            0/2
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='mt-auto'>
+                      <Subscribe variant='wealth' provider='DFNS' />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </TabsContent>
+
           <TabsContent value='wallets'>
             <div className='max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full'>
               <div className='relative w-full flex flex-col pb-40'>
