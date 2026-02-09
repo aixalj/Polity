@@ -356,7 +356,7 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <div className='mt-auto'>
-                      <Subscribe variant='wealth' provider='DFNS' />
+                      <Subscribe variant='avatar' provider='DFNS' />
                     </div>
                   </div>
                 </div>
