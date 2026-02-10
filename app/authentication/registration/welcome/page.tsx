@@ -30,7 +30,7 @@ export default function WelcomePage() {
         {/* Description */}
         <p className='text-gray-700 text-[14px] font-normal text-center mb-8 max-w-[600px]'>
           The first enterprise-grade network and digital products and
-          services&apos; marketplace for the tokenised world
+          services&apos; hub for the tokenised world
         </p>
 
         {/* Action Buttons */}

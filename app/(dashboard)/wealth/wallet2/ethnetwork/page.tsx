@@ -7507,7 +7507,7 @@ function BitcoinOne() {
                       </div>
                       <h3 className='text-2xl font-medium'>Clearpool</h3>
                       <p className='text-sm text-gray-600 mt-2 h-16'>
-                        A decentralized marketplace for unsecured institutional
+                        A decentralized hub for unsecured institutional
                         capital.
                       </p>
                       <div className='flex flex-row gap-2.5 items-center mt-3.5 mb-5'>

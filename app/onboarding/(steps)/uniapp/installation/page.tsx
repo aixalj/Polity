@@ -26,10 +26,9 @@ export default function Installation() {
   return (
     <div className='w-full h-full flex flex-col gap-6'>
       <div
-        className='relative h-fit pt-24 items-center text-center gap-0 flex  
-flex-col  p-0     max-w-screen-sm mx-auto w-full'
+        className='relative h-fit pt-24 items-center text-center gap-0 flex flex-col p-0 max-w-screen-sm mx-auto w-full'
       >
-        {/* <div className='relative  flex  w-full h-full'>
+         <div className='relative  flex  w-full h-full'>
           {' '}
           <Image
             className='absolute -top-12 left-0 w-full h-full'
@@ -61,24 +60,24 @@ flex-col  p-0     max-w-screen-sm mx-auto w-full'
               </div>
             </div>
           </div>
-        </div> */}
-        {/* <h1 className='text-xl font-medium mt-11'>
+        </div>
+         <h1 className='text-xl font-medium mt-11'>
           {isLoading
-            ? 'Your Avatar Virtual Node is currently installing'
-            : 'Avatar Virtual Node is installed'}
+            ? 'Your Application Virtual Node is currently installing'
+            : 'Application Virtual Node is installed'}
         </h1>
 
         <>
           <p className='text-gray-600 text-sm mb-14 text-balance mt-1'>
-            Your Avatar Virtual Node is now in the process of installation.
+            Your Application Virtual Node is now in the process of installation.
             Please wait while the installation completes.
           </p>
           <div className='inline-flex mx-auto gap-4'>
-            <Link href='/onboarding/uniapp/wallet/setup'>
+            <Link href='/onboarding/uniapp/wallet/provider'>
               <Button>Continue to Wallet Setup</Button>
             </Link>
           </div>
-        </> */}
+        </> 
       </div>
       <style jsx>{`
         .spinner {

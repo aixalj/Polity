@@ -10,7 +10,7 @@ export default function Agreement() {
       title="Network Service Agreement"
       description={(
         <>
-          By signing this Agreement you accept the terms and conditions of services by Bastion Cooperative to provide you with access to the Network and two free Avatar Virtual Nodes to enable you to create two Avatars.
+          By signing this Agreement you accept the terms and conditions of services by Bastion Cooperative to provide you with access to the Network and two free Application Virtual Nodes to enable you to create two Avatars.
           <span className="-mt-6"></span>
           Would you like to proceed and complete installation of your first free Avatar?
         </>
@@ -22,7 +22,7 @@ export default function Agreement() {
         between Bastion Genossenschaft, with its registered office at
         Schaanerstrasse 27, Vaduz 9490, Principality of Liechtenstein and acting
         as a Polity Network service provider (“NSP”), and the individual or
-        legal entity, who by installing a free Avatar Virtual Node (“AVN”) is
+        legal entity, who by installing a free Application Virtual Node (“AVN”) is
         agreeing to this Agreement (“You”).<br /> <br /> By installing and/or using an AVN,
         you expressly accept and agree to the terms of this Agreement. If you
         are an individual agreeing to the terms of this Agreement on behalf of
@@ -125,9 +125,9 @@ export default function Agreement() {
         regarding its subject matter.
       </div>
       <div className="flex px-6 pt-6 pb-5 bg-white border-t border-gray-200 absolute bottom-0 w-full">
-        <Link href="/onboarding/uniapp/wallet/setup" className="w-full">
+        <Link href="/onboarding/uniapp/installation/" className="w-full">
           <Button className="min-w-full">Agree & Continue</Button>
-        </Link>
+        </Link> 
       </div>
     </OnboardingBlock>
   );

@@ -42,7 +42,7 @@ const agreements: Agreement[] = [
     status: 'Pending',
     url: 'https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf',
   },
-  /*{
+  /*{{
     name: "Data Storage and Management Agreement",
     nspName: "Bastion Cooperative",
     nspUsername: "bastion",

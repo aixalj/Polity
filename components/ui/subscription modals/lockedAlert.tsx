@@ -22,7 +22,7 @@ const WarningAlert: React.FC<WarningAlertProps> = ({ isVisible }) => {
             We&apos;ve noticed you missed your recent payment for your wallet subscription. To avoid any disruption to your premium features, please update your payment information promptly.
           </p>
           <div className='mt-3'>
-            <Link href='/marketplace/subscriptions'>
+            <Link href='/hub/subscriptions'>
               <Button
                 variant='ghost'
                 className='p-0 m-0 h-auto bg-transparent hover:bg-transparent text-rose-700 flex items-center gap-1 hover:underline hover:text-rose-800'

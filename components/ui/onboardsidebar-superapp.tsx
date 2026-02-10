@@ -67,7 +67,7 @@ const avatarVirtualNodeLinks = [
   {
     href: '/onboarding/superapp/avn',
     icon: ImageUserLeft,
-    text: 'Avatar Virtual Node',
+    text: 'Application Virtual Node',
     className: 'font-medium',
   },
   {

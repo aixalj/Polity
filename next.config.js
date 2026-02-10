@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  transpilePackages: ['d3-shape'],
+  experimental: {
+    esmExternals: 'loose',
+  },
   images: {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',

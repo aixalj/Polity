@@ -7,7 +7,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import {
   getAllContacts,
   getAllAddresses,
-  ContactWithFormattedCount,
+  ContactWithFormattedCount, 
   Address,
 } from '@/components/ui/addressbookData';
 import { AllContactsTable } from '@/components/ui/allcontactsTable';

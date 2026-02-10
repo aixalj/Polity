@@ -118,7 +118,7 @@ const Onboarding = () => {
                 <UserCheck01 className='w-5 h-5' /> Identity Verification
               </li>
               <li className='flex items-center gap-3 py-0.5 line-through text-gray-700 text-sm font-medium'>
-                <ImageUserLeft className='w-5 h-5' /> Avatar Virtual Node
+                <ImageUserLeft className='w-5 h-5' /> Application Virtual Node
               </li>
             </ul>
             <ul className='list-disc list-inside text-sm space-y-2.5  text-gray-800'>
@@ -144,7 +144,7 @@ const Onboarding = () => {
                   className='w-5 h-5'
                   alt='Check Icon'
                 />{' '}
-                Access to local NSP marketplace
+                Access to local NSP hub
               </li>
             </ul>
           </div>
@@ -191,7 +191,7 @@ const Onboarding = () => {
                   <span className='text-xl font-medium text-gray-600 line-through mr-1'>
                     19.99
                   </span>
-                  per Avatar Virtual Node
+                  per Application Virtual Node
                 </p>
               </div>
               <div>
@@ -221,7 +221,7 @@ const Onboarding = () => {
                 <UserCheck01 className='w-5 h-5' /> Identity Verification
               </li>
               <li className='flex items-center gap-3 py-0.5 text-primary-700 text-sm font-medium'>
-                <ImageUserLeft className='w-5 h-5' /> Avatar Virtual Node
+                <ImageUserLeft className='w-5 h-5' /> Application Virtual Node
               </li>
             </ul>
             <ul className='list-disc list-inside text-sm space-y-2.5  text-gray-800'>
@@ -247,7 +247,7 @@ const Onboarding = () => {
                   className='w-5 h-5'
                   alt='Check Icon'
                 />{' '}
-                Access to global Polity marketplace
+                Access to global Polity hub
               </li>
             </ul>
           </div>

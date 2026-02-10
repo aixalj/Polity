@@ -76,6 +76,7 @@ import { Notification } from '@/components/ui/notification';
 const Onboarding = () => {
   const tabValues = ['payment', 'recipient', 'amount', 'confirm'];
   const [activeTab, setActiveTab] = useState(tabValues[0]);
+  const [showVeriffPopup, setShowVeriffPopup] = useState(false);
 
   const handleContinue = () => {
     const currentIndex = tabValues.indexOf(activeTab);
@@ -1284,7 +1285,7 @@ const Onboarding = () => {
                 </div>
                 <div className='w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]'>
                   <Image
-                    src={veriff01}
+                    src='/veriff/01.png'
                     alt='Veriff ID'
                     className='w-full h-full object-contain rounded-xl border border-[#E8E9F4]'
                     width={200}
@@ -1310,7 +1311,7 @@ const Onboarding = () => {
                 </div>
                 <div className='w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]'>
                   <Image
-                    src={veriff02}
+                    src='/veriff/02.png'
                     alt='Veriff ID'
                     className='w-full h-full object-contain rounded-xl border border-[#E8E9F4]'
                     width={200}
@@ -1337,7 +1338,7 @@ const Onboarding = () => {
                 </div>
                 <div className='w-full rounded-xl flex items-center justify-center bg-[#E8E9F4]'>
                   <Image
-                    src={veriff03}
+                    src='/veriff/03.png'
                     alt='Veriff ID'
                     className='w-full h-full object-contain rounded-xl border border-[#E8E9F4]'
                     width={200}
@@ -1362,13 +1363,46 @@ const Onboarding = () => {
           <Link href='/onboarding/superapp/avatar'>
             <Button variant='outline'>Skip for Now</Button>
           </Link>
-          <Link target='_blank' href='https://www.veriff.com/'>
-            <Button>
-              Continue to Veriff <LinkExternal01 className='w-5 h-5' />
-            </Button>
-          </Link>
+          <Button onClick={() => setShowVeriffPopup(true)}>
+            Continue to Veriff
+          </Button>
         </div>
       </div>
+
+      {/* Veriff iframe popup modal */}
+      {showVeriffPopup && (
+        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'>
+          <div className='relative w-full h-full max-w-4xl max-h-[90vh] bg-white rounded-lg shadow-xl'>
+            {/* Close button */}
+            <button
+              onClick={() => setShowVeriffPopup(false)}
+              className='absolute top-4 right-4 z-10 w-8 h-8 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center text-gray-600 hover:text-gray-800 transition-colors'
+            >
+              <svg
+                className='w-4 h-4'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M6 18L18 6M6 6l12 12'
+                />
+              </svg>
+            </button>
+
+            {/* iframe */}
+            <iframe
+              src='https://demo.veriff.me/'
+              className='w-full h-full rounded-lg'
+              title='Veriff Demo'
+              allow='camera; microphone; geolocation'
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

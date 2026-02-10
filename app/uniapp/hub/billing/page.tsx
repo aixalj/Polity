@@ -60,7 +60,7 @@ export default function Billings() {
                 <li>
                   <a href="#" className="block transition hover:text-gray-700">
                     {" "}
-                    Marketplace{" "}
+                    Hub{" "}
                   </a>
                 </li>
 
@@ -93,7 +93,7 @@ export default function Billings() {
             <div className="w-full  mt-4 flex items-center justify-between">
               {" "}
               <div className="flex items-center gap-2">
-                {/* <Link href="/marketplace">
+                {/* <Link href="/hub">
                   <Button size="icon" variant="ghost" className="text-gray-500">
                     <ArrowLeft className="w-4 h-4" />
                   </Button>
@@ -105,8 +105,8 @@ export default function Billings() {
         </div>
 
         <div>
-          <div className="max-w-screen-xl px-6 max-sm:px-4 w-full  mx-auto flex flex-col gap-3 h-full">
-            <div className="relative w-full flex flex-col pb-40 max-sm:pb-20">
+          <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
+            <div className="relative w-full flex flex-col pb-40">
               <BillingTable billings={billings} />
             </div>
           </div>

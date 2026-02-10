@@ -45,7 +45,7 @@ export const WealthSelected: Story = {
   },
 };
 
-export const MarketplaceSelected: Story = {
+export const HubSelected: Story = {
   render: () => (
     <div className="h-screen">
       <SideBar />
@@ -54,7 +54,7 @@ export const MarketplaceSelected: Story = {
   parameters: {
     nextjs: {
       navigation: {
-        pathname: '/marketplace',
+        pathname: '/hub',
       },
     },
   },

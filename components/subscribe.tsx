@@ -15,7 +15,7 @@ import { WalletProvider } from '@/components/ui/formcontext';
 import { SubscribeProvider } from '@/components/ui/subscribecontext';
 
 interface SubscribeProps {
-  variant?: 'wealth' | 'wallet' | 'network';
+  variant?: 'wealth' | 'wallet' | 'network' | 'avatar';
   provider: 'Safeheron' | 'DFNS' | 'Fireblocks';
   disabled?: boolean;
 }
@@ -43,7 +43,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
               </Button>
             </FSDialogTrigger>
             <FSDialogContent className='flex w-screen h-screen bg-gray-50'>
-              <SubscribeModal provider={provider} />
+              <SubscribeModal provider={provider} flowType={variant === 'avatar' ? 'avatar' : 'default'} />
             </FSDialogContent>
           </FSDialog>
         </WalletProvider>
