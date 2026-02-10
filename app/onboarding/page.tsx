@@ -83,9 +83,10 @@ export default function InvestorPortal() {
       </div>
       <div className='flex flex-col items-center gap-1 pt-20'>
         <h1 className='text-2xl font-medium'>Client Portal</h1>
-        <p className='text-sm text-gray-600 mb-10'>
+        <p className='text-sm text-gray-600'>
           Click on your Avatar to enter your Avatar Dashboard.
         </p>
+        <p className='text-sm text-gray-600 mb-10'> 2/5 available avatars.</p>
 
         <div className='flex items-center gap-6'>
           {/* Connected Avatar */}
