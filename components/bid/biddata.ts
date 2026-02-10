@@ -18,7 +18,7 @@ const bids: Bid[] = [
     highestBid: 31,
     endTime: new Date(Date.now() + 1355 * 1000),
     status: "Top Bidder",
-    url: "/marketplace/lukka/report",
+    url: "/hub/lukka/report",
   },
 
   {
@@ -28,7 +28,7 @@ const bids: Bid[] = [
     highestBid: 35,
     endTime: new Date(Date.now() + 13550 * 1000),
     status: "Outbid",
-    url: "/marketplace/lukka/report",
+    url: "/hub/lukka/report",
   },
 ];
 

@@ -10,6 +10,7 @@ import { Progress } from '@/components/ui/progress';
 
 import { Subscribe } from '@/components/subscribe';
 import { SubscribeProvider } from '@/components/ui/subscribecontext';
+import { SubscribeModal } from '@/components/ui/subscribemodal'; // Add this import
 
 import {
   Tooltip,
@@ -22,19 +23,15 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 import { LinkExternal01 } from '@untitled-ui/icons-react';
-
-import { toast } from 'sonner';
-import { useState } from 'react';
-// Add import at the top
 import OnramperModal from '@/components/onramper/onramper';
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { toast } from 'sonner';
 import { Notification } from '@/components/ui/notification';
-import { useEffect } from 'react';
 
-export default function Marketplace() {
+export default function Hub() {
   const [isOnramperOpen, setIsOnramperOpen] = useState(false);
   const [notifications, setNotifications] = useState<Array<{ title: string }>>(
-    []
+    [],
   );
 
   const addNotification = (
@@ -51,7 +48,7 @@ export default function Marketplace() {
         | 'bottom-right';
       duration?: number;
       style?: React.CSSProperties;
-    }
+    },
   ) => {
     toast[status](title, {
       description: description,
@@ -111,7 +108,7 @@ export default function Marketplace() {
                       className='block transition text-gray-800 font-semibold'
                     >
                       {' '}
-                      Marketplace{' '}
+                      Hub{' '}
                     </a>
                   </li>
                 </ol>
@@ -121,7 +118,7 @@ export default function Marketplace() {
                 {' '}
                 <div>
                   <h1 className='text-3xl font-medium leading-tight'>
-                    Marketplace
+                    Hub
                   </h1>{' '}
                 </div>
                 {/* <div className="flex gap-3">
@@ -220,9 +217,9 @@ export default function Marketplace() {
                         </div>
                         <h3 className='text-2xl font-medium'>Avatar</h3>
                       </div>
-                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
-                        Upgrade to SuperApp
-                      </div>
+                      {/* <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                        Active wallet
+                      </div> */}
                     </div>
                     <p className='text-sm text-gray-600 mt-2 line-clamp-2'>
                       Get additional avatars at no cost. Expand your avatars
@@ -328,7 +325,7 @@ export default function Marketplace() {
                         </div>
                       </div>
                     </div> */}
-                    {/* <a href="/marketplace/subscriptions">
+                    {/* <a href="/hub/subscriptions">
                       <Button
                         variant="secondary"
                         className="w-full bg-white shadow-button-secondary-default hover:bg-white"
@@ -353,19 +350,13 @@ export default function Marketplace() {
                         <p className='text-xs text-gray-500'>Avatars</p>
                         <div className='flex items-end '>
                           <p className='text-md font-medium text-gray-800'>
-                            1/5
+                            2/5
                           </p>
                         </div>
                       </div>
                     </div>
                     <div className='mt-auto'>
-                      <Button
-                        variant='outline'
-                        className='w-full'
-                        disabled={true}
-                      >
-                        Unavailable
-                      </Button>
+                      <Subscribe variant='avatar' provider='DFNS' />
                     </div>
                   </div>
                 </div>
@@ -373,7 +364,7 @@ export default function Marketplace() {
             </div>
           </TabsContent>
 
-          <TabsContent value='wallets' className=''>
+          <TabsContent value='wallets'>
             <div className='max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full'>
               <div className='relative w-full flex flex-col pb-40'>
                 <div className='py-4 relative flex w-full flex-row	'>
@@ -655,9 +646,9 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>DFNS</h3>
                       </div>
-                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
-                        Upgrade to SuperApp
-                      </div>
+                      {/* <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                        Active wallet
+                      </div> */}
                     </div>
                     <p className='text-sm text-gray-600 mt-2 line-clamp-2'>
                       Network institutional-grade multi-party computation (MPC)
@@ -670,9 +661,9 @@ export default function Marketplace() {
                     >
                       Learn more about DFNS
                     </Link>
-                    <div className='group mb-2 hidden'>
+                    <div className='group mb-2'>
                       <p className='text-sm text-gray-800 mb-1'>
-                        Available Networks{' '}
+                        Subscribe to a new Wallet
                       </p>
                       <div className='flex flex-row'>
                         <TooltipProvider>
@@ -681,8 +672,8 @@ export default function Marketplace() {
                               {' '}
                               <Image
                                 className=''
-                                src='/icons/networks/BTC.svg'
-                                alt='BTC'
+                                src='/providers/icons/dfns/dfns-green.svg'
+                                alt='dfns'
                                 width={24}
                                 height={24}
                               />
@@ -698,8 +689,8 @@ export default function Marketplace() {
                               {' '}
                               <Image
                                 className=''
-                                src='/icons/networks/ETH.svg'
-                                alt='ETH'
+                                src='/providers/icons/dfns/dfns-blue.svg'
+                                alt='dfns'
                                 width={24}
                                 height={24}
                               />
@@ -715,8 +706,25 @@ export default function Marketplace() {
                               {' '}
                               <Image
                                 className=''
-                                src='/icons/networks/MATIC.svg'
-                                alt='MATIC'
+                                src='/providers/icons/dfns/dfns-yellow.svg'
+                                alt='dfns'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Polygon</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/dfns/dfns-purple.svg'
+                                alt='dfns'
                                 width={24}
                                 height={24}
                               />
@@ -728,14 +736,42 @@ export default function Marketplace() {
                         </TooltipProvider>
                       </div>
                     </div>
-                    <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
+                    {/* <div className="w-full flex justify-between mt-2 mb-4">
+                      <div className="flex flex-col ">
+                        <p className="text-xs text-gray-500">-</p>
+                        <div className="flex items-end ">
+                          <p className="text-xl font-semibold text-gray-900">
+                            Unavailable
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-end">
+                        <p className="text-xs text-gray-500">Wallets</p>
+                        <div className="flex items-end ">
+                          <p className="text-md font-medium text-gray-800">
+                            1/1
+                          </p>
+                        </div>
+                      </div>
+                    </div> */}
+                    {/* <a href="/hub/subscriptions">
+                      <Button
+                        variant="secondary"
+                        className="w-full bg-white shadow-button-secondary-default hover:bg-white"
+                      >
+                        Manage
+                      </Button>
+                    </a> */}
+
+                    <div className='w-full flex justify-between mt-2 mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 font-medium '>
-                          Please upgrade to SuperApp
-                        </p>
+                        <p className='text-xs text-gray-500'>Starting from</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            Unavailable
+                            9.99 USDT
+                          </p>
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
+                            each/mo
                           </p>
                         </div>
                       </div>
@@ -743,22 +779,15 @@ export default function Marketplace() {
                         <p className='text-xs text-gray-500'>Wallets</p>
                         <div className='flex items-end '>
                           <p className='text-md font-medium text-gray-800'>
-                            0/9
+                            0/1
                           </p>
                         </div>
                       </div>
                     </div>
                     <div className='mt-auto'>
-                      <Button
-                        variant='outline'
-                        className='w-full'
-                        disabled={true}
-                      >
-                        Unavailable
-                      </Button>
+                      <Subscribe variant='wealth' provider='DFNS' />
                     </div>
                   </div>
-
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
                     <div className='w-full justify-between flex items-center pb-3'>
                       <div className='flex flex-row gap-2.5 items-center'>
@@ -798,9 +827,9 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Fireblocks</h3>
                       </div>
-                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
-                        Upgrade to SuperApp
-                      </div>
+                      {/*<div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                        Coming soon!
+                      </div> */}
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
                       Battle-tested and flexible wallet infrastructure with
@@ -814,19 +843,20 @@ export default function Marketplace() {
                       Learn more about Fireblocks
                     </a>
 
-                    <div className='group mb-2 hidden'>
-                      <p className='text-sm text-gray-800 mb-1'>
-                        Available Networks
+                    <div className='group mb-2'>
+                      <p className='text-sm text-gray-800 mb-1 '>
+                        Subscribe to a new Wallet
                       </p>
-                      <div className='flex flex-row'>
+
+                      <div className='flex flex-row '>
                         <TooltipProvider>
                           <Tooltip>
                             <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
                               {' '}
                               <Image
                                 className=''
-                                src='/icons/networks/BTC.svg'
-                                alt='BTC'
+                                src='/providers/icons/fireblock/fireblocks-blue.svg'
+                                alt='fireblock'
                                 width={24}
                                 height={24}
                               />
@@ -842,8 +872,8 @@ export default function Marketplace() {
                               {' '}
                               <Image
                                 className=''
-                                src='/icons/networks/ETH.svg'
-                                alt='ETH'
+                                src='/providers/icons/fireblock/fireblocks-green.svg'
+                                alt='fireblock'
                                 width={24}
                                 height={24}
                               />
@@ -859,8 +889,25 @@ export default function Marketplace() {
                               {' '}
                               <Image
                                 className=''
-                                src='/icons/networks/MATIC.svg'
-                                alt='MATIC'
+                                src='/providers/icons/fireblock/fireblocks-purple.svg'
+                                alt='fireblock'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Polygon</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/fireblock/fireblocks-yellow.svg'
+                                alt='fireblock'
                                 width={24}
                                 height={24}
                               />
@@ -872,14 +919,13 @@ export default function Marketplace() {
                         </TooltipProvider>
                       </div>
                     </div>
-                    <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
+
+                    <div className='w-full flex justify-between mt-2 mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 font-medium'>
-                          Please upgrade to SuperApp
-                        </p>
+                        <p className='text-xs text-gray-500'>Starting from</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            Unavailable
+                            9.99 USDT
                           </p>
                         </div>
                       </div>
@@ -887,19 +933,14 @@ export default function Marketplace() {
                         <p className='text-xs text-gray-500'>Wallets</p>
                         <div className='flex items-end '>
                           <p className='text-md font-medium text-gray-800'>
-                            0/9
+                            0/1
                           </p>
                         </div>
                       </div>
                     </div>
+
                     <div className='mt-auto'>
-                      <Button
-                        variant='outline'
-                        className='w-full'
-                        disabled={true}
-                      >
-                        Unavailable
-                      </Button>
+                      <Subscribe variant='wealth' provider='Fireblocks' />
                     </div>
                   </div>
 
@@ -949,9 +990,9 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Safeheron</h3>
                       </div>
-                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
-                        Upgrade to SuperApp
-                      </div>
+                      {/* <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                        Active wallet
+                      </div> */}
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
                       An institutional-grade MPC self-custody platform for
@@ -964,9 +1005,9 @@ export default function Marketplace() {
                     >
                       Learn more about Safeheron
                     </a>
-                    <div className='group mb-2 hidden'>
+                    <div className='group mb-2'>
                       <p className='text-sm text-gray-800 mb-1'>
-                        Available Networks
+                        Subscribe to a new Wallet
                       </p>
                       <div className='flex flex-row'>
                         <TooltipProvider>
@@ -975,7 +1016,7 @@ export default function Marketplace() {
                               {' '}
                               <Image
                                 className=''
-                                src='/icons/networks/BTC.svg'
+                                src='/wallets/safeheron-green.svg'
                                 alt='BTC'
                                 width={24}
                                 height={24}
@@ -988,48 +1029,66 @@ export default function Marketplace() {
                         </TooltipProvider>
                         <TooltipProvider>
                           <Tooltip>
-                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
                               {' '}
                               <Image
                                 className=''
-                                src='/icons/networks/ETH.svg'
-                                alt='ETH'
+                                src='/wallets/safeheron-blue.svg'
+                                alt='BTC'
                                 width={24}
                                 height={24}
                               />
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p>ETH</p>
+                              <p>BTC</p>
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
                         <TooltipProvider>
                           <Tooltip>
-                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
                               {' '}
                               <Image
                                 className=''
-                                src='/icons/networks/MATIC.svg'
-                                alt='MATIC'
+                                src='/wallets/safeheron-purple.svg'
+                                alt='BTC'
                                 width={24}
                                 height={24}
                               />
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p>Polygon</p>
+                              <p>BTC</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/wallets/safeheron-yellow.svg'
+                                alt='BTC'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>BTC</p>
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
                       </div>
                     </div>
-                    <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
+                    <div className='w-full flex justify-between mt-2 mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 font-medium '>
-                          Please upgrade to SuperApp
-                        </p>
+                        <p className='text-xs text-gray-500'>Starting from</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            Unavailable
+                            9.99 USDT
+                          </p>
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
+                            each/mo
                           </p>
                         </div>
                       </div>
@@ -1037,19 +1096,14 @@ export default function Marketplace() {
                         <p className='text-xs text-gray-500'>Wallets</p>
                         <div className='flex items-end '>
                           <p className='text-md font-medium text-gray-800'>
-                            0/9
+                            0/1
                           </p>
                         </div>
                       </div>
                     </div>
+
                     <div className='mt-auto'>
-                      <Button
-                        variant='outline'
-                        className='w-full'
-                        disabled={true}
-                      >
-                        Unavailable
-                      </Button>
+                      <Subscribe variant='wealth' provider='Safeheron' />
                     </div>
                   </div>
                 </div>
@@ -1339,9 +1393,9 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>DFNS</h3>
                       </div>
-                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
-                        Upgrade to SuperApp
-                      </div>
+                      {/* <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                        Active wallet
+                      </div> */}
                     </div>
                     <p className='text-sm text-gray-600 mt-2 line-clamp-2'>
                       Network institutional-grade multi-party computation (MPC)
@@ -1354,151 +1408,7 @@ export default function Marketplace() {
                     >
                       Learn more about DFNS
                     </Link>
-                    <div className='group mb-2 hidden'>
-                      <p className='text-sm text-gray-800 mb-1'>
-                        Available Networks{' '}
-                      </p>
-                      <div className='flex flex-row'>
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
-                              {' '}
-                              <Image
-                                className=''
-                                src='/icons/networks/BTC.svg'
-                                alt='BTC'
-                                width={24}
-                                height={24}
-                              />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>BTC</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
-                              {' '}
-                              <Image
-                                className=''
-                                src='/icons/networks/ETH.svg'
-                                alt='ETH'
-                                width={24}
-                                height={24}
-                              />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>ETH</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
-                              {' '}
-                              <Image
-                                className=''
-                                src='/icons/networks/MATIC.svg'
-                                alt='MATIC'
-                                width={24}
-                                height={24}
-                              />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>Polygon</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </div>
-                    </div>
-                    <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
-                      <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 font-medium '>
-                          Please upgrade to SuperApp
-                        </p>
-                        <div className='flex items-end '>
-                          <p className='text-xl font-semibold text-gray-900'>
-                            Unavailable
-                          </p>
-                        </div>
-                      </div>
-                      <div className='flex flex-col items-end'>
-                        <p className='text-xs text-gray-500'>Wallets</p>
-                        <div className='flex items-end '>
-                          <p className='text-md font-medium text-gray-800'>
-                            0/9
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='mt-auto'>
-                      <Button
-                        variant='outline'
-                        className='w-full'
-                        disabled={true}
-                      >
-                        Unavailable
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
-                    <div className='w-full justify-between flex items-center pb-3'>
-                      <div className='flex flex-row gap-2.5 items-center'>
-                        <svg
-                          width='40'
-                          height='40'
-                          viewBox='0 0 40 40'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
-                        >
-                          <g clip-path='url(#clip0_127_5074)'>
-                            <rect width='40' height='40' rx='11' fill='white' />
-                            <path
-                              d='M31.1946 8C31.7248 8 32.1546 8.42981 32.1546 8.96V31.04C32.1546 31.5702 31.7248 32 31.1946 32H8.80546C8.27527 32 7.84546 31.5702 7.84546 31.04V8.96C7.84546 8.42981 8.27527 8 8.80546 8H31.1946ZM20 14.6667L13.2474 25.3333H26.7525L20 14.6667Z'
-                              fill='#14223D'
-                            />
-                          </g>
-                          <rect
-                            x='0.5'
-                            y='0.5'
-                            width='39'
-                            height='39'
-                            rx='10.5'
-                            stroke='#D0D5DD'
-                          />
-                          <defs>
-                            <clipPath id='clip0_127_5074'>
-                              <rect
-                                width='40'
-                                height='40'
-                                rx='11'
-                                fill='white'
-                              />
-                            </clipPath>
-                          </defs>
-                        </svg>
-
-                        <h3 className='text-2xl font-medium'>Fireblocks</h3>
-                      </div>
-                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
-                        Upgrade to SuperApp
-                      </div>
-                    </div>
-                    <p className='text-sm text-gray-600 mt-2'>
-                      Battle-tested and flexible wallet infrastructure with
-                      multi-layer security.
-                    </p>
-                    <a
-                      href='https://www.fireblocks.com/'
-                      target='_blank'
-                      className='text-sm my-2 cursor-pointer font-semibold text-teal-600'
-                    >
-                      Learn more about Fireblocks
-                    </a>
-
-                    <div className='group mb-2 hidden'>
+                    <div className='group mb-2'>
                       <p className='text-sm text-gray-800 mb-1'>
                         Available Networks
                       </p>
@@ -1556,14 +1466,171 @@ export default function Marketplace() {
                         </TooltipProvider>
                       </div>
                     </div>
-                    <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
+                    <div className='w-full flex justify-between mt-2 mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 font-medium'>
-                          Please upgrade to SuperApp
+                        <p className='text-xs text-gray-500'>
+                          Add Network Account
                         </p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            Unavailable
+                            1.99 USDT
+                          </p>
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
+                            each/mo
+                          </p>
+                        </div>
+                      </div>
+                      <div className='flex flex-col items-end'>
+                        <p className='text-xs text-gray-500'>Total</p>
+                        <div className='flex items-end '>
+                          <p className='text-md font-medium text-gray-800'>
+                            3/9
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='mt-auto'>
+                      <Subscribe variant='network' provider='DFNS' />
+                    </div>
+                  </div>
+                  <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
+                    <div className='w-full justify-between flex items-center pb-3'>
+                      <div className='flex flex-row gap-2.5 items-center'>
+                        <svg
+                          width='40'
+                          height='40'
+                          viewBox='0 0 40 40'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <g clip-path='url(#clip0_127_5074)'>
+                            <rect width='40' height='40' rx='11' fill='white' />
+                            <path
+                              d='M31.1946 8C31.7248 8 32.1546 8.42981 32.1546 8.96V31.04C32.1546 31.5702 31.7248 32 31.1946 32H8.80546C8.27527 32 7.84546 31.5702 7.84546 31.04V8.96C7.84546 8.42981 8.27527 8 8.80546 8H31.1946ZM20 14.6667L13.2474 25.3333H26.7525L20 14.6667Z'
+                              fill='#14223D'
+                            />
+                          </g>
+                          <rect
+                            x='0.5'
+                            y='0.5'
+                            width='39'
+                            height='39'
+                            rx='10.5'
+                            stroke='#D0D5DD'
+                          />
+                          <defs>
+                            <clipPath id='clip0_127_5074'>
+                              <rect
+                                width='40'
+                                height='40'
+                                rx='11'
+                                fill='white'
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+
+                        <h3 className='text-2xl font-medium'>Fireblocks</h3>
+                      </div>
+                      {/*<div className="bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium">
+                        Coming soon!
+                      </div> */}
+                    </div>
+                    <p className='text-sm text-gray-600 mt-2'>
+                      Battle-tested and flexible wallet infrastructure with
+                      multi-layer security.
+                    </p>
+                    <a
+                      href='https://www.fireblocks.com/'
+                      target='_blank'
+                      className='text-sm my-2 cursor-pointer font-semibold text-teal-600'
+                    >
+                      Learn more about Fireblocks
+                    </a>
+
+                    <div className='group mb-2'>
+                      <p className='text-sm text-gray-800 mb-1 '>
+                        Subscribe to a new Wallet
+                      </p>
+
+                      <div className='flex flex-row '>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 hover:shadow-sm'>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/fireblock/fireblocks-blue.svg'
+                                alt='fireblock'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>BTC</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/fireblock/fireblocks-green.svg'
+                                alt='fireblock'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>ETH</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/fireblock/fireblocks-purple.svg'
+                                alt='fireblock'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Polygon</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className='-mr-2 group-hover:mr-0.5 transition-all duration-200 '>
+                              {' '}
+                              <Image
+                                className=''
+                                src='/providers/icons/fireblock/fireblocks-yellow.svg'
+                                alt='fireblock'
+                                width={24}
+                                height={24}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Polygon</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                    </div>
+
+                    <div className='w-full flex justify-between mt-2 mb-4'>
+                      <div className='flex flex-col '>
+                        <p className='text-xs text-gray-500'>Starting from</p>
+                        <div className='flex items-end '>
+                          <p className='text-xl font-semibold text-gray-900'>
+                            1.99 USDT
                           </p>
                         </div>
                       </div>
@@ -1571,22 +1638,16 @@ export default function Marketplace() {
                         <p className='text-xs text-gray-500'>Wallets</p>
                         <div className='flex items-end '>
                           <p className='text-md font-medium text-gray-800'>
-                            0/9
+                            0/1
                           </p>
                         </div>
                       </div>
                     </div>
+
                     <div className='mt-auto'>
-                      <Button
-                        variant='outline'
-                        className='w-full'
-                        disabled={true}
-                      >
-                        Unavailable
-                      </Button>
+                      <Subscribe variant='network' provider='Fireblocks' />
                     </div>
                   </div>
-
                   <div className='w-full flex flex-col  max-w-full border border-gray-300 rounded-2xl px-6 pt-6 pb-4'>
                     <div className='w-full justify-between flex items-center pb-3'>
                       <div className='flex flex-row gap-2.5 items-center'>
@@ -1633,9 +1694,9 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Safeheron</h3>
                       </div>
-                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
-                        Upgrade to SuperApp
-                      </div>
+                      {/* <div className="bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium">
+                        Active wallet
+                      </div> */}
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
                       An institutional-grade MPC self-custody platform for
@@ -1648,7 +1709,7 @@ export default function Marketplace() {
                     >
                       Learn more about Safeheron
                     </a>
-                    <div className='group mb-2 hidden'>
+                    <div className='group mb-2'>
                       <p className='text-sm text-gray-800 mb-1'>
                         Available Networks
                       </p>
@@ -1706,19 +1767,22 @@ export default function Marketplace() {
                         </TooltipProvider>
                       </div>
                     </div>
-                    <div className='w-full flex justify-between mt-[1.5rem] mb-4'>
+                    <div className='w-full flex justify-between mt-2 mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500 font-medium '>
-                          Please upgrade to SuperApp
+                        <p className='text-xs text-gray-500'>
+                          Add Network Account
                         </p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            Unavailable
+                            1.99 USDT
+                          </p>
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
+                            each/mo
                           </p>
                         </div>
                       </div>
                       <div className='flex flex-col items-end'>
-                        <p className='text-xs text-gray-500'>Wallets</p>
+                        <p className='text-xs text-gray-500'>Total</p>
                         <div className='flex items-end '>
                           <p className='text-md font-medium text-gray-800'>
                             0/9
@@ -1727,13 +1791,7 @@ export default function Marketplace() {
                       </div>
                     </div>
                     <div className='mt-auto'>
-                      <Button
-                        variant='outline'
-                        className='w-full'
-                        disabled={true}
-                      >
-                        Unavailable
-                      </Button>
+                      <Subscribe variant='network' provider='Safeheron' />
                     </div>
                   </div>
                 </div>
@@ -1812,8 +1870,8 @@ export default function Marketplace() {
 
                         <h3 className='text-2xl font-medium'>Onramper</h3>
                       </div>
-                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
-                        Upgrade to SuperApp
+                      <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
+                        Coming soon!
                       </div>
                     </div>
                     <p className='text-sm text-gray-600 mt-2'>
@@ -1945,7 +2003,7 @@ export default function Marketplace() {
 
                     <div className='w-full flex justify-between mt-auto mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>-</p>
+                        <p className='text-xs text-gray-500 '>-</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
                             Unavailable
@@ -2075,9 +2133,9 @@ export default function Marketplace() {
                           </div>
                         </div>
                       </div>
-                      <div className='bg-teal-100 border border-teal-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-teal-800 font-medium'>
-                        Upgrade to SuperApp
-                      </div>
+                      {/* <div className='bg-purple-100 border border-purple-200 py-0.5 px-2  flex gap-1 items-center rounded-md text-xs text-purple-800 font-medium'>
+                        Coming soon!
+                      </div> */}
                     </div>
                     <div>
                       <h3 className='text-2xl font-medium'>AML Risk Report</h3>
@@ -2095,24 +2153,20 @@ export default function Marketplace() {
                     </a>
                     <div className='w-full flex justify-between mb-4'>
                       <div className='flex flex-col '>
-                        <p className='text-xs text-gray-500'>-</p>
+                        <p className='text-xs text-gray-500'>Starting from</p>
                         <div className='flex items-end '>
                           <p className='text-xl font-semibold text-gray-900'>
-                            Unavailable
+                            4.99 USDT
                           </p>
-                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5 hidden'>
+                          <p className='text-sm text-gray-500 mb-0.5 ml-0.5'>
                             each/mo
                           </p>
                         </div>
                       </div>
                     </div>
-                    <Link href='/marketplace/lukka/report'>
-                      <Button
-                        className='w-full'
-                        variant='outline'
-                        disabled={true}
-                      >
-                        Unavailable
+                    <Link href='/hub/lukka/report'>
+                      <Button className='w-full' variant='default'>
+                        View Options
                       </Button>
                     </Link>
                   </div>
@@ -2189,7 +2243,7 @@ export default function Marketplace() {
                     </div>
                     <h3 className='text-2xl font-medium'>Clearpool</h3>
                     <p className='text-sm text-gray-600 mt-2 h-16'>
-                      A decentralized marketplace for unsecured institutional
+                      A decentralized hub for unsecured institutional
                       capital.
                     </p>
                     <div className='flex flex-row gap-2.5 items-center mt-3.5 mb-5'>
@@ -2377,7 +2431,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/Instadapp.svg'
+                            src='/icons/dApps/instadapp.svg'
                             alt='Instadapp'
                             width={40}
                             height={40}
@@ -2416,7 +2470,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/Pancake.svg'
+                            src='/icons/dApps/pancake.svg'
                             alt='Pancake'
                             width={40}
                             height={40}
@@ -2455,7 +2509,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/Paraswap.svg'
+                            src='/icons/dApps/paraswap.svg'
                             alt='Paraswap'
                             width={40}
                             height={40}
@@ -2495,7 +2549,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/Swap.svg'
+                            src='/icons/dApps/swap.svg'
                             alt='Swapzone'
                             width={40}
                             height={40}
@@ -2575,7 +2629,7 @@ export default function Marketplace() {
                       <div className='flex flex-row gap-2.5 items-center'>
                         <div className='w-10 h-10 rounded-full flex items-center justify-center mb-5'>
                           <Image
-                            src='/icons/dApps/Uniswap.svg'
+                            src='/icons/dApps/uniswap.svg'
                             alt='Uniswap'
                             width={40}
                             height={40}
@@ -2622,6 +2676,7 @@ export default function Marketplace() {
         setNotifications={setNotifications}
       />
 
+      {/* Add fixed positioning container for notifications */}
       <div className='fixed bottom-4 left-4 z-50 flex flex-col gap-2 w-[416px]'>
         {notifications.map((notification, index) => (
           <Notification

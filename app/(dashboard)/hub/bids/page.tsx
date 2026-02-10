@@ -108,7 +108,7 @@ export default function Bids() {
               <li>
                 <a href="#" className="block transition hover:text-gray-700">
                   {" "}
-                  Marketplace{" "}
+                  Hub{" "}
                 </a>
               </li>
 
@@ -141,7 +141,7 @@ export default function Bids() {
           <div className="w-full  mt-4 flex items-center justify-between">
             {" "}
             <div className="flex items-center gap-2">
-              {/* <Link href='/marketplace'>
+              {/* <Link href='/hub'>
                 <Button size='icon' variant='ghost' className='text-gray-500'>
                   <ArrowLeft className='w-4 h-4' />
                 </Button>

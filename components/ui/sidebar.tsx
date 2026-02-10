@@ -1115,9 +1115,9 @@ const SideBar = () => {
                   <CollapsibleTrigger className='w-full ease-in-out duration-200'>
                     <div className='group relative  w-full outline-none  focus:tap-highlight-transparent  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm'>
                       <Link
-                        href='/marketplace'
+                        href='/hub'
                         className={`group focus:ring-0 ${
-                          pathname === '/marketplace'
+                          pathname === '/hub'
                             ? 'justify-between outline-none  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
                             : 'outline-none justify-between  focus:tap-highlight-transparent hover:text-black focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
                         }`}
@@ -1139,7 +1139,7 @@ const SideBar = () => {
                               stroke-linejoin='round'
                             />
                           </svg>
-                          Marketplace
+                          Hub
                         </div>
                       </Link>
                       <a
@@ -1192,11 +1192,11 @@ const SideBar = () => {
                       <li>
                         <Link
                           className={`group focus:ring-0  ${
-                            pathname === '/marketplace/billing'
+                            pathname === '/hub/billing'
                               ? '   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
                               : 'w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
                           }`}
-                          href='/marketplace/billing'
+                          href='/hub/billing'
                           id='billing'
                         >
                           <File05 className='w-4 h-4' />
@@ -1206,11 +1206,11 @@ const SideBar = () => {
                       <li>
                         <Link
                           className={`group focus:ring-0  ${
-                            pathname === '/marketplace/subscriptions'
+                            pathname === '/hub/subscriptions'
                               ? '   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
                               : 'w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
                           }`}
-                          href='/marketplace/subscriptions'
+                          href='/hub/subscriptions'
                           id='subscriptions'
                         >
                           <PackageCheck className='w-4 h-4' />
@@ -1222,11 +1222,11 @@ const SideBar = () => {
                       <li>
                         <Link
                           className={`group focus:ring-0  ${
-                            pathname === '/marketplace/bids'
+                            pathname === '/hub/bids'
                               ? '   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
                               : 'w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
                           }`}
-                          href='/marketplace/bids'
+                          href='/hub/bids'
                           id='overview'
                         >
                           <Trophy01 className='w-4 h-4 ' />
@@ -1242,11 +1242,11 @@ const SideBar = () => {
                 </Collapsible>
                 {/* <Link
                   className={`group focus:ring-0 ${
-                    pathname === "/marketplace"
+                    pathname === "/hub"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
-                  href="/marketplace"
+                  href="/hub"
                   id="overview"
                 >
                   <svg
@@ -1264,7 +1264,7 @@ const SideBar = () => {
                       stroke-linejoin="round"
                     />
                   </svg>
-                  Marketplace
+                  Hub
                 </Link> */}
               </li>
 

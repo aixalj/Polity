@@ -97,7 +97,7 @@ const isValidBitcoinAddress = (address: string): boolean => {
   return /^(1|3|bc1)[a-zA-Z0-9]{25,62}$/.test(address);
 };
 
-export default function Marketplace() {
+export default function Hub() {
   const [selectedOption, setSelectedOption] = useState<string>("1");
   const [selectedWallet, setSelectedWallet] = useState<string>("");
   const [selectedAccount, setSelectedAccount] = useState<string>("");
@@ -222,7 +222,7 @@ export default function Marketplace() {
                 <li>
                   <a href="#" className="block transition hover:text-gray-700">
                     {" "}
-                    Marketplace{" "}
+                    Hub{" "}
                   </a>
                 </li>
 

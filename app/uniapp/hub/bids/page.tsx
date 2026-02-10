@@ -44,15 +44,62 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { BuyReport } from "@/components/buyreport";
 import { AgreementTable } from "@/components/agreementtable";
-import { BillingTable } from "@/components/billing/billingtable";
-import { billings } from "@/components/billing/billingdata";
+import { BidTable } from "@/components/bid/bidtable";
+import { bids } from "@/components/bid/biddata";
+import RebidModal from "@/components/bid/rebidmodal"; // Import RebidModal
+import { Notification } from "@/components/ui/notification"; // Import Notification component
 
-export default function Billings() {
+export default function Bids() {
   const [selectedOption, setSelectedOption] = useState<string>("1");
+  const [notification, setNotification] = useState<{
+    title: string;
+    description: string;
+    status: "success" | "error" | "warning" | "info"; // Updated to include all status types
+  } | null>(null);
+
+  const addNotification = (
+    title: string,
+    description: string,
+    status: "success" | "error" | "warning" | "info"
+  ) => {
+    // Updated to include all status types
+    setNotification({ title, description, status });
+  };
+
+  const handleCloseNotification = () => {
+    setNotification(null); // Hide the notification
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // Added state for modal visibility
+
+  const handleConfirmBid = (newBid: number) => {
+    // Update the bid table logic here
+    // For example, you might want to update the bids state or call an API
+
+    setNotification({
+      title: "Bid Updated",
+      description: `Your bid for ${newBid} Lukka Reports has been recorded. Track your auction status in My Bids.`,
+      status: "success",
+    });
+    setIsModalOpen(false); // Close the modal
+  };
 
   return (
     <main className="w-full h-full">
       <div className="mx-auto w-full bg-white rounded-2xl relative flex flex-col h-full border-gray-300 border gap-6 overflow-scroll">
+        {/* Render the Notification */}
+        {notification && (
+          <div className="fixed bottom-4 left-4 max-w-sm z-50 rounded-[20px]">
+            <Notification
+              title={notification.title}
+              description="Your bid for 10 Lukka Reports has been recorded. Track your auction status in My Bids."
+              status="success"
+              className="shadow-2xl"
+              onClose={handleCloseNotification} // Close notification
+            />
+          </div>
+        )}
+
         <div className="w-full sticky top-0 backdrop-blur-md	z-10  border-b border-gray-100 bg-white/60">
           <div className=" max-w-screen-xl mx-auto p-6">
             <nav aria-label="Breadcrumb">
@@ -60,7 +107,7 @@ export default function Billings() {
                 <li>
                   <a href="#" className="block transition hover:text-gray-700">
                     {" "}
-                    Marketplace{" "}
+                    Hub{" "}
                   </a>
                 </li>
 
@@ -84,7 +131,7 @@ export default function Billings() {
                 <li>
                   <a href="#" className="block transition text-gray-800">
                     {" "}
-                    Billing{" "}
+                    My Bids{" "}
                   </a>
                 </li>
               </ol>
@@ -93,12 +140,12 @@ export default function Billings() {
             <div className="w-full  mt-4 flex items-center justify-between">
               {" "}
               <div className="flex items-center gap-2">
-                {/* <Link href="/marketplace">
-                  <Button size="icon" variant="ghost" className="text-gray-500">
-                    <ArrowLeft className="w-4 h-4" />
+                {/* <Link href='/hub'>
+                  <Button size='icon' variant='ghost' className='text-gray-500'>
+                    <ArrowLeft className='w-4 h-4' />
                   </Button>
                 </Link> */}
-                <h1 className="text-3xl font-medium leading-tight">Billing</h1>{" "}
+                <h1 className="text-3xl font-medium leading-tight">My Bids</h1>{" "}
               </div>
             </div>
           </div>
@@ -107,7 +154,16 @@ export default function Billings() {
         <div>
           <div className="max-w-screen-xl px-6 w-full  mx-auto flex flex-col gap-3 h-full">
             <div className="relative w-full flex flex-col pb-40">
-              <BillingTable billings={billings} />
+              <BidTable bids={bids} addNotification={addNotification} />
+              <RebidModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                timeLeft="10:00"
+                currentBid={100} // Example current bid
+                highestBid={90} // Example highest bid
+                onConfirm={handleConfirmBid} // Pass the confirm function
+                addNotification={addNotification}
+              />
             </div>
           </div>
         </div>

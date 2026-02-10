@@ -612,9 +612,9 @@ const SideBarUniapp = () => {
                   <CollapsibleTrigger className='w-full ease-in-out duration-200'>
                     <div className='group relative  w-full outline-none  focus:tap-highlight-transparent  rounded-xl h-11 duration-200 ease-in-out hover:text-black  hover:bg-white hover:shadow-sm'>
                       <Link
-                        href='/uniapp/marketplace'
+                        href='/uniapp/hub'
                         className={`group focus:ring-0 ${
-                          pathname === '/uniapp/marketplace'
+                          pathname === '/uniapp/hub'
                             ? 'justify-between outline-none  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
                             : 'outline-none justify-between  focus:tap-highlight-transparent hover:text-black focus:outline-none relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
                         }`}
@@ -636,7 +636,7 @@ const SideBarUniapp = () => {
                               stroke-linejoin='round'
                             />
                           </svg>
-                          Marketplace
+                          Hub
                         </div>
                       </Link>
                       <a
@@ -689,11 +689,11 @@ const SideBarUniapp = () => {
                       <li>
                         <Link
                           className={`group focus:ring-0 ${
-                            pathname === '/uniapp/marketplace/billing'
+                            pathname === '/uniapp/hub/billing'
                               ? '   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
                               : 'w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
                           }`}
-                          href='/uniapp/marketplace/billing'
+                          href='/uniapp/hub/billing'
                           id='overview'
                         >
                           <File05 className='w-4 h-4' />
@@ -703,11 +703,11 @@ const SideBarUniapp = () => {
                       <li>
                         <Link
                           className={`group focus:ring-0 ${
-                            pathname === '/uniapp/marketplace/subscriptions'
+                            pathname === '/uniapp/hub/subscriptions'
                               ? '   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
                               : 'w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
                           }`}
-                          href='/uniapp/marketplace/subscriptions'
+                          href='/uniapp/hub/subscriptions'
                           id='overview'
                         >
                           <PackageCheck className='w-4 h-4' />
@@ -717,11 +717,11 @@ const SideBarUniapp = () => {
                       <li>
                         <Link
                           className={`group focus:ring-0 ${
-                            pathname === '/uniapp/marketplace/bids'
+                            pathname === '/uniapp/hub/bids'
                               ? '   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm'
                               : 'w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200'
                           }`}
-                          href='/uniapp/marketplace/bids'
+                          href='/uniapp/hub/bids'
                           id='overview'
                         >
                           <Trophy01 className='w-4 h-4' />
@@ -737,11 +737,11 @@ const SideBarUniapp = () => {
                 </Collapsible>
                 {/* <Link
                   className={`group focus:ring-0 ${
-                    pathname === "/marketplace"
+                    pathname === "/uniapp/hub"
                       ? "   w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl bg-white border border-gray-300 h-11 p-3 text-base font-medium duration-200 ease-in-out text-black shadow-sm"
                       : "w-full outline-none  focus:tap-highlight-transparent  hover:text-black  hover:bg-white hover:shadow-sm  focus:tap-highlight-transparent relative flex items-center gap-3 rounded-xl h-11 p-3 text-base font-medium duration-200 ease-in-out text-gray-500 target:bg-white target:text-black border border-transparent target:border-gray-200"
                   }`}
-                  href="/marketplace"
+                  href="/uniapp/hub"
                   id="overview"
                 >
                   <svg
@@ -759,7 +759,7 @@ const SideBarUniapp = () => {
                       stroke-linejoin="round"
                     />
                   </svg>
-                  Marketplace
+                  Hub
                 </Link> */}
               </li>
               <li>

@@ -144,7 +144,7 @@ const Onboarding = () => {
                   className='w-5 h-5'
                   alt='Check Icon'
                 />{' '}
-                Access to local NSP marketplace
+                Access to local NSP hub
               </li>
             </ul>
           </div>
@@ -247,7 +247,7 @@ const Onboarding = () => {
                   className='w-5 h-5'
                   alt='Check Icon'
                 />{' '}
-                Access to global Polity marketplace
+                Access to global Polity hub
               </li>
             </ul>
           </div>
